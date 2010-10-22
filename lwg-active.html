@@ -22,11 +22,11 @@ del {background-color:#FFA0A0}
 <table>
 <tr>
 <td align="left">Doc. no.</td>
-<td align="left">N3175=10-0165</td>
+<td align="left">Dxxxx</td>
 </tr>
 <tr>
 <td align="left">Date:</td>
-<td align="left">2010-10-18</td>
+<td align="left">2010-xx-xx</td>
 </tr>
 <tr>
 <td align="left">Project:</td>
@@ -37,7 +37,7 @@ del {background-color:#FFA0A0}
 <td align="left">Alisdair Meredith &lt;<a href="mailto:wg21@alisdairm.net">wg21@alisdairm.net</a>&gt;</td>
 </tr>
 </table>
-<h1>C++ Standard Library Active Issues List (Revision R72)</h1>
+<h1>C++ Standard Library Active Issues List (Revision D73)</h1>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -1330,16 +1330,14 @@ the technique consists in returning a proxy object implicitly convertible to <tt
 that
 </p>
 
-<blockquote><pre>
-iterator q1=a.erase(q);
+<blockquote><pre>iterator q1=a.erase(q);
 </pre></blockquote>
 
 <p>
 works as expected, while
 </p>
 
-<blockquote><pre>
-a.erase(q);
+<blockquote><pre>a.erase(q);
 </pre></blockquote>
 
 <p>
@@ -1603,8 +1601,7 @@ which prevents static initialization of the pair even when the
 types are statically initializable.  Changing the definition to
 </p>
 
-<blockquote><pre>
-pair() = default;
+<blockquote><pre>pair() = default;
 </pre></blockquote>
 
 <p>
@@ -1627,8 +1624,7 @@ passing <tt>tuples</tt> in registers, the copy constructor should be
 make explicitly <tt>default</tt>ed.  The new declarations are:
 </p>
 
-<blockquote><pre>
-tuple() = default;
+<blockquote><pre>tuple() = default;
 tuple(const tuple&amp;) = default;
 </pre></blockquote>
 
@@ -2192,8 +2188,7 @@ on <tt>Rep</tt> are specified for each operation individually.
 In 20.10.2.1 [time.traits.is_fp] p1:
 </p>
 
-<blockquote><pre>
-template &lt;class Rep&gt; struct treat_as_floating_point 
+<blockquote><pre>template &lt;class Rep&gt; struct treat_as_floating_point 
   : is_floating_point&lt;Rep&gt; { };
 </pre>
 
@@ -2641,8 +2636,7 @@ I would like to propose the following resolution:
 Modify the first sentence of 30.5.1 [thread.condition.condvar] p9:
 </p>
 
-<blockquote><pre>
-void wait(unique_lock&lt;mutex&gt;&amp; lock);
+<blockquote><pre>void wait(unique_lock&lt;mutex&gt;&amp; lock);
 </pre>
 <blockquote>
 9 <i>Precondition:</i> <del><tt>lock</tt> is locked by the calling thread</del>
@@ -2655,8 +2649,7 @@ void wait(unique_lock&lt;mutex&gt;&amp; lock);
 Replace 30.5.1 [thread.condition.condvar] p11-13 with:
 </p>
 
-<blockquote><pre>
-void wait(unique_lock&lt;mutex&gt;&amp; lock);
+<blockquote><pre>void wait(unique_lock&lt;mutex&gt;&amp; lock);
 </pre>
 <blockquote>
 <p>...</p>
@@ -3063,8 +3056,7 @@ the dependency be fulfilled in a Remark.
 All <tt>tuple_size</tt> templates with a base class need to derive publicly, e.g.
 </p>
 
-<blockquote><pre>
-template &lt;IdentityOf T&gt; class tuple_size&lt; const T &gt; :
+<blockquote><pre>template &lt;IdentityOf T&gt; class tuple_size&lt; const T &gt; :
    <ins>public</ins> tuple_size&lt;T&gt; {};
 </pre></blockquote>
 
@@ -3157,8 +3149,7 @@ Moved to Tentatively Ready after 6 positive votes on c++std-lib.
 
 <ol>
 <li>Change 20.4.1 [tuple.general]/2, header <tt>&lt;tuple&gt;</tt> synopsis, as indicated:
-<blockquote><pre>
-// 20.4.2.5, tuple helper classes:
+<blockquote><pre>// 20.4.2.5, tuple helper classes:
 template &lt;class T&gt; class tuple_size; // undefined
 <ins>template &lt;class T&gt; class tuple_size&lt;const T&gt;;</ins>
 <ins>template &lt;class T&gt; class tuple_size&lt;volatile T&gt;;</ins>
@@ -3175,8 +3166,7 @@ template &lt;size_t I, class... Types&gt; class tuple_element&lt;I, tuple&lt;Typ
 </pre></blockquote>
 </li>
 <li>Add the end of subclause 20.4.2.5 [tuple.helper] insert the following two paragraphs:
-<blockquote><pre>
-<ins>template &lt;class T&gt; class tuple_size&lt;const T&gt;;</ins>
+<blockquote><pre><ins>template &lt;class T&gt; class tuple_size&lt;const T&gt;;</ins>
 <ins>template &lt;class T&gt; class tuple_size&lt;volatile T&gt;;</ins>
 <ins>template &lt;class T&gt; class tuple_size&lt;const volatile T&gt;;</ins>
 </pre><blockquote>
@@ -3185,8 +3175,7 @@ Then each of the three templates shall meet the UnaryTypeTrait requirements (20.
 <tt>integral_constant&lt;remove_cv&lt;decltype(<em>TS</em>::value)&gt;::type, <em>TS</em>::value&gt;</tt>.</ins>
 </blockquote></blockquote>
 
-<blockquote><pre>
-<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const T&gt;;</ins>
+<blockquote><pre><ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const T&gt;;</ins>
 <ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, volatile T&gt;;</ins>
 <ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const volatile T&gt;;</ins>
 </pre><blockquote>
@@ -3439,8 +3428,7 @@ and 20.10.3.7 [time.duration.cast]:
 <b>Header <tt>&lt;chrono&gt;</tt> synopsis</b>
 </p>
 
-<pre>
-<i>// duration arithmetic</i>
+<pre><i>// duration arithmetic</i>
 template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
    typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;&gt;::type
    <ins>constexpr</ins> operator+(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
@@ -3487,8 +3475,7 @@ Change 20.10.3 [time.duration]:
 
 <blockquote>
 
-<pre>
-template &lt;class Rep, class Period = ratio&lt;1&gt;&gt;
+<pre>template &lt;class Rep, class Period = ratio&lt;1&gt;&gt;
 class duration {
   ...
 public:
@@ -3645,8 +3632,7 @@ Several heterogeneous comparison operators of class template
 in general. E.g. 28.9.2 [re.submatch.op]/7:
 </p>
 
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
 bool operator==(
   const basic_string&lt;
     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3672,16 +3658,14 @@ traits class), the second one would define the semantics of the
 comparison using the traits class
 </p>
 
-<blockquote><pre>
-std::char_traits&lt;iterator_traits&lt;BiIter&gt;::value_type&gt;
+<blockquote><pre>std::char_traits&lt;iterator_traits&lt;BiIter&gt;::value_type&gt;
 </pre></blockquote>
 
 <p>
 which is essentially identical to
 </p>
 
-<blockquote><pre>
-std::char_traits&lt;sub_match&lt;BiIter&gt;::value_type&gt;
+<blockquote><pre>std::char_traits&lt;sub_match&lt;BiIter&gt;::value_type&gt;
 </pre></blockquote>
 
 <p>
@@ -3723,8 +3707,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 
 <ol>
 <li>Change 28.9.2 [re.submatch.op]/7 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator==(
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3734,8 +3717,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/8 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator!=(
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3745,8 +3727,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/9 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&lt;(
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3756,8 +3737,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/10 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&gt;(
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3767,8 +3747,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/11 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&gt;=(
    const basic_string&lt;
    typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3778,8 +3757,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/12 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&lt;=(
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
@@ -3789,8 +3767,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/13 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator==(const sub_match&lt;BiIter&gt;&amp; lhs,
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
@@ -3799,8 +3776,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/14 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator!=(const sub_match&lt;BiIter&gt;&amp; lhs,
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
@@ -3809,8 +3785,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/15 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&lt;(const sub_match&lt;BiIter&gt;&amp; lhs,
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
@@ -3819,8 +3794,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/16 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator>(const sub_match&lt;BiIter&gt;&amp; lhs,
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
@@ -3829,8 +3803,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/17 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&gt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
@@ -3839,8 +3812,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/18 as indicated:
-<blockquote><pre>
-template &lt;class BiIter, class ST, class SA&gt;
+<blockquote><pre>template &lt;class BiIter, class ST, class SA&gt;
  bool operator&lt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
    const basic_string&lt;
      typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
@@ -3849,8 +3821,7 @@ template &lt;class BiIter, class ST, class SA&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/19 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator==(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3858,8 +3829,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/20 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator!=(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3867,8 +3837,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/21 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3876,8 +3845,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/22 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3885,8 +3853,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/23 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;=(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3894,8 +3861,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/24 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;=(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3903,8 +3869,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/25 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator==(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
 </pre>
@@ -3912,8 +3877,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/26 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator!=(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
 </pre>
@@ -3921,8 +3885,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/27 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
 </pre>
@@ -3930,8 +3893,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/28 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
 </pre>
@@ -3939,8 +3901,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/29 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
 </pre>
@@ -3948,8 +3909,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/30 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
 </pre>
@@ -3957,8 +3917,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/31 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator==(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3967,8 +3926,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/32 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator!=(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3977,8 +3935,7 @@ rhs.str()</del><ins>!(lhs == rhs)</ins></tt>.
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/33 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3987,8 +3944,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/34 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -3996,8 +3952,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/35 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;=(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -4005,8 +3960,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/36 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;=(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
    const sub_match&lt;BiIter&gt;&amp; rhs);
 </pre>
@@ -4014,8 +3968,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/37 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator==(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
 </pre>
@@ -4024,8 +3977,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/38 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator!=(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
 </pre>
@@ -4033,8 +3985,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/39 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
 </pre>
@@ -4043,8 +3994,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/40 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
 </pre>
@@ -4052,8 +4002,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/41 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&gt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
 </pre>
@@ -4061,8 +4010,7 @@ template &lt;class BiIter&gt;
 </blockquote>
 </li>
 <li>Change 28.9.2 [re.submatch.op]/42 as indicated:
-<blockquote><pre>
-template &lt;class BiIter&gt;
+<blockquote><pre>template &lt;class BiIter&gt;
  bool operator&lt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
    typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
 </pre>
@@ -4103,16 +4051,14 @@ implementations which rely on the fact that setting a stream buffer via the
 currently only ways, i.e. either by calling
 </p>
 
-<blockquote><pre>
-void init(basic_streambuf&lt;charT,traits&gt;* sb);
+<blockquote><pre>void init(basic_streambuf&lt;charT,traits&gt;* sb);
 </pre></blockquote>
 
 <p>
 or by calling
 </p>
 
-<blockquote><pre>
-basic_streambuf&lt;charT,traits&gt;* rdbuf(basic_streambuf&lt;charT,traits&gt;* sb);
+<blockquote><pre>basic_streambuf&lt;charT,traits&gt;* rdbuf(basic_streambuf&lt;charT,traits&gt;* sb);
 </pre></blockquote>
 
 <p>
@@ -4144,8 +4090,7 @@ exception to be thrown like a call to <tt>clear()</tt> would.
 Change 27.5.4.2 [basic.ios.members] around p. 19 as indicated:
 </p>
 
-<blockquote><pre>
-void set_rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
+<blockquote><pre>void set_rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
 </pre>
 
 <blockquote>
@@ -4194,8 +4139,7 @@ Moved to Tentatively Ready with revised wording provided by Daniel after 5 posit
 <p><b>Proposed resolution:</b></p>
 <ol>
 <li>Add a new pre-condition just before 27.5.4.2 [basic.ios.members]/23 as indicated:
-<blockquote><pre>
-void set_rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
+<blockquote><pre>void set_rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
 </pre>
 <blockquote>
 <ins>?? <em>Requires</em>: <tt>sb != nullptr</tt>.</ins>
@@ -4623,8 +4567,7 @@ T&amp;&amp; get(array&lt;T,N&gt; &amp;&amp;);
 And after p8 23.3.1.8 [array.tuple]
 </p>
 
-<blockquote><pre>
-<ins>template &lt;size_t I, class T, size_t N&gt;
+<blockquote><pre><ins>template &lt;size_t I, class T, size_t N&gt;
 T&amp;&amp; get(array&lt;T,N&gt; &amp;&amp; a);
 </ins></pre>
 
@@ -4652,8 +4595,7 @@ Under 23.3.5 [container.adaptors] of
 the member function of <tt>swap</tt> of <tt>queue</tt> and <tt>stack</tt> call:
 </p>
 
-<blockquote><pre>
-swap(c, q.c);
+<blockquote><pre>swap(c, q.c);
 </pre></blockquote>
 
 <p>
@@ -4662,8 +4604,7 @@ But under 23.3.5 [container.adaptors] of
 these members are specified to call:
 </p>
 
-<blockquote><pre>
-c.swap(q.c);
+<blockquote><pre>c.swap(q.c);
 </pre></blockquote>
 
 <p>
@@ -4720,8 +4661,7 @@ Move to Tenatively Ready.
 Change 23.3.5.1.1 [queue.defn]:
 </p>
 
-<blockquote><pre>
-template &lt;class T, class Container = deque&lt;T&gt; &gt; 
+<blockquote><pre>template &lt;class T, class Container = deque&lt;T&gt; &gt; 
 class queue {
    ...
    void swap(queue&amp; q) { <ins>using std::swap;</ins>
@@ -4734,8 +4674,7 @@ class queue {
 Change 23.3.5.2 [priority.queue]:
 </p>
 
-<blockquote><pre>
-template &lt;class T, class Container = vector&lt;T&gt;, 
+<blockquote><pre>template &lt;class T, class Container = vector&lt;T&gt;, 
           class Compare = less&lt;typename Container::value_type&gt; &gt; 
 class priority_queue { 
     ...
@@ -4750,8 +4689,7 @@ class priority_queue {
 Change 23.3.5.3.1 [stack.defn]:
 </p>
 
-<blockquote><pre>
-template &lt;class T, class Container = deque&lt;T&gt; &gt; 
+<blockquote><pre>template &lt;class T, class Container = deque&lt;T&gt; &gt; 
 class stack {
    ...
    void swap(stack&amp; s) { <ins>using std::swap;</ins>
@@ -4848,8 +4786,7 @@ definition of <tt>char_traits&lt;char16_t&gt;</tt> replace the definition of nes
 typedef <tt>int_type</tt> with:
 </p>
 
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
   template&lt;&gt; struct char_traits&lt;char16_t&gt; {
     typedef char16_t         char_type;
     typedef <del>uint_least16_t</del> <ins>uint_fast16_t</ins> int_type;
@@ -4875,8 +4812,7 @@ definition of <tt>char_traits&lt;char32_t&gt;</tt> replace the definition of nes
 typedef <tt>int_type</tt> with:
 </p>
 
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
   template&lt;&gt; struct char_traits&lt;char32_t&gt; {
     typedef char32_t         char_type;
     typedef <del>uint_least32_t</del> <ins>uint_fast32_t</ins> int_type;
@@ -4974,8 +4910,7 @@ Suggested resolution:
 In 23.3.4.4 [list.ops] change paragraph 19
 </p>
 
-<blockquote><pre>
-                                 void unique();
+<blockquote><pre>                                 void unique();
 template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate binary_pred);
 </pre>
 <blockquote>
@@ -4988,8 +4923,7 @@ element from every consecutive group ...
 Add to the end of paragraph 23
 </p>
 
-<blockquote><pre>
-void                          merge(list&lt;T,Allocator&gt;&amp;&amp; x);
+<blockquote><pre>void                          merge(list&lt;T,Allocator&gt;&amp;&amp; x);
 template &lt;class Compare&gt; void merge(list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp);
 </pre>
 <blockquote>
@@ -5070,8 +5004,7 @@ Move to Tentatively Ready.
 Change 23.3.3.5 [forwardlist.ops]/12 as indicated:
 </p>
 
-<blockquote><pre>
-void remove(const T&amp; value);
+<blockquote><pre>void remove(const T&amp; value);
 template &lt;class Predicate&gt; void remove_if(Predicate pred);
 </pre>
 
@@ -5091,8 +5024,7 @@ iterators and references to the erased elements.</ins>
 Change 23.3.3.5 [forwardlist.ops]/15 as indicated:
 </p>
 
-<blockquote><pre>
-template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate pred);
+<blockquote><pre>template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate pred);
 </pre>
 
 <blockquote>
@@ -5111,8 +5043,7 @@ iterators and references to the erased elements.</ins>
 Change 23.3.3.5 [forwardlist.ops]/19 as indicated:
 </p>
 
-<blockquote><pre>
-void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x);
+<blockquote><pre>void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x);
 template &lt;class Compare&gt; void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp)
 </pre>
 
@@ -5141,8 +5072,7 @@ elements, but they now behave as iterators into <tt>*this</tt>, not into
 Change 23.3.3.5 [forwardlist.ops]/22 as indicated:
 </p>
 
-<blockquote><pre>
-void sort();
+<blockquote><pre>void sort();
 template &lt;class Compare&gt; void sort(Compare comp);
 </pre>
 
@@ -5167,8 +5097,7 @@ validity of iterators and references.</ins>
 Change 23.3.3.5 [forwardlist.ops]/24 as indicated:
 </p>
 
-<blockquote><pre>
-void reverse();
+<blockquote><pre>void reverse();
 </pre>
 
 <blockquote>
@@ -5183,8 +5112,7 @@ not affect the validity of iterators and references.</ins>
 Change 23.3.4.4 [list.ops], p15:
 </p>
 
-<blockquote><pre>
-                           void remove(const T&amp; value);
+<blockquote><pre>                           void remove(const T&amp; value);
 template &lt;class Predicate&gt; void remove_if(Predicate pred);
 </pre>
 <blockquote>
@@ -5201,8 +5129,7 @@ elements.</ins>
 Change 23.3.4.4 [list.ops], p19:
 </p>
 
-<blockquote><pre>
-                                 void unique();
+<blockquote><pre>                                 void unique();
 template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate binary_pred);
 </pre>
 <blockquote>
@@ -5222,8 +5149,7 @@ erased elements.</ins>
 Change 23.3.4.4 [list.ops], p23:
 </p>
 
-<blockquote><pre>
-void                          merge(list&lt;T,Allocator&gt;&amp;&amp; x);
+<blockquote><pre>void                          merge(list&lt;T,Allocator&gt;&amp;&amp; x);
 template &lt;class Compare&gt; void merge(list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp);
 </pre>
 <blockquote>
@@ -5246,8 +5172,7 @@ iterators into <tt>*this</tt>, not into <tt>x</tt>.</ins>
 Change 23.3.4.4 [list.ops], p26:
 </p>
 
-<blockquote><pre>
-void reverse();
+<blockquote><pre>void reverse();
 </pre>
 <blockquote>
 <i>Effects:</i> Reverses the order of the elements in the list.
@@ -5261,8 +5186,7 @@ void reverse();
 Change 23.3.4.4 [list.ops], p30:
 </p>
 
-<blockquote><pre>
-                         void sort();
+<blockquote><pre>                         void sort();
 template &lt;class Compare&gt; void sort(Compare comp);
 </pre>
 <blockquote>
@@ -5375,8 +5299,7 @@ Let me add a final example: In X [allocator.concepts.members] of
 we find:
 </p>
 
-<blockquote><pre>
-pointer X::allocate(size_type n);
+<blockquote><pre>pointer X::allocate(size_type n);
 </pre>
 
 <blockquote>
@@ -5388,8 +5311,7 @@ value is unspecified. &mdash;<i>end note</i>]
 [..]
 </p>
 
-<pre>
-void X::deallocate(pointer p, size_type n);
+<pre>void X::deallocate(pointer p, size_type n);
 </pre>
 
 <blockquote>
@@ -5643,8 +5565,7 @@ paragraphs 22-25 as follows:
 </p>
 
 <blockquote>
-<pre>
-void merge(list&amp;&amp; x);
+<pre>void merge(list&amp;&amp; x);
 template &lt;class Compare&gt; void merge(list&amp;&amp; x, Compare comp);
 </pre>
 <blockquote>
@@ -5691,8 +5612,7 @@ On g++ 4.2.4 (x86_64-linux-gnu), the following file gives a compile
 error:
 </p>
 
-<blockquote><pre>
-#include &lt;vector&gt;
+<blockquote><pre>#include &lt;vector&gt;
 void foo() { std::vector&lt;int*&gt; v(500l, NULL); }
 </pre></blockquote>
 
@@ -5709,8 +5629,7 @@ says that this will behave as if the the
 overloaded constructor
 </p>
 
-<blockquote><pre>
-X(size_type, const value_type&amp; = value_type(),
+<blockquote><pre>X(size_type, const value_type&amp; = value_type(),
   const allocator_type&amp; = allocator_type())
 </pre></blockquote>
 
@@ -5798,8 +5717,7 @@ Change 23.2.3 [sequence.reqmts]/14+15 as indicated:
 If the constructor
 </p>
 
-<blockquote><pre>
-template &lt;class InputIterator&gt;
+<blockquote><pre>template &lt;class InputIterator&gt;
 X(InputIterator first, InputIterator last,
   const allocator_type&amp; alloc = allocator_type())
 
@@ -5830,8 +5748,7 @@ respectively</del>.
 If the member functions of the forms:
 </p>
 
-<blockquote><pre>
-template &lt;class InputIterator&gt; <i>// such as insert()</i>
+<blockquote><pre>template &lt;class InputIterator&gt; <i>// such as insert()</i>
 rt fx1(<ins>const_</ins>iterator p, InputIterator first, InputIterator last);
 
 template &lt;class InputIterator&gt; <i>// such as append(), assign()</i>
@@ -5847,8 +5764,7 @@ iterator, then these functions <ins>shall not participate in overload
 resolution.</ins><del>will behave as if the overloaded member functions:</del>
 </p>
 
-<blockquote><pre>
-<del>rt fx1(iterator, size_type, const value_type&amp;);</del>
+<blockquote><pre><del>rt fx1(iterator, size_type, const value_type&amp;);</del>
 
 <del>rt fx2(size_type, const value_type&amp;);</del>
 
@@ -5886,8 +5802,7 @@ The class template <tt>std::function</tt> contains the following member
 declarations:
 </p>
 
-<blockquote><pre>
-// deleted overloads close possible hole in the type system
+<blockquote><pre>// deleted overloads close possible hole in the type system
 template&lt;class R2, class... ArgTypes2&gt;
   bool operator==(const function&lt;R2(ArgTypes2...)&gt;&amp;) = delete;
 template&lt;class R2, class... ArgTypes2&gt;
@@ -5904,8 +5819,7 @@ technique. The only disadvantage of this idiom was that given two
 objects <tt>f1</tt> and <tt>f2</tt> of type <tt>std::function</tt> the expression
 </p>
 
-<blockquote><pre>
-f1 == f2;
+<blockquote><pre>f1 == f2;
 </pre></blockquote>
 
 <p>
@@ -5943,8 +5857,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 In 20.8.14.2 [func.wrap.func]/1, class function change as indicated:
 </p>
 
-<blockquote><pre>
-// 20.7.15.2.3, function capacity:
+<blockquote><pre>// 20.7.15.2.3, function capacity:
 explicit operator bool() const;
 
 <del>// deleted overloads close possible hole in the type system</del>
@@ -6018,8 +5931,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 Change 27.5.2.7 [ios.base.cons] p1:
 </p>
 
-<blockquote><pre>
-ios_base();
+<blockquote><pre>ios_base();
 </pre>
 <blockquote>
 <i>Effects:</i> Each <tt>ios_base</tt> member has an indeterminate value
@@ -6036,8 +5948,7 @@ undefined.</del>
 Change 27.5.4.1 [basic.ios.cons] p2:
 </p>
 
-<blockquote><pre>
-basic_ios();
+<blockquote><pre>basic_ios();
 </pre>
 <blockquote>
 <i>Effects:</i> Constructs an object of class <tt>basic_ios</tt>
@@ -6064,8 +5975,7 @@ before it has been initialized the behavior is undefined.</del>
 The synopisis for <tt>wbuffer_convert</tt> 22.3.3.2.3 [conversions.buffer]/2 contains
 </p>
 
-<blockquote><pre>
-typedef typename Tr::state_type   state_type; 
+<blockquote><pre>typedef typename Tr::state_type   state_type; 
 </pre></blockquote>
 
 <p>
@@ -6077,8 +5987,7 @@ making <tt>state_type</tt> a synonym for (possibly) some
 However, in paragraph 9 of the same section, we have 
 </p>
 
-<blockquote><pre>
-typedef typename Codecvt::state_type state_type;
+<blockquote><pre>typedef typename Codecvt::state_type state_type;
 </pre>
 
 <blockquote>
@@ -6780,8 +6689,7 @@ Two <tt>ratio</tt> classes <tt>ratio&lt;N1,D1&gt;</tt> and
 <tt>ratio&lt;N2,D2&gt;</tt> have the same normalized form if
 </p>
 
-<blockquote><pre>
-ratio&lt;N1, D1&gt;::num == ratio&lt;N2, D2&gt;::num &amp;&amp;
+<blockquote><pre>ratio&lt;N1, D1&gt;::num == ratio&lt;N2, D2&gt;::num &amp;&amp;
 ratio&lt;N1, D1&gt;::den == ratio&lt;N2, D2&gt;::den
 </pre></blockquote>
 
@@ -6789,8 +6697,7 @@ ratio&lt;N1, D1&gt;::den == ratio&lt;N2, D2&gt;::den
 This simple example
 </p>
 
-<blockquote><pre>
-ratio&lt;1,3&gt; r1;
+<blockquote><pre>ratio&lt;1,3&gt; r1;
 ratio&lt;3,9&gt; r2;
 r1 = r2; // (1)
 </pre></blockquote>
@@ -6799,8 +6706,7 @@ r1 = r2; // (1)
 fails to compile in (1). Other example
 </p>
 
-<blockquote><pre>
-ratio&lt;1,3&gt; r1;
+<blockquote><pre>ratio&lt;1,3&gt; r1;
 ratio_subtract&lt;ratio&lt;2,3&gt;, ratio&lt;1,3&gt;&gt;::type r2;
 r1 = r2;  
 </pre></blockquote>
@@ -6860,8 +6766,7 @@ from any <tt>ratio</tt> which has the same reduced form.
 Add to 20.6.1 [ratio.ratio] synopsis
 </p>
 
-<blockquote><pre>
-template &lt;intmax_t N, intmax_t D = 1&gt;
+<blockquote><pre>template &lt;intmax_t N, intmax_t D = 1&gt;
 class ratio {
 public:
   static constexpr intmax_t num;
@@ -6899,8 +6804,7 @@ Add a new section: [ratio.cons]
 Construction and assignment  [ratio.cons]
 </b></p>
 
-<pre>
-template &lt;intmax_t N2, intmax_t D2&gt;
+<pre>template &lt;intmax_t N2, intmax_t D2&gt;
   ratio(const ratio&lt;N2, D2&gt;&amp; r);
 </pre>
 
@@ -6914,8 +6818,7 @@ unless <tt>r</tt> has the same reduced form as <tt>*this</tt>.
 </p>
 </blockquote>
 
-<pre>
-template &lt;intmax_t N2, intmax_t D2&gt;
+<pre>template &lt;intmax_t N2, intmax_t D2&gt;
   ratio&amp; operator=(const ratio&lt;N2, D2&gt;&amp; r);
 </pre>
 
@@ -6944,8 +6847,7 @@ Implementations may use other algorithms to compute these values. If overflow
 occurs, a diagnostic shall be issued.
 </p>
 
-<pre>
-template &lt;class R1, class R2&gt; struct ratio_add {
+<pre>template &lt;class R1, class R2&gt; struct ratio_add {
   typedef <i>see below</i> type;
 };
 </pre>
@@ -6957,8 +6859,7 @@ R2::den + R2::num * R1::den</tt> and <tt>T2</tt> has the value <tt>R1::den *
 R2::den</tt>.
 </blockquote>
 
-<pre>
-template &lt;class R1, class R2&gt; struct ratio_subtract {
+<pre>template &lt;class R1, class R2&gt; struct ratio_subtract {
   typedef <i>see below</i> type;
 };
 </pre>
@@ -6970,8 +6871,7 @@ R2::den - R2::num * R1::den</tt> and <tt>T2</tt> has the value <tt>R1::den *
 R2::den</tt>.
 </blockquote>
 
-<pre>
-template &lt;class R1, class R2&gt; struct ratio_multiply {
+<pre>template &lt;class R1, class R2&gt; struct ratio_multiply {
   typedef <i>see below</i> type;
 };
 </pre>
@@ -6982,8 +6882,7 @@ T2&gt;<ins>::type</ins></tt> where <tt>T1</tt> has the value <tt>R1::num *
 R2::num</tt> and <tt>T2</tt> has the value <tt>R1::den * R2::den</tt>.
 </blockquote>
 
-<pre>
-template &lt;class R1, class R2&gt; struct ratio_divide {
+<pre>template &lt;class R1, class R2&gt; struct ratio_divide {
   typedef <i>see below</i> type;
 };
 </pre>
@@ -7012,8 +6911,7 @@ to the FCD
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3092.pdf">N3092</a>:
 </p>
 
-<blockquote><pre>
-typedef ratio type;
+<blockquote><pre>typedef ratio type;
 </pre></blockquote>
 
 <p>
@@ -7038,8 +6936,7 @@ I've updated the wording to diff against
 Add to 20.6.1 [ratio.ratio] synopsis
 </p>
 
-<blockquote><pre>
-template &lt;intmax_t N, intmax_t D = 1&gt;
+<blockquote><pre>template &lt;intmax_t N, intmax_t D = 1&gt;
 class ratio {
 public:
   static constexpr intmax_t num;
@@ -7094,8 +6991,7 @@ Unfortunately this explicit conversion weakens the safety of a smart pointer
 since the following expression (invalid for raw pointers) would become valid:
 </p>
 
-<blockquote><pre>
-smart_ptr&lt;void&gt; smart_v = ...;
+<blockquote><pre>smart_ptr&lt;void&gt; smart_v = ...;
 smart_ptr&lt;T&gt; smart_t(smart_v);
 </pre></blockquote>
 
@@ -7133,8 +7029,7 @@ does not apply.
 So we can do this:
 </p>
 
-<blockquote><pre>
-template&lt;class BasePtr&gt;
+<blockquote><pre>template&lt;class BasePtr&gt;
 void generic_ptr_swap(BasePtr p)
 {
   //ADL customization point
@@ -7147,8 +7042,7 @@ void generic_ptr_swap(BasePtr p)
 but not the following:
 </p>
 
-<blockquote><pre>
-template&lt;class BasePtr&gt;
+<blockquote><pre>template&lt;class BasePtr&gt;
 void generic_ptr_algo(BasePtr p)
 {
   typedef std::pointer_traits&lt;BasePtr&gt;::template
@@ -7164,8 +7058,7 @@ namespace (like <tt>std</tt>) and apply "<tt>using
 std::static_pointer_cast</tt>" declaration to activate ADL:
 </p>
 
-<blockquote><pre>
-namespace std{
+<blockquote><pre>namespace std{
 
 template&lt;typename U, typename T&gt;
 <i>unspecified</i>
@@ -7210,8 +7103,7 @@ Add to section 20.3 [utility] Utility components, Header
 <tt>&lt;utility&gt;</tt> synopsis:
 </p>
 
-<blockquote><pre>
-// 20.3.X, generic pointer cast functions
+<blockquote><pre>// 20.3.X, generic pointer cast functions
 
 template&lt;typename U, typename T&gt;
 <i>unspecified</i>
@@ -7252,8 +7144,7 @@ can explicitly make these names visible and activate argument-dependent lookup
 for pointer cast calls.
 </p>
 
-<pre>
-//Generic declarations
+<pre>//Generic declarations
 template&lt;typename U, typename T&gt;
 <i>unspecified</i>
 static_pointer_cast(T&amp;&amp;) = delete;
@@ -7271,8 +7162,7 @@ const_pointer_cast(T&amp;&amp;) = delete;
 2 The library also defines overloads of these functions for raw pointers.
 </p>
 
-<pre>
-//Overloads for raw pointers
+<pre>//Overloads for raw pointers
 template&lt;typename U, typename T&gt;
 auto static_pointer_cast(T* t) -&gt; decltype(static_cast&lt;U*&gt;(t));
 </pre>
@@ -7281,8 +7171,7 @@ auto static_pointer_cast(T* t) -&gt; decltype(static_cast&lt;U*&gt;(t));
 <i>Returns:</i> <tt>static_cast&lt;U*&gt;(t)</tt>
 </blockquote>
 
-<pre>
-template&lt;typename U, typename T&gt;
+<pre>template&lt;typename U, typename T&gt;
 auto dynamic_pointer_cast(T* t) -&gt; decltype(dynamic_cast&lt;U*&gt;(t));
 </pre>
 
@@ -7290,8 +7179,7 @@ auto dynamic_pointer_cast(T* t) -&gt; decltype(dynamic_cast&lt;U*&gt;(t));
 <i>Returns:</i> <tt>dynamic_cast&lt;U*&gt;(t)</tt>
 </blockquote>
 
-<pre>
-template&lt;typename U, typename T&gt;
+<pre>template&lt;typename U, typename T&gt;
 auto const_pointer_cast(T* t) -&gt; decltype(const_cast&lt;U*&gt;(t));
 </pre>
 
@@ -7303,8 +7191,7 @@ auto const_pointer_cast(T* t) -&gt; decltype(const_cast&lt;U*&gt;(t));
 [<i>Example:</i>
 </p>
 
-<blockquote><pre>
-#include &lt;utility&gt; //static_pointer_cast
+<blockquote><pre>#include &lt;utility&gt; //static_pointer_cast
 #include &lt;memory&gt;  //pointer_traits
 
 class Base{};
@@ -7383,8 +7270,7 @@ The class templates <tt>unary_function</tt> and <tt>binary_function</tt> are
 actually very simple typedef providers,
 </p>
 
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
 
 template &lt;class Arg, class Result&gt;
 struct unary_function {
@@ -7463,8 +7349,7 @@ function objects. The behavior of a program that adds specializations for any of
 these templates is undefined.</ins><del>:</del>
 </p>
 
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
  template &lt;class Arg, class Result&gt;
  struct unary_function {
    typedef Arg argument_type;
@@ -7499,8 +7384,7 @@ in a function object and it ensures that user-defined function objects which
 provide typedefs but no such bases are handled as first class citizens.]</i>
 </p>
 
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
  template &lt;class T&gt; class reference_wrapper
    <del>: public unary_function&lt;T1, R&gt; // <i>see below</i></del>
    <del>: public binary_function&lt;T1, T2, R&gt; // <i>see below</i></del>
@@ -7650,8 +7534,7 @@ argument becomes strengthened by the fact that current C++0x-compatible
 compilers work fine with them:
 </p>
 
-<blockquote><pre>
-#include &lt;functional&gt;
+<blockquote><pre>#include &lt;functional&gt;
 #include &lt;iostream&gt;
 
 struct A
@@ -7687,8 +7570,7 @@ int main()
 The problematics passages are 20.8.14.2.1 [func.wrap.func.con]/10:
 </p>
 
-<blockquote><pre>
-template&lt;class F&gt; function(F f);
+<blockquote><pre>template&lt;class F&gt; function(F f);
 template &lt;class F, class A&gt; function(allocator_arg_t, const A&amp; a, F f);
 </pre>
 <blockquote>
@@ -7732,8 +7614,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 Change 20.8.14.2.1 [func.wrap.func.con]/10+11 as indicated:
 </p>
 
-<blockquote><pre>
-template&lt;class F&gt; function(F f);
+<blockquote><pre>template&lt;class F&gt; function(F f);
 template &lt;class F, class A&gt; function(allocator_arg_t, const A&amp; a, F f);
 </pre>
 <blockquote>
@@ -7804,8 +7685,7 @@ with an argument list. [<i>Note:</i> in a typical implementation forwarding call
 wrappers have an overloaded function call operator of the form
 </p>
 
-<blockquote><pre>
-template&lt;class... ArgTypes&gt;
+<blockquote><pre>template&lt;class... ArgTypes&gt;
 R operator()(ArgTypes&amp;&amp;... args) <i>cv-qual</i>;
 </pre></blockquote>
 
@@ -7830,8 +7710,7 @@ a typical implementation forwarding call wrappers have overloaded
 function call operators of the form
 </p>
 
-<blockquote><pre>
-template&lt;class T1, class T2, ..., class TN&gt;
+<blockquote><pre>template&lt;class T1, class T2, ..., class TN&gt;
 R operator()(T1&amp; t1, T2&amp; t2, ..., TN&amp; tN) <i>cv-qual</i>;
 </pre></blockquote>
 
@@ -7860,8 +7739,7 @@ typical implementation forwarding call wrappers have an overloaded function call
 operator of the form
 </p>
 
-<blockquote><pre>
-template&lt;class... ArgTypes&gt;
+<blockquote><pre>template&lt;class... ArgTypes&gt;
 R operator()(ArgTypes&amp;&amp;... args) <i>cv-qual</i>;
 </pre></blockquote>
 
@@ -8015,8 +7893,7 @@ change are that all real pointers wrapped in a <tt>unique_ptr</tt> will order
 like <tt>shared_ptr</tt> does.]</i>
 </p>
 
-<blockquote><pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
+<blockquote><pre>template &lt;class T1, class D1, class T2, class D2&gt;
   bool operator&lt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
 </pre>
 
@@ -8040,8 +7917,7 @@ is ill-formed.</ins>
 </p>
 </blockquote>
 
-<pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
+<pre>template &lt;class T1, class D1, class T2, class D2&gt;
   bool operator&lt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
 </pre>
 
@@ -8050,8 +7926,7 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 <del><i>Returns:</i> <tt>x.get() &lt;= y.get()</tt></del>.
 </blockquote>
 
-<pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
+<pre>template &lt;class T1, class D1, class T2, class D2&gt;
   bool operator&gt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
 </pre>
 
@@ -8060,8 +7935,7 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 <del><i>Returns:</i> <tt>x.get() &gt; y.get()</tt></del>.
 </blockquote>
 
-<pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
+<pre>template &lt;class T1, class D1, class T2, class D2&gt;
   bool operator&gt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
 </pre>
 
@@ -8104,16 +7978,14 @@ Consider the following case where you want to splice elements from one place in
 a <tt>forward_list</tt> to another.  Currently this must be coded like so:
 </p>
 
-<blockquote><pre>
-fl.splice_after(to_here, std::move(fl), from1, from2);
+<blockquote><pre>fl.splice_after(to_here, std::move(fl), from1, from2);
 </pre></blockquote>
 
 <p>
 This looks pretty shocking to me.  I would expect to be able to code instead:
 </p>
 
-<blockquote><pre>
-fl.splice_after(to_here, fl, from1, from2);
+<blockquote><pre>fl.splice_after(to_here, fl, from1, from2);
 </pre></blockquote>
 
 <p>
@@ -8140,8 +8012,7 @@ surprise) I'm also proposing to overload <tt>merge</tt> this way as well.
 Add to the synopsis of 23.3.3 [forwardlist]:
 </p>
 
-<blockquote><pre>
-template &lt;class T, class Allocator = allocator&lt;T&gt; &gt;
+<blockquote><pre>template &lt;class T, class Allocator = allocator&lt;T&gt; &gt;
 class forward_list {
 public:
   ...
@@ -8167,24 +8038,21 @@ Add to the signatures of 23.3.3.5 [forwardlist.ops]:
 </p>
 
 <blockquote>
-<pre>
-<ins>void splice_after(const_iterator p, forward_list&amp; x);</ins>
+<pre><ins>void splice_after(const_iterator p, forward_list&amp; x);</ins>
 void splice_after(const_iterator p, forward_list&amp;&amp; x);
 </pre>
 <blockquote>
 <p>1 ...</p>
 </blockquote>
 
-<pre>
-<ins>void splice_after(const_iterator p, forward_list&amp; x, const_iterator i);</ins>
+<pre><ins>void splice_after(const_iterator p, forward_list&amp; x, const_iterator i);</ins>
 void splice_after(const_iterator p, forward_list&amp;&amp; x, const_iterator i);
 </pre>
 <blockquote>
 <p>5 ...</p>
 </blockquote>
 
-<pre>
-<ins>void splice_after(const_iterator p, forward_list&amp; x,
+<pre><ins>void splice_after(const_iterator p, forward_list&amp; x,
                 const_iterator first, const_iterator last);</ins>
 void splice_after(const_iterator p, forward_list&amp;&amp; x,
                 const_iterator first, const_iterator last);
@@ -8193,8 +8061,7 @@ void splice_after(const_iterator p, forward_list&amp;&amp; x,
 <p>9 ...</p>
 </blockquote>
 
-<pre>
-<ins>void merge(forward_list&amp; x);</ins>
+<pre><ins>void merge(forward_list&amp; x);</ins>
 void merge(forward_list&amp;&amp; x);
 <ins>template &lt;class Compare&gt; void merge(forward_list&amp; x, Compare comp);</ins>
 template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp);
@@ -8327,8 +8194,7 @@ In general, I am unfcomfortable placing this reference requirement on each
 container, as I would prefer to require:
 </p>
 
-<blockquote><pre>
-is_same&lt;Container::reference, Container::iterator::reference&gt;
+<blockquote><pre>is_same&lt;Container::reference, Container::iterator::reference&gt;
 </pre></blockquote>
 
 <p>
@@ -8457,8 +8323,7 @@ Default
 Add the following typedef declarations to allocator_traits 20.9.4 [allocator.traits]:
 </p>
 
-<blockquote><pre>
-template &lt;class Alloc&gt; struct allocator_traits {
+<blockquote><pre>template &lt;class Alloc&gt; struct allocator_traits {
   ...
   <ins>typedef <i>see below</i> reference;</ins>
   <ins>typedef <i>see below</i> const_reference;</ins>
@@ -8491,8 +8356,7 @@ Add the following descriptions to 20.9.4.1 [allocator.traits.types]:
 Add the following typdef declarations to scoped_allocator_adaptor 20.9.6 [allocator.adaptor]:
 </p>
 
-<blockquote><pre>
-template &lt;class OuterAlloc, class... InnerAllocs&gt;
+<blockquote><pre>template &lt;class OuterAlloc, class... InnerAllocs&gt;
 class scoped_allocator_adaptor : public OuterAlloc {
   ...
   <ins>typedef typename OuterTraits::reference reference;</ins>
@@ -8507,8 +8371,7 @@ Change the nested typedefs reference and
 const_reference to:
 </p>
 
-<blockquote><pre>
-typedef typename allocator_traits&lt;Allocator&gt;::reference reference;
+<blockquote><pre>typedef typename allocator_traits&lt;Allocator&gt;::reference reference;
 typedef typename allocator_traits&lt;Allocator&gt;::const_reference const_reference;
 </pre></blockquote>
 
@@ -8714,8 +8577,7 @@ header synopsis (24.3 [iterator.synopsis]), with a note that it is
 documented in clause 25 [algorithms].
 </p>
 
-<blockquote><pre>
-...
+<blockquote><pre>...
 template &lt;class T, size_t N&gt; T* end(T (&amp;array)[N]);
 
 <ins><i>// documented in 25 [algorithms]</i>
@@ -8776,8 +8638,7 @@ iterator requirements) and Table 103 (forward iterator requirements) demonstrate
 quite clearly a strong divergence of copy-semantics: The specified semantics of
 </p>
 
-<blockquote><pre>
-X u(a);
+<blockquote><pre>X u(a);
 X u = a;
 </pre></blockquote>
 
@@ -9134,8 +8995,7 @@ In 21.4 [basic.string], class template <tt>basic_string</tt> synopsis
 change as indicated:
 </p>
 
-<blockquote><pre>
-// 21.4.6 modifiers:
+<blockquote><pre>// 21.4.6 modifiers:
 ...
 basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
                       const basic_string&amp; str);
@@ -9159,8 +9019,7 @@ In 21.4.6.6 [string::replace] before p.18, change the following signatures
 as indicated:
 </p>
 
-<blockquote><pre>
-basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const basic_string&amp; str);
+<blockquote><pre>basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const basic_string&amp; str);
 </pre></blockquote>
 </li>
 
@@ -9170,8 +9029,7 @@ In 21.4.6.6 [string::replace] before p.21, change the following signatures
 as indicated:
 </p>
 
-<blockquote><pre>
-basic_string&amp;
+<blockquote><pre>basic_string&amp;
   replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const charT* s, size_type n);
 </pre></blockquote>
 </li>
@@ -9182,8 +9040,7 @@ In 21.4.6.6 [string::replace] before p.24, change the following signatures
 as indicated:
 </p>
 
-<blockquote><pre>
-basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const charT* s);
+<blockquote><pre>basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const charT* s);
 </pre></blockquote>
 </li>
 
@@ -9193,8 +9050,7 @@ In 21.4.6.6 [string::replace] before p.27, change the following signatures
 as indicated:
 </p>
 
-<blockquote><pre>
-basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, size_type n,
+<blockquote><pre>basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, size_type n,
                       charT c);
 </pre></blockquote>
 </li>
@@ -9205,8 +9061,7 @@ In 21.4.6.6 [string::replace] before p.30, change the following signatures
 as indicated:
 </p>
 
-<blockquote><pre>
-template&lt;class InputIterator&gt;
+<blockquote><pre>template&lt;class InputIterator&gt;
   basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
                         InputIterator j1, InputIterator j2);
 </pre></blockquote>
@@ -9218,8 +9073,7 @@ In 21.4.6.6 [string::replace] before p.33, change the following signatures
 as indicated:
 </p>
 
-<blockquote><pre>
-basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+<blockquote><pre>basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
                       initializer_list&lt;charT&gt; il);
 </pre></blockquote>
 </li>
@@ -9244,8 +9098,7 @@ In analogy to library defect <a href="lwg-defects.html#811">811</a>, <tt>tuple</
 constructor
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt;
+<blockquote><pre>template &lt;class... UTypes&gt;
 explicit tuple(UTypes&amp;&amp;... u);
 </pre></blockquote>
 
@@ -9253,8 +9106,7 @@ explicit tuple(UTypes&amp;&amp;... u);
 creates the same problem as pair:
 </p>
 
-<blockquote><pre>
-#include &lt;tuple&gt;
+<blockquote><pre>#include &lt;tuple&gt;
 
 int main()
 {
@@ -9280,8 +9132,7 @@ the corresponding element types are not implicitly convertible. It seems
 astonishing that in the following example
 </p>
 
-<blockquote><pre>
-struct A {
+<blockquote><pre>struct A {
   explicit A(int);
 };
 
@@ -9310,8 +9161,7 @@ well-formed anyway.
 Following 20.3.5.2 [pairs.pair]/5 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template&lt;class U, class V&gt; pair(const pair&lt;U, V&gt;&amp; p);
+<blockquote><pre>template&lt;class U, class V&gt; pair(const pair&lt;U, V&gt;&amp; p);
 </pre>
 
 <blockquote>
@@ -9335,8 +9185,7 @@ and <tt>V</tt> is implicitly convertible to <tt>second_type</tt>.</ins>
 Following 20.3.5.2 [pairs.pair]/6 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template&lt;class U, class V&gt; pair(pair&lt;U, V&gt;&amp;&amp; p);
+<blockquote><pre>template&lt;class U, class V&gt; pair(pair&lt;U, V&gt;&amp;&amp; p);
 </pre>
 
 <blockquote>
@@ -9359,8 +9208,7 @@ and <tt>V</tt> is implicitly convertible to <tt>second_type</tt>.</ins>
 Following 20.4.2.1 [tuple.cnstr]/7 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt;
+<blockquote><pre>template &lt;class... UTypes&gt;
 explicit tuple(UTypes&amp;&amp;... u);
 </pre>
 
@@ -9390,8 +9238,7 @@ corresponding type in <tt>Types</tt>.</ins>
 Following 20.4.2.1 [tuple.cnstr]/13 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt; tuple(const tuple&lt;UTypes...&gt;&amp; u);
+<blockquote><pre>template &lt;class... UTypes&gt; tuple(const tuple&lt;UTypes...&gt;&amp; u);
 </pre>
 
 <blockquote>
@@ -9426,8 +9273,7 @@ target have the same number of elements. &mdash; <i>end note</i>]
 Following 20.4.2.1 [tuple.cnstr]/16 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt; tuple(tuple&lt;UTypes...&gt;&amp;&amp; u);
+<blockquote><pre>template &lt;class... UTypes&gt; tuple(tuple&lt;UTypes...&gt;&amp;&amp; u);
 </pre>
 
 <blockquote>
@@ -9462,8 +9308,7 @@ the same number of elements. &mdash; <i>end note</i>]
 Following 20.4.2.1 [tuple.cnstr]/18 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template &lt;class U1, class U2&gt; tuple(const pair&lt;U1, U2&gt;&amp; u);
+<blockquote><pre>template &lt;class U1, class U2&gt; tuple(const pair&lt;U1, U2&gt;&amp; u);
 </pre>
 
 <blockquote>
@@ -9493,8 +9338,7 @@ resolution unless <tt>U1</tt> is implicitly convertible to the first type in
 Following 20.4.2.1 [tuple.cnstr]/20 add a new Remarks element:
 </p>
 
-<blockquote><pre>
-template &lt;class U1, class U2&gt; tuple(pair&lt;U1, U2&gt;&amp;&amp; u);
+<blockquote><pre>template &lt;class U1, class U2&gt; tuple(pair&lt;U1, U2&gt;&amp;&amp; u);
 </pre>
 
 <blockquote>
@@ -9544,8 +9388,7 @@ between the "<tt>unsigned long long</tt>" and "<tt>char*</tt>"
 constructors.
 </p>
 
-<blockquote><pre>
-#include &lt;bitset&gt;
+<blockquote><pre>#include &lt;bitset&gt;
 std::bitset&lt;10&gt; b(0);
 </pre></blockquote>
 
@@ -9569,8 +9412,7 @@ could be easily added and constitutes an important use-case. For
 example, the following code would invoke UB with the current
 P/R:</p>
 <blockquote>
-<pre>
-char s[4] = { '0', '1', '0', '1' }; // notice: not null-terminated!
+<pre>char s[4] = { '0', '1', '0', '1' }; // notice: not null-terminated!
 bitset&lt;4&gt; b(s, 0, 4);
 </pre></blockquote>
 because it requires the evaluation (under the as-if rule, to be fair,
@@ -9600,8 +9442,7 @@ Moved to Tentatively Ready with revised wording provided by Alberto Ganesh Babat
 <li>In the synopsis of header <tt>&lt;bitset&gt;</tt> in
 [template.bitset]/1, replace the fourth bitset constructor:
 <blockquote>
-<pre>
-<del>explicit bitset(const char *str);</del>
+<pre><del>explicit bitset(const char *str);</del>
 <ins>template &lt;class charT&gt;
   explicit bitset(
     const charT *str,
@@ -9611,8 +9452,7 @@ Moved to Tentatively Ready with revised wording provided by Alberto Ganesh Babat
 </li>
 <li>In [bitset.cons]/8:
 <blockquote>
-<pre>
-<del>explicit bitset(const char *str);</del>
+<pre><del>explicit bitset(const char *str);</del>
 <ins>template &lt;class charT&gt;
 explicit
 bitset(const charT *str,
@@ -9661,15 +9501,13 @@ references. Some examples:
 20.4.2.1 [tuple.cnstr] before p.4 and p.8, resp.:
 </p>
 
-<blockquote><pre>
-explicit tuple(const Types&amp;...);
+<blockquote><pre>explicit tuple(const Types&amp;...);
 </pre>
 <blockquote>
 4 <i>Requires:</i> Each type in <tt>Types</tt> shall be copy constructible.
 </blockquote>
 
-<pre>
-tuple(const tuple& u) = default;
+<pre>tuple(const tuple& u) = default;
 </pre>
 <blockquote>
 8 <i>Requires:</i> Each type in <tt>Types</tt> shall satisfy the requirements of
@@ -9689,8 +9527,7 @@ non-reference type, this requirement would be wrong as well,
 because there is no reason to disallow a type such as
 </p>
 
-<blockquote><pre>
-struct NoMoveNoCopy {
+<blockquote><pre>struct NoMoveNoCopy {
   NoMoveNoCopy(NoMoveNoCopy&amp;&amp;) = delete;
   NoMoveNoCopy(const NoMoveNoCopy&amp;) = delete;
   ...
@@ -9724,8 +9561,7 @@ produce a <tt>tuple&lt;C&gt;</tt> that does not satisfy the
 20.4.2.1 [tuple.cnstr] before p.6 and p.10, resp.:
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt;
+<blockquote><pre>template &lt;class... UTypes&gt;
 explicit tuple(UTypes&amp;&amp;... u);
 </pre>
 
@@ -9736,8 +9572,7 @@ corresponding type in <tt>UTypes</tt>. <tt>sizeof...(Types) ==
 sizeof...(UTypes)</tt>.
 </blockquote>
 
-<pre>
-tuple(tuple&amp;&amp; u);
+<pre>tuple(tuple&amp;&amp; u);
 </pre>
 <blockquote>
 10 <i>Requires:</i> Each <tt>type</tt> in <tt>Types</tt> shall shall
@@ -9803,8 +9638,7 @@ elements are not normative changes, they just ensure
 harmonization with existing wording style]</i>:
 </p>
 
-<blockquote><pre>
-constexpr pair();
+<blockquote><pre>constexpr pair();
 </pre>
 
 <blockquote>
@@ -9829,8 +9663,7 @@ the <tt>DefaultConstructible</tt> requirements.</ins>
 Change 20.3.5.2 [pairs.pair]/2 as indicated:
 </p>
 
-<blockquote><pre>
-pair(const T1&amp; x, const T2&amp; y);
+<blockquote><pre>pair(const T1&amp; x, const T2&amp; y);
 </pre>
 
 <blockquote>
@@ -9855,8 +9688,7 @@ is <tt>true</tt>.</ins>
 Change 20.3.5.2 [pairs.pair]/3 as indicated:
 </p>
 
-<blockquote><pre>
-template&lt;class U, class V&gt; pair(U&amp;&amp; x, V&amp;&amp; y);
+<blockquote><pre>template&lt;class U, class V&gt; pair(U&amp;&amp; x, V&amp;&amp; y);
 </pre>
 
 <blockquote>
@@ -9891,8 +9723,7 @@ element should be non-normatively and is in compatible to the change suggestion
 of <a href="lwg-active.html#1324">1324</a>]</i>:
 </p>
 
-<blockquote><pre>
-template&lt;class U, class V&gt; pair(const pair&lt;U, V&gt;&amp; p);
+<blockquote><pre>template&lt;class U, class V&gt; pair(const pair&lt;U, V&gt;&amp; p);
 </pre>
 
 <blockquote>
@@ -9917,8 +9748,7 @@ argument<del>, performing implicit conversions as needed</del>.
 Change 20.3.5.2 [pairs.pair]/6 as indicated:
 </p>
 
-<blockquote><pre>
-template&lt;class U, class V&gt; pair(pair&lt;U, V&gt;&amp;&amp; p);
+<blockquote><pre>template&lt;class U, class V&gt; pair(pair&lt;U, V&gt;&amp;&amp; p);
 </pre>
 
 <blockquote>
@@ -9944,8 +9774,7 @@ Change 20.3.5.2 [pairs.pair]/7+8 as indicated [The deletion in the effects
 element should be non-normatively]:
 </p>
 
-<blockquote><pre>
-template&lt;class... Args1, class... Args2&gt;
+<blockquote><pre>template&lt;class... Args1, class... Args2&gt;
   pair(piecewise_construct_t,
        tuple&lt;Args1...&gt; first_args, tuple&lt;Args2...&gt; second_args);
 </pre>
@@ -9983,8 +9812,7 @@ piecewise construction.
 Change 20.3.5.2 [pairs.pair] before 12 as indicated:
 </p>
 
-<blockquote><pre>
-pair&amp; operator=(pair&amp;&amp; p);
+<blockquote><pre>pair&amp; operator=(pair&amp;&amp; p);
 </pre>
 
 <blockquote>
@@ -10017,8 +9845,7 @@ alternative could be to write "first_type shall be assignable from an
 rvalue of U [..]"]
 </p>
 
-<blockquote><pre>
-template&lt;class U, class V&gt; pair&amp; operator=(pair&lt;U, V&gt;&amp;&amp; p);
+<blockquote><pre>template&lt;class U, class V&gt; pair&amp; operator=(pair&lt;U, V&gt;&amp;&amp; p);
 </pre>
 
 <blockquote>
@@ -10048,8 +9875,7 @@ and to <tt>second</tt> with <tt>std::move(p.second)</tt>.
 Change 20.4.2.1 [tuple.cnstr]/4+5 as indicated:
 </p>
 
-<blockquote><pre>
-explicit tuple(const Types&amp;...);
+<blockquote><pre>explicit tuple(const Types&amp;...);
 </pre>
 
 <blockquote>
@@ -10075,8 +9901,7 @@ value of the corresponding parameter.
 Change 20.4.2.1 [tuple.cnstr]/6 as indicated:
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt;
+<blockquote><pre>template &lt;class... UTypes&gt;
 explicit tuple(UTypes&amp;&amp;... u);
 </pre>
 
@@ -10104,8 +9929,7 @@ corresponding value in <tt>std::forward&lt;UTypes&gt;(u)</tt>.
 Change 20.4.2.1 [tuple.cnstr]/8+9 as indicated:
 </p>
 
-<blockquote><pre>
-tuple(const tuple&amp; u) = default;
+<blockquote><pre>tuple(const tuple&amp; u) = default;
 </pre>
 
 <blockquote>
@@ -10130,8 +9954,7 @@ of <tt>*this</tt> with the corresponding element of <tt>u</tt>.
 Change 20.4.2.1 [tuple.cnstr]/10+11 as indicated:
 </p>
 
-<blockquote><pre>
-tuple(tuple&amp;&amp; u);
+<blockquote><pre>tuple(tuple&amp;&amp; u);
 </pre>
 
 <blockquote>
@@ -10158,8 +9981,7 @@ requirements of <tt>MoveConstructible</tt> (Table 34)</del>.
 Change 20.4.2.1 [tuple.cnstr]/15+16 as indicated:
 </p>
 
-<blockquote><pre>
-template &lt;class... UTypes&gt; tuple(tuple&lt;UTypes...&gt;&amp;&amp; u);
+<blockquote><pre>template &lt;class... UTypes&gt; tuple(tuple&lt;UTypes...&gt;&amp;&amp; u);
 </pre>
 
 <blockquote>
@@ -10190,8 +10012,7 @@ type in <tt>UTypes</tt></del>. <tt>sizeof...(Types) == sizeof...(UTypes)</tt>.
 Change 20.4.2.1 [tuple.cnstr]/19+20 as indicated:
 </p>
 
-<blockquote><pre>
-template &lt;class U1, class U2&gt; tuple(pair&lt;U1, U2&gt;&amp;&amp; u);
+<blockquote><pre>template &lt;class U1, class U2&gt; tuple(pair&lt;U1, U2&gt;&amp;&amp; u);
 </pre>
 
 <blockquote>
@@ -10223,8 +10044,7 @@ the second element with
 Change 20.4.2.4 [tuple.creation]/9-16 as indicated:
 </p>
 
-<blockquote><pre>
-template &lt;class... TTypes, class... UTypes&gt;
+<blockquote><pre>template &lt;class... TTypes, class... UTypes&gt;
 tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);
 </pre>
 
@@ -10250,8 +10070,7 @@ of <tt>u</tt>.
 </p>
 </blockquote>
 
-<pre>
-template &lt;class... TTypes, class... UTypes&gt;
+<pre>template &lt;class... TTypes, class... UTypes&gt;
 tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);
 </pre>
 
@@ -10282,8 +10101,7 @@ corresponding elements of <tt>t</tt> and copy constructing its last
 </p>
 </blockquote>
 
-<pre>
-template &lt;class... TTypes, class... UTypes&gt;
+<pre>template &lt;class... TTypes, class... UTypes&gt;
 tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);
 </pre>
 
@@ -10313,8 +10131,7 @@ corresponding elements of <tt>t</tt> and move constructing its last
 </p>
 </blockquote>
 
-<pre>
-template &lt;class... TTypes, class... UTypes&gt;
+<pre>template &lt;class... TTypes, class... UTypes&gt;
 tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);
 </pre>
 
@@ -10366,8 +10183,7 @@ The templates defined in <tt>&lt;cmath&gt;</tt> replace the C99 macros
 with the same names. The templates have the following declarations:
 </p>
 
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
 template &lt;class T&gt; bool signbit(T x);
 template &lt;class T&gt; int fpclassify(T x);
 template &lt;class T&gt; bool isfinite(T x);
@@ -10408,8 +10224,7 @@ Synopsis
 <p>
 1 <tt>#include &lt;math.h&gt;</tt>
 </p>
-<pre>
-int isgreaterequal(real-floating x, real-floating y);
+<pre>int isgreaterequal(real-floating x, real-floating y);
 </pre>
 </blockquote>
 </blockquote>
@@ -10526,8 +10341,7 @@ all copy constructors, copy constructors with allocator,
  assignment operators, and insert operators
  with move semantics for associative and unordered containers
 </p>
-<blockquote><pre>
-ContType c1(c2&amp;&amp;)
+<blockquote><pre>ContType c1(c2&amp;&amp;)
 ContType c1(c2&amp;&amp;,alloc)
 c1 = c2&amp;&amp;
 c.insert(val&amp;&amp;)
@@ -10547,24 +10361,21 @@ required):
 <p>
 constructor with only a size argument
 </p>
-<blockquote><pre>
-ContType c(num)
+<blockquote><pre>ContType c(num)
 </pre></blockquote>
 </li>
 <li>
 <p>
 copy constructor with allocator and move semantics
 </p>
-<blockquote><pre>
-ContType c1(c2&amp;&amp;,alloc)
+<blockquote><pre>ContType c1(c2&amp;&amp;,alloc)
 </pre></blockquote>
 </li>
 <li>
 <p>
 all constructors that insert multiple elements with additional allocator
 </p>
-<blockquote><pre>
-ContType c(num, val,alloc)
+<blockquote><pre>ContType c(num, val,alloc)
 ContType c(beg, end,alloc)
 ContType c(initlist,alloc)
 </pre></blockquote>
@@ -10573,8 +10384,7 @@ ContType c(initlist,alloc)
 <p>
 all resize functiuons:
 </p>
-<blockquote><pre>
-c.resize(num)
+<blockquote><pre>c.resize(num)
 c.resize(num,val)
 </pre></blockquote>
 </li>
@@ -10794,8 +10604,7 @@ least one user-defined type.</ins>
 The current wording of 20.8.14.2.4 [func.wrap.func.inv]/1:
 </p>
 
-<blockquote><pre>
-R operator()(ArgTypes... args) const
+<blockquote><pre>R operator()(ArgTypes... args) const
 </pre>
 
 <blockquote>
@@ -10827,8 +10636,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 Change 20.8.14.2.4 [func.wrap.func.inv]/1+2 as indicated:
 </p>
 
-<blockquote><pre>
-R operator()(ArgTypes... args) const
+<blockquote><pre>R operator()(ArgTypes... args) const
 </pre>
 
 <blockquote>
@@ -10869,8 +10677,7 @@ exception thrown by the wrapped callable object.
 In C++03 this was valid code:
 </p>
 
-<blockquote><pre>
-#include &lt;vector&gt;
+<blockquote><pre>#include &lt;vector&gt;
 #include &lt;iterator&gt;
 
 int main() {
@@ -10886,8 +10693,7 @@ In C++0x this code does no longer compile because of an ambiguity error for this
 <tt>operator=</tt> overload pair:
 </p>
 
-<blockquote><pre>
-back_insert_iterator&lt;Container&gt;&amp;
+<blockquote><pre>back_insert_iterator&lt;Container&gt;&amp;
 operator=(typename Container::const_reference value);
 
 back_insert_iterator&lt;Container&gt;&amp;
@@ -10901,8 +10707,7 @@ it's identical to <tt>Container::value_type</tt>, thus forming the ambiguous
 overload pair
 </p>
 
-<blockquote><pre>
-back_insert_iterator&lt;Container&gt;&amp;
+<blockquote><pre>back_insert_iterator&lt;Container&gt;&amp;
 operator=(bool value);
 
 back_insert_iterator&lt;Container&gt;&amp;
@@ -10920,8 +10725,7 @@ container must not be the same as the <tt>value_type</tt>, but this would break
 earlier valid code. The alternative would be to change the first signature to
 </p>
 
-<blockquote><pre>
-back_insert_iterator&lt;Container&gt;&amp;
+<blockquote><pre>back_insert_iterator&lt;Container&gt;&amp;
 operator=(const typename Container::const_reference&amp; value);
 </pre></blockquote>
 
@@ -10942,8 +10746,7 @@ Post-Rapperswil
 This problem is not restricted to the unspeakable <tt>vector&lt;bool&gt;</tt>, but is already existing for other proxy 
 containers like gcc's <tt>rope</tt> class. The following code does no longer work ([Bug libstdc++/44963]):
 </p>
-<blockquote><pre>
-#include &lt;iostream&gt;
+<blockquote><pre>#include &lt;iostream&gt;
 #include &lt;ext/rope&gt;
 
 using namespace std;
@@ -10979,8 +10782,7 @@ Moved to Tentatively Ready with revised wording after 6 positive votes on c++std
 
 <ol>
 <li>Change [back.insert.iterator], class <tt>back_insert_iterator</tt> synopsis as indicated:
-<blockquote><pre>
-template &lt;class Container&gt;
+<blockquote><pre>template &lt;class Container&gt;
 class back_insert_iterator :
  public iterator&lt;output_iterator_tag,void,void,void,void&gt; {
 protected:
@@ -10996,8 +10798,7 @@ public:
 </pre></blockquote>
 </li>
 <li>Change [back.insert.iter.op=] before p. 1 as indicated:
-<blockquote><pre>
-back_insert_iterator&lt;Container&gt;&amp;
+<blockquote><pre>back_insert_iterator&lt;Container&gt;&amp;
    operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
 </pre>
 <blockquote>
@@ -11006,8 +10807,7 @@ back_insert_iterator&lt;Container&gt;&amp;
 </blockquote></blockquote>
 </li>
 <li>Change [front.insert.iterator], class <tt>front_insert_iterator</tt> synposis as indicated:
-<blockquote><pre>
-template &lt;class Container&gt;
+<blockquote><pre>template &lt;class Container&gt;
 class front_insert_iterator :
  public iterator&lt;output_iterator_tag,void,void,void,void&gt; {
 protected:
@@ -11023,8 +10823,7 @@ public:
 </pre></blockquote>
 </li>
 <li>Change [front.insert.iter.op=] before p.1 as indicated:
-<blockquote><pre>
-front_insert_iterator&lt;Container&gt;&amp;
+<blockquote><pre>front_insert_iterator&lt;Container&gt;&amp;
    operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
 </pre>
 <blockquote>
@@ -11033,8 +10832,7 @@ front_insert_iterator&lt;Container&gt;&amp;
 </blockquote></blockquote>
 </li>
 <li>Change [insert.iterator], class insert_iterator synopsis as indicated:
-<blockquote><pre>
-template &lt;class Container&gt;
+<blockquote><pre>template &lt;class Container&gt;
    class insert_iterator :
      public iterator&lt;output_iterator_tag,void,void,void,void&gt; {
    protected:
@@ -11051,14 +10849,12 @@ template &lt;class Container&gt;
 </pre></blockquote>
 </li>
 <li>Change [insert.iter.op=] before p. 1 as indicated:
-<blockquote><pre>
-insert_iterator&lt;Container&gt;&amp;
+<blockquote><pre>insert_iterator&lt;Container&gt;&amp;
     operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
 </pre>
 <blockquote>
 1 <em>Effects</em>: 
-<blockquote><pre>
-  iter = container-&gt;insert(iter, value);
+<blockquote><pre>  iter = container-&gt;insert(iter, value);
   ++iter;
 </pre></blockquote>
 2 <em>Returns</em>: <tt>*this</tt>.
@@ -11111,8 +10907,7 @@ Moved to Tentatively Ready with updated wording correcting change-bars after 6 p
 <ol>
 <li>Change [tuple.rel] before p. 4 as indicated [<strong>Remark to the editor: This paragraph doesn't have a number yet,
 but it seems to me as if it should have one</strong>]:
-<blockquote><pre>
-template&lt;class... TTypes, class... UTypes&gt;
+<blockquote><pre>template&lt;class... TTypes, class... UTypes&gt;
 bool operator&lt;(const tuple&lt;TTypes...&gt;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);
 </pre>
 <blockquote>
@@ -11152,8 +10947,7 @@ invocation has completed).
 Change the first bullet item in 30.6.10.1 [futures.task.members] /22:
 </p>
 
-<blockquote><pre>
-void operator()(ArgTypes... args);
+<blockquote><pre>void operator()(ArgTypes... args);
 </pre>
 <blockquote>
 <p>
@@ -11210,8 +11004,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 Change 28.7 [re.traits]/12:
 </p>
 
-<blockquote><pre>
-bool isctype(charT c, char_class_type f) const;
+<blockquote><pre>bool isctype(charT c, char_class_type f) const;
 </pre>
 <blockquote>
 <p>
@@ -11251,8 +11044,7 @@ algorithms when dealing with empty ranges.  In particular it recommended for
 25.2.13 [alg.search]:
 </p>
 
-<blockquote><pre>
-template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+<blockquote><pre>template&lt;class ForwardIterator1, class ForwardIterator2&gt;
   ForwardIterator1
     search(ForwardIterator1 first1, ForwardIterator1 last1,
            ForwardIterator2 first2, ForwardIterator2 last2);
@@ -11282,8 +11074,7 @@ Unfortunately this got translated to an incorrect specification for what gets
 returned when no such iterator is found (N3092):
 </p>
 
-<blockquote><pre>
-template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+<blockquote><pre>template&lt;class ForwardIterator1, class ForwardIterator2&gt;
   ForwardIterator1
     search(ForwardIterator1 first1, ForwardIterator1 last1,
            ForwardIterator2 first2, ForwardIterator2 last2);
@@ -11333,8 +11124,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 <p><b>Proposed resolution:</b></p>
 <ol>
 <li>Change [alg.search]/2 as indicated:
-<blockquote><pre>
-template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+<blockquote><pre>template&lt;class ForwardIterator1, class ForwardIterator2&gt;
   ForwardIterator1
     search(ForwardIterator1 first1, ForwardIterator1 last1,
            ForwardIterator2 first2, ForwardIterator2 last2);
@@ -11396,8 +11186,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 In section 20.9 [memory] change:,
 </p>
 
-<blockquote><pre>
-template &lt;class ForwardIterator, class Size, class T&gt;
+<blockquote><pre>template &lt;class ForwardIterator, class Size, class T&gt;
   <del>void</del> <ins>ForwardIterator</ins> uninitialized_fill_n(ForwardIterator first, Size n, const T&amp; x);
 </pre></blockquote>
 
@@ -11406,16 +11195,14 @@ template &lt;class ForwardIterator, class Size, class T&gt;
 In section 20.9.9.4 [uninitialized.fill.n] change,
 </p>
 
-<blockquote><pre>
-template &lt;class ForwardIterator, class Size, class T&gt;
+<blockquote><pre>template &lt;class ForwardIterator, class Size, class T&gt;
   <del>void</del> <ins>ForwardIterator</ins> uninitialized_fill_n(ForwardIterator first, Size n, const T&amp; x);
 </pre>
 <blockquote>
 <p>
 1 <i>Effects:</i>
 </p>
-<blockquote><pre>
-for (; n--; ++first)
+<blockquote><pre>for (; n--; ++first)
   ::new (static_cast&lt;void*&gt;(&amp;*first))
     typename iterator_traits&lt;ForwardIterator&gt;::value_type(x);
 <ins>return first;</ins>
@@ -11443,8 +11230,7 @@ In
 declared as:
 </p>
 
-<blockquote><pre>
-void resize(size_type sz, value_type c); 
+<blockquote><pre>void resize(size_type sz, value_type c); 
 </pre></blockquote>
 
 <p>
@@ -11457,8 +11243,7 @@ Is there a reason for this difference?  If not, then <tt>resize()</tt> should
 be declared as: 
 </p>
 
-<blockquote><pre>
-void resize(size_type sz, const value_type&amp; c); 
+<blockquote><pre>void resize(size_type sz, const value_type&amp; c); 
 </pre></blockquote>
 
 <p>
@@ -11494,8 +11279,7 @@ Moved to Tentatively Ready with revised wording after 5 positive votes on c++std
 
 <ol>
 <li>Change [forwardlist]/3, class template <tt>forward_list</tt> synopsis, as indicated:
-<blockquote><pre>
-...
+<blockquote><pre>...
 void resize(size_type sz);
 void resize(size_type sz, <ins>const</ins> value_type<ins>&amp;</ins> c);
 void clear();
@@ -11557,8 +11341,7 @@ of exceptions.
 21.5p3 [string.conversions]
 </p>
 
-<blockquote><pre>
-int stoi(const string&amp; str, size_t *idx = 0, int base = 10);
+<blockquote><pre>int stoi(const string&amp; str, size_t *idx = 0, int base = 10);
 long stol(const string&amp; str, size_t *idx = 0, int base = 10);
 unsigned long stoul(const string&amp; str, size_t *idx = 0, int base = 10);
 long long stoll(const string&amp; str, size_t *idx = 0, int base = 10);
@@ -11585,8 +11368,7 @@ return type.
 21.5p6 [string.conversions]
 </p>
 
-<blockquote><pre>
-float stof(const string&amp; str, size_t *idx = 0);
+<blockquote><pre>float stof(const string&amp; str, size_t *idx = 0);
 double stod(const string&amp; str, size_t *idx = 0);
 long double stold(const string&amp; str, size_t *idx = 0);
 </pre>
@@ -11661,8 +11443,7 @@ requirement. A similar problem exists for <tt>is_placeholder</tt>.
 What should the following code output? 
 </p>
 
-<blockquote><pre>
-#include &lt;string&gt; 
+<blockquote><pre>#include &lt;string&gt; 
 #include &lt;iostream&gt; 
 #include &lt;iomanip&gt; 
 
@@ -11686,8 +11467,7 @@ to (VC++, g++ and Sun CC) do.  But according to the standard, it should be
 21.4.8.9 [string.io]/5: 
 </p>
 
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
+<blockquote><pre>template&lt;class charT, class traits, class Allocator&gt;
   basic_ostream&lt;charT, traits&gt;&amp;
     operator&lt;&lt;(basic_ostream&lt;charT, traits&gt;&amp; os, const basic_string&lt;charT,traits,Allocator&gt;&amp; str);
 </pre><blockquote>
@@ -11713,8 +11493,7 @@ calls <tt>os.width(0)</tt>.
 <b>Stage 3:</b> A local variable is initialized as
 </p>
 
-<blockquote><pre>
-fmtflags adjustfield= (flags &amp; (ios_base::adjustfield));
+<blockquote><pre>fmtflags adjustfield= (flags &amp; (ios_base::adjustfield));
 </pre></blockquote>
 
 <p>
@@ -12176,8 +11955,7 @@ type is an alias of the same type, and so the typedef name
 cannot be used without including the specific header that
 defines it. For example, is the following code required to
 be accepted:
-<PRE>
-#include &lt;vector&gt;
+<PRE>#include &lt;vector&gt;
 std::size_t x = 0;
 </PRE>
 Most often, this question concerns the typedefs defined in
@@ -12519,8 +12297,7 @@ functions. For example, the following snippet leads to a
 compile time failure, whereas that was not the case for an
 implementation along the lines of n2835 (using enable_ifs
 instead of concepts for the constraining, of course)
-<PRE>
-#include &lt;utility&gt;
+<PRE>#include &lt;utility&gt;
 struct Base { Base(Base&amp;&amp;); };
 struct Derived
 : private Base
@@ -12549,8 +12326,7 @@ way, the present status is not acceptable.
 <p><b>Discussion:</b></p>
 Several function templates of pair and tuple allow for too
 many implicit conversions, for example:
-<PRE>
-#include &lt;tuple&gt;
+<PRE>#include &lt;tuple&gt;
 std::tuple&lt;char*&gt; p(0); // Error?
 struct A { explicit A(int){} };
 A a = 1; // Error
@@ -12701,8 +12477,7 @@ copy/move constructors and copy/move assignment
 operators. This is a matter of style.<BR/>
 tuple is also affected. tuple's class definition in 20.4.2
 [tuple.tuple] contains:
-<PRE>
-tuple(const tuple&amp;) = default;
+<PRE>tuple(const tuple&amp;) = default;
 tuple(tuple&amp;&amp;);
 tuple&amp; operator=(const tuple&amp;);
 tuple&amp; operator=(tuple&amp;&amp;);
@@ -12875,8 +12650,7 @@ std::is_constructible or std::is_convertible. Their current
 specification seems to imply, that the corresponding test
 expressions should be well-formed, even in absense of
 access:
-<PRE>
-class X { X(int){} };
+<PRE>class X { X(int){} };
 constexpr bool test = std::is_constructible&lt;X, int&gt;::value;
 </PRE>
 The specification does not clarify the context of this test
@@ -13069,8 +12843,7 @@ functions to match.
 <p><b>Proposed resolution:</b></p>
 Add the following signatures to 20.9p1, &lt;memory&gt;
 header synopsis:
-<PRE>
-template&lt;typename T, typename D&gt; bool
+<PRE>template&lt;typename T, typename D&gt; bool
 operator==(const unique_ptr&lt;T, D&gt; &amp; lhs,
 nullptr_t);
 template&lt;typename T, typename D&gt; bool
@@ -13243,8 +13016,7 @@ internally managed by shared_ptr and weak_ptr.
 <p><b>Proposed resolution:</b></p>
 Add the following non-static member functions to
 shared_ptr and weak_ptr class template;
-<PRE>
-// 20.9.11.2 paragraph 1
+<PRE>// 20.9.11.2 paragraph 1
 namespace std{
 template&lt;class T&gt; class shared_ptr {
 public:
@@ -13531,8 +13303,7 @@ for <del><tt>POS_T</tt> in 21.2.2</del><ins><tt>pos_type</tt> in [iostreams.limi
 </li>
 <li>Change [depr.ios.members]/1 as indicated:
 <p>
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
  class ios_base {
  public:
    typedef T1 io_state;
@@ -13672,8 +13443,7 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 <p><b>Proposed resolution:</b></p>
 Add explicit.
-<PRE>
-namespace std {
+<PRE>namespace std {
 template &lt;class Key,
 class T,
 class Hash = hash&lt;Key&gt;,
@@ -13717,8 +13487,7 @@ in regard to the support of rvalues and lvalues of the provided generator:
 </p>
 
 <p>
-<blockquote><pre>
-template&lt;class RandomAccessIterator, class RandomNumberGenerator&gt;
+<blockquote><pre>template&lt;class RandomAccessIterator, class RandomNumberGenerator&gt;
 void random_shuffle(RandomAccessIterator first,
 RandomAccessIterator last,
 RandomNumberGenerator<b>&amp;&amp;</b> rand);
@@ -13726,8 +13495,7 @@ RandomNumberGenerator<b>&amp;&amp;</b> rand);
 </p>
 
 <p>
-<blockquote><pre>
-template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
+<blockquote><pre>template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
 void shuffle(RandomAccessIterator first,
 RandomAccessIterator last,
 UniformRandomNumberGenerator<b>&amp;</b> g);
@@ -13769,17 +13537,14 @@ proposal disagrees with that position for two additional reasons:
 <ol>
 <li>Enforcing lvalues as arguments won't prevent user code to enforce what they
 want. So given
-<blockquote><pre>
-my_generator get_generator(int size);
+<blockquote><pre>my_generator get_generator(int size);
 </pre></blockquote>
 instead of writing
-<blockquote><pre>
-std::vector&lt;int&gt; v = ...;
+<blockquote><pre>std::vector&lt;int&gt; v = ...;
 std::shuffle(v.begin(), v.end(), get_generator(v.size()));
 </pre></blockquote>
 they will just write
-<blockquote><pre>
-std::vector&lt;int&gt; v = ...;
+<blockquote><pre>std::vector&lt;int&gt; v = ...;
 auto gen = get_generator(v.size());
 std::shuffle(v.begin(), v.end(), gen);
 </pre></blockquote>
@@ -13809,15 +13574,13 @@ Moved to Tentatively Ready after 6 positive votes on c++std-lib.
 
 <ol>
 <li>Change [algorithms.general], header <tt>&lt;algorithm&gt;</tt> synopsis as indicated:
-<blockquote><pre>
-template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
+<blockquote><pre>template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
 void shuffle(RandomAccessIterator first, RandomAccessIterator last,
 UniformRandomNumberGenerator&amp;<ins>&amp;</ins> rand);
 </pre></blockquote>
 </li>
 <li>Change the prototype description of [alg.random.shuffle] as indicated:
-<blockquote><pre>
-template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
+<blockquote><pre>template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
 void shuffle(RandomAccessIterator first, RandomAccessIterator last,
 UniformRandomNumberGenerator&amp;<ins>&amp;</ins> rand);
 </pre></blockquote>
@@ -14232,8 +13995,7 @@ with the following changes:</ins>
 <p>
 <ins>4 - If and only if the type <tt>intmax_t</tt> designates an extended integer type ([basic.fundamental]), the following function 
 signatures are added:
-<blockquote><pre>
-<ins>intmax_t abs(intmax_t);</ins>
+<blockquote><pre><ins>intmax_t abs(intmax_t);</ins>
 <ins>imaxdiv_t div(intmax_t, intmax_t);</ins>
 </pre></blockquote>
 <ins>which shall have the same semantics as the function signatures <tt>intmax_t imaxabs(intmax_t)</tt> and 
@@ -14445,8 +14207,7 @@ listed in 29.4
 Replace "#define
 ATOMIC_INTEGRAL_LOCK_FREE unspecified"
 with
-<PRE>
-#define ATOMIC_CHAR_LOCK_FREE
+<PRE>#define ATOMIC_CHAR_LOCK_FREE
 implementation-defined
 #define ATOMIC_CHAR16_T_LOCK_FREE
 implementation-defined
@@ -14517,8 +14278,7 @@ Suppose that the evaluation of e1 writes y and reads x
 whereas the evaluation of e2 reads y and writes x, with
 reads-from edges as below (all this is within a single
 thread).
-<PRE>
- e1           e2
+<PRE> e1           e2
 Wrlx y--   --Wrlx x
       rf\ /rf
          X
@@ -14626,8 +14386,7 @@ the deleted copy-assignment operator<BR/>
 atomic_bool&amp; operator=(atomic_bool const&amp;) = delete;<BR/>
 due to the need for a single standard conversion in each
 case when assigning a bool to an atomic_bool as in:
-<PRE>
-atomic_bool b;
+<PRE>atomic_bool b;
 b=true;
 </PRE>
 The conversions are atomic_bool&amp; -&gt; atomic_bool
@@ -14742,8 +14501,7 @@ compare_exchange_strong
 <p><b>Discussion:</b></p>
 Requiring atomic&lt;Ty*&gt; to be derived from atomic_address
 breaks type safety:
-<PRE>
-atomic&lt;double*&gt; ip;
+<PRE>atomic&lt;double*&gt; ip;
 char ch;
 atomic_store(&amp;ip, &amp;ch);
 *ip.load() = 3.14159;
@@ -14797,8 +14555,7 @@ arguments.
 The free functions that operate on atomic_address can be
 used to store a pointer to an unrelated type in an
 atomic&lt;T*&gt; without a cast. e.g.
-<PRE>
-int i;
+<PRE>int i;
 atomic&lt;int*&gt; ai(&amp;i);
 string s;
 atomic_store(&amp;ai,&amp;s);
@@ -14810,8 +14567,7 @@ Overload the atomic_store, atomic_exchange and
 atomic_compare_exchange_[weak/strong]
 operations for atomic&lt;T*&gt; to allow storing only
 pointers to T:
-<PRE>
-template&lt;typename T&gt;
+<PRE>template&lt;typename T&gt;
 void atomic_store(atomic&lt;T*&gt;&amp;,T*);
 template&lt;typename T&gt;
 void atomic_store(atomic&lt;T*&gt;&amp;,void*) = delete;
@@ -15371,8 +15127,7 @@ try_try_lock.
 
 <p><b>Proposed resolution:</b></p>
 Add a member function:
-<PRE>
-bool is_locked() const;
+<PRE>bool is_locked() const;
 </PRE>
 to std::mutex and std::recursive_mutex. These
 functions return true if the current thread would
@@ -15902,8 +15657,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 <p>Add the following lines to the synopsis of header &lt;memory&gt;
 in [memory]/1:<br/></p>
 <blockquote>
-<pre>
-<ins>// [depr.auto.ptr], Class auto_ptr (deprecated):
+<pre><ins>// [depr.auto.ptr], Class auto_ptr (deprecated):
 template &lt;class X&gt; class auto_ptr;<br/></ins>
 </pre></blockquote>
 
@@ -15928,8 +15682,7 @@ calling <tt>delete</tt> or <tt>delete[]</tt>, respectivly and should be a trivia
 </p>
 <p>
 In agreement with the new settled core language rules this easy to realize by just changing the declaration to
-<blockquote><pre>
-constexpr default_delete()<ins> = default</ins>;
+<blockquote><pre>constexpr default_delete()<ins> = default</ins>;
 </pre></blockquote></p>
 <p>
 This proposal also automatically solves the problem, that the semantics of the default constructor of the 
@@ -15953,8 +15706,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 
 <ol>
 <li>Change the synopsis of the primary template definition of <tt>default_delete</tt> in [unique.ptr.dltr.dflt] as indicated:
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
   template &lt;class T&gt; struct default_delete {
     constexpr default_delete()<ins> = default</ins>;
     template &lt;class U&gt; default_delete(const default_delete&lt;U&gt;&);
@@ -15967,15 +15719,13 @@ namespace std {
 Remove the prototype specification of the <tt>default_delete</tt> default constructor in [unique.ptr.dltr.dflt]/1. This
 brings it in harmony with the style used in the partial specialization <tt>default_delete&lt;T[]&gt;</tt>. Since there are
 neither implied nor explicit members, there is no possibility to misinterpret what the constructor does:
-<blockquote><pre>
-<del>constexpr default_delete();</del>
+<blockquote><pre><del>constexpr default_delete();</del>
 </pre><blockquote>
 <del>1 <em>Effects</em>: Default constructs a <tt>default_delete</tt> object.</del>
 </blockquote></blockquote>
 </li>
 <li>Change the synopsis of the partial specialization of <tt>default_delete</tt> in [unique.ptr.dltr.dflt1] as indicated:
-<blockquote><pre>
-namespace std {
+<blockquote><pre>namespace std {
   template &lt;class T&gt; struct default_delete&lt;T[]&gt; {
     constexpr default_delete()<ins> = default</ins>;
     void operator()(T*) const;
@@ -16005,8 +15755,7 @@ in the original async proposals, that may have been introduced
 inadvertently during the "async cleanup" that occurred recently.
 Consider the following case:</p>
 <blockquote>
-<pre>
-int f();  
+<pre>int f();  
 future&lt;int&gt; x = async(launch::deferred, f);
 future_status s = x.wait_for(chrono::milliseconds(100));
 </pre></blockquote>
@@ -16205,8 +15954,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 
 <ol>
 <li>Change 23.7.1 Class template unordered_map [unord.map]/3, as indicated:
-<blockquote><pre>
-  namespace std {
+<blockquote><pre>  namespace std {
     template &lt;class Key,
       class T,
       class Hash = hash&lt;Key&gt;,
@@ -16224,8 +15972,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 </pre></blockquote>
 </li>
 <li>Change 23.7.2 Class template unordered_multimap [unord.multimap]/3, as indicated:
-<blockquote><pre>
-  namespace std {
+<blockquote><pre>  namespace std {
     template &lt;class Key,
       class T,
       class Hash = hash&lt;Key&gt;,
@@ -16243,8 +15990,7 @@ Moved to Tentatively Ready after 5 positive votes on c++std-lib.
 </pre></blockquote>
 </li>
 <li>Change 23.7.4 Class template unordered_multiset [unord.multiset]/3, as indicated:
-<blockquote><pre>
-  namespace std {
+<blockquote><pre>  namespace std {
     template &lt;class Key,
       class Hash = hash&lt;Key&gt;,
       class Pred = std::equal_to&lt;Key&gt;,
@@ -16327,8 +16073,7 @@ Does the presence of <tt>t2, ..., tN</tt> get ignored, or does it make the
 Here is sample code which presents the problem in a concrete example:
 </p>
 
-<blockquote><pre>
-#include &lt;functional&gt;
+<blockquote><pre>#include &lt;functional&gt;
 #include &lt;cassert&gt;
 
 struct S {
