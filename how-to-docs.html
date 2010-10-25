@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>How To</title>
+</head>
+
+<body>
+
+<h1><code>How To Instructions</code></h1>
+<p><span style="font-weight: 400"><code>These instruction assume you have cloned 
+git@github.com:lwg/issues.git to a directory named &quot;issues&quot;.</code></span></p>
+<h3><code><u>How to p</u></code><u><code>ublish </code></u><code><u>the issues 
+list HTML files</u></code></h3>
+<p><b><code>Initial setup; do this once only:</code></b></p>
+<blockquote>
+<pre><code>cd issues
+git clone git@github.com:lwg/issues.git issues-gh-pages
+cd issues-gh-pages
+git fetch origin
+git checkout -b gh-pages origin/gh-pages</code></pre>
+</blockquote>
+<p><b><code>Normal update cycle:</code></b></p>
+<blockquote>
+  <p><code>Build fresh versions of the HTML files in the top-level issues 
+  directory, remembering to update the toc, 
+  then:</code></p>
+  <blockquote>
+   <pre><code>cd issues         <b><i>// top-level issues dir; not the issues sub-dir</i></b>
+git commit -a -m&quot;your commit message here&quot;
+git push
+copy /y *.html ..\issues-gh-pages   <i><b>// Windows</b></i>
+cp *.html ../issues-gh-pages        <i><b>// POSIX</b></i>
+cd ..
+cd issues-gh-pages
+git commit -a -m&quot;your commit message here&quot;
+git push</code></pre>
+  </blockquote>
+</blockquote>
+
+</body>
+
+</html>
