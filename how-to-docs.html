@@ -29,13 +29,9 @@ git checkout -b gh-pages origin/gh-pages</code></pre>
   directory, remembering to update the toc, 
   then:</code></p>
   <blockquote>
-   <pre><code>cd issues         <b><i>// top-level issues dir; not the issues sub-dir</i></b>
-git commit -a -m&quot;your commit message here&quot;
-git push
-copy /y *.html ..\issues-gh-pages   <i><b>// Windows</b></i>
-cp *.html ../issues-gh-pages        <i><b>// POSIX</b></i>
-cd ..
-cd issues-gh-pages
+   <pre><code>cd issues-gh-pages
+copy /y ..\issues\lwg*.html .  <i><b>// Windows</b></i>
+cp ../issues/lwg*.html .       <i><b>// POSIX</b></i>
 git commit -a -m&quot;your commit message here&quot;
 git push</code></pre>
   </blockquote>
