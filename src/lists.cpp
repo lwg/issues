@@ -103,20 +103,24 @@ auto find_file(std::string stat) -> std::string {
         : throw std::runtime_error("unknown status " + stat);
 }
 
-auto is_active_not_ready(const std::string& stat) -> bool {
+auto is_active_not_ready(std::string const & stat) -> bool {
    return find_file(stat) == "lwg-active.html"  and  stat != "Ready";
 }
 
-auto is_active(const std::string& stat) -> bool {
+auto is_active(std::string const & stat) -> bool {
    return find_file(stat) == "lwg-active.html";
 }
 
-auto is_defect(const std::string& stat) -> bool {
+auto is_defect(std::string const & stat) -> bool {
    return find_file(stat) == "lwg-defects.html";
 }
 
-auto is_closed(const std::string& stat) -> bool {
+auto is_closed(std::string const & stat) -> bool {
    return find_file(stat) == "lwg-closed.html";
+}
+
+auto is_tentative(std::string const & stat) -> bool {
+   return 0 == stat.find("Tentatively");
 }
 
 struct section_num {
@@ -265,12 +269,12 @@ struct sort_by_status {
          static char const * const status_priority[] {
             "Ready",
             "Tentatively Ready",
-            "Review",
-            "New",
-            "Open",
             "Tentatively NAD Editorial",
             "Tentatively NAD Future",
             "Tentatively NAD",
+            "Review",
+            "New",
+            "Open",
             "NAD Future",
             "NAD Editorial",
             "WP",
@@ -456,38 +460,50 @@ auto get_date() -> std::string {
 }
 
 auto get_doc_number(std::string doc) -> std::string {
-    if (doc == "active")
+    if (doc == "active") {
         doc = "active_docno=\"";
-    else if (doc == "defect")
+    }
+    else if (doc == "defect") {
         doc = "defect_docno=\"";
-    else if (doc == "closed")
+    }
+    else if (doc == "closed") {
         doc = "closed_docno=\"";
-    else
+    }
+    else {
         throw std::runtime_error{"unknown argument to get_doc_number: " + doc};
+    }
+
     std::ifstream infile{(issues_path + "lwg-issues.xml").c_str()};
-    if (!infile.is_open())
+    if (!infile.is_open()) {
         throw std::runtime_error("Unable to open lwg-issues.xml");
+    }
     std::istreambuf_iterator<char> first{infile}, last{};
     std::string s{first, last};
     auto i = s.find(doc);
-    if (i == std::string::npos)
+    if (i == std::string::npos) {
         throw std::runtime_error{"Unable to find docno in lwg-issues.xml"};
+    }
     i += doc.size();
     auto j = s.find('\"', i+1);
-    if (j == std::string::npos)
+    if (j == std::string::npos) {
         throw std::runtime_error{"Unable to parse docno in lwg-issues.xml"};
+    }
     return s.substr(i, j-i);
 }
 
 auto get_intro(std::string doc) -> std::string {
-    if (doc == "active")
+    if (doc == "active") {
         doc = "<intro list=\"Active\">";
-    else if (doc == "defect")
+    }
+    else if (doc == "defect") {
         doc = "<intro list=\"Defects\">";
-    else if (doc == "closed")
+    }
+    else if (doc == "closed") {
         doc = "<intro list=\"Closed\">";
-    else
+    }
+    else {
         throw std::runtime_error{"unknown argument to intro: " + doc};
+    }
     std::ifstream infile{(issues_path + "lwg-issues.xml").c_str()};
     if (!infile.is_open())
         throw std::runtime_error{"Unable to open lwg-issues.xml"};
@@ -1140,6 +1156,7 @@ auto major_section(section_num const & sn) -> std::string {
    return out.str();
 }
 
+
 struct sort_by_mjr_section {
     auto operator()(const issue& x, const issue& y) const -> bool {
 assert(!x.tags.empty());
@@ -1152,10 +1169,23 @@ assert(!y.tags.empty());
     }
 };
 
-void make_sort_by_section(std::vector<issue>& issues, bool active_only = false) {
-   std::string filename = active_only
-                        ? path + "lwg-index-open.html"
-                        : path + "lwg-index.html";
+enum class IssueFilter {
+   ALL, ACTIVE, TENTATIVE, UNRESOLVED
+};
+
+auto filename_for_filter(IssueFilter filter) -> char const * {
+   switch(filter) {
+      case IssueFilter::ALL         :  return "lwg-index.html";
+      case IssueFilter::ACTIVE      :  return "lwg-index-open.html";
+      case IssueFilter::TENTATIVE   :  return "lwg-index-tentative.html";
+      case IssueFilter::UNRESOLVED  :  return "lwg-index-unresolved.html";
+   };
+   throw std::runtime_error{"Unknown filter value"};
+}
+
+//void make_sort_by_section(std::vector<issue>& issues, bool active_only = false) {
+void make_sort_by_section(std::vector<issue>& issues, IssueFilter active_flag = IssueFilter::ALL) {
+   std::string filename = path + filename_for_filter(active_flag);
    std::ofstream out(filename.c_str());
    out << "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n";
    out << "    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
@@ -1184,27 +1214,83 @@ void make_sort_by_section(std::vector<issue>& issues, bool active_only = false) 
    out << "<p>Reference ISO/IEC IS 14882:2003(E)</p>\n";
    out << "<p>This document is the Table of Contents for the <a href=\"lwg-active.html\">Library Active Issues List</a>,"
           " <a href=\"lwg-defects.html\">Library Defect Reports List</a>, and <a href=\"lwg-closed.html\">Library Closed Issues List</a>.</p>\n";
+
    out << "<h2>Index by Section";
-   if (active_only) {
-      out << " (non-Ready active issues only)";
-   }
+//   if (active_only) {
+//      out << " (non-Ready active issues only)";
+//   }
+   switch(active_flag) {
+      case IssueFilter::ALL : {
+            break;
+         }
+      case IssueFilter::ACTIVE : {
+            out << " (non-Ready active issues only)";
+            break;
+         }
+      case IssueFilter::TENTATIVE : {
+            out << " (tentative issues only)";
+            break;
+         }
+      case IssueFilter::UNRESOLVED : {
+            out << " (unresolved issues only)";
+            break;
+         }
+   };
    out << "</h2>\n";
-   if (active_only) {
-      out << "<p><a href=\"lwg-index.html\">(view all issues)</a></p>\n";
-   }
-   else {
-      out << "<p><a href=\"lwg-index-open.html\">(view only non-Ready open issues)</a></p>\n";
-   }
+
+//   if (active_only) {
+//      out << "<p><a href=\"lwg-index.html\">(view all issues)</a></p>\n";
+//   }
+//   else {
+//      out << "<p><a href=\"lwg-index-open.html\">(view only non-Ready open issues)</a></p>\n";
+//   }
+   switch(active_flag) {
+      case IssueFilter::ALL : {
+         out << "<p><a href=\"lwg-index-open.html\">(view only non-Ready open issues)</a></p>\n";
+         break;
+      }
+      case IssueFilter::ACTIVE : {
+         out << "<p><a href=\"lwg-index.html\">(view all issues)</a></p>\n";
+         break;
+      }
+      case IssueFilter::TENTATIVE : {
+         break;
+      }
+      case IssueFilter::UNRESOLVED : {
+         break;
+      }
+   };
 
    sort(issues.begin(), issues.end(), sort_by_num{});
    stable_sort(issues.begin(), issues.end(), [](issue const & x, issue const & y) { return x.mod_date > y.mod_date; } );
    stable_sort(issues.begin(), issues.end(), sort_by_status{});
    auto b = issues.begin();
    auto e = issues.end();
-   if(active_only) {
-      b = find_if(b, e, [](issue const & iss){ return "Ready" != iss.stat; });
-      e = find_if(b, e, [](issue const & iss){ return !is_active(iss.stat); });
-   }
+//   if(active_only) {
+//      b = find_if(b, e, [](issue const & iss){ return "Ready" != iss.stat; });
+//      e = find_if(b, e, [](issue const & iss){ return !is_active(iss.stat); });
+//   }
+   switch(active_flag) {
+      case IssueFilter::ALL : {
+         break;
+      }
+      case IssueFilter::ACTIVE : {
+         b = find_if(b, e, [](issue const & iss){ return "Ready" != iss.stat; });
+         e = find_if(b, e, [](issue const & iss){ return !is_active(iss.stat); });
+         break;
+      }
+      case IssueFilter::TENTATIVE : {
+         b = find_if(b, e, [](issue const & iss){ return "Ready" != iss.stat; });
+         e = find_if(b, e, [](issue const & iss){ return !is_tentative(iss.stat); });
+         break;
+      }
+      case IssueFilter::UNRESOLVED : {
+         b = find_if(b, e, [](issue const & iss){ return "Ready" != iss.stat; });      // Skip ready issues
+         b = find_if(b, e, [](issue const & iss){ return !is_tentative(iss.stat); });  // Skip tentative issues too
+         e = find_if(b, e, [](issue const & iss){ return !is_active(iss.stat); });
+         break;
+      }
+   };
    stable_sort(b, e, sort_by_section{});
    std::set<issue, sort_by_mjr_section> mjr_section_open;
    for (auto const & elem : issues ) {
@@ -1227,7 +1313,7 @@ assert(!i->tags.empty());
       out << "<h2><a name=\"Section " << msn << "\"></a>" << "Section " << msn;
       out << " (" << (j-i) << " issues)</h2>\n";
       out << "<p>";
-      if (active_only) {
+      if (active_flag != IssueFilter::ALL) {
          out << "<a href=\"lwg-index.html#Section " << msn << "\">(view all issues)</a>";
       }
       else if (mjr_section_open.count(*i) > 0) {
@@ -1331,12 +1417,14 @@ LogMarker QQ(__func__);
    }
 }
 
-void print_paper_heading(std::ostream& out, const std::string& paper) {
+void print_paper_heading(std::ostream& out, std::string const & paper) {
    out << "<table>\n";
-   out << "<tr>\n";
-   out << "<td align=\"left\">Doc. no.</td>\n";
-   out << "<td align=\"left\">" << get_doc_number(paper) << "</td>\n";
-   out << "</tr>\n";
+   if(paper != "tentative") {
+      out << "<tr>\n";
+      out << "<td align=\"left\">Doc. no.</td>\n";
+      out << "<td align=\"left\">" << get_doc_number(paper) << "</td>\n";
+      out << "</tr>\n";
+   }
    out << "<tr>\n";
    out << "<td align=\"left\">Date:</td>\n";
    out << "<td align=\"left\">" << get_date() << "</td>\n";
@@ -1350,17 +1438,23 @@ void print_paper_heading(std::ostream& out, const std::string& paper) {
    out << "<td align=\"left\">" << get_maintainer() << "</td>\n";
    out << "</tr>\n";
    out << "</table>\n";
-   out << "<h1>";
-   if (paper == "active") {
-      out << "C++ Standard Library Active Issues List (Revision ";
+
+   if(paper == "tentative") {
+      out << "<h1>C++ Standard Library Tentative Issues</h1>";
    }
-   else if (paper == "defect") {
-      out << "C++ Standard Library Defect Report List (Revision ";
+   else {
+      out << "<h1>";
+      if (paper == "active") {
+         out << "C++ Standard Library Active Issues List (Revision ";
+      }
+      else if (paper == "defect") {
+         out << "C++ Standard Library Defect Report List (Revision ";
+      }
+      else if (paper == "closed") {
+         out << "C++ Standard Library Closed Issues List (Revision ";
+      }
+      out << get_revision() << ")</h1>\n";
    }
-   else if (paper == "closed") {
-      out << "C++ Standard Library Closed Issues List (Revision ";
-   }
-   out << get_revision() << ")</h1>\n";
 }
 
 
@@ -1408,6 +1502,23 @@ assert(is_sorted(issues.begin(), issues.end(), sort_by_num{}));
     print_issues(out, issues, [](issue const & i) {return is_closed(i.stat);} );
     print_file_trailer(out);
 }
+
+
+void make_tentative(std::vector<issue> & issues) {
+LogMarker QQ(__func__);
+assert(is_sorted(issues.begin(), issues.end(), sort_by_num{}));
+//    sort(issues.begin(), issues.end(), sort_by_num());
+    std::ofstream out{(path + "lwg-tentative.html").c_str()};
+    print_file_header(out, "C++ Standard Library Tentative Issues List");
+    print_paper_heading(out, "tentative");
+//    out << get_intro("tentative") << '\n';
+//    out << "<h2>Revision History</h2>\n" << get_revisions(issues) << '\n';
+//    out << "<h2><a name=\"Status\"></a>Issue Status</h2>\n" << get_statuses() << '\n';
+    out << "<h2>Tentative Issues</h2>\n";
+    print_issues(out, issues, [](issue const & i) {return is_tentative(i.stat);} );
+    print_file_trailer(out);
+}
+
 
 auto parse_month(std::string const & m) -> int {
    // This could be turned into an efficient map lookup with a suitable indexed container
@@ -1624,6 +1735,8 @@ int main(int argc, char* argv[]) {
       issues_path = path + "xml/";
       section_db  = read_section_db(path + "meta-data/");
 
+      // There are a lot of function calls below taking 'issues' as their first argument.
+      // This suggests 'issues' should really be a class in its own right.
       //    check_against_index(section_db);
       auto issues = read_issues();
 
@@ -1635,8 +1748,13 @@ int main(int argc, char* argv[]) {
       make_sort_by_num(issues);
       make_sort_by_status(issues);
       make_sort_by_status_mod_date(issues);
-      make_sort_by_section(issues);
-      make_sort_by_section(issues, true);
+//      make_sort_by_section(issues);
+//      make_sort_by_section(issues, true);
+      make_sort_by_section(issues, IssueFilter::ALL);
+      make_sort_by_section(issues, IssueFilter::ACTIVE);
+      make_sort_by_section(issues, IssueFilter::TENTATIVE);
+      make_sort_by_section(issues, IssueFilter::UNRESOLVED);
+
 
       // issues must be sorted by number before making the mailing list documents
       sort(issues.begin(), issues.end(), sort_by_num{});
@@ -1644,6 +1762,7 @@ int main(int argc, char* argv[]) {
       make_active(issues);
       make_defect(issues);
       make_closed(issues);
+      make_tentative(issues);
 
       std::cout << "Made all documents\n";
    }
