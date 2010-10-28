@@ -10,6 +10,9 @@
 #include <algorithm>
 #include <string>
 
+// platform headers
+#include <unistd.h>
+
 // DEBUG VISUALIZATION TOOL ONLY
 void display_issues(std::vector<std::pair<int, std::string> > const & issues) {
    for( auto const & x : issues ) {
