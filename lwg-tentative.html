@@ -1,0 +1,5031 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>C++ Standard Library Tentative Issues List</title>
+<style type="text/css">
+p {text-align:justify}
+li {text-align:justify}
+blockquote.note
+{
+    background-color:#E0E0E0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+ins {background-color:#A0FFA0}
+del {background-color:#FFA0A0}
+</style>
+</head>
+<body>
+<table>
+<tr>
+<td align="left">Date:</td>
+<td align="left">2010-10-28</td>
+</tr>
+<tr>
+<td align="left">Project:</td>
+<td align="left">Programming Language C++</td>
+</tr>
+<tr>
+<td align="left">Reply to:</td>
+<td align="left">Alisdair Meredith &lt;<a href="mailto:lwgchair@gmail.com">lwgchair@gmail.com</a>&gt;</td>
+</tr>
+</table>
+<h1>C++ Standard Library Tentative Issues</h1><h2>Tentative Issues</h2>
+<hr>
+<h3><a name="956"></a>956. Various threading bugs #6</h3>
+<p><b>Section:</b> 20.11.1 [time.clock.req] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#time.clock.req">issues</a> in [time.clock.req].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+20.11.1 [time.clock.req] uses the word "native" in several places,
+but doesn't define it. What is a "native <tt>duration</tt>"?
+</p>
+
+<p><i>[
+2009-05-10 Howard adds:
+]</i></p>
+
+
+<blockquote>
+The standard uses "native" in several places without defining it (e.g.
+2.14.3 [lex.ccon]).  It is meant to mean "that which is defined
+by the facility", or something along those lines.  In this case it refers
+to the nested <tt>time_point</tt> and <tt>duration</tt> types of the clock.
+Better wording is welcome.
+</blockquote>
+
+<p><i>[
+Batavia (2009-05):
+]</i></p>
+
+<blockquote>
+Move to Open pending proposed wording from Pete.
+</blockquote>
+
+<p><i>[
+2009-10-23 Pete provides wording:
+]</i></p>
+
+
+<p><i>[
+2009-11-18 Daniel adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+I see that 30.4.2 [thread.timedmutex.requirements]/3 says:
+</p>
+
+<blockquote>
+<i>Precondition:</i> If the tick <tt>period</tt> of <tt>rel_time</tt> is not
+exactly convertible to the native tick <tt>period</tt>, the <tt>duration</tt>
+shall be rounded up to the nearest native tick <tt>period</tt>.
+</blockquote>
+
+<p>
+I would prefer to see that adapted as well. Following the same style as
+the proposed resolution I come up with
+</p>
+
+<blockquote>
+<i>Precondition:</i> If the tick <tt>period</tt> of <tt>rel_time</tt> is not
+exactly convertible to the <del>native</del> tick <tt>period</tt> <ins>of the
+execution environment</ins>, the <tt>duration</tt> shall be rounded up to the
+nearest <del>native</del> tick <tt>period</tt> <ins>of the execution
+environment</ins>.
+</blockquote>
+
+</blockquote>
+
+<p><i>[
+2010-03-28 Daniel synced wording with N3092
+]</i></p>
+
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready with revised wording from Howard Hinnant after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>
+Change 20.11.1 [time.clock.req]:
+</p>
+
+<blockquote>
+<p>
+1 A clock is a bundle consisting of a <del>native</del> <tt>duration</tt>, a
+<del>native</del> <tt>time_point</tt>, and a function <tt>now()</tt> to get the
+current <tt>time_point</tt>. The origin of the clock's <tt>time_point</tt> is
+referred to as the clock's <i>epoch</i>. A clock shall meet the requirements in
+Table 56.
+</p>
+
+<p>
+2 ...
+</p>
+
+<table border="1">
+<caption>Table 56 &mdash; Clock requirements</caption>
+<tr><th>Expression</th> <th>Return type</th> <th>Operational semantics</th></tr>
+
+<tr>
+<td><tt>C1::rep</tt></td>
+<td>An arithmetic type or a class emulating an arithmetic type</td>
+<td>The representation type of <del>the native</del>
+<tt><ins>C1::</ins>duration</tt><ins>.</ins> <del>and
+<tt>time_point</tt>.</del></td>
+</tr>
+
+<tr>
+<td><tt>C1::period</tt></td>
+<td align="center">...</td>
+<td align="center">...</td>
+</tr>
+
+<tr>
+<td><tt>C1::duration</tt></td>
+<td><tt>chrono::duration&lt;C1::rep, C1::period&gt;</tt></td>
+<td>The <del>native</del> <tt>duration</tt> type of the clock.</td>
+</tr>
+
+<tr>
+<td><tt>C1::time_point</tt></td>
+<td><tt>chrono::time_point&lt;C1&gt;</tt> or <tt>chrono::time_point&lt;C2,
+C1::duration&gt;</tt></td>
+<td>The <del>native</del> <tt>time_point</tt> type of the clock. <tt>C1</tt> and
+<tt>C2</tt> shall refer to the same epoch.</td>
+</tr>
+
+<tr>
+<td colspan="3" align="center">...</td>
+</tr>
+
+</table>
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1118"></a>1118. tuple query APIs do not support cv-qualification</h3>
+<p><b>Section:</b> 20.4.2.5 [tuple.helper] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-23  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#tuple.helper">issues</a> in [tuple.helper].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The APIs <tt>tuple_size</tt> and <tt>tuple_element</tt> do not support
+cv-qualified <tt>tuple</tt>s, <tt>pair</tt>s or <tt>array</tt>s.
+</p>
+<p>
+The most generic solution would be to supply partial specializations once
+for each cv-type in the <tt>tuple</tt> header.  However, requiring this header for
+cv-qualified <tt>pair</tt>s/<tt>array</tt>s seems unhelpful.  The BSI editorial
+suggestion (UK-198/US-69,
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2533.html">N2533</a>)
+to merge <tt>tuple</tt> into <tt>&lt;utility&gt;</tt> would help with <tt>pair</tt>,
+but not <tt>array</tt>.  That might be resolved by making a dependency between the
+<tt>&lt;array&gt;</tt> header and <tt>&lt;utility&gt;</tt>, or simply recognising
+the dependency be fulfilled in a Remark.
+</p>
+
+<p><i>[
+2009-05-24 Daniel adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+All <tt>tuple_size</tt> templates with a base class need to derive publicly, e.g.
+</p>
+
+<blockquote><pre>
+template &lt;IdentityOf T&gt; class tuple_size&lt; const T &gt; :
+   <ins>public</ins> tuple_size&lt;T&gt; {};
+</pre></blockquote>
+
+<p>
+The same applies to the tuple_element class hierarchies.
+</p>
+<p>
+What is actually meant with the comment
+</p>
+<blockquote>
+this solution relies on 'metafunction forwarding' to inherit the
+nested typename type
+</blockquote>
+<p>
+?
+</p>
+<p>
+I ask, because all base classes are currently unconstrained and their
+instantiation is invalid in the constrained context of the <tt>tuple_element</tt> partial
+template specializations.
+</p>
+</blockquote>
+
+<p><i>[
+2009-05-24 Alisdair adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+I think a better solution might be to ask Pete editorially to change all
+declarations of tupling APIs to use the struct specifier instead of class.
+</p>
+<p>
+"metafunction forwarding" refers to the MPL metafunction protocol, where a
+metafunction result is declared as a nested typedef with the name "type",
+allowing metafunctions to be chained by means of inheritance.  It is a
+neater syntax than repeatedly declaring a typedef, and inheritance syntax is
+slightly nicer when it comes to additional typename keywords.
+</p>
+<p>
+The constrained template with an unconstrained base is a good observation
+though.
+</p>
+</blockquote>
+
+<p><i>[
+2009-10 post-Santa Cruz:
+]</i></p>
+
+
+<blockquote>
+Move to Open, Alisdair to provide wording. Once wording is
+provided, Howard will move to Review.
+</blockquote>
+
+<p><i>[
+2010-03-28 Daniel deconceptified wording.
+]</i></p>
+
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<p>
+The below given P/R reflects the discussion from the Rapperswil meeting that the wording should not constrain 
+implementation freedom to realize the actual issue target. Thus the original code form was replaced by
+normative words.
+</p>
+<p>
+While preparing this wording it turned out that several <tt>tuple_size</tt> specializations as 
+that of <tt>pair</tt> and <tt>array</tt> are underspecified, because the underlying type of the member 
+value is not specified except that it is an integral type. For the specializations we could introduce a 
+canonical one - like <tt>size_t</tt> - or we could use the same type as the specialization of the 
+unqualified type uses. The following wording follows the second approach.
+</p>
+<p>
+The wording refers to N3126.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready after 6 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<ol>
+<li>Change 20.4.1 [tuple.general]/2, header <tt>&lt;tuple&gt;</tt> synopsis, as indicated:
+<blockquote><pre>
+// 20.4.2.5, tuple helper classes:
+template &lt;class T&gt; class tuple_size; // undefined
+<ins>template &lt;class T&gt; class tuple_size&lt;const T&gt;;</ins>
+<ins>template &lt;class T&gt; class tuple_size&lt;volatile T&gt;;</ins>
+<ins>template &lt;class T&gt; class tuple_size&lt;const volatile T&gt;;</ins>
+<ins></ins>
+template &lt;class... Types&gt; class tuple_size&lt;tuple&lt;Types...&gt; &gt;;
+	
+template &lt;size_t I, class T&gt; class tuple_element; // undefined
+<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const T&gt;;</ins>
+<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, volatile T&gt;;</ins>
+<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const volatile T&gt;;</ins>
+<ins></ins>
+template &lt;size_t I, class... Types&gt; class tuple_element&lt;I, tuple&lt;Types...&gt; &gt;;
+</pre></blockquote>
+</li>
+<li>Add the end of subclause 20.4.2.5 [tuple.helper] insert the following two paragraphs:
+<blockquote><pre>
+<ins>template &lt;class T&gt; class tuple_size&lt;const T&gt;;</ins>
+<ins>template &lt;class T&gt; class tuple_size&lt;volatile T&gt;;</ins>
+<ins>template &lt;class T&gt; class tuple_size&lt;const volatile T&gt;;</ins>
+</pre><blockquote>
+<ins>Let <em>TS</em> denote <tt>tuple_size&lt;T&gt;</tt> of the <em>cv</em>-unqualified type <tt>T</tt>. 
+Then each of the three templates shall meet the UnaryTypeTrait requirements (20.7.1) with a BaseCharacteristic of 
+<tt>integral_constant&lt;remove_cv&lt;decltype(<em>TS</em>::value)&gt;::type, <em>TS</em>::value&gt;</tt>.</ins>
+</blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const T&gt;;</ins>
+<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, volatile T&gt;;</ins>
+<ins>template &lt;size_t I, class T&gt; class tuple_element&lt;I, const volatile T&gt;;</ins>
+</pre><blockquote>
+<ins>Let <em>TE</em> denote <tt>tuple_element&lt;I, T&gt;</tt> of the <em>cv</em>-unqualified type <tt>T</tt>. Then each of the 
+three templates shall meet the TransformationTrait requirements (20.7.1) with a member typedef <tt>type</tt> that shall name the 
+same type as the following type:</ins>
+<ul>
+<li><ins>for the first specialization, the type <tt>add_const&lt;<em>TE</em>::type&gt;::type</tt>,</ins></li>
+<li><ins>for the second specialization, the type <tt>add_volatile&lt;<em>TE</em>::type&gt;::type</tt>, and</ins></li>
+<li><ins>for the third specialization, the type <tt>add_cv&lt;<em>TE</em>::type&gt;::type</tt></ins></li>
+</ul>
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1171"></a>1171. duration types should be literal</h3>
+<p><b>Section:</b> 20.11.3 [time.duration] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-06  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#time.duration">issues</a> in [time.duration].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The <tt>duration</tt> types in 20.11.3 [time.duration] are exactly the sort of type
+that should be "literal types" in the new standard.  Likewise,
+arithmetic operations on <tt>duration</tt>s should be declared <tt>constexpr</tt>.
+</p>
+
+<p><i>[
+2009-09-21 Daniel adds:
+]</i></p>
+
+
+<blockquote>
+An alternative (and possibly preferable solution for potentially
+heap-allocating big_int representation types) would be to ask the core
+language to allow references to <tt>const</tt> literal types as feasible
+arguments for <tt>constexpr</tt> functions.
+</blockquote>
+
+<p><i>[
+2009-10-30 Alisdair adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+I suggest this issue moves from New to Open.
+</p>
+
+<p>
+Half of this issue was dealt with in paper
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.html">n2994</a>
+on constexpr constructors.
+</p>
+
+<p>
+The other half (duration arithmetic) is on hold pending Core support for
+<tt>const &amp;</tt> in <tt>constexpr</tt> functions.
+</p>
+
+</blockquote>
+
+<p><i>[
+2010-03-15 Alisdair updated wording to be consistent with
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3078.html">N3078</a>.
+]</i></p>
+
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+This issue was the motivation for Core adding the facility for <tt>constexpr</tt> functions to take parameters by <tt>const &</tt>.
+
+Move to Tentatively Ready.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Add <tt>constexpr</tt> to declaration of following functions and constructors:
+</p>
+<p>
+Modify p1 20.11 [time], and the prototype definitions in 20.11.3.5 [time.duration.nonmember], 20.11.3.6 [time.duration.comparisons],
+and 20.11.3.7 [time.duration.cast]:
+</p>
+
+<blockquote>
+<p>
+<b>Header <tt>&lt;chrono&gt;</tt> synopsis</b>
+</p>
+
+<pre>
+<i>// duration arithmetic</i>
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;&gt;::type
+   <ins>constexpr</ins> operator+(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;&gt;::type
+   <ins>constexpr</ins> operator-(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period, class Rep2&gt;
+   duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
+   <ins>constexpr</ins> operator*(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
+template &lt;class Rep1, class Period, class Rep2&gt;
+   duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
+   <ins>constexpr</ins> operator*(const Rep1&amp; s, const duration&lt;Rep2, Period&gt;&amp; d);
+template &lt;class Rep1, class Period, class Rep2&gt;
+   duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
+   <ins>constexpr</ins> operator/(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   typename common_type&lt;Rep1, Rep2&gt;::type
+   <ins>constexpr</ins> operator/(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+
+<i>// duration comparisons</i>
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   <ins>constexpr</ins> bool operator==(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   <ins>constexpr</ins> bool operator!=(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   <ins>constexpr</ins> bool operator&lt; (const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   <ins>constexpr</ins> bool operator&lt;=(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   <ins>constexpr</ins> bool operator&gt; (const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+   <ins>constexpr</ins> bool operator&gt;=(const  duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+
+<i>// duration_cast</i>
+template &lt;class ToDuration, class Rep, class Period&gt;
+   <ins>constexpr</ins> ToDuration duration_cast(const duration&lt;Rep, Period&gt;&amp; d);
+</pre>
+
+</blockquote>
+
+<p>
+Change 20.11.3 [time.duration]:
+</p>
+
+<blockquote>
+
+<pre>
+template &lt;class Rep, class Period = ratio&lt;1&gt;&gt;
+class duration {
+  ...
+public:
+  ...
+  <ins>constexpr</ins> duration(const duration&amp;) = default;
+  ...
+
+};
+</pre>
+</blockquote>
+<p><i>[
+Note - this edit already seems assumed by definition of the duration static members <tt>zero/min/max</tt>.
+They cannot meaningfully be <tt>constexpr</tt> without this change.
+]</i></p>
+
+
+
+
+
+
+<hr>
+<h3><a name="1173"></a>1173. "Equivalence" wishy-washiness</h3>
+<p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#NAD Future">Tentatively NAD Future</a>
+ <b>Submitter:</b> David Abrahams <b>Opened:</b> 2009-07-14  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
+<p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD Future">Tentatively NAD Future</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Issue: The <tt>CopyConstructible</tt> requirements are wishy-washy.  It requires
+that the copy is "equivalent" to the original, but "equivalent" is never
+defined.
+</p>
+<p>
+I believe this to be an example of a more general lack of rigor around
+copy and assignment, although I haven't done the research to dig up all
+the instances.
+</p>
+<p>
+It's a problem because if you don't know what <tt>CopyConstructible</tt> means,
+you also don't know what it means to copy a pair of <tt>CopyConstructible</tt>
+types.  It doesn't prevent us from writing code, but it is a hole in our
+ability to understand the meaning of copy.
+</p>
+<p>
+Furthermore, I'm pretty sure that vector's copy constructor doesn't
+require the elements to be <tt>EqualityComparable</tt>, so that table is actually
+referring to some ill-defined notion of equivalence when it uses ==.
+</p>
+
+<p><i>[
+2009 Santa Cruz:
+]</i></p>
+
+
+<blockquote>
+Move to "Open". Dave is right that this is a big issue. Paper D2987
+("Defining Move Special Member Functions", Bjarne Stroustrup and
+Lawrence Crowl) touches on this but does not solve it. This issue is
+discussed in Elements of Programming.
+</blockquote>
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+This issue is quite vague, so it is difficult to know if and when it has been resolved.
+
+John Lakos wrote a paper covering this area a while back, and there is a real interest in providing some sort of clean-up in the future.
+
+We need a more clearly draughted issues with an addressable set of concerns, ideally with a paper proposing a resolution, but for a future revision of the standard.
+
+Move to Tentatively NAD Future.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="1181"></a>1181. Invalid <tt>sub_match</tt> comparison operators</h3>
+<p><b>Section:</b> 28.9.2 [re.submatch.op] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-07-25  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#re.submatch.op">issues</a> in [re.submatch.op].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Several heterogeneous comparison operators of class template
+<tt>sub_match</tt> are specified by return clauses that are not valid
+in general. E.g. 28.9.2 [re.submatch.op]/7:
+</p>
+
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+bool operator==(
+  const basic_string&lt;
+    typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+  const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+<blockquote>
+<i>Returns:</i> <tt>lhs == rhs.str()</tt>.
+</blockquote>
+</blockquote>
+
+<p>
+The returns clause would be ill-formed for all cases where
+<tt>ST != std::char_traits&lt;iterator_traits&lt;BiIter&gt;::value_type&gt;</tt>
+or <tt>SA != std::allocator&lt;iterator_traits&lt;BiIter&gt;::value_type&gt;</tt>.
+</p>
+<p>
+The generic character of the comparison was intended, so
+there are basically two approaches to fix the problem: The
+first one would define the semantics of the comparison
+using the traits class <tt>ST</tt> (The semantic of <tt>basic_string::compare</tt>
+is defined in terms of the compare function of the corresponding
+traits class), the second one would define the semantics of the
+comparison using the traits class
+</p>
+
+<blockquote><pre>
+std::char_traits&lt;iterator_traits&lt;BiIter&gt;::value_type&gt;
+</pre></blockquote>
+
+<p>
+which is essentially identical to
+</p>
+
+<blockquote><pre>
+std::char_traits&lt;sub_match&lt;BiIter&gt;::value_type&gt;
+</pre></blockquote>
+
+<p>
+I suggest to follow the second approach, because
+this emphasizes the central role of the <tt>sub_match</tt>
+object as part of the comparison and would also
+make sure that a <tt>sub_match</tt> comparison using some
+<tt>basic_string&lt;char_t, ..&gt;</tt> always is equivalent to
+a corresponding comparison with a string literal
+because of the existence of further overloads (beginning
+from 28.9.2 [re.submatch.op]/19). If users really want to
+take advantage of their own <tt>traits::compare</tt>, they can
+simply write a corresponding compare function that
+does so.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+The following update is a result of the discussion during the Rapperswil meeting, the P/R expresses all comparisons by 
+delegating to sub_match's compare functions. The processing is rather mechanical: Only <tt>==</tt> and <tt>&lt;</tt>
+where defined by referring to <tt>sub_match</tt>'s compare function, all remaining ones where replaced by the canonical
+definitions in terms of these two.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+<i>The wording refers to N3126.</i>
+</p>
+
+<ol>
+<li>Change 28.9.2 [re.submatch.op]/7 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator==(
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+7 <em>Returns</em>: <tt><del>lhs == rhs.str()</del><ins>rhs.compare(lhs.c_str()) == 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/8 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator!=(
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+8 <em>Returns</em>: <tt><del>lhs != rhs.str()</del><ins>!(lhs == rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/9 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&lt;(
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+9 <em>Returns</em>: <tt><del>lhs &lt; rhs.str()</del><ins>rhs.compare(lhs.c_str()) &gt; 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/10 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&gt;(
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+10 <em>Returns</em>: <tt><del>lhs &gt; rhs.str()</del><ins>rhs &lt; lhs</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/11 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&gt;=(
+   const basic_string&lt;
+   typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+ const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+11 <em>Returns</em>: <tt><del>lhs &gt;= rhs.str()</del><ins>!(lhs &lt; rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/12 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&lt;=(
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+12 <em>Returns</em>: <tt><del>lhs &lt;= rhs.str()</del><ins>!(rhs &lt; lhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/13 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator==(const sub_match&lt;BiIter&gt;&amp; lhs,
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
+</pre>
+13 <em>Returns</em>: <tt><del>lhs.str() == rhs</del><ins>lhs.compare(rhs.c_str()) == 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/14 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator!=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
+</pre>
+14 <em>Returns</em>: <tt><del>lhs.str() != rhs</del><ins>!(lhs == rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/15 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&lt;(const sub_match&lt;BiIter&gt;&amp; lhs,
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
+</pre>
+15 <em>Returns</em>: <tt><del>lhs.str() &lt; rhs</del><ins>lhs.compare(rhs.c_str()) &lt; 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/16 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator>(const sub_match&lt;BiIter&gt;&amp; lhs,
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
+</pre>
+16 <em>Returns</em>: <tt><del>lhs.str() &gt; rhs</del><ins>rhs &lt; lhs</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/17 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&gt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
+</pre>
+17 <em>Returns</em>: <tt><del>lhs.str() &gt;= rhs</del><ins>!(lhs &lt; rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/18 as indicated:
+<blockquote><pre>
+template &lt;class BiIter, class ST, class SA&gt;
+ bool operator&lt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   const basic_string&lt;
+     typename iterator_traits&lt;BiIter&gt;::value_type, ST, SA&gt;&amp; rhs);
+</pre>
+18 <em>Returns</em>: <tt><del>lhs.str() &lt;= rhs</del><ins>!(rhs &lt; lhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/19 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator==(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+19 <em>Returns</em>: <tt><del>lhs == rhs.str()</del><ins>rhs.compare(lhs) == 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/20 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator!=(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+20 <em>Returns</em>: <tt><del>lhs != rhs.str()</del><ins>!(lhs == rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/21 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+21 <em>Returns</em>: <tt><del>lhs &lt; rhs.str()</del><ins>rhs.compare(lhs) &gt; 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/22 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+22 <em>Returns</em>: <tt><del>lhs &gt; rhs.str()</del><ins>rhs &lt; lhs</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/23 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;=(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+23 <em>Returns</em>: <tt><del>lhs &gt;= rhs.str()</del><ins>!(lhs &lt; rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/24 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;=(typename iterator_traits&lt;BiIter&gt;::value_type const* lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+24 <em>Returns</em>: <tt><del>lhs &lt;= rhs.str()</del><ins>!(rhs &lt; lhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/25 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator==(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
+</pre>
+25 <em>Returns</em>: <tt><del>lhs.str() == rhs</del><ins>lhs.compare(rhs) == 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/26 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator!=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
+</pre>
+26 <em>Returns</em>: <tt><del>lhs.str() != rhs</del><ins>!(lhs == rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/27 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
+</pre>
+27 <em>Returns</em>: <tt><del>lhs.str() &lt; rhs</del><ins>lhs.compare(rhs) &lt; 0</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/28 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
+</pre>
+28 <em>Returns</em>: <tt><del>lhs.str() &gt; rhs</del><ins>rhs &lt; lhs</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/29 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
+</pre>
+29 <em>Returns</em>: <tt><del>lhs.str() &gt;= rhs</del><ins>!(lhs &lt; rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/30 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const* rhs);
+</pre>
+30 <em>Returns</em>: <tt><del>lhs.str() &lt;= rhs</del><ins>!(rhs &lt; lhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/31 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator==(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+<del>31 <em>Returns</em>: <tt>basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1,	lhs) == rhs.str()</tt>.</del><br/>
+<ins>31 <em>Returns</em>: <tt>rhs.compare(typename sub_match&lt;BiIter&gt;::string_type(1, lhs)) == 0</tt>.</ins>
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/32 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator!=(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+32 <em>Returns</em>: <tt><del>basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, lhs) !=
+rhs.str()</del><ins>!(lhs == rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/33 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+<del>33 <em>Returns</em>: <tt>basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type>(1, lhs) &lt; rhs.str()</tt>.</del><br/>
+<ins>33 <em>Returns</em>: <tt>rhs.compare(typename sub_match&lt;BiIter&gt;::string_type(1, lhs)) &gt; 0</tt>.</ins>
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/34 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+34 <em>Returns</em>: <tt><del>basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, lhs) &gt; rhs.str()</del><ins>rhs &lt; lhs</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/35 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;=(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+35 <em>Returns</em>: <tt><del>basic_string&lt;typename iterator_traits&lt;BiIter>::value_type>(1, lhs) &gt;= rhs.str()</del><ins>!(lhs &lt; rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/36 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;=(typename iterator_traits&lt;BiIter&gt;::value_type const&amp; lhs,
+   const sub_match&lt;BiIter&gt;&amp; rhs);
+</pre>
+36 <em>Returns</em>: <tt><del>basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, lhs) &lt;= rhs.str()</del><ins>!(rhs &lt; lhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/37 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator==(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
+</pre>
+<del>37 <em>Returns</em>: <tt>lhs.str() == basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, rhs)</tt>.</del><br/>
+<ins>37 <em>Returns</em>: <tt>lhs.compare(typename sub_match&lt;BiIter&gt;::string_type(1, rhs)) == 0</tt>.</ins>
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/38 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator!=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
+</pre>
+38 <em>Returns</em>: <tt><del>lhs.str() != basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, rhs)</del><ins>!(lhs == rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/39 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
+</pre>
+<del>39 <em>Returns</em>: <tt>lhs.str() &lt; basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, rhs)</tt>.</del><br/>
+<ins>39 <em>Returns</em>: <tt>lhs.compare(typename sub_match&lt;BiIter&gt;::string_type(1, rhs)) &lt; 0</tt>.</ins>
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/40 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
+</pre>
+40 <em>Returns</em>: <tt><del>lhs.str() &gt; basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, rhs)</del><ins>rhs &lt; lhs</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/41 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&gt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
+</pre>
+41 <em>Returns</em>: <tt><del>lhs.str() &gt;= basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, rhs)</del><ins>!(lhs &lt; rhs)</ins></tt>.
+</blockquote>
+</li>
+<li>Change 28.9.2 [re.submatch.op]/42 as indicated:
+<blockquote><pre>
+template &lt;class BiIter&gt;
+ bool operator&lt;=(const sub_match&lt;BiIter&gt;&amp; lhs,
+   typename iterator_traits&lt;BiIter&gt;::value_type const&amp; rhs);
+</pre>
+42 <em>Returns</em>: <tt><del>lhs.str() &lt;= basic_string&lt;typename iterator_traits&lt;BiIter&gt;::value_type&gt;(1, rhs)</del><ins>!(rhs &lt; lhs)</ins></tt>.
+</blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1183"></a>1183. <tt>basic_ios::set_rdbuf</tt> may break class invariants</h3>
+<p><b>Section:</b> 27.5.4.2 [basic.ios.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-07-28  <b>Last modified:</b> 2010-10-25</p>
+<p><b>View all other</b> <a href="lwg-index.html#basic.ios.members">issues</a> in [basic.ios.members].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The protected member function <tt>set_rdbuf</tt> had been added during the
+process of adding move and swap semantics to IO classes. A relevant
+property of this function is described by it's effects in
+27.5.4.2 [basic.ios.members]/19:
+</p>
+
+<blockquote>
+<i>Effects:</i> Associates the <tt>basic_streambuf</tt> object pointed to by sb with
+this stream without calling <tt>clear()</tt>.
+</blockquote>
+
+<p>
+This means that implementors of or those who derive from existing IO classes
+could cause an internal state where the stream buffer could be 0, but the
+IO class has the state <tt>good()</tt>. This would break several currently existing
+implementations which rely on the fact that setting a stream buffer via the
+currently only ways, i.e. either by calling
+</p>
+
+<blockquote><pre>
+void init(basic_streambuf&lt;charT,traits&gt;* sb);
+</pre></blockquote>
+
+<p>
+or by calling
+</p>
+
+<blockquote><pre>
+basic_streambuf&lt;charT,traits&gt;* rdbuf(basic_streambuf&lt;charT,traits&gt;* sb);
+</pre></blockquote>
+
+<p>
+to set <tt>rdstate()</tt> to <tt>badbit</tt>, if the buffer is 0. This has the effect that many
+internal functions can simply check <tt>rdstate()</tt> instead of <tt>rdbuf()</tt> for being 0.
+</p>
+
+<p>
+I therefore suggest that a requirement is added for callers of <tt>set_rdbuf</tt> to
+set a non-0 value.
+</p>
+
+<p><i>[
+2009-10 Santa Cruz:
+]</i></p>
+
+
+<blockquote>
+Moved to Open.  Martin volunteers to provide new wording, where
+<tt>set_rdbuf()</tt> sets the <tt>badbit</tt> but does not cause an
+exception to be thrown like a call to <tt>clear()</tt> would.
+</blockquote>
+
+<p><i>[
+2009-10-20 Martin provides wording:
+]</i></p>
+
+
+<p>
+Change 27.5.4.2 [basic.ios.members] around p. 19 as indicated:
+</p>
+
+<blockquote><pre>
+void set_rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
+</pre>
+
+<blockquote>
+<p><del>
+<i>Effects:</i> Associates the <tt>basic_streambuf</tt> object pointed
+to by <tt>sb</tt> with this stream without calling <tt>clear()</tt>.
+<i>Postconditions:</i> <tt>rdbuf() == sb</tt>.
+</del></p>
+
+<p><ins>
+<i>Effects:</i> As if:
+</ins></p>
+
+<blockquote><pre><ins>
+iostate state = rdstate();
+try { rdbuf(sb); }
+catch(ios_base::failure) {
+   if (0 == (state &amp; ios_base::badbit))
+       unsetf(badbit);
+}
+</ins></pre></blockquote>
+
+<p>
+<i>Throws:</i> Nothing.
+</p>
+
+</blockquote>
+</blockquote>
+
+<p><b>Rationale:</b></p>
+We need to be able to call <tt>set_rdbuf()</tt> on stream objects
+for which (<tt>rdbuf() == 0</tt>) holds without causing <tt>ios_base::failure</tt> to
+be thrown. We also don't want <tt>badbit</tt> to be set as a result of
+setting <tt>rdbuf()</tt> to 0 if it wasn't set before the call. This changed
+Effects clause maintains the current behavior (as of N2914) without
+requiring that <tt>sb</tt> be non-null.
+
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+Several reviewers and the submitter believe that the best solution would be to add a pre-condition that the 
+buffer shall not be a null pointer value.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with revised wording provided by Daniel after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>Add a new pre-condition just before 27.5.4.2 [basic.ios.members]/23 as indicated:
+<blockquote><pre>
+void set_rdbuf(basic_streambuf&lt;charT, traits&gt;* sb);
+</pre>
+<blockquote>
+<ins>?? <em>Requires</em>: <tt>sb != nullptr</tt>.</ins>
+<p>
+23 <em>Effects</em>: Associates the <tt>basic_streambuf</tt> object pointed to by <tt>sb</tt> with this stream without calling <tt>clear()</tt>.
+</p>
+<p>
+24 <em>Postconditions</em>: <tt>rdbuf() == sb</tt>.
+</p>
+<p>
+25 <em>Throws</em>: Nothing.
+</p>
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+<p><b>Rationale:</b></p>
+We believe that setting a <tt>nullptr</tt> stream buffer can be prevented.
+
+
+
+
+
+<hr>
+<h3><a name="1188"></a>1188. Unordered containers should have a minimum load factor as well as a maximum</h3>
+<p><b>Section:</b> 23.2.5 [unord.req], 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#NAD Future">Tentatively NAD Future</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2009-08-10  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
+<p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD Future">Tentatively NAD Future</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Unordered associative containers have a notion of a maximum load factor:
+when the number of elements grows large enough, the containers
+automatically perform a rehash so that the number of elements per bucket
+stays below a user-specified bound. This ensures that the hash table's
+performance characteristics don't change dramatically as the size
+increases.
+</p>
+
+<p>
+For similar reasons, Google has found it useful to specify a minimum
+load factor: when the number of elements shrinks by a large enough, the
+containers automatically perform a rehash so that the number of elements
+per bucket stays above a user-specified bound. This is useful for two
+reasons. First, it prevents wasting a lot of memory when an unordered
+associative container grows temporarily. Second, it prevents amortized
+iteration time from being arbitrarily large; consider the case of a hash
+table with a billion buckets and only one element. (This was discussed
+even before TR1 was published; it was TR issue 6.13, which the LWG
+closed as NAD on the grounds that it was a known design feature.
+However, the LWG did not consider the approach of a minimum load
+factor.)
+</p>
+
+<p>
+The only interesting question is when shrinking is allowed. In principle
+the cleanest solution would be shrinking on erase, just as we grow on
+insert. However, that would be a usability problem; it would break a
+number of common idioms involving erase. Instead, Google's hash tables
+only shrink on insert and rehash.
+</p>
+
+<p>
+The proposed resolution allows, but does not require, shrinking in
+rehash, mostly because a postcondition for rehash that involves the
+minimum load factor would be fairly complicated. (It would probably have
+to involve a number of special cases and it would probably have to
+mention yet another parameter, a minimum bucket count.)
+</p>
+
+<p>
+The current behavior is equivalent to a minimum load factor of 0. If we
+specify that 0 is the default, this change will have no impact on
+backward compatibility.
+</p>
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+This seems to a useful extension, but is too late for 0x.
+
+Move to Tentatively NAD Future.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Add two new rows, and change rehash's postcondition in the unordered
+associative container requirements table in 23.2.5 [unord.req]:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 87 &mdash; Unordered associative container requirements
+(in addition to container)</caption>
+
+<tr>
+<th>Expression</th><th>Return type</th><th>Assertion/note pre-/post-condition</th>
+<th>Complexity</th>
+</tr>
+<tr>
+<td><ins>
+<tt>a.min_load_factor()</tt>
+</ins></td>
+<td><ins>
+<tt>float</tt>
+</ins></td>
+<td><ins>
+Returns a non-negative number that the container attempts to keep the
+load factor greater than or equal to. The container automatically
+decreases the number of buckets as necessary to keep the load factor
+above this number.
+</ins></td>
+<td><ins>
+constant
+</ins></td>
+</tr>
+
+<tr>
+<td><ins><tt>a.min_load_factor(z)</tt></ins></td>
+<td><ins><tt>void</tt></ins></td>
+<td><ins>Pre: <tt>z</tt> shall be non-negative. Changes the container's minimum
+load factor, using <tt>z</tt> as a hint. [<i>Footnote:</i> the minimum
+load factor should be significantly smaller than the maximum. 
+If <tt>z</tt> is too large, the implementation may reduce it to a more sensible value.]
+</ins></td>
+<td><ins>
+constant
+</ins></td>
+</tr>
+<tr>
+<td><tt>a.rehash(n)</tt></td>
+<td><tt>void</tt></td>
+<td>
+Post: <ins><tt>a.bucket_count() &gt;= n</tt>, and <tt>a.size() &lt;= a.bucket_count()
+* a.max_load_factor()</tt>. [<i>Footnote:</i> It is intentional that the
+postcondition does not mention the minimum load factor.
+This member function is primarily intended for cases where the user knows
+that the container's size will increase soon, in which case the container's
+load factor will temporarily fall below <tt>a.min_load_factor()</tt>.]</ins>
+<del>
+<tt>a.bucket_cout &gt; a.size() / a.max_load_factor()</tt> and <tt>a.bucket_count()
+&gt;= n</tt>.
+</del>
+</td>
+<td>
+Average case linear in <tt>a.size()</tt>, worst case quadratic.
+</td>
+</tr>
+</table>
+</blockquote>
+
+<p>
+Add a footnote to 23.2.5 [unord.req] p12:
+</p>
+
+<blockquote>
+<p>
+The insert members shall not affect the validity of references to
+container elements, but may invalidate all iterators to the container.
+The erase members shall invalidate only iterators and references to the
+erased elements.
+</p>
+
+<blockquote><ins>
+[A consequence of these requirements is that while insert may change the
+number of buckets, erase may not. The number of buckets may be reduced
+on calls to insert or rehash.]
+</ins></blockquote>
+</blockquote>
+
+<p>
+Change paragraph 13:
+</p>
+
+<blockquote>
+The insert members shall not affect the validity of iterators if
+<del><tt>(N+n) &lt; z * B</tt></del> <ins><tt>zmin * B &lt;= (N+n) &lt;= zmax * B</tt></ins>,
+where <tt>N</tt> is the number of elements in
+the container prior to the insert operation, <tt>n</tt> is the number of
+elements inserted, <tt>B</tt> is the container's bucket count,
+<ins><tt>zmin</tt> is the container's minimum load factor,</ins>
+and <tt>z<ins>max</ins></tt> is the container's maximum load factor.
+</blockquote>
+
+<p>
+Add to the <tt>unordered_map</tt> class synopsis in section 23.7.1 [unord.map],
+the <tt>unordered_multimap</tt> class synopsis
+in 23.7.2 [unord.multimap], the <tt>unordered_set</tt> class synopsis in
+23.7.3 [unord.set], and the <tt>unordered_multiset</tt> class synopsis
+in 23.7.4 [unord.multiset]:
+</p>
+
+<blockquote><pre><ins>
+float min_load_factor() const;
+void min_load_factor(float z);
+</ins></pre></blockquote>
+
+<p>
+In 23.7.1.1 [unord.map.cnstr], 23.7.2.1 [unord.multimap.cnstr], 23.7.3.1 [unord.set.cnstr], and
+23.7.4.1 [unord.multiset.cnstr], change:
+</p>
+
+<blockquote>
+... <tt>max_load_factor()</tt> returns 1.0 <ins>and
+<tt>min_load_factor()</tt> returns 0</ins>.
+</blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1190"></a>1190. Setting the maximum load factor should return the previous value</h3>
+<p><b>Section:</b> 23.2.5 [unord.req], 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2009-08-10  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
+<p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The unordered associative container requirements table specifies that
+<tt>a.set_max_load_factor(z)</tt> has return type <tt>void</tt>. However, there is a
+useful piece of information to return: the previous value. Users who
+don't need it can always ignore it.
+</p>
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+The benefit seems minor, while breaking with the getter/setter idiom these overloads support.
+
+Move to Tentatively NAD.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+In the unordered associative container requirements table, change:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 87 &mdash; Unordered associative container requirements
+(in addition to container)</caption>
+
+<tr>
+<th>Expression</th><th>Return type</th><th>Assertion/note pre-/post-condition</th>
+<th>Complexity</th>
+</tr>
+
+<tr>
+<td><tt>a.max_load_factor(z)</tt></td>
+<td><tt><del>void</del> <ins>float</ins></tt></td>
+<td>Pre: <tt>z</tt> shall be positive. Changes the container's maximum
+<del>load</del> load factor, using <tt>z</tt> as a hint.
+<ins>Returns: the previous value of
+<tt>a.max_load_factor()</tt>.</ins>
+</td>
+<td>
+constant
+</td>
+</tr>
+<tr></tr>
+</table>
+</blockquote>
+
+<p>
+Change the return type of <tt>set_max_load_factor</tt>
+in the class synopses in 23.7.1 [unord.map], 23.7.2 [unord.multimap],  23.7.3 [unord.set],
+and 23.7.4 [unord.multiset].
+</p>
+
+<p>
+If issue <a href="lwg-active.html#1188">1188</a> is also accepted, make the same changes for
+<tt>min_load_factor</tt>.
+</p>
+
+
+
+
+
+<hr>
+<h3><a name="1191"></a>1191. <tt>tuple get</tt> API should respect rvalues</h3>
+<p><b>Section:</b> 20.4.2.6 [tuple.elem] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-08-18  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The <tt>tuple get</tt> API should respect rvalues.  This would allow for moving a
+single element out of a <tt>tuple</tt>-like type.
+</p>
+
+<p><i>[
+2009-10-30 Alisdair adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+The issue of rvalue overloads of get for tuple-like types was briefly
+discussed in Santa Cruz.
+</p>
+
+<p>
+The feedback was this would be welcome, but we need full wording for the
+other types (<tt>pair</tt> and <tt>array</tt>) before advancing.
+</p>
+
+<p>
+I suggest the issue moves to Open from New as it has been considered,
+feedback given, and it has not (yet) been rejected as NAD.
+</p>
+</blockquote>
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Note that wording has been provided, and this issue becomes more important now that we have added a function to support forwarding argument lists as <tt>tuple</tt>s.
+
+Move to Tentatively Ready.
+</blockquote>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Add the following signature to p2 20.4.1 [tuple.general]
+</p>
+
+<blockquote><pre><ins>
+template &lt;size_t I, class ... Types&gt;
+typename tuple_element&lt;I, tuple&lt;Types...&gt; &gt;::type&amp;&amp; get(tuple&lt;Types...&gt; &amp;&amp;);
+</ins></pre></blockquote>
+
+<p>
+And again to 20.4.2.6 [tuple.elem].
+</p>
+
+<blockquote><pre><ins>
+template &lt;size_t I, class ... Types&gt;
+typename tuple_element&lt;I, tuple&lt;Types...&gt; &gt;::type&amp;&amp; get(tuple&lt;Types...&gt;&amp;&amp; t);
+</ins></pre>
+
+<blockquote>
+<p><ins>
+<i>Effects:</i> Equivalent to <tt>return std::forward&lt;typename tuple_element&lt;I, tuple&lt;Types...&gt; &gt;::type&amp;&amp;&gt;(get&lt;I&gt;(t));</tt>
+</ins></p>
+
+
+<p><ins>
+[<i>Note:</i> If a <tt>T</tt> in <tt>Types</tt> is some reference type <tt>X&amp;</tt>,
+the return type is <tt>X&amp;</tt>, not <tt>X&amp;&amp;</tt>.
+However, if the element type is non-reference type <tt>T</tt>,
+the return type is <tt>T&amp;&amp;</tt>. &mdash; <i>end note</i>]
+</ins></p>
+
+</blockquote>
+</blockquote>
+
+<p>
+Add the following signature to p1 20.3 [utility]
+</p>
+
+<blockquote><pre><ins>
+template &lt;size_t I, class T1, class T2&gt;
+typename tuple_element&lt;I, pair&lt;T1,T2&gt; &gt;::type&amp;&amp; get(pair&lt;T1, T2&gt;&amp;&amp;);
+</ins></pre></blockquote>
+
+<p>
+And to p5 20.3.5.4 [pair.astuple]
+</p>
+
+<blockquote><pre><ins>
+template &lt;size_t I, class T1, class T2&gt;
+typename tuple_element&lt;I, pair&lt;T1,T2&gt; &gt;::type&amp;&amp; get(pair&lt;T1, T2&gt;&amp;&amp; p);
+</ins></pre>
+
+<blockquote>
+<p><ins>
+<i>Returns:</i> If <tt>I == 0</tt> returns <tt>std::forward&lt;T1&amp;&amp;&gt;(p.first)</tt>;
+if <tt>I == 1</tt>
+returns <tt>std::forward&lt;T2&amp;&amp;&gt;(p.second)</tt>; otherwise the program is ill-formed.
+</ins></p>
+
+<p><ins>
+<i>Throws:</i> Nothing.
+</ins></p>
+
+</blockquote>
+
+</blockquote>
+
+<p>
+Add the following signature to 23.3 [sequences] <tt>&lt;array&gt;</tt> synopsis
+</p>
+
+<blockquote><pre><ins>template &lt;size_t I, class T, size_t N&gt;
+T&amp;&amp; get(array&lt;T,N&gt; &amp;&amp;);
+</ins></pre></blockquote>
+
+<p>
+And after p8 23.3.1.8 [array.tuple]
+</p>
+
+<blockquote><pre>
+<ins>template &lt;size_t I, class T, size_t N&gt;
+T&amp;&amp; get(array&lt;T,N&gt; &amp;&amp; a);
+</ins></pre>
+
+<blockquote><ins>
+<i>Effects:</i> Equivalent to <tt>return std::move(get&lt;I&gt;(a));</tt>
+</ins></blockquote>
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1198"></a>1198. Container adaptor swap: member or non-member?</h3>
+<p><b>Section:</b> 23.5 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-08-26  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#container.adaptors">active issues</a> in [container.adaptors].</p>
+<p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Under 23.5 [container.adaptors] of
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>
+the member function of <tt>swap</tt> of <tt>queue</tt> and <tt>stack</tt> call:
+</p>
+
+<blockquote><pre>
+swap(c, q.c);
+</pre></blockquote>
+
+<p>
+But under 23.5 [container.adaptors] of
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2723.pdf">N2723</a>
+these members are specified to call:
+</p>
+
+<blockquote><pre>
+c.swap(q.c);
+</pre></blockquote>
+
+<p>
+Neither draft specifies the semantics of member <tt>swap</tt> for
+<tt>priority_queue</tt> though it is declared.
+</p>
+
+<p>
+Although the distinction between member <tt>swap</tt> and non-member
+<tt>swap</tt> is not important when these adaptors are adapting standard
+containers, it may be important for user-defined containers.
+</p>
+<p>
+We (Pablo and Howard) feel that
+it is more likely for a user-defined container to support a namespace scope
+<tt>swap</tt> than a member <tt>swap</tt>, and therefore these adaptors
+should use the container's namespace scope <tt>swap</tt>.
+</p>
+
+<p><i>[
+2009-09-30 Daniel adds:
+]</i></p>
+
+
+<blockquote>
+The outcome of this issue should be considered with the outcome of <a href="lwg-defects.html#774">774</a> both in style and in content (e.g. <a href="lwg-defects.html#774">774</a> bullet 9
+suggests to define the semantic of <tt>void
+priority_queue::swap(priority_queue&amp;)</tt> in terms of the member
+<tt>swap</tt> of the container).
+</blockquote>
+
+<p><i>[
+2010-03-28 Daniel update to diff against N3092.
+]</i></p>
+
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Preference to move the wording into normative text, rather than inline function definitions in the class synopsis.
+
+Move to Tenatively Ready.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>
+Change 23.5.1.1 [queue.defn]:
+</p>
+
+<blockquote><pre>
+template &lt;class T, class Container = deque&lt;T&gt; &gt; 
+class queue {
+   ...
+   void swap(queue&amp; q) { <ins>using std::swap;</ins>
+                          <del>c.</del>swap(<ins>c, </ins>q.c); }
+   ...
+};
+</pre></blockquote>
+
+<p>
+Change 23.5.2 [priority.queue]:
+</p>
+
+<blockquote><pre>
+template &lt;class T, class Container = vector&lt;T&gt;, 
+          class Compare = less&lt;typename Container::value_type&gt; &gt; 
+class priority_queue { 
+    ...
+    void swap(priority_queue&amp; <ins>q</ins>)<del>;</del> <ins>{ using std::swap;</ins>
+                                     <ins>swap(c, q.c);</ins>
+                                     <ins>swap(comp, q.comp); }</ins>
+    ...
+};
+</pre></blockquote>
+
+<p>
+Change 23.5.3.1 [stack.defn]:
+</p>
+
+<blockquote><pre>
+template &lt;class T, class Container = deque&lt;T&gt; &gt; 
+class stack {
+   ...
+   void swap(stack&amp; s) { <ins>using std::swap;</ins>
+                          <del>c.</del>swap(<ins>c, </ins>s.c); }
+   ...
+};
+</pre></blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1200"></a>1200. "surprising" <tt>char_traits&lt;T&gt;::int_type</tt> requirements</h3>
+<p><b>Section:</b> 21.2.2 [char.traits.typedefs] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> Sean Hunt <b>Opened:</b> 2009-09-03  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#char.traits.typedefs">issues</a> in [char.traits.typedefs].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The footnote for <tt>int_type</tt> in 21.2.2 [char.traits.typedefs] says that
+</p>
+
+<blockquote>
+If <tt>eof()</tt>
+can be held in <tt>char_type</tt> then some iostreams implementations may give
+surprising results.
+</blockquote>
+
+<p>
+This implies that <tt>int_type</tt> should be a superset of
+<tt>char_type</tt>. However, the requirements for <tt>char16_t</tt> and <tt>char32_t</tt> define
+<tt>int_type</tt> to be equal to <tt>int_least16_t</tt> and <tt>int_least32_t</tt> respectively.
+<tt>int_least16_t</tt> is likely to be the same size as <tt>char_16_t</tt>, which may lead
+to surprising behavior, even if <tt>eof()</tt> is not a valid UTF-16 code unit.
+The standard should not prescribe surprising behavior, especially
+without saying what it is (it's apparently not undefined, just
+surprising). The same applies for 32-bit types.
+</p>
+
+<p>
+I personally recommend that behavior be undefined if <tt>eof()</tt> is a member
+of <tt>char_type</tt>, and another type be chosen for <tt>int_type</tt> (my personal
+favorite has always been a <tt>struct {bool eof; char_type c;}</tt>).
+Alternatively, the exact results of such a situation should be defined,
+at least so far that I/O could be conducted on these types as long as
+the code units remain valid. Note that the argument that no one streams
+<tt>char16_t</tt> or <tt>char32_t</tt> is not really valid as it would be perfectly
+reasonable to use a <tt>basic_stringstream</tt> in conjunction with UTF character
+types.
+</p>
+
+<p><i>[
+2009-10-28 Ganesh provides two possible resolutions and expresses a preference
+for the second:
+]</i></p>
+
+
+<blockquote>
+<ol>
+<li>
+<p>
+Replace 21.2.3.2 [char.traits.specializations.char16_t] para 3 with:
+</p>
+
+<blockquote>
+The member <tt>eof()</tt> shall return <del>an implementation-defined
+constant that cannot appear as a valid UTF-16 code unit</del>
+<ins><tt>UINT_LEAST16_MAX</tt> [<i>Note:</i> this value is guaranteed to
+be a permanently reserved UCS-2 code position if <tt>UINT_LEAST16_MAX ==
+0xFFFF</tt> and it's not a UCS-2 code position otherwise &mdash; <i>end
+note</i>]</ins>.
+</blockquote>
+
+<p>
+Replace 21.2.3.3 [char.traits.specializations.char32_t] para 3 with:
+</p>
+
+<blockquote>
+The member <tt>eof()</tt> shall return <del>an implementation-defined constant that
+cannot appear as a Unicode code point</del>
+<ins>
+<tt>UINT_LEAST32_MAX</tt> [<i>Note:</i> this value is guaranteed to be a
+permanently reserved UCS-4 code position if <tt>UINT_LEAST32_MAX ==
+0xFFFFFFFF</tt> and it's not a UCS-4 code position otherwise &mdash; <i>end
+note</i>]</ins>.
+</blockquote>
+</li>
+<li>
+<p>
+In 21.2.3.2 [char.traits.specializations.char16_t], in the
+definition of <tt>char_traits&lt;char16_t&gt;</tt> replace the definition of nested
+typedef <tt>int_type</tt> with:
+</p>
+
+<blockquote><pre>
+namespace std {
+  template&lt;&gt; struct char_traits&lt;char16_t&gt; {
+    typedef char16_t         char_type;
+    typedef <del>uint_least16_t</del> <ins>uint_fast16_t</ins> int_type;
+     ...
+</pre></blockquote>
+
+<p>
+Replace 21.2.3.2 [char.traits.specializations.char16_t] para 3 with:
+</p>
+
+<blockquote>
+The member <tt>eof()</tt> shall return <del>an implementation-defined
+constant that cannot appear as a valid UTF-16 code unit</del>
+<ins><tt>UINT_FAST16_MAX</tt> [<i>Note:</i> this value is guaranteed to
+be a permanently reserved UCS-2 code position if <tt>UINT_FAST16_MAX ==
+0xFFFF</tt> and it's not a UCS-2 code position otherwise &mdash; <i>end
+note</i>]</ins>.
+</blockquote>
+
+<p>
+In 21.2.3.3 [char.traits.specializations.char32_t], in the
+definition of <tt>char_traits&lt;char32_t&gt;</tt> replace the definition of nested
+typedef <tt>int_type</tt> with:
+</p>
+
+<blockquote><pre>
+namespace std {
+  template&lt;&gt; struct char_traits&lt;char32_t&gt; {
+    typedef char32_t         char_type;
+    typedef <del>uint_least32_t</del> <ins>uint_fast32_t</ins> int_type;
+     ...
+</pre></blockquote>
+
+<p>
+Replace 21.2.3.3 [char.traits.specializations.char32_t] para 3 with:
+</p>
+
+<blockquote>
+The member <tt>eof()</tt> shall return <del>an implementation-defined constant that
+cannot appear as a Unicode code point</del>
+<ins>
+<tt>UINT_FAST32_MAX</tt> [<i>Note:</i> this value is guaranteed to be a
+permanently reserved UCS-4 code position if <tt>UINT_FAST32_MAX ==
+0xFFFFFFFF</tt> and it's not a UCS-4 code position otherwise &mdash; <i>end
+note</i>]</ins>.
+</blockquote>
+</li>
+</ol>
+</blockquote>
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+This seems an overspecification, and it is not clear what problem is being solved - these values can be used portably by using the named functions; there is no need for the value itself to be portable.
+
+Move to Tentatively NAD.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+</p>
+
+
+
+
+
+<hr>
+<h3><a name="1207"></a>1207. Underspecified std::list operations?</h3>
+<p><b>Section:</b> 23.3.4.4 [list.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Lo&iuml;c Joly <b>Opened:</b> 2009-09-13  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#list.ops">active issues</a> in [list.ops].</p>
+<p><b>View all other</b> <a href="lwg-index.html#list.ops">issues</a> in [list.ops].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+It looks to me like some operations of <tt>std::list</tt>
+(<tt>sort</tt>, <tt>reverse</tt>, <tt>remove</tt>, <tt>unique</tt> &amp;
+<tt>merge</tt>) do not specify the validity of iterators, pointers &amp;
+references to elements of the list after those operations. Is it implied
+by some other text in the standard?
+</p>
+
+<p>
+I believe <tt>sort</tt> &amp; <tt>reverse</tt> do not invalidating
+anything, <tt>remove</tt> &amp; <tt>unique</tt> only invalidates what
+refers to erased elements, <tt>merge</tt> does not invalidate anything
+(with the same precision as <tt>splice</tt> for elements who changed of
+container). Are those assumptions correct ?
+</p>
+
+<p><i>[
+2009-12-08 Jonathan Wakely adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+23.2.1 [container.requirements.general] paragraph 11 says iterators
+aren't invalidated unless specified, so I don't think it needs to be repeated on
+every function that doesn't invalidate iterators. <tt>list::unique</tt> says it
+"eliminates" elements, that should probably be "erases" because IMHO that term
+is used elsewhere and so makes it clearer that iterators to the erased elements
+are invalidated.
+</p>
+
+<p>
+<tt>list::merge</tt> coud use the same wording as <tt>list::splice</tt> w.r.t
+iterators and references to moved elements.
+</p>
+
+<p>
+Suggested resolution:
+</p>
+
+<p>
+In 23.3.4.4 [list.ops] change paragraph 19
+</p>
+
+<blockquote><pre>
+                                 void unique();
+template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate binary_pred);
+</pre>
+<blockquote>
+<i>Effects:</i> <del>Eliminates</del> <ins>Erases</ins> all but the first
+element from every consecutive group ...
+</blockquote>
+</blockquote>
+
+<p>
+Add to the end of paragraph 23
+</p>
+
+<blockquote><pre>
+void                          merge(list&lt;T,Allocator&gt;&amp;&amp; x);
+template &lt;class Compare&gt; void merge(list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp);
+</pre>
+<blockquote>
+<p>...</p>
+<p>
+<i>Effects:</i> ... that is, for every iterator <tt>i</tt>, in the range other
+than the first, the condition <tt>comp(*i, *(i - 1)</tt> will be false.
+<ins>Pointers and references to the moved elements of <tt>x</tt> now refer to
+those same elements but as members of <tt>*this</tt>. Iterators referring to the
+moved elements will continue to refer to their elements, but they now behave as
+iterators into <tt>*this</tt>, not into <tt>x</tt>.</ins>
+</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<p><i>[
+2009-12-12 Lo&iuml;c adds wording.
+]</i></p>
+
+
+<p><i>[
+2010-02-10 Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+]</i></p>
+
+
+<p><i>[
+2010-02-10 Alisdair opens:
+]</i></p>
+
+
+<blockquote>
+<p>
+I object to the current resolution of #1207.  I believe it is overly strict with
+regard to <tt>list</tt> end iterators, being the only mutating operations to
+require such stability.
+</p>
+
+<p>
+More importantly, the same edits need to be applied to <tt>forward_list</tt>,
+which uses slightly different words to describe some of these operations so may
+require subtly different edits (not checked.)
+</p>
+
+<p>
+I am prepared to pick up the <tt>end()</tt> iterator as a separate (new) issue,
+as part of the FCD ballot review (BSI might tell me 'no' first ;~) but I do want
+to see <tt>forward_list</tt> adjusted at the same time.
+</p>
+</blockquote>
+
+<p><i>[
+2010-03-28 Daniel adds the first 5 bullets in an attempt to address Alisdair's
+concerns.
+]</i></p>
+
+
+
+<p><i>[
+2010 Rapperswil:
+]</i></p>
+
+
+<blockquote>
+The wording looks good.
+
+Move to Tentatively Ready.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<ol>
+
+<li>
+<p>
+Change 23.3.3.5 [forwardlist.ops]/12 as indicated:
+</p>
+
+<blockquote><pre>
+void remove(const T&amp; value);
+template &lt;class Predicate&gt; void remove_if(Predicate pred);
+</pre>
+
+<blockquote>
+12 <i>Effects:</i> Erases all the elements in the list referred by a list
+iterator <tt>i</tt> for which the following conditions hold: <tt>*i == value
+(for remove()), pred(*i)</tt> is true (<tt>for remove_if()</tt>). This operation
+shall be stable: the relative order of the elements that are not removed is the
+same as their relative order in the original list. <ins>Invalidates only the
+iterators and references to the erased elements.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.3.5 [forwardlist.ops]/15 as indicated:
+</p>
+
+<blockquote><pre>
+template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate pred);
+</pre>
+
+<blockquote>
+15 <i>Effects:</i>: <del>Eliminates</del><ins>Erases</ins> all but the first
+element from every consecutive group of equal elements referred to by the
+iterator <tt>i</tt> in the range <tt>[first + 1,last)</tt> for which <tt>*i ==
+*(i-1)</tt> (for the version with no arguments) or <tt>pred(*i, *(i - 1))</tt>
+(for the version with a predicate argument) holds. <ins>Invalidates only the
+iterators and references to the erased elements.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.3.5 [forwardlist.ops]/19 as indicated:
+</p>
+
+<blockquote><pre>
+void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x);
+template &lt;class Compare&gt; void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp)
+</pre>
+
+<blockquote>
+<p>
+[..]
+</p>
+
+<p>
+19 <i>Effects:</i>: Merges <tt>x</tt> into <tt>*this</tt>. This operation shall
+be stable: for equivalent elements in the two lists, the elements from
+<tt>*this</tt> shall always precede the elements from <tt>x</tt>. <tt>x</tt> is
+empty after the merge. If an exception is thrown other than by a comparison
+there are no effects. <ins>Pointers and references to the moved elements of
+<tt>x</tt> now refer to those same elements but as members of <tt>*this</tt>.
+Iterators referring to the moved elements will continue to refer to their
+elements, but they now behave as iterators into <tt>*this</tt>, not into
+<tt>x</tt>.</ins>
+</p>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.3.5 [forwardlist.ops]/22 as indicated:
+</p>
+
+<blockquote><pre>
+void sort();
+template &lt;class Compare&gt; void sort(Compare comp);
+</pre>
+
+<blockquote>
+<p>
+[..]
+</p>
+
+<p>
+22 <i>Effects:</i>: Sorts the list according to the <tt>operator&lt;</tt> or the
+<tt>comp</tt> function object. This operation shall be stable: the relative
+order of the equivalent elements is preserved. If an exception is thrown the
+order of the elements in <tt>*this</tt> is unspecified. <ins>Does not affect the
+validity of iterators and references.</ins>
+</p>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.3.5 [forwardlist.ops]/24 as indicated:
+</p>
+
+<blockquote><pre>
+void reverse();
+</pre>
+
+<blockquote>
+24 <i>Effects:</i>: Reverses the order of the elements in the list. <ins>Does
+not affect the validity of iterators and references.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.4.4 [list.ops], p15:
+</p>
+
+<blockquote><pre>
+                           void remove(const T&amp; value);
+template &lt;class Predicate&gt; void remove_if(Predicate pred);
+</pre>
+<blockquote>
+<i>Effects:</i> Erases all the elements in the list referred by a list iterator
+<tt>i</tt> for which the following conditions hold: <tt>*i == value, pred(*i) !=
+false</tt>.  <ins>Invalidates only the iterators and references to the erased
+elements.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.4.4 [list.ops], p19:
+</p>
+
+<blockquote><pre>
+                                 void unique();
+template &lt;class BinaryPredicate&gt; void unique(BinaryPredicate binary_pred);
+</pre>
+<blockquote>
+<i>Effects:</i> <del>Eliminates</del> <ins>Erases</ins> all but the first
+element from every consecutive group of equal elements referred to by the
+iterator <tt>i</tt> in the range <tt>[first + 1,last)</tt> for which <tt>*i ==
+*(i-1)</tt> (for the version of <tt>unique</tt> with no arguments) or
+<tt>pred(*i, *(i - 1))</tt> (for the version of <tt>unique</tt> with a predicate
+argument) holds. <ins>Invalidates only the iterators and references to the
+erased elements.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.4.4 [list.ops], p23:
+</p>
+
+<blockquote><pre>
+void                          merge(list&lt;T,Allocator&gt;&amp;&amp; x);
+template &lt;class Compare&gt; void merge(list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp);
+</pre>
+<blockquote>
+<i>Effects:</i> If <tt>(&amp;x == this)</tt> does nothing; otherwise, merges the
+two sorted ranges <tt>[begin(), end())</tt> and <tt>[x.begin(), x.end())</tt>.
+The result is a range in which the elements will be sorted in non-decreasing
+order according to the ordering defined by <tt>comp</tt>; that is, for every
+iterator <tt>i</tt>, in the range other than the first, the condition
+<tt>comp(*i, *(i - 1)</tt> will be false.
+<ins>Pointers and references to the moved elements of <tt>x</tt> now refer to
+those same elements but as members of <tt>*this</tt>. Iterators referring to the
+moved elements will continue to refer to their elements, but they now behave as
+iterators into <tt>*this</tt>, not into <tt>x</tt>.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.4.4 [list.ops], p26:
+</p>
+
+<blockquote><pre>
+void reverse();
+</pre>
+<blockquote>
+<i>Effects:</i> Reverses the order of the elements in the list.
+<ins>Does not affect the validity of iterators and references.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.3.4.4 [list.ops], p30:
+</p>
+
+<blockquote><pre>
+                         void sort();
+template &lt;class Compare&gt; void sort(Compare comp);
+</pre>
+<blockquote>
+<i>Effects:</i> Sorts the list according to the <tt>operator&lt;</tt> or a
+<tt>Compare</tt> function object.
+<ins>Does not affect the validity of iterators and references.</ins>
+</blockquote>
+</blockquote>
+</li>
+
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1234"></a>1234. "Do the right thing" and NULL</h3>
+<p><b>Section:</b> 23.2.3 [sequence.reqmts] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2009-10-09  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#sequence.reqmts">issues</a> in [sequence.reqmts].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+On g++ 4.2.4 (x86_64-linux-gnu), the following file gives a compile
+error:
+</p>
+
+<blockquote><pre>
+#include &lt;vector&gt;
+void foo() { std::vector&lt;int*&gt; v(500l, NULL); }
+</pre></blockquote>
+
+<p>
+Is this supposed to work? 
+</p>
+
+<p>
+The issue: if <tt>NULL</tt> happens to be defined as <tt>0l</tt>, this is an invocation of
+the constructor with two arguments of the same integral type.
+23.2.3 [sequence.reqmts]/14
+(<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3035.pdf">N3035</a>)
+says that this will behave as if the the
+overloaded constructor
+</p>
+
+<blockquote><pre>
+X(size_type, const value_type&amp; = value_type(),
+  const allocator_type&amp; = allocator_type())
+</pre></blockquote>
+
+<p>
+were called instead, with the arguments
+<tt>static_cast&lt;size_type&gt;(first)</tt>, <tt>last</tt> and
+<tt>alloc</tt>, respectively. However, it does not say whether this
+actually means invoking that constructor with the exact textual form of
+the arguments as supplied by the user, or whether the standard permits
+an implementation to invoke that constructor with variables of the same
+type and value as what the user passed in. In most cases this is a
+distinction without a difference. In this particular case it does make a
+difference, since one of those things is a null pointer constant and the
+other is not.
+</p>
+
+<p>
+Note that an implementation based on forwarding functions will use the
+latter interpretation.
+</p>
+
+<p><i>[
+2010 Pittsburgh:  Moved to Open.
+]</i></p>
+
+
+<p><i>[
+2010-03-19 Daniel provides wording.
+]</i></p>
+
+
+<blockquote>
+<ul>
+<li>
+Adapts the numbering used in the discussion to the recent working paper
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3035.pdf">N3035</a>.
+</li>
+
+<li>
+Proposes a resolution that requires implementations to use sfinae-like means to
+possibly filter away the too generic template c'tor. In fact this resolution is
+equivalent to that used for the <tt>pair-NULL</tt> problem (<a href="lwg-defects.html#811">811</a>),
+the only difference is, that issue 1234 was already a C++03 problem.
+</li>
+</ul>
+
+<p>
+This issue can be considered as a refinement of <a href="lwg-defects.html#438">438</a>.
+</p>
+
+</blockquote>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+Wording was verified to match with the most recent WP. Jonathan Wakely and Alberto Barbati observed that the current 
+WP has a defect that should be fixed here as well: The functions signatures <tt>fx1</tt> and <tt>fx3</tt> are 
+incorrectly referring to <tt>iterator</tt> instead of <tt>const_iterator</tt>.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with revised wording after 7 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+ 
+<p>
+Change 23.2.3 [sequence.reqmts]/14+15 as indicated:
+</p>
+
+<blockquote>
+<p>
+14 For every sequence container defined in this Clause and in Clause 21:
+</p>
+
+<ul>
+<li>
+<p>
+If the constructor
+</p>
+
+<blockquote><pre>
+template &lt;class InputIterator&gt;
+X(InputIterator first, InputIterator last,
+  const allocator_type&amp; alloc = allocator_type())
+
+</pre></blockquote>
+
+<p>
+is called with a type <tt>InputIterator</tt> that does not qualify as an input
+iterator, then the constructor <ins>shall not participate in overload
+resolution.</ins><del>will
+behave as if the overloaded constructor:</del>
+</p>
+
+<blockquote><pre><del>
+X(size_type, const value_type& = value_type(),
+  const allocator_type& = allocator_type())
+</del></pre></blockquote>
+
+<p>
+<del>were called instead, with the arguments
+<tt>static_cast&lt;size_type&gt;(first)</tt>, <tt>last</tt> and <tt>alloc</tt>,
+respectively</del>.
+</p>
+</li>
+
+<li>
+
+<p>
+If the member functions of the forms:
+</p>
+
+<blockquote><pre>
+template &lt;class InputIterator&gt; <i>// such as insert()</i>
+rt fx1(<ins>const_</ins>iterator p, InputIterator first, InputIterator last);
+
+template &lt;class InputIterator&gt; <i>// such as append(), assign()</i>
+rt fx2(InputIterator first, InputIterator last);
+
+template &lt;class InputIterator&gt; <i>// such as replace()</i>
+rt fx3(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, InputIterator first, InputIterator last);
+</pre></blockquote>
+
+<p>
+are called with a type <tt>InputIterator</tt> that does not qualify as an input
+iterator, then these functions <ins>shall not participate in overload
+resolution.</ins><del>will behave as if the overloaded member functions:</del>
+</p>
+
+<blockquote><pre>
+<del>rt fx1(iterator, size_type, const value_type&amp;);</del>
+
+<del>rt fx2(size_type, const value_type&amp;);</del>
+
+<del>rt fx3(iterator, iterator, size_type, const value_type&amp;);</del>
+</pre></blockquote>
+
+<p>
+<del>were called instead, with the same arguments.</del>
+</p>
+</li>
+
+</ul>
+
+<p><del>
+15 In the previous paragraph the alternative binding will fail if <tt>first</tt>
+is not implicitly convertible to <tt>X::size_type</tt> or if <tt>last</tt> is
+not implicitly convertible to <tt>X::value_type</tt>.
+</del></p>
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1240"></a>1240. Deleted comparison functions of std::function not  needed</h3>
+<p><b>Section:</b> 20.8.14.2 [func.wrap.func] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-18  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.wrap.func">issues</a> in [func.wrap.func].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The class template <tt>std::function</tt> contains the following member
+declarations:
+</p>
+
+<blockquote><pre>
+// deleted overloads close possible hole in the type system
+template&lt;class R2, class... ArgTypes2&gt;
+  bool operator==(const function&lt;R2(ArgTypes2...)&gt;&amp;) = delete;
+template&lt;class R2, class... ArgTypes2&gt;
+  bool operator!=(const function&lt;R2(ArgTypes2...)&gt;&amp;) = delete;
+</pre></blockquote>
+
+<p>
+The leading comment here is part of the history of <tt>std::function</tt>, which
+was introduced with <a
+href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2002/n1402.html#undefined_operators">N1402</a>.
+During that time no explicit conversion functions existed, and the
+"safe-bool" idiom (based on pointers-to-member) was a popular
+technique. The only disadvantage of this idiom was that given two
+objects <tt>f1</tt> and <tt>f2</tt> of type <tt>std::function</tt> the expression
+</p>
+
+<blockquote><pre>
+f1 == f2;
+</pre></blockquote>
+
+<p>
+was well-formed, just because the built-in <tt>operator==</tt> for pointer to member
+was considered after a single user-defined conversion. To fix this, an
+overload set of <em>undefined</em> comparison functions was added,
+such that overload resolution would prefer those ending up in a linkage error.
+The new language facility of deleted functions provided a much better
+diagnostic mechanism to fix this issue.
+</p>
+
+<p>
+The central point of this issue is, that with the replacement of the
+safe-bool idiom by explicit conversion to bool the original "hole in the
+type system" does no longer exist and therefore the comment is wrong and
+the superfluous function definitions should be removed as well. An
+explicit conversion function is considered in direct-initialization
+situations only, which indirectly contain the so-called "contextual
+conversion to bool" (4 [conv]/3). These conversions are not considered for
+<tt>==</tt> or <tt>!=</tt> as defined by the core language.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+In 20.8.14.2 [func.wrap.func]/1, class function change as indicated:
+</p>
+
+<blockquote><pre>
+// 20.7.15.2.3, function capacity:
+explicit operator bool() const;
+
+<del>// deleted overloads close possible hole in the type system</del>
+<del>template&lt;class R2, class... ArgTypes2&gt;</del>
+  <del>bool operator==(const function&lt;R2(ArgTypes2...)&gt;&amp;) = delete;</del>
+<del>template&lt;class R2, class... ArgTypes2&gt;</del>
+  <del>bool operator!=(const function&lt;R2(ArgTypes2...)&gt;&amp;) = delete;</del>
+</pre></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1249"></a>1249. basic_ios default ctor</h3>
+<p><b>Section:</b> 27.5.4.1 [basic.ios.cons] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2009-10-25  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#basic.ios.cons">issues</a> in [basic.ios.cons].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The basic_ios default ctor is required to leave the objects members
+uninitialized (see below). The paragraph says the object must be
+initialized by calling basic_ios::init() before it's destroyed by
+I can't find a requirement that it be initialized before calling
+any of the class other member functions. Am I not looking in the
+right place or that an issue?
+</p>
+
+<p><i>[
+2009-10-25 Daniel adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+I agree, that your wording makes that clearer, but suggest to write
+</p>
+
+<blockquote>
+... calling <tt>basic_ios::init<del>()</del></tt> before ...
+</blockquote>
+
+<p>
+Doing so, I recommend to adapt that of <tt>ios_base();</tt> as well, where
+we have:
+</p>
+
+<blockquote>
+<i>Effects:</i> Each <tt>ios_base</tt> member has an indeterminate value
+after construction. These members shall be initialized by calling
+<tt>basic_ios::init</tt>. If an <tt>ios_base</tt> object is destroyed
+before these initializations have taken place, the behavior is
+undefined.
+</blockquote>
+</blockquote>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change 27.5.2.7 [ios.base.cons] p1:
+</p>
+
+<blockquote><pre>
+ios_base();
+</pre>
+<blockquote>
+<i>Effects:</i> Each <tt>ios_base</tt> member has an indeterminate value
+after construction. <del>These</del> <ins>The object's</ins> members shall be initialized by calling
+<tt>basic_ios::init</tt> <ins>before the object's first use or before
+ it is destroyed, whichever comes first; otherwise the behavior
+ is undefined.</ins>. <del>If an <tt>ios_base</tt> object is destroyed
+before these initializations have taken place, the behavior is
+undefined.</del>
+</blockquote>
+</blockquote>
+
+<p>
+Change 27.5.4.1 [basic.ios.cons] p2:
+</p>
+
+<blockquote><pre>
+basic_ios();
+</pre>
+<blockquote>
+<i>Effects:</i> Constructs an object of class <tt>basic_ios</tt>
+(27.5.2.7) leaving its member objects uninitialized. The object shall be
+initialized by calling <del>its</del>
+<tt><ins>basic_ios::</ins>init</tt> <ins>before its first
+use or before it is destroyed, whichever comes first; otherwise the
+behavior is undefined.</ins> <del>member function. If it is destroyed
+before it has been initialized the behavior is undefined.</del>
+</blockquote>
+</blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1292"></a>1292. <tt>std::function</tt> should support all callable types</h3>
+<p><b>Section:</b> 20.8.14.2.1 [func.wrap.func.con] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-19  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.con">issues</a> in [func.wrap.func.con].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Some parts of the specification of <tt>std::function</tt> is unnecessarily
+restricted to a subset of all callable types (as defined in 20.8.1 [func.def]/3), even though the intent clearly is to be usable for
+<em>all</em> of them as described in 20.8.14.2 [func.wrap.func]/1. This
+argument becomes strengthened by the fact that current C++0x-compatible
+compilers work fine with them:
+</p>
+
+<blockquote><pre>
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
+
+struct A
+{
+  int foo(int i) const {return i+1;}
+};
+
+struct B
+{
+  int mem;
+};
+
+int main()
+{
+  std::function&lt;int(const A&amp;, int)&gt; f(&amp;A::foo);
+  A a;
+  std::cout &lt;&lt; f(a, 1) &lt;&lt; '\n';
+  std::cout &lt;&lt; f.target_type().name() &lt;&lt; '\n';
+  typedef int (A::* target_t)(int) const;
+  target_t* p = f.target&lt;target_t&gt;();
+  std::cout &lt;&lt; (p != 0) &lt;&lt; '\n';
+  std::function&lt;int(B&amp;)&gt; f2(&amp;B::mem);
+  B b = { 42 };
+  std::cout &lt;&lt; f2(b) &lt;&lt; '\n';
+  std::cout &lt;&lt; f2.target_type().name() &lt;&lt; '\n';
+  typedef int (B::* target2_t);
+  target2_t* p2 = f2.target&lt;target2_t&gt;();
+  std::cout &lt;&lt; (p2 != 0) &lt;&lt; '\n';
+}
+</pre></blockquote>
+
+<p>
+The problematics passages are 20.8.14.2.1 [func.wrap.func.con]/10:
+</p>
+
+<blockquote><pre>
+template&lt;class F&gt; function(F f);
+template &lt;class F, class A&gt; function(allocator_arg_t, const A&amp; a, F f);
+</pre>
+<blockquote>
+<p>...</p>
+<p>
+10 <i>Postconditions:</i> <tt>!*this</tt> if any of the following hold:
+</p>
+<ul>
+<li>
+<tt>f</tt> is a NULL function pointer.
+</li>
+<li>
+<tt>f</tt> is a NULL member function pointer.
+</li>
+<li>
+<tt>F</tt> is an instance of the function class template, and <tt>!f</tt>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+
+<p>
+because it does not consider pointer to data member and all constraints based on
+<em>function objects</em> which like 20.8.14.2 [func.wrap.func]/2 or 20.8.14.2.5 [func.wrap.func.targ]/3. The latter two will be resolved by the proposed
+resolution of <a href="lwg-defects.html#870">870</a> and are therefore not handled here.
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change 20.8.14.2.1 [func.wrap.func.con]/10+11 as indicated:
+</p>
+
+<blockquote><pre>
+template&lt;class F&gt; function(F f);
+template &lt;class F, class A&gt; function(allocator_arg_t, const A&amp; a, F f);
+</pre>
+<blockquote>
+<p>...</p>
+<p>
+10 <i>Postconditions:</i> <tt>!*this</tt> if any of the following hold:
+</p>
+<ul>
+<li>
+<tt>f</tt> is a NULL function pointer.
+</li>
+<li>
+<tt>f</tt> is a NULL <ins>pointer to</ins> member <del>function pointer</del>.
+</li>
+<li>
+<tt>F</tt> is an instance of the function class template, and <tt>!f</tt>
+</li>
+</ul>
+
+<p>
+11 Otherwise, <tt>*this</tt> targets a copy of <tt>f</tt> <del>or</del><ins>,
+initialized with</ins> <tt>std::move(f)</tt> <del>if <tt>f</tt> is not a pointer
+to member function, and targets a copy of <tt>mem_fn(f)</tt> if <tt>f</tt> is a
+pointer to member function</del>. [<i>Note:</i> implementations are encouraged
+to avoid the use of dynamically allocated memory for small function objects, for
+example, where <tt>f</tt>'s target is an object holding only a pointer or
+reference to an object and a member function pointer. &mdash; <i>end note</i>]
+</p>
+
+</blockquote>
+</blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1295"></a>1295. Contradictory call wrapper requirements</h3>
+<p><b>Section:</b> 20.8.2 [func.require] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-22  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#func.require">active issues</a> in [func.require].</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.require">issues</a> in [func.require].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+20.8.2 [func.require]/3 b 1 says
+</p>
+
+<blockquote>
+<p>
+3 If a call wrapper (20.8.1 [func.def]) has a <i>weak result type</i> the
+type of its member type <tt>result_type</tt> is based on the type <tt>T</tt> of
+the wrapper's target object (20.8.1 [func.def]):
+</p>
+
+<ul>
+<li>
+if <tt>T</tt> is a function, reference to function, or pointer to function type,
+<tt>result_type</tt> shall be a synonym for the return type of <tt>T</tt>;
+</li>
+<li>
+[..]
+</li>
+</ul>
+</blockquote>
+
+<p>
+The first two enumerated types (function and reference to function)
+can never be valid types for <tt>T</tt>, because
+</p>
+
+<p>
+20.8.1 [func.def]/7
+</p>
+
+<blockquote>
+7 A <i>target object</i> is the callable object held by a call wrapper.
+</blockquote>
+
+<p>
+and 20.8.1 [func.def]/3
+</p>
+
+<blockquote>
+3 A <i>callable type</i> is a pointer to function, a pointer to member function,
+a pointer to member data, or a class type whose objects can appear immediately
+to the left of a function call operator.
+</blockquote>
+
+<p>
+exclude functions and references to function as "target objects".
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change 20.8.2 [func.require]/3 b 1 as indicated:
+</p>
+
+<blockquote>
+<p>
+3 If a call wrapper (20.8.1 [func.def]) has a <i>weak result type</i> the
+type of its member type <tt>result_type</tt> is based on the type <tt>T</tt> of
+the wrapper's target object (20.8.1 [func.def]):
+</p>
+
+<ul>
+<li>
+if <tt>T</tt> is a <del>function, reference to function, or</del> pointer to
+function type, <tt>result_type</tt> shall be a synonym for the return type of
+<tt>T</tt>;
+</li>
+<li>
+[..]
+</li>
+</ul>
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1316"></a>1316. <tt>scoped_allocator_adaptor operator==</tt> has no definition</h3>
+<p><b>Section:</b> 20.10 [allocator.adaptor] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-02-11  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#allocator.adaptor">issues</a> in [allocator.adaptor].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The WP 
+(<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n3000.pdf">N3000</a>)
+contains these declarations:
+</p>
+
+<blockquote>
+<pre>template &lt;class OuterA1, class OuterA2, class... InnerAllocs&gt;
+  bool operator==(const scoped_allocator_adaptor&lt;OuterA1, InnerAllocs...&gt;&amp; a,
+                  const scoped_allocator_adaptor&lt;OuterA2, InnerAllocs...&gt;&amp; b);
+template &lt;class OuterA1, class OuterA2, class... InnerAllocs&gt;
+  bool operator!=(const scoped_allocator_adaptor&lt;OuterA1, InnerAllocs...&gt;&amp; a,
+                  const scoped_allocator_adaptor&lt;OuterA2, InnerAllocs...&gt;&amp; b);</pre>
+</blockquote>
+
+<p>
+But does not define what the behavior of these operators are.
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Add a new section after 20.10.3 [allocator.adaptor.members]:
+</p>
+
+<blockquote>
+<p><b>Scoped allocator operators  [scoped.adaptor.operators]</b></p>
+
+<pre>template &lt;class OuterA1, class OuterA2, class... InnerAllocs&gt;
+  bool operator==(const scoped_allocator_adaptor&lt;OuterA1, InnerAllocs...&gt;&amp; a,
+                  const scoped_allocator_adaptor&lt;OuterA2, InnerAllocs...&gt;&amp; b);</pre>
+
+<blockquote>
+<i>Returns:</i> <code>a.outer_allocator() == b.outer_allocator()</code>
+if <code>sizeof...(InnerAllocs)</code> is zero; otherwise,
+<code>a.outer_allocator() == b.outer_allocator() &amp;&amp;
+a.inner_allocator() == b.inner_allocator()</code>.
+</blockquote>
+
+<pre>template &lt;class OuterA1, class OuterA2, class... InnerAllocs&gt;
+  bool operator!=(const scoped_allocator_adaptor&lt;OuterA1, InnerAllocs...&gt;&amp; a,
+                  const scoped_allocator_adaptor&lt;OuterA2, InnerAllocs...&gt;&amp; b);</pre>
+
+<blockquote>
+<i>Returns:</i> <code>!(a == b)</code>.
+</blockquote>
+
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1319"></a>1319. Containers should require an iterator that is at least a Forward Iterator</h3>
+<p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-16  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
+<p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The requirements on container iterators are spelled out in
+23.2.1 [container.requirements.general], table 91.
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 91 &mdash; Container requirements</caption>
+
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational semantics</th>
+<th>Assertion/note<br/>pre-/post-condition</th>
+<th>Complexity</th>
+</tr>
+
+<tr>
+<td colspan="5"><center>...</center></td>
+</tr>
+
+<tr>
+<td><tt>X::iterator</tt></td>
+<td>iterator type whose value type is <tt>T</tt></td>
+<td></td>
+<td>any iterator category except output iterator. Convertible to
+<tt>X::const_iterator</tt>.</td>
+<td>compile time</td>
+</tr>
+
+<tr>
+<td><tt>X::const_iterator</tt></td>
+<td>constant iterator type whose value type is <tt>T</tt></td>
+<td></td>
+<td>any iterator category except output iterator</td>
+<td>compile time</td>
+</tr>
+
+<tr>
+<td colspan="5"><center>...</center></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+As input iterators do not have the multi-pass guarantee, they are not suitable
+for iterating over a container.  For example, taking two calls to
+<tt>begin()</tt>, incrementing either iterator might invalidate the other. 
+While data structures might be imagined where this behaviour produces
+interesting and useful results, it is very unlikely to meet the full set of
+requirements for a standard container.
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<p>
+Daniel notes: I changed the currently suggested P/R slightly, because it is not robust in regard to new fundamental iterator
+catagories. I recommend to say instead that each container::iterator shall satisfy (and thus may refine) the forward 
+iterator requirements.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with revised wording after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<ol>
+<li>Change Table 93 &mdash; Container requirements in [container.requirements.general] as indicated:
+<blockquote>
+<table border="1">
+<caption>Table 93 &mdash; Container requirements</caption>
+
+<tbody>
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational<br/>semantics</th>
+<th>Assertion/note<br/>pre-/post-condition</th>
+<th>Complexity</th>
+</tr>
+
+<tr>
+<td colspan="5" align="center"><tt>...</tt></td>
+</tr>
+
+<tr>
+<td><tt>X::iterator</tt></td>
+<td>iterator type<br/>whose value<br/>type is <tt>T</tt></td>
+<td></td>
+<td>any iterator category<br/><del>except output iterator</del><ins><br/>that meets the forward iterator requirements</ins>. convertible<br/>to<br/><tt>X::const_iterator</tt></td>
+<td>compile time</td>
+</tr>
+
+<tr>
+<td><tt>X::const_iterator</tt></td>
+<td>constant iterator type<br/>whose value<br/>type is <tt>T</tt></td>
+<td></td>
+<td>any iterator category<br/><del>except output iterator</del><ins><br/>that meets the forward iterator requirements</ins>.</td>
+<td>compile time</td>
+</tr>
+
+<tr>
+<td colspan="5" align="center"><tt>...</tt></td>
+</tr>
+
+</tbody></table>
+</blockquote>
+
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1323"></a>1323. <tt>basic_string::replace</tt> should use <tt>const_iterator</tt></h3>
+<p><b>Section:</b> 21.4.6.6 [string::replace] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-02-19  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#string::replace">issues</a> in [string::replace].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+
+<p>
+In contrast to all library usages of purely positional iterator values several
+overloads of <tt>std::basic_string::replace</tt> still use iterator instead of
+<tt>const_iterator</tt> arguments. The paper
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3021.pdf">N3021</a>
+quite nicely visualizes the purely positional responsibilities of the function
+arguments.
+</p>
+
+<p>
+This should be fixed to make the library consistent, the proposed changes are
+quite mechanic.
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+
+<li>
+<p>
+In 21.4 [basic.string], class template <tt>basic_string</tt> synopsis
+change as indicated:
+</p>
+
+<blockquote><pre>
+// 21.4.6 modifiers:
+...
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                      const basic_string&amp; str);
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                      const charT* s, size_type n);
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                      const charT* s);
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                      size_type n, charT c);
+template&lt;class InputIterator&gt;
+  basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                        InputIterator j1, InputIterator j2);
+basic_string&amp; replace(<ins>const_</ins>iterator, <ins>const_</ins>iterator,
+                      initializer_list&lt;charT&gt;);
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+In 21.4.6.6 [string::replace] before p.18, change the following signatures
+as indicated:
+</p>
+
+<blockquote><pre>
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const basic_string&amp; str);
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+In 21.4.6.6 [string::replace] before p.21, change the following signatures
+as indicated:
+</p>
+
+<blockquote><pre>
+basic_string&amp;
+  replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const charT* s, size_type n);
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+In 21.4.6.6 [string::replace] before p.24, change the following signatures
+as indicated:
+</p>
+
+<blockquote><pre>
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, const charT* s);
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+In 21.4.6.6 [string::replace] before p.27, change the following signatures
+as indicated:
+</p>
+
+<blockquote><pre>
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2, size_type n,
+                      charT c);
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+In 21.4.6.6 [string::replace] before p.30, change the following signatures
+as indicated:
+</p>
+
+<blockquote><pre>
+template&lt;class InputIterator&gt;
+  basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                        InputIterator j1, InputIterator j2);
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+In 21.4.6.6 [string::replace] before p.33, change the following signatures
+as indicated:
+</p>
+
+<blockquote><pre>
+basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterator i2,
+                      initializer_list&lt;charT&gt; il);
+</pre></blockquote>
+</li>
+
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1325"></a>1325. bitset</h3>
+<p><b>Section:</b> 20.5.1 [bitset.cons] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2010-03-07  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#bitset.cons">issues</a> in [bitset.cons].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+As mentioned on the boost mailing list:
+</p>
+
+<p>
+The following code, valid in C++03, is broken in C++0x due to ambiguity
+between the "<tt>unsigned long long</tt>" and "<tt>char*</tt>"
+constructors.
+</p>
+
+<blockquote><pre>
+#include &lt;bitset&gt;
+std::bitset&lt;10&gt; b(0);
+</pre></blockquote>
+
+<p><i>[
+The proposed resolution has been reviewed by Stephan T. Lavavej.
+]</i></p>
+
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+The proposed resolution has two problems:
+</p>
+<ul>
+<li>
+<p>it fails to provide support for non-terminated strings, which
+could be easily added and constitutes an important use-case. For
+example, the following code would invoke UB with the current
+P/R:</p>
+<blockquote>
+<pre>
+char s[4] = { '0', '1', '0', '1' }; // notice: not null-terminated!
+bitset&lt;4&gt; b(s, 0, 4);
+</pre></blockquote>
+because it requires the evaluation (under the as-if rule, to be fair,
+but it doesn't matter) of <tt>basic_string&lt;char&gt;(s)</tt>
+</li>
+<li>
+<p>it promotes a consistency between the two <tt>bitset</tt>
+constructors that take a <tt>const std::string&amp;</tt> and a
+<tt>const char*</tt>, respectively, while practice established by
+<tt>std::basic_string</tt> would recommend a different set of
+parameters. In particular, the constructor of
+<tt>std::basic_string</tt> that takes a <tt>const char*</tt> does
+not have a <tt>pos</tt> parameter</p>
+</li>
+</ul>
+
+<blockquote>
+Moved to Tentatively Ready with revised wording provided by Alberto Ganesh Babati after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+<ol>
+<li>In the synopsis of header <tt>&lt;bitset&gt;</tt> in
+[template.bitset]/1, replace the fourth bitset constructor:
+<blockquote>
+<pre>
+<del>explicit bitset(const char *str);</del>
+<ins>template &lt;class charT&gt;
+  explicit bitset(
+    const charT *str,
+    typename basic_string&lt;charT&gt;::size_type n = basic_string&lt;charT&gt;::npos,
+    charT zero = charT('0'), charT one = charT('1'));</ins>
+</pre></blockquote>
+</li>
+<li>In [bitset.cons]/8:
+<blockquote>
+<pre>
+<del>explicit bitset(const char *str);</del>
+<ins>template &lt;class charT&gt;
+explicit
+bitset(const charT *str,
+       typename basic_string&lt;charT&gt;::size_type n = basic_string&lt;charT&gt;::npos,
+       charT zero = charT('0'), charT one = charT('1'));</ins>
+</pre></blockquote>
+Effects: Constructs an object of class
+<tt>bitset&lt;N&gt;</tt> as if by
+<del>bitset(string(str)).</del>
+<blockquote><pre><ins>
+bitset(
+  n == basic_string&lt;charT&gt;::npos
+    ? basic_string&lt;charT&gt;(str)
+    : basic_string&lt;charT&gt;(str, n),
+  0, n, zero, one)
+</ins></pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1333"></a>1333. Missing forwarding during std::function invocation</h3>
+<p><b>Section:</b> 20.8.14.2.4 [func.wrap.func.inv] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-26  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.inv">issues</a> in [func.wrap.func.inv].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The current wording of 20.8.14.2.4 [func.wrap.func.inv]/1:
+</p>
+
+<blockquote><pre>
+R operator()(ArgTypes... args) const
+</pre>
+
+<blockquote>
+<i>Effects:</i> <tt><i>INVOKE</i>(f, t1, t2, ..., tN, R)</tt> (20.8.2), where
+<tt>f</tt> is the target object (20.8.1) of <tt>*this</tt> and <tt>t1, t2, ...,
+tN</tt> are the values in <tt>args...</tt>.
+</blockquote>
+</blockquote>
+
+<p>
+uses an unclear relation between the actual args and the used variables
+<tt>ti</tt>. It should be made clear, that <tt>std::forward</tt> has to be used
+to conserve the expression lvalueness.
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change 20.8.14.2.4 [func.wrap.func.inv]/1+2 as indicated:
+</p>
+
+<blockquote><pre>
+R operator()(ArgTypes... args) const
+</pre>
+
+<blockquote>
+<p>
+1 <i>Effects:</i>: <tt><i>INVOKE</i>(f,
+<ins>std::forward&lt;ArgTypes&gt;(args)...</ins><del>t1, t2, ..., tN</del>,
+R)</tt> (20.8.2), where <tt>f</tt> is the target object (20.8.1) of
+<tt>*this</tt> <del>and <tt>t1, t2, ..., tN</tt> are the values in
+<tt>args...</tt></del>.
+</p>
+
+<p>
+2 <i>Returns:</i> Nothing if <tt>R</tt> is <tt>void</tt>, otherwise the return
+value of <tt><i>INVOKE</i>(f,
+<ins>std::forward&lt;ArgTypes&gt;(args)...</ins><del>t1, t2, ..., tN</del>,
+R)</tt>.
+</p>
+
+<p>
+3 <i>Throws:</i> <tt>bad_function_call</tt> if <tt>!*this</tt>; otherwise, any
+exception thrown by the wrapped callable object.
+</p>
+</blockquote>
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1334"></a>1334. Insert iterators are broken for some proxy  containers compared to C++03</h3>
+<p><b>Section:</b> 24.5.2.2.2 [back.insert.iter.op=], 24.5.2.4.2 [front.insert.iter.op=], X [insert.insert.iter.op=] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-28  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In C++03 this was valid code:
+</p>
+
+<blockquote><pre>
+#include &lt;vector&gt;
+#include &lt;iterator&gt;
+
+int main() {
+  typedef std::vector&lt;bool&gt; Cont;
+  Cont c;
+  std::back_insert_iterator&lt;Cont&gt; it = std::back_inserter(c);
+  *it = true;
+}
+</pre></blockquote>
+
+<p>
+In C++0x this code does no longer compile because of an ambiguity error for this
+<tt>operator=</tt> overload pair:
+</p>
+
+<blockquote><pre>
+back_insert_iterator&lt;Container&gt;&amp;
+operator=(typename Container::const_reference value);
+
+back_insert_iterator&lt;Container&gt;&amp;
+operator=(typename Container::value_type&amp;&amp; value);
+</pre></blockquote>
+
+<p>
+This is so, because for proxy-containers like <tt>std::vector&lt;bool&gt;</tt>
+the <tt>const_reference</tt> usually is a non-reference type and in this case
+it's identical to <tt>Container::value_type</tt>, thus forming the ambiguous
+overload pair
+</p>
+
+<blockquote><pre>
+back_insert_iterator&lt;Container&gt;&amp;
+operator=(bool value);
+
+back_insert_iterator&lt;Container&gt;&amp;
+operator=(bool&amp;&amp; value);
+</pre></blockquote>
+
+<p>
+The same problem exists for <tt>std::back_insert_iterator</tt>,
+<tt>std::front_insert_iterator</tt>, and <tt>std::insert_iterator</tt>.
+</p>
+
+<p>
+One possible fix would be to require that <tt>const_reference</tt> of a proxy
+container must not be the same as the <tt>value_type</tt>, but this would break
+earlier valid code. The alternative would be to change the first signature to
+</p>
+
+<blockquote><pre>
+back_insert_iterator&lt;Container&gt;&amp;
+operator=(const typename Container::const_reference&amp; value);
+</pre></blockquote>
+
+<p>
+This would have the effect that this signature <em>always</em> expects an lvalue
+or rvalue, but it would not create an ambiguity relative to the second form with
+rvalue-references. [For all non-proxy containers the signature will be the same
+as before due to reference-collapsing and const folding rules]
+</p>
+
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+This problem is not restricted to the unspeakable <tt>vector&lt;bool&gt;</tt>, but is already existing for other proxy 
+containers like gcc's <tt>rope</tt> class. The following code does no longer work ([Bug libstdc++/44963]):
+</p>
+<blockquote><pre>
+#include &lt;iostream&gt;
+#include &lt;ext/rope&gt;
+
+using namespace std;
+
+int main()
+{
+     __gnu_cxx::crope line("test");
+     auto ii(back_inserter(line));
+
+     *ii++ = 'm'; // #1
+     *ii++ = 'e'; // #2
+
+     cout &lt;&lt; line &lt;&lt; endl;
+}
+</pre></blockquote>
+<p>
+Both lines marked with #1 and #2 issue now an error because the library has properly implemented the current
+wording state (Thanks to Paolo Calini for making me aware of this real-life example).
+</p>
+<p>
+The following P/R is a revision of the orignal P/R and was initially suggested by Howard 
+Hinnant. Paolo verified that the approach works in gcc.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with revised wording after 6 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p><i>The wording refers to N3126.</i></p>
+
+<ol>
+<li>Change [back.insert.iterator], class <tt>back_insert_iterator</tt> synopsis as indicated:
+<blockquote><pre>
+template &lt;class Container&gt;
+class back_insert_iterator :
+ public iterator&lt;output_iterator_tag,void,void,void,void&gt; {
+protected:
+ Container* container;
+public:
+ [..]
+ back_insert_iterator&lt;Container&gt;&amp;
+   operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
+ back_insert_iterator&lt;Container&gt;&amp;
+   operator=(typename Container::value_type&amp;&amp; value);
+ [..]
+};
+</pre></blockquote>
+</li>
+<li>Change [back.insert.iter.op=] before p. 1 as indicated:
+<blockquote><pre>
+back_insert_iterator&lt;Container&gt;&amp;
+   operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
+</pre>
+<blockquote>
+1 <em>Effects</em>: <tt>container-&gt;push_back(value)</tt>;<br/>
+2 <em>Returns</em>: <tt>*this</tt>.
+</blockquote></blockquote>
+</li>
+<li>Change [front.insert.iterator], class <tt>front_insert_iterator</tt> synposis as indicated:
+<blockquote><pre>
+template &lt;class Container&gt;
+class front_insert_iterator :
+ public iterator&lt;output_iterator_tag,void,void,void,void&gt; {
+protected:
+ Container* container;
+public:
+ [..]
+ front_insert_iterator&lt;Container&gt;&amp;
+   operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
+ front_insert_iterator&lt;Container&gt;&amp;
+   operator=(typename Container::value_type&amp;&amp; value);
+ [..]
+};
+</pre></blockquote>
+</li>
+<li>Change [front.insert.iter.op=] before p.1 as indicated:
+<blockquote><pre>
+front_insert_iterator&lt;Container&gt;&amp;
+   operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
+</pre>
+<blockquote>
+1 <em>Effects</em>: <tt>container-&gt;push_front(value)</tt>;<br/>
+2 <em>Returns</em>: <tt>*this</tt>.
+</blockquote></blockquote>
+</li>
+<li>Change [insert.iterator], class insert_iterator synopsis as indicated:
+<blockquote><pre>
+template &lt;class Container&gt;
+   class insert_iterator :
+     public iterator&lt;output_iterator_tag,void,void,void,void&gt; {
+   protected:
+     Container* container;
+     typename Container::iterator iter;
+   public:
+     [..]
+     insert_iterator&lt;Container&gt;&amp;
+       operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
+     insert_iterator&lt;Container&gt;&amp;
+       operator=(typename Container::value_type&amp;&amp; value);
+     [..]
+   };
+</pre></blockquote>
+</li>
+<li>Change [insert.iter.op=] before p. 1 as indicated:
+<blockquote><pre>
+insert_iterator&lt;Container&gt;&amp;
+    operator=(<ins>const</ins> typename Container::<del>const_reference</del><ins>value_type&amp;</ins> value);
+</pre>
+<blockquote>
+1 <em>Effects</em>: 
+<blockquote><pre>
+  iter = container-&gt;insert(iter, value);
+  ++iter;
+</pre></blockquote>
+2 <em>Returns</em>: <tt>*this</tt>.
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1335"></a>1335. Insufficient requirements for <tt>tuple::operator&lt;()</tt></h3>
+<p><b>Section:</b> 20.4.2.7 [tuple.rel] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2010-05-15  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#tuple.rel">issues</a> in [tuple.rel].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The requirements section for <tt>std::tuple</tt> says the following: 
+</p>
+
+<blockquote>
+<i>Requires:</i> For all <tt>i</tt>, where <tt>0 &lt;= i and i &lt;
+sizeof...(Types)</tt>, <tt>get&lt;i&gt;(t) &lt; get&lt;i&gt;(u)</tt> is a valid
+expression returning a type that is convertible to <tt>bool</tt>.
+<tt>sizeof...(TTypes) == sizeof...(UTypes)</tt>.
+</blockquote>
+
+<p>
+This is necessary but not sufficient, as the algorithm for comparing
+<tt>tuple</tt>s also computes <tt>get&lt;i&gt;(u) &lt; get&lt;i&gt;(t)</tt>
+(note the order)
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready with updated wording correcting change-bars after 6 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<ol>
+<li>Change [tuple.rel] before p. 4 as indicated [<strong>Remark to the editor: This paragraph doesn't have a number yet,
+but it seems to me as if it should have one</strong>]:
+<blockquote><pre>
+template&lt;class... TTypes, class... UTypes&gt;
+bool operator&lt;(const tuple&lt;TTypes...&gt;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);
+</pre>
+<blockquote>
+<em>Requires</em>: For all <tt>i</tt>, where <tt>0 &lt;= i</tt> and <tt>i &lt; sizeof...(Types)</tt>, 
+<tt>get&lt;i&gt;(t) &lt; get&lt;i&gt;(u)</tt> <ins>and <tt>get&lt;i&gt;(u) &lt; get&lt;i&gt;(t)</tt></ins><del>is 
+a valid expression returning a type that is</del><ins> are valid expressions returning types that 
+are</ins> convertible to <tt>bool</tt>. <tt>sizeof...(TTypes) == sizeof...(UTypes)</tt>.
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1337"></a>1337. Swapped arguments in <tt>regex_traits::isctype</tt></h3>
+<p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-06-21  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+28.7 [re.traits]/12 describes <tt>regex_traits::isctype</tt> in terms
+of <tt>ctype::is(c, m)</tt>, where <tt>c</tt> is a <tt>charT</tt> and <tt>m</tt>
+is a <tt>ctype_base::mask</tt>.  Unfortunately 22.4.1.1.1 [locale.ctype.members]
+specifies this function as <tt>ctype::is(m, c)</tt>
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change 28.7 [re.traits]/12:
+</p>
+
+<blockquote><pre>
+bool isctype(charT c, char_class_type f) const;
+</pre>
+<blockquote>
+<p>
+11 ...
+</p>
+<p>
+12 <i>Returns:</i> Converts <tt>f</tt> into a value <tt>m</tt> of type
+<tt>std::ctype_base::mask</tt> in an unspecified manner, and returns
+<tt>true</tt> if <tt>use_facet&lt;ctype&lt;charT&gt;
+&gt;(getloc()).is(<del>c</del><ins>m</ins>, <del>m</del><ins>c</ins>)</tt> is
+<tt>true</tt>. Otherwise returns <tt>true</tt> if <tt>f</tt> bitwise or'ed with
+the result of calling <tt>lookup_classname</tt> with an iterator pair that
+designates the character sequence <tt>"w"</tt> is not equal to 0 and <tt>c ==
+'_'</tt>, or if <tt>f</tt> bitwise or'ed with the result of calling
+<tt>lookup_classname</tt> with an iterator pair that designates the character
+sequence <tt>"blank"</tt> is not equal to 0 and <tt>c</tt> is one of an
+implementation-defined subset of the characters for which <tt>isspace(c,
+getloc())</tt> returns <tt>true</tt>, otherwise returns <tt>false</tt>.
+</p>
+</blockquote>
+</blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1338"></a>1338. LWG 1205 incorrectly applied</h3>
+<p><b>Section:</b> 25.2.13 [alg.search] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-06-25  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#alg.search">issues</a> in [alg.search].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+LWG <a href="lwg-defects.html#1205">1205</a> (currently in WP) clarified the return value of several
+algorithms when dealing with empty ranges.  In particular it recommended for
+25.2.13 [alg.search]:
+</p>
+
+<blockquote><pre>
+template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+  ForwardIterator1
+    search(ForwardIterator1 first1, ForwardIterator1 last1,
+           ForwardIterator2 first2, ForwardIterator2 last2);
+
+template&lt;class ForwardIterator1, class ForwardIterator2,
+         class BinaryPredicate&gt;
+  ForwardIterator1
+    search(ForwardIterator1 first1, ForwardIterator1 last1,
+           ForwardIterator2 first2, ForwardIterator2 last2,
+           BinaryPredicate pred);
+</pre>
+<blockquote>
+<p>
+1 <i>Effects:</i> ...
+</p>
+<p>
+2 <i>Returns:</i> ... Returns <tt>last1</tt> if no such iterator is found.
+</p>
+<p><ins>
+3 <i>Remarks:</i> Returns <tt>first1</tt> if <tt>[first2,last2)</tt> is empty.
+</ins></p>
+</blockquote>
+</blockquote>
+
+<p>
+Unfortunately this got translated to an incorrect specification for what gets
+returned when no such iterator is found (N3092):
+</p>
+
+<blockquote><pre>
+template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+  ForwardIterator1
+    search(ForwardIterator1 first1, ForwardIterator1 last1,
+           ForwardIterator2 first2, ForwardIterator2 last2);
+
+template&lt;class ForwardIterator1, class ForwardIterator2,
+         class BinaryPredicate&gt;
+  ForwardIterator1
+    search(ForwardIterator1 first1, ForwardIterator1 last1,
+           ForwardIterator2 first2, ForwardIterator2 last2,
+           BinaryPredicate pred);
+</pre>
+<blockquote>
+<p>
+1 <i>Effects:</i> ...
+</p>
+<p>
+2 <i>Returns:</i> ... Returns <tt>first1</tt> if <tt>[first2,last2)</tt> is
+empty or if no such iterator is found.
+</p>
+</blockquote>
+</blockquote>
+
+<p>
+LWG <a href="lwg-defects.html#1205">1205</a> is correct and N3092 is not equivalent nor correct.
+</p>
+
+<p>
+I have not reviewed the other 10 recommendations of <a href="lwg-defects.html#1205">1205</a>.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+It was verified that none of the remaining possibly affected algorithms does have any similar problems and a concrete P/R was added
+that used a similar style as has been applied to the other cases.
+</blockquote>
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>Change [alg.search]/2 as indicated:
+<blockquote><pre>
+template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+  ForwardIterator1
+    search(ForwardIterator1 first1, ForwardIterator1 last1,
+           ForwardIterator2 first2, ForwardIterator2 last2);
+
+template&lt;class ForwardIterator1, class ForwardIterator2,
+            class BinaryPredicate&gt;
+  ForwardIterator1
+    search(ForwardIterator1 first1, ForwardIterator1 last1,
+           ForwardIterator2 first2, ForwardIterator2 last2,
+           BinaryPredicate pred);
+</pre>
+<blockquote><p>
+1 - [...]
+</p>
+2 - <em>Returns</em>: The first iterator <tt>i</tt> in the range <tt>[first1,last1 - (last2-first2))</tt> such that for any nonnegative
+integer <tt>n</tt> less than <tt>last2 - first2</tt> the following corresponding conditions hold: <tt>*(i + n) == *(first2 + n)</tt>, 
+<tt>pred(*(i + n), *(first2 + n)) != false</tt>. Returns <tt>first1</tt> if <tt>[first2,last2)</tt> is empty <del>or</del><ins>, otherwise
+	returns <tt>last1</tt></ins> if no such iterator is found.
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="1339"></a>1339. <tt>uninitialized_fill_n</tt> should return the end of its range</h3>
+<p><b>Section:</b> 20.9.9.4 [uninitialized.fill.n] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Jared Hoberock <b>Opened:</b> 2010-07-14  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3092.pdf">N3092's</a>
+specification of <tt>uninitialized_fill_n</tt> discards useful information and
+is inconsistent with other algorithms such as <tt>fill_n</tt> which accept an
+iterator and a size.  As currently specified, <tt>unintialized_fill_n</tt>
+requires an additional linear traversal to find the end of the range.
+</p>
+
+<p>
+Instead of returning <tt>void</tt>, <tt>unintialized_fill_n</tt> should return
+one past the last iterator it dereferenced.
+</p>
+
+<p><i>[
+Post-Rapperswil:
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+In section 20.9 [memory] change:,
+</p>
+
+<blockquote><pre>
+template &lt;class ForwardIterator, class Size, class T&gt;
+  <del>void</del> <ins>ForwardIterator</ins> uninitialized_fill_n(ForwardIterator first, Size n, const T&amp; x);
+</pre></blockquote>
+
+
+<p>
+In section 20.9.9.4 [uninitialized.fill.n] change,
+</p>
+
+<blockquote><pre>
+template &lt;class ForwardIterator, class Size, class T&gt;
+  <del>void</del> <ins>ForwardIterator</ins> uninitialized_fill_n(ForwardIterator first, Size n, const T&amp; x);
+</pre>
+<blockquote>
+<p>
+1 <i>Effects:</i>
+</p>
+<blockquote><pre>
+for (; n--; ++first)
+  ::new (static_cast&lt;void*&gt;(&amp;*first))
+    typename iterator_traits&lt;ForwardIterator&gt;::value_type(x);
+<ins>return first;</ins>
+</pre></blockquote>
+</blockquote>
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="1340"></a>1340. Why does <tt>forward_list::resize</tt> take the object to be copied by value?</h3>
+<p><b>Section:</b> 23.3.3.4 [forwardlist.modifiers] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> 		
+James McNellis <b>Opened:</b> 2010-07-16  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#forwardlist.modifiers">issues</a> in [forwardlist.modifiers].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3092.pdf">N3092</a>
+23.3.3.4 [forwardlist.modifiers], the <tt>resize()</tt> member function is 
+declared as:
+</p>
+
+<blockquote><pre>
+void resize(size_type sz, value_type c); 
+</pre></blockquote>
+
+<p>
+The other sequence containers (<tt>list</tt>, <tt>deque</tt>, and
+<tt>vector</tt>) take <tt>'c'</tt> by const reference.
+</p>
+
+<p>
+Is there a reason for this difference?  If not, then <tt>resize()</tt> should 
+be declared as: 
+</p>
+
+<blockquote><pre>
+void resize(size_type sz, const value_type&amp; c); 
+</pre></blockquote>
+
+<p>
+The declaration would need to be changed both at its declaration in the class
+definition at 23.3.3 [forwardlist]/3 and where its behavior is specified
+at 23.3.3.4 [forwardlist.modifiers]/22.
+</p>
+
+<p>
+This would make <tt>forward_list</tt> consistent with the CD1 issue <a href="lwg-defects.html#679">679</a>.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+Daniel changed the P/R slightly, because one paragraph number has been changed since the issue
+had been submitted. He also added a similar Requires element that exists in all other containers with
+a <tt>resize</tt> member function. He deliberately did not touch the wrong usage of "default-constructed" because that
+will be taken care of by LWG issue <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/lwg-active.html#868">868</a>.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with revised wording after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+<ol>
+<li>Change [forwardlist]/3, class template <tt>forward_list</tt> synopsis, as indicated:
+<blockquote><pre>
+...
+void resize(size_type sz);
+void resize(size_type sz, <ins>const</ins> value_type<ins>&amp;</ins> c);
+void clear();
+...
+</pre></blockquote>
+</li>
+<li>Change [forwardlist.modifiers]/27 as indicated: 
+<blockquote><pre>	
+void resize(size_type sz);
+void resize(size_type sz, <ins>const</ins> value_type<ins>&amp;</ins> c);
+</pre>
+<blockquote>
+27 <em>Effects</em>: If <tt>sz &lt; distance(begin(), end())</tt>, erases the last <tt>distance(begin(), end()) - sz</tt> elements
+from the list. Otherwise, inserts <tt>sz - distance(begin(), end())</tt> elements at the end of the list. For the first 
+signature the inserted elements are default constructed, and for the second signature they are copies of <tt>c</tt>.
+<p>
+<ins>28 - <em>Requires</em>: <tt>T</tt> shall be <tt>DefaultConstructible</tt> for the first form and	it shall be <tt>CopyConstructible</tt> 
+	for the second form.</ins></p>
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1357"></a>1357. [FCD] Library bitmask types to not satisfy the bimask type requirements</h3>
+<p><b>Section:</b> 17.5.2.1.3 [bitmask.types] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+<p><b>View all other</b> <a href="lwg-index.html#bitmask.types">issues</a> in [bitmask.types].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-53</b></p>
+<p>
+The bitmask types defined in 27.5.2 and 28.5 contradict
+the bitmask type requirements in 17.5.2.1.3, and have
+missing or incorrectly defined operators.
+</p>
+
+<p><i>[
+Resolution proposed by ballot comment
+]</i></p>
+
+<p>
+See Appendix 1 - Additional Details
+</p>
+
+<p><i>[
+2010 - Rapperswil
+]</i></p>
+
+<p>
+The paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html">n3110</a>
+was made available during the meeting to resolve this comment, but withdrawn from formal motions
+to give others time to review the document.  There was no technical objection, and it is expected
+that this paper will go forward at the next meeting. 
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html">n3110</a>.
+
+
+
+
+
+<hr>
+<h3><a name="1404"></a>1404. [FCD] <tt>pointer_traits</tt> should have a <tt>size_type</tt> member</h3>
+<p><b>Section:</b> 20.9.3 [pointer.traits] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-106</b></p>
+<p>
+<tt>pointer_traits</tt> should have a <tt>size_type</tt> member for completeness.
+</p>
+<p>
+Add <tt>typedef <i>see below</i> size_type;</tt> to the generic
+<tt>pointer_traits</tt> template and <tt>typedef size_t
+size_type;</tt> to <tt>pointer_traits&lt;T*></tt>. Use
+<tt>pointer_traits::size_type</tt> and
+<tt>pointer_traits::difference_type</tt> as the defaults for
+<tt>allocator_traits::size_type</tt> and
+<tt>allocator_traits::difference_type</tt>.
+</p>
+<p>
+See Appendix 1 - Additional Details
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+The original ballot comment reads simply: "<tt>pointer_traits</tt> should have a 
+<tt>size_type</tt> for completeness."  The additional details reveal, however,
+that the desire for a <tt>size_type</tt> is actually driven by the needs
+of <tt>allocator_traits</tt>.  The <tt>allocator_traits</tt> template should get its
+default <tt>difference_type</tt> from <tt>pointer_traits</tt> but if it did,
+it should get its <tt>size_type</tt> from the same source.  Unfortunately,
+there is no obvious meaning for <tt>size_type</tt> in <tt>pointer_traits</tt>.
+</p>
+<p>
+Alisdair suggested, however, that the natural relationship between
+<tt>difference_type</tt> and <tt>size_type</tt> can be expressed simply by the
+<tt>std::make_unsigned&lt;T></tt> metafunction.  Using this metafunction,
+we can easily define <tt>size_type</tt> for <tt>allocator_traits</tt> without
+artificially adding <tt>size_type</tt> to <tt>pointer_traits</tt>.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready after 6 positive votes on c++std-lib.
+</blockquote>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+In [allocator.requirements], Table 42, change two rows as follows:
+</p>
+<blockquote>
+<table border="1">
+  <tr>
+    <td><tt>X::size_type</tt></td>
+    <td>unsigned integral type</td>
+    <td>a type that can represent the size of the largest object in the
+    allocation model</td>
+    <td><tt>
+      <del>size_t</del>
+      <ins>make_unsigned&lt;X::difference_type&gt;::type</ins>
+    </tt></td>
+  </tr>
+  <tr>
+    <td><tt>X::difference_type</tt></td>
+    <td>signed integral type</td>
+    <td>a type that can represent the difference between any two pointers in
+    the allocation model</td>
+    <td><tt>
+      <del>ptrdiff_t</del>
+      <ins>pointer_traits&lt;X::pointer&gt;::difference_type</ins>
+    </tt></td>
+  </tr>
+</table>
+</blockquote>
+<p>
+In [allocator.traits.types], Change the definition of difference_type and
+size_type as follows:
+</p>
+<blockquote>
+  <tt>typedef</tt> <i>see below</i> <tt>difference_type;</tt>
+  <blockquote>
+    <i>Type:</i> <tt>Alloc::difference_type</tt> if such a type exists,
+    else <tt><del>ptrdiff_t</del>
+    <ins>pointer_traits&lt;pointer&gt;::difference_type</ins></tt>.
+  </blockquote>
+
+  <tt>typedef</tt> <i>see below</i> <tt>size_type;</tt>
+  <blockquote>
+    <i>Type:</i> <tt>Alloc::size_type</tt> if such a type exists,
+    else <tt><del>size_t</del>
+    <ins>make_unsigned&lt;difference_type&gt;::type</ins></tt>.
+  </blockquote>
+</blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1414"></a>1414. [FCD] Fixing remaining dead links to <tt>POS_T</tt> and <tt>OFF_T</tt></h3>
+<p><b>Section:</b> 21.2.3.2 [char.traits.specializations.char16_t] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-109, GB-123</b></p>
+
+<p>
+It is not clear what the specification means for
+u16streampos, u32streampos or wstreampos when they
+refer to the requirements for POS_T in 21.2.2, as there
+are no longer any such requirements. Similarly the annex
+D.7 refers to the requirements of type POS_T in 27.3 that
+no longer exist either.
+</p>
+<p>
+Clarify the meaning of all cross-reference to the
+removed type POS_T.
+</p>
+
+
+<p><i>[
+Post-Rapperswil, Daniel provides the wording.
+]</i></p>
+
+
+<p>
+When preparing the wording for this issue I first thought about adding both <tt>u16streampos</tt> and <tt>u32streampos</tt>
+to the [iostream.forward] header <tt>&lt;iosfwd&gt;</tt> synopsis similar to <tt>streampos</tt> and <tt>wstreampos</tt>,
+but decided not to do so, because the IO library does not yet actively support the <tt>char16_t</tt> and <tt>char32_t</tt> 
+character types. Adding those would misleadingly imply that they would be part of the iostreams. Also, the addition
+would make them also similarly equal to a typedef to <tt>fpos&lt;mbstate_t&gt;</tt>, as for <tt>streampos</tt> and 
+<tt>wstreampos</tt>, so there is no loss for users that would like to use the proper <tt>fpos</tt> instantiation for
+these character types.
+</p>
+<p>
+Additionally the way of referencing was chosen to follow the style suggested by NB comment 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3118.html#GB108">GB 108</a>.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with proposed wording after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+<i>The following wording changes are against N3126.</i>
+</p>
+
+<ol>
+<li>Change [char.traits.specializations.char16_t]/1 as indicated:
+<blockquote><p>
+1 - The type <tt>u16streampos</tt> shall be an implementation-defined type that satisfies the requirements 
+for <del><tt>POS_T</tt> in 21.2.2</del><ins><tt>pos_type</tt> in [iostreams.limits.pos]</ins>.
+</p></blockquote>
+</li>
+<li>Change [char.traits.specializations.char32_t]/1 as indicated:
+<blockquote><p>
+1 - The type <tt>u32streampos</tt> shall be an implementation-defined type that satisfies the requirements 
+for <del><tt>POS_T</tt> in 21.2.2</del><ins><tt>pos_type</tt> in [iostreams.limits.pos]</ins>.
+</p></blockquote>
+</li>
+<li>Change [char.traits.specializations.wchar.t]/2 as indicated:
+<blockquote><p>
+2 - The type <tt>wstreampos</tt> shall be an implementation-defined type that satisfies the requirements 
+for <del><tt>POS_T</tt> in 21.2.2</del><ins><tt>pos_type</tt> in [iostreams.limits.pos]</ins>.
+</p></blockquote>
+</li>
+<li>Change [fpos.operations], Table 124 &mdash; Position type requirements as indicated:
+<blockquote><p>
+<table border="1">
+<caption>Table 124 &mdash; Position type requirements</caption>
+
+<tbody>
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th><tt>...</tt></th>
+</tr>
+
+<tr>
+<td><tt>...</tt></td>
+<td><tt>...</tt></td>
+<td><tt>...</tt></td>
+</tr>
+<tr>
+<td><tt>O(p)</tt></td>
+<td><del><tt>OFF_T</tt></del><ins><tt>streamoff</tt></ins></td>
+<td>...</td>
+</tr>
+<tr>
+<td><tt>...</tt></td>
+<td><tt>...</tt></td>
+<td><tt>...</tt></td>
+</tr>
+<tr>
+<td><tt>o = p - q</tt></td>
+<td><del><tt>OFF_T</tt></del><ins><tt>streamoff</tt></ins></td>
+<td><tt>...</tt></td>
+</tr>
+<tr>
+<td><tt>streamsize(o)</tt><br/><tt>O(sz)</tt></td>
+<td><tt>streamsize</tt><br/><del><tt>OFF_T</tt></del><ins><tt>streamoff</tt></ins></td>
+<td><tt>...</tt></td>
+</tr>
+
+</tbody></table>
+</p></blockquote>
+</li>
+<li>Change [depr.ios.members]/1 as indicated:
+<p>
+<blockquote><pre>
+namespace std {
+ class ios_base {
+ public:
+   typedef T1 io_state;
+   typedef T2 open_mode;
+   typedef T3 seek_dir;
+   typedef <del>OFF_T</del><ins><em>implementation-defined</em></ins> streamoff;
+   typedef <del>POS_T</del><ins><em>implementation-defined</em></ins> streampos;
+   // remainder unchanged
+ };
+}
+</pre></blockquote>
+</p>
+</li>
+<li>Change [depr.ios.members]/5+6 as indicated:
+<blockquote><p>
+5 - The type <tt>streamoff</tt> is an implementation-defined type that satisfies the requirements 
+of <del>type <tt>OFF_T</tt> (27.5.1)</del><ins><tt>off_type</tt> in [iostreams.limits.pos]</ins>.
+</p>
+<p>
+6 - The type <tt>streampos</tt> is an implementation-defined type that satisfies the requirements 
+of <del>type <tt>POS_T</tt> (27.3)</del><ins><tt>pos_type</tt> in [iostreams.limits.pos]</ins>.
+</p></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1432"></a>1432. [FCD] random_shuffle signatures</h3>
+<p><b>Section:</b> 25.3.12 [alg.random.shuffle] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+<p><b>View all other</b> <a href="lwg-index.html#alg.random.shuffle">issues</a> in [alg.random.shuffle].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Duplicate of:</b> <a href="lwg-closed.html#1433">1433</a></p>
+<p><b>Discussion:</b></p>
+
+<p><b>Addresses US-121</b></p>
+
+<p>
+random_shuffle and shuffle should be consistent in how
+they accept their source of randomness: either both by
+rvalue reference or both by lvalue reference.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+The signatures of the <tt>shuffle</tt> and <tt>random_shuffle</tt> algorithms are different
+in regard to the support of rvalues and lvalues of the provided generator:
+</p>
+
+<p>
+<blockquote><pre>
+template&lt;class RandomAccessIterator, class RandomNumberGenerator&gt;
+void random_shuffle(RandomAccessIterator first,
+RandomAccessIterator last,
+RandomNumberGenerator<b>&amp;&amp;</b> rand);
+</pre></blockquote>
+</p>
+
+<p>
+<blockquote><pre>
+template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
+void shuffle(RandomAccessIterator first,
+RandomAccessIterator last,
+UniformRandomNumberGenerator<b>&amp;</b> g);
+</pre></blockquote>
+</p>
+
+<p>
+The first form uses the perfect forwarding signature and that change compared to
+<tt>C++03</tt> was done intentionally as shown in the first rvalue proposal 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1690.html#Improved%20random_shuffle">papers</a>.
+</p>
+
+<p>
+While it is true, that random generators are excellent examples of stateful
+functors, there still exist good reasons to support rvalues as arguments:
+</p>
+
+<p>
+<ol>
+<li>If one of the shuffle algorithms is called with the intention to shuffle items with a reproducible ordering 
+	from a given generator class, it makes sense to create a generator exactly at the call point.
+</li>
+<li>Other algorithms with similar need for stateful functors (like <tt>std::generate</tt> and <tt>std::generate_n</tt>) 
+	accept both rvalues and lvalues as well.
+</li>
+<li>Given the deduction rules for perfect forwarding it is hard for a user to produce code that does the wrong thing 
+unintentionally. Any lvalue generator will deduce an lvalue-reference and behave as in <tt>C++03</tt>. In the specific 
+cases, where rvalues are provided, the argument will be accepted instead of being rejected.
+</li>
+</ol>
+</p>
+
+<p>
+Arguments have been raised that accepting rvalues is error-prone or even fundamentally wrong. The author of this 
+proposal disagrees with that position for two additional reasons:
+</p>
+
+<p>
+<ol>
+<li>Enforcing lvalues as arguments won't prevent user code to enforce what they
+want. So given
+<blockquote><pre>
+my_generator get_generator(int size);
+</pre></blockquote>
+instead of writing
+<blockquote><pre>
+std::vector&lt;int&gt; v = ...;
+std::shuffle(v.begin(), v.end(), get_generator(v.size()));
+</pre></blockquote>
+they will just write
+<blockquote><pre>
+std::vector&lt;int&gt; v = ...;
+auto gen = get_generator(v.size());
+std::shuffle(v.begin(), v.end(), gen);
+</pre></blockquote>
+and feel annoyed about the need for it.
+</li>
+<li>Generators may be copyable and movable, and random number engines are <em>required</em> to be <tt>CopyConstructible</tt> 
+and this is obviously a generally useful property for such objects. It is also useful and sometimes necessary to start a 
+generator with exactly a specific seed again and again and thus to provide a new generator (or a copy) for each call. The 
+<tt>CopyConstructible</tt> requirements allow providing rvalues of generators and thus this idiom must be useful as well. 
+Therefore preventing <tt>[random_]shuffle</tt> to accept rvalues is an unnecessary restriction which doesn't prevent any 
+user-error, if there would exist one.
+</li>
+</ol>
+</p>
+
+<p>
+Thus this proposal recommends to make both <tt>shuffle</tt> functions consistent and perfectly forward-able.
+</p>
+
+<blockquote>
+Moved to Tentatively Ready after 6 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<ol>
+<li>Change [algorithms.general], header <tt>&lt;algorithm&gt;</tt> synopsis as indicated:
+<blockquote><pre>
+template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
+void shuffle(RandomAccessIterator first, RandomAccessIterator last,
+UniformRandomNumberGenerator&amp;<ins>&amp;</ins> rand);
+</pre></blockquote>
+</li>
+<li>Change the prototype description of [alg.random.shuffle] as indicated:
+<blockquote><pre>
+template&lt;class RandomAccessIterator, class UniformRandomNumberGenerator&gt;
+void shuffle(RandomAccessIterator first, RandomAccessIterator last,
+UniformRandomNumberGenerator&amp;<ins>&amp;</ins> rand);
+</pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1449"></a>1449. [FCD] Incomplete specification of header <tt>&lt;cinttypes&gt;</tt></h3>
+<p><b>Section:</b> 27.8.2 [istringstream] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses CA-4</b></p>
+
+Subclause 27.9.2 [c.files] specifies that &lt;cinttypes&gt; has
+declarations for abs() and div(); however, the signatures
+are not present in this subclause. The signatures
+proposed under TR1 ([tr.c99.inttypes]) are not present in
+FCD (unless if intmax_t happened to be long long). It is
+unclear as to which, if any of the abs() and div() functions
+in [c.math] are meant to be declared by &lt;cinttypes&gt;. This
+subclause mentions imaxabs() and imaxdiv(). These
+functions, among other things, are not specified in FCD to
+be the functions from Subclause 7.8 of the C Standard.
+Finally, &lt;cinttypes&gt; is not specified in FCD to include
+&lt;cstdint&gt; (whereas &lt;inttypes.h&gt; includes &lt;stdint.h&gt; in C).
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<p>
+Subclause [c.files] specifies that <tt>&lt;cinttypes&gt;</tt> has declarations for <tt>abs()</tt> and <tt>div()</tt>; 
+however, the signatures are not present in this subclause. The signatures proposed under TR1 ([tr.c99.inttypes]) are not 
+present in FCD (unless if <tt>intmax_t</tt> happened to be <tt>long long</tt>). It is unclear as to which, if any of the 
+<tt>abs()</tt> and <tt>div()</tt> functions in [c.math] are meant to be declared by <tt>&lt;cinttypes&gt;</tt>. This
+subclause mentions <tt>imaxabs()</tt> and <tt>imaxdiv()</tt>. These functions, among other things, are not specified in 
+FCD to be the functions from subclause 7.8 of the <tt>C</tt> Standard. Finally, <tt>&lt;cinttypes&gt;</tt> is not specified 
+in FCD to include <tt>&lt;cstdint&gt;</tt> (whereas <tt>&lt;inttypes.h&gt;</tt> includes <tt>&lt;stdint.h&gt;</tt> in <tt>C</tt>).
+</p>
+
+<blockquote>
+Moved to Tentatively Ready with proposed wording after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+<i>The wording refers to N3126.</i>
+</p>
+<ol>
+<li>Add the following series of new paragraphs following [c.files] p.1:
+<blockquote>
+Table 132 describes header <tt>&lt;cinttypes&gt;</tt>. [<em>Note</em>: The macros defined by <tt>&lt;cinttypes&gt;</tt> are provided unconditionally.
+In particular, the symbol <tt>__STDC_FORMAT_MACROS</tt>, mentioned in footnote 182 of the <tt>C</tt> standard, plays no role in <tt>C++</tt>. 
+&mdash; <em>end note</em> ]
+<p>
+<ins>2 - The contents of header <tt>&lt;cinttypes&gt;</tt> are the same as the Standard <tt>C</tt> library header <tt>&lt;inttypes.h&gt;</tt>, 
+with the following changes:</ins>
+</p>
+<p>
+<ins>3 - The header <tt>&lt;cinttypes&gt;</tt> includes the header <tt>&lt;cstdint&gt;</tt> instead of <tt>&lt;stdint.h&gt;</tt>.</ins>
+</p>
+<p>
+<ins>4 - If and only if the type <tt>intmax_t</tt> designates an extended integer type ([basic.fundamental]), the following function 
+signatures are added:
+<blockquote><pre>
+<ins>intmax_t abs(intmax_t);</ins>
+<ins>imaxdiv_t div(intmax_t, intmax_t);</ins>
+</pre></blockquote>
+<ins>which shall have the same semantics as the function signatures <tt>intmax_t imaxabs(intmax_t)</tt> and 
+<tt>imaxdiv_t imaxdiv(intmax_t, intmax_t)</tt>, respectively.</ins>
+</ins>
+</p>
+</blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="1516"></a>1516. [FCD] [FCD] No specification for which header contains <tt>auto_ptr</tt></h3>
+<p><b>Section:</b> D.10 [depr.auto.ptr] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-142</b></p>
+<p>
+<tt>auto_ptr</tt> does not appear in the <tt>&lt;memory></tt> synopsis and
+[depr.auto.ptr] doesn't say which header declares it.
+Conversely, the deprecated binders <tt>bind1st</tt> etc. are in the
+<tt>&lt;functional></tt> synopsis, this is inconsistent
+</p>
+<p>
+Either <tt>auto_ptr</tt> should be declared in the
+<tt>&lt;memory</tt> synopsis, or the deprecated binders
+should be removed from the <tt>&lt;functional></tt> synopsis
+and appendix D should say which header declares
+the binders and <tt>auto_ptr</tt>.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>Add the following lines to the synopsis of header &lt;memory&gt;
+in [memory]/1:<br/></p>
+<blockquote>
+<pre>
+<ins>// [depr.auto.ptr], Class auto_ptr (deprecated):
+template &lt;class X&gt; class auto_ptr;<br/></ins>
+</pre></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1517"></a>1517. default_delete's default constructor should be trivial</h3>
+<p><b>Section:</b> 20.9.10.1.2 [unique.ptr.dltr.dflt] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-09-12  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#unique.ptr.dltr.dflt">issues</a> in [unique.ptr.dltr.dflt].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The current working draft does specify the default c'tor of <tt>default_delete</tt> in a manner
+to guarantee static initialization for default-constructed objects of static storage duration
+as a consequence of the acceptance of the proposal <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2976.html">n2976</a>
+but this paper overlooked the fact that the suggested declaration does not ensure that the type 
+will be a trivial type. The type <tt>default_delete</tt> was always considered as a simple wrapper for 
+calling <tt>delete</tt> or <tt>delete[]</tt>, respectivly and should be a trivial type.
+</p>
+<p>
+In agreement with the new settled core language rules this easy to realize by just changing the declaration to
+<blockquote><pre>
+constexpr default_delete()<ins> = default</ins>;
+</pre></blockquote></p>
+<p>
+This proposal also automatically solves the problem, that the semantics of the default constructor of the 
+partial specialization <tt>default_delete&lt;T[]&gt;</tt> is not specified at all. By defaulting its default constructor 
+as well, the semantics are well-defined.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p><i>The following wording changes are against N3126.</i></p>
+
+<ol>
+<li>Change the synopsis of the primary template definition of <tt>default_delete</tt> in [unique.ptr.dltr.dflt] as indicated:
+<blockquote><pre>
+namespace std {
+  template &lt;class T&gt; struct default_delete {
+    constexpr default_delete()<ins> = default</ins>;
+    template &lt;class U&gt; default_delete(const default_delete&lt;U&gt;&);
+    void operator()(T*) const;
+  };
+}
+</pre></blockquote>
+</li>
+<li>
+Remove the prototype specification of the <tt>default_delete</tt> default constructor in [unique.ptr.dltr.dflt]/1. This
+brings it in harmony with the style used in the partial specialization <tt>default_delete&lt;T[]&gt;</tt>. Since there are
+neither implied nor explicit members, there is no possibility to misinterpret what the constructor does:
+<blockquote><pre>
+<del>constexpr default_delete();</del>
+</pre><blockquote>
+<del>1 <em>Effects</em>: Default constructs a <tt>default_delete</tt> object.</del>
+</blockquote></blockquote>
+</li>
+<li>Change the synopsis of the partial specialization of <tt>default_delete</tt> in [unique.ptr.dltr.dflt1] as indicated:
+<blockquote><pre>
+namespace std {
+  template &lt;class T&gt; struct default_delete&lt;T[]&gt; {
+    constexpr default_delete()<ins> = default</ins>;
+    void operator()(T*) const;
+    template &lt;class U&gt; void operator()(U*) const = delete;
+  };
+}</pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="1518"></a>1518. Waiting for deferred functions</h3>
+<p><b>Section:</b> 30.6 [futures] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-09-14  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#futures">active issues</a> in [futures].</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures">issues</a> in [futures].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>The current WP N3126 contains ambiguous statements about the
+behaviour of functions <tt>wait_for</tt>/<tt>wait_until</tt> in
+case the future refers to a deferred function. Moreover, I believe
+it describes a disputable intent, different from the one contained
+in the original async proposals, that may have been introduced
+inadvertently during the "async cleanup" that occurred recently.
+Consider the following case:</p>
+<blockquote>
+<pre>
+int f();  
+future&lt;int&gt; x = async(launch::deferred, f);
+future_status s = x.wait_for(chrono::milliseconds(100));
+</pre></blockquote>
+<p>This example raises two questions:</p>
+<ol>
+<li>is <tt>f</tt> invoked?</li>
+<li>what is the value of <tt>s</tt>?</li>
+</ol>
+<p>According to the current WP, the answer to question 1 is yes,
+because 30.6.9/3 says "The first call to a function waiting for the
+associated asynchronous state created by this async call to become
+ready shall invoke the deferred function in the thread that called
+the waiting function". The answer to question 2, however, is not as
+clear. According to 30.6.6/23, s should be
+<tt>future_status::deferred</tt> because <tt>x</tt> refers to a
+deferred function that is not running, but it should also be
+<tt>future_status::ready</tt> because after executing <tt>f</tt>
+(and we saw that <tt>f</tt> is always executed) the state becomes
+ready. By the way, the expression "deferred function that is not
+running" is very unfortunate in itself, because it may apply to
+both the case where the function hasn't yet started, as well as the
+case where it was executed and completed.</p>
+<p>While we clearly have a defect in the WP answering to question
+2, it is my opinion that the answer to question 1 is wrong, which
+is even worse. Consider that the execution of the function
+<tt>f</tt> can take an arbitrarily long time. Having
+<tt>wait_for()</tt> invoke <tt>f</tt> is a potential violation of
+the reasonable expectation that the execution of
+<tt>x.wait_for(chrono::milliseconds(100))</tt> shall take <u>at most</u>
+100 milliseconds plus a delay dependent on the quality of implementation
+and the quality of management (as described in paper N3128).
+In fact, previous versions of the WP
+clearly specified that only function <tt>wait()</tt> is required to
+execute the deferred function, while <tt>wait_for()</tt> and
+<tt>wait_until()</tt> shouldn't.</p>
+<p>The proposed resolution captures the intent that
+<tt>wait_for()</tt> and <tt>wait_until()</tt> should never attempt
+to invoke the deferred function. In other words, the P/R provides
+the following answers to the two questions above:</p>
+<ol>
+<li>no</li>
+<li><tt>future_status::deferred</tt></li>
+</ol>
+<p>In order to simplify the wording, the definition of <i>deferred
+function</i> has been tweaked so that the function is no longer
+considered deferred once its evaluation has started, as suggested
+by Howard.</p>
+<p>Discussions in the reflector questioned whether
+<tt>wait_for()</tt> and <tt>wait_until()</tt> should return
+immediately or actually wait hoping for a second thread to execute
+the deferred function. I believe that waiting could be useful only
+in a very specific scenario but detrimental in the general case and
+would introduce another source of ambiguity: should
+<tt>wait_for()</tt> return <tt>future_status::deferred</tt> or
+<tt>future_status::timeout</tt> after the wait? Therefore the P/R
+specifies that <tt>wait_for</tt>/<tt>wait_until</tt> shall return
+immediately, which is simpler, easier to explain and more useful in
+the general case.</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>The proposed wording changes are relative to the Final Committee Draft,
+N3126.</p>
+<p><b>Note to the editor:</b> the proposed wording is meant not be in conflict
+with any change proposed by paper N3128 "C++ Timeout Specification".
+Ellipsis are deliberately used to avoid any unintended overlapping.</p>
+<ol>
+<li>
+<p>In [futures.unique_future] 30.6.6/22:</p>
+<p>Effects: <ins>none if the associated asynchronous state contains
+a deferred function (30.6.9), otherwise</ins> blocks until the
+associated asynchronous state is ready or [...].</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.6/23 first bullet:</p>
+<p>&mdash; future_status::deferred if the associated asynchronous
+state contains a deferred function <del>that is not
+running</del>.</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.6/25:</p>
+<p>Effects: <ins>none if the associated asynchronous state contains
+a deferred function (30.6.9), otherwise</ins> blocks until the
+associated asynchronous state is ready or [...].</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.6/26 first bullet:</p>
+<p>&mdash; future_status::deferred if the associated asynchronous
+state contains a deferred function <del>that is not
+running</del>.</p>
+</li>
+<li>
+<p>In [futures.shared_future] 30.6.7/27</p>
+<p>Effects: <ins>none if the associated asynchronous state contains
+a deferred function (30.6.9), otherwise</ins> blocks until the
+associated asynchronous state is ready or [...].</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.7/28 first bullet:</p>
+<p>&mdash; future_status::deferred if the associated asynchronous
+state contains a deferred function <del>that is not
+running</del>.</p>
+</li>
+<li>
+<p>In [futures.shared_future] 30.6.6/30:</p>
+<p>Effects: <ins>none if the associated asynchronous state contains
+a deferred function (30.6.9), otherwise</ins> blocks until the
+associated asynchronous state is ready or [...].</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.7/31 first bullet:</p>
+<p>&mdash; future_status::deferred if the associated asynchronous
+state contains a deferred function <del>that is not
+running</del>.</p>
+</li>
+<li>
+<p>In [futures.atomic_future] 30.6.8/23</p>
+<p>Effects: <ins>none if the associated asynchronous state contains
+a deferred function (30.6.9), otherwise</ins> blocks until the
+associated asynchronous state is ready or [...].</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.8/24 first bullet:</p>
+<p>&mdash; future_status::deferred if the associated asynchronous
+state contains a deferred function <del>that is not
+running</del>.</p>
+</li>
+<li>
+<p>In [futures.atomic_future] 30.6.8/27:</p>
+<p>Effects: <ins>none if the associated asynchronous state contains
+a deferred function (30.6.9), otherwise</ins> blocks until the
+associated asynchronous state is ready or [...].</p>
+</li>
+<li>
+<p>In [futures.unique_future] 30.6.8/28 first bullet:</p>
+<p>&mdash; future_status::deferred if the associated asynchronous
+state contains a deferred function <del>that is not
+running</del>.</p>
+</li>
+<li>
+<p>In [futures.async] 30.6.9/3 second bullet:</p>
+<p>[...] The first call to a function
+<del>waiting</del><ins>requiring a non-timed wait</ins> for the
+associated asynchronous state created by this async call to become
+ready shall invoke the deferred function in the thread that called
+the waiting function; <ins>once evaluation of <tt><i>INVOKE</i>(g,
+xyz)</tt> begins, the function is no longer considered
+deferred</ins> <del>all other calls waiting for the same associated
+asynchronous state to become ready shall block until the deferred
+function has completed</del>.</p>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1519"></a>1519. bucketsize() const only for unordered set</h3>
+<p><b>Section:</b> 23.7.1 [unord.map], 23.7.2 [unord.multimap], 23.7.4 [unord.multiset] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-10-09  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#unord.map">issues</a> in [unord.map].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+While <tt>bucket_size()</tt> is const for <tt>unordered_set</tt>, for all other unordered containers it is not defined as
+constant member function.
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p><i>The wording refers to N3126.</i></p>
+
+<ol>
+<li>Change 23.7.1 Class template unordered_map [unord.map]/3, as indicated:
+<blockquote><pre>
+  namespace std {
+    template &lt;class Key,
+      class T,
+      class Hash = hash&lt;Key&gt;,
+      class Pred = std::equal_to&lt;Key&gt;,
+      class Alloc = std::allocator&lt;std::pair&lt;const Key, T&gt; &gt; &gt;
+    class unordered_map
+    {
+    public:
+      [..]
+      // bucket interface
+      size_type bucket_count() const;
+      size_type max_bucket_count() const;
+      size_type bucket_size(size_type n) <ins>const</ins>;
+      [..]
+</pre></blockquote>
+</li>
+<li>Change 23.7.2 Class template unordered_multimap [unord.multimap]/3, as indicated:
+<blockquote><pre>
+  namespace std {
+    template &lt;class Key,
+      class T,
+      class Hash = hash&lt;Key&gt;,
+      class Pred = std::equal_to&lt;Key&gt;,
+      class Alloc = std::allocator&lt;std::pair&lt;const Key, T&gt; &gt; &gt;
+    class unordered_multimap
+    {
+    public:
+      [..]
+      // bucket interface
+      size_type bucket_count() const;
+      size_type max_bucket_count() const;
+      size_type bucket_size(size_type n) <ins>const</ins>;
+      [..]
+</pre></blockquote>
+</li>
+<li>Change 23.7.4 Class template unordered_multiset [unord.multiset]/3, as indicated:
+<blockquote><pre>
+  namespace std {
+    template &lt;class Key,
+      class Hash = hash&lt;Key&gt;,
+      class Pred = std::equal_to&lt;Key&gt;,
+      class Alloc = std::allocator&lt;Key&gt; &gt;
+    class unordered_multiset
+    {
+    public:
+      [..]
+      // bucket interface
+      size_type bucket_count() const;
+      size_type max_bucket_count() const;
+      size_type bucket_size(size_type n) <ins>const</ins>;
+      [..]
+</pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1520"></a>1520. <tt>INVOKE</tt> on member data pointer with too many arguments</h3>
+<p><b>Section:</b> 20.8.2 [func.require] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-10-10  <b>Last modified:</b> 2010-10-23</p>
+<p><b>View other</b> <a href="lwg-index-open.html#func.require">active issues</a> in [func.require].</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.require">issues</a> in [func.require].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+
+<p>
+20.8.2 [func.require] p1 says:
+</p>
+
+<blockquote>
+<p>
+1 Define <tt><i>INVOKE</i>(f, t1, t2, ..., tN)</tt> as follows:
+</p>
+
+<ul>
+<li>
+<tt>(t1.*f)(t2, ..., tN)</tt> when <tt>f</tt> is a pointer to a member function
+of a class <tt>T</tt> and <tt>t1</tt> is an object of type <tt>T</tt> or a
+reference to an object of type <tt>T</tt> or a reference to an object of a type
+derived from <tt>T</tt>;
+</li>
+<li>
+<tt>((*t1).*f)(t2, ..., tN)</tt> when <tt>f</tt> is a pointer to a member
+function of a class <tt>T</tt> and <tt>t1</tt> is not one of the types described
+in the previous item;
+</li>
+<li>
+<tt>t1.*f</tt> when <tt>f</tt> is a pointer to member data of a class <tt>T</tt>
+and <tt>t1</tt> is an object of type <tt>T</tt> or a reference to an object of
+type <tt>T</tt> or a reference to an object of a type derived from <tt>T</tt>;
+</li>
+<li>
+<tt>(*t1).*f</tt> when <tt>f</tt> is a pointer to member data of a class
+<tt>T</tt> and <tt>t1</tt> is not one of the types described in the previous
+item;
+</li>
+<li>
+<tt>f(t1, t2, ..., tN)</tt> in all other cases.
+</li>
+</ul>
+</blockquote>
+
+<p>
+The question is:  What happens in the 3<sup><i>rd</i></sup> and
+4<sup><i>th</i></sup> bullets when <tt>N &gt; 1</tt>?
+</p>
+
+<p>
+Does the presence of <tt>t2, ..., tN</tt> get ignored, or does it make the
+<tt><i>INVOKE</i></tt> ill formed?
+</p>
+
+<p>
+Here is sample code which presents the problem in a concrete example:
+</p>
+
+<blockquote><pre>
+#include &lt;functional&gt;
+#include &lt;cassert&gt;
+
+struct S {
+   char data;
+};
+
+typedef char S::*PMD;
+
+int main()
+{
+   S s;
+   PMD pmd = &amp;S::data;
+   std::reference_wrapper&lt;PMD&gt; r(pmd);
+   r(s, 3.0) = 'a';  // well formed?
+   assert(s.data == 'a');
+}
+</pre></blockquote>
+
+<p>
+Without the "<tt>3.0</tt>" the example is well formed.
+</p>
+<p>
+[Note: Daniel provided wording to make it explicit that the above example is ill-formed. &mdash; end note ]
+</p>
+
+<p><i>[
+Post-Rapperswil
+]</i></p>
+
+
+<blockquote>
+Moved to Tentatively Ready after 5 positive votes on c++std-lib.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p><i>The wording refers to N3126.</i></p>
+
+<p>
+Change 20.8.2 [func.require]/1 as indicated:
+</p>
+<blockquote>
+<p>
+1 Define <tt><i>INVOKE</i>(f, t1, t2, ..., tN)</tt> as follows:
+</p>
+
+<ul>
+<li>
+...
+</li>
+<li>
+...
+</li>
+<li>
+<tt>t1.*f</tt> when <ins><tt>N == 1</tt> and</ins> <tt>f</tt> is a pointer to
+member data of a class <tt>T</tt> and <tt>t1</tt> is an object of type
+<tt>T</tt> or a reference to an object of type <tt>T</tt> or a reference to an
+object of a type derived from <tt>T</tt>;
+</li>
+<li>
+<tt>(*t1).*f</tt> when <ins><tt>N == 1</tt> and</ins> <tt>f</tt> is a pointer to
+member data of a class <tt>T</tt> and <tt>t1</tt> is not one of the types
+described in the previous item;
+</li>
+<li>
+...
+</li>
+</ul>
+</blockquote>
+
+
+
+
+
+
+</body>
+</html>
