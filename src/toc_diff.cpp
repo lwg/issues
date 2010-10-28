@@ -9,7 +9,6 @@
 #include <map>
 #include <algorithm>
 #include <string>
-#include <unistd.h>
 
 // platform headers
 #include <unistd.h>
