@@ -26,7 +26,7 @@ del {background-color:#FFA0A0}
 </tr>
 <tr>
 <td align="left">Date:</td>
-<td align="left">2010-11-01</td>
+<td align="left">2010-11-02</td>
 </tr>
 <tr>
 <td align="left">Project:</td>
@@ -157,12 +157,12 @@ ownership of it.
 2010-10-25 post-Batavia mailing.
 <ul>
 <li><b>Summary:</b><ul>
-<li>192 open issues, down by 14.</li>
+<li>193 open issues, down by 13.</li>
 <li>1337 closed issues, up by 23.</li>
-<li>1529 issues total, up by 9.</li>
+<li>1530 issues total, up by 10.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 9 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#1522">1522</a>, <a href="lwg-active.html#2000">2000</a>, <a href="lwg-active.html#2001">2001</a>, <a href="lwg-active.html#2002">2002</a>, <a href="lwg-active.html#2003">2003</a>, <a href="lwg-active.html#2004">2004</a>, <a href="lwg-active.html#2005">2005</a>, <a href="lwg-active.html#2006">2006</a>.</li>
+<li>Added the following 10 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#1522">1522</a>, <a href="lwg-active.html#2000">2000</a>, <a href="lwg-active.html#2001">2001</a>, <a href="lwg-active.html#2002">2002</a>, <a href="lwg-active.html#2003">2003</a>, <a href="lwg-active.html#2004">2004</a>, <a href="lwg-active.html#2005">2005</a>, <a href="lwg-active.html#2006">2006</a>, <a href="lwg-active.html#2007">2007</a>.</li>
 <li>Changed the following 14 issues from Open to Dup: <a href="lwg-closed.html#1350">1350</a>, <a href="lwg-closed.html#1351">1351</a>, <a href="lwg-closed.html#1352">1352</a>, <a href="lwg-closed.html#1375">1375</a>, <a href="lwg-closed.html#1411">1411</a>, <a href="lwg-closed.html#1443">1443</a>, <a href="lwg-closed.html#1451">1451</a>, <a href="lwg-closed.html#1454">1454</a>, <a href="lwg-closed.html#1458">1458</a>, <a href="lwg-closed.html#1463">1463</a>, <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a>.</li>
 <li>Changed the following issue from Open to NAD: <a href="lwg-closed.html#579">579</a>.</li>
 <li>Changed the following 2 issues from Tentatively NAD to NAD: <a href="lwg-closed.html#1190">1190</a>, <a href="lwg-closed.html#1200">1200</a>.</li>
@@ -11746,7 +11746,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3122.html"
 <hr>
 <h3><a name="1366"></a>1366. [FCD] New-handler and data races</h3>
 <p><b>Section:</b> 18.6.1.4 [new.delete.dataraces] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-31</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses DE-14</b></p>
@@ -11759,7 +11759,7 @@ allocation with the only available, mutating interface
 </p>
 
 <p><i>[
-Resolution proposed by ballot comment
+Resolution proposed by ballot comment:
 ]</i></p>
 
 <p>
@@ -13063,7 +13063,7 @@ The object must be live until the corresponding <tt>undeclare_no_pointers()</tt>
 <hr>
 <h3><a name="1409"></a>1409. [FCD] Specify whether <tt>monotonic_clock</tt> is a distinct type or a typedef</h3>
 <p><b>Section:</b> 20.11.5.2 [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.clock.monotonic">active issues</a> in [time.clock.monotonic].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -13076,15 +13076,26 @@ classes of programs become unportable.
 </p>
 
 <p><i>[
-Resolution proposed in ballot comment
+Resolution proposed in ballot comment:
 ]</i></p>
 
 <p>
 Require that it be a distinct class type.
 </p>
 
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+<blockquote>
+Paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a> addresses
+this issue by replacing <tt>monotonic_clock</tt> with <tt>steady_clock</tt>, which is not a typedef.
+</blockquote>
+
+
 
 <p><b>Proposed resolution:</b></p>
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a>.
 
 
 
@@ -13093,7 +13104,7 @@ Require that it be a distinct class type.
 <hr>
 <h3><a name="1410"></a>1410. [FCD] Add a feature-detect macro for <tt>monotonic_clock</tt></h3>
 <p><b>Section:</b> 20.11.5.2 [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.clock.monotonic">active issues</a> in [time.clock.monotonic].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -13101,9 +13112,9 @@ Require that it be a distinct class type.
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-107</b></p>
 <p>
-1.4p9 states that which conditionally supported constructs
-are available should be provided in the documentation for
-the implementation. This doesn't help programmers trying
+1.4 [intro.compliance] p.9 states that which conditionally
+supported constructs are available should be provided in the 
+documentation for the implementation. This doesn't help programmers trying
 to write portable code, as they must then rely on
 implementation-specific means to determine the
 availability of such constructs. In particular, the presence
@@ -13116,20 +13127,32 @@ semantics.
 </p>
 
 <p><i>[
-Resolution proposed in ballot comment
+Resolution proposed in ballot comment:
 ]</i></p>
 
 <p>
 Provide feature test macro for determining the
 presence of <tt>std::chrono::monotonic_clock</tt>. Add
 <tt>_STDCPP_HAS_MONOTONIC_CLOCK</tt> to the
-<tt>&lt;chrono></tt> header, which is defined if
+<tt>&lt;chrono&gt;</tt> header, which is defined if
 <tt>monotonic_clock</tt> is present, and not defined if it is
 not present.
 </p>
 
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+<blockquote>
+Paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a> addresses
+this issue by replacing <tt>monotonic_clock</tt> with <tt>steady_clock</tt>, which is not conditionally supported,
+so there is no need to detect it.
+</blockquote>
+
+
 
 <p><b>Proposed resolution:</b></p>
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a>.
 
 
 
@@ -13149,6 +13172,17 @@ Monotonic clocks are generally easy to provide on all
 systems and are implicitely required by some of the library
 facilities anyway.
 </p>
+
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+<blockquote>
+Paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a> addresses
+this issue by replacing <tt>monotonic_clock</tt> with <tt>steady_clock</tt>, which is conditionally
+supported.
+</blockquote>
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -13950,7 +13984,7 @@ associated asynchronous state. —end note ]</p>
 <hr>
 <h3><a name="1445"></a>1445. [FCD] Several iostreams member functions incorrectly specified</h3>
 <p><b>Section:</b> 27.7 [iostream.format] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI/PJ Plauger <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> ANSI/PJ Plauger <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#iostream.format">active issues</a> in [iostream.format].</p>
 <p><b>View all other</b> <a href="lwg-index.html#iostream.format">issues</a> in [iostream.format].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -13959,6 +13993,14 @@ associated asynchronous state. —end note ]</p>
 
 Several iostreams member functions are incorrectly
 specified.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<p>
+See Appendix 1 - Additional Details
+</p>
 
 <p><i>[
 2010-10-24 Daniel adds:
@@ -13972,7 +14014,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3168
 
 
 <p><b>Proposed resolution:</b></p>
-See Appendix 1 - Additional Details
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3168.htm">n3168</a>.
 
 
 
@@ -13981,7 +14023,7 @@ See Appendix 1 - Additional Details
 <hr>
 <h3><a name="1446"></a>1446. [FCD] Move and swap for I/O streams</h3>
 <p><b>Section:</b> 27.7 [iostream.format] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#iostream.format">active issues</a> in [iostream.format].</p>
 <p><b>View all other</b> <a href="lwg-index.html#iostream.format">issues</a> in [iostream.format].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -13991,10 +14033,26 @@ See Appendix 1 - Additional Details
 For istreams and ostreams, the move-constructor does
 not move-construct, the move-assignment operator does
 not move-assign, and the swap function does not swap
-because these operations do not manage the rdbuf()
+because these operations do not manage the <tt>rdbuf()</tt>
 pointer. Useful applications of these operations are
 prevented both by their incorrect semantics and because
 they are protected.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<p>
+In short: reverse the resolution of issue 900, then
+change the semantics to move and swap the
+<tt>rdbuf()</tt> pointer. Add a new protected constructor
+that takes an rvalue reference to a stream and a
+pointer to a streambuf, a new protected <tt>assign()</tt>
+operator that takes the same arguments, and a
+new protected <tt>partial_swap()</tt> function that doesn't
+swap <tt>rdbuf()</tt>.
+See Appendix 1 - Additional Details
+</p>
 
 <p><i>[
 2010-10-24 Daniel adds:
@@ -14008,15 +14066,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3179
 
 
 <p><b>Proposed resolution:</b></p>
-In short: reverse the resolution of issue 900, then
-change the semantics to move and swap the
-rdbuf() pointer. Add a new protected constructor
-that takes an rvalue reference to a stream and a
-pointer to a streambuf, a new protected assign()
-operator that takes the same arguments, and a
-new protected partial_swap() function that doesn't
-swap rdbuf().
-See Appendix 1 - Additional Details
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3179.pdf">n3179</a>.
 
 
 
@@ -14248,19 +14298,45 @@ So, actually <em>both</em> <tt>regex_constants::match_default</tt> and
 <hr>
 <h3><a name="1452"></a>1452. [FCD] "target sequence" is not defined</h3>
 <p><b>Section:</b> 28.10.3 [re.results.acc] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#re.results.acc">active issues</a> in [re.results.acc].</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.results.acc">issues</a> in [re.results.acc].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-125</b></p>
 
-The term "target sequence" is not defined.
+The term "target sequence" is not defined (28.10.3 [re.results.acc] p. 2).
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<p>
+Replace "target sequence" with "string being searched/matched"
+</p>
+
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+<p>
+The proposed resolution looks incomplete to me, there are more normative
+usages of the term <em>target sequence</em> in clause 28, e.g.
+28.12.2 [re.tokiter] p. 7.
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
-Replace "target sequence" with "string being
-searched/matched"
+Wording changes are against N3126. They are intended not to conflict with the wording changes
+suggested by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3158.html">n3158</a>.
+<p/>
+Change 28.10.3 [re.results.acc] p. 2 as indicated:
+<blockquote><pre>
+difference_type position(size_type sub = 0) const;
+</pre><blockquote>
+2 <em>Returns</em>: The distance from the start of the <del>target sequence</del><ins>string being matched</ins> to <tt>(*this)[sub].first</tt>.
+</blockquote></blockquote>
 
 
 
@@ -15543,7 +15619,7 @@ thread and a signal handler executed in the same thread.
 <hr>
 <h3><a name="1481"></a>1481. [FCD] Missing Lockable requirements</h3>
 <p><b>Section:</b> 30.2 [thread.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-138</b></p>
@@ -15552,9 +15628,27 @@ The FCD combines the requirements for lockable objects
 with those for the standard mutex objects. These should
 be separate. This is LWG issue <a href="lwg-active.html#1268">1268</a>.
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+See attached Appendix 1 - Additional Details
+</blockquote>
+
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+<blockquote>
+Paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130.html">n3130</a> addresses
+this issue.
+</blockquote>
+
+
 
 <p><b>Proposed resolution:</b></p>
-See attached Appendix 1 - Additional Details
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130.html">n3130</a>.
 
 
 
@@ -15581,8 +15675,18 @@ Define precise semantics for <tt>timeout_until</tt> and <tt>timeout_for</tt>. Se
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> page 193 - Appendix 1 - Additional Details
 </blockquote>
 
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+
+<blockquote>
+Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a> would solve this issue.
+</blockquote>
+
 
 <p><b>Proposed resolution:</b></p>
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3128.html">n3128</a>.
 
 
 
@@ -15591,18 +15695,26 @@ Define precise semantics for <tt>timeout_until</tt> and <tt>timeout_for</tt>. Se
 <hr>
 <h3><a name="1484"></a>1484. [FCD] Need way to join a thread with a timeout</h3>
 <p><b>Section:</b> 30.3.1 [thread.thread.class] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-183</b></p>
 
 There is no way to join a thread with a timeout.
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+Add <tt>join_for</tt> and <tt>join_until</tt>. Or decide one should
+never join a thread with a timeout since <tt>pthread_join</tt> doesn't have a 
+timeout version.
+</blockquote>
+
+
 
 <p><b>Proposed resolution:</b></p>
-Add join_for and join_until. Or decide one should
-never join a thread with a timeout since
-pthread_join doesn't have a timeout version.
 
 
 
@@ -15611,23 +15723,31 @@ pthread_join doesn't have a timeout version.
 <hr>
 <h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
 <p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-184</b></p>
 
-It is unclear when a thread::id ceases to be meaningful.
+It is unclear when a <tt>thread::id</tt> ceases to be meaningful.
 The sentence "The library may reuse the value of a
-thread::id of a terminated thread that can no longer be
+<tt>thread::id</tt> of a terminated thread that can no longer be
 joined." implies that some terminated threads can be
 joined. It says nothing about detached threads.
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+Require a unique <tt>thread::id</tt> for every thread that is
+(1) detached and not terminated or (2) has an associated <tt>std::thread</tt> 
+object.
+</blockquote>
+
+
 
 <p><b>Proposed resolution:</b></p>
-Require a unique thread::id for every thread that is
-(1) detached and not terminated or (2) has an
-associated std::thread object.
 
 
 
@@ -15636,20 +15756,27 @@ associated std::thread object.
 <hr>
 <h3><a name="1486"></a>1486. [FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses CH-24</b></p>
 
-What would be the value this_thread::get_id() when called
-from a detached thread?
+What would be the value <tt>this_thread::get_id()</tt> when called from a detached thread?
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<p>
+Add some text to clarify that get_id() still returns
+the same value even after detaching.
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
-Add some text to clarify that get_id() still returns
-the same value even after detaching.
 
 
 
@@ -15658,7 +15785,7 @@ the same value even after detaching.
 <hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -15668,12 +15795,20 @@ the same value even after detaching.
 Clock related operations are currently not required not to
 throw. So "Throws: Nothing." is not always true.
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
 
-<p><b>Proposed resolution:</b></p>
+<blockquote>
 Either require clock related operations not to throw
 (in 20.10) or change the Throws clauses in 30.3.2.
-Also possibly add a note that abs_time in the past
-or negative rel_time is allowed.
+Also possibly add a note that <tt>abs_time</tt> in the past
+or negative <tt>rel_time</tt> is allowed.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
@@ -15683,7 +15818,7 @@ or negative rel_time is allowed.
 <h3><a name="1488"></a>1488. [FCD] Improve interoperability between
 the C++0x and C1x threads APIs</h3>
 <p><b>Section:</b> 30.4 [thread.mutex] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.mutex">active issues</a> in [thread.mutex].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex">issues</a> in [thread.mutex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -15691,16 +15826,24 @@ the C++0x and C1x threads APIs</h3>
 <p><b>Addresses US-185</b></p>
 
 Cooperate with WG14 to improve interoperability between
-the C++0x and C1x threads APIs. In particular, C1x
-mutexes should be conveniently usable with a C++0x
-lock_guard. Performance overheads for this combination
+the <tt>C++0x</tt> and <tt>C1x</tt> threads APIs. In particular, <tt>C1x</tt>
+mutexes should be conveniently usable with a <tt>C++0x</tt>
+<tt>lock_guard</tt>. Performance overheads for this combination
 should be considered.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+Remove <tt>C++0x</tt> <tt>timed_mutex</tt> and
+<tt>timed_recursive_mutex</tt> if that facilitates
+development of more compatible APIs.
+</blockquote>
+
 
 
 <p><b>Proposed resolution:</b></p>
-Remove C++0x timed_mutex and
-timed_recursive_mutex if that facilitates
-development of more compatible APIs.
 
 
 
@@ -15710,31 +15853,39 @@ development of more compatible APIs.
 <h3><a name="1489"></a>1489. [FCD] <tt>unlock</tt> functions and unlock
 mutex requirements are inconsistent</h3>
 <p><b>Section:</b> 30.4 [thread.mutex] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.mutex">active issues</a> in [thread.mutex].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex">issues</a> in [thread.mutex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses CH-26</b></p>
 
-Specifications of unlock member functions and unlock
+Specifications of <tt>unlock</tt> member functions and <tt>unlock</tt>
 mutex requirements are inconsistent wrt to exceptions and
 pre- and postconditions.
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
 
-<p><b>Proposed resolution:</b></p>
-unlock should specifiy the precondition that the
+<blockquote>
+<tt>unlock</tt> should specifiy the precondition that the
 current thread "owns the lock", this will make calls
 without holding the locks "undefined behavior".
-unlock in [mutex.requirements] should either be
-noexcept(true) or be allowed to throw
-system_error like unique_lock::unlock, or the latter
-should be nothrow(true) and have the precondition
-owns==true.
-Furthermore unique_lock's postcondition is wrong
-in the case of a recursive mutex where owns
-might stay true, when it is not the last unlock
+<tt>unlock</tt> in  [mutex.requirements] should either be
+<tt>noexcept(true)</tt> or be allowed to throw
+<tt>system_error</tt> like <tt>unique_lock::unlock</tt>, or the latter
+should be <tt>nothrow(true)</tt> and have the precondition
+<tt>owns == true</tt>.
+Furthermore <tt>unique_lock</tt>'s postcondition is wrong
+in the case of a recursive mutex where <tt>owns</tt>
+might stay true, when it is not the last <tt>unlock</tt>
 needed to be called.
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
@@ -15743,24 +15894,41 @@ needed to be called.
 <hr>
 <h3><a name="1490"></a>1490. [FCD] Mutex requirements too stringent</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.mutex.requirements">active issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses CH-27</b></p>
 
-The mutex requirements force try_lock to be
-noexcept(true). However, where they are used by the
+The mutex requirements force <tt>try_lock</tt> to be
+<tt>noexcept(true)</tt>. However, where they are used by the
 generic algorithms, those relax this requirement and say
-that try_lock may throw. This means the requirement is
-too stringent, also a non-throwing try_lock does not allow
-for a diagnostic such as system_error that lock() will give
-us.
+that <tt>try_lock</tt> may throw. This means the requirement is
+too stringent, also a non-throwing <tt>try_lock</tt> does not allow
+for a diagnostic such as <tt>system_error</tt> that <tt>lock()</tt> 
+will give us.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+delete p18, adjust 30.4.4 p1 and p4 accordingly
+</blockquote>
+
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+
+<blockquote>
+Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130.html">n3130</a> would solve this issue.
+</blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
-delete p18, adjust 30.4.4 p1 and p4 accordingly
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130.html">n3130</a>.
 
 
 
@@ -15769,20 +15937,38 @@ delete p18, adjust 30.4.4 p1 and p4 accordingly
 <hr>
 <h3><a name="1491"></a>1491. [FCD] <tt>try_lock</tt> does not guarantee forward progress</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.mutex.requirements">active issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-186</b></p>
 
-try_lock does not provide a guarantee of forward progress
+<tt>try_lock</tt> does not provide a guarantee of forward progress
 because it is allowed to spuriously fail.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+The standard mutex types must not fail spuriously
+in <tt>try_lock</tt>. See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> page 205 - Appendix 1 - Additional Details
+</blockquote>
+
+<p><i>[
+2010-11-01 Daniel comments:
+]</i></p>
+
+<blockquote>
+Paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3152.html">n3152</a> addresses
+this issue.
+</blockquote>
+
 
 
 <p><b>Proposed resolution:</b></p>
-The standard mutex types must not fail spuriously
-in try_lock. See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> page 205 - Appendix 1 - Additional Details
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3152.html">n3152</a>.
 
 
 
@@ -15791,7 +15977,7 @@ in try_lock. See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/201
 <hr>
 <h3><a name="1492"></a>1492. [FCD] Mutex requirements should not be bound to threads</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-28</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.mutex.requirements">active issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -15800,9 +15986,26 @@ in try_lock. See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/201
 
 Mutex requirements should not be bound to threads
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+See Appendix 1 of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> - Additional Details, p. 208.
+</blockquote>
+
+<p><i>[
+2010-10-24 Daniel adds:
+]</i></p>
+
+
+<blockquote>
+Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130.html">n3130</a> would solve this issue.
+</blockquote>
+
 
 <p><b>Proposed resolution:</b></p>
-See Appendix 1 - Additional Details
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130.html">n3130</a>.
 
 
 
@@ -15811,29 +16014,37 @@ See Appendix 1 - Additional Details
 <hr>
 <h3><a name="1493"></a>1493. [FCD] Add <tt>mutex</tt>, <tt>recursive_mutex</tt>, <tt>is_locked</tt> function</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-28</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.mutex.requirements">active issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-189</b></p>
 
-mutex and recursive_mutex should have an is_locked()
-member function. is_locked allows a user to test a lock
+<tt>mutex</tt> and <tt>recursive_mutex</tt> should have an <tt>is_locked()</tt>
+member function. <tt>is_locked</tt> allows a user to test a lock
 without acquiring it and can be used to implement a lightweight
-try_try_lock.
+<tt>try_try_lock</tt>.
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
 
-<p><b>Proposed resolution:</b></p>
+<blockquote>
 Add a member function:
 <PRE>
 bool is_locked() const;
 </PRE>
-to std::mutex and std::recursive_mutex. These
+to <tt>std::mutex</tt> and <tt>std::recursive_mutex</tt>. These
 functions return true if the current thread would
 not be able to obtain a mutex. These functions do
 not synchronize with anything (and, thus, can
 avoid a memory fence).
+</blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
@@ -15842,19 +16053,52 @@ avoid a memory fence).
 <hr>
 <h3><a name="1494"></a>1494. [FCD] Term "are serialized" not defined</h3>
 <p><b>Section:</b> 30.4.5.2 [thread.once.callonce] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-28</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-190</b></p>
 
-The term "are serialized" is never defined.
+The term "are serialized" is never defined (30.4.5.2 [thread.once.callonce] p. 2).
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<p>
+Remove the sentence with "are serialized" from
+paragraph 2. Add "Calls to <tt>call_once</tt> on the same
+<tt>once_flag</tt> object shall not introduce data races
+(17.6.4.8)." to paragraph 3.
+</p>
+
+<p><i>[
+2010-11-01 Daniel translates NB comment into wording
+]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p>
-Remove the sentence with "are serialized" from
-paragraph 2. Add "Calls to call_once on the same
-once_flag object shall not introduce data races
-(17.6.4.8)." to paragraph 3.
+Change 30.4.5.2 [thread.once.callonce] p.2+3 as indicated:
+<blockquote><pre>
+template&lt;class Callable, class ...Args&gt;
+void call_once(once_flag&amp; flag, Callable&amp;&amp; func, Args&amp;&amp;... args);
+</pre><blockquote>
+[..]
+<p/>
+2 <em>Effects</em>: <del>Calls to <tt>call_once</tt> on the same <tt>once_flag</tt> object are serialized.</del>
+If there has been a prior effective call to <tt>call_once</tt> on the same <tt>once_flag object</tt>, 
+the call to <tt>call_once</tt> returns without invoking <tt>func</tt>. If there has been no prior 
+effective call to <tt>call_once</tt> on the same <tt>once_flag</tt> object,
+<tt>INVOKE(decay_copy( std::forward&lt;Callable&gt;(func)), decay_copy(std::forward&lt;Args&gt;(args))...)</tt>
+is executed. The call to <tt>call_once</tt> is effective if and only if 
+<tt>INVOKE(decay_copy( std::forward&lt;Callable&gt;(func)), decay_copy(std::forward&lt;Args&gt;(args))...)</tt> 
+returns without throwing an exception. If an exception is thrown it is propagated to the caller.
+<p/>
+3 <em>Synchronization</em>: The completion of an effective call to <tt>call_once</tt> on a <tt>once_flag</tt> 
+object synchronizes with (1.10) all subsequent calls to <tt>call_once</tt> on the same <tt>once_flag</tt> object.
+<ins>Calls to <tt>call_once</tt> on the same <tt>once_flag</tt> object shall not introduce data races ([res.on.data.races]).</ins>
+</blockquote></blockquote>
 
 
 
@@ -15863,20 +16107,27 @@ once_flag object shall not introduce data races
 <hr>
 <h3><a name="1495"></a>1495. [FCD] Condition variable <tt>wait_for</tt> return insufficient</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-28</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.condition">active issues</a> in [thread.condition].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-191</b></p>
 
-The condition variable wait_for returning cv_status is
-insufficient.
+The condition variable <tt>wait_for</tt> returning <tt>cv_status</tt> is insufficient.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+Return a duration of timeout remaining instead.
+See Appendix 1 of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> - Additional Details, p. 211
+</blockquote>
+
 
 
 <p><b>Proposed resolution:</b></p>
-Return a duration of timeout remaining instead.
-See Appendix 1 - Additional Details
 
 
 
@@ -16061,7 +16312,7 @@ The intent and meaning of the paragraph is not apparent.
 <hr>
 <h3><a name="1503"></a>1503. [FCD] "associated asynchronous state" must go</h3>
 <p><b>Section:</b> 30.6.4 [futures.state] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-28</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.state">active issues</a> in [futures.state].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.state">issues</a> in [futures.state].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -16076,10 +16327,17 @@ synchronization of a future with its corresponding promise,
 we believe "liaison state" is a much better and shorter
 name (liaison ~ (typically hidden) relationship)
 
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
 
-<p><b>Proposed resolution:</b></p>
+<blockquote>
 Change all occurrences of "associated
 asynchronous state" to "liaison state".
+</blockquote>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
@@ -17511,6 +17769,32 @@ construct an object.
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2007"></a>2007. incorrect specification of return value for <tt>map&lt;>::at()</tt></h3>
+<p><b>Section:</b> 23.6.1.2 [map.access] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01  <b>Last modified:</b> 2010-11-02</p>
+<p><b>View all other</b> <a href="lwg-index.html#map.access">issues</a> in [map.access].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In [map.access]/9, the <i>returns</i> clause for <tt>map&lt;Key, T>::at(x)</tt> says that it returns "a reference to the element whose key is equivalent to <tt>x</tt>." That can't be right. The signature for <tt>at()</tt> says that its return type is <tt>T</tt>, but the elements of <tt>map&lt;Key, T></tt> have type <tt>pair&lt;const K, T></tt>.  (I checked [unord.map.elem] and found that its specification of <tt>at()</tt> is correct. This is a problem for <tt>map</tt> only.)
+
+Proposed resolution:
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change the wording in [map.access]/9 so it's identical to what we already say for <tt>operator[]</tt>, which is unambiguous and correct.
+</p>
+<blockquote>
+<i>Returns</i>: A reference to the <del>element whose key is equivalent</del><ins><tt>mapped_type</tt> corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
+</blockquote>
 
 
 

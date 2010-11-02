@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>C++ Standard Library Tentative Issues List</title>
+<title>C++ Standard Library Tentative Issues</title>
 <style type="text/css">
 p {text-align:justify}
 li {text-align:justify}
@@ -19,25 +19,11 @@ del {background-color:#FFA0A0}
 </style>
 </head>
 <body>
-<table>
-<tr>
-<td align="left">Date:</td>
-<td align="left">2010-10-29</td>
-</tr>
-<tr>
-<td align="left">Project:</td>
-<td align="left">Programming Language C++</td>
-</tr>
-<tr>
-<td align="left">Reply to:</td>
-<td align="left">Alisdair Meredith &lt;<a href="mailto:lwgchair@gmail.com">lwgchair@gmail.com</a>&gt;</td>
-</tr>
-</table>
-<h1>C++ Standard Library Tentative Issues</h1><h2>Tentative Issues</h2>
+<h2>Tentative Issues</h2>
 <hr>
 <h3><a name="956"></a>956. Various threading bugs #6</h3>
 <p><b>Section:</b> 20.11.1 [time.clock.req] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07  <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.req">issues</a> in [time.clock.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -109,7 +95,7 @@ environment</ins>.
 
 
 <p><i>[
-Post-Rapperswil:
+Post-Rapperswil, Howard provides wording:
 ]</i></p>
 
 
@@ -185,7 +171,7 @@ C1::duration&gt;</tt></td>
 <hr>
 <h3><a name="1118"></a>1118. tuple query APIs do not support cv-qualification</h3>
 <p><b>Section:</b> 20.4.2.5 [tuple.helper] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-23  <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-23  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.helper">issues</a> in [tuple.helper].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -279,7 +265,7 @@ provided, Howard will move to Review.
 
 
 <p><i>[
-Post-Rapperswil:
+Post-Rapperswil - Daniel provides wording:
 ]</i></p>
 
 
@@ -3528,7 +3514,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html"
 <hr>
 <h3><a name="1404"></a>1404. [FCD] <tt>pointer_traits</tt> should have a <tt>size_type</tt> member</h3>
 <p><b>Section:</b> 20.9.3 [pointer.traits] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-106</b></p>
@@ -3549,7 +3535,7 @@ See Appendix 1 - Additional Details
 </p>
 
 <p><i>[
-Post-Rapperswil
+Post-Rapperswil, Pablo provided wording:
 ]</i></p>
 
 
@@ -3779,22 +3765,22 @@ of <del>type <tt>POS_T</tt> (27.3)</del><ins><tt>pos_type</tt> in [iostreams.lim
 <hr>
 <h3><a name="1432"></a>1432. [FCD] random_shuffle signatures</h3>
 <p><b>Section:</b> 25.3.12 [alg.random.shuffle] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> ANSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all other</b> <a href="lwg-index.html#alg.random.shuffle">issues</a> in [alg.random.shuffle].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1433">1433</a></p>
 <p><b>Discussion:</b></p>
 
-<p><b>Addresses US-121</b></p>
+<p><b>Addresses US-121, GB-119</b></p>
 
 <p>
-random_shuffle and shuffle should be consistent in how
+<tt>random_shuffle</tt> and <tt>shuffle</tt> should be consistent in how
 they accept their source of randomness: either both by
 rvalue reference or both by lvalue reference.
 </p>
 
 <p><i>[
-Post-Rapperswil
+Post-Rapperswil, Daniel provided wording
 ]</i></p>
 
 
@@ -3919,7 +3905,7 @@ UniformRandomNumberGenerator&amp;<ins>&amp;</ins> rand);
 <hr>
 <h3><a name="1449"></a>1449. [FCD] Incomplete specification of header <tt>&lt;cinttypes&gt;</tt></h3>
 <p><b>Section:</b> 27.8.2 [istringstream] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-01</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses CA-4</b></p>
@@ -3938,7 +3924,7 @@ Finally, &lt;cinttypes&gt; is not specified in FCD to include
 &lt;cstdint&gt; (whereas &lt;inttypes.h&gt; includes &lt;stdint.h&gt; in C).
 
 <p><i>[
-Post-Rapperswil
+Post-Rapperswil, Daniel provides wording
 ]</i></p>
 
 
