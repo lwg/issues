@@ -26,7 +26,7 @@ del {background-color:#FFA0A0}
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2010-11-05</td>
+  <td align="left">2010-11-06</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -7262,7 +7262,7 @@ function type, <tt>result_type</tt> shall be a synonym for the return type of
 <hr>
 <h3><a name="1297"></a>1297. <tt>unique_ptr</tt>'s relational operator functions should induce a total order</h3>
 <p><b>Section:</b> 20.9.10.4 [unique.ptr.special] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-23  <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-23  <b>Last modified:</b> 2010-11-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -7301,7 +7301,7 @@ Additionally I updated the below suggested wording in regard to the following:
 It is an unncessary requirement that the below defined effective composite pointer-like
 type <tt>CT</tt> satisfies the <tt>LessThanComparable</tt> requirements. All what is 
 needed is, that the function object type <tt>less&lt;CT&gt;</tt> induces a strict
-weak ordering.
+weak ordering on the pointer values.
 </p>
 
 
@@ -7323,10 +7323,10 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 
 <blockquote>
 <p>
-<ins><i>Requires:</i> Let <tt>CT</tt> be <tt>common_type&lt;unique_ptr&lt;T1,
+<ins>? <i>Requires:</i> Let <tt>CT</tt> be <tt>common_type&lt;unique_ptr&lt;T1,
 D1&gt;::pointer, unique_ptr&lt;T2, D2&gt;::pointer&gt;::type</tt>. Then
 the specialization <tt>less&lt;CT&gt</tt> shall be a function object type ([function.objects]) 
-that induces a strict weak ordering as defined in [alg.sorting].</ins>
+that induces a strict weak ordering ([alg.sorting]) on the pointer values.</ins>
 </p>
 
 <p>
@@ -7335,7 +7335,7 @@ that induces a strict weak ordering as defined in [alg.sorting].</ins>
 </p>
 
 <p>
-<ins><i>Remarks:</i> If <tt>unique_ptr&lt;T1, D1&gt;::pointer</tt> is not
+<ins>? <i>Remarks:</i> If <tt>unique_ptr&lt;T1, D1&gt;::pointer</tt> is not
 implicitly convertible to <tt>CT</tt> or <tt>unique_ptr&lt;T2,
 D2&gt;::pointer</tt> is not implicitly convertible to <tt>CT</tt>, the program
 is ill-formed.</ins>
@@ -12504,7 +12504,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1385"></a>1385. [FCD] <tt>tuple_cat</tt> should be a single variadic signature</h3>
 <p><b>Section:</b> 20.4.2.4 [tuple.creation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-31</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.creation">issues</a> in [tuple.creation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -12532,6 +12532,107 @@ restricted to <tt>tuple</tt>s and neither requiring nor outlawing support for ot
 
 
 <p><b>Proposed resolution:</b></p>
+<p>
+Ammend <b>20.4.1 [tuple.general]</b>
+</p>
+
+<blockquote>
+2 Header <tt>&lt;tuple&gt;</tt> synopsis
+<pre>
+namespace std {
+
+...
+
+// 20.4.2.4, tuple creation functions:
+const unspecified ignore;
+
+template &lt;class... Types&gt;
+  tuple&lt;<i>VTypes</i>...&gt; make_tuple(Types&amp;&amp;...);
+  template &lt;class... Types&gt;
+  tuple&lt;<i>ATypes</i>...&gt; forward_as_tuple(Types&amp;&amp;...);
+  
+template&lt;class... Types&gt;
+  tuple&lt;Types&amp;...&gt; tie(Types&amp;...);
+  
+<del>template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp;, const tuple&lt;UTypes...&gt;&amp;);
+template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp;, const tuple&lt;UTypes...&gt;&amp;);
+template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp;, tuple&lt;UTypes...&gt;&amp;&amp;);
+template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp;, tuple&lt;UTypes...&gt;&amp;&amp;);</del>
+<ins>template &lt;class... Tuples&gt;
+  tuple&lt;<i>see below</i>&gt; tuple_cat(Tuples&amp;&amp;...);</ins>
+</pre>
+</blockquote>
+
+<p>
+Ammend <b>20.2.4.2 [tuple.creation]</b>
+</p>
+
+<blockquote>
+<pre><del>template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);</del></pre>
+<p><del>
+8 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35). All the types in 
+<tt>UTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35).
+</del></p>
+<p><del>
+9 <i>Returns</i>: A <tt>tuple</tt> object constructed by copy constructing its first <tt>sizeof...(TTypes)</tt> elements 
+from the corresponding elements of <tt>t</tt> and copy constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
+corresponding elements of <tt>u</tt>.
+</del></p>
+<pre><del>template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);</del></pre>
+<p><del>
+10 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34). All the types in 
+<tt>UTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35).
+</del></p>
+<p><del>
+11 <i>Returns</i>: A <tt>tuple</tt> object constructed by move constructing its first <tt>sizeof...(TTypes)</tt> elements 
+from the corresponding elements of <tt>t</tt> and copy constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
+corresponding elements of <tt>u</tt>.
+</del></p>
+<pre><del>template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);</del></pre>
+<p><del>
+12 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35). All the types in <tt>UTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34).
+</del></p>
+<p><del>
+13 <i>Returns</i>: A <tt>tuple</tt> object constructed by copy constructing its first <tt>sizeof...(TTypes)</tt> elements 
+from the corresponding elements of <tt>t</tt> and move constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
+corresponding elements of <tt>u</tt>.
+</del></p>
+<pre><del>template &lt;class... TTypes, class... UTypes&gt;
+  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);</del></pre>
+<p><del>
+14 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34). All the types in 
+<tt>UTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34).
+</del></p>
+<p><del>
+15 <i>Returns</i>: A <tt>tuple</tt> object constructed by move constructing its first <tt>sizeof...(TTypes)</tt> elements 
+from the corresponding elements of <tt>t</tt> and move constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
+corresponding elements of <tt>u</tt>.
+</del></p>
+<pre><ins>template &lt;class... Tuples&gt;
+  tuple&lt;<i>see below</i>&gt; tuple_cat(Tuples&amp;&amp;... tpls);</ins></pre>
+<p><ins>
+8 <i>Requires</i>: All the types in template parameter pack <tt>Tuples</tt> shall be instantiations of the <tt>std::tuple</tt> template.
+The type of all elements in each <tt>tuple</tt> shall be <tt>MoveConstructible</tt> (Table 34) if the corresponding argument is 
+passed as an rvalue, or <tt>CopyConstructible</tt> (Table 35) if passed as an lvalue.
+</ins></p>
+<p><ins>
+9 <i>Returns</i>: A <tt>tuple</tt> object constructed by calling <tt>get&lt;I&gt;(tpls)</tt> for each valid <tt>I</tt> in turn on each 
+<tt>tuple</tt> object in the function parameter pack <tt>tpls</tt>. [<i>Note</i>: The effect is to concatenate each succeeding 
+<tt>tuple</tt> in the parameter pack <tt>tpls</tt> into one large <tt>tuple</tt>. Elements are not interleaved &mdash; <i>end note</i>].
+</ins></p>
+<p><ins>
+10 <i>Remark</i>: An implementation may also support additional types that support the <tt>tuple</tt> protocol in the 
+parameter pack <tt>Tuples</tt> such as <tt>pair</tt> and <tt>array</tt>.
+</ins></p>
+</blockquote>
+
 
 
 
@@ -12941,7 +13042,7 @@ Rapperswill summary
 <hr>
 <h3><a name="1401"></a>1401. [FCD] <tt>unique_ptr&lt;T&gt; == nullptr</tt></h3>
 <p><b>Section:</b> 20.9 [memory] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#memory">issues</a> in [memory].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -13014,7 +13115,32 @@ comparison functions for consistency.
 Issue <a href="lwg-active.html#1297">1297</a> is remotely related. The following proposed resolution splits
 <a href="#1401_extra_bullet">this bullet</a> into sub-bullets A and B. Sub-bullet A would 
 also solve <a href="lwg-active.html#1297">1297</a>, but sub-bullet B would not.
+<p/>
+A further remark in regard to the proposed semantics of the ordering of <tt>nullptr</tt>
+against other pointer(-like) values: One might think that the following definition might
+be superior because of simplicity:
+
+<blockquote><pre>
+template&lt;class T&gt;
+bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t);
+template&lt;class T&gt;
+bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a);
+</pre><blockquote>
+<i>Returns</i>: <tt>false</tt>.
+</blockquote></blockquote>
+
+The underlying idea behind this approach is the assumption that nullptr corresponds
+to the least ordinal pointer value. But this assertion does not hold for all supported
+architectures, therefore this approach was not followed because it would lead to
+the inconsistency, that the following assertion could fire: 
 </p>
+<blockquote><pre>
+shared_ptr&lt;int&gt; p(new int);
+shared_ptr&lt;int&gt; null;
+bool v1 = p &lt; nullptr;
+bool v2 = p &lt; null;
+assert(v1 == v2);
+</pre></blockquote>
 
 
 
@@ -13024,12 +13150,12 @@ Wording changes are against N3126.
 <ol>
 <li>Change 20.9 [memory] p. 1, header <tt>&lt;memory&gt;</tt> synopsis as indicated.
 <tt>noexcept</tt> specifications are only added, where the guarantee exists, that the function
-shall no throw an exception (as replacement of &quot;<em>Throws</em>: Nothing&quot;. This needs 
+shall no throw an exception (as replacement of &quot;<i>Throws</i>: Nothing&quot;. This needs 
 to be harmonized with the result of the <tt>noexcept</tt> proposals:
 <blockquote><pre>
 namespace std {
   [..]
-  // <em>20.9.10 Class unique_ptr:</em>
+  // <i>20.9.10 Class unique_ptr:</i>
   template &lt;class T&gt; class default_delete;
   template &lt;class T&gt; class default_delete&lt;T[]&gt;;
   template &lt;class T, class D = default_delete&lt;T&gt;&gt; class unique_ptr;
@@ -13073,13 +13199,13 @@ namespace std {
   <ins>template &lt;class T, class D&gt;</ins>
   <ins>bool operator&gt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
   
-  // <em>20.9.11.1, Class bad_weak_ptr:</em>
+  // <i>20.9.11.1, Class bad_weak_ptr:</i>
   class bad_weak_ptr;
 
-  // <em>20.9.11.2, Class template shared_ptr:</em>
+  // <i>20.9.11.2, Class template shared_ptr:</i>
   template&lt;class T&gt; class shared_ptr;
 
-  // <em>20.9.11.2.7, shared_ptr comparisons:</em>
+  // <i>20.9.11.2.7, shared_ptr comparisons:</i>
   template&lt;class T, class U&gt;
   bool operator==(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b);
   template&lt;class T, class U&gt;
@@ -13179,10 +13305,10 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 
 <blockquote>
 <p>
-<ins><i>Requires:</i> Let <tt>CT</tt> be <tt>common_type&lt;unique_ptr&lt;T1,
+<ins>? <i>Requires:</i> Let <tt>CT</tt> be <tt>common_type&lt;unique_ptr&lt;T1,
 D1&gt;::pointer, unique_ptr&lt;T2, D2&gt;::pointer&gt;::type</tt>. Then
 the specialization <tt>less&lt;CT&gt</tt> shall be a function object type ([function.objects]) 
-that induces a strict weak ordering as defined in [alg.sorting].</ins>
+that induces a strict weak ordering ([alg.sorting]) on the pointer values.</ins>
 </p>
 
 <p>
@@ -13191,7 +13317,7 @@ that induces a strict weak ordering as defined in [alg.sorting].</ins>
 </p>
 
 <p>
-<ins><i>Remarks:</i> If <tt>unique_ptr&lt;T1, D1&gt;::pointer</tt> is not
+<ins>? <i>Remarks:</i> If <tt>unique_ptr&lt;T1, D1&gt;::pointer</tt> is not
 implicitly convertible to <tt>CT</tt> or <tt>unique_ptr&lt;T2,
 D2&gt;::pointer</tt> is not implicitly convertible to <tt>CT</tt>, the program
 is ill-formed.</ins>
@@ -13232,7 +13358,7 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator==(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!x</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!x</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13241,7 +13367,7 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator!=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>(bool) x</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>(bool) x</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13251,12 +13377,12 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 <ins>bool operator&gt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
 </pre>
 <blockquote>
-<ins><i>Requires:</i> The specialization <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt</tt> 
-shall be a function object type ([function.objects]) that induces a strict weak ordering as 
-defined in [alg.sorting].</ins>
+<ins>? <i>Requires:</i> The specialization <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt</tt> 
+shall be a function object type ([function.objects]) that induces a strict weak ordering ([alg.sorting])
+on the pointer values.</ins>
 </blockquote>
 <blockquote>
-<ins>? <em>Returns</em>: <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt;()(x.get(), nullptr)</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt;()(x.get(), nullptr)</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13266,12 +13392,12 @@ defined in [alg.sorting].</ins>
 <ins>bool operator&gt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
 </pre>
 <blockquote>
-<ins><i>Requires:</i> The specialization <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt</tt> 
-shall be a function object type ([function.objects]) that induces a strict weak ordering as 
-defined in [alg.sorting].</ins>
+<ins>? <i>Requires:</i> The specialization <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt</tt> 
+shall be a function object type ([function.objects]) that induces a strict weak ordering ([alg.sorting])
+on the pointer values.</ins>
 </blockquote>
 <blockquote>
-<ins>? <em>Returns</em>: <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt;()(nullptr, x.get())</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt;()(nullptr, x.get())</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13280,7 +13406,7 @@ defined in [alg.sorting].</ins>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&gt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!(nullptr &lt; x)</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!(nullptr &lt; x)</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13289,7 +13415,7 @@ defined in [alg.sorting].</ins>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&gt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!(x &lt; nullptr)</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!(x &lt; nullptr)</tt>.</ins>
 </blockquote></blockquote>
 
 </li>
@@ -13303,7 +13429,7 @@ from <tt>x.get() &lt; nullptr</tt> follows the relation <tt>nullptr &gt; x.get()
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator==(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!x</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!x</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13312,63 +13438,63 @@ from <tt>x.get() &lt; nullptr</tt> follows the relation <tt>nullptr &gt; x.get()
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator!=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>(bool) x</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>(bool) x</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&lt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>x.get() &lt; nullptr</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>x.get() &lt; nullptr</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&lt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>nullptr &lt; x.get()</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>nullptr &lt; x.get()</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&lt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>x.get() &lt;= nullptr</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>x.get() &lt;= nullptr</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&lt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>nullptr &lt;= x.get()</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>nullptr &lt;= x.get()</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&gt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>x.get() &gt; nullptr</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>x.get() &gt; nullptr</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&gt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>nullptr &gt; x.get()</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>nullptr &gt; x.get()</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&gt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>x.get() &gt;= nullptr</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>x.get() &gt;= nullptr</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
 <ins>template &lt;class T, class D&gt;</ins>
 <ins>bool operator&gt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>nullptr &gt;= x.get()</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>nullptr &gt;= x.get()</tt>.</ins>
 </blockquote></blockquote>
 </li>
 </ol>
@@ -13379,7 +13505,7 @@ operators are added as well:
 <blockquote><pre>
 namespace std {
   [..]
-  // <em>20.9.11.2.7, shared_ptr comparisons:</em>
+  // <i>20.9.11.2.7, shared_ptr comparisons:</i>
   template&lt;class T, class U&gt;
   bool operator==(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b);
   template&lt;class T, class U&gt;
@@ -13432,7 +13558,7 @@ therefore all of them are defined. Below wording takes advantage of the simplifi
 <ins>template&lt;class T&gt;</ins>
 <ins>bool operator==(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!a</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!a</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13441,7 +13567,7 @@ therefore all of them are defined. Below wording takes advantage of the simplifi
 <ins>template&lt;class T&gt;</ins>
 <ins>bool operator!=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>(bool) a</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>(bool) a</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13450,7 +13576,7 @@ therefore all of them are defined. Below wording takes advantage of the simplifi
 <ins>template&lt;class T&gt;</ins>
 <ins>bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>less&lt;T*&gt;()(a.get(), nullptr)</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>less&lt;T*&gt;()(a.get(), nullptr)</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13459,7 +13585,7 @@ therefore all of them are defined. Below wording takes advantage of the simplifi
 <ins>template&lt;class T&gt;</ins>
 <ins>bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>less&lt;T*&gt;()(nullptr, a.get())</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>less&lt;T*&gt;()(nullptr, a.get())</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13468,7 +13594,7 @@ therefore all of them are defined. Below wording takes advantage of the simplifi
 <ins>template&lt;class T&gt;</ins>
 <ins>bool operator&gt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!(nullptr &lt; a)</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!(nullptr &lt; a)</tt>.</ins>
 </blockquote></blockquote>
 
 <blockquote><pre>
@@ -13477,7 +13603,7 @@ therefore all of them are defined. Below wording takes advantage of the simplifi
 <ins>template&lt;class T&gt;</ins>
 <ins>bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
 </pre><blockquote>
-<ins>? <em>Returns</em>: <tt>!(a &lt; nullptr)</tt>.</ins>
+<ins>? <i>Returns</i>: <tt>!(a &lt; nullptr)</tt>.</ins>
 </blockquote></blockquote>
 
 </li>
@@ -14276,7 +14402,7 @@ UniformRandomNumberGenerator&amp;<ins>&amp;</ins> rand);
 <hr>
 <h3><a name="1435"></a>1435. [FCD] Unclear returns specifications for C99 complex number functions</h3>
 <p><b>Section:</b> 26.4.7 [complex.value.ops] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#complex.value.ops">issues</a> in [complex.value.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -14294,8 +14420,87 @@ apparently returns the projection on the Reimann Sphere.
 A single line description of each function, associated with
 the cross-reference, will greatly improve clarity.
 
+<p><i>[2010-11-06 Beman provides proposed resolution wording.]</i></p>
+
+
 
 <p><b>Proposed resolution:</b></p>
+
+<p><i>Change 26.4.7 complex value operations [complex.value.ops] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; proj(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i> the projection of <tt>x</tt> onto the Riemann 
+    sphere.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>cproj</tt>, 
+    defined in 7.3.9.4.</p>
+  </blockquote>
+</blockquote>
+
+<p><i>Change 26.4.8 complex transcendentals [complex.transcendentals] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; acos(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i>&nbsp; the complex arc cosine  of <tt>x</tt>.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>cacos</tt>, 
+    defined in 7.3.5.1.</p>
+  </blockquote>
+</blockquote>
+
+<p><i>Change 26.4.8 complex transcendentals [complex.transcendentals] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; asin(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i>&nbsp; the complex arc sine  of <tt>x</tt>.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>casin</tt>, 
+    defined in 7.3.5.2.</p>
+  </blockquote>
+</blockquote>
+
+<p><i>Change 26.4.8 complex transcendentals [complex.transcendentals] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; atan(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i>&nbsp; the complex arc tangent  of <tt>x</tt>.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>catan</tt>, 
+    defined in 7.3.5.3.</p>
+  </blockquote>
+</blockquote>
+
+<p><i>Change 26.4.8 complex transcendentals [complex.transcendentals] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; acosh(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i>&nbsp; the complex arc hyperbolic cosine of
+    <tt>x</tt>.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>cacosh</tt>, 
+    defined in 7.3.6.1.</p>
+  </blockquote>
+</blockquote>
+
+<p><i>Change 26.4.8 complex transcendentals [complex.transcendentals] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; asinh(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i>&nbsp; the complex arc hyperbolic sine  of <tt>
+    x</tt>.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>casinh</tt>, 
+    defined in 7.3.6.2.</p>
+  </blockquote>
+</blockquote>
+
+<p><i>Change 26.4.8 complex transcendentals [complex.transcendentals] as indicated:</i></p>
+<blockquote>
+  <p><tt>template&lt;class T&gt; complex&lt;T&gt; atanh(const complex&lt;T&gt;&amp; x);</tt></p>
+  <blockquote>
+    <p><ins><i>Returns:</i>&nbsp; the complex arc hyperbolic tangent  of
+    <tt>x</tt>.</ins></p>
+    <p><del><i>Effects:</i></del> <ins><i>Remarks:</i></ins> Behaves the same as the C function <tt>catanh</tt>, 
+    defined in 7.3.6.2.</p>
+  </blockquote>
+</blockquote>
+
+
 
 
 
@@ -14304,7 +14509,7 @@ the cross-reference, will greatly improve clarity.
 <hr>
 <h3><a name="1436"></a>1436. [FCD] Random number engine constructor concerns</h3>
 <p><b>Section:</b> 26.5.3 [rand.eng] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25  <b>Last modified:</b> 2010-11-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.eng">issues</a> in [rand.eng].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -14332,6 +14537,15 @@ the appropriate constructor.
 I suggest to apply a similar solution as recently suggested for <a href="lwg-active.html#1234">1234</a>.
 It is basically a requirement for an implementation to constrain the template.
 </p>
+
+<p><i>[
+2010-11-04 Howard suggests to use <tt>!is_convertible&lt;Sseq, result_type&gt;::value</tt>
+as minimum requirement instead of the originally proposed <tt>!is_scalar&lt;Sseq&gt;::value</tt>.
+This would allow for a user-defined type <tt>BigNum</tt>, that is convertible to <tt>result_type</tt>,
+to be used as argument for a seed instead of a seed sequence. The wording has been updated to 
+reflect this suggestion.
+]</i></p>
+
 
 
 
@@ -14365,8 +14579,9 @@ shall not participate in overload resolution.
 </ins>
 </li>
 </ul>
-<ins>The extent to which an implementation determines that a type cannot be an seed sequence is unspecified,
-except that as a minimum scalar types ([basic.types]) shall not qualify as seed sequence.</ins>
+<ins>The extent to which an implementation determines that a type cannot be a seed sequence is unspecified,
+except that as a minimum a type shall not qualify as seed sequence, if it is implicitly convertible
+to <tt>X::result_type</tt>.</ins>
 </blockquote>
 
 </blockquote>
