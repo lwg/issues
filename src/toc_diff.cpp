@@ -134,12 +134,18 @@ auto read_issues(std::istream& is) -> std::vector<std::pair<int, std::string> > 
 }
 
 
-void list_issues(std::vector<int> const & issues ) {
+struct list_issues {
+   std::vector<int> const & issues;
+};
+
+
+auto operator<<( std::ostream & out, list_issues const & x) -> std::ostream & {
    auto list_separator = "";
-   for (auto number : issues ) {
-      std::cout << list_separator << "<iref ref=\"" << number << "\"/>";
+   for (auto number : x.issues ) {
+      out << list_separator << "<iref ref=\"" << number << "\"/>";
       list_separator = ", ";
    }
+   return out;
 }
 
 
@@ -149,8 +155,16 @@ struct find_num {
    }
 };
 
-void discover_new_issues( std::vector<std::pair<int, std::string>> const & old_issues
-                        , std::vector<std::pair<int, std::string>> const & new_issues ) {
+
+struct discover_new_issues {
+   std::vector<std::pair<int, std::string> > const & old_issues;
+   std::vector<std::pair<int, std::string> > const & new_issues;
+};
+
+
+auto operator<<( std::ostream & out, discover_new_issues const & x) -> std::ostream & {
+   std::vector<std::pair<int, std::string> > const & old_issues = x.old_issues;
+   std::vector<std::pair<int, std::string> > const & new_issues = x.new_issues;
 
    std::map<std::string, std::vector<int> > added_issues;
    for( auto const & i : new_issues ) {
@@ -163,14 +177,14 @@ void discover_new_issues( std::vector<std::pair<int, std::string>> const & old_i
    for( auto const & i : added_issues ) {
       auto const item_count = i.second.size();
       if(1 == item_count) {
-         std::cout << "<li>Added the following " << i.first << " issue: <iref ref=\"" << i.second.front() << "\"/>.</li>\n";
+         out << "<li>Added the following " << i.first << " issue: <iref ref=\"" << i.second.front() << "\"/>.</li>\n";
       }
       else {
-         std::cout << "<li>Added the following " << item_count << " " << i.first << " issues: ";
-         list_issues(i.second);
-         std::cout << ".</li>\n";
+         out << "<li>Added the following " << item_count << " " << i.first << " issues: " << list_issues{i.second} << ".</li>\n";
       }
    }
+
+   return out;
 }
 
 
@@ -183,9 +197,16 @@ struct reverse_pair {
    }
 };
 
-void discover_changed_issues(const std::vector<std::pair<int, std::string> >& old_issues,
-                             const std::vector<std::pair<int, std::string> >& new_issues)
-{
+struct discover_changed_issues {
+   std::vector<std::pair<int, std::string> > const & old_issues;
+   std::vector<std::pair<int, std::string> > const & new_issues;
+};
+
+
+auto operator<<( std::ostream & out, discover_changed_issues x) -> std::ostream & {
+   std::vector<std::pair<int, std::string> > const & old_issues = x.old_issues;
+   std::vector<std::pair<int, std::string> > const & new_issues = x.new_issues;
+
    std::map<std::pair<std::string, std::string>, std::vector<int>, reverse_pair> changed_issues;
    for (auto const & i : new_issues ) {
       auto j = std::lower_bound(old_issues.begin(), old_issues.end(), i.first, find_num{});
@@ -197,19 +218,21 @@ void discover_changed_issues(const std::vector<std::pair<int, std::string> >& ol
    for (auto const & i : changed_issues ) {
       auto const item_count = i.second.size();
       if(1 == item_count) {
-         std::cout << "<li>Changed the following issue from " << i.first.first << " to " << i.first.second
-                   << ": <iref ref=\"" << i.second.front() << "\"/>.</li>\n";
+         out << "<li>Changed the following issue from " << i.first.first << " to " << i.first.second
+             << ": <iref ref=\"" << i.second.front() << "\"/>.</li>\n";
       }
       else {
-         std::cout << "<li>Changed the following " << item_count << " issues from " << i.first.first << " to " << i.first.second << ": ";
-         list_issues(i.second);
-         std::cout << ".</li>\n";
+         out << "<li>Changed the following " << item_count << " issues from " << i.first.first << " to " << i.first.second
+             << ": " << list_issues{i.second}
+             << ".</li>\n";
       }
    }
+
+   return out;
 }
 
 
-void count_issues(const std::vector<std::pair<int, std::string> >& issues, unsigned& n_open, unsigned& n_closed) {
+void count_issues(std::vector<std::pair<int, std::string> > const & issues, unsigned & n_open, unsigned & n_closed) {
    n_open = 0;
    n_closed = 0;
 
@@ -224,9 +247,16 @@ void count_issues(const std::vector<std::pair<int, std::string> >& issues, unsig
 }
 
 
-void write_summary(const std::vector<std::pair<int, std::string> >& old_issues,
-                   const std::vector<std::pair<int, std::string> >& new_issues)
-{
+struct write_summary {
+   std::vector<std::pair<int, std::string> > const & old_issues;
+   std::vector<std::pair<int, std::string> > const & new_issues;
+};
+
+
+auto operator<<( std::ostream & out, write_summary const & x) -> std::ostream & {
+   std::vector<std::pair<int, std::string> > const & old_issues = x.old_issues;
+   std::vector<std::pair<int, std::string> > const & new_issues = x.new_issues;
+
    unsigned n_open_new = 0;
    unsigned n_open_old = 0;
    unsigned n_closed_new = 0;
@@ -234,31 +264,49 @@ void write_summary(const std::vector<std::pair<int, std::string> >& old_issues,
    count_issues(old_issues, n_open_old, n_closed_old);
    count_issues(new_issues, n_open_new, n_closed_new);
 
-   std::cout << "<li>" << n_open_new << " open issues, ";
+   out << "<li>" << n_open_new << " open issues, ";
    if (n_open_new >= n_open_old) {
-      std::cout << "up by " << n_open_new - n_open_old << ".</li>\n";
+      out << "up by " << n_open_new - n_open_old << ".</li>\n";
    }
    else {
-      std::cout << "down by " << n_open_old - n_open_new << ".</li>\n";
+      out << "down by " << n_open_old - n_open_new << ".</li>\n";
    }
 
    std::cout << "<li>" << n_closed_new << " closed issues, ";
    if (n_closed_new >= n_closed_old) {
-      std::cout << "up by " << n_closed_new - n_closed_old << ".</li>\n";
+      out << "up by " << n_closed_new - n_closed_old << ".</li>\n";
    }
    else {
-      std::cout << "down by " << n_closed_old - n_closed_new << ".</li>\n";
+      out << "down by " << n_closed_old - n_closed_new << ".</li>\n";
    }
 
    unsigned n_total_new = n_open_new + n_closed_new;
    unsigned n_total_old = n_open_old + n_closed_old;
-   std::cout << "<li>" << n_total_new << " issues total, ";
+   out << "<li>" << n_total_new << " issues total, ";
    if (n_total_new >= n_total_old) {
-      std::cout << "up by " << n_total_new - n_total_old << ".</li>\n";
+      out << "up by " << n_total_new - n_total_old << ".</li>\n";
    }
    else {
-      std::cout << "down by " << n_total_old - n_total_new << ".</li>\n";
+      out << "down by " << n_total_old - n_total_new << ".</li>\n";
    }
+
+   return out;
+}
+
+
+void print_current_revisions( std::ostream & out
+                            , std::vector<std::pair<int, std::string> > const & old_issues
+                            , std::vector<std::pair<int, std::string> > const & new_issues
+                            ) {
+   out << "<ul>\n"
+       << "<li><b>Summary:</b><ul>\n"
+       << write_summary{old_issues, new_issues}
+       << "</ul></li>\n"
+       << "<li><b>Details:</b><ul>\n"
+       << discover_new_issues{old_issues, new_issues}
+       << discover_changed_issues{old_issues, new_issues}
+       << "</ul></li>\n"
+       << "</ul>\n";
 }
 
 
@@ -291,15 +339,7 @@ int main (int argc, char* const argv[]) {
       auto const old_issues = read_issues(path + "meta-data/lwg-toc.old.html");
       auto const new_issues = read_issues(path + "lwg-toc.html");
 
-      std::cout << "<ul>\n";
-      std::cout << "<li><b>Summary:</b><ul>\n";
-      write_summary(old_issues, new_issues);
-      std::cout << "</ul></li>\n";
-      std::cout << "<li><b>Details:</b><ul>\n";
-      discover_new_issues(old_issues, new_issues);
-      discover_changed_issues(old_issues, new_issues);
-      std::cout << "</ul></li>\n";
-      std::cout << "</ul>\n";
+      print_current_revisions(std::cout, old_issues, new_issues );
    }
    catch(std::exception const & ex) {
       std::cout << ex.what() << std::endl;
