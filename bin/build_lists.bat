@@ -1,4 +1,5 @@
 bin\lists
+@echo off
 if errorlevel 1 goto error
 lwg-active.html
 goto done
