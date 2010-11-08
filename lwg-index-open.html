@@ -4,18 +4,18 @@
 <head>
 <title>Library Issues List Table of Contents</title>
 <style type="text/css">
-p {text-align:justify}
-li {text-align:justify}
-blockquote.note
-{
+  p {text-align:justify}
+  li {text-align:justify}
+  blockquote.note
+  {
     background-color:#E0E0E0;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 1px;
     padding-bottom: 1px;
-}
-ins {background-color:#A0FFA0}
-del {background-color:#FFA0A0}
+  }
+  ins {background-color:#A0FFA0}
+  del {background-color:#FFA0A0}
 </style>
 </head>
 <body>
@@ -47,6 +47,15 @@ del {background-color:#FFA0A0}
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1346">1346</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1346"></a></td>
+<td align="left">17 [library]</td>
+<td align="left">[FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</td>
+<td align="center">Yes</td>
+<td align="left"><a href="lwg-closed.html#1352">1352</a></td>
+<td align="center">2010-11-07</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#1353">1353</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1353"></a></td>
 <td align="left">17 [library]</td>
@@ -71,15 +80,6 @@ del {background-color:#FFA0A0}
 <td align="left">[FCD] Library classes should have <tt>noexcept</tt> move operations</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-31</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1346">1346</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1346"></a></td>
-<td align="left">17 [library]</td>
-<td align="left">[FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</td>
-<td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1352">1352</a></td>
 <td align="center">2010-10-31</td>
 </tr>
 <tr>
@@ -426,7 +426,7 @@ freestanding implementations</td>
 <td align="left">[FCD] <tt>tuple_cat</tt> should be a single variadic signature</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-06</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1118">1118</a></td>
@@ -531,10 +531,10 @@ freestanding implementations</td>
 <td align="right"><a href="lwg-active.html#1398">1398</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1398"></a></td>
 <td align="left">20.8 [function.objects]</td>
-<td align="left">[FCD] Users should be able to specialize functors without depending on whole <tt>&lt;functional></tt> header</td>
-<td align="center"><font color="red">No</font></td>
+<td align="left">[FCD] Users should be able to specialize functors without depending on whole <tt>&lt;functional&gt;</tt> header</td>
+<td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-29</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1397">1397</a></td>
@@ -582,13 +582,13 @@ freestanding implementations</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1342">1342</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="1342"></a></td>
+<td align="right"><a href="lwg-active.html#2010">2010</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2010"></a></td>
 <td align="left">20.8.10.1.1 [func.bind.isbind]<a name="func.bind.isbind"</a></td>
 <td align="left"><tt>is_* traits</tt> for binding operations can't be meaningfully specialized</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-10-27</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1240">1240</a></td>
@@ -642,7 +642,7 @@ freestanding implementations</td>
 <td align="left">N2982 removes previous allocator capabilities</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1375">1375</a></td>
-<td align="center">2010-10-27</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1339">1339</a></td>
@@ -717,9 +717,18 @@ freestanding implementations</td>
 <td align="center">2010-10-29</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1410">1410</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1410"></a></td>
+<td align="left">20.11.5.2 [time.clock.monotonic]<a name="time.clock.monotonic"</a></td>
+<td align="left">[FCD] Add a feature-detect macro for <tt>monotonic_clock</tt></td>
+<td align="center">Yes</td>
+<td align="left"><a href="lwg-closed.html#1411">1411</a></td>
+<td align="center">2010-11-07</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#1409">1409</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1409"></a></td>
-<td align="left">20.11.5.2 [time.clock.monotonic]<a name="time.clock.monotonic"</a></td>
+<td align="left">20.11.5.2 [time.clock.monotonic]</td>
 <td align="left">[FCD] Specify whether <tt>monotonic_clock</tt> is a distinct type or a typedef</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -733,15 +742,6 @@ freestanding implementations</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-02</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1410">1410</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1410"></a></td>
-<td align="left">20.11.5.2 [time.clock.monotonic]</td>
-<td align="left">[FCD] Add a feature-detect macro for <tt>monotonic_clock</tt></td>
-<td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1411">1411</a></td>
-<td align="center">2010-11-01</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1413">1413</a></td>
@@ -793,22 +793,22 @@ freestanding implementations</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1343">1343</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="1343"></a></td>
+<td align="right"><a href="lwg-active.html#2011">2011</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2011"></a></td>
 <td align="left">21.4.8.9 [string.io]<a name="string.io"</a></td>
 <td align="left">unexpected output required of strings</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-10-27</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1341">1341</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="1341"></a></td>
+<td align="right"><a href="lwg-active.html#2009">2009</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2009"></a></td>
 <td align="left">21.5 [string.conversions]<a name="string.conversions"</a></td>
 <td align="left">Reporting out-of-bound values on numeric string conversions</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-27</td>
+<td align="center">2010-11-07</td>
 </tr>
 </table>
 <h2><a name="Section 22"></a>Section 22 (2 issues)</h2>
@@ -842,7 +842,7 @@ freestanding implementations</td>
 <td align="center">2010-10-27</td>
 </tr>
 </table>
-<h2><a name="Section 23"></a>Section 23 (21 issues)</h2>
+<h2><a name="Section 23"></a>Section 23 (22 issues)</h2>
 <p><a href="lwg-index.html#Section 23">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -1015,6 +1015,15 @@ freestanding implementations</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1350">1350</a></td>
 <td align="center">2010-10-27</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2012">2012</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2012"></a></td>
+<td align="left">23.6 [associative]<a name="associative"</a></td>
+<td align="left">Associative maps should insert <tt>pair</tt>, not <tt>tuple</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2007">2007</a></td>
@@ -1313,7 +1322,7 @@ freestanding implementations</td>
 <td align="left">[FCD] <tt>regex</tt> should support allocators</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1451">1451</a></td>
-<td align="center">2010-11-04</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2001">2001</a></td>
@@ -1380,7 +1389,7 @@ freestanding implementations</td>
 <td align="left">[FCD] C language compatibility for atomics</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"><a href="lwg-closed.html#1454">1454</a></td>
-<td align="center">2010-10-29</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1456">1456</a></td>
@@ -1428,22 +1437,22 @@ freestanding implementations</td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1462">1462</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1462"></a></td>
+<td align="left">29.5.1 [atomics.types.integral]<a name="atomics.types.integral"</a></td>
+<td align="left">[FCD] Ambiguous value assignment to <tt>atomic_bool</tt></td>
+<td align="center">Yes</td>
+<td align="left"><a href="lwg-closed.html#1463">1463</a></td>
+<td align="center">2010-11-07</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#1464">1464</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1464"></a></td>
-<td align="left">29.5.1 [atomics.types.integral]<a name="atomics.types.integral"</a></td>
+<td align="left">29.5.1 [atomics.types.integral]</td>
 <td align="left">[FCD] Underspecified typedefs for atomic integral types</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-04</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1462">1462</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1462"></a></td>
-<td align="left">29.5.1 [atomics.types.integral]</td>
-<td align="left">[FCD] Ambiguous value assignment to <tt>atomic_bool</tt></td>
-<td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1463">1463</a></td>
-<td align="center">2010-10-27</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1465">1465</a></td>
@@ -1523,7 +1532,7 @@ freestanding implementations</td>
 <td align="left">29.6 [atomics.types.operations]</td>
 <td align="left">[FCD] weak compare-and-exchange confusion</td>
 <td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1477">1477</a></td>
+<td align="left"><a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
@@ -1887,13 +1896,13 @@ synchronization requirements</td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1336">1336</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="1336"></a></td>
+<td align="right"><a href="lwg-active.html#2008">2008</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2008"></a></td>
 <td align="left">30.6.10.1 [futures.task.members]<a name="futures.task.members"</a></td>
 <td align="left">Conflicting Error Conditions for <tt>packaged_task::operator()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-27</td>
+<td align="center">2010-11-07</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1514">1514</a></td>
