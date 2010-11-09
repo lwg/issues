@@ -4941,60 +4941,6 @@ specification on those operations.
 
 
 <hr>
-<h3><a name="1373"></a>1373. [FCD] Customizable traits should have their own headers</h3>
-<p><b>Section:</b> 20.3 [utility] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
-<p><b>View other</b> <a href="lwg-index-open.html#utility">active issues</a> in [utility].</p>
-<p><b>View all other</b> <a href="lwg-index.html#utility">issues</a> in [utility].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-79</b></p>
-<p>
-The library provides several traits mechanisms intended a
-customization points for users. Typically, they are
-declared in headers that are growing quite large. This is
-not a problem for standard library vendors, who can
-manage their internal file structure to avoid large
-dependencies, but can be a problem for end users who
-have no option but to include these large headers.
-</p>
-
-<p><i>[
-Rapperswil
-]</i></p>
-
-<p>
-There was no enthusiasm for touching <tt>char_traits</tt> or <tt>regex_traits</tt>.
-Consensus to move <tt>iterator_traits</tt>, <tt>allocator_traits</tt>
-and <tt>pointer_traits</tt> to their own respective headers once wording supplied.
-</p>
-
-<p><i>[
-Resolution proposed in ballot comment
-]</i></p>
-
-<p>
-Move the following traits classes into their own
-headers, and require the existing header to
-<tt>#include</tt> the traits header to support backwards
-compatibility:
-</p>
-<blockquote><pre>
-iterator_traits (plus the iterator tag-types)
-allocator_traits
-pointer_traits
-char_traits
-regex_traits
-</pre></blockquote>
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1374"></a>1374. [FCD] Clarify moved-from objects are &quot;toxic&quot;</h3>
 <p><b>Section:</b> 20.2.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
@@ -5048,60 +4994,6 @@ undefined behavior.
 
 
 <p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1377"></a>1377. [FCD] The revised <tt>forward</tt> is not compatible with access-control</h3>
-<p><b>Section:</b> 20.3 [utility] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View other</b> <a href="lwg-index-open.html#utility">active issues</a> in [utility].</p>
-<p><b>View all other</b> <a href="lwg-index.html#utility">issues</a> in [utility].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-90</b></p>
-<p>
-In n3090, at variance with previous iterations of the idea
-discussed in papers and incorporated in WDs,
-<tt>std::forward</tt> is constrained via <tt>std::is_convertible</tt>,
-thus is not robust wrt access control. This causes problems in
-normal uses as implementation detail of member
-functions. For example, the following snippet leads to a
-compile time failure, whereas that was not the case for an
-implementation along the lines of n2835 (using <tt>enable_if</tt>s
-instead of concepts for the constraining, of course)
-</p>
-<pre>
-#include &lt;utility>
-struct Base { Base(Base&amp;&amp;); };
-
-struct Derived
-  : private Base
-{
-  Derived(Derived&amp;&amp; d)
-    : Base(std::forward&lt;Base>(d)) { }
-};
-</pre>
-<p>
-In other terms, LWG 1054 can be resolved in a better
-way, the present status is not acceptable.
-</p>
-
-<p><i>[
-2010-10-24 Daniel adds:
-]</i></p>
-
-
-<blockquote>
-Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3143.html">n3143</a> would solve this issue.
-</blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3143.html">n3143</a>.
 
 
 
