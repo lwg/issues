@@ -3368,7 +3368,7 @@ of&quot;</p>
 it should be titled &quot;basic_ios&lt;&gt;() effects&quot;, not
 &quot;ios_base() effects&quot;. </p>
 
-<p>[The second item is a duplicate; see issue 6<a href="lwg-closed.html#6">6</a> for
+<p>[The second item is a duplicate; see issue <a href="lwg-closed.html#6">6</a> for
 resolution.]</p>
 
 <p>Second, 27.5.3.2 [fpos.operations] table 88 . There are a couple
@@ -4554,7 +4554,7 @@ npos.&quot;</p>
 <p><b>Rationale:</b></p>
 <p>Throws clauses for length_error if n == npos are no longer needed
 because they are subsumed by the general wording added by the
-resolution for issue 83<a href="lwg-defects.html#83">83</a>.</p>
+resolution for issue <a href="lwg-defects.html#83">83</a>.</p>
 
 
 
@@ -4797,7 +4797,7 @@ This is too specific: we want to allow *r++ to return an lvalue.</p>
 suggests that the effects *r++ should precisely replicate the behavior
 of this code, including side effects.  (Does this mean that *r++
 should invoke the copy constructor exactly as many times as the sample
-code above would?) See issue 334<a href="lwg-defects.html#334">334</a> for a similar
+code above would?) See issue <a href="lwg-defects.html#334">334</a> for a similar
 problem.</p>
 
 
@@ -5795,7 +5795,7 @@ is not. For example, look at slice_array. This operator= in Section
 
 <p><b>Rationale:</b></p>
 <p>There's no good reason for one version of operator= being const and
-another one not.  Because of issue 253<a href="lwg-defects.html#253">253</a>, this now
+another one not.  Because of issue <a href="lwg-defects.html#253">253</a>, this now
 matters: these functions are now callable in more circumstances.  In
 many existing implementations, both versions are already const.</p>
 
@@ -7213,7 +7213,7 @@ saying &quot;dfault&quot; needed to be uncommented?]</i></p>
 
 
 <p><i>[Post-Toronto: the issues list maintainer has merged in the
-proposed resolution from issue 207<a href="lwg-closed.html#207">207</a>, which addresses the
+proposed resolution from issue <a href="lwg-closed.html#207">207</a>, which addresses the
 same paragraphs.]</i></p>
 
 
@@ -7731,7 +7731,7 @@ paragraph 23 the first argument is of type <tt>int.</tt></p>
 everything is consistent if <tt>streamsize</tt> is typedef to be
 <tt>int</tt>. However, this is almost certainly not what was
 intended. The same thing happened to <tt>basic_filebuf::setbuf()</tt>,
-as described in issue 173<a href="lwg-defects.html#173">173</a>.</p>
+as described in issue <a href="lwg-defects.html#173">173</a>.</p>
 
 <p>Darin Adler also
 submitted this issue, commenting: Either 27.6.1.1 should be modified
@@ -7768,7 +7768,7 @@ As far as I can see this is not really a contradiction because
 everything is consistent if <tt>streamsize</tt> is typedef to be
 <tt>int</tt>. However, this is almost certainly not what was
 intended. The same thing happened to <tt>basic_istream::ignore()</tt>,
-as described in issue 172<a href="lwg-defects.html#172">172</a>.
+as described in issue <a href="lwg-defects.html#172">172</a>.
 </p>
 
 
@@ -7970,7 +7970,7 @@ the nested types <tt>X::iterator</tt> and <tt>X::const_iterator</tt>,
 where <tt>X</tt> is a container.  There is no requirement that
 <tt>X::reverse_iterator</tt> and <tt>X::const_reverse_iterator</tt>
 can be mixed.  If mixing them is considered important, that's a
-separate issue.  (Issue 280<a href="lwg-defects.html#280">280</a>.)
+separate issue.  (Issue <a href="lwg-defects.html#280">280</a>.)
 </p>
 
 
@@ -8109,7 +8109,7 @@ seems more of a design issue that an out-and-out defect.</p>
 
 <p>The LWG believes that this issue should be considered as part of a
 general review of const issues for the next revision of the
-standard. Also see issue 200<a href="lwg-defects.html#200">200</a>.</p>
+standard. Also see issue <a href="lwg-defects.html#200">200</a>.</p>
 
 
 
@@ -8285,7 +8285,7 @@ Editor's authority to make this change.</p>
 request of the LWG.]</i></p>
 
 
-<p><i>[Toronto: This is tangentially related to issue 229<a href="lwg-defects.html#229">229</a>, but only tangentially: the intent of this issue is to
+<p><i>[Toronto: This is tangentially related to issue <a href="lwg-defects.html#229">229</a>, but only tangentially: the intent of this issue is to
 address use of the name <tt>size_t</tt> in contexts outside of
 namespace std, such as in the description of <tt>::operator new</tt>.
 The proposed changes should be reviewed to make sure they are
@@ -8456,12 +8456,12 @@ in.
 the proposed resolution.]</i></p>
 
 
-<p><i>[Tokyo - The LWG noted that issue 216<a href="lwg-closed.html#216">216</a> involves
+<p><i>[Tokyo - The LWG noted that issue <a href="lwg-closed.html#216">216</a> involves
 the same paragraphs.]</i></p>
 
 
 <p><i>[Post-Tokyo: The issues list maintainer combined the proposed
-resolution of this issue with the proposed resolution for issue 216<a href="lwg-closed.html#216">216</a> as they both involved the same paragraphs, and were so
+resolution of this issue with the proposed resolution for issue <a href="lwg-closed.html#216">216</a> as they both involved the same paragraphs, and were so
 intertwined that dealing with them separately appear fraught with
 error.  The full text was supplied by Bill Plauger; it was cross
 checked against changes supplied by Andy Sawyer. It should be further
@@ -8998,7 +8998,7 @@ reformulated yet again to reflect this reality.]</i></p>
 assumes its underlying iterator has persistent pointers and
 references.  Andy Koenig pointed out that it is possible to rewrite
 reverse_iterator so that it no longer makes such an assupmption.
-However, this issue is related to issue 299<a href="lwg-closed.html#299">299</a>.  If we
+However, this issue is related to issue <a href="lwg-closed.html#299">299</a>.  If we
 decide it is intentional that <tt>p[n]</tt> may return by value
 instead of reference when <tt>p</tt> is a Random Access Iterator,
 other changes in reverse_iterator will be necessary.]</i></p>
@@ -9093,7 +9093,7 @@ otherwise <tt>const U&amp;</tt>".
 <p><i>[Tokyo: The LWG believes this is the tip of a larger iceberg;
 there are multiple const problems with the STL portion of the library
 and that these should be addressed as a single package.&nbsp; Note
-that issue 180<a href="lwg-defects.html#180">180</a> has already been declared NAD Future for
+that issue <a href="lwg-defects.html#180">180</a> has already been declared NAD Future for
 that very reason.]</i></p>
 
 
@@ -10194,9 +10194,9 @@ allow Koenig lookup in cases like that of ostream_iterators:<br/>
 is as yet unsure if the proposed resolution is the best
 solution. Furthermore, the LWG believes that the same problem of
 unqualified library names applies to wording in the standard itself,
-and has opened issue 229<a href="lwg-defects.html#229">229</a> accordingly. Any resolution of
-issue 225<a href="lwg-defects.html#225">225</a> should be coordinated with the resolution of
-issue 229<a href="lwg-defects.html#229">229</a>.]</i></p>
+and has opened issue <a href="lwg-defects.html#229">229</a> accordingly. Any resolution of
+issue <a href="lwg-defects.html#225">225</a> should be coordinated with the resolution of
+issue <a href="lwg-defects.html#229">229</a>.]</i></p>
 
 
 <p><i>[Toronto: The LWG is not sure if this is a defect in the
@@ -10226,7 +10226,7 @@ resolution for this issue is in accordance with Howard's paper.]</i></p>
   other namespace.  However, this is at worst a clarification.  It is
   surely right that algorithsm shouldn't pick up random names, that
   user-defined names should have no effect unless otherwise specified.
-  Issue 226<a href="lwg-defects.html#226">226</a> deals with the question of when it is
+  Issue <a href="lwg-defects.html#226">226</a> deals with the question of when it is
   appropriate for the standard to explicitly specify otherwise.</p>
 
 
@@ -10282,7 +10282,7 @@ eventually be used with lib2. This may seem innocuous at first when applied to
 names like swap, but consider more ambiguous names like unique_copy() instead.
 It is easy to imagine the user wanting to define these names differently in his
 own namespace. A definition with semantics incompatible with the standard
-library could cause serious problems (see issue 225<a href="lwg-defects.html#225">225</a>).</p>
+library could cause serious problems (see issue <a href="lwg-defects.html#225">225</a>).</p>
 <p>Why, you may ask, can't we just partially specialize std::swap()? It's
 because the language doesn't allow for partial specialization of function
 templates. If you write:</p>
@@ -10611,7 +10611,7 @@ this case only those members are defined to be virtual which are
 defined to be virtual in 'ctype&lt;cT&gt;'.)</p>
 
 <p><i>[Post-Tokyo: Dietmar K&uuml;hl submitted this issue at the request of
-the LWG to solve the underlying problems raised by issue 138<a href="lwg-closed.html#138">138</a>.]</i></p>
+the LWG to solve the underlying problems raised by issue <a href="lwg-closed.html#138">138</a>.]</i></p>
 
 
 <p><i>[Copenhagen: proposed resolution was revised slightly, to remove
@@ -10643,7 +10643,7 @@ override any ::std::swap function when Koenig lookup applies.</p>
 &quot;::std::&quot; throughout, too many lines in the standard would have to be
 adjusted to make that change in a Technical Corrigendum.</p>
 
-<p>Issue 182<a href="lwg-defects.html#182">182</a>, which addresses qualification of
+<p>Issue <a href="lwg-defects.html#182">182</a>, which addresses qualification of
 <tt>size_t</tt>, is a special case of this.
 </p>
 
@@ -10659,7 +10659,7 @@ adjusted to make that change in a Technical Corrigendum.</p>
 
 <p><i>[Post-Tokyo: Steve Clamage submitted this issue at the request of
 the LWG to solve a problem in the standard itself similar to the
-problem within implementations of library identified by issue 225<a href="lwg-defects.html#225">225</a>.  Any resolution of issue 225<a href="lwg-defects.html#225">225</a> should be
+problem within implementations of library identified by issue <a href="lwg-defects.html#225">225</a>.  Any resolution of issue <a href="lwg-defects.html#225">225</a> should be
 coordinated with the resolution of this issue.]</i></p>
 
 
@@ -10697,7 +10697,7 @@ resolution for the current issue makes sense.]</i></p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
-<p>Issue 227<a href="lwg-defects.html#227">227</a> identified an instance (std::swap) where
+<p>Issue <a href="lwg-defects.html#227">227</a> identified an instance (std::swap) where
 Assignable was specified without also specifying
 CopyConstructible. The LWG asked that the standard be searched to
 determine if the same defect existed elsewhere.</p>
@@ -10744,7 +10744,7 @@ overspecification.]</i></p>
 
 
 <p><i>[Portions of the resolution for issue 230 have been superceded by
-the resolution of issue 276<a href="lwg-defects.html#276">276</a>.]</i></p>
+the resolution of issue <a href="lwg-defects.html#276">276</a>.]</i></p>
 
 
 
@@ -10885,7 +10885,7 @@ possible way for a user to come up with a specialization for bitset,
 for example, that might not have already been specialized by the
 implementor?</p>
 
-<p><i>[Toronto: this may be related to issue 120<a href="lwg-defects.html#120">120</a>.]</i></p>
+<p><i>[Toronto: this may be related to issue <a href="lwg-defects.html#120">120</a>.]</i></p>
 
 
 <p><i>[post-Toronto: Judy provided the above proposed resolution and
@@ -10994,7 +10994,7 @@ accepted with minor wording changes in the proposed wording (reflected in the
 proposed resolution below).  Concerns about the performance of the algorithm
 were satisfactorily met by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1780.html">1780</a>.
-371<a href="lwg-defects.html#371">371</a> already handles the stability of equal ranges
+<a href="lwg-defects.html#371">371</a> already handles the stability of equal ranges
 and so that part of the resolution from
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1780.html">1780</a>
 is no longer needed (or reflected in the proposed wording below).
@@ -12826,7 +12826,7 @@ Consider inserting a sorted range of even integers into a set&lt;int&gt; contain
 integers in the same range.
 </p>
 
-<p><i>Related issue: 102<a href="lwg-closed.html#102">102</a></i></p>
+<p><i>Related issue: <a href="lwg-closed.html#102">102</a></i></p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -13498,14 +13498,14 @@ general.
 
 <p>
 For example, the proposed resolution of active library issue 
-103<a href="lwg-defects.html#103">103</a> is to make set::iterator a constant iterator; this
+<a href="lwg-defects.html#103">103</a> is to make set::iterator a constant iterator; this
 means that no set operations can exploit the fact that the stored
 objects are Assignable.
 </p>
 
 <p>
 This is related to, but slightly broader than, closed issue
-140<a href="lwg-closed.html#140">140</a>.
+<a href="lwg-closed.html#140">140</a>.
 </p>
 
 
@@ -13606,7 +13606,7 @@ to forbid such implementations.</p>
 
 <p>Note that the type stored in a standard container must still satisfy
 the requirements of the container's allocator; this rules out, for
-example, such types as "const int".  See issue 274<a href="lwg-defects.html#274">274</a>
+example, such types as "const int".  See issue <a href="lwg-defects.html#274">274</a>
 for more details.
 </p>
 
@@ -13648,7 +13648,7 @@ validity.
 </p>
 
 <p>
-If we accept the proposed resolution to issue 250<a href="lwg-defects.html#250">250</a>,
+If we accept the proposed resolution to issue <a href="lwg-defects.html#250">250</a>,
 then we'd better clarify that a &quot;valid&quot; iterator need no
 longer designate an element within the same container as it once did.
 We then have to clarify what we mean by invalidating a past-the-end
@@ -13701,7 +13701,7 @@ the wording.  Dave provided new wording.]</i></p>
 <p><b>Discussion:</b></p>
 <p>
 This came from an email from Steve Cleary to Fergus in reference to
-issue 179<a href="lwg-defects.html#179">179</a>. The library working group briefly discussed
+issue <a href="lwg-defects.html#179">179</a>. The library working group briefly discussed
 this in Toronto and believed it should be a separate issue.  There was
 also some reservations about whether this was a worthwhile problem to
 fix.
@@ -14417,7 +14417,7 @@ rid of that vestigial list of functions in paragraph 1.]</i></p>
 <p>All this DR does is fix a typo; it's uncontroversial.  A 
 separate question is whether we're doing the right thing in 
 putting some overloads in &lt;cmath&gt; that we aren't also 
-putting in &lt;cstdlib&gt;.  That's issue 323<a href="lwg-closed.html#323">323</a>.</p>
+putting in &lt;cstdlib&gt;.  That's issue <a href="lwg-closed.html#323">323</a>.</p>
 
 
 
@@ -14520,7 +14520,7 @@ with the rest of the library.
 </blockquote>
 
 <p><i>[
-2009-10-11 Daniel opens 1233<a href="lwg-closed.html#1233">1233</a> which deals with the same issue as
+2009-10-11 Daniel opens <a href="lwg-closed.html#1233">1233</a> which deals with the same issue as
 it pertains to <tt>unique_ptr</tt>.
 ]</i></p>
 
@@ -15146,7 +15146,7 @@ container's reference type.</p>
 
 <p>
 I propose 3.  This does not preclude option 2 if we choose to do it
-later (see issue 96<a href="lwg-closed.html#96">96</a>); the issues are independent.  Option
+later (see issue <a href="lwg-closed.html#96">96</a>); the issues are independent.  Option
 3 offers a small step towards support for proxied containers.  This
 small step fixes a current contradiction, is easy for vendors to
 implement, is already implemented in at least one popular lib, and
@@ -15736,7 +15736,7 @@ template at all, but simply provide the primary template.</p>
 
 <p><b>Proposed resolution:</b></p>
 <p>Remove the comment from the text in 22.2.3.2 and from the proposed
-resolution of library issue 228<a href="lwg-defects.html#228">228</a>.</p>
+resolution of library issue <a href="lwg-defects.html#228">228</a>.</p>
 
 
 
@@ -15937,7 +15937,7 @@ iterator_traits&lt;X::const_iterator&gt;::value_type should be "const
 X::value_type".
 </p>
 
-<p>Related issue: 279<a href="lwg-closed.html#279">279</a>.</p>
+<p>Related issue: <a href="lwg-closed.html#279">279</a>.</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -16335,7 +16335,7 @@ reallocation guarantees was inadvertant.</p>
 With the change in 17.6.4.11 [res.on.exception.handling] to state
    "An implementation may strengthen the exception-specification for a 
     non-virtual function by removing listed exceptions."
-(issue 119<a href="lwg-defects.html#119">119</a>)
+(issue <a href="lwg-defects.html#119">119</a>)
 and the following declaration of ~failure() in ios_base::failure
 </p>
 <pre>
@@ -16531,7 +16531,7 @@ value_type(x, T()) into the map.
 wording.  We may also wish to have a blanket statement somewhere in
 clause 17 saying that we do not intend the semantics of sample code
 fragments to be interpreted as specifing exactly how many copies are
-made.  See issue 98<a href="lwg-defects.html#98">98</a> for a similar problem.]</i></p>
+made.  See issue <a href="lwg-defects.html#98">98</a> for a similar problem.]</i></p>
 
 
 
@@ -16685,7 +16685,7 @@ parameter name conveys real normative meaning.
 <p>
 From Stage 2 processing in 22.4.2.1.2 [facet.num.get.virtuals], p8 and 9 (the
 original text or the text corrected by the proposed resolution of
-issue 221<a href="lwg-defects.html#221">221</a>) it seems clear that no whitespace is allowed
+issue <a href="lwg-defects.html#221">221</a>) it seems clear that no whitespace is allowed
 within a number, but 22.4.3.1 [locale.numpunct], p2, which gives the
 format for integer and floating point values, says that whitespace is
 optional between a plusminus and a sign.
@@ -16915,7 +16915,7 @@ an empty one:</p>
 <p>However, the wording of 23.4.1.2 [vector.capacity]paragraph 5 prevents
 the capacity of a vector being reduced, following a call to
 reserve(). This invalidates the idiom, as swap() is thus prevented
-from reducing the capacity. The proposed wording for issue 329<a href="lwg-defects.html#329">329</a> does not affect this.  Consequently, the example above
+from reducing the capacity. The proposed wording for issue <a href="lwg-defects.html#329">329</a> does not affect this.  Consequently, the example above
 requires the temporary to be expanded to cater for the contents of
 vec, and the contents be copied across. This is a linear-time
 operation.</p>
@@ -17760,7 +17760,7 @@ document N1360 for details and rationale.
 <p>The list of member functions under discussion: <tt>in_avail</tt>,
 <tt>showmanyc</tt>, <tt>tellg</tt>, <tt>tellp</tt>, <tt>is_open</tt>.</p>
 
-<p>Related issue: 73<a href="lwg-closed.html#73">73</a></p>
+<p>Related issue: <a href="lwg-closed.html#73">73</a></p>
 
 
 
@@ -17779,7 +17779,7 @@ document N1360 for details and rationale.
 <p><b>Rationale:</b></p>
 <p>Of the changes proposed in N1360, the only one that is safe is
 changing the filestreams' is_open to const.  The LWG believed that
-this was NAD the first time it considered this issue (issue 73<a href="lwg-closed.html#73">73</a>), but now thinks otherwise.  The corresponding streambuf
+this was NAD the first time it considered this issue (issue <a href="lwg-closed.html#73">73</a>), but now thinks otherwise.  The corresponding streambuf
 member function, after all,is already const.</p>
 
 <p>The other proposed changes are less safe, because some streambuf
@@ -18014,7 +18014,7 @@ be hard to track down by users. This would also make the need for an
 erase_if() member function that much greater.
 </p>
 
-<p>This issue is somewhat related to LWG issue 130<a href="lwg-defects.html#130">130</a>.</p>
+<p>This issue is somewhat related to LWG issue <a href="lwg-defects.html#130">130</a>.</p>
 
 
 
@@ -18339,8 +18339,8 @@ with that discussion.
 I have checked this newsgroup, as well as attempted a search of the
 Active/Defect/Closed Issues List on the site for the words "s is
 derefer" so I believe this has not been proposed before.  Furthermore,
-the "Lists by Index" mentions only DR 299<a href="lwg-closed.html#299">299</a> on section
-24.1.4, and DR 299<a href="lwg-closed.html#299">299</a> is not related to this issue.
+the "Lists by Index" mentions only DR <a href="lwg-closed.html#299">299</a> on section
+24.1.4, and DR <a href="lwg-closed.html#299">299</a> is not related to this issue.
 </p>
 
 <p>
@@ -18483,7 +18483,7 @@ which is the same as <tt>iterator_traits&lt;Iterator&gt;::reference</tt>.
   to <tt>Iterator</tt>'s value type.  The return type specified for
   reverse_iterator's operator[] would thus appear to be impossible.</p>
 
-<p>With the resolution of issue 299<a href="lwg-closed.html#299">299</a>, the type of
+<p>With the resolution of issue <a href="lwg-closed.html#299">299</a>, the type of
   <tt>a[n]</tt> will continue to be required (for random access
   iterators) to be convertible to the value type, and also <tt>a[n] =
   t</tt> will be a valid expression.  Implementations of
@@ -18896,7 +18896,7 @@ Sophia Antipolis:
 <blockquote>
 <p>
 We note that <tt>bitset</tt> has been moved from section 23 to section 20, by
-another issue (842<a href="lwg-defects.html#842">842</a>) previously resolved at this meeting.
+another issue (<a href="lwg-defects.html#842">842</a>) previously resolved at this meeting.
 </p>
 <p>
 Disposition: move to ready.
@@ -18961,7 +18961,7 @@ is <i>zero</i>. Otherwise, the element has the value 1.</p>
   resolution allows those users who care about this issue to get it
   right.</p>
 <p>We fix the inserter to use the new arguments.  Note that we already
-  fixed the analogous problem with the extractor in issue 303<a href="lwg-defects.html#303">303</a>.</p>
+  fixed the analogous problem with the extractor in issue <a href="lwg-defects.html#303">303</a>.</p>
 
 
 
@@ -19412,7 +19412,7 @@ the EOF bit in the stream's error state is still set.  This is
 counterintuitive.
 </p>
 <p>
-The LWG considered this issue once before, as issue 22<a href="lwg-defects.html#22">22</a>,
+The LWG considered this issue once before, as issue <a href="lwg-defects.html#22">22</a>,
 and put in a footnote to clarify that the strict reading was indeed
 correct.  We did that because we believed the standard was
 unambiguous and consistent, and that we should not make architectural
@@ -19662,7 +19662,7 @@ basic_istream (*this) and inserting into sb. I can't really tell if
 <p><i>[
 Sydney: Definitely a real issue. We are, indeed, extracting characters
 from an istream and not from sb. The problem was there in the FDIS and
-wasn't fixed by issue 64<a href="lwg-defects.html#64">64</a>. Probably what was intended was
+wasn't fixed by issue <a href="lwg-defects.html#64">64</a>. Probably what was intended was
 to have *this instead of sb. We're talking about the exception flag
 state of a basic_istream object, and there's only one basic_istream
 object in this discussion, so that would be a consistent
@@ -19958,7 +19958,7 @@ corrected.
 
         </p>
 <p>
-Pre Berlin:  This issue is related to 342<a href="lwg-closed.html#342">342</a>.  If the sentry
+Pre Berlin:  This issue is related to <a href="lwg-closed.html#342">342</a>.  If the sentry
 sets <tt>failbit</tt> when it finds <tt>eofbit</tt> already set, then
 you can never seek away from the end of stream.
 </p>
@@ -20244,7 +20244,7 @@ instantiate the num_get template on user-defined types.
   and traits is in order.  The LWG considered and rejected the
   possibility of changing numeric facets to use narrowing instead of
   widening.  This may be a good idea for other reasons (see issue
-  459<a href="lwg-closed.html#459">459</a>), but it doesn't solve the problem raised by this
+  <a href="lwg-closed.html#459">459</a>), but it doesn't solve the problem raised by this
   issue.  Whether we use widen or narrow the <tt>num_get</tt> facet
   still has no idea which traits class the user wants to use for 
   the comparison, because only streams, not facets, are passed traits
@@ -22156,7 +22156,7 @@ Change overflow(EOF) to overflow(traits::eof()).
 <p><b>Discussion:</b></p>
 <p>
 27.9.1.9 [ifstream.members] p1, 27.9.1.13 [ofstream.members] p1, 27.9.1.17 [fstream.members] p1 seems have same problem as exposed in LWG issue
-252<a href="lwg-defects.html#252">252</a>.
+<a href="lwg-defects.html#252">252</a>.
 </p>
 
 
@@ -23605,7 +23605,7 @@ current requirements allow iterators to make many of the operations
 specified using the identifiers a and b invalid for non-const
 iterators.</p>
 
-<p>Related issue: 477<a href="lwg-closed.html#477">477</a></p>
+<p>Related issue: <a href="lwg-closed.html#477">477</a></p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -23675,7 +23675,7 @@ and the resulting program becomes significantly more efficient.
 
 <p>
 While the backwards compatibility hit with this change is not zero, it
-is very small (similar to that of lwg 130<a href="lwg-defects.html#130">130</a>), and there is
+is very small (similar to that of lwg <a href="lwg-defects.html#130">130</a>), and there is
 a significant benefit to the change. 
 </p>
 
@@ -24707,7 +24707,7 @@ in the <tt>BoundArgs...</tt> pack expansion throws an exception.
 <p><b>View all other</b> <a href="lwg-index.html#basic.string">issues</a> in [basic.string].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
-<p>Issue 69<a href="lwg-defects.html#69">69</a>, which was incorporated into C++03, mandated
+<p>Issue <a href="lwg-defects.html#69">69</a>, which was incorporated into C++03, mandated
    that the elements of a vector must be stored in contiguous memory.
    Should the same also apply to <tt>basic_string</tt>?</p>
 
@@ -29044,7 +29044,7 @@ The computed and  "fill" assignment operators of <code>valarray</code>
 helper     array     class    templates     (<code>slice_array</code>,
 <code>gslice_array</code>,         <code>mask_array</code>,        and
 <code>indirect_array</code>) are const  member functions of each class
-template     (the     latter    by     the     resolution    of  123<a href="lwg-defects.html#123">123</a>
+template     (the     latter    by     the     resolution    of  <a href="lwg-defects.html#123">123</a>
 since  they have reference  semantics and thus do  not affect
 the state of  the object on which they are  called.  However, the copy
 assignment  operators  of  these  class  templates,  which  also  have
@@ -29219,7 +29219,7 @@ errors.
         </p>
 
 <p><i>[
-See 397<a href="lwg-closed.html#397">397</a> and 418<a href="lwg-closed.html#418">418</a> for related issues.
+See <a href="lwg-closed.html#397">397</a> and <a href="lwg-closed.html#418">418</a> for related issues.
 ]</i></p>
 
 
@@ -29819,7 +29819,7 @@ On the other hand, some code truly needs the address of an object, and not a pro
 <a href="http://www.boost.org/libs/utility/utility.htm#addressof"><tt>boost::addressof</tt></a>.
 It appears to me that this would be useful functionality for the default allocator.  Adopting
 this definition for <tt>allocator::address</tt> would free the standard of requiring
-anything special from types which overload <tt>operator&amp;</tt>.  Issue 580<a href="lwg-closed.html#580">580</a>
+anything special from types which overload <tt>operator&amp;</tt>.  Issue <a href="lwg-closed.html#580">580</a>
 is expected to make use of <tt>allocator::address</tt> mandatory for containers.
 </p>
 
@@ -30517,7 +30517,7 @@ have <tt>istreambuf_iterator::pointer</tt> as return type, and this return type
 may in fact be a proxy.
 </p>
 <p>
-AFAIK, the resolution of 445<a href="lwg-defects.html#445">445</a> ("<tt>iterator_traits::reference</tt>
+AFAIK, the resolution of <a href="lwg-defects.html#445">445</a> ("<tt>iterator_traits::reference</tt>
 unspecified for some iterator categories") implies that for any iterator
 class <tt>Iter</tt>, the return type of <tt>operator-&gt;()</tt> is <tt>Iter::pointer</tt>, by
 definition.  I don't think <tt>Iter::pointer</tt> needs to be a raw pointer.
@@ -31225,7 +31225,7 @@ Kona (2007): We like the change to the <tt>Swappable</tt> requirements to use
 move semantics. The issue relating to the support of proxies is
 separable from the one relating to move semantics, and it's bigger than
 just swap. We'd like to address only the move semantics changes under
-this issue, and open a separated issue (742<a href="lwg-closed.html#742">742</a>) to handle proxies. Also, there
+this issue, and open a separated issue (<a href="lwg-closed.html#742">742</a>) to handle proxies. Also, there
 may be a third issue, in that the current definition of <tt>Swappable</tt> does
 not permit rvalues to be operands to a swap operation, and Howard's
 proposed resolution would allow the right-most operand to be an rvalue,
@@ -31677,7 +31677,7 @@ Add to 20.9.11.2.3 [util.smartptr.shared.assign]:
 
 
 <p><i>[
-Kona (2007): We may need to open an issue (743<a href="lwg-defects.html#743">743</a>) to deal with the question of
+Kona (2007): We may need to open an issue (<a href="lwg-defects.html#743">743</a>) to deal with the question of
 whether <tt>shared_ptr</tt> needs an rvalue <tt>swap</tt>.
 ]</i></p>
 
@@ -31848,7 +31848,7 @@ Move to Review. Alisdair will review proposed wording.
 
 <p><i>[
 2010-02-10 Howard updates wording to reference the unordered container
-requirements table (modified by 704<a href="lwg-defects.html#704">704</a>) as much as possible.
+requirements table (modified by <a href="lwg-defects.html#704">704</a>) as much as possible.
 ]</i></p>
 
 
@@ -32381,7 +32381,7 @@ Section 26.5.1.4 [rand.req.eng] Random number engine requirements:
 
 <p>
 This change follows naturally from the proposed change to
-<tt>seed_seq::randomize</tt> in 677<a href="lwg-defects.html#677">677</a>.
+<tt>seed_seq::randomize</tt> in <a href="lwg-defects.html#677">677</a>.
 </p>
 
 <p>
@@ -33772,7 +33772,7 @@ accepting a <tt>const char*</tt>.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-This proposed wording assumes issue 832<a href="lwg-closed.html#832">832</a> has been accepted and applied to the working paper.
+This proposed wording assumes issue <a href="lwg-closed.html#832">832</a> has been accepted and applied to the working paper.
 </p>
 
 <p>
@@ -33947,8 +33947,8 @@ Add the following to the specification of <tt>map::at()</tt>, 23.6.1.2 [map.acce
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The move-related changes inadvertently overwrote the intent of 276<a href="lwg-defects.html#276">276</a>.
-Issue 276<a href="lwg-defects.html#276">276</a> removed the requirement of <tt>CopyAssignable</tt> from
+The move-related changes inadvertently overwrote the intent of <a href="lwg-defects.html#276">276</a>.
+Issue <a href="lwg-defects.html#276">276</a> removed the requirement of <tt>CopyAssignable</tt> from
 most of the member functions of node-based containers.  But the move-related changes
 unnecessarily introduced the <tt>MoveAssignable</tt> requirement for those members which used to
 require <tt>CopyAssignable</tt>.
@@ -34148,14 +34148,14 @@ the argument is an rvalue.  Fixed it.
 
 <blockquote>
 <p>
-I took the task to see whether 868<a href="lwg-active.html#868">868</a> is covered by 704
+I took the task to see whether <a href="lwg-active.html#868">868</a> is covered by 704
 already.
 However, by doing that I have the impression that
 704 is a big mistake.
 </p>
 
 <p>
-Take e.g. the second change of 868<a href="lwg-active.html#868">868</a>:
+Take e.g. the second change of <a href="lwg-active.html#868">868</a>:
 </p>
 
 <blockquote>
@@ -35625,7 +35625,7 @@ isn't defined anywhere), and whether we have a good mental model for how
 one behaves. We think it might be possible to deduce what the definition
 should be, but the words just aren't there. We need to open an issue on
 the use of this undefined term. (The resolution of that issue might
-affect the resolution of issue 711<a href="lwg-defects.html#711">711</a>.)
+affect the resolution of issue <a href="lwg-defects.html#711">711</a>.)
 </p>
 <p>
 The LWG is getting more uncomfortable with the aliasing proposal (N2351)
@@ -36291,7 +36291,7 @@ Move to open, as no-one happy to produce wording on the fly.
 
 
 <p><i>[
-2009-08-17 Daniel adds "[defaultconstructible]" to table title.  408<a href="lwg-closed.html#408">408</a>
+2009-08-17 Daniel adds "[defaultconstructible]" to table title.  <a href="lwg-closed.html#408">408</a>
 depends upon this issue.
 ]</i></p>
 
@@ -36530,7 +36530,7 @@ Howard to ask Stephan Lavavej to provide wording.
 
 
 <p><i>[
-2009-07-25 Daniel tweaks both this issue and 726<a href="lwg-closed.html#726">726</a>.
+2009-07-25 Daniel tweaks both this issue and <a href="lwg-closed.html#726">726</a>.
 ]</i></p>
 
 
@@ -37289,7 +37289,7 @@ and its subsections:  [unique.ptr.compiletime.dtor],  [unique.ptr.compiletime.ob
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-When the LWG looked at 674<a href="lwg-defects.html#674">674</a> in Kona the following note was made:
+When the LWG looked at <a href="lwg-defects.html#674">674</a> in Kona the following note was made:
 </p>
 
 <blockquote><p>
@@ -37833,7 +37833,7 @@ allow latitude for implementation-specific optimizations.
 </blockquote>
 
 <p><i>[
-850<a href="lwg-defects.html#850">850</a> has been added to deal with this issue with respect to <tt>deque</tt>.
+<a href="lwg-defects.html#850">850</a> has been added to deal with this issue with respect to <tt>deque</tt>.
 ]</i></p>
 
 
@@ -38242,7 +38242,7 @@ produce new wording.
 <p>
 The proposed changes in the following revision refers to the current state of
 N2521 including the assumption that X [unique.ptr.compiletime] will be removed
-according to the current state of 740<a href="lwg-defects.html#740">740</a>.
+according to the current state of <a href="lwg-defects.html#740">740</a>.
 </p>
 <p>
 The specialization <tt>unique_ptr&lt;T[]&gt;</tt> has some more restrictive constraints on
@@ -38254,9 +38254,9 @@ e.g. by adding one further bullet to 20.9.10.3 [unique.ptr.runtime]/1:
 <tt>unique_ptr&lt;T[], D&gt;</tt>
 </p>
 <p>
-This issue has some overlap with 673<a href="lwg-defects.html#673">673</a>, but it seems not to cause any
+This issue has some overlap with <a href="lwg-defects.html#673">673</a>, but it seems not to cause any
 problems with this one,
-because 673<a href="lwg-defects.html#673">673</a> adds only optional requirements on <tt>D</tt> that do not conflict
+because <a href="lwg-defects.html#673">673</a> adds only optional requirements on <tt>D</tt> that do not conflict
 with the here discussed
 ones, provided that <tt>D::pointer</tt>'s operations (including default
 construction, copy construction/assignment,
@@ -38515,7 +38515,7 @@ post Bellevue: Daniel provided revised wording.
 <p><b>Discussion:</b></p>
        <p>
 
-Issue 278<a href="lwg-defects.html#278">278</a>
+Issue <a href="lwg-defects.html#278">278</a>
 defines the meaning of the term "invalid iterator" as one that may be
 singular.
 
@@ -38555,7 +38555,7 @@ returns <code>false</code>.)
        </p>
        <p>
 
-More generally, is the definition introduced in issue 278<a href="lwg-defects.html#278">278</a> meant to
+More generally, is the definition introduced in issue <a href="lwg-defects.html#278">278</a> meant to
 make any guarantees about whether iterators actually point to the same
 elements or be associated with the same containers after a
 non-invalidating operation as they did before?
@@ -39348,7 +39348,7 @@ is no longer applicable.
 <blockquote>
 <ol>
 <li>
-It assumes that the proposed resolution for 883<a href="lwg-defects.html#883">883</a> is applied,
+It assumes that the proposed resolution for <a href="lwg-defects.html#883">883</a> is applied,
 which breaks the circularity of definition between member
 <tt>swap</tt> and free <tt>swap</tt>.
 </li>
@@ -39362,7 +39362,7 @@ next refactoring phase of generalized allocators.
 <li>
 It requires that compare objects, key equal functions and
 hash functions in containers are swapped via unqualified free
-<tt>swap</tt> according to 594<a href="lwg-closed.html#594">594</a>.
+<tt>swap</tt> according to <a href="lwg-closed.html#594">594</a>.
 </li>
 </ol>
 </blockquote>
@@ -39373,7 +39373,7 @@ hash functions in containers are swapped via unqualified free
 
 
 <blockquote>
-The outcome of this issue should be considered with the outcome of 1198<a href="lwg-active.html#1198">1198</a> both in style and in content (e.g. bullet 9 suggests to
+The outcome of this issue should be considered with the outcome of <a href="lwg-active.html#1198">1198</a> both in style and in content (e.g. bullet 9 suggests to
 define the semantic of <tt>void
 priority_queue::swap(priority_queue&amp;)</tt> in terms of the member
 <tt>swap</tt> of the container).
@@ -40023,12 +40023,12 @@ This resolution is based on the September 2009 WP,
 except that it
 assumes that
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a>
-and issues 883<a href="lwg-defects.html#883">883</a> and 1232<a href="lwg-closed.html#1232">1232</a> have already been applied.  Note in
+and issues <a href="lwg-defects.html#883">883</a> and <a href="lwg-closed.html#1232">1232</a> have already been applied.  Note in
 particular that Table 91 in
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2960.pdf">N2960</a>
 is refered to as Table 90 because
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a>
-removed the old Table 90.  This resolution also addresses issue 431<a href="lwg-closed.html#431">431</a>.
+removed the old Table 90.  This resolution also addresses issue <a href="lwg-closed.html#431">431</a>.
 ]</i></p>
 
 <p>
@@ -40413,7 +40413,7 @@ be derived by those.
 
 <p>
 I found only one reference to this function in the issue list,
-588<a href="lwg-closed.html#588">588</a> where the question is raised:
+<a href="lwg-closed.html#588">588</a> where the question is raised:
 </p>
 
 <blockquote>
@@ -40514,7 +40514,7 @@ post Bellevue Peter adds:
 
 <blockquote>
 <p>
-Issue 777<a href="lwg-defects.html#777">777</a> suggests making <tt>atomic_load</tt> operate on <tt>const</tt> objects. There is a
+Issue <a href="lwg-defects.html#777">777</a> suggests making <tt>atomic_load</tt> operate on <tt>const</tt> objects. There is a
 subtle point here. Atomic loads do not generally write to the object, except
 potentially for the <tt>memory_order_seq_cst</tt> constraint. Depending on the
 architecture, a dummy write with the same value may be required to be issued
@@ -40624,7 +40624,7 @@ explicit bitset( const char* str );
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The resolution of 283<a href="lwg-defects.html#283">283</a> did not resolve similar necessary changes for algorithm
+The resolution of <a href="lwg-defects.html#283">283</a> did not resolve similar necessary changes for algorithm
 <tt>remove_copy[_if]</tt>,
 which seems to be an oversight.
 </p>
@@ -40653,7 +40653,7 @@ valid.</ins>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Though issue 283<a href="lwg-defects.html#283">283</a> has fixed many open issues, it seems that some are still open:
+Though issue <a href="lwg-defects.html#283">283</a> has fixed many open issues, it seems that some are still open:
 </p>
 
 <p>
@@ -40706,7 +40706,7 @@ than <tt>result</tt>, the condition <tt>*i &lt; *prev(i)</tt> or, respectively, 
 <p>
 Note that this might still not be technically accurate in the case of
 <tt>InputIterators</tt>, depending on other resolutions working their way through the
-system (1011<a href="lwg-defects.html#1011">1011</a>).
+system (<a href="lwg-defects.html#1011">1011</a>).
 </p>
 </blockquote>
 
@@ -41038,7 +41038,7 @@ Proposed Resolution: Accept Solution A.
 </blockquote>
 
 <p>
-Issue 803<a href="lwg-closed.html#803">803</a> claims to make this issue moot.
+Issue <a href="lwg-closed.html#803">803</a> claims to make this issue moot.
 </p>
 
 
@@ -41245,9 +41245,9 @@ This should be precised and brought in line with the nomenclature used for
 <p>
 All existing libraries I'm aware of, delegate to
 <tt>lower_bound</tt> (+ one further comparison). Since
-issue 384<a href="lwg-defects.html#384">384</a>
+issue <a href="lwg-defects.html#384">384</a>
 has now WP status, the resolution of #787 should
-be brought in-line with 384<a href="lwg-defects.html#384">384</a> by changing the <tt>+ 2</tt>
+be brought in-line with <a href="lwg-defects.html#384">384</a> by changing the <tt>+ 2</tt>
 to <tt>+ O(1)</tt>.
 </p>
 
@@ -41306,7 +41306,7 @@ the iterator takes on the end-of-stream value if the stream is empty.
 <p>
 The description of how an istream_iterator object becomes an
 end-of-stream iterator is a) ambiguous and b) out of date WRT
-issue 468<a href="lwg-defects.html#468">468</a>:
+issue <a href="lwg-defects.html#468">468</a>:
 </p>
 
 <blockquote>
@@ -41603,7 +41603,7 @@ The member function <tt>message</tt> throws clauses (
 19.5.3.4 [syserr.errcondition.observers]/6) guarantee "throws nothing",
 although
 they return a <tt>std::string</tt> by value, which might throw in out-of-memory
-conditions (see related issue 771<a href="lwg-defects.html#771">771</a>).
+conditions (see related issue <a href="lwg-defects.html#771">771</a>).
 </li>
 </ol>
 
@@ -41614,14 +41614,14 @@ Sophia Antipolis:
 
 <blockquote>
 <p>
-Part A: NAD (editorial), cleared by the resolution of issue 832<a href="lwg-closed.html#832">832</a>.
+Part A: NAD (editorial), cleared by the resolution of issue <a href="lwg-closed.html#832">832</a>.
 </p>
 <p>
 Part B: Technically correct, save for typo. Rendered moot by the concept proposal 
 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2620.html">N2620</a>) NAD (editorial).
 </p>
 <p>
-Part C: We agree; this is consistent with the resolution of issue 721<a href="lwg-closed.html#721">721</a>.
+Part C: We agree; this is consistent with the resolution of issue <a href="lwg-closed.html#721">721</a>.
 </p>
 <p>
 Howard: please ping Beman, asking him to clear away parts A and B from
@@ -41629,7 +41629,7 @@ the wording in the proposed resolution, so it is clear to the editor
 what needs to be applied to the working paper.
 </p>
 <p>
-Beman provided updated wording. Since issue 832<a href="lwg-closed.html#832">832</a> is not going
+Beman provided updated wording. Since issue <a href="lwg-closed.html#832">832</a> is not going
 forward, the provided wording includes resolution of part A.
 </p>
 </blockquote>
@@ -41735,7 +41735,7 @@ private:
 Change 19.5.3.2 [syserr.errcondition.constructors] Class error_condition constructors as indicated:
 </p>
 <p><i>[
-(If the proposed resolution of issue 805<a href="lwg-defects.html#805">805</a> has already been applied, the
+(If the proposed resolution of issue <a href="lwg-defects.html#805">805</a> has already been applied, the
 name <tt>posix_category</tt> will have been changed to <tt>generic_category</tt>. That has
 no effect on this resolution.)
 ]</i></p>
@@ -42227,7 +42227,7 @@ void reset(T* p = 0);
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-527<a href="lwg-defects.html#527">527</a> Added a throws clause to <tt>bind</tt> constructors.  I believe the same throws clause
+<a href="lwg-defects.html#527">527</a> Added a throws clause to <tt>bind</tt> constructors.  I believe the same throws clause
 should be added to <tt>tuple</tt> except it ought to take into account move constructors as well.
 </p>
 
@@ -42605,7 +42605,7 @@ Side question: Should pair interoperate with tuples? Can construct a
 tuple of a pair, but not a pair from a two-element tuple.
 </p>
 <p>
-Related to 885<a href="lwg-defects.html#885">885</a>.
+Related to <a href="lwg-defects.html#885">885</a>.
 </p>
 </blockquote>
 
@@ -42703,7 +42703,7 @@ term or stop using it.
 One reason it's not good enough to leave this term up to the reader's
 intuition is that, in light of
 <a href="http://www.open-std.org/JTC1/sc22/WG21/docs/papers/2007/n2351.htm">N2351</a>
-and issue 711<a href="lwg-defects.html#711">711</a>, most readers'
+and issue <a href="lwg-defects.html#711">711</a>, most readers'
 intuitive understanding is likely to be wrong. Intuitively one might
 expect that an empty <tt>shared_ptr</tt> is one that doesn't store a pointer,
 but, whatever the definition is, that isn't it.
@@ -42904,7 +42904,7 @@ requires only move construction of its contained functor and bound arguments.
 That way move-only functors can be passed to objects such as <tt>thread</tt>.
 </p>
 <p>
-This issue is related to issue 816<a href="lwg-closed.html#816">816</a>.
+This issue is related to issue <a href="lwg-closed.html#816">816</a>.
 </p>
 
 <p>
@@ -42989,7 +42989,7 @@ a place to see the complete solution in one place.
 20.8.10.1.2 [func.bind.bind]/p3, p6 and p7 were accidently removed from N2798.
 </li>
 <li>
-Issue 929<a href="lwg-defects.html#929">929</a> argues for a way to pass by &amp;&amp; for
+Issue <a href="lwg-defects.html#929">929</a> argues for a way to pass by &amp;&amp; for
 efficiency but retain the decaying behavior of pass by value for the
 <tt>thread</tt> constructor.  That same solution is applicable here.
 </li>
@@ -43721,7 +43721,7 @@ Pete will make the required editorial tweaks to rectify this.
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Reading resolution of LWG issue 673<a href="lwg-defects.html#673">673</a> I noticed the following:
+Reading resolution of LWG issue <a href="lwg-defects.html#673">673</a> I noticed the following:
 </p>
 
 <blockquote>
@@ -43783,7 +43783,7 @@ templated overload. <i>-- end note</i>]</del>
 </blockquote>
 
 <p><i>[
-Note this wording incorporates resolutions for 806<a href="lwg-defects.html#806">806</a> (New) and 673<a href="lwg-defects.html#673">673</a> (Ready).
+Note this wording incorporates resolutions for <a href="lwg-defects.html#806">806</a> (New) and <a href="lwg-defects.html#673">673</a> (Ready).
 ]</i></p>
 
 
@@ -44092,7 +44092,7 @@ creates a new copy each time it is called.
        <p>
 
 The fix for
-issue 581<a href="lwg-defects.html#581">581</a>,
+issue <a href="lwg-defects.html#581">581</a>,
 now integrated into the working paper, overlooks a couple of minor
 problems.
 
@@ -44209,7 +44209,7 @@ Move back to Open.
 
 <blockquote>
 This proposed wording is written to match the outcome
-of 397<a href="lwg-closed.html#397">397</a>.
+of <a href="lwg-closed.html#397">397</a>.
 </blockquote>
 
 <p><i>[
@@ -44219,7 +44219,7 @@ of 397<a href="lwg-closed.html#397">397</a>.
 
 <blockquote>
 Move to Open. Martin to propose updated wording that will also resolve
-issue 397<a href="lwg-closed.html#397">397</a> consistently.
+issue <a href="lwg-closed.html#397">397</a> consistently.
 </blockquote>
 
 <p><i>[
@@ -44434,7 +44434,7 @@ From message c++std-lib-20003...
 The description of <code>istream_iterator</code> in
 24.6.1 [istream.iterator], p1 specifies that objects of the
 class become the <i>end-of-stream</i> (EOS) iterators under the
-following condition (see also issue 788<a href="lwg-defects.html#788">788</a> another problem
+following condition (see also issue <a href="lwg-defects.html#788">788</a> another problem
 with this paragraph):
 
    </p>
@@ -44796,7 +44796,7 @@ Sophia Antipolis:
 <p>
 Since <tt>int</tt> promotes to <tt>double</tt>, and C99 doesn't have an <tt>int</tt>-based
 overload for <tt>pow</tt>, the C99 result is <tt>complex&lt;double&gt;</tt>, see also C99
-7.22, see also library issue 550<a href="lwg-defects.html#550">550</a>.
+7.22, see also library issue <a href="lwg-defects.html#550">550</a>.
 </p>
 <p>
 Special note: ask P.J. Plauger.
@@ -45081,7 +45081,7 @@ I take it  as saying that this paragraph has *no* implication on
 <tt>std::basic_string</tt>, as <tt>basic_string</tt> isn't defined in Clause 23 and
 this paragraph does not define a *requirement* of Sequence
 nor Reversible Container, just of the models defined in Clause 23.
-In addition, LWG Issue 718<a href="lwg-closed.html#718">718</a> proposes to remove 23.2 [container.requirements], para 3.
+In addition, LWG Issue <a href="lwg-closed.html#718">718</a> proposes to remove 23.2 [container.requirements], para 3.
 </p>
 
 <p>
@@ -45209,7 +45209,7 @@ Modify the last sentence of 20.8.15 [unord.hash]/1 to end with:
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Issue 755<a href="lwg-defects.html#755">755</a> added a <tt>shrink_to_fit</tt> function to <tt>std::vector</tt> and <tt>std::string</tt>.
+Issue <a href="lwg-defects.html#755">755</a> added a <tt>shrink_to_fit</tt> function to <tt>std::vector</tt> and <tt>std::string</tt>.
 It did not yet deal with <tt>std::deque</tt>, because of the fundamental
 difference between <tt>std::deque</tt> and the other two container types. The
 need for <tt>std::deque</tt> may seem less evident, because one might think that
@@ -45309,7 +45309,7 @@ local_iterator begin(size_type n)<del> const</del>;
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Issue 396<a href="lwg-defects.html#396">396</a> adds defaulted arguments to the <tt>to_string</tt> member, but neglects to update
+Issue <a href="lwg-defects.html#396">396</a> adds defaulted arguments to the <tt>to_string</tt> member, but neglects to update
 the three newer <tt>to_string</tt> overloads.
 </p>
 
@@ -45346,7 +45346,7 @@ Recommend Tentatively Ready.
 </blockquote>
 
 <p><i>[
-2009-05-09:  See alternative solution in issue 1113<a href="lwg-defects.html#1113">1113</a>.
+2009-05-09:  See alternative solution in issue <a href="lwg-defects.html#1113">1113</a>.
 ]</i></p>
 
 
@@ -45799,7 +45799,7 @@ otherwise <tt>true</tt>.</del>
 </p>
 
 <p><i>[
-This part of the wording may conflict with 859<a href="lwg-defects.html#859">859</a> in detail, but does
+This part of the wording may conflict with <a href="lwg-defects.html#859">859</a> in detail, but does
 not do so in spirit.  If both issues are accepted, there is a logical merge.
 ]</i></p>
 
@@ -45942,7 +45942,7 @@ otherwise <tt>true</tt>.</del>
 </p>
 
 <p><i>[
-This part of the wording may conflict with 859<a href="lwg-defects.html#859">859</a> in detail, but does
+This part of the wording may conflict with <a href="lwg-defects.html#859">859</a> in detail, but does
 not do so in spirit.  If both issues are accepted, there is a logical merge.
 ]</i></p>
 
@@ -46117,7 +46117,7 @@ note</i>]
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
-<p>Related to 958<a href="lwg-closed.html#958">958</a>, 959<a href="lwg-closed.html#959">959</a>.</p>
+<p>Related to <a href="lwg-closed.html#958">958</a>, <a href="lwg-closed.html#959">959</a>.</p>
 
 <p>
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2661.html">N2661</a>
@@ -46224,7 +46224,7 @@ Move to Ready.
 </blockquote>
 
 <p><i>[
-2009-07-21 Beman added the requested wording changes to 962<a href="lwg-defects.html#962">962</a>.
+2009-07-21 Beman added the requested wording changes to <a href="lwg-defects.html#962">962</a>.
 ]</i></p>
 
 
@@ -46290,7 +46290,7 @@ duration specified by <tt>rel_time</tt> has elapsed, otherwise <tt>true</tt>.
 </p>
 
 <p><i>[
-This part of the wording may conflict with 857<a href="lwg-defects.html#857">857</a> in detail, but does
+This part of the wording may conflict with <a href="lwg-defects.html#857">857</a> in detail, but does
 not do so in spirit.  If both issues are accepted, there is a logical merge.
 ]</i></p>
 
@@ -47140,7 +47140,7 @@ Change the text in the Assertion/note column in the row for
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-In regard to library defect 488<a href="lwg-defects.html#488">488</a> I found some more algorithms which
+In regard to library defect <a href="lwg-defects.html#488">488</a> I found some more algorithms which
 unnecessarily throw away information. These are typically algorithms,
 which sequentially write into an <tt>OutputIterator</tt>, but do not return the
 final value of this output iterator. These cases are:
@@ -47275,9 +47275,9 @@ returns <tt>first</tt> for <tt>generate_n</tt>.</ins>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-LWG issue 402<a href="lwg-defects.html#402">402</a> replaced "<tt>new</tt>" with "<tt>::new</tt>" in the placement
+LWG issue <a href="lwg-defects.html#402">402</a> replaced "<tt>new</tt>" with "<tt>::new</tt>" in the placement
 new-expression in 20.9.5.1 [allocator.members]. I believe the rationale
-given in 402<a href="lwg-defects.html#402">402</a> applies also to the following other contexts:
+given in <a href="lwg-defects.html#402">402</a> applies also to the following other contexts:
 </p>
 <ul>
 <li>
@@ -47625,7 +47625,7 @@ or "Requires: <tt>T</tt> shall be a function object type [..]" in 20.8.14.2.5 [f
 <p>
 Finally I would like to add that part of the issue 870 discussion related to the
 requirements for typedefs in 20.8.4 [refwrap] during the Santa Cruz
-meeting is now handled by the new issue 1290<a href="lwg-active.html#1290">1290</a>.
+meeting is now handled by the new issue <a href="lwg-active.html#1290">1290</a>.
 </p>
 
 <p>
@@ -48008,7 +48008,7 @@ This has the same problem that <tt>reverse_iterator</tt>'s <tt>operator[]</tt> u
 have: if the underlying iterator's <tt>operator[]</tt> returns a proxy, the
 implicit conversion to <tt>value_type&amp;&amp;</tt> could end up referencing a temporary
 that has already been destroyed. This is essentially the same issue that
-we dealt with for <tt>reverse_iterator</tt> in DR 386<a href="lwg-defects.html#386">386</a>.
+we dealt with for <tt>reverse_iterator</tt> in DR <a href="lwg-defects.html#386">386</a>.
 </p>
 
 <p><i>[
@@ -48022,7 +48022,7 @@ we dealt with for <tt>reverse_iterator</tt> in DR 386<a href="lwg-defects.html#3
 
 
 <blockquote>
-I recommend closing this as  a duplicate of 1051<a href="lwg-closed.html#1051">1051</a> which addresses
+I recommend closing this as  a duplicate of <a href="lwg-closed.html#1051">1051</a> which addresses
 this issue for both <tt>move_iterator</tt> and <tt>reverse_iterator</tt>.
 </blockquote>
 
@@ -48032,8 +48032,8 @@ this issue for both <tt>move_iterator</tt> and <tt>reverse_iterator</tt>.
 
 
 <blockquote>
-Move to Ready. Note that if 1051<a href="lwg-closed.html#1051">1051</a> is reopened, it may yield a
-better resolution, but 1051<a href="lwg-closed.html#1051">1051</a> is currently marked NAD.
+Move to Ready. Note that if <a href="lwg-closed.html#1051">1051</a> is reopened, it may yield a
+better resolution, but <a href="lwg-closed.html#1051">1051</a> is currently marked NAD.
 </blockquote>
 
 
@@ -48139,7 +48139,7 @@ San Francisco:
 <blockquote>
 <p>
 We oppose part 1 of the issue but hope to address <tt>size()</tt> in
-issue 877<a href="lwg-closed.html#877">877</a>.
+issue <a href="lwg-closed.html#877">877</a>.
 </p>
 <p>
 We do not support part B. 4 of the issue because of the breaking API change.
@@ -48330,7 +48330,7 @@ dereferenceable
 <p><b>Discussion:</b></p>
 <p>
 We've changed <tt>shared_ptr&lt;Y&gt;</tt> to not convert to <tt>shared_ptr&lt;T&gt;</tt> when <tt>Y*</tt>
-doesn't convert to <tt>T*</tt> by resolving issue 687<a href="lwg-defects.html#687">687</a>. This only fixed the
+doesn't convert to <tt>T*</tt> by resolving issue <a href="lwg-defects.html#687">687</a>. This only fixed the
 converting copy constructor though.
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2351.htm">N2351</a>
 later added move support, and
@@ -48383,7 +48383,7 @@ unless <tt>Y*</tt> is convertible to <tt>T*</tt>.
 </blockquote>
 
 <p>
-in order to actually make the example in 687<a href="lwg-defects.html#687">687</a> compile
+in order to actually make the example in <a href="lwg-defects.html#687">687</a> compile
 (it now resolves to the move constructor).
 </p>
 
@@ -48729,7 +48729,7 @@ San Francisco:
 Would be NAD if better ctors fixed it.
 </p>
 <p>
-Related to 811<a href="lwg-defects.html#811">811</a>.
+Related to <a href="lwg-defects.html#811">811</a>.
 </p>
 </blockquote>
 
@@ -48749,7 +48749,7 @@ Possibly NAD Editorial, solved by
 
 
 <blockquote>
-Issue 885<a href="lwg-defects.html#885">885</a> was something I reported while reviewing the library concepts
+Issue <a href="lwg-defects.html#885">885</a> was something I reported while reviewing the library concepts
 documents ahead of San Francisco.  The missing operator was added as part of
 the paper adopted at that meeting
 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2770.pdf">N2770</a>)
@@ -48864,7 +48864,7 @@ Request resolution text from Alisdair.
 </p>
 
 <p>
-This issue relates to Issue 868<a href="lwg-active.html#868">868</a> default construction and value-initialization.
+This issue relates to Issue <a href="lwg-active.html#868">868</a> default construction and value-initialization.
 </p>
 </blockquote>
 
@@ -49022,7 +49022,7 @@ still suffer much the same problems.
 
 <p>
 The original plan was to eliminate these problems by applying the C++0x
-<tt>constexpr</tt> feature. See LWG issue 832<a href="lwg-closed.html#832">832</a>. However, that approach turned out
+<tt>constexpr</tt> feature. See LWG issue <a href="lwg-closed.html#832">832</a>. However, that approach turned out
 to be unimplementable, since it would require a <tt>constexpr</tt> object of a
 class with virtual functions, and that is not allowed by the core
 language.
@@ -49359,8 +49359,8 @@ Leave Open. Await decision for thread variadic constructor.
 
 
 <blockquote>
-See proposed wording for 929<a href="lwg-defects.html#929">929</a> for this, for the formulation
-on how to solve this.  929<a href="lwg-defects.html#929">929</a> modifies the thread constructor to
+See proposed wording for <a href="lwg-defects.html#929">929</a> for this, for the formulation
+on how to solve this.  <a href="lwg-defects.html#929">929</a> modifies the thread constructor to
 have "pass by value" behavior with pass by reference efficiency through the use
 of the <tt>decay</tt> trait.  This same formula would be useful for <tt>call_once</tt>.
 </blockquote>
@@ -49991,7 +49991,7 @@ deleter <tt>d</tt>, <tt>d(p)</tt> is called.
 <p><b>Discussion:</b></p>
 <p>
 It
-appears that we have an issue similar to issue 675<a href="lwg-defects.html#675">675</a> regarding the move-assignment of
+appears that we have an issue similar to issue <a href="lwg-defects.html#675">675</a> regarding the move-assignment of
 stream types. For example, when assigning to an <tt>std::ifstream</tt>,
 <tt>ifstream1</tt>, it seems preferable to close the file originally held by
 <tt>ifstream1</tt>:
@@ -50054,7 +50054,7 @@ Howard is going to write wording.
 
 <blockquote>
 Note: The proposed change of 27.9.1.3 [filebuf.assign]/1 depends on the
-resolution of LWG 1204<a href="lwg-defects.html#1204">1204</a>, which allows implementations to assume that
+resolution of LWG <a href="lwg-defects.html#1204">1204</a>, which allows implementations to assume that
 <tt>*this</tt> and <tt>rhs</tt> refer to different objects.
 </blockquote>
 
@@ -50064,7 +50064,7 @@ resolution of LWG 1204<a href="lwg-defects.html#1204">1204</a>, which allows imp
 
 
 <blockquote>
-Leave as Open.  Too closely related to 911<a href="lwg-defects.html#911">911</a> to move on at this time.
+Leave as Open.  Too closely related to <a href="lwg-defects.html#911">911</a> to move on at this time.
 </blockquote>
 
 <p><i>[
@@ -50353,7 +50353,7 @@ is invalid.
 </ol>
 
 <p>
-The problem became worse, because issue 720<a href="lwg-defects.html#720">720</a>
+The problem became worse, because issue <a href="lwg-defects.html#720">720</a>
 recently voted into WP argued that member <tt>test</tt> logically must be
 a <tt>constexpr</tt> function, because it was used to define the semantics
 of another <tt>constexpr</tt> function (the <tt>operator[]</tt> overload).
@@ -50372,7 +50372,7 @@ Proposed alternatives:
 <li>
 <p>
 Remove the <tt>constexpr</tt> specifier in front of <tt>operator[]</tt> overload and
-undo that of member <tt>test</tt> (assuming 720<a href="lwg-defects.html#720">720</a> is accepted) in both the
+undo that of member <tt>test</tt> (assuming <a href="lwg-defects.html#720">720</a> is accepted) in both the
 class declaration 20.5 [template.bitset]/1 and in the member description
 before 20.5.2 [bitset.members]/56 and before /64 to read:
 </p>
@@ -50406,7 +50406,7 @@ position</del> <ins>nothing</ins>.
 <p>
 Undo the addition of the <tt>constexpr</tt> specifier to the <tt>test</tt> member
 function in both class declaration 20.5 [template.bitset]/1 and in the
-member description before 20.5.2 [bitset.members]/56, assuming that 720<a href="lwg-defects.html#720">720</a>
+member description before 20.5.2 [bitset.members]/56, assuming that <a href="lwg-defects.html#720">720</a>
 was applied.
 </p>
 
@@ -50456,7 +50456,7 @@ Move to Tentatively Ready.
 <p>
 Undo the addition of the <tt>constexpr</tt> specifier to the <tt>test</tt> member
 function in both class declaration 20.5 [template.bitset]/1 and in the
-member description before 20.5.2 [bitset.members]/56, assuming that 720<a href="lwg-defects.html#720">720</a>
+member description before 20.5.2 [bitset.members]/56, assuming that <a href="lwg-defects.html#720">720</a>
 was applied.
 </p>
 
@@ -50781,7 +50781,7 @@ I've implemented this proposal and am living with it day to day.
 <blockquote>
 Leave Open.  Pablo expected to propose alternative wording which would rename
 move construction, move assignment and swap, and may or may not make them
-protected.  This will impact issue 900<a href="lwg-defects.html#900">900</a>.
+protected.  This will impact issue <a href="lwg-defects.html#900">900</a>.
 </blockquote>
 
 <p><i>[
@@ -50973,7 +50973,7 @@ Committee Draft has been issued.
 
 
 <blockquote>
-1230<a href="lwg-closed.html#1230">1230</a> has a similar proposed resolution
+<a href="lwg-closed.html#1230">1230</a> has a similar proposed resolution
 </blockquote>
 
 <p><i>[
@@ -51150,7 +51150,7 @@ Batavia (2009-05):
 <blockquote>
 Bill asks for additional discussion in the issue
 that spells out more details of the implementation.
-Howard points us to issue 948<a href="lwg-defects.html#948">948</a>
+Howard points us to issue <a href="lwg-defects.html#948">948</a>
 which has at least most of the requested details.
 Tom is strongly in favor of overflow-checking at compile time.
 Pete points out that there is no change of functionality implied.
@@ -51165,7 +51165,7 @@ to allow time to improve the discussion if needed.
 
 
 <blockquote>
-See 1121<a href="lwg-closed.html#1121">1121</a> for a potentially incompatible proposal.
+See <a href="lwg-closed.html#1121">1121</a> for a potentially incompatible proposal.
 </blockquote>
 
 <p><i>[
@@ -51594,7 +51594,7 @@ This is linked to
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2901.pdf">N2901</a>.
 </p>
 <p>
-Howard to open a separate issue to remove (1176<a href="lwg-closed.html#1176">1176</a>).
+Howard to open a separate issue to remove (<a href="lwg-closed.html#1176">1176</a>).
 </p>
 <p>
 In Frankfurt there is no consensus for removing the variadic constructor.
@@ -51607,7 +51607,7 @@ In Frankfurt there is no consensus for removing the variadic constructor.
 
 
 <blockquote>
-We want to move forward with this issue.  If we later take it out via 1176<a href="lwg-closed.html#1176">1176</a>
+We want to move forward with this issue.  If we later take it out via <a href="lwg-closed.html#1176">1176</a>
 then that's ok too.  Needs small group to improve wording.
 </blockquote>
 
@@ -51917,9 +51917,9 @@ formula.
 
 <blockquote>
 <p>
-Howard to open a separate issue (1177<a href="lwg-defects.html#1177">1177</a>) to handle the removal of member
+Howard to open a separate issue (<a href="lwg-defects.html#1177">1177</a>) to handle the removal of member
 functions from overload sets, provide wording, and possibly demonstrate
-how this can be implemented using enable_if (see 947<a href="lwg-closed.html#947">947</a>).
+how this can be implemented using enable_if (see <a href="lwg-closed.html#947">947</a>).
 </p>
 <p>
 Move to Ready.
@@ -52213,7 +52213,7 @@ forward(U&amp;&amp; t)
 </pre>
 
 <p><i>[
-The above code assumes acceptance of 1120<a href="lwg-closed.html#1120">1120</a> for the definition of
+The above code assumes acceptance of <a href="lwg-closed.html#1120">1120</a> for the definition of
 <tt>remove_all</tt>.  This is just to make the syntax a little more palatable.
 Without this trait the above is still very implementable.
 ]</i></p>
@@ -52227,7 +52227,7 @@ Paper with rationale is on the way ... <i>really</i>, I promise this time! ;-)
 </blockquote>
 
 <p><i>[
-2009-07-30 Daniel adds:  See 823<a href="lwg-closed.html#823">823</a> for an alternative resolution.
+2009-07-30 Daniel adds:  See <a href="lwg-closed.html#823">823</a> for an alternative resolution.
 ]</i></p>
 
 
@@ -52908,7 +52908,7 @@ Beman has volunteered to provide proposed wording.
 
 <p><i>[
 2009-07-21 Beman added wording to address 30.2.2 [thread.req.exception]
-in response to the Frankfurt notes in 859<a href="lwg-defects.html#859">859</a>.
+in response to the Frankfurt notes in <a href="lwg-defects.html#859">859</a>.
 ]</i></p>
 
 
@@ -53030,7 +53030,7 @@ paragraph 16, as indicated:</i></p>
 postcondition cannot be achieved</del> <ins>an exception is required (30.2.2 [thread.req.exception])</ins>.</p>
 </blockquote>
 
-<p><i>Assuming issue 859<a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
+<p><i>Assuming issue <a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
 applied to the working paper, change Change 30.5.1 [thread.condition.condvar] as 
 indicated:</i></p>
 <blockquote>
@@ -53043,7 +53043,7 @@ bool wait_for(unique_lock&lt;mutex&gt;&amp; lock,
 postcondition cannot be achieved</del> <ins>an exception is required ([thread.req.exception])</ins>.</p>
 </blockquote>
 
-<p><i>Assuming issue 859<a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
+<p><i>Assuming issue <a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
 applied to the working paper, change Change 30.5.1 [thread.condition.condvar] as 
 indicated:</i></p>
 <blockquote>
@@ -53057,7 +53057,7 @@ indicated:</i></p>
 postcondition cannot be achieved</del> <ins>an exception is required (30.2.2 [thread.req.exception])</ins>.</p>
 </blockquote>
 
-<p><i>Assuming issue 859<a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
+<p><i>Assuming issue <a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
 applied to the working paper, change 30.5.2 [thread.condition.condvarany] as 
 indicated:</i></p>
 <blockquote>
@@ -53069,7 +53069,7 @@ indicated:</i></p>
 postcondition cannot be achieved</del> <ins>an exception is required (30.2.2 [thread.req.exception])</ins>.</p>
 </blockquote>
 
-<p><i>Assuming issue 859<a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
+<p><i>Assuming issue <a href="lwg-defects.html#859">859</a>, Monotonic Clock is Conditionally Supported?, has been 
 applied to the working paper, change 30.5.2 [thread.condition.condvarany] as 
 indicated:</i></p>
 <blockquote>
@@ -53337,7 +53337,7 @@ Beman has volunteered to provide proposed wording.
 
 
 <blockquote>
-The proposed resolution assumes 962<a href="lwg-defects.html#962">962</a> has been accepted and
+The proposed resolution assumes <a href="lwg-defects.html#962">962</a> has been accepted and
 its proposed resolution applied to the working paper.
 </blockquote>
 
@@ -53622,7 +53622,7 @@ formula.
 
 
 <blockquote>
-Addressed by 1177<a href="lwg-defects.html#1177">1177</a>.
+Addressed by <a href="lwg-defects.html#1177">1177</a>.
 </blockquote>
 
 <p><i>[
@@ -53631,7 +53631,7 @@ Addressed by 1177<a href="lwg-defects.html#1177">1177</a>.
 
 
 <blockquote>
-Not completely addressed by 1177<a href="lwg-defects.html#1177">1177</a>.  Move to Ready.
+Not completely addressed by <a href="lwg-defects.html#1177">1177</a>.  Move to Ready.
 </blockquote>
 
 
@@ -53675,7 +53675,7 @@ construction could easily lead to confusion about the value of the
 <b>Addresses UK 206</b>
 
 <p>
-Related to 1114<a href="lwg-defects.html#1114">1114</a>.
+Related to <a href="lwg-defects.html#1114">1114</a>.
 </p>
 
 <p>
@@ -53989,7 +53989,7 @@ Bill would prefer to be conservative.
 </p>
 <p>
 Alisdair mentions that this issue may also be viewed as a subissue or
-duplicate of issue 1025<a href="lwg-closed.html#1025">1025</a>.
+duplicate of issue <a href="lwg-closed.html#1025">1025</a>.
 </p>
 <p>
 Move to Open, and recommend the issue be deferred until after the next
@@ -54080,7 +54080,7 @@ Ready.
 </blockquote>
 
 <p><i>[
-2010-01-31 Alisdair: related to 1245<a href="lwg-defects.html#1245">1245</a> and 1182<a href="lwg-defects.html#1182">1182</a>.
+2010-01-31 Alisdair: related to <a href="lwg-defects.html#1245">1245</a> and <a href="lwg-defects.html#1182">1182</a>.
 ]</i></p>
 
 
@@ -54908,7 +54908,7 @@ result in much less editorial re-work.
 
 
 <blockquote>
-This issue is related to 492<a href="lwg-closed.html#492">492</a>.
+This issue is related to <a href="lwg-closed.html#492">492</a>.
 </blockquote>
 
 <p><i>[
@@ -55076,7 +55076,7 @@ Alisdair adds:
 
 <blockquote>
 <p>
-The example providing the rationale for LWG 998<a href="lwg-defects.html#998">998</a> is poor, as it relies on
+The example providing the rationale for LWG <a href="lwg-defects.html#998">998</a> is poor, as it relies on
 broken semantics of having two object believing they are unique owners of a
 single resource.  It should not be surprising that UB results from such
 code, and I feel no need to go out of our way to support such behaviour.
@@ -55149,7 +55149,7 @@ expression. <i>-- end note</i>]</ins>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The same fix (reference 987<a href="lwg-defects.html#987">987</a>) may be applied to <tt>addressof</tt>, which is also constrained to
+The same fix (reference <a href="lwg-defects.html#987">987</a>) may be applied to <tt>addressof</tt>, which is also constrained to
 <tt>ObjectType</tt>. (That was why <tt>boost::ref</tt> didn't work with functions - it
 tried to apply <tt>boost::addressof</tt> and the <tt>reinterpret_cast&lt;char&amp;&gt;</tt>
 implementation of <tt>addressof</tt> failed.)
@@ -55571,7 +55571,7 @@ Agree with option i.
 </blockquote>
 
 <p>
-Related issue: 408<a href="lwg-closed.html#408">408</a>
+Related issue: <a href="lwg-closed.html#408">408</a>
 </p>
 
 <p><i>[
@@ -55580,7 +55580,7 @@ Batavia (2009-05):
 
 <blockquote>
 We believe this should be revisited
-in conjunction with issue 408<a href="lwg-closed.html#408">408</a>,
+in conjunction with issue <a href="lwg-closed.html#408">408</a>,
 which nearly duplicates this issue.
 Move to Open.
 </blockquote>
@@ -56061,7 +56061,7 @@ Batavia (2009-05):
 <blockquote>
 <p>
 Pete believes there may be some more general language (in frontmatter)
-that can address this and related issues such as 962<a href="lwg-defects.html#962">962</a>.
+that can address this and related issues such as <a href="lwg-defects.html#962">962</a>.
 </p>
 <p>
 Move to Open.
@@ -57007,7 +57007,7 @@ In the proposed wording I've gotten lazy and just used the pass-by-value signatu
 
 
 <blockquote>
-1024<a href="lwg-closed.html#1024">1024</a> modifies the second removed constructor.
+<a href="lwg-closed.html#1024">1024</a> modifies the second removed constructor.
 </blockquote>
 
 <p><i>[
@@ -58803,7 +58803,7 @@ usages a similar terminology.
 </p>
 
 <p>
-For similar wording need in case for auto_ptr see 973<a href="lwg-closed.html#973">973</a>.
+For similar wording need in case for auto_ptr see <a href="lwg-closed.html#973">973</a>.
 </p>
 
 <p><i>[
@@ -58864,7 +58864,7 @@ Change 25.2.4 [alg.foreach]/2 as indicated:
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-In 853<a href="lwg-defects.html#853">853</a> our resolution is changing the signature by adding two
+In <a href="lwg-defects.html#853">853</a> our resolution is changing the signature by adding two
 defaulting arguments to 3 calls.  In principle, this means that ABI breakage
 is not an issue, while API is preserved.
 </p>
@@ -58872,7 +58872,7 @@ is not an issue, while API is preserved.
 With that observation, it would be very nice to use the new ability to
 supply default template parameters to function templates to collapse all 3
 signatures into 1.  In that spirit, this issue offers an alternative resolution
-than that of 853<a href="lwg-defects.html#853">853</a>.
+than that of <a href="lwg-defects.html#853">853</a>.
 </p>
 
 <p><i>[
@@ -58881,7 +58881,7 @@ Batavia (2009-05):
 
 <blockquote>
 Move to Open,
-and look at the issue again after 853<a href="lwg-defects.html#853">853</a> has been accepted.
+and look at the issue again after <a href="lwg-defects.html#853">853</a> has been accepted.
 We further recommend this be deferred until after the next Committee Draft.
 </blockquote>
 
@@ -58948,7 +58948,7 @@ above 37)
 <p><b>Discussion:</b></p>
 
 <p>
-Related to 975<a href="lwg-defects.html#975">975</a> and 1023<a href="lwg-closed.html#1023">1023</a>.
+Related to <a href="lwg-defects.html#975">975</a> and <a href="lwg-closed.html#1023">1023</a>.
 </p>
 
 <p>
@@ -59248,7 +59248,7 @@ const.
 </p>
 
 <p><i>[
-The proposed wording is consistent with 110<a href="lwg-defects.html#110">110</a> with status TC1.
+The proposed wording is consistent with <a href="lwg-defects.html#110">110</a> with status TC1.
 ]</i></p>
 
 
@@ -60681,7 +60681,7 @@ required to use a monotonic clock because such a clock may be unavailable.
     is the correct one.</p>
 
 <p><i>[
-2009-11-11 Alisdair notes that this issue is very closely related to 1219<a href="lwg-closed.html#1219">1219</a>,
+2009-11-11 Alisdair notes that this issue is very closely related to <a href="lwg-closed.html#1219">1219</a>,
 if not a dup.
 ]</i></p>
 
@@ -60972,7 +60972,7 @@ be" convertible.
 
 <blockquote>
 I've updated the wording to match Pete's suggestion and included bullet 16
-from 1195<a href="lwg-defects.html#1195">1195</a>.
+from <a href="lwg-defects.html#1195">1195</a>.
 </blockquote>
 
 <p><i>[
@@ -61009,7 +61009,7 @@ I've updated the wording to match Jens' suggestion.
 
 <p><b>Proposed resolution:</b></p>
 <p><i>[
-This proposed resolution addresses 947<a href="lwg-closed.html#947">947</a> and 974<a href="lwg-defects.html#974">974</a>. 
+This proposed resolution addresses <a href="lwg-closed.html#947">947</a> and <a href="lwg-defects.html#974">974</a>. 
 ]</i></p>
 
 
@@ -61232,7 +61232,7 @@ required.</del>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-See Frankfurt notes of 1001<a href="lwg-closed.html#1001">1001</a>.
+See Frankfurt notes of <a href="lwg-closed.html#1001">1001</a>.
 </p>
 
 
@@ -61484,19 +61484,19 @@ containers (23.7 [unord]).
 </li>
 
 <li>
-Issue 889<a href="lwg-closed.html#889">889</a> independently suggests moving the specialization
+Issue <a href="lwg-closed.html#889">889</a> independently suggests moving the specialization
 <tt>std::hash&lt;std::thread::id&gt;</tt> to header <tt>&lt;thread&gt;</tt>.
 </li>
 </ul>
 
 <p><i>[
 2009-11-13 Alisdair adopts Daniel's suggestion and the extended note from
-889<a href="lwg-closed.html#889">889</a>.
+<a href="lwg-closed.html#889">889</a>.
 ]</i></p>
 
 
 <p><i>[
-2010-01-31 Alisdair: related to 1245<a href="lwg-defects.html#1245">1245</a> and 978<a href="lwg-defects.html#978">978</a>.
+2010-01-31 Alisdair: related to <a href="lwg-defects.html#1245">1245</a> and <a href="lwg-defects.html#978">978</a>.
 ]</i></p>
 
 
@@ -61679,7 +61679,7 @@ class type, since class rvalues can have cv-qualified type (3.10 [basic.lval]/9)
 See the thread starting with c++std-lib-24568 for further discussion.  And
 here is a convenience link to the
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2069.html">original proposal</a>.
-Also see the closely related issue 705<a href="lwg-defects.html#705">705</a>.
+Also see the closely related issue <a href="lwg-defects.html#705">705</a>.
 </blockquote>
 
 <p><i>[
@@ -62239,8 +62239,8 @@ Move to Ready.
 <p><i>[
 This resolution includes a semi-editorial clean up, giving definitions to members
 which in some cases weren't defined since C++98.
-This resolution also offers editorially different wording for 976<a href="lwg-closed.html#976">976</a>,
-and it also provides wording for 1196<a href="lwg-closed.html#1196">1196</a>.
+This resolution also offers editorially different wording for <a href="lwg-closed.html#976">976</a>,
+and it also provides wording for <a href="lwg-closed.html#1196">1196</a>.
 ]</i></p>
 
 
@@ -62931,7 +62931,7 @@ ill-formed.</ins>
 <li>
 <p>
 Change 20.9.10.2.1 [unique.ptr.single.ctor] as indicated: <i>[Note: This
-editorially improves the currently suggested wording of 932<a href="lwg-closed.html#932">932</a> by
+editorially improves the currently suggested wording of <a href="lwg-closed.html#932">932</a> by
 replacing</i>
 </p>
 <blockquote>
@@ -62965,7 +62965,7 @@ ill-formed.
 <li>
 <p>
 Change 20.9.10.2.1 [unique.ptr.single.ctor]/8 as indicated: <i>[Note: This
-editorially improves the currently suggested wording of 932<a href="lwg-closed.html#932">932</a> by
+editorially improves the currently suggested wording of <a href="lwg-closed.html#932">932</a> by
 replacing</i>
 </p>
 <blockquote>
@@ -63010,7 +63010,7 @@ constructor of this pair. [..]
 </li>
 
 <li>
-20.9.10.2.1 [unique.ptr.single.ctor]/20: Solved by 950<a href="lwg-closed.html#950">950</a>.
+20.9.10.2.1 [unique.ptr.single.ctor]/20: Solved by <a href="lwg-closed.html#950">950</a>.
 </li>
 
 <li>
@@ -63069,15 +63069,15 @@ positive, <del>diagnostic required</del> <ins>the program is ill-formed</ins>.
 </li>
 
 <li>
-20.11.3.1 [time.duration.cons]/1+4: Apply 1177<a href="lwg-defects.html#1177">1177</a>
+20.11.3.1 [time.duration.cons]/1+4: Apply <a href="lwg-defects.html#1177">1177</a>
 </li>
 
 <li>
-20.11.3.5 [time.duration.nonmember]/4+6+8+11: Apply 1177<a href="lwg-defects.html#1177">1177</a>
+20.11.3.5 [time.duration.nonmember]/4+6+8+11: Apply <a href="lwg-defects.html#1177">1177</a>
 </li>
 
 <li>
-20.11.3.7 [time.duration.cast]/1: Apply 1177<a href="lwg-defects.html#1177">1177</a>
+20.11.3.7 [time.duration.cast]/1: Apply <a href="lwg-defects.html#1177">1177</a>
 </li>
 
 <li>
@@ -63092,11 +63092,11 @@ instance of <tt>duration</tt><ins>, the program is ill-formed</ins>.
 </li>
 
 <li>
-20.11.4.1 [time.point.cons]/3: Apply 1177<a href="lwg-defects.html#1177">1177</a>
+20.11.4.1 [time.point.cons]/3: Apply <a href="lwg-defects.html#1177">1177</a>
 </li>
 
 <li>
-20.11.4.7 [time.point.cast]/1: Apply 1177<a href="lwg-defects.html#1177">1177</a>
+20.11.4.7 [time.point.cast]/1: Apply <a href="lwg-defects.html#1177">1177</a>
 </li>
 
 </ol>
@@ -63343,7 +63343,7 @@ user of a container adaptor can always specify the allocator for his adaptor.
 <p><b>Proposed resolution:</b></p>
 <p><i>[
 This resolution has been harmonized with the proposed resolution to issue
-1194<a href="lwg-defects.html#1194">1194</a>
+<a href="lwg-defects.html#1194">1194</a>
 ]</i></p>
 
 
@@ -63380,7 +63380,7 @@ public:
 
 <p>
 To the new section 23.5.1.2 [queue.cons], introduced
-in 1194<a href="lwg-defects.html#1194">1194</a>, add:
+in <a href="lwg-defects.html#1194">1194</a>, add:
 </p>
 
 <blockquote>
@@ -63493,7 +63493,7 @@ public:
 
 <p>
 To the new section 23.5.3.2 [stack.cons], introduced
-in 1194<a href="lwg-defects.html#1194">1194</a>, add:
+in <a href="lwg-defects.html#1194">1194</a>, add:
 </p>
 
 <blockquote>
@@ -63621,7 +63621,7 @@ copy assignment operators.
 
 <blockquote>
 Note: This resolution supports the change of 27.9.1.3 [filebuf.assign]/1,
-proposed by LWG 900<a href="lwg-defects.html#900">900</a>.
+proposed by LWG <a href="lwg-defects.html#900">900</a>.
 </blockquote>
 
 <p><i>[
@@ -64285,7 +64285,7 @@ should be moveable.
 
 <p>
 As far as I can tell, this isn't tracked by an active issue yet; Library
-Issue 723<a href="lwg-defects.html#723">723</a> doesn't talk about <tt>match_results</tt>.
+Issue <a href="lwg-defects.html#723">723</a> doesn't talk about <tt>match_results</tt>.
 </p>
 
 <p><i>[
@@ -64394,7 +64394,7 @@ a valid but unspecified state.</ins>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-LWG 1066<a href="lwg-defects.html#1066">1066</a> adds <tt>[[noreturn]]</tt> to a bunch of things.
+LWG <a href="lwg-defects.html#1066">1066</a> adds <tt>[[noreturn]]</tt> to a bunch of things.
 It doesn't add it to <tt>rethrow_nested()</tt>, which seems like an obvious
 candidate. I've made the changes indicated in the issue, and haven't
 changed <tt>rethrow_nested()</tt>.
@@ -64682,7 +64682,7 @@ p8 and p13.
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The resolutions to some library defect reports, like 1178<a href="lwg-defects.html#1178">1178</a>
+The resolutions to some library defect reports, like <a href="lwg-defects.html#1178">1178</a>
 requires that <tt>#includes</tt> in each synopsis should be taken
 literally. This means that the <tt>&lt;bitset&gt;</tt> header now
 <em>must</em> include <tt>&lt;stdexcept&gt;</tt>, even though none of the
@@ -64852,7 +64852,7 @@ error_code(ErrorCodeEnum e);
 
 <p>
 As currently specified, the function signatures are so unreadable,
-that errors quite easily happen, see e.g. 1229<a href="lwg-closed.html#1229">1229</a>.
+that errors quite easily happen, see e.g. <a href="lwg-closed.html#1229">1229</a>.
 </p>
 </li>
 
@@ -64915,7 +64915,7 @@ Moved to Ready.
 
 <p><b>Proposed resolution:</b></p>
 <p><i>[
-Should this resolution be accepted, I recommend to resolve 1229<a href="lwg-closed.html#1229">1229</a> as NAD
+Should this resolution be accepted, I recommend to resolve <a href="lwg-closed.html#1229">1229</a> as NAD
 ]</i></p>
 
 
@@ -65099,7 +65099,7 @@ Note that EqualityComparable implied an equivalence relation.
 <p><i>[
 N.B. <tt>adjacent_find</tt> was also specified to require
 <tt>EquivalenceRelation</tt>, but that was considered as a defect in
-concepts, see 1000<a href="lwg-closed.html#1000">1000</a>
+concepts, see <a href="lwg-closed.html#1000">1000</a>
 ]</i></p>
 
 
@@ -65225,7 +65225,7 @@ Some users feel that mandating the inheritance is overly constraining.
 </blockquote>
 
 <p><i>[
-2010-01-31 Alisdair: related to 978<a href="lwg-defects.html#978">978</a> and 1182<a href="lwg-defects.html#1182">1182</a>.
+2010-01-31 Alisdair: related to <a href="lwg-defects.html#978">978</a> and <a href="lwg-defects.html#1182">1182</a>.
 ]</i></p>
 
 
@@ -65385,7 +65385,7 @@ parameter. <i>&mdash; end note</i>]</ins></p>
 <p><b>Discussion:</b></p>
 <p>
 This issue is extracted as the ongoing point-of-interest from earlier
-issue 463<a href="lwg-closed.html#463">463</a>.
+issue <a href="lwg-closed.html#463">463</a>.
 </p>
 
 <p>
@@ -65472,7 +65472,7 @@ namespace std {
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Issue 1227<a href="lwg-defects.html#1227">1227</a> &mdash; <tt>&lt;bitset&gt;</tt> synopsis overspecified makes the observation
+Issue <a href="lwg-defects.html#1227">1227</a> &mdash; <tt>&lt;bitset&gt;</tt> synopsis overspecified makes the observation
 that <tt>std::bitset</tt>, and in fact the whole library, may be implemented
 without needing to <tt>#include &lt;stdexcept&gt;</tt> in any library header. The
 proposed resolution removes the <tt>#include &lt;stdexcept&gt;</tt> directive from
@@ -65811,7 +65811,7 @@ public:</del>
 <li>
 <p>
 Change X [func.ret]/1 as indicated
-[<i>This part solves some main aspects of issue 1225<a href="lwg-closed.html#1225">1225</a></i>]:
+[<i>This part solves some main aspects of issue <a href="lwg-closed.html#1225">1225</a></i>]:
 </p>
 
 <blockquote><pre>
@@ -65852,7 +65852,7 @@ type, and rvalues otherwise.</del>
 <p>
 Additional to the necessary cleanup of the description of the the
 <tt>weak_ptr</tt> component from 20.9.11.3 [util.smartptr.weak]
-described in 1231<a href="lwg-defects.html#1231">1231</a> it turns out that the currently deleted
+described in <a href="lwg-defects.html#1231">1231</a> it turns out that the currently deleted
 comparison functions of <tt>weak_ptr</tt> are not needed at all: There
 is no safe-bool conversion from <tt>weak_ptr</tt>, and it won't silently
 chose a conversion to <tt>shared_ptr</tt>.
@@ -66461,7 +66461,7 @@ although a more consistent form for type_traits would reformat this as a table.
 </p>
 
 <p>
-Following the acceptance of 1255<a href="lwg-defects.html#1255">1255</a>, <tt>result_of</tt> now
+Following the acceptance of <a href="lwg-defects.html#1255">1255</a>, <tt>result_of</tt> now
 depends on the <tt>declval</tt> function template, tentatively provided
 in <tt>&lt;utility&gt;</tt> which is <em>not</em> (yet) required of a
 free-standing implementation.
@@ -66518,7 +66518,7 @@ that in principle we should not change the tag, although this is a new tag for
 
 <p>
 This wording should obviously adopt any other changes currently in (Tentatively)
-Ready status that touch this wording, such as 1255<a href="lwg-defects.html#1255">1255</a>.
+Ready status that touch this wording, such as <a href="lwg-defects.html#1255">1255</a>.
 </p>
 
 </blockquote>
@@ -66695,7 +66695,7 @@ forward_list(forward_list&amp;&amp; x, const Allocator&amp;);
 <p>
 Note to other reviewers: I also checked the container adaptors for similar
 inconsistencies, but as far as I can see these are already handled by the
-current active issues 1194<a href="lwg-defects.html#1194">1194</a> and 1199<a href="lwg-defects.html#1199">1199</a>.
+current active issues <a href="lwg-defects.html#1194">1194</a> and <a href="lwg-defects.html#1199">1199</a>.
 </p>
 
 <p><i>[
@@ -66792,7 +66792,7 @@ copyable class (9 [class]).</ins>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-After applying LDR149<a href="lwg-defects.html#149">149</a>, <tt>forward_list</tt> now has 5
+After applying LDR<a href="lwg-defects.html#149">149</a>, <tt>forward_list</tt> now has 5
 overloads of <tt>insert_after</tt>, all returning an iterator.
 </p>
 
@@ -67034,7 +67034,7 @@ vector(initializer_list&lt;bool&gt;<ins>, const Allocator&amp; = Allocator()</in
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-LWG issue 402<a href="lwg-defects.html#402">402</a> added "<tt>::</tt>" to the call to <tt>new</tt>
+LWG issue <a href="lwg-defects.html#402">402</a> added "<tt>::</tt>" to the call to <tt>new</tt>
 within <tt>allocator::construct</tt>.  I suspect we want to retain that fix.
 </p>
 
@@ -67254,8 +67254,8 @@ The same issues apply to <tt>function::assign</tt>.
 </p>
 
 <p>
-N.B. this issue is not related to 1287<a href="lwg-defects.html#1287">1287</a> and applies whether that
-issue is resolved or not. The wording below assumes the resolution of LWG 1258<a href="lwg-closed.html#1258">1258</a> has been applied.
+N.B. this issue is not related to <a href="lwg-defects.html#1287">1287</a> and applies whether that
+issue is resolved or not. The wording below assumes the resolution of LWG <a href="lwg-closed.html#1258">1258</a> has been applied.
 </p>
 
 <p><i>[
@@ -67264,7 +67264,7 @@ issue is resolved or not. The wording below assumes the resolution of LWG 1258<a
 
 
 <p><i>[
-201002-11 Opened by Alisdair for the purpose of merging 1258<a href="lwg-closed.html#1258">1258</a> into
+201002-11 Opened by Alisdair for the purpose of merging <a href="lwg-closed.html#1258">1258</a> into
 this issue as there is a minor conflict.
 ]</i></p>
 
@@ -67637,7 +67637,7 @@ output/forward iterator requirements)..
 
 
 <p><i>[
-2010-02-10 Reopened. The proposed wording of 1283<a href="lwg-closed.html#1283">1283</a> has been
+2010-02-10 Reopened. The proposed wording of <a href="lwg-closed.html#1283">1283</a> has been
 merged here.
 ]</i></p>
 
