@@ -715,7 +715,7 @@ void format(std::vector<issue> & issues, issue & is) {
                   r.clear();
                }
                else {
-                  r += make_ref_string(*n);
+                  r = make_ref_string(*n);
                }
 
                j -= i - 1;
