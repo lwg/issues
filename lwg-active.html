@@ -163,7 +163,7 @@ ownership of it.
 <li>Added the following 15 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#1522">1522</a>, <a href="lwg-active.html#2000">2000</a>, <a href="lwg-active.html#2001">2001</a>, <a href="lwg-active.html#2002">2002</a>, <a href="lwg-active.html#2003">2003</a>, <a href="lwg-active.html#2004">2004</a>, <a href="lwg-active.html#2005">2005</a>, <a href="lwg-active.html#2006">2006</a>, <a href="lwg-active.html#2007">2007</a>, <a href="lwg-active.html#2008">2008</a>, <a href="lwg-active.html#2009">2009</a>, <a href="lwg-active.html#2010">2010</a>, <a href="lwg-active.html#2011">2011</a>, <a href="lwg-active.html#2012">2012</a>.</li>
 <li>Changed the following 14 issues from Open to Dup: <a href="lwg-closed.html#1350">1350</a>, <a href="lwg-closed.html#1351">1351</a>, <a href="lwg-closed.html#1352">1352</a>, <a href="lwg-closed.html#1375">1375</a>, <a href="lwg-closed.html#1411">1411</a>, <a href="lwg-closed.html#1443">1443</a>, <a href="lwg-closed.html#1451">1451</a>, <a href="lwg-closed.html#1454">1454</a>, <a href="lwg-closed.html#1458">1458</a>, <a href="lwg-closed.html#1463">1463</a>, <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a>.</li>
 <li>Changed the following issue from New to Immediate: <a href="lwg-active.html#1294">1294</a>.</li>
-<li>Changed the following issue from Open to Immediate: <a href="lwg-active.html#1362">1362</a>.</li>
+<li>Changed the following 2 issues from Open to Immediate: <a href="lwg-active.html#1362">1362</a>, <a href="lwg-active.html#1370">1370</a>.</li>
 <li>Changed the following 6 issues from Open to NAD: <a href="lwg-closed.html#579">579</a>, <a href="lwg-closed.html#1359">1359</a>, <a href="lwg-closed.html#1361">1361</a>, <a href="lwg-closed.html#1373">1373</a>, <a href="lwg-closed.html#1376">1376</a>, <a href="lwg-closed.html#1398">1398</a>.</li>
 <li>Changed the following 2 issues from Tentatively NAD to NAD: <a href="lwg-closed.html#1190">1190</a>, <a href="lwg-closed.html#1200">1200</a>.</li>
 <li>Changed the following 8 issues from Open to NAD Editorial: <a href="lwg-closed.html#1327">1327</a>, <a href="lwg-closed.html#1355">1355</a>, <a href="lwg-closed.html#1356">1356</a>, <a href="lwg-closed.html#1377">1377</a>, <a href="lwg-closed.html#1390">1390</a>, <a href="lwg-closed.html#1391">1391</a>, <a href="lwg-closed.html#1393">1393</a>, <a href="lwg-closed.html#1395">1395</a>.</li>
@@ -10892,10 +10892,10 @@ Add the following to 18.8.5, [propogation]
 
 <hr>
 <h3><a name="1370"></a>1370. [FCD] <tt>throw_with_nested</tt> should not use perfect forwarding</h3>
-<p><b>Section:</b> 18.8.7 [except.nested] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+<p><b>Section:</b> 18.8.7 [except.nested] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#except.nested">issues</a> in [except.nested].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-84</b></p>
 <p>
@@ -10925,10 +10925,30 @@ requirements on <tt>T</tt> and the use of
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3144.html">n3144</a> would solve this issue.
 </blockquote>
 
+<p><i>[2010-11-10 Batavia: LWG accepts Howard's updated wording with
+corrected boo boos reported by Sebastian Gesemann and Pete Becker,
+which is approved for Immediate adoption this meeting.]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p> 
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3144.html">n3144</a>.
+<p><i>Change 18.8.7 nested_exception [except.nested] as indicated:</i></p>
+<blockquote>
+  <pre>[[noreturn]] template &lt;class T&gt; void throw_with_nested(T&amp;&amp; t);
+</pre>
+  <blockquote>
+    <p><ins>Let <tt>U</tt> be <tt>remove_reference&lt;T&gt;::type</tt> </ins></p>
+    <p>6 <i>Requires:</i> <tt><del>T</del> <ins>U</ins></tt> shall be <tt>
+    CopyConstructible</tt>. </p>
+    <p>7 <i>Throws:</i> If <tt><del>T</del> <ins>U</ins></tt> is a non-union 
+    class type not derived from <tt>nested_exception</tt>, an exception of 
+    unspecified type that is publicly derived from both <tt><del>T</del> <ins>U</ins></tt> 
+    and <tt>nested_exception</tt> <ins>and constructed from <tt>std::forward&lt;T&gt;(t)</tt></ins>, 
+    otherwise <ins>throws</ins> <tt><ins>std::forward&lt;T&gt;(</ins>t<ins>)</ins></tt>.
+    </p>
+  </blockquote>
+</blockquote>
 
 
 
