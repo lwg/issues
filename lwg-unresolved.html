@@ -2989,9 +2989,8 @@ core feature Move Special Member Functions (N3044).
 
 <hr>
 <h3><a name="1332"></a>1332. Let Hash objects throw!</h3>
-<p><b>Section:</b> 20.2.4 [hash.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-26 <b>Last modified:</b> 2010-11-10</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>Section:</b> 20.2.4 [hash.requirements] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-26 <b>Last modified:</b> 2010-11-11</p>
 <p><b>Discussion:</b></p>
 <p>
 The currently added Hash requirements demand in Table 40 &mdash; Hash
@@ -3137,7 +3136,7 @@ h(k2)</tt> is also true, where <tt>h</tt> is an object of type
 <li>
 <ins>satisfy the requirement that the expression <tt>h(k)</tt>, where <tt>h</tt>
 is an object of type <tt>hash&lt;Key&gt;</tt> and <tt>k</tt> is an object of
-type <tt>Key</tt>, shall not throw an expression, unless
+type <tt>Key</tt>, shall not throw an exception, unless
 <tt>hash&lt;Key&gt;</tt> is a user-defined specialization that depends on at
 least one user-defined type.</ins>
 </li>
@@ -3850,7 +3849,7 @@ undefined behavior.
 <hr>
 <h3><a name="1385"></a>1385. [FCD] <tt>tuple_cat</tt> should be a single variadic signature</h3>
 <p><b>Section:</b> 20.4.2.4 [tuple.creation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-07</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-11</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.creation">issues</a> in [tuple.creation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3999,10 +3998,12 @@ sequence of tuple elements of the result <tt>tuple</tt> object corresponding to 
 <tt>Args<sub><i>i</i></sub></tt>.
 </ins></blockquote></p>
 <p><blockquote><ins>
-11 <i>Returns</i>: A <tt>tuple</tt> object constructed by initializing all elements in <tt><i>e<sub>i</sub></i>...</tt>
-with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(tp<sub>i</sub>)</tt>, when <tt>Ti</tt> is deduced as an lvalue reference type 
-and with <tt>std::forward&lt;Aik&gt;(get&lt;<i>k<sub>i</sub></i>&gt;(tp<sub>i</sub>))</tt> otherwise, for each valid 
-<tt><i>k<sub>i</sub></i></tt> and each element group <tt><i>e<sub>i</sub></i></tt> in order. 
+11 <i>Returns</i>: A <tt>tuple</tt> object constructed by initializing
+all elements in <tt><i>e<sub>i</sub></i>...</tt>
+with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(std::forward&lt;Ti&gt;(tp<sub>i</sub>))...</tt>
+for each valid
+<tt><i>k<sub>i</sub></i></tt> and each element group
+<tt><i>e<sub>i</sub></i></tt> in order. 
 </ins></blockquote></p>
 <p><blockquote><ins>
 12 <i>Notes</i>: An implementation may also support additional types that support the <tt>tuple</tt>-like protocol in the 
@@ -5714,57 +5715,6 @@ state of <tt>*this</tt>. The completion of the invocation of the stored task and
 state <del>is</del> <ins>being</ins> set to ready. [ Note: <tt>operator()</tt> synchronizes and serializes with other functions through the
 associated asynchronous state. —end note ]</p>
 
-
-
-
-
-
-<hr>
-<h3><a name="1446"></a>1446. [FCD] Move and swap for I/O streams</h3>
-<p><b>Section:</b> 27.7 [iostream.format] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View all other</b> <a href="lwg-index.html#iostream.format">issues</a> in [iostream.format].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-138</b></p>
-
-For istreams and ostreams, the move-constructor does
-not move-construct, the move-assignment operator does
-not move-assign, and the swap function does not swap
-because these operations do not manage the <tt>rdbuf()</tt>
-pointer. Useful applications of these operations are
-prevented both by their incorrect semantics and because
-they are protected.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-In short: reverse the resolution of issue 900, then
-change the semantics to move and swap the
-<tt>rdbuf()</tt> pointer. Add a new protected constructor
-that takes an rvalue reference to a stream and a
-pointer to a streambuf, a new protected <tt>assign()</tt>
-operator that takes the same arguments, and a
-new protected <tt>partial_swap()</tt> function that doesn't
-swap <tt>rdbuf()</tt>.
-See Appendix 1 - Additional Details
-</p>
-
-<p><i>[
-2010-10-24 Daniel adds:
-]</i></p>
-
-
-<blockquote>
-Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3179.pdf">n3179</a> would solve this issue.
-</blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3179.pdf">n3179</a>.
 
 
 
