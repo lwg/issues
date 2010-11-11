@@ -3565,11 +3565,9 @@ sequence of tuple elements of the result <tt>tuple</tt> object corresponding to 
 </ins></blockquote></p>
 <p><blockquote><ins>
 11 <i>Returns</i>: A <tt>tuple</tt> object constructed by initializing
-all elements in <tt><i>e<sub>i</sub></i>...</tt>
-with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(std::forward&lt;Ti&gt;(tp<sub>i</sub>))...</tt>
-for each valid
-<tt><i>k<sub>i</sub></i></tt> and each element group
-<tt><i>e<sub>i</sub></i></tt> in order. 
+the <tt><i>k<sub>i</sub></i></tt><sup>th</sup> type element <tt>eik</tt> in <tt><i>e<sub>i</sub></i>...</tt>
+with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(std::forward&lt;Ti&gt;(tp<sub>i</sub>))</tt>
+for each valid <tt><i>k<sub>i</sub></i></tt> and each element group <tt><i>e<sub>i</sub></i></tt> in order. 
 </ins></blockquote></p>
 <p><blockquote><ins>
 12 <i>Notes</i>: An implementation may also support additional types that support the <tt>tuple</tt>-like protocol in the 
@@ -4778,46 +4776,6 @@ denote a range shall treat <tt>vector&lt;bool></tt> iterators as-if they were
 random access iterators, even though the <tt>reference</tt> type is not a
 true reference.<i>-- end note</i>]
 </blockquote>
-
-
-
-
-
-<hr>
-<h3><a name="1439"></a>1439. [FCD] Return from densities() functions?</h3>
-<p><b>Section:</b> 26.5.8.5.2 [rand.dist.samp.pconst] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.pconst">issues</a> in [rand.dist.samp.pconst].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-134</b></p>
-
-These two distributions have a member function called
-<tt>densities()</tt> which returns a <tt>vector&lt;double&gt;</tt>. The
-distribution is templated on <tt>RealType</tt>. The distribution
-also has another member called <tt>intervals()</tt> which returns
-a <tt>vector&lt;RealType&gt;</tt>. Why doesn't densities return
-<tt>vector&lt;RealType&gt;</tt> as well? If <tt>RealType</tt> is <tt>long double</tt>,
-the computed densities property isn't being computed to
-the precision the client desires. If <tt>RealType</tt> is <tt>float</tt>, the
-densities vector is taking up twice as much space as the client desires.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<blockquote>
-Change the piecewise constant and linear
-distributions to hold / return the densities in a
-<tt>vector&lt;result_type&gt;</tt>.
-<p/>
-If this is not done, at least correct 26.5.8.5.2 [rand.dist.samp.pconst] p. 13 which describes
-the return of densities as a <tt>vector&lt;result_type&gt;</tt>.
-</blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
 
 
 

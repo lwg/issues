@@ -165,7 +165,7 @@ ownership of it.
 <li>Added the following Pending NAD Editorial issue: <a href="lwg-closed.html#2002">2002</a>.</li>
 <li>Changed the following 14 issues from Open to Dup: <a href="lwg-closed.html#1350">1350</a>, <a href="lwg-closed.html#1351">1351</a>, <a href="lwg-closed.html#1352">1352</a>, <a href="lwg-closed.html#1375">1375</a>, <a href="lwg-closed.html#1411">1411</a>, <a href="lwg-closed.html#1443">1443</a>, <a href="lwg-closed.html#1451">1451</a>, <a href="lwg-closed.html#1454">1454</a>, <a href="lwg-closed.html#1458">1458</a>, <a href="lwg-closed.html#1463">1463</a>, <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a>.</li>
 <li>Changed the following issue from New to Immediate: <a href="lwg-active.html#1294">1294</a>.</li>
-<li>Changed the following 7 issues from Open to Immediate: <a href="lwg-active.html#1362">1362</a>, <a href="lwg-active.html#1370">1370</a>, <a href="lwg-active.html#1435">1435</a>, <a href="lwg-active.html#1436">1436</a>, <a href="lwg-active.html#1437">1437</a>, <a href="lwg-active.html#1438">1438</a>, <a href="lwg-active.html#1440">1440</a>.</li>
+<li>Changed the following 8 issues from Open to Immediate: <a href="lwg-active.html#1362">1362</a>, <a href="lwg-active.html#1370">1370</a>, <a href="lwg-active.html#1435">1435</a>, <a href="lwg-active.html#1436">1436</a>, <a href="lwg-active.html#1437">1437</a>, <a href="lwg-active.html#1438">1438</a>, <a href="lwg-active.html#1439">1439</a>, <a href="lwg-active.html#1440">1440</a>.</li>
 <li>Changed the following 6 issues from Open to NAD: <a href="lwg-closed.html#579">579</a>, <a href="lwg-closed.html#1359">1359</a>, <a href="lwg-closed.html#1361">1361</a>, <a href="lwg-closed.html#1373">1373</a>, <a href="lwg-closed.html#1376">1376</a>, <a href="lwg-closed.html#1398">1398</a>.</li>
 <li>Changed the following 2 issues from Tentatively NAD to NAD: <a href="lwg-closed.html#1190">1190</a>, <a href="lwg-closed.html#1200">1200</a>.</li>
 <li>Changed the following 8 issues from Open to NAD Editorial: <a href="lwg-closed.html#1327">1327</a>, <a href="lwg-closed.html#1355">1355</a>, <a href="lwg-closed.html#1356">1356</a>, <a href="lwg-closed.html#1377">1377</a>, <a href="lwg-closed.html#1390">1390</a>, <a href="lwg-closed.html#1391">1391</a>, <a href="lwg-closed.html#1393">1393</a>, <a href="lwg-closed.html#1395">1395</a>.</li>
@@ -9133,11 +9133,9 @@ sequence of tuple elements of the result <tt>tuple</tt> object corresponding to 
 </ins></blockquote></p>
 <p><blockquote><ins>
 11 <i>Returns</i>: A <tt>tuple</tt> object constructed by initializing
-all elements in <tt><i>e<sub>i</sub></i>...</tt>
-with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(std::forward&lt;Ti&gt;(tp<sub>i</sub>))...</tt>
-for each valid
-<tt><i>k<sub>i</sub></i></tt> and each element group
-<tt><i>e<sub>i</sub></i></tt> in order. 
+the <tt><i>k<sub>i</sub></i></tt><sup>th</sup> type element <tt>eik</tt> in <tt><i>e<sub>i</sub></i>...</tt>
+with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(std::forward&lt;Ti&gt;(tp<sub>i</sub>))</tt>
+for each valid <tt><i>k<sub>i</sub></i></tt> and each element group <tt><i>e<sub>i</sub></i></tt> in order. 
 </ins></blockquote></p>
 <p><blockquote><ins>
 12 <i>Notes</i>: An implementation may also support additional types that support the <tt>tuple</tt>-like protocol in the 
@@ -11085,11 +11083,11 @@ const Engine&amp; base() const <ins>noexcept</ins>;
 
 
 <hr>
-<h3><a name="1439"></a>1439. [FCD] Return from densities() functions?</h3>
-<p><b>Section:</b> 26.5.8.5.2 [rand.dist.samp.pconst] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+<h3><a name="1439"></a>1439. [FCD] Return from <tt>densities()</tt> functions?</h3>
+<p><b>Section:</b> 26.5.8.5.2 [rand.dist.samp.pconst] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-11</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.pconst">issues</a> in [rand.dist.samp.pconst].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-134</b></p>
 
@@ -11116,9 +11114,30 @@ If this is not done, at least correct 26.5.8.5.2 [rand.dist.samp.pconst] p. 13 w
 the return of densities as a <tt>vector&lt;result_type&gt;</tt>.
 </blockquote>
 
+<p><i>[
+Batavia 2010: After reviewing this issue, the working group concurred with the first of the 
+suggestions proposed by the NB comment: "Change the piecewise constant and linear distributions 
+to hold / return the densities in a vector. "
+]</i></p>
+
 
 
 <p><b>Proposed resolution:</b></p>
+<ol>
+<li>Change 26.5.8.5.2 [rand.dist.samp.pconst] p. 2, class template <tt>piecewise_constant_distribution</tt> synopsis
+and the prototype description 26.5.8.5.2 [rand.dist.samp.pconst] before p. 13 as indicated:
+<blockquote><pre>
+vector&lt;<del>double</del><ins>result_type</ins>&gt; densities() const;
+</pre></blockquote>
+</li>
+
+<li>Change 26.5.8.5.3 [rand.dist.samp.plinear] p. 2, class template <tt>piecewise_linear_distribution</tt> synopsis
+and the prototype description 26.5.8.5.3 [rand.dist.samp.plinear] before p. 13 as indicated:
+<blockquote><pre>
+vector&lt;<del>double</del><ins>result_type</ins>&gt; densities() const;
+</pre></blockquote>
+</li>
+</ol>
 
 
 
