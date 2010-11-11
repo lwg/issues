@@ -2633,6 +2633,53 @@ in any case and it contradicts the general principle of C++ to impose such a
 requirement for this kind of fundamental requirement.
 </p>
 
+<p><i>[
+2010-11-11 Daniel asks the working group whether they would prefer a replacement
+for the second bullet of the proposed resolution (a result of discussing this
+with Alberto) of the form:
+]</i></p>
+
+
+<p>
+Add to 20.8.15 [unord.hash]/1 a new bullet:
+</p>
+
+<blockquote>
+<p>
+1 The unordered associative containers defined in Clause 23.5 use
+specializations of the class template <tt>hash</tt>
+as the default hash function. For all object types <tt>Key</tt> for which there
+exists a specialization <tt>hash&lt;Key&gt;</tt>, the
+instantiation <tt>hash&lt;Key&gt;</tt> shall:
+</p>
+<ul>
+<li>
+satisfy the <tt>Hash</tt> requirements (20.2.4), with <tt>Key</tt> as the
+function call argument type, the <tt>DefaultConstructible</tt> requirements
+(33), the <tt>CopyAssignable</tt> requirements (37),
+</li>
+<li>
+be swappable (20.2.2) for lvalues,
+</li>
+<li>
+provide two nested types <tt>result_type</tt> and <tt>argument_type</tt> which
+shall be synonyms for <tt>size_t</tt> and <tt>Key</tt>, respectively,
+</li>
+<li>
+satisfy the requirement that if <tt>k1 == k2</tt> is true, <tt>h(k1) ==
+h(k2)</tt> is also true, where <tt>h</tt> is an object of type
+<tt>hash&lt;Key&gt;</tt> and <tt>k1</tt> and <tt>k2</tt> are objects of type
+<tt>Key</tt><ins>,</ins><del>.</del>
+</li>
+<li>
+<ins>satisfy the requirement <tt>noexcept(h(k)) == true</tt>, where <tt>h</tt> is an object
+of type <tt>hash&lt;Key&gt;</tt> and <tt>k</tt> is an object of type <tt>Key</tt>, unless 
+<tt>hash&lt;Key&gt;</tt> is a user-defined specialization that depends on at least one user-defined type.</ins>
+</li>
+</ul>
+</blockquote>
+
+
 
 <p><i>[Batavia: Closed as NAD Future, then reopened. See the wiki for Tuesday.]</i></p>
 
@@ -3038,33 +3085,6 @@ message c++std-lib-28958, and refined with help from Alisdair, Daniel, and Howar
 
 
 <hr>
-<h3><a name="1354"></a>1354. [FCD] The definition of deadlock excludes cases involving a single thread</h3>
-<p><b>Section:</b> 17.3.7 [defns.deadlock] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-52</b></p>
-<p>
-The definition of deadlock in 17.3.7 excludes cases
-involving a single thread making it incorrect.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment
-]</i></p>
-
-<p>
-The definition should be corrected.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1358"></a>1358. [FCD] Add <tt>&lt;chrono></tt> and <tt>&lt;ratio></tt> to
 freestanding implementations</h3>
 <p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
@@ -3234,39 +3254,6 @@ This issue is related to <a href="lwg-active.html#1365">1365</a>.
 
 <p><b>Proposed resolution:</b></p>
 See  <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3122.html">n3122</a>.
-
-
-
-
-
-<hr>
-<h3><a name="1368"></a>1368. [FCD] Thread safety of <tt>std::uncaught_exception()</tt></h3>
-<p><b>Section:</b> 18.8.5 [uncaught] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-73</b></p>
-<p>
-The thread safety <tt>std::uncaught_exception()</tt> and the
-result of the function when multiple threads throw
-exceptions at the same time are unspecified. To make the
-function safe to use in the presence of exceptions in
-multiple threads the specification needs to be updated.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment
-]</i></p>
-
-<p>
-Update this clause to support safe calls from
-multiple threads without placing synchronization
-requirements on the user.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
 
 
 
