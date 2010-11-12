@@ -2555,6 +2555,7 @@ core feature Move Special Member Functions (N3044).
 <h3><a name="1332"></a>1332. Let Hash objects throw!</h3>
 <p><b>Section:</b> 20.2.4 [hash.requirements] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-26 <b>Last modified:</b> 2010-11-11</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 The currently added Hash requirements demand in Table 40 &mdash; Hash
@@ -4763,6 +4764,103 @@ denote a range shall treat <tt>vector&lt;bool></tt> iterators as-if they were
 random access iterators, even though the <tt>reference</tt> type is not a
 true reference.<i>-- end note</i>]
 </blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1438"></a>1438. [FCD] No definition for <tt>base()</tt></h3>
+<p><b>Section:</b> 26.5.4.1 [rand.adapt.disc] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-12</p>
+<p><b>View all other</b> <a href="lwg-index.html#rand.adapt.disc">issues</a> in [rand.adapt.disc].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-126</b></p>
+
+Each adaptor has a member function called <tt>base()</tt> which has no definition.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+Give it the obvious definition.
+</blockquote>
+
+<p><i>[
+2010-11-03 Daniel comments and provides a proposed resolution:
+]</i></p>
+
+
+<p>The following proposal adds <tt>noexcept</tt> specifiers to the declarations of
+the <tt>base()</tt> functions as replacement for a &quot;<i>Throws</i>: Nothing&quot; element.
+</p>
+
+<p><i>[
+2010 Batavia: The working group reviewed this issue, and recommended to add the following to the Proposed Resolution.
+<ul><li>
+Append to paragraph 1 of [rand.req.adapt] (or at the Editor's discretion insert as a new paragraph following that paragraph): 
+The expression <tt>a.base()</tt> shall be valid and shall return a const reference to <tt>a</tt>'s base engine. 
+</li>
+</ul>
+After further review, the working group concurred with the Proposed Resolution.
+]</i></p>
+
+
+<p><i>[Batavia: waiting for WEB to review wording]</i></p>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>Change in [rand.adapt.disc]/3, class template <tt>discard_block_engine</tt> synopsis, the following declaration:
+<blockquote><pre>
+// <em>property functions</em>
+const Engine&amp; base() const <ins>noexcept</ins>;
+</pre></blockquote>
+</li>
+<li>Add the following new prototype description at the end of sub-clause [rand.adapt.disc]:
+<blockquote>
+<pre><ins>const Engine&amp; base() const noexcept;</ins>
+</pre>
+<blockquote>
+<ins>? <i>Returns</i>: <tt>e</tt>.</ins>
+</blockquote>
+</blockquote>
+</li>
+<li>Change in [rand.adapt.ibits]/4, class template <tt>independent_bits_engine</tt> synopsis, the following declaration:
+<blockquote><pre>
+// <em>property functions</em>
+const Engine&amp; base() const <ins>noexcept</ins>;
+</pre></blockquote>
+</li>
+<li>Add the following new prototype description at the end of sub-clause [rand.adapt.ibits]:
+<blockquote>
+<pre><ins>const Engine&amp; base() const noexcept;</ins>
+</pre>
+<blockquote>
+<ins>? <i>Returns</i>: <tt>e</tt>.</ins>
+</blockquote>
+</blockquote>
+</li>
+<li>Change in [rand.adapt.shuf]/3, class template <tt>shuffle_order_engine</tt> synopsis, the following declaration:
+<blockquote><pre>
+// <em>property functions</em>
+const Engine&amp; base() const <ins>noexcept</ins>;
+</pre></blockquote>
+</li>
+<li>Add the following new prototype description at the end of sub-clause [rand.adapt.shuf]:
+<blockquote>
+<pre><ins>const Engine&amp; base() const noexcept;</ins>
+</pre>
+<blockquote>
+<ins>? <i>Returns</i>: <tt>e</tt>.</ins>
+</blockquote>
+</blockquote>
+</li>
+</ol>
 
 
 
