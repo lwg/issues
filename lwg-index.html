@@ -100,31 +100,13 @@
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1331">1331</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="1331"></a></td>
-<td align="left">17 [library]<a name="library"</a></td>
-<td align="left">incorporate move special member functions into library</td>
-<td align="center"><font color="red">No</font></td>
-<td align="left"></td>
-<td align="center">2010-10-27</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#1346">1346</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1346"></a></td>
-<td align="left">17 [library]</td>
+<td align="left">17 [library]<a name="library"</a></td>
 <td align="left">[FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1352">1352</a></td>
 <td align="center">2010-11-07</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1353">1353</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1353"></a></td>
-<td align="left">17 [library]</td>
-<td align="left">[FCD] Clarify the state of a <i>moved-from</i> object</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1345">1345</a></td>
@@ -251,6 +233,24 @@
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1331">1331</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1331"></a></td>
+<td align="left">17 [library]</td>
+<td align="left">incorporate move special member functions into library</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1353">1353</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1353"></a></td>
+<td align="left">17 [library]</td>
+<td align="left">[FCD] Clarify the state of a <i>moved-from</i> object</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#343">343</a></td>
@@ -624,6 +624,15 @@ freestanding implementations</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1359">1359</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1359"></a></td>
+<td align="left">17.6.1.3 [compliance]</td>
+<td align="left">[FCD] Add <tt>&lt;tuple></tt> and <tt>&lt;utility></tt> to freestanding implementations</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#833">833</a></td>
 <td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="833"></a></td>
 <td align="left">17.6.1.3 [compliance]</td>
@@ -642,17 +651,8 @@ freestanding implementations</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1359">1359</a></td>
-<td align="left"><a href="lwg-active.html#NAD">Pending NAD</a><a name="1359"></a></td>
-<td align="left">17.6.1.3 [compliance]</td>
-<td align="left">[FCD] Add <tt>&lt;tuple></tt> and <tt>&lt;utility></tt> to freestanding implementations</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#1361">1361</a></td>
-<td align="left"><a href="lwg-active.html#NAD">Pending NAD</a><a name="1361"></a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1361"></a></td>
 <td align="left">17.6.2 [using]<a name="using"</a></td>
 <td align="left">[FCD] Does use of <tt>std::size_t</tt> in a header imply that typedef name is available to users?</td>
 <td align="center">Yes</td>
@@ -1834,6 +1834,15 @@ of moved-from state</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1376">1376</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1376"></a></td>
+<td align="left">20.2.5 [allocator.requirements]</td>
+<td align="left">[FCD] Allocator interface is not backward compatible</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#12">12</a></td>
 <td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="12"></a></td>
 <td align="left">20.2.5 [allocator.requirements]</td>
@@ -1879,15 +1888,6 @@ of moved-from state</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1376">1376</a></td>
-<td align="left"><a href="lwg-active.html#NAD">Pending NAD</a><a name="1376"></a></td>
-<td align="left">20.2.5 [allocator.requirements]</td>
-<td align="left">[FCD] Allocator interface is not backward compatible</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#1375">1375</a></td>
 <td align="left"><a href="lwg-active.html#Dup">Dup</a><a name="1375"></a></td>
 <td align="left">20.2.5 [allocator.requirements]</td>
@@ -1898,37 +1898,37 @@ allocator requirements</td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1255">1255</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1255"></a></td>
-<td align="left">20.3 [utility]<a name="utility"</a></td>
-<td align="left"><tt>declval</tt> should be added to the library</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-27</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#1289">1289</a></td>
-<td align="left"><a href="lwg-active.html#NAD Future">Pending NAD Future</a><a name="1289"></a></td>
-<td align="left">20.3 [utility]</td>
+<td align="left"><a href="lwg-active.html#NAD Future">NAD Future</a><a name="1289"></a></td>
+<td align="left">20.3 [utility]<a name="utility"</a></td>
 <td align="left">Generic casting requirements for smart pointers</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-12</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1373">1373</a></td>
-<td align="left"><a href="lwg-active.html#NAD">Pending NAD</a><a name="1373"></a></td>
+<td align="right"><a href="lwg-closed.html#1377">1377</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1377"></a></td>
 <td align="left">20.3 [utility]</td>
-<td align="left">[FCD] Customizable traits should have their own headers</td>
+<td align="left">[FCD] The revised <tt>forward</tt> is not compatible with access-control</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-12</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1377">1377</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1377"></a></td>
+<td align="right"><a href="lwg-defects.html#1255">1255</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1255"></a></td>
 <td align="left">20.3 [utility]</td>
-<td align="left">[FCD] The revised <tt>forward</tt> is not compatible with access-control</td>
+<td align="left"><tt>declval</tt> should be added to the library</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-10-27</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1373">1373</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1373"></a></td>
+<td align="left">20.3 [utility]</td>
+<td align="left">[FCD] Customizable traits should have their own headers</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-12</td>
@@ -1979,9 +1979,45 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1378">1378</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1378"></a></td>
+<td align="left">20.3.5 [pairs]<a name="pairs"</a></td>
+<td align="left">[FCD] <tt>pair</tt> and <tt>tuple</tt> have too many conversions</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1380">1380</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1380"></a></td>
+<td align="left">20.3.5 [pairs]</td>
+<td align="left">[FCD] <tt>pair</tt> and <tt>tuple</tt> of references need to better specify move-semantics</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1382">1382</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1382"></a></td>
+<td align="left">20.3.5 [pairs]</td>
+<td align="left">[FCD] <tt>pair</tt> and <tt>tuple</tt> constructors should <tt>forward</tt> arguments</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1383">1383</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1383"></a></td>
+<td align="left">20.3.5 [pairs]</td>
+<td align="left">[FCD] Inconsistent defaulted move/copy members in <tt>pair</tt> and <tt>tuple</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#353">353</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="353"></a></td>
-<td align="left">20.3.5 [pairs]<a name="pairs"</a></td>
+<td align="left">20.3.5 [pairs]</td>
 <td align="left"><tt>std::pair</tt> missing template assignment</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -2079,42 +2115,6 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1378">1378</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1378"></a></td>
-<td align="left">20.3.5 [pairs]</td>
-<td align="left">[FCD] <tt>pair</tt> and <tt>tuple</tt> have too many conversions</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1380">1380</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1380"></a></td>
-<td align="left">20.3.5 [pairs]</td>
-<td align="left">[FCD] <tt>pair</tt> and <tt>tuple</tt> of references need to better specify move-semantics</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1382">1382</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1382"></a></td>
-<td align="left">20.3.5 [pairs]</td>
-<td align="left">[FCD] <tt>pair</tt> and <tt>tuple</tt> constructors should <tt>forward</tt> arguments</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1383">1383</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1383"></a></td>
-<td align="left">20.3.5 [pairs]</td>
-<td align="left">[FCD] Inconsistent defaulted move/copy members in <tt>pair</tt> and <tt>tuple</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#348">348</a></td>
 <td align="left"><a href="lwg-active.html#Dup">Dup</a><a name="348"></a></td>
 <td align="left">20.3.5 [pairs]</td>
@@ -2125,30 +2125,30 @@ allocator requirements</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1324">1324</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1324"></a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1324"></a></td>
 <td align="left">20.3.5.2 [pairs.pair]<a name="pairs.pair"</a></td>
 <td align="left">Still too many implicit conversions for <tt>pair</tt> and  <tt>tuple</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-10</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1326">1326</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1326"></a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1326"></a></td>
 <td align="left">20.3.5.2 [pairs.pair]</td>
 <td align="left">Missing/wrong preconditions for <tt>pair</tt> and <tt>tuple</tt> functions</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-10</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1379">1379</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1379"></a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1379"></a></td>
 <td align="left">20.3.5.2 [pairs.pair]</td>
 <td align="left">[FCD] <tt>pair</tt> copy-assignment not consistent for references</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-10</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1061">1061</a></td>
@@ -2169,22 +2169,22 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#801">801</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="801"></a></td>
+<td align="left">20.4 [tuple]<a name="tuple"</a></td>
+<td align="left"><tt>tuple</tt> and <tt>pair</tt> trivial members</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#522">522</a></td>
 <td align="left"><a href="lwg-active.html#CD1">CD1</a><a name="522"></a></td>
-<td align="left">20.4 [tuple]<a name="tuple"</a></td>
+<td align="left">20.4 [tuple]</td>
 <td align="left">Tuple doesn't define swap</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#801">801</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="801"></a></td>
-<td align="left">20.4 [tuple]</td>
-<td align="left"><tt>tuple</tt> and <tt>pair</tt> trivial members</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1077">1077</a></td>
@@ -2520,9 +2520,18 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1281">1281</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1281"></a></td>
+<td align="left">20.6.1 [ratio.ratio]<a name="ratio.ratio"</a></td>
+<td align="left">CopyConstruction and Assignment between ratios having the same normalized form</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#1122">1122</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1122"></a></td>
-<td align="left">20.6.1 [ratio.ratio]<a name="ratio.ratio"</a></td>
+<td align="left">20.6.1 [ratio.ratio]</td>
 <td align="left">Ratio values should be constexpr</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -2545,15 +2554,6 @@ allocator requirements</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1281">1281</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1281"></a></td>
-<td align="left">20.6.1 [ratio.ratio]</td>
-<td align="left">CopyConstruction and Assignment between ratios having the same normalized form</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1389">1389</a></td>
@@ -2592,6 +2592,24 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1390">1390</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1390"></a></td>
+<td align="left">20.7 [meta]</td>
+<td align="left">[FCD] Limit speculative compilation for constructible/convertible traits</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1391">1391</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1391"></a></td>
+<td align="left">20.7 [meta]</td>
+<td align="left">[FCD] constructible/convertible traits and access control</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#590">590</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="590"></a></td>
 <td align="left">20.7 [meta]</td>
@@ -2628,24 +2646,6 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1390">1390</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1390"></a></td>
-<td align="left">20.7 [meta]</td>
-<td align="left">[FCD] Limit speculative compilation for constructible/convertible traits</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1391">1391</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1391"></a></td>
-<td align="left">20.7 [meta]</td>
-<td align="left">[FCD] constructible/convertible traits and access control</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1019">1019</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1019"></a></td>
 <td align="left">20.7.3 [meta.help]<a name="meta.help"</a></td>
@@ -2673,27 +2673,36 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1392">1392</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1392"></a></td>
+<td align="left">20.7.4 [meta.unary]<a name="meta.unary"</a></td>
+<td align="left">[FCD] <tt>result_of</tt> should support pointer-to-data-member</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#525">525</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="525"></a></td>
-<td align="left">20.7.4 [meta.unary]<a name="meta.unary"</a></td>
+<td align="left">20.7.4 [meta.unary]</td>
 <td align="left">type traits definitions not clear</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1392">1392</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1392"></a></td>
-<td align="left">20.7.4 [meta.unary]</td>
-<td align="left">[FCD] <tt>result_of</tt> should support pointer-to-data-member</td>
+<td align="right"><a href="lwg-closed.html#1393">1393</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1393"></a></td>
+<td align="left">20.7.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
+<td align="left">[FCD] Trivial traits imply noexcept</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-10</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1174">1174</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1174"></a></td>
-<td align="left">20.7.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
+<td align="left">20.7.4.3 [meta.unary.prop]</td>
 <td align="left">type property predicates</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -2781,15 +2790,6 @@ allocator requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1393">1393</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1393"></a></td>
-<td align="left">20.7.4.3 [meta.unary.prop]</td>
-<td align="left">[FCD] Trivial traits imply noexcept</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#1395">1395</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1395"></a></td>
 <td align="left">20.7.5 [meta.rel]<a name="meta.rel"</a></td>
@@ -2872,9 +2872,27 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1290">1290</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1290"></a></td>
+<td align="left">20.8 [function.objects]<a name="function.objects"</a></td>
+<td align="left">Don't require <tt>[u|bi]nary_function</tt> inheritance</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1397">1397</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1397"></a></td>
+<td align="left">20.8 [function.objects]</td>
+<td align="left">[FCD] Deprecate '98 binders</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#351">351</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="351"></a></td>
-<td align="left">20.8 [function.objects]<a name="function.objects"</a></td>
+<td align="left">20.8 [function.objects]</td>
 <td align="left">unary_negate and binary_negate: struct or class?</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -2909,30 +2927,12 @@ implicitly convertible, so explicit constructors are ignored.</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1398">1398</a></td>
-<td align="left"><a href="lwg-active.html#NAD">Pending NAD</a><a name="1398"></a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1398"></a></td>
 <td align="left">20.8 [function.objects]</td>
 <td align="left">[FCD] Users should be able to specialize functors without depending on whole <tt>&lt;functional&gt;</tt> header</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-12</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1290">1290</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1290"></a></td>
-<td align="left">20.8 [function.objects]</td>
-<td align="left">Don't require <tt>[u|bi]nary_function</tt> inheritance</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1397">1397</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1397"></a></td>
-<td align="left">20.8 [function.objects]</td>
-<td align="left">[FCD] Deprecate '98 binders</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1295">1295</a></td>
@@ -2989,13 +2989,13 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1279">1279</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1279"></a></td>
+<td align="right"><a href="lwg-active.html#1279">1279</a></td>
+<td align="left"><a href="lwg-active.html#Ready">Pending Ready</a><a name="1279"></a></td>
 <td align="left">20.8.3 [base]</td>
 <td align="left">forbid <tt>[u|bi]nary_function</tt> specialization</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-10</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#987">987</a></td>
@@ -3422,12 +3422,12 @@ implicitly convertible, so explicit constructors are ignored.</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1318">1318</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="1318"></a></td>
+<td align="left"><a href="lwg-active.html#Ready">Ready</a><a name="1318"></a></td>
 <td align="left">20.9.4.1 [allocator.traits.types]<a name="allocator.traits.types"</a></td>
 <td align="left">N2982 removes previous allocator capabilities</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1375">1375</a></td>
-<td align="center">2010-11-07</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1285">1285</a></td>
@@ -10633,13 +10633,40 @@ use <tt>allocator_traits</tt></td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1445">1445</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1445"></a></td>
+<td align="left">27.7 [iostream.format]<a name="iostream.format"</a></td>
+<td align="left">[FCD] Several iostreams member functions incorrectly specified</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1447">1447</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1447"></a></td>
+<td align="left">27.7 [iostream.format]</td>
+<td align="left">[FCD] Request to resolve issue LWG 1328</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#567">567</a></td>
 <td align="left"><a href="lwg-active.html#CD1">CD1</a><a name="567"></a></td>
-<td align="left">27.7 [iostream.format]<a name="iostream.format"</a></td>
+<td align="left">27.7 [iostream.format]</td>
 <td align="left">streambuf inserter and extractor should be unformatted</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1446">1446</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1446"></a></td>
+<td align="left">27.7 [iostream.format]</td>
+<td align="left">[FCD] Move and swap for I/O streams</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#309">309</a></td>
@@ -10659,33 +10686,6 @@ and <tt>setw()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1446">1446</a></td>
-<td align="left"><a href="lwg-active.html#NAD">Pending NAD</a><a name="1446"></a></td>
-<td align="left">27.7 [iostream.format]</td>
-<td align="left">[FCD] Move and swap for I/O streams</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1445">1445</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1445"></a></td>
-<td align="left">27.7 [iostream.format]</td>
-<td align="left">[FCD] Several iostreams member functions incorrectly specified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1447">1447</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1447"></a></td>
-<td align="left">27.7 [iostream.format]</td>
-<td align="left">[FCD] Request to resolve issue LWG 1328</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#911">911</a></td>
@@ -10715,9 +10715,18 @@ and <tt>setw()</tt></td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1328">1328</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1328"></a></td>
+<td align="left">27.7.1.1.3 [istream::sentry]<a name="istream::sentry"</a></td>
+<td align="left">istream extractors not setting failbit if eofbit is already set</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#419">419</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="419"></a></td>
-<td align="left">27.7.1.1.3 [istream::sentry]<a name="istream::sentry"</a></td>
+<td align="left">27.7.1.1.3 [istream::sentry]</td>
 <td align="left">istream extractors not setting failbit if eofbit is already set</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -10749,15 +10758,6 @@ and <tt>setw()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1328">1328</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1328"></a></td>
-<td align="left">27.7.1.1.3 [istream::sentry]</td>
-<td align="left">istream extractors not setting failbit if eofbit is already set</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-10</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#373">373</a></td>
@@ -11782,12 +11782,12 @@ and <tt>setw()</tt></td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#2002">2002</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="2002"></a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="2002"></a></td>
 <td align="left">28.10.7 [re.results.nonmember]<a name="re.results.nonmember"</a></td>
 <td align="left">Class template <tt>match_results</tt> does not specify the semantics of <tt>operator==</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-10</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#647">647</a></td>
@@ -12226,6 +12226,24 @@ and <tt>setw()</tt></td>
 <td align="center">2010-10-29</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1471">1471</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1471"></a></td>
+<td align="left">29.6 [atomics.types.operations]</td>
+<td align="left">[FCD] Default constructor of atomics needs specification</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1472">1472</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1472"></a></td>
+<td align="left">29.6 [atomics.types.operations]</td>
+<td align="left">[FCD] Incorrect semantics of <tt>atomic_init</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#864">864</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="864"></a></td>
 <td align="left">29.6 [atomics.types.operations]</td>
@@ -12260,24 +12278,6 @@ and <tt>setw()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1471">1471</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1471"></a></td>
-<td align="left">29.6 [atomics.types.operations]</td>
-<td align="left">[FCD] Default constructor of atomics needs specification</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1472">1472</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1472"></a></td>
-<td align="left">29.6 [atomics.types.operations]</td>
-<td align="left">[FCD] Incorrect semantics of <tt>atomic_init</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1476">1476</a></td>
@@ -12347,9 +12347,18 @@ and <tt>setw()</tt></td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1442">1442</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1442"></a></td>
+<td align="left">30 [thread]<a name="thread"</a></td>
+<td align="left">[FCD] "happens-before" should be "synchronizes-with"</td>
+<td align="center">Yes</td>
+<td align="left"><a href="lwg-closed.html#1443">1443</a></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1089">1089</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1089"></a></td>
-<td align="left">30 [thread]<a name="thread"</a></td>
+<td align="left">30 [thread]</td>
 <td align="left">Response to JP 76</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -12365,15 +12374,6 @@ and <tt>setw()</tt></td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1442">1442</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1442"></a></td>
-<td align="left">30 [thread]</td>
-<td align="left">[FCD] "happens-before" should be "synchronizes-with"</td>
-<td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1443">1443</a></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#1443">1443</a></td>
 <td align="left"><a href="lwg-active.html#Dup">Dup</a><a name="1443"></a></td>
 <td align="left">30 [thread]</td>
@@ -12384,12 +12384,12 @@ and <tt>setw()</tt></td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1481">1481</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1481"></a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1481"></a></td>
 <td align="left">30.2 [thread.req]<a name="thread.req"</a></td>
 <td align="left">[FCD] Missing Lockable requirements</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-11</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1108">1108</a></td>
@@ -12401,22 +12401,22 @@ and <tt>setw()</tt></td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1482">1482</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1482"></a></td>
+<td align="left">30.2.4 [thread.req.timing]<a name="thread.req.timing"</a></td>
+<td align="left">[FCD] Timeout operations are under-specified</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1158">1158</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1158"></a></td>
-<td align="left">30.2.4 [thread.req.timing]<a name="thread.req.timing"</a></td>
+<td align="left">30.2.4 [thread.req.timing]</td>
 <td align="left">Encouragement to use monotonic clock</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1482">1482</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1482"></a></td>
-<td align="left">30.2.4 [thread.req.timing]</td>
-<td align="left">[FCD] Timeout operations are under-specified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1483">1483</a></td>
@@ -12564,6 +12564,25 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1268">1268</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1268"></a></td>
+<td align="left">30.4 [thread.mutex]</td>
+<td align="left">The Mutex requirements in 30.4.1 and 30.4.2 are wrong</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1489">1489</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1489"></a></td>
+<td align="left">30.4 [thread.mutex]</td>
+<td align="left">[FCD] <tt>unlock</tt> functions and unlock
+mutex requirements are inconsistent</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1044">1044</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1044"></a></td>
 <td align="left">30.4 [thread.mutex]</td>
@@ -12571,25 +12590,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1268">1268</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1268"></a></td>
-<td align="left">30.4 [thread.mutex]</td>
-<td align="left">The Mutex requirements in 30.4.1 and 30.4.2 are wrong</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1489">1489</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1489"></a></td>
-<td align="left">30.4 [thread.mutex]</td>
-<td align="left">[FCD] <tt>unlock</tt> functions and unlock
-mutex requirements are inconsistent</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1493">1493</a></td>
@@ -12617,6 +12617,33 @@ mutex requirements are inconsistent</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#936">936</a></td>
 <td align="center">2010-10-27</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1490">1490</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1490"></a></td>
+<td align="left">30.4.1 [thread.mutex.requirements]</td>
+<td align="left">[FCD] Mutex requirements too stringent</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1491">1491</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1491"></a></td>
+<td align="left">30.4.1 [thread.mutex.requirements]</td>
+<td align="left">[FCD] <tt>try_lock</tt> does not guarantee forward progress</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1492">1492</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1492"></a></td>
+<td align="left">30.4.1 [thread.mutex.requirements]</td>
+<td align="left">[FCD] Mutex requirements should not be bound to threads</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#960">960</a></td>
@@ -12653,33 +12680,6 @@ mutex requirements are inconsistent</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1490">1490</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1490"></a></td>
-<td align="left">30.4.1 [thread.mutex.requirements]</td>
-<td align="left">[FCD] Mutex requirements too stringent</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1491">1491</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1491"></a></td>
-<td align="left">30.4.1 [thread.mutex.requirements]</td>
-<td align="left">[FCD] <tt>try_lock</tt> does not guarantee forward progress</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1492">1492</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1492"></a></td>
-<td align="left">30.4.1 [thread.mutex.requirements]</td>
-<td align="left">[FCD] Mutex requirements should not be bound to threads</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#828">828</a></td>
@@ -12799,6 +12799,15 @@ mutex requirements are inconsistent</td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1495">1495</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1495"></a></td>
+<td align="left">30.5 [thread.condition]</td>
+<td align="left">[FCD] Condition variable <tt>wait_for</tt> return insufficient</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#859">859</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="859"></a></td>
 <td align="left">30.5 [thread.condition]</td>
@@ -12826,15 +12835,6 @@ mutex requirements are inconsistent</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1495">1495</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1495"></a></td>
-<td align="left">30.5 [thread.condition]</td>
-<td align="left">[FCD] Condition variable <tt>wait_for</tt> return insufficient</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#966">966</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="966"></a></td>
 <td align="left">30.5.1 [thread.condition.condvar]<a name="thread.condition.condvar"</a></td>
@@ -12842,6 +12842,15 @@ mutex requirements are inconsistent</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1496">1496</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1496"></a></td>
+<td align="left">30.5.1 [thread.condition.condvar]</td>
+<td align="left">[FCD] <tt>condition_variable</tt> not implementable</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#958">958</a></td>
@@ -12896,15 +12905,6 @@ mutex requirements are inconsistent</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1496">1496</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1496"></a></td>
-<td align="left">30.5.1 [thread.condition.condvar]</td>
-<td align="left">[FCD] <tt>condition_variable</tt> not implementable</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#964">964</a></td>
@@ -12971,6 +12971,15 @@ state has problems</td>
 <td align="center">2010-11-04</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1513">1513</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1513"></a></td>
+<td align="left">30.6 [futures]</td>
+<td align="left">[FCD] 'launch' enum too restrictive</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#1046">1046</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1046"></a></td>
 <td align="left">30.6 [futures]</td>
@@ -12996,15 +13005,6 @@ state has problems</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1513">1513</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1513"></a></td>
-<td align="left">30.6 [futures]</td>
-<td align="left">[FCD] 'launch' enum too restrictive</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1226">1226</a></td>
@@ -13252,9 +13252,36 @@ synchronization requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#1509">1509</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1509"></a></td>
+<td align="left">30.6.8 [futures.atomic_future]<a name="futures.atomic_future"</a></td>
+<td align="left">[FCD] No restriction on calling <tt>future::get</tt> more than once</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1510">1510</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1510"></a></td>
+<td align="left">30.6.8 [futures.atomic_future]</td>
+<td align="left">[FCD] Should be undefined behaviour to call <tt>atomic_future</tt> operations unless <tt>valid()</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1511">1511</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1511"></a></td>
+<td align="left">30.6.8 [futures.atomic_future]</td>
+<td align="left">[FCD] Synchronize the move-constructor for <tt>atomic_future</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2010-11-12</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#1274">1274</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1274"></a></td>
-<td align="left">30.6.8 [futures.atomic_future]<a name="futures.atomic_future"</a></td>
+<td align="left">30.6.8 [futures.atomic_future]</td>
 <td align="left"><tt>atomic_future</tt> constructor</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -13270,49 +13297,22 @@ synchronization requirements</td>
 <td align="center">2010-10-27</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1509">1509</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1509"></a></td>
-<td align="left">30.6.8 [futures.atomic_future]</td>
-<td align="left">[FCD] No restriction on calling <tt>future::get</tt> more than once</td>
+<td align="right"><a href="lwg-closed.html#1512">1512</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1512"></a></td>
+<td align="left">30.6.9 [futures.async]<a name="futures.async"</a></td>
+<td align="left">[FCD] Conflict in spec: block or join?</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1510">1510</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1510"></a></td>
-<td align="left">30.6.8 [futures.atomic_future]</td>
-<td align="left">[FCD] Should be undefined behaviour to call <tt>atomic_future</tt> operations unless <tt>valid()</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1511">1511</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1511"></a></td>
-<td align="left">30.6.8 [futures.atomic_future]</td>
-<td align="left">[FCD] Synchronize the move-constructor for <tt>atomic_future</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
+<td align="center">2010-11-12</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1315">1315</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1315"></a></td>
-<td align="left">30.6.9 [futures.async]<a name="futures.async"</a></td>
+<td align="left">30.6.9 [futures.async]</td>
 <td align="left">return type of <tt>async</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-27</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#1512">1512</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">Pending NAD Editorial</a><a name="1512"></a></td>
-<td align="left">30.6.9 [futures.async]</td>
-<td align="left">[FCD] Conflict in spec: block or join?</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-11</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1508">1508</a></td>
