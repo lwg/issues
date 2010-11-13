@@ -6276,5 +6276,46 @@ Apply the resolution proposed by the 2010-10-29 comment in <a href="lwg-active.h
 
 
 
+<hr>
+<h3><a name="2013"></a>2013. Do library implementers have the freedom to add <tt>constexpr</tt>?</h3>
+<p><b>Section:</b> 17.6.4.6 [constexpr.functions] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>Suppose that a particular function is not tagged as constexpr in the standard,
+but that, in some particular implementation, it is possible to write it within
+the constexpr constraints. If an implementer tags such a function as constexpr,
+is that a violation of the standard or is it a conforming extension?</p>
+
+<p>There are two questions to consider. First, is this allowed under the
+as-if rule? Second, if it does not fall under as-if, is there
+(and should there be) any special license granted to implementers
+to do this anyway, sort of the way we allow elision of copy constructors
+even though it is detectable by users?</p>
+
+<p>I believe that this does not fall under "as-if", so implementers
+probably don't have that freedom today. I suggest changing the WP
+to grant it. Even if we decide otherwise, however, I suggest that
+we make it explicit.</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p><i>In 17.6.4.6 [constexpr.functions], change paragraph 1 to:</i></p>
+
+<blockquote>
+<ins>This standard explicitly requires that certain standard library functions
+are <tt>constexpr</tt> [dcl.constexpr].
+Additionally, an implementation may declare any function to be <tt>constexpr</tt>
+if that function's definition satisfies the necessary constraints.</ins>
+Within any header that provides any non-defining declarations of <tt>constexpr</tt>
+functions or constructors an implementation shall provide corresponding definitions. 
+</blockquote>
+
+
+
+
+
+
 </body>
 </html>

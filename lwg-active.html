@@ -155,13 +155,13 @@ ownership of it.
 <ul>
 <li>D73: Batavia meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>129 open issues, down by 77.</li>
+<li>130 open issues, down by 76.</li>
 <li>1402 closed issues, up by 88.</li>
-<li>1531 issues total, up by 11.</li>
+<li>1532 issues total, up by 12.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD Editorial issue: <a href="lwg-closed.html#2002">2002</a>.</li>
-<li>Added the following 13 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#2000">2000</a>, <a href="lwg-active.html#2001">2001</a>, <a href="lwg-active.html#2003">2003</a>, <a href="lwg-active.html#2004">2004</a>, <a href="lwg-active.html#2005">2005</a>, <a href="lwg-active.html#2006">2006</a>, <a href="lwg-active.html#2007">2007</a>, <a href="lwg-active.html#2008">2008</a>, <a href="lwg-active.html#2009">2009</a>, <a href="lwg-active.html#2010">2010</a>, <a href="lwg-active.html#2011">2011</a>, <a href="lwg-active.html#2012">2012</a>.</li>
+<li>Added the following 14 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#2000">2000</a>, <a href="lwg-active.html#2001">2001</a>, <a href="lwg-active.html#2003">2003</a>, <a href="lwg-active.html#2004">2004</a>, <a href="lwg-active.html#2005">2005</a>, <a href="lwg-active.html#2006">2006</a>, <a href="lwg-active.html#2007">2007</a>, <a href="lwg-active.html#2008">2008</a>, <a href="lwg-active.html#2009">2009</a>, <a href="lwg-active.html#2010">2010</a>, <a href="lwg-active.html#2011">2011</a>, <a href="lwg-active.html#2012">2012</a>, <a href="lwg-active.html#2013">2013</a>.</li>
 <li>Added the following Voting issue: <a href="lwg-active.html#1522">1522</a>.</li>
 <li>Changed the following 14 issues from Open to Dup: <a href="lwg-closed.html#1350">1350</a>, <a href="lwg-closed.html#1351">1351</a>, <a href="lwg-closed.html#1352">1352</a>, <a href="lwg-closed.html#1375">1375</a>, <a href="lwg-closed.html#1411">1411</a>, <a href="lwg-closed.html#1443">1443</a>, <a href="lwg-closed.html#1451">1451</a>, <a href="lwg-closed.html#1454">1454</a>, <a href="lwg-closed.html#1458">1458</a>, <a href="lwg-closed.html#1463">1463</a>, <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a>.</li>
 <li>Changed the following issue from New to NAD: <a href="lwg-closed.html#1331">1331</a>.</li>
@@ -14112,6 +14112,47 @@ This is by far not the only necessary fix within both sub-clauses. For details s
 
 <p><b>Proposed resolution:</b></p>
 Apply the resolution proposed by the 2010-10-29 comment in <a href="lwg-active.html#2005">2005</a>.
+
+
+
+
+
+<hr>
+<h3><a name="2013"></a>2013. Do library implementers have the freedom to add <tt>constexpr</tt>?</h3>
+<p><b>Section:</b> 17.6.4.6 [constexpr.functions] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>Suppose that a particular function is not tagged as constexpr in the standard,
+but that, in some particular implementation, it is possible to write it within
+the constexpr constraints. If an implementer tags such a function as constexpr,
+is that a violation of the standard or is it a conforming extension?</p>
+
+<p>There are two questions to consider. First, is this allowed under the
+as-if rule? Second, if it does not fall under as-if, is there
+(and should there be) any special license granted to implementers
+to do this anyway, sort of the way we allow elision of copy constructors
+even though it is detectable by users?</p>
+
+<p>I believe that this does not fall under "as-if", so implementers
+probably don't have that freedom today. I suggest changing the WP
+to grant it. Even if we decide otherwise, however, I suggest that
+we make it explicit.</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p><i>In 17.6.4.6 [constexpr.functions], change paragraph 1 to:</i></p>
+
+<blockquote>
+<ins>This standard explicitly requires that certain standard library functions
+are <tt>constexpr</tt> [dcl.constexpr].
+Additionally, an implementation may declare any function to be <tt>constexpr</tt>
+if that function's definition satisfies the necessary constraints.</ins>
+Within any header that provides any non-defining declarations of <tt>constexpr</tt>
+functions or constructors an implementation shall provide corresponding definitions. 
+</blockquote>
+
 
 
 
