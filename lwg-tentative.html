@@ -1724,6 +1724,433 @@ template &lt;class Compare&gt; void sort(Compare comp);
 
 
 <hr>
+<h3><a name="1213"></a>1213. Meaning of valid and singular iterator underspecified</h3>
+<p><b>Section:</b> 24.2 [iterator.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Tentatively Deferred</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-19 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all other</b> <a href="lwg-index.html#iterator.requirements">issues</a> in [iterator.requirements].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Deferred">Tentatively Deferred</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The terms <em>valid</em> iterator and <em>singular</em> aren't
+properly defined. The fuzziness of those terms became even worse
+after the resolution of <a href="lwg-defects.html#208">208</a> (including further updates by <a href="lwg-defects.html#278">278</a>). In
+24.2 [iterator.requirements] as of
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2723.pdf">N2723</a>
+the standard says now:
+</p>
+
+<blockquote>
+<p>
+5 - These values are called past-the-end values. Values of an iterator <tt>i</tt> for
+which the expression <tt>*i</tt> is defined are called dereferenceable. The library
+never assumes that past-the-end values are dereferenceable. Iterators
+can also have singular values that are not associated with any
+container. [...] Results of most expressions are undefined for singular
+values; the only exceptions are destroying an iterator that holds a
+singular value and the assignment of a non-singular value to an iterator
+that holds a singular value. [...] Dereferenceable values are always
+non-singular.
+</p>
+
+<p>
+10 - An invalid iterator is an iterator that may be singular.
+</p>
+</blockquote>
+
+<p>
+First, issue <a href="lwg-defects.html#208">208</a> intentionally removed the earlier constraint that past-the-end
+values are always non-singular. The reason for this was to support null
+pointers as past-the-end iterators of e.g. empty sequences. But there
+seem to exist different views on what a singular (iterator) value is. E.g.
+according to the <a href="http://www.sgi.com/tech/stl/trivial.html">SGI definition</a>
+a null pointer is <em>not</em> a singular value:
+</p>
+
+<blockquote>
+Dereferenceable iterators are always nonsingular, but the converse is
+not true.
+For example, a null pointer is nonsingular (there are well defined operations
+involving null pointers) even thought it is not dereferenceable.
+</blockquote>
+
+<p>
+and <a href="http://www.sgi.com/tech/stl/InputIterator.html">proceeds</a>:
+</p>
+
+<blockquote>
+An iterator is valid if it is dereferenceable or past-the-end.
+</blockquote>
+
+<p>
+Even if the standard prefers a different meaning of singular here, the
+change was
+incomplete, because by restricting feasible expressions of singular
+iterators to
+destruction and assignment isn't sufficient for a past-the-end
+iterator: Of-course
+it must still be equality-comparable and in general be a readable value.
+</p>
+
+<p>
+Second, the standard doesn't clearly say whether a past-the-end value is
+a valid iterator or not. E.g. 20.9.9 [specialized.algorithms]/1 says:
+</p>
+
+<blockquote>
+In all of the following algorithms, the formal template parameter
+<tt>ForwardIterator</tt>
+is required to satisfy the requirements of a forward iterator (24.1.3)
+[..], and is
+required to have the property that no exceptions are thrown from [..], or
+dereference of valid iterators.
+</blockquote>
+
+<p>
+The standard should make better clear what "singular pointer" and "valid
+iterator" means. The fact that the meaning of a valid <em>value</em>
+has a core language meaning doesn't imply that for an iterator concept
+the term "valid iterator" has the same meaning.
+</p>
+
+<p>
+Let me add a final example: In X [allocator.concepts.members] of
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>
+we find:
+</p>
+
+<blockquote><pre>
+pointer X::allocate(size_type n);
+</pre>
+
+<blockquote>
+11 <i>Returns:</i> a pointer to the allocated memory. [<i>Note:</i> if <tt>n == 0</tt>, the return
+value is unspecified. &mdash;<i>end note</i>]
+</blockquote>
+
+<p>
+[..]
+</p>
+
+<pre>
+void X::deallocate(pointer p, size_type n);
+</pre>
+
+<blockquote>
+<i>Preconditions:</i> <tt>p</tt> shall be a non-singular pointer value obtained from a call
+to <tt>allocate()</tt> on this allocator or one that compares equal to it.
+</blockquote>
+</blockquote>
+
+<p>
+If singular pointer value would include null pointers this make the
+preconditions
+unclear if the pointer value is a result of <tt>allocate(0)</tt>: Since the return value
+is unspecified, it could be a null pointer. Does that mean that programmers
+need to check the pointer value for a null value before calling deallocate?
+</p>
+
+<p><i>[
+2010-11-09 Daniel comments:
+]</i></p>
+
+
+<p>
+A later paper is in preparation.
+</p>
+
+<p><i>[
+2010 Batavia:
+]</i></p>
+
+
+<p>
+Doesn't need to be resolved for Ox
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+Consider to await the paper.
+
+
+
+
+
+<hr>
+<h3><a name="1214"></a>1214. Insufficient/inconsistent key immutability requirements for  associative containers</h3>
+<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Deferred">Tentatively Deferred</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
+<p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Deferred">Tentatively Deferred</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Scott Meyers' mentions on a recent posting on <a
+href="http://groups.google.de/group/comp.std.c++/msg/6f9160fc428bcbea">c.s.c++</a>
+some arguments that point to an incomplete resolution
+of <a href="lwg-defects.html#103">103</a> and to an inconsistency of requirements on keys in ordered and
+unordered associative
+containers:
+</p>
+
+<blockquote>
+<p>
+1) <a href="lwg-defects.html#103">103</a> introduced the term immutable without defining it in a unique manner in
+23.2.4 [associative.reqmts]/5:
+</p>
+
+<blockquote>
+[..] Keys in an associative container are immutable.
+</blockquote>
+
+<p>
+According to conventional dictionaries immutable is an unconditional way of
+saying that something cannot be changed. So without any further explicit
+allowance a user <em>always</em> runs into undefined behavior if (s)he attempts
+to modify such a key. IMO this was not the intend of the committee to resolve
+<a href="lwg-defects.html#103">103</a> in that way because the comments suggest an interpretation that
+should give any user the freedom to modify the key in an <em>explicit</em> way
+<em>provided</em> it would not affect the sort order in that container.
+</p>
+
+<p>
+2) Another observation was that surprisingly no similar 'safety guards'
+exists against unintentional key changes for the unordered associative
+containers, specifically there is no such requirement as in
+23.2.4 [associative.reqmts]/6 that "both <tt>iterator</tt> and <tt>const_iterator</tt> are constant
+iterators". But the need for such protection against unintentional
+changes as well as the constraints in which manner any explicit
+changes may be performed are both missing and necessary, because
+such changes could potentially change the <em>equivalence</em> of keys that
+is measured by the <tt>hasher</tt> and <tt>key_equal</tt>.
+</p>
+
+<p>
+I suggest to fix the unconditional wording involved with "immutable keys"
+by at least adding a hint for the reader that users <em>may</em> perform such
+changes in an explicit manner <em>and</em> to perform similar wording changes
+as <a href="lwg-defects.html#103">103</a> did for the ordered associative containers also for the unordered
+containers.
+</p>
+</blockquote>
+
+<p><i>[
+2010-03-27 Daniel provides wording.
+]</i></p>
+
+
+<blockquote>
+This update attempts to provide normative wording that harmonizes the key and
+function object constraints of associative and unordered containers.
+</blockquote>
+
+<p><i>[
+2010 Batavia:
+]</i></p>
+
+
+<p>
+We're uncomfortable with the first agenda item, and we can live with the second agenda 
+item being applied before or after Madrid. 
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p>
+Change 23.2.4 [associative.reqmts]/2 as indicated: <i>[This ensures that
+associative containers make better clear what this "arbitrary" type is, as the
+unordered containers do in 23.2.5 [unord.req]/3]</i>
+</p>
+
+<blockquote>
+2 Each associative container is parameterized on <tt>Key</tt> and an ordering
+relation <tt>Compare</tt> that induces a strict weak ordering (25.4) on elements
+of <tt>Key</tt>. In addition, <tt>map</tt> and <tt>multimap</tt> associate an
+arbitrary <ins><em>mapped type</em></ins><del>type</del> <tt>T</tt> with the
+<tt>Key</tt>. The object of type <tt>Compare</tt> is called the <em>comparison
+object</em> of a container.
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.2.4 [associative.reqmts]/5 as indicated: <i>[This removes the
+too strong requirement that keys must not be changed at all and brings this line
+in sync with 23.2.5 [unord.req]/7. We take care about the real
+constraints by the remaining suggested changes. The rationale provided by LWG
+<a href="lwg-defects.html#103">103</a> didn't really argue why that addition is necessary, and I
+believe the remaining additions make it clear that any user changes have strong
+restrictions]</i>:
+</p>
+
+<blockquote>
+5 For <tt>set</tt> and <tt>multiset</tt> the value type is the same as the key
+type. For <tt>map</tt> and <tt>multimap</tt> it is equal to <tt>pair&lt;const
+Key, T&gt;</tt>. <del>Keys in an associative container are immutable.</del>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.2.5 [unord.req]/3+4 as indicated: <i>[The current sentence of
+p.4 has doesn't say something really new and this whole subclause misses to
+define the concepts of the container-specific hasher <i>object</i> and predicate
+<i>object</i>. We introduce the term <em>key equality predicate</em> which is
+already used in the requirements table. This change does not really correct part
+of this issue, but is recommended to better clarify the nomenclature and the
+difference between the function objects and the function object <em>types</em>,
+which is important, because both can potentially be stateful.]</i>
+</p>
+
+<blockquote>
+<p>
+3 Each unordered associative container is parameterized by <tt>Key</tt>, by a
+function object type <tt>Hash</tt> that meets the <tt>Hash</tt> requirements
+(20.2.4) and acts as a hash function for argument values of type <tt>Key</tt>,
+and by a binary predicate <tt>Pred</tt> that induces an equivalence relation on
+values of type <tt>Key</tt>. Additionally, <tt>unordered_map</tt> and
+<tt>unordered_multimap</tt> associate an arbitrary <em>mapped type</em>
+<tt>T</tt> with the <tt>Key</tt>.
+</p>
+
+<p>
+4 <ins>The container's object of type <tt>Hash</tt> - denoted by
+<tt>hash</tt> - is called the <em>hash function</em> of the container.
+The container's object of type <tt>Pred</tt> - denoted by
+<tt>pred</tt> - is called the <em>key equality predicate</em> of the
+container.</ins><del>A hash function is a function object that takes a single
+argument of type <tt>Key</tt> and returns a value of type
+<tt>std::size_t</tt></del>.
+</p>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.2.5 [unord.req]/5 as indicated: <i>[This adds a similar
+safe-guard as the last sentence of 23.2.4 [associative.reqmts]/3]</i>
+</p>
+
+<blockquote>
+5 Two values <tt>k1</tt> and <tt>k2</tt> of type <tt>Key</tt> are considered
+equivalent if the container's <ins>key equality
+predicate</ins><del><tt>key_equal</tt> function object</del> returns
+<tt>true</tt> when passed those values. If <tt>k1</tt> and <tt>k2</tt> are
+equivalent, the <ins>container's</ins> hash function shall return the same value
+for both. [<i>Note:</i> thus, when an unordered associative container is
+instantiated with a non-default <tt>Pred</tt> parameter it usually needs a
+non-default <tt>Hash</tt> parameter as well. &mdash; <i>end note</i>] <ins>For
+any two keys <tt>k1</tt> and <tt>k2</tt> in the same container, calling
+<tt>pred(k1, k2)</tt> shall always return the same value. For any key <tt>k</tt>
+in a container, calling <tt>hash(k)</tt> shall always return the same
+value.</ins>
+</blockquote>
+</li>
+
+<li>
+<p>
+After 23.2.5 [unord.req]/7 add the following new paragraph: <i>[This
+ensures the same level of compile-time protection that we already require for
+associative containers. It is necessary for similar reasons, because any change
+in the stored key which would change it's equality relation to others or would
+change it's hash value such that it would no longer fall in the same bucket,
+would break the container invariants]</i>
+</p>
+
+<blockquote>
+<p>
+7 For <tt>unordered_set</tt> and <tt>unordered_multiset</tt> the value type is
+the same as the key type. For <tt>unordered_map</tt> and
+<tt>unordered_multimap</tt> it is <tt>std::pair&lt;const Key, T&gt;</tt>.
+</p>
+<p>
+<ins>For unordered containers where the value type is the same as the key type,
+both <tt>iterator</tt> and <tt>const_iterator</tt> are constant iterators. It is
+unspecified whether or not <tt>iterator</tt> and <tt>const_iterator</tt> are the
+same type. [<i>Note:</i> <tt>iterator</tt> and <tt>const_iterator</tt> have
+identical semantics in this case, and <tt>iterator</tt> is convertible to
+<tt>const_iterator</tt>. Users can avoid violating the One Definition Rule by
+always using <tt>const_iterator</tt> in their function parameter lists. &mdash;
+<i>end note</i>]</ins>
+</p>
+</blockquote>
+</li>
+
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
+<p><b>Section:</b> 23.3.4.4 [list.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-09-24 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View other</b> <a href="lwg-index-open.html#list.ops">active issues</a> in [list.ops].</p>
+<p><b>View all other</b> <a href="lwg-index.html#list.ops">issues</a> in [list.ops].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In Bellevue (I think), we passed
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2525.pdf">N2525</a>,
+which, among other things, specifies that the behavior of
+<tt>list::splice</tt> is undefined if the allocators of the two lists
+being spliced do not compare equal. The same rationale should apply to
+<tt>list::merge</tt>. The intent of <tt>list::merge</tt> (AFAIK) is to
+move nodes from one sorted <tt>list</tt> into another sorted
+<tt>list</tt> without copying the elements. This is possible only if the
+allocators compare equal.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Relative to the August 2009 WP,
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2857.pdf">N2857</a>,
+change 23.3.4.4 [list.ops],
+paragraphs 22-25 as follows:
+</p>
+
+<blockquote>
+<pre>
+void merge(list&amp;&amp; x);
+template &lt;class Compare&gt; void merge(list&amp;&amp; x, Compare comp);
+</pre>
+<blockquote>
+<p>
+<i>Requires</i>: both the list and the argument list shall be sorted
+according to operator&lt; or comp.
+</p>
+<p>
+<i>Effects</i>: If <tt>(&amp;x == this)</tt> does nothing; otherwise, merges the
+two sorted ranges <tt>[begin(), end())</tt> and <tt>[x.begin(),
+x.end())</tt>. The result is a range in which the elements will be
+sorted in non-decreasing order according to the ordering defined by
+<tt>comp</tt>; that is, for every iterator <tt>i</tt>, in the range other than the
+<tt>first</tt>, the condition <tt>comp(*i, *(i - 1)<ins>)</ins></tt> will be
+<tt>false</tt>.
+</p>
+<p>
+<i>Remarks</i>: Stable. If <tt>(&amp;x != this)</tt> the range <tt>[x.begin(), x.end())</tt> is
+empty after the merge. <ins>No elements are copied by this operation.
+The behavior is undefined if <tt>this-&gt;get_allocator() !=
+x.get_allocator()</tt>.</ins>
+</p>
+<p>
+<i>Complexity</i>: At most <tt>size() + x.size() - 1</tt> applications of <tt>comp</tt>
+if <tt>(&amp;x != this)</tt>; otherwise, no applications of <tt>comp</tt> are performed. If an
+exception is thrown other than by a comparison there are no effects.
+</p>
+</blockquote>
+</blockquote>
+
+
+
+
+
+<hr>
 <h3><a name="1234"></a>1234. "Do the right thing" and NULL</h3>
 <p><b>Section:</b> 23.2.3 [sequence.reqmts] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
  <b>Submitter:</b> Matt Austern <b>Opened:</b> 2009-10-09 <b>Last modified:</b> 2010-11-08</p>
@@ -2099,6 +2526,201 @@ before it has been initialized the behavior is undefined.</del>
 
 
 <hr>
+<h3><a name="1253"></a>1253. invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</h3>
+<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
+<p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In the latest published draft
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2960.pdf">N2960</a>,
+section 23.2.4 [associative.reqmts], paragraph 8, it is specifies
+that that <tt>insert</tt> does not invalidate any iterators. As per
+23.2.1 [container.requirements.general], paragraph 12, this holds
+true not only for <tt>insert</tt>, but <tt>emplace</tt> as well. This
+gives the <tt>insert</tt> member a special treatment w.r.t.
+<tt>emplace</tt> member in 23.2.4 [associative.reqmts], par. 8,
+since both modify the container. For the sake of consistency, in 23.2.4 [associative.reqmts], par. 8: either reference to
+<tt>insert</tt> should be removed (i.e. count on 23.2.1 [container.requirements.general], par. 12), or reference to
+<tt>emplace</tt> be added (i.e. mention all members of assoc. containers
+that modify it).
+</p>
+
+<p><i>[
+2009-11-18 Chris provided wording.
+]</i></p>
+
+
+<blockquote>
+This suggested wording covers both the issue discussed, and a number of other
+identical issues (namely insert being discussed without emplace). I'm happy to
+go back and split and introduce a new issue if appropriate, but I think the
+changes are fairly mechanical and obvious.
+</blockquote>
+
+<p><i>[
+2010-01-23 Daniel Kr&uuml;gler and J. Daniel Garc&iacute;a updated wording to
+make the use of <tt>hint</tt> consistent with <tt>insert</tt>.
+]</i></p>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Modify bullet 1 of 23.2.1 [container.requirements.general], p10:
+</p>
+
+<p>
+10 Unless otherwise specified (see 23.2.4.1, 23.2.5.1, 23.3.2.3, and 23.3.6.4)
+all container types defined in this Clause meet the following additional
+requirements:
+</p>
+
+<ul>
+<li>
+if an exception is thrown by an <tt>insert()</tt> <ins>or
+<tt>emplace()</tt></ins> function while inserting a single element, that
+function has no effects.
+</li>
+<li>...</li>
+</ul>
+
+<p>
+Modify 23.2.4 [associative.reqmts], p4:
+</p>
+
+<blockquote>
+4 An associative container supports <i>unique keys</i> if it may contain at most
+one element for each key. Otherwise, it supports <i>equivalent keys</i>. The
+<tt>set</tt> and <tt>map</tt> classes support unique keys; the <tt>multiset</tt>
+and <tt>multimap</tt> classes support equivalent keys. For <tt>multiset</tt> and
+<tt>multimap</tt>, <tt>insert</tt><ins>, <tt>emplace</tt>,</ins> and
+<tt>erase</tt> preserve the relative ordering of equivalent elements.
+</blockquote>
+
+<p>
+Modify Table 96 &mdash; Associative container requirements in 23.2.4 [associative.reqmts]:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 96 &mdash; Associative container requirements (in addition to container)</caption>
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Assertion/note<br/>pre-/post-condition</th>
+<th>Complexity</th>
+</tr>
+
+<tr>
+<td colspan="4"><center>...</center></td>
+</tr>
+
+<tr>
+<td><tt>a_eq.emplace(args)</tt></td>
+<td><tt>iterator</tt></td>
+<td>inserts a <tt>T</tt> object <tt>t</tt> constructed with
+<tt>std::forward&lt;Args&gt;(args)...</tt> and returns the iterator pointing to
+the newly inserted element. <ins>If a range containing elements equivalent to
+<tt>t</tt> exists in <tt>a_eq</tt>, <tt>t</tt> is inserted at the end of that
+range.</ins></td>
+<td>logarithmic</td>
+</tr>
+
+<tr>
+<td><tt>a.emplace_hint(p, args)</tt></td>
+<td><tt>iterator</tt></td>
+<td>equivalent to <tt>a.emplace(std::forward&lt;Args&gt;(args)...)</tt>. Return
+value is an iterator pointing to the element with the key equivalent to the
+newly inserted element. <del>The <tt>const_iterator p</tt> is a hint pointing to
+where the search should start.</del> <ins>The element is inserted as close as
+possible to the position just prior to <tt>p</tt>.</ins> <del>Implementations
+are permitted to ignore the hint.</del></td>
+<td>logarithmic in general, but amortized constant if the element is inserted
+right <del>after</del> <ins>before</ins> <tt>p</tt></td>
+</tr>
+
+<tr>
+<td colspan="4"><center>...</center></td>
+</tr>
+
+</table>
+</blockquote>
+
+<p>
+Modify 23.2.4 [associative.reqmts], p8:
+</p>
+
+<blockquote>
+8 The <tt>insert</tt> <ins>and <tt>emplace</tt></ins> members shall not affect
+the validity of iterators and references to the container, and the
+<tt>erase</tt> members shall invalidate only iterators and references to the
+erased elements.
+</blockquote>
+
+<p>
+Modify 23.2.4.1 [associative.reqmts.except], p2:
+</p>
+
+<blockquote>
+2 For associative containers, if an exception is thrown by any operation from
+within an <tt>insert()</tt> <ins> or <tt>emplace()</tt></ins> function inserting
+a single element, the <del><tt>insert()</tt> function</del> <ins>insertion</ins>
+has no effect.
+</blockquote>
+
+<p>
+Modify 23.2.5 [unord.req], p6, p12 and p13:
+</p>
+
+<blockquote>
+<p>
+6 An unordered associative container supports <i>unique keys</i> if it may
+contain at most one element for each key. Otherwise, it supports <i>equivalent
+keys</i>. <tt>unordered_set</tt> and <tt>unordered_map</tt> support unique keys.
+<tt>unordered_multiset</tt> and <tt>unordered_multimap</tt> support equivalent
+keys. In containers that support equivalent keys, elements with equivalent keys
+are adjacent to each other. For <tt>unordered_multiset</tt> and
+<tt>unordered_multimap</tt>, <tt>insert</tt><ins>, <tt>emplace</tt>,</ins> and
+<tt>erase</tt> preserve the relative ordering of equivalent elements.
+</p>
+
+<p>
+12 The <tt>insert</tt> <ins>and <tt>emplace</tt></ins> members shall not affect
+the validity of references to container elements, but may invalidate all
+iterators to the container. The erase members shall invalidate only iterators
+and references to the erased elements.
+</p>
+
+<p>
+13 The <tt>insert</tt> <ins>and <tt>emplace</tt></ins> members shall not affect
+the validity of iterators if <tt>(N+n) &lt; z * B</tt>, where <tt>N</tt> is the
+number of elements in the container prior to the insert operation, <tt>n</tt> is
+the number of elements inserted, <tt>B</tt> is the container's bucket count, and
+<tt>z</tt> is the container's maximum load factor.
+</p>
+</blockquote>
+
+<p>
+Modify 23.2.5.1 [unord.req.except], p2:
+</p>
+
+<blockquote>
+2 For unordered associative containers, if an exception is thrown by any
+operation other than the container's hash function from within an
+<tt>insert()</tt> <ins>or <tt>emplace()</tt></ins> function inserting a single
+element, the <del><tt>insert()</tt></del> <ins>insertion</ins>
+<del>function</del> has no effect.
+</blockquote>
+
+
+
+
+
+<hr>
 <h3><a name="1292"></a>1292. <tt>std::function</tt> should support all callable types</h3>
 <p><b>Section:</b> 20.8.14.2.1 [func.wrap.func.con] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-19 <b>Last modified:</b> 2010-11-08</p>
@@ -2331,6 +2953,140 @@ function type, <tt>result_type</tt> shall be a synonym for the return type of
 
 
 <hr>
+<h3><a name="1310"></a>1310. <tt>forward_list splice_after</tt> from lvalues</h3>
+<p><b>Section:</b> 23.3.3.5 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+We've moved <a href="lwg-defects.html#1133">1133</a> to Tentatively Ready and I'm fine with that.
+</p>
+
+<p>
+<a href="lwg-defects.html#1133">1133</a> adds lvalue-references to the <tt>splice</tt> signatures for <tt>list</tt>.  So now
+<tt>list</tt> can <tt>splice</tt> from lvalue and rvalue lists (which was the intent of the
+original move papers btw).  During the discussion of this issue it was mentioned
+that if we want to give the same treatment to <tt>forward_list</tt>, that should be a
+separate issue.
+</p>
+
+<p>
+This is that separate issue.
+</p>
+
+<p>
+Consider the following case where you want to splice elements from one place in
+a <tt>forward_list</tt> to another.  Currently this must be coded like so:
+</p>
+
+<blockquote><pre>
+fl.splice_after(to_here, std::move(fl), from1, from2);
+</pre></blockquote>
+
+<p>
+This looks pretty shocking to me.  I would expect to be able to code instead:
+</p>
+
+<blockquote><pre>
+fl.splice_after(to_here, fl, from1, from2);
+</pre></blockquote>
+
+<p>
+but we currently don't allow it.
+</p>
+
+<p>
+When I say <tt>move(fl)</tt>, I consider that as saying that I don't care about
+the value of <tt>fl</tt> any more (until I assign it a new value).  But in the
+above example, this simply isn't true.  I do care about the value of <tt>fl</tt>
+after the move, and I'm not assigning it a new value.  I'm merely permuting its
+current value.
+</p>
+
+<p>
+I propose adding <tt>forward_list&amp;</tt> overloads to the 3
+<tt>splice_after</tt> members.  For consistency's sake (principal of least
+surprise) I'm also proposing to overload <tt>merge</tt> this way as well.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Add to the synopsis of 23.3.3 [forwardlist]:
+</p>
+
+<blockquote><pre>
+template &lt;class T, class Allocator = allocator&lt;T&gt; &gt;
+class forward_list {
+public:
+  ...
+  <ins>void splice_after(const_iterator p, forward_list&amp; x);</ins>
+  void splice_after(const_iterator p, forward_list&amp;&amp; x);
+  <ins>void splice_after(const_iterator p, forward_list&amp; x, const_iterator i);</ins>
+  void splice_after(const_iterator p, forward_list&amp;&amp; x, const_iterator i);
+  <ins>void splice_after(const_iterator p, forward_list&amp; x,
+                    const_iterator first, const_iterator last);</ins>
+  void splice_after(const_iterator p, forward_list&amp;&amp; x,
+                    const_iterator first, const_iterator last);
+  ...
+  <ins>void merge(forward_list&amp; x);</ins>
+  void merge(forward_list&amp;&amp; x);
+  <ins>template &lt;class Compare&gt; void merge(forward_list&amp; x, Compare comp);</ins>
+  template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp);
+  ...
+};
+</pre></blockquote>
+
+<p>
+Add to the signatures of 23.3.3.5 [forwardlist.ops]:
+</p>
+
+<blockquote>
+<pre>
+<ins>void splice_after(const_iterator p, forward_list&amp; x);</ins>
+void splice_after(const_iterator p, forward_list&amp;&amp; x);
+</pre>
+<blockquote>
+<p>1 ...</p>
+</blockquote>
+
+<pre>
+<ins>void splice_after(const_iterator p, forward_list&amp; x, const_iterator i);</ins>
+void splice_after(const_iterator p, forward_list&amp;&amp; x, const_iterator i);
+</pre>
+<blockquote>
+<p>5 ...</p>
+</blockquote>
+
+<pre>
+<ins>void splice_after(const_iterator p, forward_list&amp; x,
+                const_iterator first, const_iterator last);</ins>
+void splice_after(const_iterator p, forward_list&amp;&amp; x,
+                const_iterator first, const_iterator last);
+</pre>
+<blockquote>
+<p>9 ...</p>
+</blockquote>
+
+<pre>
+<ins>void merge(forward_list&amp; x);</ins>
+void merge(forward_list&amp;&amp; x);
+<ins>template &lt;class Compare&gt; void merge(forward_list&amp; x, Compare comp);</ins>
+template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp);
+</pre>
+<blockquote>
+<p>18 ...</p>
+</blockquote>
+
+</blockquote>
+
+
+
+
+
+
+<hr>
 <h3><a name="1316"></a>1316. <tt>scoped_allocator_adaptor operator==</tt> has no definition</h3>
 <p><b>Section:</b> 20.10 [allocator.adaptor] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
  <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-02-11 <b>Last modified:</b> 2010-11-08</p>
@@ -2526,6 +3282,67 @@ Moved to Tentatively Ready with revised wording after 5 positive votes on c++std
 
 </li>
 </ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="1320"></a>1320. Header for <tt>iter_swap</tt></h3>
+<p><b>Section:</b> 24.3 [iterator.synopsis] <b>Status:</b> <a href="lwg-active.html#NAD Future">Tentatively NAD Future</a>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2010-11-13</p>
+<p><b>Discussion:</b></p>
+<p>
+The <tt>iter_swap</tt> function template appears in the
+<tt>&lt;algorithm&gt;</tt> header, yet its main use is in building further
+algorithms, not calling existing ones. The main clients are implementers of data
+structures and their iterators, so it seems most appropriate to place the
+template in the <tt>&lt;iterator&gt;</tt> header instead.
+</p>
+
+<p>
+Note that this is not an issue for implementers of the standard library, as they
+rarely use the standard headers directly, designing a more fine-grained set of
+headers for their own internal use.  This option is not available to customers
+of the standard library.
+</p>
+
+<p>
+Note that we cannot remove <tt>iter_swap</tt> from <tt>&lt;algorithm&gt;</tt>
+without breaking code, but there is no reason we cannot offer the same
+declaration via two standard headers.  Alternatively, require
+<tt>&lt;algorithm&gt;</tt> to <tt>#include &lt;iterator&gt;</tt>, but
+introducing the dependency on the iterator adaptors seems un-necessary.
+</p>
+
+<p><i>[
+]</i></p>
+
+
+<p>
+Discussed possibly moving to <tt>&lt;utility&gt;</tt> but don't like that. Some not seeing this 
+as a defect, and want to keep it in <tt>&lt;algorithm&gt;</tt>. No one seems to feel strongly 
+about moving to <tt>&lt;iterator&gt;</tt>.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>
+Add the declaration of <tt>iter_swap</tt> to the <tt>&lt;iterator&gt;</tt>
+header synopsis (24.3 [iterator.synopsis]), with a note that it is
+documented in clause 25 [algorithms].
+</p>
+
+<blockquote><pre>
+...
+template &lt;class T, size_t N&gt; T* end(T (&amp;array)[N]);
+
+<ins><i>// documented in 25 [algorithms]</i>
+template&lt;class ForwardIterator1, class ForwardIterator2&gt;
+  void iter_swap(ForwardIterator1 a, ForwardIterator2 b);</ins>
+</pre></blockquote>
 
 
 
@@ -4955,6 +5772,180 @@ described in the previous item;
 </ul>
 </blockquote>
 
+
+
+
+
+
+<hr>
+<h3><a name="2000"></a>2000. Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></h3>
+<p><b>Section:</b> 30.6.10.2 [futures.task.nonmembers] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+[futures.task.nonmembers]/3 says:
+<blockquote><pre>
+   template &lt;class R, class Alloc&gt;
+     struct uses_allocator&lt;packaged_task&lt;R&gt;, Alloc&gt;;
+</pre></blockquote>
+
+This is a declaration, but should be a definition.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change [futures.task.nonmembers]/3:
+</p>
+
+<blockquote><pre>
+   template &lt;class R, class Alloc&gt;
+     struct uses_allocator&lt;packaged_task&lt;R&gt;, Alloc&gt;<del>;</del>
+        <ins>: true_type {};</ins>
+</pre></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="2004"></a>2004. <tt>duration::operator*</tt> has template parameters in funny order</h3>
+<p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In [time] and [time.duration.nonmember] we have:
+</p>
+<blockquote><pre>
+template &lt;class Rep1, class Period, class Rep2>
+    duration&lt;typename common_type&lt;Rep1, Rep2>::type, Period>
+        operator*(const Rep1&amp; s, const duration&lt;Rep2, Period>&amp; d);
+</pre></blockquote>
+<p>
+Everywhere else, we always have <tt>&lt;rep, period></tt> in that order for a given
+type. But here, we have <tt>Period</tt> and <tt>Rep2</tt> in reverse order for
+<tt>&lt;Rep2, Period></tt>. This is probably of little importance, since the
+template parameters are seldom spelled out for a function like this. But changing it
+now will eliminate a potential source of future errors and confusion.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change the signature in [time] and [time.duration.nonmember] to:
+</p>
+<blockquote><pre>
+template &lt;class Rep1, class <del>Period</del><ins>Rep2</ins>, class <del>Rep2</del><ins>Period</ins>>
+    duration&lt;typename common_type&lt;Rep1, Rep2>::type, Period>
+        operator*(const Rep1&amp; s, const duration&lt;Rep2, Period>&amp; d);
+</pre></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="2006"></a>2006. <tt>emplace</tt> broken for associative containers</h3>
+<p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
+<p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
+<p><b>Discussion:</b></p>
+<p>
+The current definition of <tt>emplace(args)</tt> for associative containers as
+described in Table 99 is:
+<blockquote>
+<p>
+<i>Requires</i>: <tt>T</tt> shall be constructible from <tt>args</tt>.
+</p>
+<p>
+<i>Effects</i>: Inserts a <tt>T</tt> object <tt>t</tt> constructed with
+<tt>std::forward&lt;Args&gt;(args)...</tt> if and only if there is no element
+in the container with key equivalent to the key of <tt>t</tt>.  The <tt>bool</tt>
+component of the returned <tt>pair</tt> is <tt>true</tt> if and only if the
+insertion takes place, and the iterator component of the <tt>pair</tt>
+points to the element with key equivalent to the key of <tt>t</tt>.
+</p>
+</blockquote>
+</p>
+<p>
+There is similar language in Table 100 for unordered associative containers.
+</p>
+<p>
+The first issue is editorial: <tt>T</tt> should be <tt>value_type</tt> throughout
+both tables.
+</p>
+<p>
+The major issue is that, if the container is <tt>map</tt>, <tt>multimap</tt>,
+<tt>unordered_map</tt>, or <tt>unordered_multimap</tt>, then the only way to
+construct an object of <tt>value_type</tt> is to supply exactly two arguments
+for <tt>Key</tt> and <tt>Value</tt>, a <tt>pair&lt;Key,Value&gt;</tt>, or a
+<tt>piecewise_construct_t</tt> followed by two <tt>tuple</tt>s.  The original
+<tt>emplace()</tt> proposal would have allowed you to specify a <tt>Key</tt>
+value followed by any number of constructor arguments for <tt>Value</tt>.
+When we removed the variadic constructor to <tt>pair</tt>, this ability went
+away.  I don't think that was deliberate.
+</p>
+<p>
+Fixing this is non-trivial, I think. I think that <tt>emplace()</tt> for <tt>map</tt>
+and <tt>multimap</tt> need several overloads: one for each overloaded constructor in
+<tt>pair&lt;Key,Value&gt;</tt>, and one for the <tt>emplace(Key, valueargs...)</tt> case.
+And it probably needs some SFINAE meta-programming to ensure that the last case
+doesn't override any of the other ones.  Alternatively, one could say that
+there are exactly two cases: <tt>emplace(args)</tt> where <tt>pair&lt;Key,Value&gt;</tt>
+is constructible from <tt>args</tt>, and <tt>emplace(args)</tt> where <tt>Key</tt> is
+constructible form the first <tt>arg</tt> and <tt>Value</tt> is constructible from the
+rest.
+</p>
+<p>
+Alternatively, the status quo is to use <tt>piecewise_construct_t</tt> if you want to
+construct an object.
+</p>
+
+<p><i>[
+2010 Batavia:
+]</i></p>
+
+
+<p>
+N3178 was looked at in session and moved to NAD.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2007"></a>2007. Incorrect specification of return value for <tt>map&lt;&gt;::at()</tt></h3>
+<p><b>Section:</b> 23.6.1.2 [map.access] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all other</b> <a href="lwg-index.html#map.access">issues</a> in [map.access].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In [map.access]/9, the <i>Returns</i> clause for <tt>map&lt;Key, T&gt;::at(x)</tt> says 
+that it returns "a reference to the element whose key is equivalent to <tt>x</tt>." That can't be right. 
+The signature for <tt>at()</tt> says that its return type is <tt>T</tt>, but the elements 
+of <tt>map&lt;Key, T&gt;</tt> have type <tt>pair&lt;const K, T&gt;</tt>.  (I checked [unord.map.elem] 
+and found that its specification of <tt>at()</tt> is correct. This is a problem for <tt>map</tt> only.)
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change the wording in [map.access]/9 so it's identical to what we already say for <tt>operator[]</tt>, 
+which is unambiguous and correct.
+</p>
+<blockquote>
+<i>Returns</i>: A reference to the <del>element whose key is equivalent</del><ins><tt>mapped_type</tt> 
+corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
+</blockquote>
 
 
 
