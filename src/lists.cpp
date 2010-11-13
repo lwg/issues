@@ -1413,6 +1413,21 @@ void make_unresolved(std::vector<issue> const & issues, std::string const & path
    print_file_trailer(out);
 }
 
+void make_immediate(std::vector<issue> const & issues, std::string const & path, LwgIssuesXml const & lwg_issues_xml) {
+   // publish a document listing all non-tentative, non-ready issues that must be reviewed during a meeting.
+   assert(is_sorted(issues.begin(), issues.end(), sort_by_num{}));
+
+   std::ofstream out{(path + "lwg-immediate.html").c_str()};
+   print_file_header(out, "C++ Standard Library Issues Resolved Directly In Batavia");
+//   print_paper_heading(out, "active", lwg_issues_xml);
+//   out << lwg_issues_xml.get_intro("active") << '\n';
+//   out << "<h2>Revision History</h2>\n" << lwg_issues_xml.get_revisions(issues) << '\n';
+//   out << "<h2><a name=\"Status\"></a>Issue Status</h2>\n" << lwg_issues_xml.get_statuses() << '\n';
+   out << "<h2>Immediate Issues</h2>\n";
+   print_issues(out, issues, [](issue const & i) {return "Immediate" == i.stat;} );
+   print_file_trailer(out);
+}
+
 
 auto parse_issue_from_file(std::string const & filename) -> issue {
    using std::runtime_error;
@@ -1897,6 +1912,8 @@ int main(int argc, char* argv[]) {
       // unofficial documents
       make_tentative(issues, path, lwg_issues_xml);
       make_unresolved(issues, path, lwg_issues_xml);
+      make_immediate(issues, path, lwg_issues_xml);
+
 
       // Now we have a parsed and formatted set of issues, we can write the standard set of HTML documents
       // Note that each of these functions is going to re-sort the 'issues' vector for its own purposes
