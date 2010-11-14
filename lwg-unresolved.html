@@ -1167,61 +1167,6 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html"
 
 
 <hr>
-<h3><a name="1347"></a>1347. [FCD] Apply <tt>noexcept</tt> judiciously throughout the library</h3>
-<p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-31</p>
-<p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
-<p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-63, US-80</b></p>
-<p>
-Since the newly introduced operator <tt>noexcept</tt> makes it
-easy (easier than previously) to detect whether or not a
-function has been declared with the empty exception
-specification (including <tt>noexcept</tt>) library functions that
-cannot throw should be decorated with the empty
-exception specification. Failing to do so and leaving it as a
-matter of QoI would be detrimental to portability and
-efficiency.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment
-]</i></p>
-
-<p>
-Review the whole library, and apply the <tt>noexcept</tt>
-specification where it is appropriate.
-</p>
-
-
-<p><i>[
-2010-10-31 Daniel comments:
-]</i></p>
-
-
-<blockquote>
-The proposed resolution of the combination of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3155.html">n3155</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3156.html">n3156</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html">n3157</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3167.html">n3167</a>
-would satisfy this request. The paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3150.html">n3150</a> is related
-to this as well.
-</blockquote>
-
-<p><b>Proposed resolution:</b></p>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3155.html">n3155</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3156.html">n3156</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html">n3157</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3167.html">n3167</a> and remotely
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3150.html">n3150</a>
-
-
-
-
-
-<hr>
 <h3><a name="1348"></a>1348. [FCD] Exception safety of unspecified types</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
@@ -1504,47 +1449,6 @@ Add the following to 18.8.5, [propogation]
 <i>Throws</i>: a copy of the exception object to which <tt>p</tt> refers.
 </ins></blockquote>
 
-
-
-
-
-
-<hr>
-<h3><a name="1371"></a>1371. [FCD] standard exceptions require stronger no-throw guarantees</h3>
-<p><b>Section:</b> 19 [diagnostics] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-31</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-75</b></p>
-<p>
-None of the exception types defined in clause 19 are
-allowed to throw an exception on copy or move
-operations, but there is no clear specification that the
-operations have an exception specification to prove it.
-Note that the implicitly declared constructors, taking the
-exception specification from their base class (ultimately
-<tt>std::exception</tt>) will implicitly generate a <tt>noexcept</tt>
-exception specification if all of their data members
-similarly declare <tt>noexcept</tt> operations. As the
-representation is unspecified, we cannot assume nonthrowing
-operations unless we explicitly state this as a
-constraint on the implementation.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-Add a global guarantee that all exception types
-defined in clause 19 that rely on implicitly declared
-operations have a non-throwing exception
-specification on those operations.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
 
 
 
