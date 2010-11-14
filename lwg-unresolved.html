@@ -1514,286 +1514,6 @@ undefined behavior.
 
 
 <hr>
-<h3><a name="1385"></a>1385. [FCD] <tt>tuple_cat</tt> should be a single variadic signature</h3>
-<p><b>Section:</b> 20.4.2.4 [tuple.creation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-12</p>
-<p><b>View all other</b> <a href="lwg-index.html#tuple.creation">issues</a> in [tuple.creation].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-88</b></p>
-<p>
-The <tt>tuple_cat</tt> template consists of four overloads and that
-can concatenate only two <tt>tuple</tt>s. A single variadic
-signature that can concatenate an arbitrary number of
-<tt>tuple</tt>s would be preferred.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-
-<blockquote>
-Adopt a simplified form of the proposal in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2975.pdf">n2975</a>,
-restricted to <tt>tuple</tt>s and neither requiring nor outlawing support for other <tt>tuple</tt>-like types.
-</blockquote>
-
-<p><i>[
-2010 Rapperswil: Alisdair to provide wording.
-]</i></p>
-
-
-<p><i>[
-2010-11-06: Daniel comments and proposes some alternative wording:
-]</i></p>
-
-
-<p>
-There are some problems in the wording: First, even though the result type <tt>tuple&lt;<i>see below</i>&gt;</tt>
-implies it, the specification of the contained tuple element types is missing. Second, the term &quot;<tt>tuple</tt> 
-protocol&quot; is not defined anywhere and I see no reason why this normative wording should not be a non-normative
-note. We could at least give a better approximation, maybe "tuple-like protocol" as indicated from header
-<tt>&lt;utility&gt;</tt> synopsis. Further, it seems to me that the effects need to contain a combination of <tt>std::forward</tt>
-with the call of <tt>get</tt>. Finally I suggest to replace the requirements <tt>Move/CopyConstructible</tt>
-by proper usage of <tt>is_constructible</tt>, as indicated by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-</p>
-
-<p>Remark: This alternate proposed resolution works only if <a href="lwg-defects.html#1191">1191</a> has been accepted.</p>
-
-<p>Alternative proposed resolution:</p>
-
-<p>
-<ol>
-<li>Change 20.4.1 [tuple.general] p. 2, header <tt>&lt;tuple&gt;</tt> synopsis, as indicated:
-<blockquote><pre>
-namespace std {
-
-...
-
-// <i>20.4.2.4, tuple creation functions:</i>
-const unspecified ignore;
-
-template &lt;class... Types&gt;
-  tuple&lt;<i>VTypes</i>...&gt; make_tuple(Types&amp;&amp;...);
-  template &lt;class... Types&gt;
-  tuple&lt;<i>ATypes</i>...&gt; forward_as_tuple(Types&amp;&amp;...);
-  
-template&lt;class... Types&gt;
-  tuple&lt;Types&amp;...&gt; tie(Types&amp;...);
-  
-<del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp;, const tuple&lt;UTypes...&gt;&amp;);
-template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp;, const tuple&lt;UTypes...&gt;&amp;);
-template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp;, tuple&lt;UTypes...&gt;&amp;&amp;);
-template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp;, tuple&lt;UTypes...&gt;&amp;&amp;);</del>
-<ins>template &lt;class... Tuples&gt;
-  tuple&lt;<i>CTypes</i>...&gt; tuple_cat(Tuples&amp;&amp;...);</ins>
-
-...
-
-</pre></blockquote>
-</li>
-<li>Change 20.4.2.4 [tuple.creation] as indicated:
-<blockquote>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);</del></pre>
-<p><blockquote><del>
-8 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35). All the types in 
-<tt>UTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35).
-</del></blockquote></p>
-<p><blockquote><del>
-9 <i>Returns</i>: A <tt>tuple</tt> object constructed by copy constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and copy constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></blockquote></p>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);</del></pre>
-<p><blockquote><del>
-10 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34). All the types in 
-<tt>UTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35).
-</del></blockquote></p>
-<p><blockquote><del>
-11 <i>Returns</i>: A <tt>tuple</tt> object constructed by move constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and copy constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></blockquote></p>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);</del></pre>
-<p><blockquote><del>
-12 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35). All the types in 
-<tt>UTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34).
-</del></blockquote></p>
-<p><blockquote><del>
-13 <i>Returns</i>: A <tt>tuple</tt> object constructed by copy constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and move constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></blockquote></p>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);</del></pre>
-<p><blockquote><del>
-14 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34). All the types in 
-<tt>UTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34).
-</del></blockquote></p>
-<p><blockquote><del>
-15 <i>Returns</i>: A <tt>tuple</tt> object constructed by move constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and move constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></blockquote></p>
-<pre><ins>template &lt;class... Tuples&gt;
-  tuple&lt;<i>CTypes</i>...&gt; tuple_cat(Tuples&amp;&amp;... tpls);
-</ins></pre>
-<p><blockquote><ins>
-8 Let <tt>Ti</tt> be the <tt><i>i</i></tt><sup>th</sup> type in <tt>Tuples</tt>, <tt>Ui</tt> be <tt>remove_reference&lt;Ti&gt;::type</tt>,
-and <tt>tp<sub><i>i</i></sub></tt> be the <tt><i>i</i></tt><sup>th</sup> parameter in the function parameter pack <tt>tpls</tt>, where all 
-indexing is zero-based in the following paragraphs of this sub-clause [tuple.creation].
-</ins></blockquote></p>
-<p><blockquote><ins>
-9 <i>Requires</i>: For all <tt><i>i</i></tt>, <tt>Ui</tt> shall be the type <i>cv<sub><tt>i</tt></sub>&nbsp;</i><tt>tuple&lt;Args<sub><i>i</i></sub>...&gt;</tt>, 
-where <i>cv<sub><tt>i</tt></sub></i> is the (possibly empty) <tt><i>i</i></tt><sup>th</sup> <i>cv</i>-qualifier-seq, and 
-<tt>Args<sub><i>i</i></sub></tt> is the parameter pack representing the element types in <tt>Ui</tt>. Let <tt>Aik</tt> be the 
-<tt><i>k<sub>i</sub></i></tt><sup>th</sup> type in <tt>Args<sub><i>i</i></sub></tt>, then for all <tt>Aik</tt> the following 
-requirements shall be satisfied: If <tt>Ti</tt> is deduced as an lvalue reference type, then 
-<tt>is_constructible&lt;Aik, <i>cv<sub>i</sub>&nbsp;</i>Aik&amp;&gt;::value == true</tt>, otherwise 
-<tt>is_constructible&lt;Aik, <i>cv<sub>i</sub>&nbsp;</i>Aik&amp;&amp;&gt;::value == true</tt>.
-</ins></blockquote></p>
-<p><blockquote><ins>
-10 <i>Remarks</i>: The types in <tt><i>CTypes</i></tt> shall be equal to the ordered sequence of the expanded types
-<tt>Args<sub>0</sub>..., Args<sub>1</sub>..., Args<sub><i>n</i>-1</sub>...</tt>, where <tt><i>n</i></tt> equals 
-<tt>sizeof...(Tuples)</tt>. Let <tt><i>e<sub>i</sub></i>...</tt> be the <tt><i>i</i></tt><sup>th</sup> ordered 
-sequence of tuple elements of the result <tt>tuple</tt> object corresponding to the type sequence 
-<tt>Args<sub><i>i</i></sub></tt>.
-</ins></blockquote></p>
-<p><blockquote><ins>
-11 <i>Returns</i>: A <tt>tuple</tt> object constructed by initializing
-the <tt><i>k<sub>i</sub></i></tt><sup>th</sup> type element <tt>eik</tt> in <tt><i>e<sub>i</sub></i>...</tt>
-with <tt>get&lt;<i>k<sub>i</sub></i>&gt;(std::forward&lt;Ti&gt;(tp<sub>i</sub>))</tt>
-for each valid <tt><i>k<sub>i</sub></i></tt> and each element group <tt><i>e<sub>i</sub></i></tt> in order. 
-</ins></blockquote></p>
-<p><blockquote><ins>
-12 <i>Notes</i>: An implementation may also support additional types that support the <tt>tuple</tt>-like protocol in the 
-parameter pack <tt>Tuples</tt> such as <tt>pair</tt> and <tt>array</tt>.
-</ins></blockquote></p>
-</blockquote>
-</li>
-</ol>
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-Ammend 20.4.1 [tuple.general]:
-</p>
-
-<blockquote>
-2 Header <tt>&lt;tuple&gt;</tt> synopsis
-<pre>
-namespace std {
-
-...
-
-// <i>20.4.2.4, tuple creation functions:</i>
-const unspecified ignore;
-
-template &lt;class... Types&gt;
-  tuple&lt;<i>VTypes</i>...&gt; make_tuple(Types&amp;&amp;...);
-  template &lt;class... Types&gt;
-  tuple&lt;<i>ATypes</i>...&gt; forward_as_tuple(Types&amp;&amp;...);
-  
-template&lt;class... Types&gt;
-  tuple&lt;Types&amp;...&gt; tie(Types&amp;...);
-  
-<del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp;, const tuple&lt;UTypes...&gt;&amp;);
-template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp;, const tuple&lt;UTypes...&gt;&amp;);
-template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp;, tuple&lt;UTypes...&gt;&amp;&amp;);
-template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp;, tuple&lt;UTypes...&gt;&amp;&amp;);</del>
-<ins>template &lt;class... Tuples&gt;
-  tuple&lt;<i>see below</i>&gt; tuple_cat(Tuples&amp;&amp;...);</ins>
-
-...
-
-</pre>
-</blockquote>
-
-<p>
-Ammend 20.4.2.4 [tuple.creation]:
-</p>
-
-<blockquote>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);</del></pre>
-<p><del>
-8 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35). All the types in 
-<tt>UTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35).
-</del></p>
-<p><del>
-9 <i>Returns</i>: A <tt>tuple</tt> object constructed by copy constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and copy constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></p>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, const tuple&lt;UTypes...&gt;&amp; u);</del></pre>
-<p><del>
-10 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34). All the types in 
-<tt>UTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35).
-</del></p>
-<p><del>
-11 <i>Returns</i>: A <tt>tuple</tt> object constructed by move constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and copy constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></p>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(const tuple&lt;TTypes...&gt;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);</del></pre>
-<p><del>
-12 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>CopyConstructible</tt> (Table 35). All the types in <tt>UTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34).
-</del></p>
-<p><del>
-13 <i>Returns</i>: A <tt>tuple</tt> object constructed by copy constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and move constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></p>
-<pre><del>template &lt;class... TTypes, class... UTypes&gt;
-  tuple&lt;TTypes..., UTypes...&gt; tuple_cat(tuple&lt;TTypes...&gt;&amp;&amp; t, tuple&lt;UTypes...&gt;&amp;&amp; u);</del></pre>
-<p><del>
-14 <i>Requires</i>: All the types in <tt>TTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34). All the types in 
-<tt>UTypes</tt> shall be <tt>MoveConstructible</tt> (Table 34).
-</del></p>
-<p><del>
-15 <i>Returns</i>: A <tt>tuple</tt> object constructed by move constructing its first <tt>sizeof...(TTypes)</tt> elements 
-from the corresponding elements of <tt>t</tt> and move constructing its last <tt>sizeof...(UTypes)</tt> elements from the 
-corresponding elements of <tt>u</tt>.
-</del></p>
-<pre><ins>template &lt;class... Tuples&gt;
-  tuple&lt;<i>see below</i>&gt; tuple_cat(Tuples&amp;&amp;... tpls);</ins></pre>
-<p><ins>
-8 <i>Requires</i>: All the types in template parameter pack <tt>Tuples</tt> shall be instantiations of the <tt>std::tuple</tt> template.
-The type of all elements in each <tt>tuple</tt> shall be <tt>MoveConstructible</tt> (Table 34) if the corresponding argument is 
-passed as an rvalue, or <tt>CopyConstructible</tt> (Table 35) if passed as an lvalue.
-</ins></p>
-<p><ins>
-9 <i>Returns</i>: A <tt>tuple</tt> object constructed by calling <tt>get&lt;I&gt;(tpls)</tt> for each valid <tt>I</tt> in turn on each 
-<tt>tuple</tt> object in the function parameter pack <tt>tpls</tt>. [<i>Note</i>: The effect is to concatenate each succeeding 
-<tt>tuple</tt> in the parameter pack <tt>tpls</tt> into one large <tt>tuple</tt>. Elements are not interleaved &mdash; <i>end note</i>].
-</ins></p>
-<p><ins>
-10 <i>Remark</i>: An implementation may also support additional types that support the <tt>tuple</tt> protocol in the 
-parameter pack <tt>Tuples</tt> such as <tt>pair</tt> and <tt>array</tt>.
-</ins></p>
-</blockquote>
-
-
-
-
-
-
-<hr>
 <h3><a name="1396"></a>1396. [FCD] <tt>regex</tt> should support allocators</h3>
 <p><b>Section:</b> 28.8 [re.regex] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-07</p>
@@ -1858,82 +1578,6 @@ Require that it be a distinct class type.
 
 
 <p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1418"></a>1418. [FCD] Effects of <tt>resize(size())</tt> on a <tt>deque</tt></h3>
-<p><b>Section:</b> 23.3.2.2 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-13</p>
-<p><b>View all other</b> <a href="lwg-index.html#deque.capacity">issues</a> in [deque.capacity].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-113</b></p>
-<p>
-There is no mention of what happens if <tt>sz==size()</tt>. While
-it obviously does nothing I feel a standard needs to say
-this explicitely.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Ammend [deque.capacity]</p>
-<blockquote>
-</blockquote>
-<p><tt>void resize(size_type sz);</tt></p>
-<p>
-<i>Effects</i>: If <tt>sz &lt;<ins>=</ins> size()</tt>, equivalent to <tt>erase(begin() +
-sz, end());</tt>. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> <del>default 
-constructed</del><ins>value initialized</ins> elements to the sequence.
-</p>
-
-
-
-
-
-<hr>
-<h3><a name="1420"></a>1420. [FCD] Effects of <tt>resize(size())</tt> on a <tt>list</tt></h3>
-<p><b>Section:</b> 23.3.4.2 [list.capacity] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-13</p>
-<p><b>View all other</b> <a href="lwg-index.html#list.capacity">issues</a> in [list.capacity].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-115</b></p>
-<p>
-There is no mention of what happens if <tt>sz==size()</tt>. While
-it obviously does nothing I feel a standard needs to say
-this explicitely.
-</p>
-
-<p><i>[
-Resolution proposed in ballot comment
-]</i></p>
-
-<p>
-Express the semantics as pseudo-code similarly
-to the way it is done for the copying overload that
-follows (in p3). Include an else clause that does
-nothing and covers the <tt>sz==size()</tt> case.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-Ammend [list.capacity] p1:
-</p>
-<blockquote>
-<p><tt>void resize(size_type sz);</tt></p>
-<blockquote>
-<i>Effects</i>: If <tt>sz &lt;<ins>=</ins> size()</tt>, equivalent to <tt>list&lt;T&gt;::iterator
-it = begin(); advance(it, sz); erase(it, end());</tt>. If
-<tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> <del>default constructed</del>
-<ins>value initialized</ins> elements to the sequence<del></del>.
-</blockquote>
-</blockquote>
-
 
 
 
@@ -2076,59 +1720,71 @@ const Engine&amp; base() const <ins>noexcept</ins>;
 <hr>
 <h3><a name="1448"></a>1448. [FCD] Concerns about <tt>basic_stringbuf::str(basic_string)</tt> postconditions</h3>
 <p><b>Section:</b> 27.8.1.3 [stringbuf.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-14</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-124</b></p>
 
-N3092 27.8.1.3 Member functions contains this text
-specifying the postconditions of
-basic_stringbuf::str(basic_string):<BR/>
-"Postconditions: If mode &amp; ios_base::out is true, pbase()
-points to the first underlying character and epptr() &gt;=
-pbase() + s.size() holds; in addition, if mode &amp;
-ios_base::in is true, pptr() == pbase() + s.data() holds,
-otherwise pptr() == pbase() is true. [...]"<BR/>
-Firstly, there's a simple mistake: It should be pbase() +
-s.length(), not pbase() + s.data().<BR/>
-Secondly, it doesn't match existing implementations. As
-far as I can tell, GCC 4.5 does not test for mode &amp;
-ios_base::in in the second part of that sentence, but for
-mode &amp; (ios_base::app | ios_base_ate), and Visual C++ 9
-for mode &amp; ios_base::app. Besides, the wording of the
-C++0x draft doesn't make any sense to me. I suggest
-changing the second part of the sentence to one of the
-following:<BR/>
-Replace ios_base::in with (ios_base::ate | ios_base::app),
-but this would require Visual C++ to change (replacing
-only with ios_base::ate would require GCC to change, and
-would make ios_base::app completely useless with
-stringstreams):<BR/>
-in addition, if mode &amp; (ios_base::ate | ios_base::app) is
-true, pptr() == pbase() + s.length() holds, otherwise pptr()
-== pbase() is true.<BR/>
-Leave pptr() unspecified if mode &amp; ios_base::app, but not
-mode &amp; ios_base::ate (implementations already differ in
-this case, and it's always possible to use ios_base::ate to
-get the effect of appending, so it's not necessary to
-require any implementation to change):
-in addition, if mode &amp; ios_base::ate is true, pptr() ==
-pbase() + s.length() holds, if neither mode &amp; ios_base::ate
-nor mode &amp; ios_base::app is true, pptr() == pbase() holds,
-otherwise pptr() &gt;= pbase() &amp;&amp; pptr() &lt;= pbase() +
-s.length() (which of the values in this range is
-unspecified).<BR/>
-Slightly stricter:<BR/>
-in addition, if mode &amp; ios_base::ate is true, pptr() ==
-pbase() + s.length() holds, if neither mode &amp; ios_base::ate
-nor mode &amp; ios_base::app is true, pptr() == pbase() holds,
-otherwise pptr() == pbase() || pptr() == pbase() +
-s.length() (which of these two values is unspecified).
-A small table might help to better explain the three cases.
-BTW, at the end of the postconditions is this text: "egptr()
-== eback() + s.size() hold". Is there a perference for
-basic_string::length or basic_string::size? It doesn't really
+<p>
+N3092 27.8.1.3 [stringbuf.members] contains this textcspecifying the postconditions of
+<tt>basic_stringbuf::str(basic_string)</tt>:
+</p>
+<blockquote>
+Postconditions: If <tt>mode &amp; ios_base::out</tt> is <tt>true</tt>,
+<tt>pbase()</tt> points to the first underlying character and <tt>epptr() >=
+pbase() + s.size()</tt> holds; in addition, if <tt>mode &amp; ios_base::in</tt>
+is <tt>true</tt>, <tt>pptr() == pbase() + s.data()</tt> holds, otherwise
+<tt>pptr() == pbase()</tt> is <tt>true</tt>. [...]
+</blockquote>
+<p>
+Firstly, there's a simple mistake: It should be <tt>pbase() + s.length()</tt>,
+not <tt>pbase() + s.data()</tt>.
+</p>
+<p>
+Secondly, it doesn't match existing implementations. As far as I can tell,
+GCC 4.5 does not test for <tt>mode &amp; ios_base::in</tt> in the second part
+of that sentence, but for <tt>mode &amp; (ios_base::app | ios_base_ate)</tt>,
+and Visual C++ 9 for <tt>mode &amp; ios_base::app</tt>. Besides, the wording of
+the C++0x draft doesn't make any sense to me. I suggest changing the second part
+of the sentence to one of the following:
+</p>
+<p>
+Replace <tt>ios_base::in</tt> with <tt>(ios_base::ate | ios_base::app)</tt>,
+but this would require Visual C++ to change (replacing only with
+<tt>ios_base::ate</tt> would require GCC to change, and would make
+<tt>ios_base::app</tt> completely useless with <tt>stringstreams</tt>):
+</p>
+<p>
+in addition, if <tt>mode &amp; (ios_base::ate | ios_base::app)</tt> is <tt>true</tt>,
+<tt>pptr() == pbase() + s.length()</tt> holds, otherwise <tt>pptr() == pbase()</tt>
+is <tt>true</tt>.
+</p>
+<p>
+Leave <tt>pptr()</tt> unspecified if <tt>mode &amp; ios_base::app</tt>, but not
+<tt>mode &amp; ios_base::ate</tt> (implementations already differ in this case, and it
+is always possible to use <tt>ios_base::ate</tt> to get the effect of appending, so it
+is not necessary to require any implementation to change):
+</p>
+<p>
+in addition, if <tt>mode &amp; ios_base::ate</tt> is <tt>true</tt>,
+<tt>pptr() == pbase() + s.length()</tt> holds, if neither <tt>mode &amp; ios_base::ate</tt>
+nor <tt>mode &amp; ios_base::app</tt> is <tt>true</tt>, <tt>pptr() == pbase()</tt> holds,
+otherwise <tt>pptr() >= pbase() &amp;&amp; pptr() &lt;= pbase() + s.length()</tt>
+(which of the values in this range is unspecified).
+</p>
+<p>
+Slightly stricter:
+</p>
+<p>
+in addition, if <tt>mode &amp; ios_base::ate</tt> is <tt>true</tt>,
+<tt>pptr() == pbase() + s.length()</tt> holds, if neither
+<tt>mode &amp; ios_base::ate</tt> nor <tt>mode &amp; ios_base::app</tt> is <tt>true</tt>,
+<tt>pptr() == pbase()</tt> holds, otherwise <tt>pptr() == pbase() || pptr() == pbase() + s.length()</tt>
+(which of these two values is unspecified). A small table might help to better explain the three cases.
+BTW, at the end of the postconditions is this text: &quot;<tt>egptr() == eback() + s.size()</tt> hold&quot;.
+Is there a perference for <tt>basic_string::length</tt> or <tt>basic_string::size</tt>? It doesn't really
 matter, but it looks a bit inconsistent.
+</p>
 
 
 <p><b>Proposed resolution:</b></p>
