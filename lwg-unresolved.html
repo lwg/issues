@@ -1303,6 +1303,85 @@ be specified.
 
 
 <hr>
+<h3><a name="1353"></a>1353. [FCD] Clarify the state of a <i>moved-from</i> object</h3>
+<p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-14</p>
+<p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
+<p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses CH-18</b></p>
+<p>
+The general approach on moving is that a library object
+after moving out is in a "valid but unspecified state". But
+this is stated at the single object specifications, which is
+error prone (especially if the move operations are implicit)
+and unnecessary duplication.
+</p>
+
+<p><i>[
+Resolution propsed by ballot comment
+]</i></p>
+
+<p>
+Consider putting a general statement to the same
+effect into clause 17.
+</p>
+
+<p><i>[2010-11-05 Beman provides exact wording.
+The wording was inspired by Dave Abrahams'
+message c++std-lib-28958, and refined with help from Alisdair, Daniel, and Howard.
+]</i></p>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+    <p><i>Add a new definition to 17.3 Definitions [definitions]:</i></p>
+    
+    <blockquote>
+    <p>17.3.24 [defns.valid.unspecified]<br/>
+    <b>valid but unspecified state</b><br/>
+    an object state that is not specified except that the object's invariants are met, and operations 
+    on the object perform as specified, 
+    subject only to the operation's normal preconditions.</p>
+    <p>
+    [<i>Example:</i> If an object <tt>x</tt> of type <tt>std::vector&lt;int&gt;</tt> is in a valid but 
+    unspecified state, <tt>x.empty()</tt> can be called unconditionally, and
+    <tt>x.front()</tt> can be called provided <tt>x.empty()</tt> returns
+    <tt>false</tt>. <i>--end example</i>]</p>
+    </blockquote>
+    
+    <p><i>Change Table 34 - MoveConstructible requirements [moveconstructible] as 
+    indicated:</i></p>
+    <blockquote>
+    <p><del>[ <i>Note:</i> <tt>rv</tt> remains a valid object. Its state is 
+    unspecified&nbsp; <i>--end note</i> ]</del><br/>
+    <ins><i>Postcondition:</i><tt> rv</tt> is in a valid but 
+    unspecified state ([defns.valid.unspecified]).</ins></p>
+    </blockquote>
+    
+    <p><i>Change Table 36 - MoveAssignable requirements [moveassignable] as 
+    indicated:</i></p>
+    <blockquote>
+    <p><del>[ <i>Note:</i> <tt>rv</tt> remains a valid object. Its state is 
+    unspecified&nbsp; <i>--end note</i> ]</del><br/>
+    <ins><i>Postcondition:</i><tt> rv</tt> is in a valid but 
+    unspecified state ([defns.valid.unspecified]).</ins></p>
+    </blockquote>
+    
+    <p><i>No change in the half-dozen or so places in the standard library that 
+    use &quot;valid but unspecified state&quot; directly, and no change in the many places 
+    that require <tt>MoveCostructible</tt> or <tt>MoveAssignable</tt>, 
+    since <tt>MoveCostructible</tt> and <tt>MoveAssignable</tt> will now 
+    normatively require &quot;valid but unspecified state&quot;.</i></p>
+
+
+
+
+
+
+<hr>
 <h3><a name="1358"></a>1358. [FCD] Add <tt>&lt;chrono></tt> and <tt>&lt;ratio></tt> to
 freestanding implementations</h3>
 <p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
@@ -1575,7 +1654,7 @@ with the call of <tt>get</tt>. Finally I suggest to replace the requirements <tt
 by proper usage of <tt>is_constructible</tt>, as indicated by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
 </p>
 
-<p>Remark: This alternate proposed resolution works only if <a href="lwg-active.html#1191">1191</a> has been accepted.</p>
+<p>Remark: This alternate proposed resolution works only if <a href="lwg-defects.html#1191">1191</a> has been accepted.</p>
 
 <p>Alternative proposed resolution:</p>
 
@@ -1960,7 +2039,6 @@ it = begin(); advance(it, sz); erase(it, end());</tt>. If
 <h3><a name="1421"></a>1421. [FCD] Accidental move-only library types due to new core language rules</h3>
 <p><b>Section:</b> 23.5 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
-<p><b>View other</b> <a href="lwg-index-open.html#container.adaptors">active issues</a> in [container.adaptors].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1350">1350</a></p>
