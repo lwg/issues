@@ -340,14 +340,18 @@ struct sort_by_status {
             "New",
             "Open",
             "Deferred",
+            "Pending WP",
+            "Pending NAD Future",
+            "Pending NAD Editorial",
+            "Pending NAD",
             "NAD Future",
             "NAD Editorial",
             "WP",
             "CD1",
             "TC1",
             "TRDec",
-            "Dups",
             "NAD",
+            "Dup",
             "NAD Concepts"
          };
          // Don't know why gcc 4.6 rejects this - cannot deduce iterators for 'find_if' algorithm
@@ -356,7 +360,13 @@ struct sort_by_status {
          //return std::find_if( first, last), [&](char const * str){ return str == stat; } ) - first;
 
          // Yet gcc 4.6 does work with this that should have identical semantics, other than an lvalue/rvalue switch
-         return std::find_if( std::begin(status_priority), std::end(status_priority), [&](char const * str){ return str == stat; } ) - std::begin(status_priority);
+         static auto const first = std::begin(status_priority);
+         static auto const last  = std::end(status_priority);
+         auto const x = std::find_if( first, last, [&](char const * str){ return str == stat; } );
+         if(last == x) {
+            std::cout << "Unknown status: " << stat << std::endl;
+         }
+         return x - first;
       };
 
       return get_priority(x.stat) < get_priority(y.stat);
