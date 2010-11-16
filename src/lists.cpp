@@ -173,7 +173,7 @@ auto is_tentative(std::string const & stat) -> bool {
 }
 
 auto is_not_resolved(const std::string& stat) -> bool {
-   for( auto s : {"New", "Open", "Review"}) { if(s == stat) return true; }
+   for( auto s : {"Deferred", "New", "Open", "Review"}) { if(s == stat) return true; }
    return false;
 }
 
