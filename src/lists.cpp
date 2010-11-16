@@ -1071,7 +1071,7 @@ void make_sort_by_num(std::vector<issue>& issues, std::string const & filename, 
    sort(issues.begin(), issues.end(), sort_by_num{});
 
    std::ofstream out{filename.c_str()};
-   print_file_header(out, "Library Issues List Table of Contents");
+   print_file_header(out, "LWG Table of Contents");
 
    out <<
 R"(<h1>C++ Standard Library Issues List (Revision )" << lwg_issues_xml.get_revision() << R"()</h1>
@@ -1079,7 +1079,6 @@ R"(<h1>C++ Standard Library Issues List (Revision )" << lwg_issues_xml.get_revis
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
 <p>This document is the Table of Contents for the <a href="lwg-active.html">Library Active Issues List</a>,
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.</p>
-<h2>Table of Contents</h2>
 )";
 
    print_table(out, issues.begin(), issues.end());
@@ -1094,18 +1093,17 @@ void make_sort_by_status(std::vector<issue>& issues, std::string const & filenam
    stable_sort(issues.begin(), issues.end(), sort_by_status{});
 
    std::ofstream out{filename.c_str()};
-   print_file_header(out, "Library Issues List Table of Contents");
+   print_file_header(out, "LWG Index by Status and Section");
 
    out <<
 R"(<h1>C++ Standard Library Issues List (Revision )" << lwg_issues_xml.get_revision() << R"()</h1>
-<h1>Table of Contents</h1>
+<h1>Index by Status and Section</h1>
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
 <p>
-This document is the Table of Contents for the <a href="lwg-active.html">Library Active Issues List</a>,
+This document is the Index by Status and Section for the <a href="lwg-active.html">Library Active Issues List</a>,
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.
 </p>
 
-<h2>Index by Status</h2>
 )";
 
    for (auto i = issues.cbegin(), e = issues.cend(); i != e;) {
@@ -1127,17 +1125,16 @@ void make_sort_by_status_mod_date(std::vector<issue> & issues, std::string const
    stable_sort(issues.begin(), issues.end(), sort_by_status{});
 
    std::ofstream out{filename.c_str()};
-   print_file_header(out, "Library Issues List Table of Contents");
+   print_file_header(out, "LWG Index by Status and Date");
 
    out <<
 R"(<h1>C++ Standard Library Issues List (Revision )" << lwg_issues_xml.get_revision() << R"()</h1>
-<h1>Table of Contents</h1>
+<h1>Index by Status and Date</h1>
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
 <p>
-This document is the Table of Contents for the <a href="lwg-active.html">Library Active Issues List</a>,
+This document is the Index by Status and Date for the <a href="lwg-active.html">Library Active Issues List</a>,
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.
 </p>
-<h2>Index by Status</h2>
 )";
 
 
@@ -1198,12 +1195,12 @@ void make_sort_by_section(std::vector<issue>& issues, std::string const & filena
    }
 
    std::ofstream out(filename.c_str());
-   print_file_header(out, "Library Issues List Table of Contents");
+   print_file_header(out, "LWG Index by Section");
 
    out << "<h1>C++ Standard Library Issues List (Revision " << lwg_issues_xml.get_revision() << ")</h1>\n";
-   out << "<h1>Table of Contents</h1>\n";
+   out << "<h1>Index by Section</h1>\n";
    out << "<p>Reference ISO/IEC IS 14882:2003(E)</p>\n";
-   out << "<p>This document is the Table of Contents for the <a href=\"lwg-active.html\">Library Active Issues List</a>";
+   out << "<p>This document is the Index by Section for the <a href=\"lwg-active.html\">Library Active Issues List</a>";
    if(!active_only) {
       out << ", <a href=\"lwg-defects.html\">Library Defect Reports List</a>, and <a href=\"lwg-closed.html\">Library Closed Issues List</a>";
    }
