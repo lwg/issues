@@ -23,7 +23,7 @@
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
 <p><b>Section:</b> 30.5.2 [thread.condition.condvarany] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-29</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvarany">issues</a> in [thread.condition.condvarany].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -100,7 +100,7 @@ single paper.
 <hr>
 <h3><a name="966"></a>966. Various threading bugs #16</h3>
 <p><b>Section:</b> 30.5.1 [thread.condition.condvar] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-29</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvar">issues</a> in [thread.condition.condvar].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -322,7 +322,7 @@ precondition is not met.
 <hr>
 <h3><a name="985"></a>985. Allowing throwing move</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2010-10-29</p>
 <p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -608,7 +608,7 @@ exception is thrown by the move constructor of <tt>T</tt>.</ins>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
 <p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2010-10-23</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -758,7 +758,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2010-10-23</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -807,6 +807,367 @@ Move to Open.
 <p><b>Proposed resolution:</b></p>
 <p>
 </p>
+
+
+
+
+
+<hr>
+<h3><a name="1213"></a>1213. Meaning of valid and singular iterator underspecified</h3>
+<p><b>Section:</b> 24.2 [iterator.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-19 <b>Last modified:</b> 2010-11-14</p>
+<p><b>View all other</b> <a href="lwg-index.html#iterator.requirements">issues</a> in [iterator.requirements].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The terms <em>valid</em> iterator and <em>singular</em> aren't
+properly defined. The fuzziness of those terms became even worse
+after the resolution of <a href="lwg-defects.html#208">208</a> (including further updates by <a href="lwg-defects.html#278">278</a>). In
+24.2 [iterator.requirements] as of
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2723.pdf">N2723</a>
+the standard says now:
+</p>
+
+<blockquote>
+<p>
+5 - These values are called past-the-end values. Values of an iterator <tt>i</tt> for
+which the expression <tt>*i</tt> is defined are called dereferenceable. The library
+never assumes that past-the-end values are dereferenceable. Iterators
+can also have singular values that are not associated with any
+container. [...] Results of most expressions are undefined for singular
+values; the only exceptions are destroying an iterator that holds a
+singular value and the assignment of a non-singular value to an iterator
+that holds a singular value. [...] Dereferenceable values are always
+non-singular.
+</p>
+
+<p>
+10 - An invalid iterator is an iterator that may be singular.
+</p>
+</blockquote>
+
+<p>
+First, issue <a href="lwg-defects.html#208">208</a> intentionally removed the earlier constraint that past-the-end
+values are always non-singular. The reason for this was to support null
+pointers as past-the-end iterators of e.g. empty sequences. But there
+seem to exist different views on what a singular (iterator) value is. E.g.
+according to the <a href="http://www.sgi.com/tech/stl/trivial.html">SGI definition</a>
+a null pointer is <em>not</em> a singular value:
+</p>
+
+<blockquote>
+Dereferenceable iterators are always nonsingular, but the converse is
+not true.
+For example, a null pointer is nonsingular (there are well defined operations
+involving null pointers) even thought it is not dereferenceable.
+</blockquote>
+
+<p>
+and <a href="http://www.sgi.com/tech/stl/InputIterator.html">proceeds</a>:
+</p>
+
+<blockquote>
+An iterator is valid if it is dereferenceable or past-the-end.
+</blockquote>
+
+<p>
+Even if the standard prefers a different meaning of singular here, the
+change was
+incomplete, because by restricting feasible expressions of singular
+iterators to
+destruction and assignment isn't sufficient for a past-the-end
+iterator: Of-course
+it must still be equality-comparable and in general be a readable value.
+</p>
+
+<p>
+Second, the standard doesn't clearly say whether a past-the-end value is
+a valid iterator or not. E.g. 20.9.9 [specialized.algorithms]/1 says:
+</p>
+
+<blockquote>
+In all of the following algorithms, the formal template parameter
+<tt>ForwardIterator</tt>
+is required to satisfy the requirements of a forward iterator (24.1.3)
+[..], and is
+required to have the property that no exceptions are thrown from [..], or
+dereference of valid iterators.
+</blockquote>
+
+<p>
+The standard should make better clear what "singular pointer" and "valid
+iterator" means. The fact that the meaning of a valid <em>value</em>
+has a core language meaning doesn't imply that for an iterator concept
+the term "valid iterator" has the same meaning.
+</p>
+
+<p>
+Let me add a final example: In X [allocator.concepts.members] of
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>
+we find:
+</p>
+
+<blockquote><pre>
+pointer X::allocate(size_type n);
+</pre>
+
+<blockquote>
+11 <i>Returns:</i> a pointer to the allocated memory. [<i>Note:</i> if <tt>n == 0</tt>, the return
+value is unspecified. &mdash;<i>end note</i>]
+</blockquote>
+
+<p>
+[..]
+</p>
+
+<pre>
+void X::deallocate(pointer p, size_type n);
+</pre>
+
+<blockquote>
+<i>Preconditions:</i> <tt>p</tt> shall be a non-singular pointer value obtained from a call
+to <tt>allocate()</tt> on this allocator or one that compares equal to it.
+</blockquote>
+</blockquote>
+
+<p>
+If singular pointer value would include null pointers this make the
+preconditions
+unclear if the pointer value is a result of <tt>allocate(0)</tt>: Since the return value
+is unspecified, it could be a null pointer. Does that mean that programmers
+need to check the pointer value for a null value before calling deallocate?
+</p>
+
+<p><i>[
+2010-11-09 Daniel comments:
+]</i></p>
+
+
+<p>
+A later paper is in preparation.
+</p>
+
+<p><i>[
+2010 Batavia:
+]</i></p>
+
+
+<p>
+Doesn't need to be resolved for Ox
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+Consider to await the paper.
+
+
+
+
+
+<hr>
+<h3><a name="1214"></a>1214. Insufficient/inconsistent key immutability requirements for  associative containers</h3>
+<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2010-11-14</p>
+<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
+<p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Scott Meyers' mentions on a recent posting on <a
+href="http://groups.google.de/group/comp.std.c++/msg/6f9160fc428bcbea">c.s.c++</a>
+some arguments that point to an incomplete resolution
+of <a href="lwg-defects.html#103">103</a> and to an inconsistency of requirements on keys in ordered and
+unordered associative
+containers:
+</p>
+
+<blockquote>
+<p>
+1) <a href="lwg-defects.html#103">103</a> introduced the term immutable without defining it in a unique manner in
+23.2.4 [associative.reqmts]/5:
+</p>
+
+<blockquote>
+[..] Keys in an associative container are immutable.
+</blockquote>
+
+<p>
+According to conventional dictionaries immutable is an unconditional way of
+saying that something cannot be changed. So without any further explicit
+allowance a user <em>always</em> runs into undefined behavior if (s)he attempts
+to modify such a key. IMO this was not the intend of the committee to resolve
+<a href="lwg-defects.html#103">103</a> in that way because the comments suggest an interpretation that
+should give any user the freedom to modify the key in an <em>explicit</em> way
+<em>provided</em> it would not affect the sort order in that container.
+</p>
+
+<p>
+2) Another observation was that surprisingly no similar 'safety guards'
+exists against unintentional key changes for the unordered associative
+containers, specifically there is no such requirement as in
+23.2.4 [associative.reqmts]/6 that "both <tt>iterator</tt> and <tt>const_iterator</tt> are constant
+iterators". But the need for such protection against unintentional
+changes as well as the constraints in which manner any explicit
+changes may be performed are both missing and necessary, because
+such changes could potentially change the <em>equivalence</em> of keys that
+is measured by the <tt>hasher</tt> and <tt>key_equal</tt>.
+</p>
+
+<p>
+I suggest to fix the unconditional wording involved with "immutable keys"
+by at least adding a hint for the reader that users <em>may</em> perform such
+changes in an explicit manner <em>and</em> to perform similar wording changes
+as <a href="lwg-defects.html#103">103</a> did for the ordered associative containers also for the unordered
+containers.
+</p>
+</blockquote>
+
+<p><i>[
+2010-03-27 Daniel provides wording.
+]</i></p>
+
+
+<blockquote>
+This update attempts to provide normative wording that harmonizes the key and
+function object constraints of associative and unordered containers.
+</blockquote>
+
+<p><i>[
+2010 Batavia:
+]</i></p>
+
+
+<p>
+We're uncomfortable with the first agenda item, and we can live with the second agenda 
+item being applied before or after Madrid. 
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p>
+Change 23.2.4 [associative.reqmts]/2 as indicated: <i>[This ensures that
+associative containers make better clear what this "arbitrary" type is, as the
+unordered containers do in 23.2.5 [unord.req]/3]</i>
+</p>
+
+<blockquote>
+2 Each associative container is parameterized on <tt>Key</tt> and an ordering
+relation <tt>Compare</tt> that induces a strict weak ordering (25.4) on elements
+of <tt>Key</tt>. In addition, <tt>map</tt> and <tt>multimap</tt> associate an
+arbitrary <ins><em>mapped type</em></ins><del>type</del> <tt>T</tt> with the
+<tt>Key</tt>. The object of type <tt>Compare</tt> is called the <em>comparison
+object</em> of a container.
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.2.4 [associative.reqmts]/5 as indicated: <i>[This removes the
+too strong requirement that keys must not be changed at all and brings this line
+in sync with 23.2.5 [unord.req]/7. We take care about the real
+constraints by the remaining suggested changes. The rationale provided by LWG
+<a href="lwg-defects.html#103">103</a> didn't really argue why that addition is necessary, and I
+believe the remaining additions make it clear that any user changes have strong
+restrictions]</i>:
+</p>
+
+<blockquote>
+5 For <tt>set</tt> and <tt>multiset</tt> the value type is the same as the key
+type. For <tt>map</tt> and <tt>multimap</tt> it is equal to <tt>pair&lt;const
+Key, T&gt;</tt>. <del>Keys in an associative container are immutable.</del>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.2.5 [unord.req]/3+4 as indicated: <i>[The current sentence of
+p.4 has doesn't say something really new and this whole subclause misses to
+define the concepts of the container-specific hasher <i>object</i> and predicate
+<i>object</i>. We introduce the term <em>key equality predicate</em> which is
+already used in the requirements table. This change does not really correct part
+of this issue, but is recommended to better clarify the nomenclature and the
+difference between the function objects and the function object <em>types</em>,
+which is important, because both can potentially be stateful.]</i>
+</p>
+
+<blockquote>
+<p>
+3 Each unordered associative container is parameterized by <tt>Key</tt>, by a
+function object type <tt>Hash</tt> that meets the <tt>Hash</tt> requirements
+(20.2.4) and acts as a hash function for argument values of type <tt>Key</tt>,
+and by a binary predicate <tt>Pred</tt> that induces an equivalence relation on
+values of type <tt>Key</tt>. Additionally, <tt>unordered_map</tt> and
+<tt>unordered_multimap</tt> associate an arbitrary <em>mapped type</em>
+<tt>T</tt> with the <tt>Key</tt>.
+</p>
+
+<p>
+4 <ins>The container's object of type <tt>Hash</tt> - denoted by
+<tt>hash</tt> - is called the <em>hash function</em> of the container.
+The container's object of type <tt>Pred</tt> - denoted by
+<tt>pred</tt> - is called the <em>key equality predicate</em> of the
+container.</ins><del>A hash function is a function object that takes a single
+argument of type <tt>Key</tt> and returns a value of type
+<tt>std::size_t</tt></del>.
+</p>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change 23.2.5 [unord.req]/5 as indicated: <i>[This adds a similar
+safe-guard as the last sentence of 23.2.4 [associative.reqmts]/3]</i>
+</p>
+
+<blockquote>
+5 Two values <tt>k1</tt> and <tt>k2</tt> of type <tt>Key</tt> are considered
+equivalent if the container's <ins>key equality
+predicate</ins><del><tt>key_equal</tt> function object</del> returns
+<tt>true</tt> when passed those values. If <tt>k1</tt> and <tt>k2</tt> are
+equivalent, the <ins>container's</ins> hash function shall return the same value
+for both. [<i>Note:</i> thus, when an unordered associative container is
+instantiated with a non-default <tt>Pred</tt> parameter it usually needs a
+non-default <tt>Hash</tt> parameter as well. &mdash; <i>end note</i>] <ins>For
+any two keys <tt>k1</tt> and <tt>k2</tt> in the same container, calling
+<tt>pred(k1, k2)</tt> shall always return the same value. For any key <tt>k</tt>
+in a container, calling <tt>hash(k)</tt> shall always return the same
+value.</ins>
+</blockquote>
+</li>
+
+<li>
+<p>
+After 23.2.5 [unord.req]/7 add the following new paragraph: <i>[This
+ensures the same level of compile-time protection that we already require for
+associative containers. It is necessary for similar reasons, because any change
+in the stored key which would change it's equality relation to others or would
+change it's hash value such that it would no longer fall in the same bucket,
+would break the container invariants]</i>
+</p>
+
+<blockquote>
+<p>
+7 For <tt>unordered_set</tt> and <tt>unordered_multiset</tt> the value type is
+the same as the key type. For <tt>unordered_map</tt> and
+<tt>unordered_multimap</tt> it is <tt>std::pair&lt;const Key, T&gt;</tt>.
+</p>
+<p>
+<ins>For unordered containers where the value type is the same as the key type,
+both <tt>iterator</tt> and <tt>const_iterator</tt> are constant iterators. It is
+unspecified whether or not <tt>iterator</tt> and <tt>const_iterator</tt> are the
+same type. [<i>Note:</i> <tt>iterator</tt> and <tt>const_iterator</tt> have
+identical semantics in this case, and <tt>iterator</tt> is convertible to
+<tt>const_iterator</tt>. Users can avoid violating the One Definition Rule by
+always using <tt>const_iterator</tt> in their function parameter lists. &mdash;
+<i>end note</i>]</ins>
+</p>
+</blockquote>
+</li>
+
+</ol>
+
 
 
 
@@ -988,10 +1349,10 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 
 <hr>
 <h3><a name="1330"></a>1330. Move container requirements into requirements tables</h3>
-<p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-10-27</p>
+<p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-11-15</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 Abstract:
@@ -1103,6 +1464,18 @@ column, so that we still need container specific descriptions for the
 functions listed there.
 </p>
 
+<p><i>[
+2010 Batavia
+]</i></p>
+
+<p>
+While there is consensus that further cleaning up the container requirement
+tables would be a good thing, there is no feeling that this <em>must</em>
+be done in time for 0x.  The issue remains open, but Deferred.
+</p>
+
+
+
 
 <p><b>Proposed resolution:</b></p>
 
@@ -1169,7 +1542,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html"
 <hr>
 <h3><a name="1348"></a>1348. [FCD] Exception safety of unspecified types</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1213,7 +1586,7 @@ are already required not to throw.
 <hr>
 <h3><a name="1349"></a>1349. [FCD] <tt>swap</tt> should not throw</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1389,7 +1762,7 @@ environment, much like <tt>&lt;thread></tt>.
 <hr>
 <h3><a name="1364"></a>1364. [FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</h3>
 <p><b>Section:</b> 18.8.6 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1420,7 +1793,7 @@ same exception introduce a race.
 <hr>
 <h3><a name="1369"></a>1369. [FCD] <tt>rethrow_exception</tt> may introduce data races</h3>
 <p><b>Section:</b> 18.8.6 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1556,37 +1929,9 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">
 
 
 <hr>
-<h3><a name="1413"></a>1413. [FCD] Specify whether <tt>high_resolution_clock</tt> is a distinct type or a typedef</h3>
-<p><b>Section:</b> 20.11.5.3 [time.clock.hires] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-112</b></p>
-<p>
-What it means for <tt>high_resolution_clock</tt> to be a synonym
-is undefined. If it may or may not be a typedef, then
-certain classes of programs become unportable.
-</p>
-
-<p><i>[
-Resolution proposed in ballot comment
-]</i></p>
-
-<p>
-Require that it be a distinct class type.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1421"></a>1421. [FCD] Accidental move-only library types due to new core language rules</h3>
 <p><b>Section:</b> 23.5 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1350">1350</a></p>
@@ -1794,6 +2139,78 @@ matter, but it looks a bit inconsistent.
 
 
 <hr>
+<h3><a name="1450"></a>1450. [FCD] Contradiction in regex_constants</h3>
+<p><b>Section:</b> 28.5.2 [re.matchflag] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-13</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-127</b></p>
+
+The Bitmask Type requirements in 17.5.2.1.3 [bitmask.types] p.3 say that
+all elements on a bitmask type have distinct values, but
+28.5.2 [re.matchflag] defines <tt>regex_constants::match_default</tt> and
+<tt>regex_constants::format_default</tt> as elements of the
+bitmask type <tt>regex_constants::match_flag_type</tt>, both with
+value 0. This is a contradiction.
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote>
+One of the bitmask elements should be removed
+from the declaration and should be defined
+separately, in the same manner as
+<tt>ios_base::adjustfield</tt>, <tt>ios_base::basefield</tt> and
+<tt>ios_base::floatfield</tt> are defined by 27.5.2.1.2 [ios::fmtflags] p.2
+and Table 120. These are constants of a bitmask
+type, but are not distinct elements, they have
+more than one value set in the bitmask.
+<tt>regex_constants::format_default</tt> should be
+specified as a constant with the same value as
+<tt>regex_constants::match_default</tt>.
+</blockquote>
+
+<p><i>[
+2010-10-31 Daniel comments:
+]</i></p>
+
+<p>
+Strictly speaking, a bitmask type cannot have any element of value 0 at all, because
+any such value would contradict the requirement expressed in 17.5.2.1.3 [bitmask.types] p. 3:
+<blockquote>
+for any pair <em>Ci</em> and <em>Cj</em>, <em>Ci</em> &amp; <em>Ci</em> is nonzero
+</blockquote>
+So, actually <em>both</em> <tt>regex_constants::match_default</tt> and
+<tt>regex_constants::format_default</tt> are only constants of the type
+<tt>regex_constants::match_flag_type</tt>, and no bitmask elements.
+</p>
+
+<p><i>[
+2010-11-03 Daniel comments and provides a proposed resolution:
+]</i></p>
+
+
+<p>The proposed resolution is written against N3126 and considered as a further improvement
+of the fixes suggested by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html">n3110</a>.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+Add the following sentence to 28.5.2 [re.matchflag]  paragraph 1:
+<blockquote>
+1 The type <tt>regex_constants::match_flag_type</tt> is an implementation-defined bitmask type (17.5.2.1.3).
+Matching a regular expression against a sequence of characters [first,last) proceeds according to the
+rules of the grammar specified for the regular expression object, modified according to the effects listed in
+Table 136 for any bitmask elements set. <ins>Type <tt>regex_constants::match_flag_type</tt> also defines the 
+constants <tt>regex_constants::match_default</tt> and <tt>regex_constants::format_default</tt>.</ins>
+</blockquote>
+
+
+
+
+
+<hr>
 <h3><a name="1452"></a>1452. [FCD] "target sequence" is not defined</h3>
 <p><b>Section:</b> 28.10.3 [re.results.acc] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-01</p>
@@ -1927,7 +2344,7 @@ Add the following entries to table 143:
 <hr>
 <h3><a name="1457"></a>1457. [FCD] Splitting lock-free properties</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-130</b></p>
@@ -2123,7 +2540,7 @@ Add <tt>ATOMIC_BOOL_LOCK_FREE</tt> to 29.4 [atomics.lockfree] and to 29.2 [atomi
 <hr>
 <h3><a name="1461"></a>1461. [FCD] Rename all <tt>ATOMIC_*</tt> macros as <tt>STD_ATOMIC_*</tt></h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3637,10 +4054,10 @@ outside the range of representable values for the return type</ins>.
 
 <hr>
 <h3><a name="2010"></a>2010. <tt>is_* traits</tt> for binding operations can't be meaningfully specialized</h3>
-<p><b>Section:</b> 20.8.10.1.1 [func.bind.isbind] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Sean Hunt <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2010-11-07</p>
+<p><b>Section:</b> 20.8.10.1.1 [func.bind.isbind] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Sean Hunt <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2010-11-16</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.isbind">issues</a> in [func.bind.isbind].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 20.8.10.1.1 [func.bind.isbind] says for <tt>is_bind_expression</tt>:
@@ -3669,6 +4086,18 @@ requirement. A similar problem exists for <tt>is_placeholder</tt>.
 </p>
 
 
+<p><i>[
+2010 Batavia (post meeting session)
+]</i></p>
+
+<p>
+Alisdair recognises this is clearly a bug introduced by some wording he
+wrote, the sole purpose of this metafunction is as a customization point
+for users to write their own <tt>bind</tt>-expression types that participate
+in the standard library <tt>bind</tt> protocol.  The consensus was that this
+should be fixed in Madrid, moved to Open.
+</p>
+
 <p><b>Proposed resolution:</b></p>
 
 
@@ -3677,19 +4106,19 @@ requirement. A similar problem exists for <tt>is_placeholder</tt>.
 
 <hr>
 <h3><a name="2011"></a>2011. unexpected output required of strings</h3>
-<p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2010-11-07</p>
+<p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2010-11-16</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.io">issues</a> in [string.io].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 What should the following code output? 
 </p>
 
 <blockquote><pre>
-#include &lt;string&gt; 
-#include &lt;iostream&gt; 
-#include &lt;iomanip&gt; 
+#include &lt;string>
+#include &lt;iostream>
+#include &lt;iomanip>
 
 int 
 main() 
@@ -3799,6 +4228,18 @@ defect in the standard, and not in the three compilers I tried.
 </p>
 
 
+
+
+<p><i>[
+2010 Batavia (post meeting session)
+]</i></p>
+
+<p>
+Consensus that all known implementations are consistent, and disagree with the
+standard.  Preference is to fix the standard before implementations start trying
+to conform to the current spec, as the current implementations have the preferred
+form.  Howard volunteered to drught for Madrid, move to Open.
+</p>
 
 <p><b>Proposed resolution:</b></p>
 

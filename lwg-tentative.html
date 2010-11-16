@@ -530,6 +530,49 @@ assignment operator that do not exit with an exception.
 
 
 <hr>
+<h3><a name="1413"></a>1413. [FCD] Specify whether <tt>high_resolution_clock</tt> is a distinct type or a typedef</h3>
+<p><b>Section:</b> 20.11.5.3 [time.clock.hires] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-14</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-112</b></p>
+<p>
+What it means for <tt>high_resolution_clock</tt> to be a synonym
+is undefined. If it may or may not be a typedef, then
+certain classes of programs become unportable.
+</p>
+
+<p><i>[
+Resolution proposed in ballot comment
+]</i></p>
+
+<p>
+Require that it be a distinct class type.
+</p>
+
+<p><i>[
+2010 Batavia
+]</i></p>
+
+<p>
+This is not a defect.  Threre are a number of places in the standard where
+we allow implentations to choose their preferred technique, the most obvious
+example being the <tt>iterator</tt>/<tt>const_iterator</tt> types of <tt>set</tt>.
+</p>
+<p>
+Typically, this means it is not portable to declare function overloads that differ
+only in their use of these types.
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
 <h3><a name="1497"></a>1497. [FCD] <tt>lock()</tt> postcondition can not be generally achieved</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
  <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-08</p>
