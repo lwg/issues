@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2010-11-16</td>
+  <td align="left">2010-11-17</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -155,13 +155,13 @@ ownership of it.
 <ul>
 <li>D73: Batavia meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>80 open issues, down by 126.</li>
+<li>82 open issues, down by 124.</li>
 <li>1453 closed issues, up by 139.</li>
-<li>1533 issues total, up by 13.</li>
+<li>1535 issues total, up by 15.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD Editorial issue: <a href="lwg-closed.html#2002">2002</a>.</li>
-<li>Added the following 5 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#1523">1523</a>, <a href="lwg-active.html#2008">2008</a>, <a href="lwg-active.html#2012">2012</a>, <a href="lwg-active.html#2013">2013</a>.</li>
+<li>Added the following 7 New issues: <a href="lwg-active.html#1521">1521</a>, <a href="lwg-active.html#1523">1523</a>, <a href="lwg-active.html#2008">2008</a>, <a href="lwg-active.html#2012">2012</a>, <a href="lwg-active.html#2013">2013</a>, <a href="lwg-active.html#2014">2014</a>, <a href="lwg-active.html#2015">2015</a>.</li>
 <li>Added the following 5 Open issues: <a href="lwg-active.html#2001">2001</a>, <a href="lwg-active.html#2003">2003</a>, <a href="lwg-active.html#2005">2005</a>, <a href="lwg-active.html#2010">2010</a>, <a href="lwg-active.html#2011">2011</a>.</li>
 <li>Added the following Pending WP issue: <a href="lwg-defects.html#1522">1522</a>.</li>
 <li>Added the following Review issue: <a href="lwg-active.html#2009">2009</a>.</li>
@@ -8249,6 +8249,72 @@ Within any header that provides any non-defining declarations of <tt>constexpr</
 functions or constructors an implementation shall provide corresponding definitions. 
 </blockquote>
 
+
+
+
+
+
+<hr>
+<h3><a name="2014"></a>2014. More restrictions on macro names</h3>
+<p><b>Section:</b> 17.6.3.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2010-11-17</p>
+<p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+A program is currently forbidden to use keywords as macro names. This restriction should be strengthened to include all identifiers 
+that could be used by the library as attribute-tokens (for example <tt>noreturn</tt>, which is used by header <tt>&lt;cstdlib&gt;</tt>) 
+and the special identifiers introduced recently for override control (these are not currently used in the library public interface,
+but could potentially be used by the implementation or in future revisions of the library).
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify 17.6.3.3.1 [macro.names] paragraph 2 as follows:</p>
+
+<blockquote>
+A translation unit shall not <tt>#define</tt> or <tt>#undef</tt> names lexically identical to keywords<ins>, to the identifiers 
+listed in Table X [Identifiers with special meaning] or to the <i>attribute-tokens</i> described in clause 7.6 [dcl.attr]</ins>.
+</blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="2015"></a>2015. Incorrect pre-conditions for some type traits</h3>
+<p><b>Section:</b> 20.7.4 [meta.unary] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-08 <b>Last modified:</b> 2010-11-17</p>
+<p><b>View all other</b> <a href="lwg-index.html#meta.unary">issues</a> in [meta.unary].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+According to N3126&nbsp;&#x2011;&nbsp;3.9/9,
+
+<p>&quot;Scalar types, trivial class types (Clause 9), arrays of such types
+and <i>cv</i>&#x2011;qualified versions of these types (3.9.3) are collectively
+called <i>trivial types</i>.&quot;</p>
+
+<p>Thus, an array (possibly of unknown bound) can be trivial type, non&#x2011;trivial type, 
+or an array type whose triviality cannot be determined because its element type is incomplete.</p>
+
+<p>According to N3126&nbsp;&#x2011;&nbsp;Table 45, preconditions for <tt>std::is_trivial</tt> are
+defined as follows:</p>
+
+<p>&quot;<tt>T</tt> shall be a complete type, (possibly <i>cv</i>-qualified) <tt>void</tt>, 
+or an array of unknown bound&quot;</p>
+
+<p>It seems that &quot;an array of unknown bound&quot; should be changed to &quot;an
+array of unknown bound of a complete element type&quot;. Preconditions for
+some other templates (e.g., <tt>std::is_trivially_copyable</tt>,
+<tt>std::is_standard_layout</tt>, <tt>std::is_pod</tt>, and <tt>std::is_literal_type</tt>) should
+be changed similarly.</p>
+
+<p>On the other hand, some preconditions look too restrictive. For
+example, <tt>std::is_empty</tt> and <tt>std::is_polymorphic</tt> might accept any
+incomplete non-class type.</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
