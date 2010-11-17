@@ -183,6 +183,10 @@ auto is_votable(std::string stat) -> bool {
    return false;
 }
 
+auto is_ready(std::string stat) -> bool {
+   return "Ready" == remove_tentatively(stat);
+}
+
 struct section_num {
    std::string       prefix;
    std::vector<int>  num;
@@ -1910,6 +1914,13 @@ int main(int argc, char* argv[]) {
 
       std::copy_if(issues.begin(), issues.end(), std::back_inserter(unresolved_issues), [](issue const & iss){ return is_not_resolved(iss.stat); } );
       std::copy_if(issues.begin(), issues.end(), std::back_inserter(votable_issues),    [](issue const & iss){ return is_votable(iss.stat); } );
+
+      // If votable list is empty, we are between meetings and should list Ready issues instead
+      // Otherwise, issues moved to Ready during a meeting will remain 'unresolved' by that meeting
+      auto ready_inserter = votable_issues.empty()
+                          ? std::back_inserter(votable_issues)
+                          : std::back_inserter(unresolved_issues);
+      std::copy_if(issues.begin(), issues.end(), ready_inserter, [](issue const & iss){ return is_ready(iss.stat); } );
 
       // First generate the primary 3 standard issues lists
       make_active(issues, path, lwg_issues_xml, diff_report);
