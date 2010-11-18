@@ -78,13 +78,13 @@ Leave open. Benjamin to provide wording.
 We don't have throw clauses for condition variables.
 </p>
 <p>
-This issue may be dependent on LWG <a href="lwg-closed.html#1268">1268</a>.
+This issue may be dependent on LWG <a href="lwg-defects.html#1268">1268</a>.
 </p>
 <p>
 Leave open. Detlef will coordinate with Benjamin.
 </p>
 <p>
-Consider merging LWG 964, <a href="lwg-active.html#966">966</a>, and <a href="lwg-closed.html#1268">1268</a> into a
+Consider merging LWG 964, <a href="lwg-active.html#966">966</a>, and <a href="lwg-defects.html#1268">1268</a> into a
 single paper.
 </p>
 </blockquote>
@@ -273,7 +273,7 @@ equivalent error condition from <tt>lock.lock()</tt> or <tt>lock.unlock()</tt>.
 There are heavy conflicts with adopted papers.
 </p>
 <p>
-This issue is dependent on LWG <a href="lwg-closed.html#1268">1268</a>.
+This issue is dependent on LWG <a href="lwg-defects.html#1268">1268</a>.
 </p>
 <p>
 Leave open pending outstanding edits to the working draft. Detlef will provide
@@ -2630,135 +2630,6 @@ atomic_flag guard = <ins>STD_</ins>ATOMIC_FLAG_INIT;
 
 
 <hr>
-<h3><a name="1473"></a>1473. [FCD] Incomplete memory order specifications</h3>
-<p><b>Section:</b> 29.6 [atomics.types.operations] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View other</b> <a href="lwg-index-open.html#atomics.types.operations">active issues</a> in [atomics.types.operations].</p>
-<p><b>View all other</b> <a href="lwg-index.html#atomics.types.operations">issues</a> in [atomics.types.operations].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-172</b></p>
-
-As of 29.6 [atomics.types.operations] p. 9, 13, 17, 20:
-<p/>
-The order specifications are incomplete because the non-<tt>_explicit</tt>
-functions do not have such parameters.
-<p/>
-Add a new sentence: "If the program does not specify an order, it shall be
-<tt>memory_order_seq_cst</tt>." Or perhaps: "The non-_explicit
-non-member functions shall affect memory as though they were _explicit with
-<tt>memory_order_seq_cst</tt>."
-
-
-
-<p><b>Proposed resolution:</b></p>
-<ol>
-<li>Change 29.6 [atomics.types.operations] p. 9 as indicated:
-<blockquote><pre>
-void atomic_store(volatile A* object, C desired);
-void atomic_store(A* object, C desired);
-void atomic_store_explicit(volatile A *object, C desired, memory_order order);
-void atomic_store_explicit(A* object, C desired, memory_order order);
-void A::store(C desired, memory_order order = memory_order_seq_cst) volatile;
-void A::store(C desired, memory_order order = memory_order_seq_cst);
-</pre><blockquote>
-8 <em>Requires</em>: The order argument shall not be <tt>memory_order_consume</tt>, <tt>memory_order_acquire</tt>, nor
-<tt>memory_order_acq_rel</tt>.
-<p/>
-9 <em>Effects</em>: Atomically replaces the value pointed to by <tt>object</tt> or by this with the value of <tt>desired</tt>.
-Memory is affected according to the value of <tt>order</tt>. <ins>If the program does not specify an order, it shall be
-<tt>memory_order_seq_cst</tt>.</ins>
-</blockquote></blockquote>
-</li>
-<li>Change 29.6 [atomics.types.operations] p. 13 as indicated:
-<blockquote><pre>
-C atomic_load(const volatile A* object);
-C atomic_load(const A* object);
-C atomic_load_explicit(const volatile A* object, memory_order);
-C atomic_load_explicit(const A* object, memory_order);
-C A::load(memory_order order = memory_order_seq_cst) const volatile;
-C A::load(memory_order order = memory_order_seq_cst) const;
-</pre><blockquote>
-12 <em>Requires</em>: The order argument shall not be <tt>memory_order_release</tt> nor <tt>memory_order_acq_rel</tt>.
-<p/>
-13 <em>Effects</em>: Memory is affected according to the value of <tt>order</tt>. <ins>If the program does not specify an order, it shall be
-<tt>memory_order_seq_cst</tt>.</ins>
-<p/>
-14 <em>Returns</em>: Atomically returns the value pointed to by <tt>object</tt> or by <tt>this</tt>.
-</blockquote></blockquote>
-</li>
-<li>Change 29.6 [atomics.types.operations] p. 17 as indicated:
-<blockquote><pre>
-C atomic_exchange(volatile A* object, C desired);
-C atomic_exchange(A* object, C desired);
-C atomic_exchange_explicit(volatile A* object, C desired, memory_order);
-C atomic_exchange_explicit(A* object, C desired, memory_order);
-C A::exchange(C desired, memory_order order = memory_order_seq_cst) volatile;
-C A::exchange(C desired, memory_order order = memory_order_seq_cst);
-</pre><blockquote>
-17 <em>Effects</em>: Atomically replaces the value pointed to by <tt>object</tt> or by <tt>this</tt> with <tt>desired</tt>. Memory
-is affected according to the value of <tt>order</tt>. These operations are atomic read-modify-write operations
-(1.10). <ins>If the program does not specify an order, it shall be <tt>memory_order_seq_cst</tt>.</ins>
-<p/>
-18 <em>Returns</em>: Atomically returns the value pointed to by <tt>object</tt> or by <tt>this</tt> immediately before the effects.
-</blockquote></blockquote>
-</li>
-<li>Change 29.6 [atomics.types.operations] p. 20 as indicated:
-<blockquote><pre>
-bool atomic_compare_exchange_weak(volatile A* object, C * expected, C desired);
-bool atomic_compare_exchange_weak(A* object, C * expected, C desired);
-bool atomic_compare_exchange_strong(volatile A* object, C * expected, C desired);
-bool atomic_compare_exchange_strong(A* object, C * expected, C desired);
-bool atomic_compare_exchange_weak_explicit(volatile A* object, C * expected, C desired,
-  memory_order success, memory_order failure);
-bool atomic_compare_exchange_weak_explicit(A* object, C * expected, C desired,
-  memory_order success, memory_order failure);
-bool atomic_compare_exchange_strong_explicit(volatile A* object, C * expected, C desired,
-  memory_order success, memory_order failure);
-bool atomic_compare_exchange_strong_explicit(A* object, C * expected, C desired,
-  memory_order success, memory_order failure);
-bool A::compare_exchange_weak(C &amp; expected, C desired,
-  memory_order success, memory_order failure) volatile;
-bool A::compare_exchange_weak(C &amp; expected, C desired,
-  memory_order success, memory_order failure);
-bool A::compare_exchange_strong(C &amp; expected, C desired,
-  memory_order success, memory_order failure) volatile;
-bool A::compare_exchange_strong(C &amp; expected, C desired,
-  memory_order success, memory_order failure);
-bool A::compare_exchange_weak(C &amp; expected, C desired,
-  memory_order order = memory_order_seq_cst) volatile;
-bool A::compare_exchange_weak(C &amp; expected, C desired,
-  memory_order order = memory_order_seq_cst);
-bool A::compare_exchange_strong(C &amp; expected, C desired,
-  memory_order order = memory_order_seq_cst) volatile;
-bool A::compare_exchange_strong(C &amp; expected, C desired,
-  memory_order order = memory_order_seq_cst);
-</pre><blockquote>
-19 <em>Requires</em>: The <tt>failure</tt> argument shall not be <tt>memory_order_release</tt> nor <tt>memory_order_acq_rel</tt>.
-The <tt>failure</tt> argument shall be no stronger than the success argument.
-<p/>
-20 <em>Effects</em>: Atomically, compares the contents of the memory pointed to by <tt>object</tt> or by <tt>this</tt> for equality
-with that in <tt>expected</tt>, and if true, replaces the contents of the memory pointed to by <tt>object</tt> or by
-<tt>this</tt> with that in <tt>desired</tt>, and if false, updates the contents of the memory in expected with the
-contents of the memory pointed to by <tt>object</tt> or by <tt>this</tt>. Further, if the comparison is true, memory
-is affected according to the value of <tt>success</tt>, and if the comparison is false, memory is affected
-according to the value of <tt>failure</tt>. When only one <tt>memory_order</tt> argument is supplied, the value of
-<tt>success</tt> is <tt>order</tt>, and the value of <tt>failure</tt> is <tt>order</tt> except that a value of 
-<tt>memory_order_acq_rel</tt> shall be replaced by the value <tt>memory_order_acquire</tt> and a value of 
-<tt>memory_order_release</tt> shall be replaced by the value <tt>memory_order_relaxed</tt>. <ins>If 
-the program does not specify an order, it shall be <tt>memory_order_seq_cst</tt>.</ins> If the operation returns <tt>true</tt>, 
-these operations are atomic read-modify-write operations (1.10). Otherwise, these operations are atomic load operations.
-<p/>
-[..]
-</blockquote></blockquote>
-</li>
-</ol>
-
-
-
-
-
-<hr>
 <h3><a name="1474"></a>1474. [FCD] weak compare-and-exchange confusion</h3>
 <p><b>Section:</b> 29.6 [atomics.types.operations] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
@@ -2943,34 +2814,6 @@ thread and a signal handler executed in the same thread.
 
 
 <hr>
-<h3><a name="1484"></a>1484. [FCD] Need way to join a thread with a timeout</h3>
-<p><b>Section:</b> 30.3.1 [thread.thread.class] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-183</b></p>
-
-There is no way to join a thread with a timeout.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<blockquote>
-Add <tt>join_for</tt> and <tt>join_until</tt>. Or decide one should
-never join a thread with a timeout since <tt>pthread_join</tt> doesn't have a 
-timeout version.
-</blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
 <p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
@@ -3065,78 +2908,6 @@ or negative <tt>rel_time</tt> is allowed.
 
 
 <hr>
-<h3><a name="1488"></a>1488. [FCD] Improve interoperability between
-the C++0x and C1x threads APIs</h3>
-<p><b>Section:</b> 30.4 [thread.mutex] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.mutex">issues</a> in [thread.mutex].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-185</b></p>
-
-Cooperate with WG14 to improve interoperability between
-the <tt>C++0x</tt> and <tt>C1x</tt> threads APIs. In particular, <tt>C1x</tt>
-mutexes should be conveniently usable with a <tt>C++0x</tt>
-<tt>lock_guard</tt>. Performance overheads for this combination
-should be considered.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<blockquote>
-Remove <tt>C++0x</tt> <tt>timed_mutex</tt> and
-<tt>timed_recursive_mutex</tt> if that facilitates
-development of more compatible APIs.
-</blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1493"></a>1493. [FCD] Add <tt>mutex</tt>, <tt>recursive_mutex</tt>, <tt>is_locked</tt> function</h3>
-<p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-189</b></p>
-
-<tt>mutex</tt> and <tt>recursive_mutex</tt> should have an <tt>is_locked()</tt>
-member function. <tt>is_locked</tt> allows a user to test a lock
-without acquiring it and can be used to implement a lightweight
-<tt>try_try_lock</tt>.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<blockquote>
-Add a member function:
-<PRE>
-bool is_locked() const;
-</PRE>
-to <tt>std::mutex</tt> and <tt>std::recursive_mutex</tt>. These
-functions return true if the current thread would
-not be able to obtain a mutex. These functions do
-not synchronize with anything (and, thus, can
-avoid a memory fence).
-</blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1494"></a>1494. [FCD] Term "are serialized" not defined</h3>
 <p><b>Section:</b> 30.4.5.2 [thread.once.callonce] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
@@ -3185,35 +2956,6 @@ returns without throwing an exception. If an exception is thrown it is propagate
 object synchronizes with (1.10) all subsequent calls to <tt>call_once</tt> on the same <tt>once_flag</tt> object.
 <ins>Calls to <tt>call_once</tt> on the same <tt>once_flag</tt> object shall not introduce data races ([res.on.data.races]).</ins>
 </blockquote></blockquote>
-
-
-
-
-
-<hr>
-<h3><a name="1499"></a>1499. [FCD] Condition variables preclude wakeup optimization</h3>
-<p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View other</b> <a href="lwg-index-open.html#thread.condition">active issues</a> in [thread.condition].</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-193</b></p>
-
-Condition variables preclude a wakeup optimization.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-
-<blockquote>
-Change condition_variable to allow such
-optimization. See Appendix 1 - Additional Details
-</blockquote>
-
-
-<p><b>Proposed resolution:</b></p>
 
 
 
@@ -4381,6 +4123,35 @@ be changed similarly.</p>
 <p>On the other hand, some preconditions look too restrictive. For
 example, <tt>std::is_empty</tt> and <tt>std::is_polymorphic</tt> might accept any
 incomplete non-class type.</p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2016"></a>2016. <tt>Allocators</tt> must be no-throw <i>swappable</i></h3>
+<p><b>Section:</b> 20.2.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-11-17 <b>Last modified:</b> 2010-11-18</p>
+<p><b>View all other</b> <a href="lwg-index.html#allocator.requirements">issues</a> in [allocator.requirements].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+During the Batavia meeting it turned out that there is a definition
+hole for types satisfying the <tt>Allocators</tt> requirements: The problem
+became obvious when it was discussed whether all <tt>swap</tt> functions 
+of <tt>Containers</tt> with internal data handles can be safely tagged
+with <tt>noexcept</tt> or not. While it is correct that the implicit
+<tt>swap</tt> function of an allocator is required to be a no-throw
+operation (because move/copy-constructors and assignment operators are
+required to be <tt>noexcept</tt> functions), there are no such requirements
+for specialized <tt>swap</tt> overloads for a particular allocator.
+
+But this requirement is essential because the <tt>Containers</tt> are
+required to support <i>swappable</i> <tt>Allocators</tt>, when the value
+<tt>allocator_traits&lt;&gt;::propagate_on_container_swap</tt> evaluates
+to <tt>true</tt>.
 
 
 <p><b>Proposed resolution:</b></p>
