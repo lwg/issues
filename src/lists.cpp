@@ -15,12 +15,13 @@
 // The only known compiler to support all of this today is the experimental gcc trunk (4.6)
 
 // TODO
+// .  Sort the Revision comments in the same order as the 'Status' reports, rather than alphabetically
 // .  Lots of tidy and cleanup after merging the revision-generating tool
-// .  Create two new index files for the 'tentative' and 'unresolved' documents
-// .  sort-by-last-modified-date should offer some filter or separation to see only the issues modified since  the last meeting
 // .  Refactor more common text
 // .  Split 'format' function and usage to that the issues vector can pass by const-ref in the common cases
 // .  Document the purpose amd contract on each function
+// Waiting on external fix for preserving file-dates
+// .  sort-by-last-modified-date should offer some filter or separation to see only the issues modified since  the last meeting
 
 
 // standard headers
@@ -134,6 +135,7 @@ auto filename_for_status(std::string stat) -> std::string {
    return (stat == "TC1")           ? "lwg-defects.html"
         : (stat == "CD1")           ? "lwg-defects.html"
         : (stat == "WP")            ? "lwg-defects.html"
+        : (stat == "Resolved")      ? "lwg-defects.html"
         : (stat == "DR")            ? "lwg-defects.html"
         : (stat == "TRDec")         ? "lwg-defects.html"
         : (stat == "Dup")           ? "lwg-closed.html"
@@ -344,16 +346,20 @@ struct sort_by_status {
             "New",
             "Open",
             "Deferred",
+            "Pending DR",
             "Pending WP",
+            "Pending Resolved",
             "Pending NAD Future",
             "Pending NAD Editorial",
             "Pending NAD",
             "NAD Future",
-            "NAD Editorial",
+            "DR",
             "WP",
             "CD1",
             "TC1",
+            "Resolved",
             "TRDec",
+            "NAD Editorial",
             "NAD",
             "Dup",
             "NAD Concepts"
