@@ -36,6 +36,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <cctype>
+#include <ctime>
 #include <cassert>
 
 // platform headers - requires a Posix compatible platform
@@ -78,6 +79,27 @@ auto parse_month(std::string const & m) -> int {
         : throw std::runtime_error{"unknown month"};
 }
 
+std::string format_time(const std::string & format, const std::tm & t)
+{
+  std::string s;
+  std::size_t maxsize = format.size() + 256;
+  //for (std::size_t maxsize = format.size() + 64; s.size() == 0 ; maxsize += 64)
+  //{
+    char * buf = new char[maxsize];
+    std::size_t size(std::strftime( buf, maxsize, format.c_str(), &t ) );
+    if (size > 0)
+      s += buf;
+    delete[] buf;
+ // }
+  return s;
+}
+
+const std::tm & utc_timestamp()
+{
+  static std::time_t t = std::time(0);
+  static std::tm utc = *std::gmtime(&t);
+  return utc;
+}
 
 template<typename Container>
 void print_list(std::ostream & out, Container const & source, char const * separator ) {
@@ -101,6 +123,9 @@ auto read_file_into_string(std::string const & filename) -> std::string {
 
 // Issue-list specific functionality for the rest of this file
 // ===========================================================
+
+std::string build_timestamp(
+  format_time("<p>Revised %Y-%m-%d at %H:%m:%S UTC</p>\n", utc_timestamp()));
 
 // Functions to "normalize" a status string
 auto remove_pending(std::string stat) -> std::string {
@@ -1090,6 +1115,7 @@ R"(<h1>C++ Standard Library Issues List (Revision )" << lwg_issues_xml.get_revis
 <p>This document is the Table of Contents for the <a href="lwg-active.html">Library Active Issues List</a>,
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.</p>
 )";
+   out << build_timestamp;
 
    print_table(out, issues.begin(), issues.end());
    print_file_trailer(out);
@@ -1115,6 +1141,7 @@ This document is the Index by Status and Section for the <a href="lwg-active.htm
 </p>
 
 )";
+   out << build_timestamp;
 
    for (auto i = issues.cbegin(), e = issues.cend(); i != e;) {
       auto const & current_status = i->stat;
@@ -1146,7 +1173,7 @@ This document is the Index by Status and Date for the <a href="lwg-active.html">
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.
 </p>
 )";
-
+   out << build_timestamp;
 
    for (auto i = issues.cbegin(), e = issues.cend(); i != e;) {
       std::string const & current_status = i->stat;
@@ -1226,6 +1253,7 @@ void make_sort_by_section(std::vector<issue>& issues, std::string const & filena
    else {
       out << "<p><a href=\"lwg-index-open.html\">(view only non-Ready open issues)</a></p>\n";
    }
+   out << build_timestamp;
 
    // Would prefer to use const_iterators from here, but oh well....
    for (auto i = b; i != e;) {
@@ -1324,7 +1352,7 @@ R"(<table>
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">)" << get_date() << R"(</td>
+  <td align="left">)" << format_time("%Y-%m-%d", utc_timestamp()) << R"(</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -1348,6 +1376,7 @@ R"(<table>
       out << "C++ Standard Library Closed Issues List (Revision ";
    }
    out << lwg_issues_xml.get_revision() << ")</h1>\n";
+   out << build_timestamp;
 }
 
 
@@ -1409,6 +1438,7 @@ void make_tentative(std::vector<issue> const & issues, std::string const & path,
 //   out << lwg_issues_xml.get_intro("active") << '\n';
 //   out << "<h2>Revision History</h2>\n" << lwg_issues_xml.get_revisions(issues) << '\n';
 //   out << "<h2><a name=\"Status\"></a>Issue Status</h2>\n" << lwg_issues_xml.get_statuses() << '\n';
+   out << build_timestamp;
    out << "<h2>Tentative Issues</h2>\n";
    print_issues(out, issues, [](issue const & i) {return is_tentative(i.stat);} );
    print_file_trailer(out);
@@ -1425,6 +1455,7 @@ void make_unresolved(std::vector<issue> const & issues, std::string const & path
 //   out << lwg_issues_xml.get_intro("active") << '\n';
 //   out << "<h2>Revision History</h2>\n" << lwg_issues_xml.get_revisions(issues) << '\n';
 //   out << "<h2><a name=\"Status\"></a>Issue Status</h2>\n" << lwg_issues_xml.get_statuses() << '\n';
+   out << build_timestamp;
    out << "<h2>Unresolved Issues</h2>\n";
    print_issues(out, issues, [](issue const & i) {return is_not_resolved(i.stat);} );
    print_file_trailer(out);
@@ -1440,6 +1471,7 @@ void make_immediate(std::vector<issue> const & issues, std::string const & path,
 //   out << lwg_issues_xml.get_intro("active") << '\n';
 //   out << "<h2>Revision History</h2>\n" << lwg_issues_xml.get_revisions(issues) << '\n';
 //   out << "<h2><a name=\"Status\"></a>Issue Status</h2>\n" << lwg_issues_xml.get_statuses() << '\n';
+   out << build_timestamp;
    out << "<h2>Immediate Issues</h2>\n";
    print_issues(out, issues, [](issue const & i) {return "Immediate" == i.stat;} );
    print_file_trailer(out);
