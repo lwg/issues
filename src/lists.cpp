@@ -15,6 +15,7 @@
 // The only known compiler to support all of this today is the experimental gcc trunk (4.6)
 
 // TODO
+// .  Better handling of TR "sections", and grouping of issues in "Clause X"
 // .  Sort the Revision comments in the same order as the 'Status' reports, rather than alphabetically
 // .  Lots of tidy and cleanup after merging the revision-generating tool
 // .  Refactor more common text
@@ -62,48 +63,89 @@ auto itos(int i) -> std::string {
 // Generic utilities that are useful and do not rely on context or types from our domain (issue-list processing)
 // =============================================================================================================
 
-auto parse_month(std::string const & m) -> int {
+auto parse_month(std::string const & m) -> greg::month {
    // This could be turned into an efficient map lookup with a suitable indexed container
-   return (m == "Jan") ?  1
-        : (m == "Feb") ?  2
-        : (m == "Mar") ?  3
-        : (m == "Apr") ?  4
-        : (m == "May") ?  5
-        : (m == "Jun") ?  6
-        : (m == "Jul") ?  7
-        : (m == "Aug") ?  8
-        : (m == "Sep") ?  9
-        : (m == "Oct") ? 10
-        : (m == "Nov") ? 11
-        : (m == "Dec") ? 12
+   return (m == "Jan") ? greg::jan
+        : (m == "Feb") ? greg::feb
+        : (m == "Mar") ? greg::mar
+        : (m == "Apr") ? greg::apr
+        : (m == "May") ? greg::may
+        : (m == "Jun") ? greg::jun
+        : (m == "Jul") ? greg::jul
+        : (m == "Aug") ? greg::aug
+        : (m == "Sep") ? greg::sep
+        : (m == "Oct") ? greg::oct
+        : (m == "Nov") ? greg::nov
+        : (m == "Dec") ? greg::dec
         : throw std::runtime_error{"unknown month"};
 }
 
-std::string format_time(const std::string & format, const std::tm & t)
-{
-  std::string s;
-  std::size_t maxsize = format.size() + 256;
-  //for (std::size_t maxsize = format.size() + 64; s.size() == 0 ; maxsize += 64)
-  //{
-    char * buf = new char[maxsize];
-    std::size_t size(std::strftime( buf, maxsize, format.c_str(), &t ) );
-    if (size > 0)
-      s += buf;
-    delete[] buf;
- // }
-  return s;
+auto parse_date(std::istream & temp) -> greg::date {
+   int d;
+   temp >> d;
+   if (temp.fail()) {
+      throw std::runtime_error{"date format error"};
+   }
+
+   std::string month;
+   temp >> month;
+
+   auto m = parse_month(month);
+   int y{ 0 };
+   temp >> y;
+   return m/greg::day{d}/y;
 }
 
-const std::tm & utc_timestamp()
-{
-  static std::time_t t = std::time(0);
-  static std::tm utc = *std::gmtime(&t);
-  return utc;
+
+void print_date(std::ostream & out, greg::date const & mod_date ) {
+   out << mod_date.year() << '-';
+   if (mod_date.month() < 10) { out << '0'; }
+   out << mod_date.month() << '-';
+   if (mod_date.day() < 10) { out << '0'; }
+   out << mod_date.day();
 }
+
+
+auto make_date(std::tm const & mod) -> greg::date {
+   return greg::year((unsigned short)(mod.tm_year+1900)) / (mod.tm_mon+1) / mod.tm_mday;
+}
+
+
+auto report_date_file_last_modified(std::string const & filename) -> greg::date {
+   struct stat buf;
+   if (stat(filename.c_str(), &buf) == -1) {
+      throw std::runtime_error{"call to stat failed"};
+   }
+
+   return make_date(*std::localtime(&buf.st_mtime));
+}
+
+
+auto format_time(std::string const & format, std::tm const & t) -> std::string {
+   std::string s;
+   std::size_t maxsize{format.size() + 256};
+  //for (std::size_t maxsize = format.size() + 64; s.size() == 0 ; maxsize += 64)
+  //{
+      char * buf{new char[maxsize]};
+      std::size_t size{std::strftime( buf, maxsize, format.c_str(), &t ) };
+      if(size > 0) {
+         s += buf;
+      }
+      delete[] buf;
+ // }
+   return s;
+}
+
+auto utc_timestamp() -> std::tm const & {
+   static std::time_t t{ std::time(nullptr) };
+   static std::tm utc = *std::gmtime(&t);
+   return utc;
+}
+
 
 template<typename Container>
 void print_list(std::ostream & out, Container const & source, char const * separator ) {
-   char const * sep = "";
+   char const * sep{""};
    for( auto const & x : source ) {
       out << sep << x;
       sep = separator;
@@ -149,37 +191,41 @@ auto remove_qualifier(std::string const & stat) -> std::string {
 }
 
 
+static constexpr char const * LWG_ACTIVE {"lwg-active.html" };
+static constexpr char const * LWG_CLOSED {"lwg-closed.html" };
+static constexpr char const * LWG_DEFECTS{"lwg-defects.html"};
+
 // functions to relate the status of an issue to its relevant published list document
 auto filename_for_status(std::string stat) -> std::string {
    // Tentative issues are always active
    if(0 == stat.find("Tentatively")) {
-      return "lwg-active.html";
+      return LWG_ACTIVE;
    }
 
    stat = remove_qualifier(stat);
-   return (stat == "TC1")           ? "lwg-defects.html"
-        : (stat == "CD1")           ? "lwg-defects.html"
-        : (stat == "WP")            ? "lwg-defects.html"
-        : (stat == "Resolved")      ? "lwg-defects.html"
-        : (stat == "DR")            ? "lwg-defects.html"
-        : (stat == "TRDec")         ? "lwg-defects.html"
-        : (stat == "Dup")           ? "lwg-closed.html"
-        : (stat == "NAD")           ? "lwg-closed.html"
-        : (stat == "NAD Future")    ? "lwg-closed.html"
-        : (stat == "NAD Editorial") ? "lwg-closed.html"
-        : (stat == "NAD Concepts")  ? "lwg-closed.html"
-        : (stat == "Voting")        ? "lwg-active.html"
-        : (stat == "Immediate")     ? "lwg-active.html"
-        : (stat == "Ready")         ? "lwg-active.html"
-        : (stat == "Review")        ? "lwg-active.html"
-        : (stat == "New")           ? "lwg-active.html"
-        : (stat == "Open")          ? "lwg-active.html"
-        : (stat == "Deferred")      ? "lwg-active.html"
+   return (stat == "TC1")           ? LWG_DEFECTS
+        : (stat == "CD1")           ? LWG_DEFECTS
+        : (stat == "WP")            ? LWG_DEFECTS
+        : (stat == "Resolved")      ? LWG_DEFECTS
+        : (stat == "DR")            ? LWG_DEFECTS
+        : (stat == "TRDec")         ? LWG_DEFECTS
+        : (stat == "Dup")           ? LWG_CLOSED
+        : (stat == "NAD")           ? LWG_CLOSED
+        : (stat == "NAD Future")    ? LWG_CLOSED
+        : (stat == "NAD Editorial") ? LWG_CLOSED
+        : (stat == "NAD Concepts")  ? LWG_CLOSED
+        : (stat == "Voting")        ? LWG_ACTIVE
+        : (stat == "Immediate")     ? LWG_ACTIVE
+        : (stat == "Ready")         ? LWG_ACTIVE
+        : (stat == "Review")        ? LWG_ACTIVE
+        : (stat == "New")           ? LWG_ACTIVE
+        : (stat == "Open")          ? LWG_ACTIVE
+        : (stat == "Deferred")      ? LWG_ACTIVE
         : throw std::runtime_error("unknown status " + stat);
 }
 
 auto is_active(std::string const & stat) -> bool {
-   return filename_for_status(stat) == "lwg-active.html";
+   return filename_for_status(stat) == LWG_ACTIVE;
 }
 
 auto is_active_not_ready(std::string const & stat) -> bool {
@@ -187,11 +233,11 @@ auto is_active_not_ready(std::string const & stat) -> bool {
 }
 
 auto is_defect(std::string const & stat) -> bool {
-   return filename_for_status(stat) == "lwg-defects.html";
+   return filename_for_status(stat) == LWG_DEFECTS;
 }
 
 auto is_closed(std::string const & stat) -> bool {
-   return filename_for_status(stat) == "lwg-closed.html";
+   return filename_for_status(stat) == LWG_CLOSED;
 }
 
 auto is_tentative(std::string const & stat) -> bool {
@@ -199,7 +245,7 @@ auto is_tentative(std::string const & stat) -> bool {
    return 0 == stat.find("Tentatively");
 }
 
-auto is_not_resolved(const std::string& stat) -> bool {
+auto is_not_resolved(std::string const & stat) -> bool {
    for( auto s : {"Deferred", "New", "Open", "Review"}) { if(s == stat) return true; }
    return false;
 }
@@ -288,26 +334,26 @@ auto operator << (std::ostream& os, section_num const & sn) -> std::ostream & {
    return os;
 }
 
-auto operator<(const section_num& x, const section_num& y) noexcept -> bool {
+auto operator<(section_num const & x, section_num const & y) noexcept -> bool {
    return (x.prefix < y.prefix) ?  true
         : (y.prefix < x.prefix) ? false
         : x.num < y.num;
 }
 
-auto operator==(const section_num& x, const section_num& y) noexcept -> bool {
+auto operator==(section_num const & x, section_num const & y) noexcept -> bool {
    return (x.prefix != y.prefix)
         ? false
         : x.num == y.num;
 }
 
-auto operator!=(const section_num& x, const section_num& y) noexcept -> bool {
+auto operator!=(section_num const & x, section_num const & y) noexcept -> bool {
    return !(x == y);
 }
 
 typedef std::string section_tag;
 
 
-struct issue   {
+struct issue {
    int num;
    std::string                stat;
    std::string                title;
@@ -324,6 +370,11 @@ struct issue   {
    issue() = default;
    issue(issue const &) = default;
    auto operator=(issue const &) -> issue & = default;
+
+   // Uncomment these lines to test if GCC bug has been fixed (not yet confirmed if issue is compiler or lib)
+   // Last vefified: Bug still present in 2010-11-13 build
+   //issue(issue &&) = default;
+   //auto operator=(issue &&) -> issue & = default;
 };
 
 
@@ -333,31 +384,32 @@ SectionMap section_db;
 
 auto remove_square_brackets(section_tag const & tag) -> section_tag {
    assert(tag.size() > 2);
-   assert(tag[0] == '[');
-   assert(tag[tag.size()-1] == ']');
+   assert(tag.front() == '[');
+   assert(tag.back() == ']');
    return tag.substr(1, tag.size()-2);
 }
 
 
 struct sort_by_section {
-    auto operator()(issue const & x, issue const & y) const -> bool {
-assert(!x.tags.empty());
-assert(!y.tags.empty());
-        return section_db[x.tags.front()] < section_db[y.tags.front()];
-    }
+   auto operator()(issue const & x, issue const & y) const -> bool {
+      assert(!x.tags.empty());
+      assert(!y.tags.empty());
+      return section_db[x.tags.front()] < section_db[y.tags.front()];
+   }
 };
 
 
 struct sort_by_num {
-    bool operator()(const issue& x, const issue& y) const noexcept   {  return x.num < y.num;   }
-    bool operator()(const issue& x, int y)          const noexcept   {  return x.num < y;       }
-    bool operator()(int x,          const issue& y) const noexcept   {  return x     < y.num;   }
+    bool operator()(issue const & x, issue const & y) const noexcept   {  return x.num < y.num;   }
+    bool operator()(issue const & x, int y)           const noexcept   {  return x.num < y;       }
+    bool operator()(int x,           issue const & y) const noexcept   {  return x     < y.num;   }
 };
 
 
 struct sort_by_status {
    auto operator()(const issue& x, const issue& y) const noexcept -> bool {
-      static auto get_priority = []( std::string const & stat ) -> unsigned {
+      static constexpr
+      auto get_priority = []( std::string const & stat ) -> unsigned {
          static char const * const status_priority[] {
             "Voting",
             "Tentatively Voting",
@@ -397,11 +449,11 @@ struct sort_by_status {
          // Yet gcc 4.6 does work with this that should have identical semantics, other than an lvalue/rvalue switch
          static auto const first = std::begin(status_priority);
          static auto const last  = std::end(status_priority);
-         auto const x = std::find_if( first, last, [&](char const * str){ return str == stat; } );
-         if(last == x) {
+         auto const i = std::find_if( first, last, [&](char const * str){ return str == stat; } );
+         if(last == i) {
             std::cout << "Unknown status: " << stat << std::endl;
          }
-         return x - first;
+         return i - first;
       };
 
       return get_priority(x.stat) < get_priority(y.stat);
@@ -410,17 +462,17 @@ struct sort_by_status {
 
 
 struct sort_by_first_tag {
-   bool operator()(const issue& x, const issue& y) const noexcept {
-assert(!x.tags.empty());
-assert(!y.tags.empty());
+   bool operator()(issue const & x, issue const & y) const noexcept {
+      assert(!x.tags.empty());
+      assert(!y.tags.empty());
       return x.tags.front() < y.tags.front();
    }
 };
 
 
 struct equal_issue_num {
-    bool operator()(const issue& x, int y) const noexcept {return x.num == y;}
-    bool operator()(int x, const issue& y) const noexcept {return x == y.num;}
+    bool operator()(issue const & x, int y) const noexcept {return x.num == y;}
+    bool operator()(int x, issue const & y) const noexcept {return x == y.num;}
 };
 
 
@@ -498,36 +550,6 @@ auto read_section_db(std::string const & path) -> SectionMap {
 //      std::cout << temp << ' ' << elem.second << '\n';
 //   }
 //}
-
-
-auto get_date() -> std::string {
-#if 1
-   greg::date today;
-   std::ostringstream date;
-   date << today.year() << '-';
-   if (today.month() < 10) {
-      date << '0';
-   }
-   date << today.month() << '-';
-   if (today.day() < 10) {
-      date << '0';
-   }
-   date << today.day();
-   return date.str();
-#else
-    std::string const s = read_file_into_string(issues_path + "lwg-issues.xml");
-    auto i = s.find("date=\"");
-    if (i == std::string::npos) {
-        throw std::runtime_error{"Unable to find date in lwg-issues.xml"};
-    }
-    i += sizeof("date=\"") - 1;
-    auto j = s.find('\"', i);
-    if (j == std::string::npos) {
-        throw std::runtime_error{"Unable to parse date in lwg-issues.xml"};
-    }
-    return s.substr(i, j-i);
-#endif
-}
 
 
 auto make_ref_string(issue const & iss) -> std::string {
@@ -990,15 +1012,6 @@ auto LwgIssuesXml::get_statuses() const -> std::string {
       throw std::runtime_error{"Unable to parse statuses in lwg-issues.xml"};
    }
    return m_data.substr(i, j-i);
-}
-
-
-void print_date(std::ostream & out, greg::date const & mod_date ) {
-   out << mod_date.year() << '-';
-   if (mod_date.month() < 10) { out << '0'; }
-   out << mod_date.month() << '-';
-   if (mod_date.day() < 10) { out << '0'; }
-   out << mod_date.day();
 }
 
 
@@ -1479,15 +1492,21 @@ void make_immediate(std::vector<issue> const & issues, std::string const & path,
 
 
 auto parse_issue_from_file(std::string const & filename) -> issue {
-   using std::runtime_error;
-
-   auto tx = read_file_into_string(filename);
+   struct bad_issue_file : std::runtime_error {
+      bad_issue_file(std::string const & filename, char const * error_message)
+         : runtime_error{"Error parsing issue file " + filename + ": " + error_message}
+         {
+      }
+   };
 
    issue is;
+   is.text = read_file_into_string(filename);
+   auto & tx = is.text; // saves a redundant copy at the end of the function, while preserving existing names and logic
+
    // Get issue number
    auto k = tx.find("<issue num=\"");
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue number in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue number"};
    }
    k += sizeof("<issue num=\"") - 1;
    auto l = tx.find('\"', k);
@@ -1497,7 +1516,7 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
    // Get issue status
    k = tx.find("status=\"", l);
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue status in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue status"};
    }
    k += sizeof("status=\"") - 1;
    l = tx.find('\"', k);
@@ -1506,7 +1525,7 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
    // Get issue title
    k = tx.find("<title>", l);
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue title in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue title"};
    }
    k +=  sizeof("<title>") - 1;
    l = tx.find("</title>", k);
@@ -1515,7 +1534,7 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
    // Get issue sections
    k = tx.find("<section>", l);
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue section in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue section"};
    }
    k += sizeof("<section>") - 1;
    l = tx.find("</section>", k);
@@ -1526,7 +1545,7 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
       }
       auto k2 = tx.find('\"', k+1);
       if (k2 >= l) {
-         throw runtime_error{"Unable to find issue section in " + filename};
+         throw bad_issue_file{filename, "Unable to find issue section"};
       }
       ++k;
       is.tags.push_back(tx.substr(k, k2-k));
@@ -1540,13 +1559,13 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
    }
 
    if (is.tags.empty()) {
-      throw runtime_error{"Unable to find issue section in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue section"};
    }
 
    // Get submitter
    k = tx.find("<submitter>", l);
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue submitter in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue submitter"};
    }
    k += sizeof("<submitter>") - 1;
    l = tx.find("</submitter>", k);
@@ -1555,48 +1574,27 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
    // Get date
    k = tx.find("<date>", l);
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue date in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue date"};
    }
    k += sizeof("<date>") - 1;
    l = tx.find("</date>", k);
    temp.clear();
    temp.str(tx.substr(k, l-k));
-   {
-      int d;
-      temp >> d;
-      if (temp.fail()) {
-         throw std::runtime_error{"date format error in " + filename};
-      }
 
-      std::string month;
-      temp >> month;
+   try {
+      is.date = parse_date(temp);
 
-      try {
-         int m{ parse_month(month) };
-         int y{ 0 };
-         temp >> y;
-         is.date = greg::month{m}/greg::day{d}/y;
-      }
-      catch (std::exception const & e) {
-         throw std::runtime_error{e.what() + std::string{" in "} + filename};
-      }
+      // Get modification date
+      is.mod_date = report_date_file_last_modified(filename);
    }
-
-   // Get modification date
-   {
-      struct stat buf;
-      if (stat(filename.c_str(), &buf) == -1) {
-         throw std::runtime_error{"call to stat failed for " + filename};
-      }
-
-      struct tm* mod = std::localtime(&buf.st_mtime);
-      is.mod_date = greg::year((unsigned short)(mod->tm_year+1900)) / (mod->tm_mon+1) / mod->tm_mday;
+   catch(std::exception const & ex) {
+      throw bad_issue_file{filename, ex.what()};
    }
 
    // Trim text to <discussion>
    k = tx.find("<discussion>", l);
    if (k == std::string::npos) {
-      throw runtime_error{"Unable to find issue discussion in " + filename};
+      throw bad_issue_file{filename, "Unable to find issue discussion"};
    }
    tx.erase(0, k);
 
@@ -1616,7 +1614,6 @@ auto parse_issue_from_file(std::string const & filename) -> issue {
       is.has_resolution = true;
    }
 
-   is.text = tx;
    return is;
 }
 
@@ -1643,7 +1640,7 @@ auto read_issues(std::string const & issues_path) -> std::vector<issue> {
 }
 
 
-void prepare_issues(std::vector<issue>& issues) {
+void prepare_issues(std::vector<issue> & issues) {
    // Initially sort the issues by issue number, so each issue can be correctly 'format'ted
    sort(issues.begin(), issues.end(), sort_by_num{});
 
@@ -1668,7 +1665,7 @@ auto prepare_issues_for_diff_report(std::vector<issue> const & issues) -> std::v
    std::vector<std::pair<int, std::string> > result;
    std::transform( issues.begin(), issues.end(), back_inserter(result),
                    [](issue const & iss) {
-                     return std::make_pair(iss.num, iss.stat);
+                      return std::make_pair(iss.num, iss.stat);
                    }
                  );
    return result;
@@ -1697,7 +1694,7 @@ auto read_issues_from_toc(std::string const & s) -> std::vector<std::pair<int, s
 
    // Read all issues in table
    std::vector<std::pair<int, std::string> > issues;
-   while (true) {
+   for(;;) {
       i = s.find("<tr>", i+4);
       if (i == std::string::npos) {
          break;
@@ -1745,7 +1742,7 @@ auto operator<<( std::ostream & out, list_issues const & x) -> std::ostream & {
 
 
 struct find_num {
-   bool operator()(const std::pair<int, std::string>& x, int y) const noexcept {
+   constexpr bool operator()(std::pair<int, std::string> const & x, int y) const noexcept {
       return x.first < y;
    }
 };
@@ -1786,7 +1783,8 @@ auto operator<<( std::ostream & out, discover_new_issues const & x) -> std::ostr
 struct reverse_pair {
    // member template means we cannot make thi a local class
    template <class T, class U>
-   auto operator()(const T& x, const U& y) const noexcept -> bool {
+   constexpr
+   auto operator()(T const & x, U const & y) const noexcept -> bool {
       return static_cast<bool>(  x.second < y.second  or
                               (!(y.second < x.second)  and  x.first < y.first));
    }
