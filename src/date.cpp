@@ -13,47 +13,13 @@ unsigned spec::id_next = 0;
 
 }  // detail
 
-const unsigned char date::lastDay_s[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+//static const unsigned char date::lastDay_s[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+static constexpr unsigned char date_lastDay_s[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 const detail::spec last;
 const detail::spec first;
 
-const week_day sun{0};
-const week_day mon{1};
-const week_day tue{2};
-const week_day wed{3};
-const week_day thu{4};
-const week_day fri{5};
-const week_day sat{6};
-
-const month jan{1};
-const month feb{2};
-const month mar{3};
-const month apr{4};
-const month may{5};
-const month jun{6};
-const month jul{7};
-const month aug{8};
-const month sep{9};
-const month oct{10};
-const month nov{11};
-const month dec{12};
-
-day::day(int d)
-   : d_{(unsigned char)d}
-   {
-   if (d < 1  or  d > 31) {
-      throw bad_date{};
-   }
-}
-
-week_day::week_day(int d)
-   : d_{d}
-   {
-   if (d < 0  or  d > 6) {
-      throw bad_date{};
-   }
-}
 
 date::date() {
     time_t systime;
@@ -119,6 +85,8 @@ void date::encode(int dow, int n) noexcept {
    month_ |= (unsigned char)(n << 4);
 }
 
+// This could be turned into a constexpr free-function taking 'year' by value as its argument.
+// However, there would be no advantage in the application we are currently working on.
 auto date::is_leap() const noexcept -> bool {
    if (year_ > 1582) {
       if (year_ % 400 == 0) {
@@ -191,11 +159,11 @@ void date::fix_from_ymd() {
       }
    }
    else {
-      if (d > lastDay_s[m-1]) {
+      if (d > date_lastDay_s[m-1]) {
          throw bad_date{};
       }
       if (n == 6) {
-         d = lastDay_s[m-1];
+         d = date_lastDay_s[m-1];
       }
    }
 
@@ -214,7 +182,7 @@ void date::fix_from_ymd() {
    }
 
    for (int i = 0; i < m-1; ++i) {
-      jdate += lastDay_s[i];
+      jdate += date_lastDay_s[i];
    }
    if (leap  and  m > 2) {
       ++jdate;
