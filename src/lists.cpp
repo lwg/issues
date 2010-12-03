@@ -1479,7 +1479,7 @@ void make_immediate(std::vector<issue> const & issues, std::string const & path,
    assert(is_sorted(issues.begin(), issues.end(), sort_by_num{}));
 
    std::ofstream out{(path + "lwg-immediate.html").c_str()};
-   print_file_header(out, "C++ Standard Library Issues Resolved Directly In Batavia");
+   print_file_header(out, "C++ Standard Library Issues Resolved Directly In Madrid");
 //   print_paper_heading(out, "active", lwg_issues_xml);
 //   out << lwg_issues_xml.get_intro("active") << '\n';
 //   out << "<h2>Revision History</h2>\n" << lwg_issues_xml.get_revisions(issues) << '\n';
