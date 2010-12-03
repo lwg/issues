@@ -22,11 +22,11 @@
 <table>
 <tr>
   <td align="left">Doc. no.</td>
-  <td align="left">D3183=10-0173</td>
+  <td align="left">Dnnnn=11-nnnn</td>
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2010-11-29</td>
+  <td align="left">2010-12-03</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -37,8 +37,8 @@
   <td align="left">Alisdair Meredith &lt;<a href="mailto:lwgchair@gmail.com">lwgchair@gmail.com</a>&gt;</td>
 </tr>
 </table>
-<h1>C++ Standard Library Closed Issues List (Revision D73)</h1>
-<p>Revised 2010-11-29 at 10:11:56 UTC</p>
+<h1>C++ Standard Library Closed Issues List (Revision D74)</h1>
+<p>Revised 2010-12-03 at 14:12:02 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -60,7 +60,19 @@
 
 <h2>Revision History</h2>
 <ul>
-<li>D73: Batavia meeting preview<ul>
+<li>D74: Madrid meeting preview<ul>
+<li><b>Summary:</b><ul>
+<li>80 open issues, up by 0.</li>
+<li>1459 closed issues, up by 0.</li>
+<li>1539 issues total, up by 0.</li>
+</ul></li>
+<li><b>Details:</b><ul>
+</ul></li>
+</ul>
+</li>
+<li>R73: 
+2010-11-29 Post-Batavia mailing.
+<ul>
 <li><b>Summary:</b><ul>
 <li>80 open issues, down by 126.</li>
 <li>1459 closed issues, up by 145.</li>
@@ -50609,7 +50621,7 @@ See Appendix 1 - Additional Details
 <hr>
 <h3><a name="1422"></a>1422. [FCD] vector&lt;bool&gt;</tt> iterators are not random access</h3>
 <p><b>Section:</b> 23.4.2 [vector.bool] <b>Status:</b> <a href="lwg-active.html#NAD Future">NAD Future</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-12-03</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.bool">issues</a> in [vector.bool].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#NAD Future">NAD Future</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50641,7 +50653,7 @@ Rapperswil Review
 
 <p>
 The consensus at Rapperswil is that it is too late for full support for
-proxy iterators, but requiring the library to respect <tt>vector&;t;bool></tt>
+proxy iterators, but requiring the library to respect <tt>vector&lt;bool&gt;</tt>
 iterators as-if they were random access would be preferable to flagging
 this container as deliberately incompatible with standard library algorithms.
 </p>
@@ -50687,7 +50699,7 @@ Closed as NAD Future, because the current iterator categories cannot correctly d
 <tt>vector&lt;bool&gt;::iterator</tt>. But saying that they are Random Access Iterators
 is also incorrect, because it is not too hard to create a corresponding test that fails.
 We should deal with the more general proxy iterator problem in the future, and see no
-benefit to take a partial workaround specific to <tt>vector&lt;bool></tt> now.
+benefit to take a partial workaround specific to <tt>vector&lt;bool&gt;</tt> now.
 </blockquote>
 
 
