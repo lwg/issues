@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2010-12-08 at 00:12:22 UTC</p>
+<p>Revised 2010-12-08 at 21:12:25 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,12 +156,12 @@ ownership of it.
 <ul>
 <li>D74: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>82 open issues, up by 2.</li>
+<li>86 open issues, up by 6.</li>
 <li>1459 closed issues, up by 0.</li>
-<li>1541 issues total, up by 2.</li>
+<li>1545 issues total, up by 6.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 2 New issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2021">2021</a>.</li>
+<li>Added the following 6 New issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2025">2025</a>.</li>
 <li>Changed the following issue from Ready to Open: <a href="lwg-active.html#1318">1318</a>.</li>
 <li>Changed the following 2 issues from Resolved to Pending Resolved: <a href="lwg-defects.html#1365">1365</a>, <a href="lwg-defects.html#1366">1366</a>.</li>
 <li>Changed the following issue from NAD to Resolved: <a href="lwg-defects.html#1229">1229</a>.</li>
@@ -8233,6 +8233,7 @@ to <tt>true</tt>.
 <h3><a name="2017"></a>2017. <tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></h3>
 <p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#New">New</a>
  <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2010-12-07</p>
+<p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -8450,32 +8451,35 @@ operator()(ArgTypes&amp;&amp;... args) const;
 <hr>
 <h3><a name="2018"></a>2018. <tt>regex_traits::isctype</tt> Returns clause is wrong</h3>
 <p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2010-11-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2010-12-08</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.traits">issues</a> in [re.traits].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
-<p>28.7 [re.traits] p12 says:</p>
-<blockquote>
-<p>returns true if f bitwise or’ed with the result of calling
-lookup_classname with an iterator pair that designates the character
-sequence "w" is not equal to 0 and c == ’_’</p>
-</blockquote>
+<p>28.7 [re.traits] p. 12 says:</p>
 
-<p>If the bitmask value corresponding to "w" has a non-zero value (which
+<blockquote><p>
+returns true if <tt>f</tt> bitwise or&apos;ed with the result of calling
+<tt>lookup_classname</tt> with an iterator pair that designates the character
+sequence &quot;w&quot; is not equal to <tt>0</tt> and <tt>c == '_'</tt>
+</p></blockquote>
+
+<p>
+If the bitmask value corresponding to &quot;w&quot; has a non-zero value (which
 it must do) then the bitwise or with any value is also non-zero, and
-so isctype('_', f) returns true for any f.  Obviously this is wrong,
-since '_' is not in every ctype category.</p>
+so <tt>isctype('_', f)</tt> returns true for any <tt>f</tt>. Obviously this is wrong,
+since <tt>'_'</tt> is not in every <tt>ctype</tt> category.
+</p>
 
-<p>There's a similar problem with the following phrases discussing the
-"blank" char class.
+<p>
+There&apos;s a similar problem with the following phrases discussing the
+&quot;blank&quot; char class.
 </p>
 
 
 <p><b>Proposed resolution:</b></p>
-<p>Replace the Returns clause with a description in terms of ctype
+<p>Replace the Returns clause with a description in terms of <tt>ctype</tt>
 categories, rather than pseudocode in terms of bitwise operations.
 (full replacement wording to follow)
-
 </p>
 
 
@@ -8485,7 +8489,7 @@ categories, rather than pseudocode in terms of bitwise operations.
 <hr>
 <h3><a name="2019"></a>2019. <tt>isblank</tt> not supported by <tt>std::locale</tt></h3>
 <p><b>Section:</b> 22.3.3.1 [classification] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2010-11-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2010-12-08</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>C99 added <tt>isblank</tt> and <tt>iswblank</tt> to <tt>&lt;locale.h&gt;</tt> but <tt>&lt;locale&gt;</tt> does not
@@ -8494,21 +8498,19 @@ provide any equivalent.</p>
 
 <p><b>Proposed resolution:</b></p>
 <p>Add to 22.3.3.1 [classification] synopsis:</p>
-<blockquote>
-<pre>template &lt;class charT&gt; bool isgraph (charT c, const locale& loc);
-<ins>template &lt;class charT&gt; bool isblank (charT c, const locale& loc);</ins>
-</pre>
-</blockquote>
+<blockquote><pre>
+template &lt;class charT&gt; bool isgraph (charT c, const locale&amp; loc);
+<ins>template &lt;class charT&gt; bool isblank (charT c, const locale&amp; loc);</ins>
+</pre></blockquote>
 
 <p>Add to 22.4.1 [category.ctype] synopsis:</p>
 
-<blockquote>
-<pre>static const mask xdigit = 1 &lt;&lt; 8;
+<blockquote><pre>
+static const mask xdigit = 1 &lt;&lt; 8;
 <ins>static const mask blank = 1 &lt;&lt; 9;</ins>
 static const mask alnum = alpha | digit;
 static const mask graph = alnum | punct;
-</pre>
-</blockquote>
+</pre></blockquote>
 
 
 
@@ -8738,6 +8740,239 @@ async(launch policy, F&amp;&amp; f, Args&amp;&amp;... args);
 <tt>future&lt;typename result_of&lt;<ins>typename decay&lt;</ins>F<ins>&gt;::type&amp;</ins>(<ins>typename decay&lt;</ins>Args<ins>&gt;::type&amp;</ins>...)&gt;:<ins>:</ins>type&gt;</tt> 
 that refers to the associated asynchronous state created by this call to <tt>async</tt>.
 </blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2022"></a>2022. <tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</h3>
+<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2010-12-08</p>
+<p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
+<p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+Issue <a href="lwg-defects.html#1295">1295</a> correctly removed function types and references to function types from the
+bullet 1 of 20.8.2 [func.require] p. 3 because neither function types nor function references
+satisfy the requirements for a target object which is <em>defined</em> to be an object of a callable 
+type. This has the effect that the reference in 20.8.4 [refwrap] p. 2
+
+<blockquote>
+<tt>reference_wrapper</tt> has a weak result type (20.8.2).
+</blockquote>
+
+is insufficient as a reference to define the member type <tt>result_type</tt> when the template argument 
+<tt>T</tt> is a function type.
+<p/>
+There are basically two approaches to solve the problem:
+
+<ol>
+<li>Extend the definition of a <i>weak result type</i> in 20.8.2 [func.require] p. 3 to both
+function types and references thereof. This extension must be specified independend from the concept
+of a call wrapper, though.
+</li>
+<li>Add one extra sentence to 20.8.4 [refwrap] p. 2 that simply defines the member type
+<tt>result_type</tt> for <tt>reference_wrapper&lt;T&gt;</tt>, when <tt>T</tt> is a function type.
+</li>
+</ol>
+
+I checked the current usages of <i>weak result type</i> to have a base to argue for one or the other
+approach. It turns out, that there is no further reference to this definition in regard to
+function types or references thereof. The only other reference can be found in 
+20.8.10.1.2 [func.bind.bind] p. 3, where <tt>g</tt> is required to be a class type.
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+The suggested wording changes are against the working draft N3225.
+</p>
+
+<ol>
+<li>
+<p>Change 20.8.4 [refwrap] p. 2 as indicated:</p>
+
+<blockquote>
+2 <tt>reference_wrapper<ins>&lt;T&gt;</ins></tt> has a weak result type (20.8.2). <ins>If <tt>T</tt> is a function type, 
+<tt>result_type</tt> shall be a synonym for the return type of <tt>T</tt>.</ins>
+</blockquote>
+
+</li>
+
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2023"></a>2023. Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></h3>
+<p><b>Section:</b> 30.4.2.1 [thread.lock.guard], 30.4.2.2 [thread.lock.unique] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2010-12-08</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+There are two different <tt>*Lockable</tt> requirements imposed on template arguments
+of the class template <tt>lock_guard</tt> as of 30.4.2.1 [thread.lock.guard] p. 1+2:
+
+<blockquote>
+1 [..] The supplied <tt>Mutex</tt> type shall meet the <tt>BasicLockable</tt> requirements (30.2.5.2).
+</blockquote>
+<p/>
+<blockquote>
+2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).
+</blockquote>
+
+The <tt>Lockable</tt> requirements include the availability of a member function <tt>try_lock()</tt>,
+but there is no operational semantics in the specification of <tt>lock_guard</tt> that would rely
+on such a function. It seems to me that paragraph 2 should be removed.
+
+<p/>
+Similarly, 30.4.2.2 [thread.lock.unique] p. 1+2 refer to exactly the same two requirements.
+In this case it seems as if the intention was that the template arguement <tt>Mutex</tt> should
+always provide the <tt>try_lock()</tt> member function, because several member functions of
+<tt>unique_lock</tt> (<tt>unique_lock(mutex_type&amp; m, try_to_lock_t)</tt> or <tt>bool try_lock()</tt>) 
+take advantage of such a function without adding extra requirements for this.
+It seems that the requirement subset <tt>BasicLockable</tt> should be removed.
+
+<p/>
+
+I searched for further possible misusages of the <tt>*Lockable</tt> requirements, but could not
+find any more.
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+The suggested wording changes are against the working draft N3225.
+</p>
+
+<ol>
+<li>
+<p>Remove 30.4.2.1 [thread.lock.guard] p. 2: completely:</p>
+
+<blockquote>
+<del>2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).</del>
+</blockquote>
+
+</li>
+
+<li>
+<p>Change 30.4.2.2 [thread.lock.unique] p. 1 as indicated:</p>
+
+<blockquote>
+1 [..] The behavior of a program is undefined if the contained pointer <tt>pm</tt> is not null
+and the mutex pointed to by <tt>pm</tt> does not exist for the entire remaining lifetime (3.8) 
+of the <tt>unique_lock</tt> object. <del>The supplied <tt>Mutex</tt> type shall meet the 
+<tt>BasicLockable</tt> requirements (30.2.5.2).</del>
+</blockquote>
+<p/>
+<blockquote>
+2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).
+</blockquote>
+
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
+<p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2010-12-08</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+Paragraph 5 and 6 of 29.5 [atomics.types.generic] impose different requirements on implementations for
+specializations of the <tt>atomic</tt> class template for integral types and for pointer types:
+
+<blockquote>
+5 The atomic integral specializations and the specialization <tt>atomic&lt;bool&gt;</tt> shall have standard layout. 
+They shall each have a trivial default constructor and a trivial destructor. They shall each support aggregate
+initialization syntax.
+</blockquote>
+<p/>
+<blockquote>
+6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
+trivial default constructors and trivial destructors.
+</blockquote>
+
+<p>
+It looks like an oversight to me, that for pointer specializations the requirements for standard layout and
+support for aggregate initialization syntax are omitted. In fact, this been confirmed by the 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a> proposal author. I suggest
+to impose the same implementation requirements for pointer types as for integral types, this should not impose 
+unrealistic requirements on implementations.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+The suggested wording changes are against the working draft N3225.
+</p>
+
+<ol>
+<li>
+<p>Change 29.5 [atomics.types.generic] p. 6 as indicated:</p>
+
+<blockquote>
+6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
+<ins>standard layout,</ins> trivial default constructors<ins>,</ins> and trivial destructors. <ins> They shall each 
+support aggregate initialization syntax.</ins>
+</blockquote>
+
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2025"></a>2025. Incorrect semantics of move assignment operator of <tt>packaged_task</tt></h3>
+<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2010-12-08</p>
+<p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+According to 30.6.10.1 [futures.task.members] p. 7 bullet 2:
+
+<blockquote><pre>
+packaged_task&amp; operator=(packaged_task&amp;&amp; other);
+</pre><blockquote>
+7 <i>Effects</i>:<br/>
+<ul>
+<li>[...]</li>
+<li><tt>packaged_task&lt;R, ArgTypes...&gt;(other).swap(*this)</tt>.</li>
+</ul>
+</blockquote></blockquote>
+<p/>
+
+
+The argument <tt>other</tt> given to the move constructor is an lvalue and must be converted into 
+an rvalue via appropriate usage of <tt>std::move</tt>.
+<p><b>Proposed resolution:</b></p>
+<p>
+The suggested wording changes are against the working draft N3225.
+</p>
+
+<ol>
+<li>
+<p>Change  30.6.10.1 [futures.task.members] p. 7 bullet 2 as indicated:</p>
+
+<blockquote><pre>
+packaged_task&amp; operator=(packaged_task&amp;&amp; other);
+</pre><blockquote>
+7 <i>Effects</i>:<br/>
+<ul>
+<li>[...]</li>
+<li><tt>packaged_task&lt;R, ArgTypes...&gt;(<ins>std::move(</ins>other<ins>)</ins>).swap(*this)</tt>.</li>
+</ul>
+</blockquote></blockquote>
+
 </li>
 </ol>
 
