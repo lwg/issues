@@ -19,12 +19,12 @@
 </style>
 </head>
 <body>
-<p>Revised 2010-12-03 at 14:12:02 UTC</p>
+<p>Revised 2010-12-08 at 00:12:22 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
 <p><b>Section:</b> 30.5.2 [thread.condition.condvarany] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvarany">issues</a> in [thread.condition.condvarany].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -101,7 +101,7 @@ single paper.
 <hr>
 <h3><a name="966"></a>966. Various threading bugs #16</h3>
 <p><b>Section:</b> 30.5.1 [thread.condition.condvar] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvar">issues</a> in [thread.condition.condvar].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -323,7 +323,7 @@ precondition is not met.
 <hr>
 <h3><a name="985"></a>985. Allowing throwing move</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -609,7 +609,7 @@ exception is thrown by the move constructor of <tt>T</tt>.</ins>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
 <p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -759,7 +759,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1349,9 +1349,476 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 
 
 <hr>
+<h3><a name="1318"></a>1318. N2982 removes previous allocator capabilities</h3>
+<p><b>Section:</b> 20.9.4.1 [allocator.traits.types] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2010-12-07</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>Duplicate of:</b> <a href="lwg-closed.html#1375">1375</a></p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-87</b></p>
+<p>
+<a
+href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a>
+says that containers should have a nested typedef that defines their
+<tt>reference_type</tt> as <tt>value_type&amp;</tt>; the previous
+standard deferred to the allocator to define its
+<tt>reference_type</tt>, and containers simply passed the allocator's
+typedef on. This change is a mistake. Allocators should define both a
+<tt>pointer</tt> type and a <tt>reference</tt> type. That's essential
+for their original purpose, which was to make different memory models
+transparent. If an allocator defines a <tt>pointer</tt> type that isn't
+compatible with a normal pointer it also has to define a corresponding
+<tt>reference</tt> type. For example (and please forgive a Windows-ism),
+if an allocator's pointer is <tt>T __far*</tt>, then it's
+<tt>reference</tt> has to be <tt>T __far&amp;</tt>. Otherwise everything
+crashes (under the hood, references are pointers and have to have the
+same memory access mechanics). Extensions such as this for more general
+memory models were explicitly encouraged by C++03, and the allocator's
+<tt>pointer</tt> and <tt>reference</tt> typedefs were the hooks for such
+extensions. Removing the allocator's <tt>reference</tt> and
+<tt>const_reference</tt> typedefs makes those extensions unimplementable
+and breaks existing implementations that rely on those hooks.
+</p>
+
+<p><i>[
+2010-02-25 Alisdair adds:
+]</i></p>
+
+
+<blockquote>
+<p>
+<tt>vector&lt;bool&gt;::reference</tt> is a nested class, and not a typedef.  It
+should be removed from the list of containers when this change is made.
+</p>
+
+<p>
+In general, I am uncomfortable placing this reference requirement on each
+container, as I would prefer to require:
+</p>
+
+<blockquote><pre>
+is_same&lt;Container::reference, Container::iterator::reference&gt;
+</pre></blockquote>
+
+<p>
+This distinction is important, if we intend to support proxy iterators.  The
+iterator paper in the pre-Pittsburgh mailing
+(<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3046.html">N3046</a>)
+does <em>not</em> make this proposal, but organises clause 24 in such a way this
+will be much easier to specify.
+</p>
+
+<p>
+The changes to clause 20 remain important for all the reasons Pete highlights.
+</p>
+</blockquote>
+
+<p><i>[
+2010 Batavia
+]</i></p>
+
+
+<p>
+Removed <tt>vector</tt> from list of templates that should be adjusted as of meeting outcome.
+</p>
+
+<p><i>[
+2010 post-Batavia
+]</i></p>
+
+
+<p>
+Replaced <tt>vector&lt;bool&gt;</tt> reference by <tt>vector</tt> reference because of misinterpreting meeting typo.
+Additional corrected numbering in P/R to N3225 wording.
+</p>
+
+<p><i>[
+2010-12-06 Daniel reopens
+]</i></p>
+
+
+<p>
+Unfortunately, the current P/R is defective for several reasons:
+<ol>
+<li> Table 43 &mdash; Descriptive variable definitions still contains three
+references to <tt>T&amp;</tt>, namely in:
+<blockquote>
+<table border="1">
+<tr>
+<td>
+<tt>t</tt>
+</td>
+<td>a value of type <tt>const T&amp;</tt></td>
+</tr>
+<tr>
+<td>
+<tt>r</tt>
+</td>
+<td>a value of type <tt>T&amp;</tt> obtained by the expression <tt>*p</tt></td>
+</tr>
+<tr>
+<td>
+<tt>s</tt>
+</td>
+<td>a value of type <tt>const T&amp;</tt> obtained by the expression <tt>*q</tt>
+or by conversion from a value <tt>r</tt></td>
+</tr>
+</table>
+</blockquote>
+Especially the second and third items are misses in the 1318 P/R,
+e.g. in N2723 or in C++03 these were referring
+to <tt>X::reference</tt> and <tt>X::const_reference</tt>, resp.
+None of them is referenced anywhere in the allocator requirements
+table: <tt>r</tt> and <tt>s</tt> where historically needed to
+define the expressions <tt>a.address(r)</tt> and <tt>a.address(s)</tt> which are gone now,
+and <tt>t</tt> was needed to define the expression <tt>a.construct(p, t)</tt> which has been
+replaced by <tt>a.construct(p,args)</tt>.
+<p/>
+The easiest fix seems to be to remove all three rows from Table 43.
+</li>
+<li>
+Further-on, the current P/R suggests to replace the the current
+definitions of the adaptor classes
+<blockquote><pre>
+stack
+priority_queue
+queue
+</pre></blockquote>
+similar to the other container types, i.e. to define <tt>reference</tt> and
+<tt>const_reference</tt> now as
+<blockquote><pre>
+typedef typename allocator_traits&lt;Allocator&gt;::reference reference;
+typedef typename allocator_traits&lt;Allocator&gt;::const_reference const_reference;
+</pre></blockquote>
+This would not only be an ill-formed definition (because there is no name
+<tt>Allocator</tt> in scope), but it would also introduce a breakage compared to C++03,
+where these definitions where already referring to the definition of the wrapped 
+containers. So, the adaptor class templates should be removed from the current list.
+</li>
+<li>
+Then the current P/R wording leads to one further unexpected and unwanted change due to 
+the general formular used: <tt>match_result::reference</tt> is currently defined as
+<blockquote><pre>
+typedef const_reference reference;
+</pre></blockquote>
+because it is an <em>immutable</em> container (And we had this definition
+already in N2723). The application of the rule would change this silently.
+</li>
+<li>
+Finally the suggested wording for the <tt>unordered_</tt> containers is incomplete.
+The reason is a current inconsistency between these containers and the rest: While
+normally the definition of the pointer types is
+<blockquote><pre>
+typedef typename allocator_traits&lt;Allocator&gt;::pointer pointer;
+typedef typename allocator_traits&lt;Allocator&gt;::const_pointer const_pointer;
+</pre></blockquote>
+for the unordered containers they are
+<blockquote><pre>
+typedef typename allocator_type::pointer pointer;
+typedef typename allocator_type::const_pointer const_pointer;
+</pre></blockquote>
+These definitions are <em>not</em> equivalent, because allocators are no longer
+required to define typedefs <tt>pointer</tt> and <tt>const_pointer</tt>, the
+<tt>allocator_traits</tt> were invented as a further indirection to cope
+with that. I.e. for the unordered containers we need to bring both the definition
+of references <em>and</em> pointers in sync.
+</li>
+</ol>
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p>
+Remove the following three rows from Table 43:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 43 &mdash; Descriptive variable definitions</caption>
+<tr>
+<th>
+Variable
+</th>
+
+<th>
+Definition
+</th>
+</tr>
+
+<tr>
+<td><del><tt>t</tt></del></td>
+
+<td><del>a value of type <tt>const T&amp;</tt></del></td>
+
+</tr>
+
+<tr>
+<td>&nbsp;<tt>...</tt></td>
+
+<td>&nbsp;<tt>...</tt></td>
+
+</tr>
+
+<tr>
+<td><del><tt>r</tt></del></td>
+
+<td><del>a value of type <tt>T&amp;</tt> obtained by the expression <tt>*p</tt>.</del></td>
+
+</tr>
+
+<tr>
+<td><del><tt>s</tt></del></td>
+
+<td><del>a value of type <tt>const T&amp;</tt> obtained by the expression <tt>*q</tt> or
+by conversion from a value <tt>r</tt>.</del></td>
+
+</tr>
+
+</table>
+</blockquote>
+
+</li>
+<li>
+<p>
+Add the following two rows to Table 44, Allocator requirements:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 44 &mdash; Allocator requirements</caption>
+<tr>
+<th>
+Expression
+</th>
+
+<th>
+Return type
+</th>
+
+<th>
+Assertion/note<br/>pre-/post-condition
+</th>
+
+<th>
+Default
+</th>
+
+</tr>
+
+<tr>
+<td><ins><tt>X::reference</tt></ins></td>
+
+<td><tt></tt></td>
+
+<td><tt></tt></td>
+
+<td><ins><tt>T&amp;</tt></ins></td>
+</tr>
+
+<tr>
+<td><ins><tt>X::const_reference</tt></ins></td>
+
+<td><tt></tt></td>
+
+<td><tt></tt></td>
+
+<td><ins><tt>const T&amp;</tt></ins></td>
+</tr>
+
+</table>
+</blockquote>
+
+</li>
+
+<li>
+<p>
+Change the following two rows in Table 44:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 44 &mdash; Allocator requirements</caption>
+<tr>
+<th>
+Expression
+</th>
+
+<th>
+Return type
+</th>
+
+<th>
+Assertion/note<br/>pre-/post-condition
+</th>
+
+<th>
+Default
+</th>
+
+</tr>
+
+<tr>
+<td><tt>*p</tt></td>
+
+<td><tt><del>T&amp;</del> <ins>X::reference</ins></tt></td>
+
+<td><tt></tt></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><tt>*q</tt></td>
+
+<td><tt><del>const T&amp;</del> <ins>X::const_reference</ins></tt></td>
+
+<td><tt>*q</tt> refers to the same object as <tt>*p</tt></td>
+
+<td></td>
+</tr>
+
+</table>
+</blockquote>
+
+</li>
+
+<li>
+<p>
+Add the following typedef declarations to allocator_traits 20.9.4 [allocator.traits]:
+</p>
+
+<blockquote><pre>
+template &lt;class Alloc&gt; struct allocator_traits {
+  ...
+  <ins>typedef <i>see below</i> reference;</ins>
+  <ins>typedef <i>see below</i> const_reference;</ins>
+  ...
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+Add the following descriptions to 20.9.4.1 [allocator.traits.types]:
+</p>
+
+<blockquote>
+<pre>typedef <i>see below</i> reference;</pre>
+<blockquote>
+<i>Type:</i> <tt>Alloc::reference</tt> if such a type exists; otherwise,
+<tt>value_type&amp;</tt>.
+</blockquote>
+
+<pre>typedef <i>see below</i> const reference;</pre>
+<blockquote>
+<i>Type:</i> <tt>Alloc::const_reference</tt> if such a type exists; otherwise,
+<tt>const value_type&amp;</tt>.
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Add the following typdef declarations to scoped_allocator_adaptor 20.10 [allocator.adaptor]:
+</p>
+
+<blockquote><pre>
+template &lt;class OuterAlloc, class... InnerAllocs&gt;
+class scoped_allocator_adaptor : public OuterAlloc {
+  ...
+  <ins>typedef typename OuterTraits::reference reference;</ins>
+  <ins>typedef typename OuterTraits::const_reference const_reference;</ins>
+  ...
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+Change the nested typedefs <tt>reference</tt> and <tt>const_reference</tt> to:
+</p>
+
+<blockquote><pre>
+typedef typename allocator_traits&lt;Allocator&gt;::reference reference;
+typedef typename allocator_traits&lt;Allocator&gt;::const_reference const_reference;
+</pre></blockquote>
+
+<p>
+for each of the following class templates:
+</p>
+
+<blockquote>
+<tt>basic_string</tt> 21.4 [basic.string]<br/>
+<tt>deque</tt> 23.3.2 [deque]<br/>
+<tt>forward_list</tt> 23.3.3 [forwardlist]<br/>
+<tt>list</tt> 23.3.4 [list]<br/>
+<tt>vector</tt> 23.4.1 [vector]<br/>
+<tt>map</tt> 23.6.1 [map]<br/>
+<tt>multimap</tt> 23.6.2 [multimap]<br/>
+<tt>set</tt> 23.6.3 [set]<br/>
+<tt>multiset</tt> 23.6.4 [multiset]<br/>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change the nested typedefs <tt>reference</tt> and <tt>const_reference</tt> to:
+</p>
+
+<blockquote><pre>
+typedef typename allocator_traits&lt;Allocator&gt;::reference reference;
+typedef typename allocator_traits&lt;Allocator&gt;::const_reference const_reference;
+</pre></blockquote>
+
+<p>
+and change the nested typedefs <tt>pointer</tt> and <tt>const_pointer</tt> to:
+</p>
+
+<blockquote><pre>
+typedef typename allocator_traits&lt;Allocator&gt;::pointer pointer;
+typedef typename allocator_traits&lt;Allocator&gt;::const_pointer const_pointer;
+</pre></blockquote>
+
+<p>
+for each of the following class templates:
+</p>
+
+<blockquote>
+<tt>unordered_map</tt> 23.7.1 [unord.map]<br/>
+<tt>unordered_multimap</tt> 23.7.2 [unord.multimap]<br/>
+<tt>unordered_set</tt> 23.7.3 [unord.set]<br/>
+<tt>unordered_multiset</tt> 23.7.4 [unord.multiset]<br/>
+</blockquote>
+</li>
+
+<li>
+<p>
+Edit the class template synopsis of <tt>match_results</tt> in 28.10 [re.results]
+as indicated:
+</p>
+
+<blockquote><pre>
+template &lt;class BidirectionalIterator,
+class Allocator = allocator&lt;sub_match&lt;BidirectionalIterator&gt; &gt;
+class match_results {
+public:
+  typedef sub_match&lt;BidirectionalIterator&gt; value_type;
+  typedef <del>const value_type&amp;</del><ins>typename allocator_traits&lt;Allocator&gt;::const_reference</ins> const_reference;
+  typedef const_reference reference;
+  ...
+};
+</pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
 <h3><a name="1330"></a>1330. Move container requirements into requirements tables</h3>
 <p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-11-15</p>
+ <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-11-16</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1543,7 +2010,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html"
 <hr>
 <h3><a name="1348"></a>1348. [FCD] Exception safety of unspecified types</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1587,7 +2054,7 @@ are already required not to throw.
 <hr>
 <h3><a name="1349"></a>1349. [FCD] <tt>swap</tt> should not throw</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1763,7 +2230,7 @@ environment, much like <tt>&lt;thread></tt>.
 <hr>
 <h3><a name="1364"></a>1364. [FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1794,7 +2261,7 @@ same exception introduce a race.
 <hr>
 <h3><a name="1369"></a>1369. [FCD] <tt>rethrow_exception</tt> may introduce data races</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1932,7 +2399,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">
 <hr>
 <h3><a name="1421"></a>1421. [FCD] Accidental move-only library types due to new core language rules</h3>
 <p><b>Section:</b> 23.5 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1350">1350</a></p>
@@ -2248,7 +2715,7 @@ Add the following entries to table 143:
 <hr>
 <h3><a name="1457"></a>1457. [FCD] Splitting lock-free properties</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-130</b></p>
@@ -2444,7 +2911,7 @@ Add <tt>ATOMIC_BOOL_LOCK_FREE</tt> to 29.4 [atomics.lockfree] and to 29.2 [atomi
 <hr>
 <h3><a name="1461"></a>1461. [FCD] Rename all <tt>ATOMIC_*</tt> macros as <tt>STD_ATOMIC_*</tt></h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-26</p>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -4157,7 +4624,7 @@ to <tt>true</tt>.
 <hr>
 <h3><a name="2017"></a>2017. <tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></h3>
 <p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2010-11-23</p>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2010-12-07</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4180,7 +4647,7 @@ template &lt;class F, class... Types&gt;
 }
 
 template &lt;class F, class... Types&gt;
-     typename std::result_of&lt;F (Types<b>&amp;&amp;</b>...)
+     typename std::result_of&lt;F (Types<b>&amp;&amp;</b>...)&gt;::type
          f2(F f, Types&amp;&amp;... params)
 {
      return f(std::forward&lt;Types...&gt;(params...));
@@ -4239,7 +4706,6 @@ Functor().operator()(r)
 
 is '<tt>std::string &amp;&amp;</tt>'. The corresponding return type for the invocation
 
-
 <blockquote><pre>
 Functor().operator()(cr)
 </pre></blockquote>
@@ -4265,7 +4731,109 @@ template &lt;&gt;
 
 <tt>std::result_of&lt;F (std::string const &amp;&amp;)&gt;::type</tt> is the same type as
 '<tt>std::string const &amp;&amp;</tt>'. This is correct result.
+
+<p><i>[
+2010-12-07 Jonathan Wakely comments and suggests a proposed resolution
+]</i></p>
+
+
+<p>
+I agree with the analysis and I think this is a defect in the
+standard, it would be a shame if it can't be fixed.
+
+In the following example one would expect <tt>f(Str("1"))</tt> and
+<tt>std::ref(f)(Str("2"))</tt> to be equivalent but the current wording makes
+the invocation through <tt>reference_wrapper</tt> ill-formed:
+<blockquote><pre>
+#include &lt;functional&gt;
+#include &lt;string&gt;
+
+struct Functor
+{
+   template &lt;class T&gt;
+       T&amp;&amp; operator()(T&amp;&amp; t) const
+       {
+           return static_cast&lt;T&amp;&amp;&gt;(t);
+       }
+};
+
+int main()
+{
+   typedef std::string const Str;
+   Functor f;
+   f( Str("1") );
+   std::ref(f)( Str("2") );  // error
+}
+</pre></blockquote>
+</p>
+
+<p><i>[
+2010-12-07 Daniel comments and refines the proposed resolution
+]</i></p>
+
+
+<p>
+There is one further defect in the usage of <tt>result_of</tt> within
+<tt>reference_wrapper</tt>'s function call operator: According to 20.8.4.4 [refwrap.invoke] p. 1
+the invokable entity of type <tt>T</tt> is provided as lvalue, but 
+<tt>result_of</tt> is fed as if it were an rvalue. This does not only lead to
+potentially incorrect result types, but it will also have the effect that
+we could never use the function call operator with a function type,
+because the type encoding used in <tt>result_of</tt> would form an invalid
+function type return a function type. The following program demonstrates
+this problem:
+<blockquote><pre>
+#include &lt;functional&gt;
+
+void foo(int) {}
+
+int main()
+{
+   std::ref(foo)(0);  // error
+}
+</pre></blockquote>
+The correct solution is to ensure that <tt>T</tt> becomes <tt>T&amp;</tt>
+within <tt>result_of</tt>, which solves both problems at once.
+</p>
+
+
+
 <p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p>
+Change the synopsis in 20.8.4 [refwrap] paragraph 1:
+</p>
+
+<blockquote><pre>
+namespace std {
+  template &lt;class T&gt; class reference_wrapper
+  {
+  public :
+    [...]
+    // invocation
+    template &lt;class... ArgTypes&gt;
+    typename result_of&lt;T<ins>&amp;</ins>(ArgTypes<ins>&amp;&amp;</ins>...)&gt;::type
+    operator() (ArgTypes&amp;&amp;...) const;
+  };
+}
+</pre></blockquote>
+</li>
+
+<li>
+<p>
+Change the signature in 20.8.4.4 [refwrap.invoke] before paragraph 1
+</p>
+
+<blockquote><pre>
+template &lt;class... ArgTypes&gt;
+typename result_of&lt;T<ins>&amp;</ins>(ArgTypes<ins>&amp;&amp;</ins>... )&gt;::type
+operator()(ArgTypes&amp;&amp;... args) const;
+</pre><blockquote>
+1 <i>Returns</i>: <tt>INVOKE(get(), std::forward&lt;ArgTypes&gt;(args)...)</tt>. (20.8.2)
+</blockquote></blockquote>
+</li>
+</ol>
 
 
 
@@ -4334,6 +4902,236 @@ static const mask graph = alnum | punct;
 </pre>
 </blockquote>
 
+
+
+
+
+
+<hr>
+<h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
+<p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2010-12-07</p>
+<p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
+<p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+As of issue <a href="lwg-defects.html#1171">1171</a> several time-utility functions have been marked <tt>constexpr</tt>.
+Alas this was done without adapting the corresponding return elements, which has the effect that 
+none of current arithmetic functions of class template <tt>duration</tt> marked as <tt>constexpr</tt> 
+can ever be <tt>constexpr</tt> functions (which makes them ill-formed, no diagnostics required as 
+of recent core rules), because they invoke a non-constant expression, e.g. 20.11.3.5 [time.duration.nonmember]/2:
+<blockquote><pre>
+template &lt;class Rep1, class Period1, class Rep2, class Period2>
+constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;{&gt;}::type
+operator+(const duration&lt;Rep1, Period1>&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+
+2 Returns: CD(lhs) += rhs.
+</pre></blockquote>
+The real problem is, that we cannot defer to as-if rules here: The returns element
+specifies an indirect calling contract of a potentially user-defined function. This <em>cannot</em> be
+the <tt>+=</tt> assignment operator of such a user-defined type, but must be the corresponding
+immutable binary <tt>operator+</tt> (unless we require that <tt>+=</tt> shall be an immutable function
+which does not really makes sense).
+
+
+<p><b>Proposed resolution:</b></p>
+The suggested wording changes are against the working draft N3225. Additional to the normative wording
+changes some editorial fixes are suggested.
+<ol>
+<li>
+<p>Change the following arithmetic function specifications as follows:</p>
+<blockquote><pre>
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;<del>{</del>&gt;<del>}</del>::type
+operator+(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+</pre><blockquote>
+2 <i>Returns</i>: <del><tt>CD(lhs) += rhs</tt></del><ins><tt>CD(CD(lhs).count() + CD(rhs).count())</tt></ins>.
+</blockquote></blockquote>
+
+<blockquote><pre>
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;<del>{</del>&gt;<del>}</del>::type
+operator-(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+</pre><blockquote>
+3 <i>Returns</i>: <del><tt>CD(lhs) -= rhs</tt></del><ins><tt>CD(CD(lhs).count() - CD(rhs).count())</tt></ins>.
+</blockquote></blockquote>
+
+<blockquote><pre>
+template &lt;class Rep1, class Period, class Rep2&gt;
+constexpr duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
+operator*(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
+</pre><blockquote>
+4 <i>Remarks</i>: This operator shall not participate in overload resolution unless <tt>Rep2</tt> is implicitly convertible
+to <tt>CR(Rep1, Rep2)</tt>.
+<p/>
+5 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) *= s</tt></del><ins><tt>CD(CD(d).count() * s)</tt></ins>.
+</blockquote></blockquote>
+
+<p><blockquote>
+<tt>[...]</tt>
+</blockquote></p>
+
+<blockquote><pre>
+template &lt;class Rep1, class Period, class Rep2&gt;
+constexpr duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
+operator/(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
+</pre><blockquote>
+8 <i>Remarks</i>: This operator shall not participate in overload resolution unless <tt>Rep2</tt> is implicitly convertible
+to <tt>CR(Rep1, Rep2)</tt> and <tt>Rep2</tt> is not an instantiation of <tt>duration</tt>.
+<p/>
+9 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) /= s</tt></del><ins><tt>CD(CD(d).count() / s)</tt></ins>.
+</blockquote></blockquote>
+
+<p><blockquote>
+<tt>[...]</tt>
+</blockquote></p>
+
+<blockquote><pre>
+template &lt;class Rep1, class Period, class Rep2&gt;
+constexpr duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
+operator%(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
+</pre><blockquote>
+11 <i>Remarks</i>: This operator shall not participate in overload resolution unless <tt>Rep2</tt> is implicitly convertible
+to <tt>CR(Rep1, Rep2)</tt> and <tt>Rep2</tt> is not an instantiation of <tt>duration</tt>.
+<p/>
+12 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) %= s</tt></del><ins><tt>CD(CD(d).count() % s)</tt></ins>
+</blockquote></blockquote>
+
+<blockquote><pre>
+template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
+constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;&gt;::type
+operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+</pre><blockquote>
+13 Returns: <del><tt>common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt; &gt;::type(lhs) 
+ %= rhs</tt></del><ins><tt>CD(CD(lhs).count() % CD(rhs).count())</tt></ins>.
+</blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2021"></a>2021. Further incorrect usages of <tt>result_of</tt></h3>
+<p><b>Section:</b> 20.8.10.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.9 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2010-12-07</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+Issue <a href="lwg-active.html#2017">2017</a> points out some incorrect usages of <tt>result_of</tt> in the
+declaration of the function call operator overload of <tt>reference_wrapper</tt>,
+but there are more such specification defects:
+<ol>
+<li>According to 20.8.10.1.2 [func.bind.bind] p. 3: 
+<blockquote>
+[..] The effect of <tt>g(u1, u2, ..., uM)</tt> shall be <tt>INVOKE(fd, v1, v2, ..., vN, result_of&lt;FD cv (V1, V2, ..., VN)&gt;::type)</tt> [..]
+</blockquote>
+but <tt>fd</tt> is defined as &quot;an lvalue of type <tt>FD</tt> constructed from <tt>std::forward&lt;F&gt;(f)</tt>&quot;. This means that
+the above usage must refer to <tt>result_of&lt;FD cv <strong>&amp;</strong> (V1, V2, ..., VN)&gt;</tt> instead.
+</li>
+<li>
+Similar in 20.8.10.1.2 [func.bind.bind] p. 10 bullet 2 we have:
+<blockquote>
+if the value of <tt>is_bind_expression&lt;TiD&gt;::value</tt> is true, the argument is <tt>tid(std::forward&lt;Uj&gt;(uj)...)</tt>
+and its type <tt>Vi</tt> is <tt>result_of&lt;TiD cv (Uj...)&gt;::type</tt>
+</blockquote>
+Again, <tt>tid</tt> is defined as &quot;lvalue of type <tt>TiD</tt> constructed from <tt>std::forward&lt;Ti&gt;(ti)</tt>&quot;. This means that
+the above usage must refer to <tt>result_of&lt;TiD cv <strong>&amp;</strong> (Uj...)&gt;</tt> instead. We also have similar defect as in
+<a href="lwg-active.html#2017">2017</a> in regard to the argument types, this leads us to the further corrected form 
+<tt>result_of&lt;TiD cv <strong>&amp;</strong> (Uj<strong>&amp;&amp;</strong>...)&gt;</tt>. This is not the end: Since the <tt>Vi</tt>
+are similar sensitive to the argument problem, the last part must say: 
+<p>
+&quot;[..] its type <tt>Vi</tt> is <tt>result_of&lt;TiD cv <strong>&amp;</strong> (Uj<strong>&amp;&amp;</strong>...)&gt;::type <strong>&amp;&amp;</strong>&quot;</tt>
+</p>
+(The bound arguments <tt>Vi</tt> can never be <tt>void</tt> types, therefore we don't need 
+to use the more defensive <tt>std::add_rvalue_reference</tt> type trait)
+</li>
+<li>The function template <tt>async</tt> is declared as follows (the other overload has the same problem):
+<blockquote><pre>
+template &lt;class F, class... Args&gt;
+future&lt;typename result_of&lt;F(Args...)&gt;::type&gt;
+async(F&amp;&amp; f, Args&amp;&amp;... args);
+</pre></blockquote>
+This usage has the some same problems as we have found in <tt>reference_wrapper</tt> (<a href="lwg-active.html#2017">2017</a>) and more: According to
+the specification in 30.6.9 [futures.async] the effective result type is that of the call of
+<blockquote><pre>
+INVOKE(decay_copy(std::forward&lt;F&gt;(f)), decay_copy(std::forward&lt;Args&gt;(args))...)
+</pre></blockquote>
+First, <tt>decay_copy</tt> potentially modifies the effective types to <tt>decay&lt;F&gt;::type</tt> and <tt>decay&lt;Args&gt;::type...</tt>.
+Second, the current specification is not really clear, what the value category of callable type or the arguments shall be: According
+to the second bullet of 30.6.9 [futures.async] p. 3:
+<blockquote>
+Invocation of the deferred function evaluates <tt>INVOKE(g, xyz)</tt> where <tt>g</tt> is the stored value of 
+<tt>decay_copy(std::forward&lt;F&gt;(f))</tt> and <tt>xyz</tt> is the stored copy of 
+<tt>decay_copy(std::forward&lt;Args&gt;(args))...</tt>.
+</blockquote>
+This seems to imply that lvalues are provided in contrast to the direct call expression of 30.6.9 [futures.async] p. 2
+which implies rvalues instead. The specification needs to be clarified.
+</li>
+</ol>
+
+
+<p><b>Proposed resolution:</b></p>
+The suggested wording changes are against the working draft N3225.
+<ol>
+<li>
+<p>Change 20.8.10.1.2 [func.bind.bind] p. 3 as indicated:</p>
+
+<blockquote>
+<i>Returns</i>: A forwarding call wrapper <tt>g</tt> with a weak result type (20.8.2). The effect of 
+<tt>g(u1, u2, ..., uM)</tt> shall be <tt>INVOKE(fd, v1, v2, ..., vN, result_of&lt;FD cv <ins>&amp;</ins> (V1, V2, ..., VN)&gt;::type)</tt>, 
+where <i>cv</i> represents the <i>cv</i>-qualifiers of <tt>g</tt> and the values and types of the bound arguments 
+<tt>v1, v2, ..., vN</tt> are determined as specified below. [..]
+</blockquote>
+
+</li>
+
+<li>
+<p>Change 20.8.10.1.2 [func.bind.bind] p. 10 bullet 2 as indicated:</p>
+
+<blockquote>
+if the value of <tt>is_bind_expression&lt;TiD&gt;::value</tt> is <tt>true</tt>, the argument is 
+<tt>tid(std::forward&lt;Uj&gt;(uj)...)</tt> and its type <tt>Vi</tt> is 
+<tt>result_of&lt;TiD cv <ins>&amp;</ins> (Uj<ins>&amp;&amp;</ins>...)&gt;::type<ins>&amp;&amp;</ins></tt>;
+</blockquote>
+
+</li>
+
+<li>
+<p>
+This resolution assumes that the wording of 30.6.9 [futures.async] is incorrectly implying rvalues
+as arguments of <tt>INVOKE</tt>, those should be lvalues instead.
+</p>
+
+<p>
+Change the function signatures in header <tt>&lt;future&gt;</tt> synopsis 30.6.1 [futures.overview] p. 1
+and in 30.6.9 [futures.async] p. 1 as indicated:
+</p>
+
+<blockquote><pre>
+template &lt;class F, class... Args&gt;
+future&lt;typename result_of&lt;<ins>typename decay&lt;</ins>F<ins>&gt;::type&amp;</ins>(<ins>typename decay&lt;</ins>Args<ins>&gt;::type&amp;</ins>...)&gt;::type&gt;
+async(F&amp;&amp; f, Args&amp;&amp;... args);
+template &lt;class F, class... Args>
+future&lt;typename result_of&lt;<ins>typename decay&lt;</ins>F<ins>&gt;::type&amp;</ins>(<ins>typename decay&lt;</ins>Args<ins>&gt;::type&amp;</ins>...)&gt;::type&gt;
+async(launch policy, F&amp;&amp; f, Args&amp;&amp;... args);
+</pre></blockquote>
+</li>
+
+<li>
+<p>Change 30.6.9 [futures.async] p. 4 as indicated: [Note: There is one tiny editorial correction that completes one
+<tt>::</tt> scope specifier]
+[Note: This sub-section need more wording: The call expressions used imply a different value category]
+</p>
+
+<blockquote>
+<i>Returns</i>: an object of type 
+<tt>future&lt;typename result_of&lt;<ins>typename decay&lt;</ins>F<ins>&gt;::type&amp;</ins>(<ins>typename decay&lt;</ins>Args<ins>&gt;::type&amp;</ins>...)&gt;:<ins>:</ins>type&gt;</tt> 
+that refers to the associated asynchronous state created by this call to <tt>async</tt>.
+</blockquote>
+</li>
+</ol>
 
 
 
