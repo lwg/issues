@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-07 at 14:02:04 UTC</p>
+<p>Revised 2011-02-10 at 13:02:31 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -1033,6 +1033,40 @@ which is unambiguous and correct.
 <i>Returns</i>: A reference to the <del>element whose key is equivalent</del><ins><tt>mapped_type</tt> 
 corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
 </blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="2014"></a>2014. More restrictions on macro names</h3>
+<p><b>Section:</b> 17.6.3.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-10</p>
+<p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+A program is currently forbidden to use keywords as macro names. This restriction should be strengthened to include all identifiers 
+that could be used by the library as attribute-tokens (for example <tt>noreturn</tt>, which is used by header <tt>&lt;cstdlib&gt;</tt>) 
+and the special identifiers introduced recently for override control (these are not currently used in the library public interface,
+but could potentially be used by the implementation or in future revisions of the library).
+
+<p><i>[Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify 17.6.3.3.1 [macro.names] paragraph 2 as follows:</p>
+
+<blockquote>
+A translation unit shall not <tt>#define</tt> or <tt>#undef</tt> names
+lexically identical to keywords<ins>, to the identifiers listed in Table
+X [Identifiers with special meaning], or to the <i>attribute-tokens</i>
+described in clause 7.6 [dcl.attr]</ins>.
+</blockquote>
+
 
 
 

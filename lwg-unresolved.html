@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-07 at 14:02:04 UTC</p>
+<p>Revised 2011-02-10 at 13:02:31 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -4484,33 +4484,6 @@ Additionally, an implementation may declare any function to be <tt>constexpr</tt
 if that function's definition satisfies the necessary constraints.</ins>
 Within any header that provides any non-defining declarations of <tt>constexpr</tt>
 functions or constructors an implementation shall provide corresponding definitions. 
-</blockquote>
-
-
-
-
-
-
-<hr>
-<h3><a name="2014"></a>2014. More restrictions on macro names</h3>
-<p><b>Section:</b> 17.6.3.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2010-11-17</p>
-<p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-A program is currently forbidden to use keywords as macro names. This restriction should be strengthened to include all identifiers 
-that could be used by the library as attribute-tokens (for example <tt>noreturn</tt>, which is used by header <tt>&lt;cstdlib&gt;</tt>) 
-and the special identifiers introduced recently for override control (these are not currently used in the library public interface,
-but could potentially be used by the implementation or in future revisions of the library).
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Modify 17.6.3.3.1 [macro.names] paragraph 2 as follows:</p>
-
-<blockquote>
-A translation unit shall not <tt>#define</tt> or <tt>#undef</tt> names lexically identical to keywords<ins>, to the identifiers 
-listed in Table X [Identifiers with special meaning] or to the <i>attribute-tokens</i> described in clause 7.6 [dcl.attr]</ins>.
 </blockquote>
 
 
