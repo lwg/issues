@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-10 at 13:02:31 UTC</p>
+<p>Revised 2011-02-11 at 14:02:29 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -863,6 +863,64 @@ while (!pred())
 
 
 <hr>
+<h3><a name="1514"></a>1514. [FCD] <tt>packaged_task</tt> constructors need review</h3>
+<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-11</p>
+<p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-207</b></p>
+
+The constructor that takes <tt>R(*)(ArgTypes...)</tt> is not
+needed; the constructor that takes a callable type works
+for this argument type. More generally, the constructors
+for packaged_task should parallel those for function.
+
+<p><i>[
+US-207 Suggested Resolution:
+]</i></p>
+
+
+<blockquote>
+Review the constructors for packaged_task and
+provide the same ones as function, except where
+inappropriate.
+</blockquote>
+
+<p><i>[
+2010-10-22 Howard provides wording, as requested by the LWG in Rapperswil.
+]</i></p>
+
+
+<p><i>[2011-02-10 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+Alter the list of constructors in both [futures.task] and in [futures.task.members] as indicated:
+
+<blockquote>
+<pre><del>template &lt;class F&gt;
+explicit packaged_task(F f);
+template &lt;class F, class Allocator&gt;
+explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F f);
+explicit packaged_task(R(*f)(ArgTypes...));</del>
+template &lt;class F&gt;
+explicit packaged_task(F&amp;&amp; f);
+template &lt;class F, class Allocator&gt;
+explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F&amp;&amp; f);
+</pre>
+</blockquote>
+
+
+
+
+
+<hr>
 <h3><a name="2000"></a>2000. Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></h3>
 <p><b>Section:</b> 30.6.10.2 [futures.task.nonmembers] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
  <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2010-11-13</p>
@@ -1041,7 +1099,7 @@ corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
 <hr>
 <h3><a name="2014"></a>2014. More restrictions on macro names</h3>
 <p><b>Section:</b> 17.6.3.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-10</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-11</p>
 <p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1050,7 +1108,7 @@ that could be used by the library as attribute-tokens (for example <tt>noreturn<
 and the special identifiers introduced recently for override control (these are not currently used in the library public interface,
 but could potentially be used by the implementation or in future revisions of the library).
 
-<p><i>[Reflector discussion]</i></p>
+<p><i>[2011-02-10 Reflector discussion]</i></p>
 
 <p>
 Moved to Tentatively Ready after 5 votes.
@@ -1067,6 +1125,64 @@ X [Identifiers with special meaning], or to the <i>attribute-tokens</i>
 described in clause 7.6 [dcl.attr]</ins>.
 </blockquote>
 
+
+
+
+
+
+<hr>
+<h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
+<p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-11</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+Paragraph 5 and 6 of 29.5 [atomics.types.generic] impose different requirements on implementations for
+specializations of the <tt>atomic</tt> class template for integral types and for pointer types:
+
+<blockquote>
+5 The atomic integral specializations and the specialization <tt>atomic&lt;bool&gt;</tt> shall have standard layout. 
+They shall each have a trivial default constructor and a trivial destructor. They shall each support aggregate
+initialization syntax.
+</blockquote>
+<p/>
+<blockquote>
+6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
+trivial default constructors and trivial destructors.
+</blockquote>
+
+<p>
+It looks like an oversight to me, that for pointer specializations the requirements for standard layout and
+support for aggregate initialization syntax are omitted. In fact, this been confirmed by the 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a> proposal author. I suggest
+to impose the same implementation requirements for pointer types as for integral types, this should not impose 
+unrealistic requirements on implementations.
+</p>
+
+<p><i>[2011-02-10 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+The suggested wording changes are against the working draft N3225.
+</p>
+
+<ol>
+<li>
+<p>Change 29.5 [atomics.types.generic] p. 6 as indicated:</p>
+
+<blockquote>
+6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
+<ins>standard layout,</ins> trivial default constructors<ins>,</ins> and trivial destructors. <ins> They shall each 
+support aggregate initialization syntax.</ins>
+</blockquote>
+
+</li>
+</ol>
 
 
 

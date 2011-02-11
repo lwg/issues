@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-10 at 13:02:31 UTC</p>
+<p>Revised 2011-02-11 at 14:02:29 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3587,59 +3587,6 @@ after 30.6.5/28 and 30.6.5/31.
 
 
 <hr>
-<h3><a name="1514"></a>1514. [FCD] <tt>packaged_task</tt> constructors need review</h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-207</b></p>
-
-The constructor that takes R(*)(ArgTypes...) is not
-needed; the constructor that takes a callable type works
-for this argument type. More generally, the constructors
-for packaged_task should parallel those for function.
-
-<p><i>[
-US-207 Suggested Resolution:
-]</i></p>
-
-
-<blockquote>
-Review the constructors for packaged_task and
-provide the same ones as function, except where
-inappropriate.
-</blockquote>
-
-<p><i>[
-2010-10-22 Howard provides wording, as requested by the LWG in Rapperswil.
-]</i></p>
-
-
-
-
-<p><b>Proposed resolution:</b></p>
-Alter the list of constructors in both [futures.task] and in [futures.task.members] as indicated:
-
-<blockquote>
-<pre><del>template &lt;class F&gt;
-explicit packaged_task(F f);
-template &lt;class F, class Allocator&gt;
-explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F f);
-explicit packaged_task(R(*f)(ArgTypes...));</del>
-template &lt;class F&gt;
-explicit packaged_task(F&amp;&amp; f);
-template &lt;class F, class Allocator&gt;
-explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F&amp;&amp; f);
-</pre>
-</blockquote>
-
-
-
-
-
-<hr>
 <h3><a name="1515"></a>1515. [FCD] <tt>packaged_task::make_ready_at_thread_exit</tt> has no
 synchronization requirements</h3>
 <p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
@@ -5199,58 +5146,6 @@ of the <tt>unique_lock</tt> object. <del>The supplied <tt>Mutex</tt> type shall 
 <p/>
 <blockquote>
 2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).
-</blockquote>
-
-</li>
-</ol>
-
-
-
-
-
-<hr>
-<h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
-<p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2010-12-21</p>
-<p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-Paragraph 5 and 6 of 29.5 [atomics.types.generic] impose different requirements on implementations for
-specializations of the <tt>atomic</tt> class template for integral types and for pointer types:
-
-<blockquote>
-5 The atomic integral specializations and the specialization <tt>atomic&lt;bool&gt;</tt> shall have standard layout. 
-They shall each have a trivial default constructor and a trivial destructor. They shall each support aggregate
-initialization syntax.
-</blockquote>
-<p/>
-<blockquote>
-6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
-trivial default constructors and trivial destructors.
-</blockquote>
-
-<p>
-It looks like an oversight to me, that for pointer specializations the requirements for standard layout and
-support for aggregate initialization syntax are omitted. In fact, this been confirmed by the 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a> proposal author. I suggest
-to impose the same implementation requirements for pointer types as for integral types, this should not impose 
-unrealistic requirements on implementations.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-The suggested wording changes are against the working draft N3225.
-</p>
-
-<ol>
-<li>
-<p>Change 29.5 [atomics.types.generic] p. 6 as indicated:</p>
-
-<blockquote>
-6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
-<ins>standard layout,</ins> trivial default constructors<ins>,</ins> and trivial destructors. <ins> They shall each 
-support aggregate initialization syntax.</ins>
 </blockquote>
 
 </li>
