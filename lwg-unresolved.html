@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-11 at 14:02:29 UTC</p>
+<p>Revised 2011-02-14 at 13:02:22 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3185,158 +3185,6 @@ thread and a signal handler executed in the same thread.
 
 
 <hr>
-<h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
-<p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-23</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-184</b></p>
-
-It is unclear when a <tt>thread::id</tt> ceases to be meaningful.
-The sentence "The library may reuse the value of a
-<tt>thread::id</tt> of a terminated thread that can no longer be
-joined." implies that some terminated threads can be
-joined. It says nothing about detached threads.
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<blockquote>
-Require a unique <tt>thread::id</tt> for every thread that is
-(1) detached and not terminated or (2) has an associated <tt>std::thread</tt> 
-object.
-</blockquote>
-
-<p><i>[
-2010-11-22 Howard Hinnant observes
-]</i></p>
-
-
-
-<p>
-A thread can either be running or terminated.  Additionally a thread can be joined, detached, or neither.  These combine into the five possible states shown in this table:
-</p>
-
-<table border="1">
-<tr>
-<th></th><th>Running</th><th>Terminated</th>
-</tr>
-<tr>
-<th>Neither joined nor detached</th><td>shall not reuse id</td><td>shall not reuse id</td>
-</tr>
-<tr>
-<th>detached</th><td>shall not reuse id</td><td>may reuse id</td>
-</tr>
-<tr>
-<th>joined</th><td>impossible state</td><td>may reuse id</td>
-</tr>
-</table>
-<p>
-Only if a thread is neither joined nor detached can it be joined.  Or said differently, if a thread has already been joined or detached, then it can not be joined.  The sentence:
-<blockquote>
-The library may reuse the value of a <tt>thread::id</tt> of a terminated thread that can no longer be joined.
-</blockquote>
-precisely defines the two states shown in the above table where a thread::id may be reused.
-</p>
-<p>
-The following program illustrates all of the possibilities:
-</p>
-<blockquote><pre>
-#include &lt;mutex>
-#include &lt;thread>
-#include &lt;iostream>
-#include &lt;chrono>
-
-std::mutex mut;
-
-void f()
-{
-   std::lock_guard&lt;std::mutex> _(mut);
-   std::cout &lt;&lt; "f id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; " terminating\n";
-}
-
-void g()
-{
-   std::lock_guard&lt;std::mutex> _(mut);
-   std::cout &lt;&lt; "g id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; " terminating\n";
-}
-
-int main()
-{
-   std::cout &lt;&lt; "main id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; "\n";
-   std::thread t1(f);
-   std::thread(g).detach();
-   std::this_thread::sleep_for(std::chrono::seconds(1));
-   std::cout &lt;&lt; "g's thread::id can be reused here because g has terminated and is detached.\n";
-   std::cout &lt;&lt; "f's thread::id can't be reused here because f has terminated but is still joinable.\n";
-   std::cout &lt;&lt; "f id = " &lt;&lt; t1.get_id() &lt;&lt; "\n";
-   t1.join();
-   std::cout &lt;&lt; "f's thread::id can be reused here because f has terminated and is joined.\n";
-   std::cout &lt;&lt; "f id = " &lt;&lt; t1.get_id() &lt;&lt; "\n";
-}
-
-main id = 0x7fff71197ca0
-f id = 0x100381000 terminating
-g id = 0x100581000 terminating
-g's thread::id can be reused here because g has terminated and is detached.
-f's thread::id can't be reused here because f has terminated but is still joinable.
-f id = 0x100381000
-f's thread::id can be reused here because f has terminated and is joined.
-f id = 0x0
-</pre></blockquote>
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1486"></a>1486. [FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</h3>
-<p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-23</p>
-<p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses CH-24</b></p>
-
-What would be the value <tt>this_thread::get_id()</tt> when called from a detached thread?
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-Add some text to clarify that get_id() still returns
-the same value even after detaching.
-</p>
-
-<p><i>[
-2010-11-22 Howard Hinnant observes
-]</i></p>
-
-
-<p>
-30.3.2 [thread.thread.this]/1 contains the following sentence describing <tt>this_thread::get_id()</tt>:
-</p>
-
-<blockquote>
-... No other thread of execution shall have this id and this thread of execution shall always have this id.
-</blockquote>
-
-I don't object to adding "even if detached" to this sentence, but it seems unnecessary to me.  "Always" means always.
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-01</p>
@@ -5254,6 +5102,73 @@ we've settled that), <tt>swap</tt> is the only intended customization point (loo
 <p><b>Proposed resolution:</b></p>
 <p>
 </p>
+
+
+
+
+
+<hr>
+<h3><a name="2027"></a>2027. Initialization of the stored task of a <tt>packaged_task</tt></h3>
+<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-09 <b>Last modified:</b> 2011-02-14</p>
+<p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Related with LWG issue <a href="lwg-active.html#1514">1514</a>.
+</p>
+
+<p>
+The move constructor of <tt>packaged_task</tt> does not specify how the stored task is constructed. 
+The obvious way is to move-construct it using the task stored in the argument. Moreover, the 
+constructor should be provided with a throws clause similar to one used for the other constructors, 
+as the move constructor of the stored task is not required to be nothrow.</p>
+
+<p>
+As for the other constructors, the terms "stores a copy of <tt>f</tt>" do not reflect the intent, which is 
+to allow <tt>f</tt> to be moved when possible.
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>(wording written assuming LWG <a href="lwg-active.html#1514">1514</a> is also accepted)</p>
+
+<ol>
+<li>
+<p>Change 30.6.10.1 [futures.task.members] paragraph 3:</p>
+
+<blockquote>
+3 <em>Effects</em>: constructs a new <tt>packaged_task</tt> object with an associated asynchronous state and <del>stores a
+copy of <tt>f</tt> as the object's stored task</del><ins>direct-initializes the object's stored task with <tt>std::forward&lt;F&gt;(f)</tt></ins>. 
+The constructors that take an <tt>Allocator</tt> argument use it to allocate memory needed to store the internal data structures.
+</blockquote>
+
+</li>
+
+<li>
+<p>Change 30.6.10.1 [futures.task.members] paragraph 5:</p>
+
+<blockquote>
+5 <em>Effects</em>: constructs a new <tt>packaged_task</tt> object and transfers ownership of <tt>other</tt>'s associated asynchronous
+state to <tt>*this</tt>, leaving other with no associated asynchronous state. <ins>Direct-initializes the object's stored task 
+with <tt>std::move(f)</tt> where <tt>f</tt> is the task stored in <tt>other</tt>.</ins>
+</blockquote>
+
+</li>
+
+<li>
+<p>Add a new paragraph after 30.6.10.1 [futures.task.members] p. 6:</p>
+
+<blockquote>
+<ins><em>Throws</em>: any exceptions thrown by the move constructor of <tt>f</tt>.</ins>
+</blockquote>
+
+</li>
+
+</ol>
+
 
 
 
