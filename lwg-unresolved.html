@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-16 at 19:02:30 UTC</p>
+<p>Revised 2011-02-16 at 22:02:27 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3026,50 +3026,6 @@ to be permitted. Either way, a note would probably help.
 
 
 <p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1479"></a>1479. [FCD] Fence functions should be <tt>extern "C"</tt></h3>
-<p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
-<p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
-<p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-179</b></p>
-
-The fence functions (29.8 [atomics.fences] p.5 + p.6) should be <tt>extern "C"</tt>, for <tt>C</tt> compatibility.
-
-
-<p><b>Proposed resolution:</b></p>
-<ol>
-<li>Change 29.2 [atomics.syn], header <tt>&lt;atomic&gt;</tt> synopsis as indicated:
-<blockquote><pre>
-namespace std {
-  [..]
-  // <em>29.8, fences</em>
-  <ins>extern "C"</ins> void atomic_thread_fence(memory_order);
-  <ins>extern "C"</ins> void atomic_signal_fence(memory_order);  
-}
-</pre></blockquote>
-</li>
-<li>Change 29.8 [atomics.fences], p. 5 and p. 6 as indicated:
-<blockquote><pre>
-<ins>extern "C"</ins> void atomic_thread_fence(memory_order);
-</pre><blockquote>
-5 <em>Effects</em>: depending on the value of <tt>order</tt>, this operation: [..]
-</blockquote></blockquote>
-<blockquote><pre>
-<ins>extern "C"</ins> void atomic_signal_fence(memory_order);  
-</pre><blockquote>
-6 <em>Effects</em>: equivalent to <tt>atomic_thread_fence(order)</tt>, except that synchronizes with relationships are
-established only between a thread and a signal handler executed in the same thread.
-</blockquote></blockquote>
-</li>
-</ol>
 
 
 
