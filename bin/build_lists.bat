@@ -1,3 +1,4 @@
+call git pull
 bin\lists
 @echo off
 if errorlevel 1 goto error
