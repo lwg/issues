@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-17 at 19:02:46 UTC</p>
+<p>Revised 2011-02-17 at 19:02:26 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5411,6 +5411,57 @@ Finally, it is of little use anyway.
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2031"></a>2031. <tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</h3>
+<p><b>Section:</b> 30.6.6 [futures.unique_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-17</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.unique_future">issues</a> in [futures.unique_future].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+As specified, <tt>future&lt;&gt;::share()</tt> has the signature
+</p>
+
+<blockquote><pre>
+shared_future&lt;R&gt; share() &amp;&amp;;
+</pre></blockquote>
+
+<p>
+This means that it can only be applied to rvalues. One of the key benefits of <tt>share()</tt> is 
+that it can be used with the new <tt>auto</tt> facility:
+</p>
+
+<blockquote><pre>
+std::promise&lt;<em>some_long_winded_type_name</em>&gt; some_promise;
+auto f = some_promise.get_future(); // std::future
+auto sf = std::move(f).share();
+</pre></blockquote>
+
+<p>
+<tt>share()</tt> is sufficiently explicit that the move should not be required. We should be able to write:
+</p>
+
+<blockquote><pre>
+auto sf = f.share();
+</pre></blockquote>
+
+<p>
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Alter the declaration of <tt>share()</tt> to remove the "&amp;&amp;" rvalue qualifier in 
+30.6.6 [futures.unique_future] p. 3, and 30.6.6 [futures.unique_future] p. 11:</p>
+
+<blockquote><pre>
+shared_future&lt;R&gt; share() <del>&amp;&amp;</del>;
+</pre></blockquote>
+
 
 
 

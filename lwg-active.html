@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-17 at 19:02:46 UTC</p>
+<p>Revised 2011-02-17 at 19:02:26 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,12 +156,12 @@ ownership of it.
 <ul>
 <li>D74: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>90 open issues, up by 10.</li>
+<li>91 open issues, up by 11.</li>
 <li>1460 closed issues, up by 1.</li>
-<li>1550 issues total, up by 11.</li>
+<li>1551 issues total, up by 12.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 9 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>.</li>
+<li>Added the following 10 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>.</li>
 <li>Added the following 2 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2024">2024</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
@@ -9606,6 +9606,57 @@ Finally, it is of little use anyway.
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2031"></a>2031. <tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</h3>
+<p><b>Section:</b> 30.6.6 [futures.unique_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-17</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.unique_future">issues</a> in [futures.unique_future].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+As specified, <tt>future&lt;&gt;::share()</tt> has the signature
+</p>
+
+<blockquote><pre>
+shared_future&lt;R&gt; share() &amp;&amp;;
+</pre></blockquote>
+
+<p>
+This means that it can only be applied to rvalues. One of the key benefits of <tt>share()</tt> is 
+that it can be used with the new <tt>auto</tt> facility:
+</p>
+
+<blockquote><pre>
+std::promise&lt;<em>some_long_winded_type_name</em>&gt; some_promise;
+auto f = some_promise.get_future(); // std::future
+auto sf = std::move(f).share();
+</pre></blockquote>
+
+<p>
+<tt>share()</tt> is sufficiently explicit that the move should not be required. We should be able to write:
+</p>
+
+<blockquote><pre>
+auto sf = f.share();
+</pre></blockquote>
+
+<p>
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Alter the declaration of <tt>share()</tt> to remove the "&amp;&amp;" rvalue qualifier in 
+30.6.6 [futures.unique_future] p. 3, and 30.6.6 [futures.unique_future] p. 11:</p>
+
+<blockquote><pre>
+shared_future&lt;R&gt; share() <del>&amp;&amp;</del>;
+</pre></blockquote>
+
 
 
 
