@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-17 at 19:02:26 UTC</p>
+<p>Revised 2011-02-17 at 21:02:55 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,12 +156,12 @@ ownership of it.
 <ul>
 <li>D74: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>91 open issues, up by 11.</li>
+<li>92 open issues, up by 12.</li>
 <li>1460 closed issues, up by 1.</li>
-<li>1551 issues total, up by 12.</li>
+<li>1552 issues total, up by 13.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 10 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>.</li>
+<li>Added the following 11 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>, <a href="lwg-active.html#2032">2032</a>.</li>
 <li>Added the following 2 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2024">2024</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
@@ -9656,6 +9656,148 @@ auto sf = f.share();
 <blockquote><pre>
 shared_future&lt;R&gt; share() <del>&amp;&amp;</del>;
 </pre></blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="2032"></a>2032. Incorrect synchronization clause of <tt>async</tt> function</h3>
+<p><b>Section:</b> 30.6.9 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-17</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.async">issues</a> in [futures.async].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Clause 30.6.9 [futures.async] has undergone significant rewording
+in Batavia. Due to co-presence of at least three different sources
+of modification there is a part where changes have overlapped
+(marked by an Editor's note), which should be reconciled. Moreover,
+I believe that a few non-overlapping sentences are now incorrect
+and should be fixed, so the problem cannot be handled editorially.
+(See c++std-lib-29667.)
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p> 
+Edit 30.6.4 [futures.state], paragraph 3 as follows.
+</p>
+
+<blockquote>
+<p>
+An <dfn>asynchronous return object</dfn>
+is an object that reads results from an associated asynchronous state.
+A <dfn>waiting function</dfn> of an asynchronous return object
+is one that potentially blocks
+to wait for the associated asynchronous state to be made ready.
+<ins>If a waiting function can return
+before the state is made ready because of a timeout (30.2.5),
+then it is a <dfn>timed waiting function</dfn>,
+otherwise it is a <dfn>non-timed waiting function</dfn>.</ins>
+</p>
+</blockquote>
+</li>
+
+<li>
+<p>
+Edit within 30.6.9 [futures.async] paragraph 3 bullet 2 as follows.
+</p>
+
+<blockquote>
+<p>
+<i>Effects:</i>
+[...]
+<ul><li>if <code>policy &amp; launch::deferred</code> is non-zero &mdash; [...]
+The associated asynchronous state is not made ready
+until the function has completed.
+The first call to a <ins>non-timed waiting</ins> function
+<ins>(30.6.4 [futures.state])</ins>
+<del>requiring a non-timed wait</del>
+on an asynchronous return object
+referring to <del>the</del> <ins>this</ins>
+associated asynchronous state
+<del>created by this <code>async</code> call to become ready</del>
+shall invoke the deferred function
+in the thread that called the waiting function<del>;</del><ins>.</ins>
+<del>once</del> <ins>Once</ins> evaluation of
+<code><var>INVOKE</var>(g, xyz)</code> begins,
+the function is no longer considered deferred.
+[...]
+</li></ul>
+</p>
+</blockquote>
+</li>
+
+<li>
+<p>
+Edit 30.6.9 [futures.async] paragraph 5 as follows.
+</p>
+
+<blockquote>
+<p>
+<i>Synchronization:</i>
+Regardless of the provided <code>policy</code> argument,
+</p>
+<ul>
+<li>
+the invocation of <code>async</code> synchronizes with (1.10)
+the invocation of <code>f</code>.
+[<i>Note:</i>
+this statement applies even when the corresponding future object
+is moved to another thread.
+&mdash;<i>end note</i>];
+and
+</li>
+<li>
+the completion of the function <code>f</code>
+is sequenced before (1.10) the associated asynchronous state is made ready.
+[<i>Note:</i>
+<code>f</code> might not be called at all,
+so its completion might never happen.
+&mdash;<i>end note</i>]
+</li>
+</ul>
+
+<p>
+<del>If <code>policy &amp; launch::async</code> is non-zero,</del>
+<ins>If the implementation chooses the <code>launch::async</code> policy,</ins>
+</p>
+<ul>
+<li>
+a call to a waiting function on an asynchronous return object
+that shares the associated asynchronous state
+created by this <code>async</code> call
+shall block until the associated thread has completed,
+as if joined (30.3.1.5);
+</li>
+<li>
+<del>the <code>join()</code> on the created thread object</del>
+<ins>the associated thread completion</ins>
+synchronizes with (1.10)
+the return from the first function
+that successfully detects the ready status of the associated asynchronous state
+or with the return from the last function that 
+releases the associated asynchronous state <del>returns</del>,
+whichever happens first.
+<del><b>[Editor's note:
+N3196 changes the following sentence as indicated.
+N3188 removes the sentence.
+Please pick one.]</b>
+If the invocation is deferred,
+the completion of the invocation of the deferred function
+synchronizes with the successful return
+from a call to a waiting function on the associated asynchronous state.</del>
+</li>
+</ul>
+</blockquote>
+
+</li>
+</ol>
 
 
 
