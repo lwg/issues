@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-17 at 18:02:11 UTC</p>
+<p>Revised 2011-02-17 at 18:02:06 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -161,8 +161,8 @@ ownership of it.
 <li>1549 issues total, up by 10.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 9 New issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>.</li>
-<li>Added the following Tentatively Ready issue: <a href="lwg-active.html#2024">2024</a>.</li>
+<li>Added the following 8 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>.</li>
+<li>Added the following 2 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2024">2024</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
 <li>Changed the following issue from Ready to Open: <a href="lwg-active.html#1318">1318</a>.</li>
@@ -8769,11 +8769,11 @@ static const mask graph = alnum | punct;
 
 <hr>
 <h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
-<p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2010-12-06</p>
+<p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-02-17</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 As of issue <a href="lwg-defects.html#1171">1171</a> several time-utility functions have been marked <tt>constexpr</tt>.
 Alas this was done without adapting the corresponding return elements, which has the effect that 
@@ -8792,6 +8792,13 @@ specifies an indirect calling contract of a potentially user-defined function. T
 the <tt>+=</tt> assignment operator of such a user-defined type, but must be the corresponding
 immutable binary <tt>operator+</tt> (unless we require that <tt>+=</tt> shall be an immutable function
 which does not really makes sense).
+
+<p><i>[2011-02-17 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
