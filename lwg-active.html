@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-17 at 05:02:27 UTC</p>
+<p>Revised 2011-02-17 at 18:02:11 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6169,7 +6169,7 @@ atomic_flag guard = <ins>STD_</ins>ATOMIC_FLAG_INIT;
 <hr>
 <h3><a name="1474"></a>1474. [FCD] weak compare-and-exchange confusion</h3>
 <p><b>Section:</b> 29.6.5 [atomics.types.operations.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-15</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-17</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></p>
 <p><b>Discussion:</b></p>
@@ -6201,7 +6201,8 @@ below proposed resolution.
 <p>Change 29.6.5 [atomics.types.operations.req] p. 23 as indicated:</p>
 
 <blockquote>
-[ <em>Note</em>: The effect of <del>the compare-and-exchange operations</del><ins><tt>atomic_compare_exchange_strong</tt></ins> is
+[ <em>Note</em>: <ins>For example, t</ins><del>T</del>he effect of 
+<del>the compare-and-exchange operations</del><ins><tt>atomic_compare_exchange_strong</tt></ins> is
 <blockquote><pre>
 if (memcmp(object, expected, sizeof(*object)) == 0)
   memcpy(object, &amp;desired, sizeof(*object));
