@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-17 at 18:02:37 UTC</p>
+<p>Revised 2011-02-17 at 19:02:28 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3404,7 +3404,7 @@ after 30.6.5/28 and 30.6.5/31.
 <h3><a name="1515"></a>1515. [FCD] <tt>packaged_task::make_ready_at_thread_exit</tt> has no
 synchronization requirements</h3>
 <p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-17</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3425,9 +3425,32 @@ Figure out what the synchronization requirements
 should be and write them.
 </p>
 
+<p><i>[2011-02-09 Anthony provides a proposed resolution]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p>
+<p>Add a new paragraph following 30.6.10.1 [futures.task.members] p. 19:</p>
+
+<blockquote><pre>
+void make_ready_at_thread_exit(ArgTypes... args);
+</pre></blockquote>
+<blockquote>
+<p>
+19 - ...
+</p>
+<p>
+<ins>?? - <i>Synchronization</i>: The invocation of the stored task happens before
+(1.10 [intro.multithread]) the successful completion of a call to <tt>make_ready_at_thread_exit</tt>.
+Following a successful call to <tt>make_ready_at_thread_exit</tt>, the
+destruction of all objects with thread storage duration associated with
+the current thread happens before the associated asynchronous state is
+made ready. The marking of the associated asynchronous state as ready
+synchronizes with (1.10 [intro.multithread]) the successful return from any function that
+detects that the state is set to ready.</ins>
+</p>
+</blockquote>
 
 
 
