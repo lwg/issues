@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-02-17</td>
+  <td align="left">2011-02-18</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-17 at 22:02:26 UTC</p>
+<p>Revised 2011-02-18 at 05:02:50 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6624,7 +6624,7 @@ representing the current point in time.<br/>
 <hr>
 <h3><a name="1494"></a>1494. [FCD] Term "are serialized" not defined</h3>
 <p><b>Section:</b> 30.4.4.2 [thread.once.callonce] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-17</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-18</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-190</b></p>
@@ -6698,7 +6698,9 @@ is executed</del><ins>Effective calls to <tt>call_once</tt> execute
 <tt>INVOKE(decay_copy( std::forward&lt;Callable&gt;(func)), decay_copy(std::forward&lt;Args&gt;(args))...)</tt></ins>. <del>The call 
 to <tt>call_once</tt> is effective if and only if 
 <tt>INVOKE(decay_copy( std::forward&lt;Callable&gt;(func)), decay_copy(std::forward&lt;Args&gt;(args))...)</tt> 
-returns without throwing an exception</del>. If an exception is thrown it is propagated to the caller.
+returns without throwing an exception</del>. If an exception is thrown it is propagated to the caller. <ins>The function <code>call_once</code> 
+may  block while an effective execution on the same <code>once_flag</code> is in progress.  [<i>Note</i>: A recursive invocation of 
+<code>call_once</code> on the same <code>once_flag</code> will deadlock. &mdash; <i>end note</i>]</ins>
 <p/>
 3 <em>Synchronization</em>: <ins>All effective calls on the same <tt>once_flag</tt> object occur in a total order consistent with the
 happens before order, and such that the normally returning call occurs last. Each completion of an effective call 
