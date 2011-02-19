@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-18 at 23:02:13 UTC</p>
+<p>Revised 2011-02-19 at 01:02:39 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3079,7 +3079,7 @@ thread and a signal handler executed in the same thread.
 <hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-15</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-19</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3103,9 +3103,7 @@ or negative <tt>rel_time</tt> is allowed.
 <p><i>[2011-02-10: Howard Hinnant provides a resolution proposal]</i></p>
 
 
-
-
-<p><b>Proposed resolution:</b></p>
+<p><i>[Previous proposed resolution:]</i></p>
 
 <ol>
 <li>
@@ -3148,6 +3146,140 @@ representing the current point in time.<br/>
 </li>
 </ol>
 
+<p><i>[2011-02-19: Daniel comments and suggests an alternative wording]</i></p>
+
+
+<p>Imposing the no-throw requirement on <tt>C1::now()</tt> of any clock time
+is an overly radical step: It has the indirect consequences that representation
+types for <tt>C1::rep</tt> can never by types with dynamic memory managment,
+e.g. my <tt>big_int</tt>, which are currently fully supported by the time
+utilities. Further-on this strong constraint does not even solve the problem
+described in the issue, because we are still left with the fact that any
+of the arithmetic operations of <tt>C1::rep</tt>, <tt>C1::duration</tt>,
+and <tt>C1::time_point</tt> may throw exceptions.
+</p>
+<p>The alternative proposal uses the following strategy: The general <tt>Clock</tt>
+requirements remain untouched, but we require that any functions of the library-provided
+clocks from sub-clause 20.11.5 [time.clock] and their associated types shall not
+throw exceptions. Second, we impose stronger requirements on clocks, durations, and
+their representation types for all functions in Clause 30. As a whole this is also
+a drastical step, but less invasive than the original suggestion.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+<ol>
+<li>
+<p>Modify 20.11.5 [time.clock] p. 1 as follows:</p>
+
+<blockquote>
+1 - The types defined in this subclause shall satisfy the <tt>Clock</tt> requirements 
+(20.11.1). <ins>For every clock type <tt>C</tt> specified in this sub-clause 
+20.11.5 [time.clock] the following requirements shall be satisfied:</ins>
+<blockquote>
+<ul>
+<li><ins>the types <tt>C::rep</tt>, <tt>C::duration</tt>, <tt>C::time_point</tt> shall meet 
+the requirements of numeric types ([numeric.requirements]) [<i>Note</i>: This means in 
+particular, that operations of these types will not throw exceptions &mdash; <i>end note</i> ], and</ins></li>
+<li><ins>the function <tt>C::now()</tt> shall not throw exceptions, and</ins></li>
+<li><ins>the type <tt>C::time_point::clock</tt> shall meet the additional clock 
+requirements described in this sub-clause 20.11.5 [time.clock], recursively.</ins></li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>Modify 20.11.5.1 [time.clock.system] p. 1, class <tt>system_clock</tt> synopsis, as follows:</p>
+
+<blockquote><pre>
+class system_clock {
+public:
+  typedef <i>see below</i> rep;
+  typedef ratio&lt;<i>unspecified</i> , <i>unspecified</i> &gt; period;
+  typedef chrono::duration&lt;rep, period&gt; duration;
+  typedef chrono::time_point&lt;system_clock&gt; time_point;
+  static const bool is_monotonic is_steady = <i>unspecified</i>;
+  static time_point now() <ins>noexcept</ins>;
+  // Map to C API
+  static time_t to_time_t (const time_point&amp; t) <ins>noexcept</ins>;
+  static time_point from_time_t(time_t t) <ins>noexcept</ins>;
+};
+</pre></blockquote>
+
+</li>
+
+<li>
+<p>Modify the prototype declarations in 20.11.5.1 [time.clock.system] p. 3 + p. 4 as indicated (This 
+edit also fixes the miss of the <tt>static</tt> specifier in these prototype declarations):</p>
+
+<blockquote><pre>
+<ins>static</ins> time_t to_time_t(const time_point&amp; t) <ins>noexcept</ins>;
+</pre><blockquote>
+3 - [...]
+</blockquote>
+
+<pre>
+<ins>static</ins> time_point from_time_t(time_t t) <ins>noexcept</ins>;
+</pre><blockquote>
+4 - [...]
+</blockquote>
+</blockquote>
+
+</li>
+
+<li>
+<p>Modify 20.11.5.2 [time.clock.steady] p. 1, class <tt>steady_clock</tt> synopsis, as follows:</p>
+
+<blockquote><pre>
+class steady_clock {
+public:
+  typedef <i>unspecified</i> rep;
+  typedef ratio&lt;<i>unspecified</i> , <i>unspecified</i> &gt; period;
+  typedef chrono::duration&lt;rep, period&gt; duration;
+  typedef chrono::time_point&lt;<i>unspecified</i>, duration&gt; time_point;
+  static const bool is_monotonic is_steady = true;
+
+  static time_point now() <ins>noexcept</ins>;
+};
+</pre></blockquote>
+
+</li>
+
+<li>
+<p> Modify 20.11.5.3 [time.clock.hires] p. 1, class <tt>high_resolution_clock</tt> synopsis, as follows:</p>
+
+<blockquote><pre>
+class high_resolution_clock {
+public:
+  typedef <i>unspecified</i> rep;
+  typedef ratio&lt;<i>unspecified</i> , <i>unspecified</i> &gt; period;
+  typedef chrono::duration&lt;rep, period&gt; duration;
+  typedef chrono::time_point&lt;<i>unspecified</i>, duration&gt; time_point;
+  static const bool is_monotonic is_steady = <i>unspecified</i>;
+
+  static time_point now() <ins>noexcept</ins>;
+};
+</pre></blockquote>
+
+</li>
+
+<li>
+<p>Add the following new paragraphs at the end of sub-clause 30.2.1 [thread.req.paramname]:</p>
+
+<blockquote>
+<ins>?? - If a parameter is <tt>Clock</tt>, calling <tt>Clock::now()</tt> or calling operations of the types <tt>Clock::rep</tt>, 
+<tt>Clock::duration</tt>, and <tt>Clock::time_point</tt> shall not throw exceptions. For the type <tt>Clock::time_point::clock</tt>
+the same requirements are imposed as for type <tt>Clock</tt>.</ins>
+</blockquote>
+<blockquote>
+<ins>?? - If a parameter is <tt>Duration</tt> or <tt>Re</tt>, calling operations of these types shall not throw exceptions.</ins>
+</blockquote>
+</li>
+
+</ol>
+
 
 
 
@@ -3156,7 +3288,7 @@ representing the current point in time.<br/>
 <hr>
 <h3><a name="1494"></a>1494. [FCD] Term "are serialized" not defined</h3>
 <p><b>Section:</b> 30.4.4.2 [thread.once.callonce] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-18</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-19</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-190</b></p>
@@ -3220,10 +3352,9 @@ void call_once(once_flag&amp; flag, Callable&amp;&amp; func, Args&amp;&amp;... a
 2 <em>Effects</em>: <del>Calls to <tt>call_once</tt> on the same <tt>once_flag</tt> object are serialized.</del><ins>If there are 
 one or more calls to <tt>call_once</tt> on the same <tt>once_flag</tt>, some number of these are effective, and the
 rest are ineffective.
-At most one of the effective calls returns normally. None of the ineffective calls may happen before (1.10 [intro.multithread]) 
-an effective one. Ineffective calls may occur only if an effective call returns normally.  A normally returning effective call 
-may not happen before those that throw an exception.</ins><del>If there has been a prior effective call to <tt>call_once</tt> on 
-the same <tt>once_flag object</tt>, the call to <tt>call_once</tt> 
+Exactly one of the effective calls returns normally. None of the ineffective calls may happen before (1.10 [intro.multithread]) 
+the effective one.  The normally returning effective call may not happen before those that throw an exception.</ins>
+<del>If there has been a prior effective call to <tt>call_once</tt> on the same <tt>once_flag object</tt>, the call to <tt>call_once</tt> 
 returns</del><ins>Ineffective calls to <tt>call_once</tt> return</ins> without invoking <tt>func</tt>.<del> If there 
 has been no prior effective call to <tt>call_once</tt> on the same <tt>once_flag</tt> object,
 <tt>INVOKE(decay_copy( std::forward&lt;Callable&gt;(func)), decay_copy(std::forward&lt;Args&gt;(args))...)</tt>
@@ -3236,12 +3367,12 @@ may  block while an effective execution on the same <code>once_flag</code> is in
 <code>call_once</code> on the same <code>once_flag</code> will deadlock. &mdash; <i>end note</i>]</ins>
 <p/>
 3 <em>Synchronization</em>: <ins>All effective calls on the same <tt>once_flag</tt> object occur in a total order consistent with the
-happens before order, and such that any normally returning call occurs last. Each completion of an effective call 
+happens before order, and such that the normally returning call occurs last. Each completion of an effective call 
 <em>synchronizes with</em> the start of the next one in this total order.</ins> The completion of <del>an</del><ins>the last</ins> 
 effective call <del>to <tt>call_once</tt> on a <tt>once_flag</tt> object</del> <em>synchronizes with</em> 
 (1.10 [intro.multithread]) all <del>subsequent</del><ins>ineffective</ins> calls 
-to <tt>call_once</tt> on the same <tt>once_flag</tt> object.<ins> All operations on the <code>once_flag</code> object are 
-synchronization operations (1.10).</ins>
+to <tt>call_once</tt> on the same <tt>once_flag</tt> object.<ins> Calls to <tt>call_once</tt> on the same <tt>once_flag</tt> 
+object shall not introduce data races ([res.on.data.races]).</ins>
 </blockquote></blockquote>
 
 
