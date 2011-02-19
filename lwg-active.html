@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-19 at 01:02:39 UTC</p>
+<p>Revised 2011-02-19 at 11:02:16 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6647,8 +6647,11 @@ a drastical step, but less invasive than the original suggestion.
 20.11.5 [time.clock] the following requirements shall be satisfied:</ins>
 <blockquote>
 <ul>
-<li><ins>the types <tt>C::rep</tt>, <tt>C::duration</tt>, <tt>C::time_point</tt> shall meet 
-the requirements of numeric types ([numeric.requirements]) [<i>Note</i>: This means in 
+<li><ins>the types <tt>C::rep</tt>, <tt>C::duration</tt>, and <tt>C::time_point</tt> shall meet 
+the requirements of <tt>EqualityComparable</tt> ( [equalitycomparable]), 
+<tt>LessThanComparable</tt> ( [lessthancomparable]), <tt>DefaultConstructible</tt> ( [defaultconstructible]), 
+<tt>CopyConstructible</tt> ( [copyconstructible]), <tt>CopyAssignable</tt> ( [copyassignable]), 
+<tt>Destructible</tt> ( [destructible]), and of numeric types ([numeric.requirements]) [<i>Note</i>: This means in 
 particular, that operations of these types will not throw exceptions &mdash; <i>end note</i> ], and</ins></li>
 <li><ins>the function <tt>C::now()</tt> shall not throw exceptions, and</ins></li>
 <li><ins>the type <tt>C::time_point::clock</tt> shall meet the additional clock 
@@ -7384,10 +7387,34 @@ Figure out what the synchronization requirements
 should be and write them.
 </p>
 
-<p><i>[2011-02-09 Anthony provides a proposed resolution]</i></p>
+<p><i>[2011-02-09 Anthony provides a proposed resolution:]</i></p>
 
 
-<p><i>[2011-02-19 Additional edits by Hans]</i></p>
+<blockquote>
+<p>Add a new paragraph following 30.6.10.1 [futures.task.members] p. 19:</p>
+
+<blockquote><pre>
+void make_ready_at_thread_exit(ArgTypes... args);
+</pre></blockquote>
+<blockquote>
+<p>
+19 - ...
+</p>
+<p>
+<ins>?? - <i>Synchronization</i>: The invocation of the stored task happens before
+(1.10 [intro.multithread]) the successful completion of a call to <tt>make_ready_at_thread_exit</tt>.
+Following a successful call to <tt>make_ready_at_thread_exit</tt>, the
+destruction of all objects with thread storage duration associated with
+the current thread happens before the associated asynchronous state is
+made ready. The marking of the associated asynchronous state as ready
+synchronizes with (1.10 [intro.multithread]) the successful return from any function that
+detects that the state is set to ready.</ins>
+</p>
+</blockquote>
+
+</blockquote>
+
+<p><i>[2011-02-19 Additional edits by Hans, shown in the proposed resolution section]</i></p>
 
 
 
