@@ -25,7 +25,7 @@
 <p>This document is the Index by Section for the <a href="lwg-active.html">Library Active Issues List</a>, <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.</p>
 <h2>Index by Section</h2>
 <p><a href="lwg-index-open.html">(view only non-Ready open issues)</a></p>
-<p>Revised 2011-02-19 at 11:02:16 UTC</p>
+<p>Revised 2011-02-21 at 17:02:34 UTC</p>
 <h2><a name="Section 1"></a>Section 1 (2 issues)</h2>
 <p><a href="lwg-index-open.html#Section 1">(view only non-Ready open issues)</a></p>
 <table border="1" cellpadding="4">
@@ -101,22 +101,22 @@
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1345">1345</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1345"></a></td>
+<td align="left">17 [library]<a name="library"</a></td>
+<td align="left">[FCD] Library classes should have <tt>noexcept</tt> move operations</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#1353">1353</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1353"></a></td>
-<td align="left">17 [library]<a name="library"</a></td>
+<td align="left">17 [library]</td>
 <td align="left">[FCD] Clarify the state of a <i>moved-from</i> object</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-16</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1345">1345</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1345"></a></td>
-<td align="left">17 [library]</td>
-<td align="left">[FCD] Library classes should have <tt>noexcept</tt> move operations</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-31</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1348">1348</a></td>
@@ -730,7 +730,7 @@ freestanding implementations</td>
 <td align="left">More restrictions on macro names</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-10</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#294">294</a></td>
@@ -856,7 +856,7 @@ freestanding implementations</td>
 <td align="left">Do library implementers have the freedom to add <tt>constexpr</tt>?</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#119">119</a></td>
@@ -1286,20 +1286,20 @@ freestanding implementations</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1364">1364</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1364"></a></td>
-<td align="left">18.8.5 [propagation]<a name="propagation"</a></td>
-<td align="left">[FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</td>
-<td align="center"><font color="red">No</font></td>
-<td align="left"></td>
-<td align="center">2010-10-25</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#1369">1369</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="1369"></a></td>
-<td align="left">18.8.5 [propagation]</td>
+<td align="left">18.8.5 [propagation]<a name="propagation"</a></td>
 <td align="left">[FCD] <tt>rethrow_exception</tt> may introduce data races</td>
 <td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1364">1364</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="1364"></a></td>
+<td align="left">18.8.5 [propagation]</td>
+<td align="left">[FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</td>
+<td align="center"><font color="red">No</font></td>
 <td align="left"></td>
 <td align="center">2010-10-25</td>
 </tr>
@@ -1503,7 +1503,7 @@ freestanding implementations</td>
 <td align="left">[FCD] standard exceptions require stronger no-throw guarantees</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#254">254</a></td>
@@ -1778,7 +1778,7 @@ of moved-from state</td>
 <td align="left">Let Hash objects throw!</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2016">2016</a></td>
@@ -1787,7 +1787,7 @@ of moved-from state</td>
 <td align="left"><tt>Allocators</tt> must be no-throw <i>swappable</i></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#752">752</a></td>
@@ -2275,7 +2275,7 @@ allocator requirements</td>
 <td align="left">[FCD] <tt>tuple_cat</tt> should be a single variadic signature</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1201">1201</a></td>
@@ -2689,7 +2689,7 @@ allocator requirements</td>
 <td align="left">Incorrect pre-conditions for some type traits</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-18</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1392">1392</a></td>
@@ -2981,22 +2981,22 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="center">2010-11-23</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#2022">2022</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="2022"></a></td>
-<td align="left">20.8.4 [refwrap]<a name="refwrap"</a></td>
-<td align="left"><tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-08</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#2017">2017</a></td>
 <td align="left"><a href="lwg-active.html#New">New</a><a name="2017"></a></td>
-<td align="left">20.8.4 [refwrap]</td>
+<td align="left">20.8.4 [refwrap]<a name="refwrap"</a></td>
 <td align="left"><tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-12-07</td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2022">2022</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2022"></a></td>
+<td align="left">20.8.4 [refwrap]</td>
+<td align="left"><tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#987">987</a></td>
@@ -3077,7 +3077,7 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="left"><tt>is_* traits</tt> for binding operations can't be meaningfully specialized</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1071">1071</a></td>
@@ -3095,7 +3095,7 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="left">Further incorrect usages of <tt>result_of</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-12-08</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#817">817</a></td>
@@ -3374,7 +3374,7 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="left">[FCD] <tt>unique_ptr&lt;T&gt; == nullptr</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1402">1402</a></td>
@@ -3437,7 +3437,7 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="left">N2982 removes previous allocator capabilities</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1375">1375</a></td>
-<td align="center">2010-12-06</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1285">1285</a></td>
@@ -3770,7 +3770,7 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="left"><tt>unique_ptr</tt>'s relational operator functions should induce a total order</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1406">1406</a></td>
@@ -4031,7 +4031,7 @@ implicitly convertible, so explicit constructors are ignored.</td>
 <td align="left">[FCD] Allow recycling of pointers after <tt>undeclare_no_pointers</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1098">1098</a></td>
@@ -4194,7 +4194,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2004">2004</a></td>
@@ -4540,7 +4540,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">String exception inconsistency in erase.</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#847">847</a></td>
@@ -4738,7 +4738,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">unexpected output required of strings</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#91">91</a></td>
@@ -5165,7 +5165,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>wbuffer_convert::state_type</tt> inconsistency</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#228">228</a></td>
@@ -5552,7 +5552,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>num_get</tt> not fully compatible with <tt>strto*</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-24</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#427">427</a></td>
@@ -5861,7 +5861,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>messages_base::catalog</tt> overspecified</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-14</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#40">40</a></td>
@@ -6144,7 +6144,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Requirements on internal pointer representations in containers</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-03</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#985">985</a></td>
@@ -6153,7 +6153,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Allowing throwing move</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-29</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1319">1319</a></td>
@@ -6351,7 +6351,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1214">1214</a></td>
@@ -6360,7 +6360,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Insufficient/inconsistent key immutability requirements for  associative containers</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1041">1041</a></td>
@@ -6540,7 +6540,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>emplace</tt> broken for associative containers</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1175">1175</a></td>
@@ -6549,7 +6549,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>unordered</tt> complexity</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-10-24</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1188">1188</a></td>
@@ -6766,7 +6766,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">[FCD] Effects of <tt>resize(size())</tt> on a <tt>deque</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#850">850</a></td>
@@ -6928,7 +6928,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">[FCD] Effects of <tt>resize(size())</tt> on a <tt>list</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#132">132</a></td>
@@ -7225,7 +7225,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">[FCD] Accidental move-only library types due to new core language rules</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1350">1350</a></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1198">1198</a></td>
@@ -7297,7 +7297,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Associative maps should insert <tt>pair</tt>, not <tt>tuple</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-07</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#839">839</a></td>
@@ -7360,7 +7360,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Incorrect specification of return value for <tt>map&lt;&gt;::at()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#334">334</a></td>
@@ -7387,7 +7387,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1424">1424</a></td>
@@ -7450,7 +7450,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left"><tt>hash</tt> should be <tt>std</tt> qualified for unordered container</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2011-02-10</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#676">676</a></td>
@@ -7571,7 +7571,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">Meaning of valid and singular iterator underspecified</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1185">1185</a></td>
@@ -9338,7 +9338,7 @@ use <tt>allocator_traits</tt></td>
 <td align="left">[FCD] No definition for <tt>base()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-12-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#738">738</a></td>
@@ -11289,7 +11289,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Concerns about <tt>basic_stringbuf::str(basic_string)</tt> postconditions</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#564">564</a></td>
@@ -11626,7 +11626,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Contradiction in regex_constants</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2018">2018</a></td>
@@ -11635,7 +11635,7 @@ and <tt>setw()</tt></td>
 <td align="left"><tt>regex_traits::isctype</tt> Returns clause is wrong</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-12-08</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1337">1337</a></td>
@@ -11653,7 +11653,7 @@ and <tt>setw()</tt></td>
 <td align="left">Missing '<tt>noexcept</tt>' on <tt>basic_regex</tt> move-assignment operator</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1396">1396</a></td>
@@ -11662,7 +11662,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] <tt>regex</tt> should support allocators</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1451">1451</a></td>
-<td align="center">2010-11-07</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#723">723</a></td>
@@ -11716,7 +11716,7 @@ and <tt>setw()</tt></td>
 <td align="left">Class template <tt>basic_regex</tt> uses non existent <tt>string_type</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1180">1180</a></td>
@@ -11779,7 +11779,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] "target sequence" is not defined</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-01</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1453">1453</a></td>
@@ -11806,7 +11806,7 @@ and <tt>setw()</tt></td>
 <td align="left">Class template <tt>match_results</tt> does not specify the semantics of <tt>operator==</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-24</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#647">647</a></td>
@@ -11927,7 +11927,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Missing fixed-size atomic_ typedefs</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1523">1523</a></td>
@@ -11945,7 +11945,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Rename all <tt>ATOMIC_*</tt> macros as <tt>STD_ATOMIC_*</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-27</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#880">880</a></td>
@@ -12044,7 +12044,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Splitting lock-free properties</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-26</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1459">1459</a></td>
@@ -12053,7 +12053,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Overlapping evaluations are allowed</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"><a href="lwg-closed.html#1458">1458</a></td>
-<td align="center">2010-10-29</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#818">818</a></td>
@@ -12089,7 +12089,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Missing lock-free property for type <tt>bool</tt> should be added</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1146">1146</a></td>
@@ -12107,7 +12107,7 @@ and <tt>setw()</tt></td>
 <td align="left">Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-10</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#768">768</a></td>
@@ -12215,7 +12215,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Clarify race conditions in atomics initialization</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-10-30</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#777">777</a></td>
@@ -12323,7 +12323,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] weak compare-and-exchange confusion</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1479">1479</a></td>
@@ -12332,7 +12332,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Fence functions should be <tt>extern "C"</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1480">1480</a></td>
@@ -12341,7 +12341,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Atomic fences don't have <em>synchronizes with</em> relation</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-16</td>
+<td align="center">2011-02-20</td>
 </tr>
 </table>
 <h2><a name="Section 30"></a>Section 30 (119 issues)</h2>
@@ -12453,7 +12453,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Unclear <tt>thread::id</tt> specification</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2011-02-11</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1277">1277</a></td>
@@ -12543,7 +12543,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2011-02-11</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1487">1487</a></td>
@@ -12552,7 +12552,7 @@ and <tt>setw()</tt></td>
 <td align="left">[FCD] Clock related operations exception specifications conflict</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-19</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#888">888</a></td>
@@ -12725,7 +12725,7 @@ mutex requirements are inconsistent</td>
 <td align="left">Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-12-08</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1045">1045</a></td>
@@ -12788,7 +12788,7 @@ mutex requirements are inconsistent</td>
 <td align="left">[FCD] Term "are serialized" not defined</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-19</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1497">1497</a></td>
@@ -12797,7 +12797,7 @@ mutex requirements are inconsistent</td>
 <td align="left">[FCD] <tt>lock()</tt> postcondition can not be generally achieved</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-08</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1499">1499</a></td>
@@ -12860,7 +12860,7 @@ mutex requirements are inconsistent</td>
 <td align="left">Various threading bugs #16</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-10-29</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#857">857</a></td>
@@ -12932,7 +12932,7 @@ mutex requirements are inconsistent</td>
 <td align="left">Various threading bugs #14</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-10-29</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1267">1267</a></td>
@@ -12980,6 +12980,15 @@ mutex requirements are inconsistent</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-defects.html#1513">1513</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1513"></a></td>
+<td align="left">30.6 [futures]</td>
+<td align="left">[FCD] 'launch' enum too restrictive</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1046">1046</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1046"></a></td>
 <td align="left">30.6 [futures]</td>
@@ -13017,15 +13026,6 @@ state has problems</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1513">1513</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1513"></a></td>
-<td align="left">30.6 [futures]</td>
-<td align="left">[FCD] 'launch' enum too restrictive</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1226">1226</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1226"></a></td>
 <td align="left">30.6.2 [futures.errors]<a name="futures.errors"</a></td>
@@ -13050,7 +13050,7 @@ state has problems</td>
 <td align="left">[FCD] Specification of [futures.state]</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1269">1269</a></td>
@@ -13068,7 +13068,7 @@ state has problems</td>
 <td align="left">[FCD] "associated asynchronous state" must go</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-10</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1504">1504</a></td>
@@ -13077,7 +13077,7 @@ state has problems</td>
 <td align="left">[FCD] Term "are serialized" is not defined</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1505">1505</a></td>
@@ -13087,7 +13087,7 @@ state has problems</td>
 <tt>promise::set_value</tt> and <tt>future::get</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1507">1507</a></td>
@@ -13097,7 +13097,7 @@ state has problems</td>
 synchronization requirements</td>
 <td align="center"><font color="red">No</font></td>
 <td align="left"></td>
-<td align="center">2010-11-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1049">1049</a></td>
@@ -13169,7 +13169,7 @@ synchronization requirements</td>
 <td align="left">[FCD] set_exception with a null pointer</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-04</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1164">1164</a></td>
@@ -13187,7 +13187,7 @@ synchronization requirements</td>
 <td align="left"><tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1047">1047</a></td>
@@ -13298,19 +13298,19 @@ synchronization requirements</td>
 <td align="center">2010-12-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-closed.html#1509">1509</a></td>
-<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1509"></a></td>
-<td align="left">30.6.8 [futures.atomic_future]</td>
-<td align="left">[FCD] No restriction on calling <tt>future::get</tt> more than once</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-12</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-closed.html#1510">1510</a></td>
 <td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1510"></a></td>
 <td align="left">30.6.8 [futures.atomic_future]</td>
 <td align="left">[FCD] Should be undefined behaviour to call <tt>atomic_future</tt> operations unless <tt>valid()</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-closed.html#1509">1509</a></td>
+<td align="left"><a href="lwg-active.html#NAD Editorial">NAD Editorial</a><a name="1509"></a></td>
+<td align="left">30.6.8 [futures.atomic_future]</td>
+<td align="left">[FCD] No restriction on calling <tt>future::get</tt> more than once</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-12</td>
@@ -13331,7 +13331,7 @@ synchronization requirements</td>
 <td align="left">Incorrect synchronization clause of <tt>async</tt> function</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1512">1512</a></td>
@@ -13356,9 +13356,18 @@ synchronization requirements</td>
 <td align="left"><a href="lwg-active.html#New">New</a><a name="2030"></a></td>
 <td align="left">30.6.10 [futures.task]<a name="futures.task"</a></td>
 <td align="left"><tt>packaged_task::result_type</tt> should be removed</td>
-<td align="center"><font color="red">No</font></td>
+<td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-17</td>
+<td align="center">2011-02-21</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1508">1508</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1508"></a></td>
+<td align="left">30.6.10 [futures.task]</td>
+<td align="left">[FCD] Rename <tt>packaged_task::operator bool()</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1090">1090</a></td>
@@ -13370,22 +13379,31 @@ synchronization requirements</td>
 <td align="center">2010-12-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1508">1508</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1508"></a></td>
-<td align="left">30.6.10 [futures.task]</td>
-<td align="left">[FCD] Rename <tt>packaged_task::operator bool()</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#1514">1514</a></td>
 <td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1514"></a></td>
 <td align="left">30.6.10.1 [futures.task.members]<a name="futures.task.members"</a></td>
 <td align="left">[FCD] <tt>packaged_task</tt> constructors need review</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-10</td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2025">2025</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2025"></a></td>
+<td align="left">30.6.10.1 [futures.task.members]</td>
+<td align="left">Incorrect semantics of move assignment operator of <tt>packaged_task</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2027">2027</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2027"></a></td>
+<td align="left">30.6.10.1 [futures.task.members]</td>
+<td align="left">Initialization of the stored task of a <tt>packaged_task</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2008">2008</a></td>
@@ -13395,24 +13413,6 @@ synchronization requirements</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-02-17</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#2027">2027</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="2027"></a></td>
-<td align="left">30.6.10.1 [futures.task.members]</td>
-<td align="left">Initialization of the stored task of a <tt>packaged_task</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-02-11</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#2025">2025</a></td>
-<td align="left"><a href="lwg-active.html#New">New</a><a name="2025"></a></td>
-<td align="left">30.6.10.1 [futures.task.members]</td>
-<td align="left">Incorrect semantics of move assignment operator of <tt>packaged_task</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-08</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1515">1515</a></td>
@@ -13431,7 +13431,7 @@ synchronization requirements</td>
 <td align="left">Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 </table>
 <h2><a name="Section B"></a>Section B (1 issues)</h2>
@@ -13726,7 +13726,7 @@ synchronization requirements</td>
 <td align="left">forbid <tt>[u|bi]nary_function</tt> specialization</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-02-20</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-closed.html#1235">1235</a></td>

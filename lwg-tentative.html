@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-19 at 11:02:16 UTC</p>
+<p>Revised 2011-02-21 at 17:02:34 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -89,7 +89,7 @@ exception is thrown other than by a comparison there are no effects.
 <hr>
 <h3><a name="1253"></a>1253. invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2010-11-13</p>
+ <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -114,12 +114,12 @@ that modify it).
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 This suggested wording covers both the issue discussed, and a number of other
 identical issues (namely insert being discussed without emplace). I'm happy to
 go back and split and introduce a new issue if appropriate, but I think the
 changes are fairly mechanical and obvious.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-01-23 Daniel Kr&uuml;gler and J. Daniel Garc&iacute;a updated wording to
@@ -153,14 +153,14 @@ function has no effects.
 Modify 23.2.4 [associative.reqmts], p4:
 </p>
 
-<blockquote>
+<blockquote><p>
 4 An associative container supports <i>unique keys</i> if it may contain at most
 one element for each key. Otherwise, it supports <i>equivalent keys</i>. The
 <tt>set</tt> and <tt>map</tt> classes support unique keys; the <tt>multiset</tt>
 and <tt>multimap</tt> classes support equivalent keys. For <tt>multiset</tt> and
 <tt>multimap</tt>, <tt>insert</tt><ins>, <tt>emplace</tt>,</ins> and
 <tt>erase</tt> preserve the relative ordering of equivalent elements.
-</blockquote>
+</p></blockquote>
 
 <p>
 Modify Table 96 &mdash; Associative container requirements in 23.2.4 [associative.reqmts]:
@@ -172,12 +172,12 @@ Modify Table 96 &mdash; Associative container requirements in 23.2.4 [associativ
 <tr>
 <th>Expression</th>
 <th>Return type</th>
-<th>Assertion/note<br/>pre-/post-condition</th>
+<th>Assertion&#47;note<br />pre-&#47;post-condition</th>
 <th>Complexity</th>
 </tr>
 
 <tr>
-<td colspan="4"><center>...</center></td>
+<td colspan="4" style="text-align:center;">...</td>
 </tr>
 
 <tr>
@@ -205,7 +205,7 @@ right <del>after</del> <ins>before</ins> <tt>p</tt></td>
 </tr>
 
 <tr>
-<td colspan="4"><center>...</center></td>
+<td colspan="4" style="text-align:center;">...</td>
 </tr>
 
 </table>
@@ -215,23 +215,23 @@ right <del>after</del> <ins>before</ins> <tt>p</tt></td>
 Modify 23.2.4 [associative.reqmts], p8:
 </p>
 
-<blockquote>
+<blockquote><p>
 8 The <tt>insert</tt> <ins>and <tt>emplace</tt></ins> members shall not affect
 the validity of iterators and references to the container, and the
 <tt>erase</tt> members shall invalidate only iterators and references to the
 erased elements.
-</blockquote>
+</p></blockquote>
 
 <p>
 Modify 23.2.4.1 [associative.reqmts.except], p2:
 </p>
 
-<blockquote>
+<blockquote><p>
 2 For associative containers, if an exception is thrown by any operation from
 within an <tt>insert()</tt> <ins> or <tt>emplace()</tt></ins> function inserting
 a single element, the <del><tt>insert()</tt> function</del> <ins>insertion</ins>
 has no effect.
-</blockquote>
+</p></blockquote>
 
 <p>
 Modify 23.2.5 [unord.req], p6, p12 and p13:
@@ -269,13 +269,13 @@ the number of elements inserted, <tt>B</tt> is the container's bucket count, and
 Modify 23.2.5.1 [unord.req.except], p2:
 </p>
 
-<blockquote>
+<blockquote><p>
 2 For unordered associative containers, if an exception is thrown by any
 operation other than the container's hash function from within an
 <tt>insert()</tt> <ins>or <tt>emplace()</tt></ins> function inserting a single
 element, the <del><tt>insert()</tt></del> <ins>insertion</ins>
 <del>function</del> has no effect.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -479,7 +479,7 @@ template&lt;class ForwardIterator1, class ForwardIterator2&gt;
 <hr>
 <h3><a name="1371"></a>1371. [FCD] standard exceptions require stronger no-throw guarantees</h3>
 <p><b>Section:</b> 19 [diagnostics] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-16</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-75</b></p>
@@ -516,11 +516,11 @@ specification on those operations.
 <p>
 This is addressed by the current words in 18.8.1 [exception], p2
 </p>
-<blockquote>
+<blockquote><p>
 Each standard library class <tt>T</tt> that derives from class <tt>exception</tt> 
 shall have a publicly accessible copy constructor and a publicly accessible copy
 assignment operator that do not exit with an exception.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -576,28 +576,28 @@ only in their use of these types.
 <hr>
 <h3><a name="1456"></a>1456. [FCD] Missing fixed-size atomic_ typedefs</h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-16</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-129</b></p>
-
+<p>
 Table 143 lists the typedefs for various atomic types
 corresponding to the various standard integer typedefs,
 such as <tt>atomic_int_least8_t</tt> for <tt>int_least8_t</tt>, and
 <tt>atomic_uint_fast64_t</tt> for <tt>uint_fast64_t</tt>. However, there are
 no atomic typedefs corresponding to the fixed-size
 standard typedefs <tt>int8_t</tt>, <tt>int16_t</tt>, and so forth.
-
+</p>
 <p><i>[
 2010-10-24 Daniel adds:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3164.html">n3164</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2011-02-15 Anthony corrects numbering/naming for N3225, Howard suggests improvement for the position
@@ -614,8 +614,9 @@ Moved to Tentatively Ready after 5 votes.
 
 
 <p><b>Proposed resolution:</b></p>
+<p>
 Add the following entries to table 143:
-
+</p>
 <blockquote>
 <table border="1">
 <caption>Table 146 &mdash; <tt>atomic</tt> <tt>&lt;inttypes.h&gt;</tt> typedefs</caption>
@@ -677,14 +678,15 @@ Add the following entries to table 143:
 <hr>
 <h3><a name="1479"></a>1479. [FCD] Fence functions should be <tt>extern "C"</tt></h3>
 <p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-16</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-179</b></p>
-
+<p>
 The fence functions (29.8 [atomics.fences] p.5 + p.6) should be <tt>extern "C"</tt>, for <tt>C</tt> compatibility.
+</p>
 
 <p><i>[2011-02-16 Reflector discussion]</i></p>
 
@@ -706,18 +708,18 @@ namespace std {
 }
 </pre></blockquote>
 </li>
-<li>Change 29.8 [atomics.fences], p. 5 and p. 6 as indicated:
+<li><p>Change 29.8 [atomics.fences], p. 5 and p. 6 as indicated:</p>
 <blockquote><pre>
 <ins>extern "C"</ins> void atomic_thread_fence(memory_order);
-</pre><blockquote>
+</pre><blockquote><p>
 5 <em>Effects</em>: depending on the value of <tt>order</tt>, this operation: [..]
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 <blockquote><pre>
 <ins>extern "C"</ins> void atomic_signal_fence(memory_order);  
-</pre><blockquote>
+</pre><blockquote><p>
 6 <em>Effects</em>: equivalent to <tt>atomic_thread_fence(order)</tt>, except that synchronizes with relationships are
 established only between a thread and a signal handler executed in the same thread.
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 </li>
 </ol>
 
@@ -728,27 +730,27 @@ established only between a thread and a signal handler executed in the same thre
 <hr>
 <h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
 <p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-11</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-184</b></p>
-
+<p>
 It is unclear when a <tt>thread::id</tt> ceases to be meaningful.
 The sentence "The library may reuse the value of a
 <tt>thread::id</tt> of a terminated thread that can no longer be
 joined." implies that some terminated threads can be
 joined. It says nothing about detached threads.
-
+</p>
 <p><i>[
 Resolution proposed by ballot comment:
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Require a unique <tt>thread::id</tt> for every thread that is
 (1) detached and not terminated or (2) has an associated <tt>std::thread</tt> 
 object.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-11-22 Howard Hinnant observes
@@ -756,7 +758,8 @@ object.
 
 
 <p>
-A thread can either be running or terminated.  Additionally a thread can be joined, detached, or neither.  These combine into the five possible states shown in this table:
+A thread can either be running or terminated. Additionally a thread can be joined, detached, or neither.  
+These combine into the five possible states shown in this table:
 </p>
 
 <table border="1">
@@ -774,10 +777,13 @@ A thread can either be running or terminated.  Additionally a thread can be join
 </tr>
 </table>
 <p>
-Only if a thread is neither joined nor detached can it be joined.  Or said differently, if a thread has already been joined or detached, then it can not be joined.  The sentence:
-<blockquote>
+Only if a thread is neither joined nor detached can it be joined. Or said differently, if a 
+thread has already been joined or detached, then it can not be joined. The sentence:
+</p>
+<blockquote><p>
 The library may reuse the value of a <tt>thread::id</tt> of a terminated thread that can no longer be joined.
-</blockquote>
+</p></blockquote>
+<p>
 precisely defines the two states shown in the above table where a thread::id may be reused.
 </p>
 <p>
@@ -793,13 +799,13 @@ std::mutex mut;
 
 void f()
 {
-   std::lock_guard&lt;std::mutex> _(mut);
+   std::lock_guard&lt;std::mutex&gt; _(mut);
    std::cout &lt;&lt; "f id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; " terminating\n";
 }
 
 void g()
 {
-   std::lock_guard&lt;std::mutex> _(mut);
+   std::lock_guard&lt;std::mutex&gt; _(mut);
    std::cout &lt;&lt; "g id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; " terminating\n";
 }
 
@@ -845,22 +851,21 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="1486"></a>1486. [FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-11</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses CH-24</b></p>
-
+<p>
 What would be the value <tt>this_thread::get_id()</tt> when called from a detached thread?
-
+</p>
 <p><i>[
 Resolution proposed by ballot comment:
 ]</i></p>
 
 <p>
-Add some text to clarify that get_id() still returns
-the same value even after detaching.
+Add some text to clarify that <tt>get_id()</tt> still returns the same value even after detaching.
 </p>
 
 <p><i>[
@@ -872,11 +877,11 @@ the same value even after detaching.
 30.3.2 [thread.thread.this]/1 contains the following sentence describing <tt>this_thread::get_id()</tt>:
 </p>
 
-<blockquote>
+<blockquote><p>
 ... No other thread of execution shall have this id and this thread of execution shall always have this id.
-</blockquote>
+</p></blockquote>
 
-I don't object to adding "even if detached" to this sentence, but it seems unnecessary to me.  "Always" means always.
+<p>I don't object to adding "even if detached" to this sentence, but it seems unnecessary to me. "Always" means always.</p>
 
 <p><i>[2011-02-11 Reflector discussion]</i></p>
 
@@ -895,29 +900,29 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="1497"></a>1497. [FCD] <tt>lock()</tt> postcondition can not be generally achieved</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-08</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses CH-30</b></p>
-
+<p>
 If <tt>lock.lock()</tt> throws an exception, the postcondition can not be generally achieved.
-
+</p>
 <p><i>[
 Resolution proposed by ballot comment:
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Either state that the postcondition might not be achieved, depending on the error condition, or
 state that <tt>terminate()</tt> is called in this case.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-08-13 Peter Sommerlad comments and provides wording
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 30.5.1 [thread.condition.condvar], 30.5.2 [thread.condition.condvarany]
 <p/>
 p. 13, last bullet, and corresponding paragraphs in all wait functions
@@ -929,10 +934,11 @@ CH-30 proposes: "Either state that the postcondition might not be achieved, depe
 condition, or state that terminate() is called in this case."
 <p/>
 The discussion in Rapperswil concluded that calling <tt>terminate()</tt> might be too drastic in 
-this case and a corresponding exception should be thrown/passed on and one should use a lock type 
+this case and a corresponding exception should be thrown&#47;passed on and one should use a lock type 
 that allows querying its status, which <tt>unique_lock</tt> allows for <tt>std::condition_variable</tt>
 <p/>
 We also had some additional observations while discussing in Rapperswil:
+</p>
 <ul>
 <li>in 30.5.1 [thread.condition.condvar] <tt>wait</tt> with predicate and <tt>wait_until</tt> with 
 predicate lack the precondition, postcondition and Error conditions sections. the lack of the precondition 
@@ -943,7 +949,9 @@ would allow to call <tt>pred()</tt> without holding the lock.
 error condition for a violated precondition. This should be removed.
 </li>
 </ul>
+<p>
 and add the following proposed solution:
+</p>
 </blockquote>
 
 
@@ -953,8 +961,9 @@ and add the following proposed solution:
 <blockquote><pre>
 void wait(unique_lock&lt;mutex&gt;&amp; lock);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 12 <i>Requires</i>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread, and either
+</p>
 <ul>
 <li>no other thread is waiting on this <tt>condition_variable</tt> object or
 </li>
@@ -964,16 +973,17 @@ waiting (via <tt>wait</tt> or <tt>timed_wait</tt>) threads.
 </ul>
 </blockquote>
 [..]
-<blockquote>
+<blockquote><p>
 14 <em>Postcondition</em>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread.
-</blockquote>
+</p></blockquote>
 [..]
 <blockquote><pre>
 template &lt;class Predicate&gt;
 void wait(unique_lock&lt;mutex&gt;&amp; lock, Predicate pred);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 <ins>?? <i>Requires</i>: <tt>lock.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt> is locked by the calling thread, and either</ins>
+</p>
 <ul>
 <li><ins>no other thread is waiting on this <tt>condition_variable</tt> object or</ins>
 </li>
@@ -982,22 +992,23 @@ waiting (via <tt>wait</tt> or <tt>timed_wait</tt>) threads.</ins>
 </li>
 </ul>
 </blockquote>
-<blockquote>
+<blockquote><p>
 17 <i>Effects</i>:
-<blockquote><pre>
+</p><blockquote><pre>
 while (!pred())
   wait(lock);
 </pre></blockquote>
 </blockquote>
 
-<blockquote>
+<blockquote><p>
 <ins>?? <i>Postcondition</i>: <tt>lock.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt> is locked by the calling thread.</ins>
-</blockquote>
-<blockquote>
+</p></blockquote>
+<blockquote><p>
 <ins>?? <i>Throws</i>: <tt>std::system_error</tt> when an exception is required (30.2.2).</ins>
-</blockquote>
-<blockquote>
+</p></blockquote>
+<blockquote><p>
 <ins>?? <em>Error conditions</em>:</ins>
+</p>
 <ul>
 <li><ins>equivalent error condition from <tt>lock.lock()</tt> or <tt>lock.unlock()</tt>.</ins>
 </li>
@@ -1009,8 +1020,9 @@ template &lt;class Clock, class Duration&gt;
 cv_status wait_until(unique_lock&lt;mutex&gt;&amp; lock,
   const chrono::time_point&lt;Clock, Duration&gt;&amp; abs_time);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 18 <i>Requires</i>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread, and either
+</p>
 <ul>
 <li>no other thread is waiting on this <tt>condition_variable</tt> object or
 </li>
@@ -1018,14 +1030,15 @@ cv_status wait_until(unique_lock&lt;mutex&gt;&amp; lock,
 waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or <tt>wait_until</tt>) threads.
 </li>
 </ul>
-</blockquote>
+</blockquote><p>
 [..]
-<blockquote>
+</p><blockquote><p>
 20 <em>Postcondition</em>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread.
-</blockquote>
+</p></blockquote>
 [..]
-<blockquote>
+<blockquote><p>
 23 <em>Error conditions</em>:
+</p>
 <ul>
 <li><del><tt>operation_not_permitted</tt> &mdash; if the thread does not own the lock.</del>
 </li>
@@ -1038,8 +1051,9 @@ template &lt;class Rep, class Period&gt;
 cv_status wait_for(unique_lock&lt;mutex&gt;&amp; lock,
   const chrono::duration&lt;Rep, Period&gt;&amp; rel_time);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 24 <i>Requires</i>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread, and either
+</p>
 <ul>
 <li>no other thread is waiting on this <tt>condition_variable</tt> object or
 </li>
@@ -1047,14 +1061,15 @@ cv_status wait_for(unique_lock&lt;mutex&gt;&amp; lock,
 waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or <tt>wait_until</tt>) threads.
 </li>
 </ul>
-</blockquote>
+</blockquote><p>
 [..]
-<blockquote>
+</p><blockquote><p>
 27 <em>Postcondition</em>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread.
-</blockquote>
+</p></blockquote>
 [..]
-<blockquote>
+<blockquote><p>
 29 <em>Error conditions</em>:
+</p>
 <ul>
 <li><del><tt>operation_not_permitted</tt> &mdash; if the thread does not own the lock.</del>
 </li>
@@ -1068,8 +1083,9 @@ bool wait_until(unique_lock&lt;mutex&gt;&amp; lock,
   const chrono::time_point&lt;Clock, Duration&gt;&amp; abs_time,
     Predicate pred);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 <ins>?? <i>Requires</i>: <tt>lock.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt> is locked by the calling thread, and either</ins>
+</p>
 <ul>
 <li><ins>no other thread is waiting on this <tt>condition_variable</tt> object or</ins>
 </li>
@@ -1078,33 +1094,34 @@ waiting (via <tt>wait</tt> or <tt>timed_wait</tt>) threads.</ins>
 </li>
 </ul>
 </blockquote>
-<blockquote>
+<blockquote><p>
 30 <i>Effects</i>:
-<blockquote><pre>
+</p><blockquote><pre>
 while (!pred())
   if (wait_until(lock, abs_time) == cv_status::timeout)
     return pred();
 return true;
 </pre></blockquote>
 </blockquote>
-<blockquote>
+<blockquote><p>
 31 <i>Returns</i>: <tt>pred()</tt>
-</blockquote>
+</p></blockquote>
 
-<blockquote>
+<blockquote><p>
 <ins>?? <i>Postcondition</i>: <tt>lock.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt> is locked by the calling thread.</ins>
-</blockquote>
+</p></blockquote>
 
-<blockquote>
+<blockquote><p>
 32 [ <i>Note</i>: The returned value indicates whether the predicate evaluates to true regardless of whether the
 timeout was triggered. &mdash; <i>end note</i> ]
-</blockquote>
+</p></blockquote>
 
-<blockquote>
+<blockquote><p>
 <ins>?? <i>Throws</i>: <tt>std::system_error</tt> when an exception is required (30.2.2).</ins>
-</blockquote>
-<blockquote>
+</p></blockquote>
+<blockquote><p>
 <ins>?? <em>Error conditions</em>:</ins>
+</p>
 <ul>
 <li><ins>equivalent error condition from <tt>lock.lock()</tt> or <tt>lock.unlock()</tt>.</ins>
 </li>
@@ -1117,8 +1134,9 @@ bool wait_for(unique_lock&lt;mutex&gt;&amp; lock,
   const chrono::duration&lt;Rep, Period&gt;&amp; rel_time,
     Predicate pred);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 33 <i>Requires</i>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread, and either
+</p>
 <ul>
 <li>no other thread is waiting on this <tt>condition_variable</tt> object or
 </li>
@@ -1126,14 +1144,15 @@ bool wait_for(unique_lock&lt;mutex&gt;&amp; lock,
 waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or <tt>wait_until</tt>) threads.
 </li>
 </ul>
-</blockquote>
+</blockquote><p>
 [..]
-<blockquote>
+</p><blockquote><p>
 36 <em>Postcondition</em>: <tt>lock</tt><ins><tt>.owns_lock()</tt> is <tt>true</tt> and <tt>lock.mutex()</tt></ins> is locked by the calling thread.
-</blockquote>
+</p></blockquote><p>
 [..]
-<blockquote>
+</p><blockquote><p>
 40 <em>Error conditions</em>:
+</p>
 <ul>
 <li><del><tt>operation_not_permitted</tt> &mdash; if the thread does not own the lock.</del>
 </li>
@@ -1151,21 +1170,21 @@ waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or <tt>wait_until</tt>) threads.
 template &lt;class Lock, class Predicate&gt;
 void wait(Lock&amp; lock, Predicate pred);
 </pre></blockquote>
-<blockquote>
+<blockquote><p>
 <ins>[<i>Note</i>: if any of the wait functions exits with an exception it is indeterminate if the <tt>Lock</tt> is held. 
 One can use a <tt>Lock</tt> type that allows to query that, such as the <tt>unique_lock</tt> wrapper. &mdash; <i>end note</i>]</ins>
-</blockquote>
-<blockquote>
+</p></blockquote>
+<blockquote><p>
 14 <i>Effects</i>:
-<blockquote><pre>
+</p><blockquote><pre>
 while (!pred())
   wait(lock);
 </pre></blockquote>
-</blockquote>
-
+</blockquote><p>
 [..]
-<blockquote>
+</p><blockquote><p>
 34 <em>Error conditions</em>:
+</p>
 <ul>
 <li><del><tt>operation_not_permitted</tt> &mdash; if the thread does not own the lock.</del>
 </li>
@@ -1184,28 +1203,28 @@ while (!pred())
 <hr>
 <h3><a name="1514"></a>1514. [FCD] <tt>packaged_task</tt> constructors need review</h3>
 <p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-10</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-207</b></p>
-
+<p>
 The constructor that takes <tt>R(*)(ArgTypes...)</tt> is not
 needed; the constructor that takes a callable type works
 for this argument type. More generally, the constructors
 for packaged_task should parallel those for function.
-
+</p>
 <p><i>[
 US-207 Suggested Resolution:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Review the constructors for packaged_task and
 provide the same ones as function, except where
 inappropriate.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-10-22 Howard provides wording, as requested by the LWG in Rapperswil.
@@ -1220,8 +1239,9 @@ Moved to Tentatively Ready after 5 votes.
 
 
 <p><b>Proposed resolution:</b></p>
-Alter the list of constructors in both [futures.task] and in [futures.task.members] as indicated:
-
+<p>
+Alter the list of constructors in both 30.6.10 [futures.task] and in 30.6.10.1 [futures.task.members] as indicated:
+</p>
 <blockquote>
 <pre><del>template &lt;class F&gt;
 explicit packaged_task(F f);
@@ -1242,16 +1262,17 @@ explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F&amp;&amp; f);
 <hr>
 <h3><a name="2000"></a>2000. Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></h3>
 <p><b>Section:</b> 30.6.10.2 [futures.task.nonmembers] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2010-11-13</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 [futures.task.nonmembers]/3 says:
+</p>
 <blockquote><pre>
    template &lt;class R, class Alloc&gt;
      struct uses_allocator&lt;packaged_task&lt;R&gt;, Alloc&gt;;
 </pre></blockquote>
-
+<p>
 This is a declaration, but should be a definition.
 </p>
 
@@ -1313,7 +1334,7 @@ template &lt;class Rep1, class <del>Period</del><ins>Rep2</ins>, class <del>Rep2
 <hr>
 <h3><a name="2006"></a>2006. <tt>emplace</tt> broken for associative containers</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2010-11-13</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
@@ -1321,11 +1342,11 @@ template &lt;class Rep1, class <del>Period</del><ins>Rep2</ins>, class <del>Rep2
 <p>
 The current definition of <tt>emplace(args)</tt> for associative containers as
 described in Table 99 is:
+</p>
 <blockquote>
 <p>
 <i>Requires</i>: <tt>T</tt> shall be constructible from <tt>args</tt>.
-</p>
-<p>
+<p/>
 <i>Effects</i>: Inserts a <tt>T</tt> object <tt>t</tt> constructed with
 <tt>std::forward&lt;Args&gt;(args)...</tt> if and only if there is no element
 in the container with key equivalent to the key of <tt>t</tt>.  The <tt>bool</tt>
@@ -1334,15 +1355,12 @@ insertion takes place, and the iterator component of the <tt>pair</tt>
 points to the element with key equivalent to the key of <tt>t</tt>.
 </p>
 </blockquote>
-</p>
 <p>
 There is similar language in Table 100 for unordered associative containers.
-</p>
-<p>
+<p/>
 The first issue is editorial: <tt>T</tt> should be <tt>value_type</tt> throughout
 both tables.
-</p>
-<p>
+<p/>
 The major issue is that, if the container is <tt>map</tt>, <tt>multimap</tt>,
 <tt>unordered_map</tt>, or <tt>unordered_multimap</tt>, then the only way to
 construct an object of <tt>value_type</tt> is to supply exactly two arguments
@@ -1352,8 +1370,7 @@ for <tt>Key</tt> and <tt>Value</tt>, a <tt>pair&lt;Key,Value&gt;</tt>, or a
 value followed by any number of constructor arguments for <tt>Value</tt>.
 When we removed the variadic constructor to <tt>pair</tt>, this ability went
 away.  I don't think that was deliberate.
-</p>
-<p>
+<p/>
 Fixing this is non-trivial, I think. I think that <tt>emplace()</tt> for <tt>map</tt>
 and <tt>multimap</tt> need several overloads: one for each overloaded constructor in
 <tt>pair&lt;Key,Value&gt;</tt>, and one for the <tt>emplace(Key, valueargs...)</tt> case.
@@ -1363,8 +1380,7 @@ there are exactly two cases: <tt>emplace(args)</tt> where <tt>pair&lt;Key,Value&
 is constructible from <tt>args</tt>, and <tt>emplace(args)</tt> where <tt>Key</tt> is
 constructible form the first <tt>arg</tt> and <tt>Value</tt> is constructible from the
 rest.
-</p>
-<p>
+<p/>
 Alternatively, the status quo is to use <tt>piecewise_construct_t</tt> if you want to
 construct an object.
 </p>
@@ -1388,7 +1404,7 @@ N3178 was looked at in session and moved to NAD.
 <hr>
 <h3><a name="2007"></a>2007. Incorrect specification of return value for <tt>map&lt;&gt;::at()</tt></h3>
 <p><b>Section:</b> 23.6.1.2 [map.access] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2010-11-13</p>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#map.access">issues</a> in [map.access].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1406,10 +1422,10 @@ and found that its specification of <tt>at()</tt> is correct. This is a problem 
 Change the wording in [map.access]/9 so it's identical to what we already say for <tt>operator[]</tt>, 
 which is unambiguous and correct.
 </p>
-<blockquote>
+<blockquote><p>
 <i>Returns</i>: A reference to the <del>element whose key is equivalent</del><ins><tt>mapped_type</tt> 
 corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -1418,15 +1434,16 @@ corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
 <hr>
 <h3><a name="2014"></a>2014. More restrictions on macro names</h3>
 <p><b>Section:</b> 17.6.3.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-10</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
+<p>
 A program is currently forbidden to use keywords as macro names. This restriction should be strengthened to include all identifiers 
 that could be used by the library as attribute-tokens (for example <tt>noreturn</tt>, which is used by header <tt>&lt;cstdlib&gt;</tt>) 
 and the special identifiers introduced recently for override control (these are not currently used in the library public interface,
 but could potentially be used by the implementation or in future revisions of the library).
-
+</p>
 <p><i>[2011-02-10 Reflector discussion]</i></p>
 
 <p>
@@ -1437,12 +1454,12 @@ Moved to Tentatively Ready after 5 votes.
 <p><b>Proposed resolution:</b></p>
 <p>Modify 17.6.3.3.1 [macro.names] paragraph 2 as follows:</p>
 
-<blockquote>
+<blockquote><p>
 A translation unit shall not <tt>#define</tt> or <tt>#undef</tt> names
 lexically identical to keywords<ins>, to the identifiers listed in Table
 X [Identifiers with special meaning], or to the <i>attribute-tokens</i>
 described in clause 7.6 [dcl.attr]</ins>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -1452,16 +1469,18 @@ described in clause 7.6 [dcl.attr]</ins>.
 <hr>
 <h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
 <p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-02-17</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
+<p>
 As of issue <a href="lwg-defects.html#1171">1171</a> several time-utility functions have been marked <tt>constexpr</tt>.
 Alas this was done without adapting the corresponding return elements, which has the effect that 
 none of current arithmetic functions of class template <tt>duration</tt> marked as <tt>constexpr</tt> 
 can ever be <tt>constexpr</tt> functions (which makes them ill-formed, no diagnostics required as 
 of recent core rules), because they invoke a non-constant expression, e.g. 20.11.3.5 [time.duration.nonmember]/2:
+</p>
 <blockquote><pre>
 template &lt;class Rep1, class Period1, class Rep2, class Period2>
 constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;{&gt;}::type
@@ -1469,12 +1488,13 @@ operator+(const duration&lt;Rep1, Period1>&amp; lhs, const duration&lt;Rep2, Per
 
 2 Returns: CD(lhs) += rhs.
 </pre></blockquote>
+<p>
 The real problem is, that we cannot defer to as-if rules here: The returns element
 specifies an indirect calling contract of a potentially user-defined function. This <em>cannot</em> be
 the <tt>+=</tt> assignment operator of such a user-defined type, but must be the corresponding
 immutable binary <tt>operator+</tt> (unless we require that <tt>+=</tt> shall be an immutable function
 which does not really makes sense).
-
+</p>
 <p><i>[2011-02-17 Reflector discussion]</i></p>
 
 <p>
@@ -1484,8 +1504,10 @@ Moved to Tentatively Ready after 5 votes.
 
 
 <p><b>Proposed resolution:</b></p>
+<p>
 The suggested wording changes are against the working draft N3225. Additional to the normative wording
 changes some editorial fixes are suggested.
+</p>
 <ol>
 <li>
 <p>Change the following arithmetic function specifications as follows:</p>
@@ -1493,67 +1515,67 @@ changes some editorial fixes are suggested.
 template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
 constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;<del>{</del>&gt;<del>}</del>::type
 operator+(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
-</pre><blockquote>
+</pre><blockquote><p>
 2 <i>Returns</i>: <del><tt>CD(lhs) += rhs</tt></del><ins><tt>CD(CD(lhs).count() + CD(rhs).count())</tt></ins>.
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 
 <blockquote><pre>
 template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
 constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;<del>{</del>&gt;<del>}</del>::type
 operator-(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
-</pre><blockquote>
+</pre><blockquote><p>
 3 <i>Returns</i>: <del><tt>CD(lhs) -= rhs</tt></del><ins><tt>CD(CD(lhs).count() - CD(rhs).count())</tt></ins>.
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 
 <blockquote><pre>
 template &lt;class Rep1, class Period, class Rep2&gt;
 constexpr duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
 operator*(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
-</pre><blockquote>
+</pre><blockquote><p>
 4 <i>Remarks</i>: This operator shall not participate in overload resolution unless <tt>Rep2</tt> is implicitly convertible
 to <tt>CR(Rep1, Rep2)</tt>.
 <p/>
 5 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) *= s</tt></del><ins><tt>CD(CD(d).count() * s)</tt></ins>.
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 
-<p><blockquote>
+<blockquote><p>
 <tt>[...]</tt>
-</blockquote></p>
+</p></blockquote>
 
 <blockquote><pre>
 template &lt;class Rep1, class Period, class Rep2&gt;
 constexpr duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
 operator/(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
-</pre><blockquote>
+</pre><blockquote><p>
 8 <i>Remarks</i>: This operator shall not participate in overload resolution unless <tt>Rep2</tt> is implicitly convertible
 to <tt>CR(Rep1, Rep2)</tt> and <tt>Rep2</tt> is not an instantiation of <tt>duration</tt>.
 <p/>
-9 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) /= s</tt></del><ins><tt>CD(CD(d).count() / s)</tt></ins>.
-</blockquote></blockquote>
+9 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) &#47;= s</tt></del><ins><tt>CD(CD(d).count() &#47; s)</tt></ins>.
+</p></blockquote></blockquote>
 
-<p><blockquote>
+<blockquote><p>
 <tt>[...]</tt>
-</blockquote></p>
+</p></blockquote>
 
 <blockquote><pre>
 template &lt;class Rep1, class Period, class Rep2&gt;
 constexpr duration&lt;typename common_type&lt;Rep1, Rep2&gt;::type, Period&gt;
 operator%(const duration&lt;Rep1, Period&gt;&amp; d, const Rep2&amp; s);
-</pre><blockquote>
+</pre><blockquote><p>
 11 <i>Remarks</i>: This operator shall not participate in overload resolution unless <tt>Rep2</tt> is implicitly convertible
 to <tt>CR(Rep1, Rep2)</tt> and <tt>Rep2</tt> is not an instantiation of <tt>duration</tt>.
 <p/>
 12 <i>Returns</i>: <del><tt>duration&lt;CR(Rep1, Rep2), Period&gt;(d) %= s</tt></del><ins><tt>CD(CD(d).count() % s)</tt></ins>
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 
 <blockquote><pre>
 template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
 constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;&gt;::type
 operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
-</pre><blockquote>
+</pre><blockquote><p>
 13 Returns: <del><tt>common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt; &gt;::type(lhs) 
  %= rhs</tt></del><ins><tt>CD(CD(lhs).count() % CD(rhs).count())</tt></ins>.
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 </li>
 </ol>
 
@@ -1564,23 +1586,24 @@ operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, 
 <hr>
 <h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
 <p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-10</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
+<p>
 Paragraph 5 and 6 of 29.5 [atomics.types.generic] impose different requirements on implementations for
 specializations of the <tt>atomic</tt> class template for integral types and for pointer types:
-
-<blockquote>
+</p>
+<blockquote><p>
 5 The atomic integral specializations and the specialization <tt>atomic&lt;bool&gt;</tt> shall have standard layout. 
 They shall each have a trivial default constructor and a trivial destructor. They shall each support aggregate
 initialization syntax.
-</blockquote>
-<p/>
-<blockquote>
+</p></blockquote>
+
+<blockquote><p>
 6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
 trivial default constructors and trivial destructors.
-</blockquote>
+</p></blockquote>
 
 <p>
 It looks like an oversight to me, that for pointer specializations the requirements for standard layout and
@@ -1606,11 +1629,11 @@ The suggested wording changes are against the working draft N3225.
 <li>
 <p>Change 29.5 [atomics.types.generic] p. 6 as indicated:</p>
 
-<blockquote>
+<blockquote><p>
 6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
 <ins>standard layout,</ins> trivial default constructors<ins>,</ins> and trivial destructors. <ins> They shall each 
 support aggregate initialization syntax.</ins>
-</blockquote>
+</p></blockquote>
 
 </li>
 </ol>
