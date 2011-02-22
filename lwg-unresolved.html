@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-21 at 17:02:34 UTC</p>
+<p>Revised 2011-02-22 at 05:02:58 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -771,7 +771,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -825,7 +825,7 @@ Move to Open.
 
 <p>I strongly suggest to clean-up the differences between requirement tables and individual
 specifications. In the usual way, the most specific specifications wins, which is in this
-case the worng one.</p>
+case the wrong one.</p>
 
 
 
@@ -5878,55 +5878,6 @@ public:
 
 
 <hr>
-<h3><a name="2031"></a>2031. <tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</h3>
-<p><b>Section:</b> 30.6.6 [futures.unique_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.unique_future">issues</a> in [futures.unique_future].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-As specified, <tt>future&lt;&gt;::share()</tt> has the signature
-</p>
-
-<blockquote><pre>
-shared_future&lt;R&gt; share() &amp;&amp;;
-</pre></blockquote>
-
-<p>
-This means that it can only be applied to rvalues. One of the key benefits of <tt>share()</tt> is 
-that it can be used with the new <tt>auto</tt> facility:
-</p>
-
-<blockquote><pre>
-std::promise&lt;<em>some_long_winded_type_name</em>&gt; some_promise;
-auto f = some_promise.get_future(); // std::future
-auto sf = std::move(f).share();
-</pre></blockquote>
-
-<p>
-<tt>share()</tt> is sufficiently explicit that the move should not be required. We should be able to write:
-</p>
-
-<blockquote><pre>
-auto sf = f.share();
-</pre></blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Alter the declaration of <tt>share()</tt> to remove the "&amp;&amp;" rvalue qualifier in 
-30.6.6 [futures.unique_future] p. 3, and 30.6.6 [futures.unique_future] p. 11:</p>
-
-<blockquote><pre>
-shared_future&lt;R&gt; share() <del>&amp;&amp;</del>;
-</pre></blockquote>
-
-
-
-
-
-
-<hr>
 <h3><a name="2032"></a>2032. Incorrect synchronization clause of <tt>async</tt> function</h3>
 <p><b>Section:</b> 30.6.9 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
  <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-20</p>
@@ -6063,6 +6014,49 @@ from a call to a waiting function on the associated asynchronous state.</del>
 </li>
 </ol>
 
+
+
+
+
+
+<hr>
+<h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
+<p><b>Section:</b> 23.4.1.2 [vector.capacity], 23.3.2.2 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-02-22</p>
+<p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+I have several questions with regard to the working paper N3225 (C++0x working draft):
+</p>
+<ol>
+<li><p>
+Where the working draft specifies preconditions for <tt>shrink_to_fit</tt>
+member function of <tt>std::vector</tt> and <tt>std::deque</tt>?
+</p></li>
+<li><p>
+Where the working draft specifies preconditions for '<tt>void reserve(size_type n)</tt>' 
+member function of <tt>std::vector</tt>?
+</p></li>
+<li><p>
+Does a call to '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> require
+the element type to be <tt>DefaultConstructible</tt>? If yes, why such
+requirement is not listed in the <i>Requires</i> paragraph?
+</p></li>
+<li><p>
+Does a call to '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> require
+the element type to be <tt>MoveAssignable</tt> because the call <tt>erase(begin() + sz, end())</tt> 
+mentioned in the <i>Effects</i> paragraph would require the element type to be <tt>MoveAssignable</tt>?
+</p></li>
+<li><p>
+Why <tt>CopyInsertable</tt> requirement is used for '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> 
+instead of <tt>MoveInsertable</tt> requirement?
+</p></li>
+</ol>
+
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 

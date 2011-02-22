@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-02-21</td>
+  <td align="left">2011-02-22</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-21 at 17:02:34 UTC</p>
+<p>Revised 2011-02-22 at 05:02:58 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D74: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>92 open issues, up by 12.</li>
+<li>93 open issues, up by 13.</li>
 <li>1460 closed issues, up by 1.</li>
-<li>1552 issues total, up by 13.</li>
+<li>1553 issues total, up by 14.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 11 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>, <a href="lwg-active.html#2032">2032</a>.</li>
-<li>Added the following 2 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2024">2024</a>.</li>
+<li>Added the following 11 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
+<li>Added the following 3 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2031">2031</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
 <li>Changed the following issue from Ready to Open: <a href="lwg-active.html#1318">1318</a>.</li>
@@ -2102,7 +2102,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2156,7 +2156,7 @@ Move to Open.
 
 <p>I strongly suggest to clean-up the differences between requirement tables and individual
 specifications. In the usual way, the most specific specifications wins, which is in this
-case the worng one.</p>
+case the wrong one.</p>
 
 
 
@@ -10095,10 +10095,10 @@ public:
 
 <hr>
 <h3><a name="2031"></a>2031. <tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</h3>
-<p><b>Section:</b> 30.6.6 [futures.unique_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 30.6.6 [futures.unique_future] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-22</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.unique_future">issues</a> in [futures.unique_future].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 As specified, <tt>future&lt;&gt;::share()</tt> has the signature
@@ -10127,6 +10127,11 @@ auto sf = std::move(f).share();
 auto sf = f.share();
 </pre></blockquote>
 
+<p><i>[2011-02-22 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p> 
 
 
 <p><b>Proposed resolution:</b></p>
@@ -10279,6 +10284,49 @@ from a call to a waiting function on the associated asynchronous state.</del>
 </li>
 </ol>
 
+
+
+
+
+
+<hr>
+<h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
+<p><b>Section:</b> 23.4.1.2 [vector.capacity], 23.3.2.2 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-02-22</p>
+<p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+I have several questions with regard to the working paper N3225 (C++0x working draft):
+</p>
+<ol>
+<li><p>
+Where the working draft specifies preconditions for <tt>shrink_to_fit</tt>
+member function of <tt>std::vector</tt> and <tt>std::deque</tt>?
+</p></li>
+<li><p>
+Where the working draft specifies preconditions for '<tt>void reserve(size_type n)</tt>' 
+member function of <tt>std::vector</tt>?
+</p></li>
+<li><p>
+Does a call to '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> require
+the element type to be <tt>DefaultConstructible</tt>? If yes, why such
+requirement is not listed in the <i>Requires</i> paragraph?
+</p></li>
+<li><p>
+Does a call to '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> require
+the element type to be <tt>MoveAssignable</tt> because the call <tt>erase(begin() + sz, end())</tt> 
+mentioned in the <i>Effects</i> paragraph would require the element type to be <tt>MoveAssignable</tt>?
+</p></li>
+<li><p>
+Why <tt>CopyInsertable</tt> requirement is used for '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> 
+instead of <tt>MoveInsertable</tt> requirement?
+</p></li>
+</ol>
+
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
