@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-02-22</td>
+  <td align="left">2011-02-23</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-22 at 23:02:15 UTC</p>
+<p>Revised 2011-02-23 at 18:02:07 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -161,8 +161,8 @@ ownership of it.
 <li>1553 issues total, up by 14.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 11 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
-<li>Added the following 3 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2031">2031</a>.</li>
+<li>Added the following 10 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
+<li>Added the following 4 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2031">2031</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
 <li>Changed the following issue from Ready to Open: <a href="lwg-active.html#1318">1318</a>.</li>
@@ -6709,7 +6709,8 @@ the requirements of <tt>EqualityComparable</tt> ( [equalitycomparable]),
 <tt>CopyConstructible</tt> ( [copyconstructible]), <tt>CopyAssignable</tt> ( [copyassignable]), 
 <tt>Destructible</tt> ( [destructible]), and of numeric types ([numeric.requirements]) [<i>Note</i>: This means in 
 particular, that operations of these types will not throw exceptions &mdash; <i>end note</i> ], and</ins></li>
-<li><ins>lvalues of the types <tt>C::rep</tt>, <tt>C::duration</tt>, and <tt>C::time_point</tt> shall be swappable, and</ins></li>
+<li><ins>lvalues of the types <tt>C::rep</tt>, <tt>C::duration</tt>, and <tt>C::time_point</tt> shall be 
+swappable ((20.2.2 [swappable.requirements])), and</ins></li>
 <li><ins>the function <tt>C::now()</tt> shall not throw exceptions, and</ins></li>
 <li><ins>the type <tt>C::time_point::clock</tt> shall meet the additional clock 
 requirements described in this sub-clause 20.11.5 [time.clock], recursively.</ins></li>
@@ -9755,11 +9756,11 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 
 <hr>
 <h3><a name="2022"></a>2022. <tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</h3>
-<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-23</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 Issue <a href="lwg-defects.html#1295">1295</a> correctly removed function types and references to function types from the
@@ -9791,6 +9792,12 @@ approach. It turns out, that there is no further reference to this definition in
 function types or references thereof. The only other reference can be found in 
 20.8.10.1.2 [func.bind.bind] p. 3, where <tt>g</tt> is required to be a class type.
 </p>
+
+<p><i>[2011-02-23 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p> 
 
 
 <p><b>Proposed resolution:</b></p>
