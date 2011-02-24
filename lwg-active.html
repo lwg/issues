@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-24 at 19:02:43 UTC</p>
+<p>Revised 2011-02-24 at 19:02:21 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -170,7 +170,7 @@ ownership of it.
 <li>Changed the following issue from NAD to Resolved: <a href="lwg-defects.html#1229">1229</a>.</li>
 <li>Changed the following 65 issues from NAD Editorial to Resolved: <a href="lwg-defects.html#732">732</a>, <a href="lwg-defects.html#756">756</a>, <a href="lwg-defects.html#767">767</a>, <a href="lwg-defects.html#793">793</a>, <a href="lwg-defects.html#794">794</a>, <a href="lwg-defects.html#800">800</a>, <a href="lwg-defects.html#803">803</a>, <a href="lwg-defects.html#825">825</a>, <a href="lwg-defects.html#828">828</a>, <a href="lwg-defects.html#874">874</a>, <a href="lwg-defects.html#875">875</a>, <a href="lwg-defects.html#880">880</a>, <a href="lwg-defects.html#889">889</a>, <a href="lwg-defects.html#897">897</a>, <a href="lwg-defects.html#908">908</a>, <a href="lwg-defects.html#923">923</a>, <a href="lwg-defects.html#924">924</a>, <a href="lwg-defects.html#940">940</a>, <a href="lwg-defects.html#944">944</a>, <a href="lwg-defects.html#958">958</a>, <a href="lwg-defects.html#976">976</a>, <a href="lwg-defects.html#1043">1043</a>, <a href="lwg-defects.html#1046">1046</a>, <a href="lwg-defects.html#1047">1047</a>, <a href="lwg-defects.html#1048">1048</a>, <a href="lwg-defects.html#1049">1049</a>, <a href="lwg-defects.html#1050">1050</a>, <a href="lwg-defects.html#1088">1088</a>, <a href="lwg-defects.html#1090">1090</a>, <a href="lwg-defects.html#1093">1093</a>, <a href="lwg-defects.html#1106">1106</a>, <a href="lwg-defects.html#1129">1129</a>, <a href="lwg-defects.html#1143">1143</a>, <a href="lwg-defects.html#1145">1145</a>, <a href="lwg-defects.html#1146">1146</a>, <a href="lwg-defects.html#1147">1147</a>, <a href="lwg-defects.html#1160">1160</a>, <a href="lwg-defects.html#1161">1161</a>, <a href="lwg-defects.html#1162">1162</a>, <a href="lwg-defects.html#1163">1163</a>, <a href="lwg-defects.html#1165">1165</a>, <a href="lwg-defects.html#1166">1166</a>, <a href="lwg-defects.html#1172">1172</a>, <a href="lwg-defects.html#1185">1185</a>, <a href="lwg-defects.html#1196">1196</a>, <a href="lwg-defects.html#1210">1210</a>, <a href="lwg-defects.html#1211">1211</a>, <a href="lwg-defects.html#1212">1212</a>, <a href="lwg-defects.html#1225">1225</a>, <a href="lwg-defects.html#1226">1226</a>, <a href="lwg-defects.html#1244">1244</a>, <a href="lwg-defects.html#1248">1248</a>, <a href="lwg-defects.html#1266">1266</a>, <a href="lwg-defects.html#1269">1269</a>, <a href="lwg-defects.html#1272">1272</a>, <a href="lwg-defects.html#1273">1273</a>, <a href="lwg-defects.html#1274">1274</a>, <a href="lwg-defects.html#1275">1275</a>, <a href="lwg-defects.html#1281">1281</a>, <a href="lwg-defects.html#1291">1291</a>, <a href="lwg-defects.html#1300">1300</a>, <a href="lwg-defects.html#1304">1304</a>, <a href="lwg-defects.html#1305">1305</a>, <a href="lwg-defects.html#1311">1311</a>, <a href="lwg-defects.html#1329">1329</a>.</li>
 <li>Changed the following 2 issues from Open to Tentatively NAD: <a href="lwg-active.html#1485">1485</a>, <a href="lwg-active.html#1486">1486</a>.</li>
-<li>Changed the following 2 issues from New to Tentatively Ready: <a href="lwg-active.html#2014">2014</a>, <a href="lwg-active.html#2019">2019</a>.</li>
+<li>Changed the following 3 issues from New to Tentatively Ready: <a href="lwg-active.html#2014">2014</a>, <a href="lwg-active.html#2017">2017</a>, <a href="lwg-active.html#2019">2019</a>.</li>
 <li>Changed the following 7 issues from Open to Tentatively Ready: <a href="lwg-active.html#1456">1456</a>, <a href="lwg-active.html#1457">1457</a>, <a href="lwg-active.html#1474">1474</a>, <a href="lwg-active.html#1479">1479</a>, <a href="lwg-active.html#1514">1514</a>, <a href="lwg-active.html#1515">1515</a>, <a href="lwg-active.html#2001">2001</a>.</li>
 </ul></li>
 </ul>
@@ -9399,11 +9399,11 @@ iterator with value <tt>a.end()</tt> before the swap will have value <tt>b.end()
 
 <hr>
 <h3><a name="2017"></a>2017. <tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></h3>
-<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2011-02-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 <tt>std::reference_wrapper</tt>'s function call operator uses <em>wrong</em>
@@ -9575,6 +9575,11 @@ The correct solution is to ensure that <tt>T</tt> becomes <tt>T&amp;</tt>
 within <tt>result_of</tt>, which solves both problems at once.
 </p>
 
+<p><i>[2011-02-24 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p> 
 
 
 <p><b>Proposed resolution:</b></p>
