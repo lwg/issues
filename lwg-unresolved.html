@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-24 at 19:02:21 UTC</p>
+<p>Revised 2011-02-24 at 20:02:02 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5378,48 +5378,6 @@ namespace std {
 
 </ol>
 
-
-
-
-
-
-<hr>
-<h3><a name="2030"></a>2030. <tt>packaged_task::result_type</tt> should be removed</h3>
-<p><b>Section:</b> 30.6.10 [futures.task] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-21</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-<tt>packaged_task::operator()</tt> always returns <tt>void</tt>, regardless of the return
-type of the wrapped task. However, <tt>packaged_task::result_type</tt> is a
-typedef to the return type of the wrapped task. This is inconsistent
-with other uses of <tt>result_type</tt> in the standard, where it matches the
-return type of <tt>operator()</tt> (e.g. <tt>function</tt>, <tt>owner_less</tt>). This is confusing.
-</p>
-
-<p>
-It also violates the TR1 <tt>result_of</tt> protocol, and thus makes
-<tt>packaged_task</tt> harder to use with anything that respects that protocol.
-</p>
-
-<p>
-Finally, it is of little use anyway.
-</p>
-
-<p><tt>packaged_task::result_type</tt> should therefore be removed.</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Alter the class definition of <tt>packaged_task</tt> in 30.6.10 [futures.task] p. 2 as follows:</p>
-<blockquote><pre>
-template&lt;class R, class... ArgTypes&gt;
-class packaged_task&lt;R(ArgTypes...)&gt; {
-public:
-  <del>typedef R result_type;</del>
-  [...]
-};
-</pre></blockquote>
 
 
 

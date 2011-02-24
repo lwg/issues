@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-24 at 19:02:21 UTC</p>
+<p>Revised 2011-02-24 at 20:02:02 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -161,8 +161,8 @@ ownership of it.
 <li>1553 issues total, up by 14.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 8 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
-<li>Added the following 6 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2031">2031</a>.</li>
+<li>Added the following 7 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
+<li>Added the following 7 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
 <li>Changed the following issue from Ready to Open: <a href="lwg-active.html#1318">1318</a>.</li>
@@ -10499,10 +10499,10 @@ basic_regex&amp; operator=(basic_regex&amp;&amp; e) <ins>noexcept</ins>;
 
 <hr>
 <h3><a name="2030"></a>2030. <tt>packaged_task::result_type</tt> should be removed</h3>
-<p><b>Section:</b> 30.6.10 [futures.task] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-21</p>
+<p><b>Section:</b> 30.6.10 [futures.task] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 <tt>packaged_task::operator()</tt> always returns <tt>void</tt>, regardless of the return
@@ -10522,6 +10522,12 @@ Finally, it is of little use anyway.
 </p>
 
 <p><tt>packaged_task::result_type</tt> should therefore be removed.</p>
+
+<p><i>[2011-02-24 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p> 
 
 
 <p><b>Proposed resolution:</b></p>
