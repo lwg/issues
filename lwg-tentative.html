@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-24 at 00:02:36 UTC</p>
+<p>Revised 2011-02-24 at 18:02:02 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -1721,6 +1721,130 @@ The suggested wording changes are against the working draft N3225.
 
 </li>
 
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2023"></a>2023. Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></h3>
+<p><b>Section:</b> 30.4.2.1 [thread.lock.guard], 30.4.2.2 [thread.lock.unique] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+There are two different <tt>*Lockable</tt> requirements imposed on template arguments
+of the class template <tt>lock_guard</tt> as of 30.4.2.1 [thread.lock.guard] p. 1+2:
+</p>
+<blockquote><p>
+1 [..] The supplied <tt>Mutex</tt> type shall meet the <tt>BasicLockable</tt> requirements (30.2.5.2).
+</p></blockquote>
+
+<blockquote><p>
+2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).
+</p></blockquote>
+<p>
+The <tt>Lockable</tt> requirements include the availability of a member function <tt>try_lock()</tt>,
+but there is no operational semantics in the specification of <tt>lock_guard</tt> that would rely
+on such a function. It seems to me that paragraph 2 should be removed.
+<p/>
+Similarly, 30.4.2.2 [thread.lock.unique] p. 1+2 refer to exactly the same two requirements.
+In this case it seems as if the intention was that the template arguement <tt>Mutex</tt> should
+always provide the <tt>try_lock()</tt> member function, because several member functions of
+<tt>unique_lock</tt> (<tt>unique_lock(mutex_type&amp; m, try_to_lock_t)</tt> or <tt>bool try_lock()</tt>) 
+take advantage of such a function without adding extra requirements for this.
+It seems that the requirement subset <tt>BasicLockable</tt> should be removed.
+<p/>
+I searched for further possible misusages of the <tt>*Lockable</tt> requirements, but could not
+find any more.
+</p>
+
+<p><i>[2011-02-23]</i></p>
+
+
+<p>Howard suggests an alternative approach in regard to <tt>unique_lock</tt>: The current
+minimum requirements on its template argument should better be reduced to <tt>BasicLockable</tt> 
+instead of the current <tt>Lockable</tt>, including ammending member-wise constraints where required. 
+This suggestions was supported by Anthony, Daniel, and Pablo.
+<p/>
+Daniel drafts wording that follows this separation strategy.
+</p>
+
+<p><i>[2011-02-24 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p> 
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+The suggested wording changes are against the working draft N3225.
+</p>
+
+<ol>
+<li>
+<p>Remove 30.4.2.1 [thread.lock.guard] p. 2 completely:</p>
+
+<blockquote><p>
+<del>2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).</del>
+</p></blockquote>
+
+</li>
+
+<li>
+<p>Change 30.4.2.2 [thread.lock.unique] p. 1-3 as indicated. The intend is to make <tt>BasicLockable</tt>
+the fundamental requirement for <tt>unique_lock</tt>. We also update the note to reflect these changes and
+synchronize one remaining reference of 'mutex' by the proper term 'lockable object' in sync
+to the wording changes of <tt>lock_guard</tt>:</p>
+
+<blockquote><p>
+1 [..] The behavior of a program is undefined if the contained pointer <tt>pm</tt> is not null
+and the <del>mutex</del><ins>lockable object</ins> pointed to by <tt>pm</tt> does not exist for the entire remaining lifetime (3.8) 
+of the <tt>unique_lock</tt> object. The supplied <tt>Mutex</tt> type shall meet the 
+<tt>BasicLockable</tt> requirements (30.2.5.2). <del>[Editor's note:
+BasicLockable is redundant, since the following additional paragraph requires Lockable.]</del>
+</p></blockquote>
+
+<blockquote><p>
+<del>2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).</del>
+</p></blockquote>
+
+<blockquote><p>
+3 [ <i>Note</i>: <tt>unique_lock&lt;Mutex&gt;</tt> meets the <tt><ins>Basic</ins>Lockable</tt> requirements. If 
+<ins><tt>Mutex</tt> meets the <tt>Lockable</tt> requirements ([thread.req.lockable.req]), <tt>unique_lock&lt;Mutex&gt;</tt> 
+also meets the <tt>Lockable</tt> requirements and if</ins> <tt>Mutex</tt> meets the <tt>TimedLockable</tt> 
+requirements (30.2.5.4), <tt>unique_lock&lt;Mutex&gt;</tt> also meets the <tt>TimedLockable</tt> 
+requirements. &mdash; <i>end note</i> ]
+</p></blockquote>
+
+</li>
+
+<li><p>Modify 30.4.2.2.1 [thread.lock.unique.cons] to add the now necessary member-wise
+additional constraints for <tt>Lockable</tt>:</p>
+
+<blockquote><pre>
+unique_lock(mutex_type&amp; m, try_to_lock_t) noexcept;
+</pre><blockquote><p>
+8 <i>Requires</i>: <ins>The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements ([thread.req.lockable.req]).</ins> 
+If <tt>mutex_type</tt> is not a recursive mutex the calling thread does not own the mutex.
+<p/>
+9 <i>Effects</i>: Constructs an object of type <tt>unique_lock</tt> and calls <tt>m.try_lock()</tt>.
+</p></blockquote></blockquote>
+</li>
+
+<li><p>Modify 30.4.2.2.2 [thread.lock.unique.locking] to add the now necessary member-wise
+additional constraints for <tt>Lockable</tt>:</p>
+
+<blockquote><pre>
+bool try_lock();
+</pre><blockquote><p>
+<ins>? <i>Requires</i>: The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements ([thread.req.lockable.req]).</ins> 
+<p/>
+4 <i>Effects</i>: <tt>pm-&gt;try_lock()</tt>
+</p></blockquote></blockquote>
+</li>
 </ol>
 
 
