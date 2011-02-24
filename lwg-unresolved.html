@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-24 at 21:02:37 UTC</p>
+<p>Revised 2011-02-24 at 22:02:34 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5208,7 +5208,7 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 <hr>
 <h3><a name="2026"></a>2026. <tt>hash</tt> should be <tt>std</tt> qualified for unordered container</h3>
 <p><b>Section:</b> 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5248,6 +5248,17 @@ are free to specialize <tt>std::hash</tt> on user-defined types.  With the
 possible exception of <tt>begin</tt>/<tt>end</tt> (which I'm not sure if
 we've settled that), <tt>swap</tt> is the only intended customization point (look up a function by ADL) in the <tt>std::</tt> lib.
 </p>
+
+<p><i>[
+2011-02-24 Chris Jefferson adds:
+]</i></p>
+
+<p>I recommend NAD, due to 17.6.1.1 [contents] p3:</p>
+<blockquote><p>
+Whenever a name <tt>x</tt> defined in the standard library is mentioned, the name <tt>x</tt> is assumed to be fully qualified
+as <tt>::std::x</tt>, unless explicitly described otherwise. For example, if the Effects section for library function <tt>F</tt>
+is described as calling library function <tt>G</tt>, the function <tt>::std::G</tt> is meant.
+</p></blockquote>
 
 
 
