@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-24 at 18:02:02 UTC</p>
+<p>Revised 2011-02-24 at 18:02:12 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -1536,6 +1536,43 @@ lexically identical to keywords<ins>, to the identifiers listed in Table
 X [Identifiers with special meaning], or to the <i>attribute-tokens</i>
 described in clause 7.6 [dcl.attr]</ins>.
 </p></blockquote>
+
+
+
+
+
+
+<hr>
+<h3><a name="2019"></a>2019. <tt>isblank</tt> not supported by <tt>std::locale</tt></h3>
+<p><b>Section:</b> 22.3.3.1 [classification] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>C99 added <tt>isblank</tt> and <tt>iswblank</tt> to <tt>&lt;locale.h&gt;</tt> but <tt>&lt;locale&gt;</tt> does not
+provide any equivalent.</p>
+
+<p><i>[2011-02-24 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 6 votes.
+</p> 
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Add to 22.3.3.1 [classification] synopsis:</p>
+<blockquote><pre>
+template &lt;class charT&gt; bool isgraph (charT c, const locale&amp; loc);
+<ins>template &lt;class charT&gt; bool isblank (charT c, const locale&amp; loc);</ins>
+</pre></blockquote>
+
+<p>Add to 22.4.1 [category.ctype] synopsis:</p>
+
+<blockquote><pre>
+static const mask xdigit = 1 &lt;&lt; 8;
+<ins>static const mask blank = 1 &lt;&lt; 9;</ins>
+static const mask alnum = alpha | digit;
+static const mask graph = alnum | punct;
+</pre></blockquote>
 
 
 
