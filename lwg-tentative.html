@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-24 at 18:02:30 UTC</p>
+<p>Revised 2011-02-24 at 19:02:40 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -791,6 +791,84 @@ was accepted during the Batavia meeting):
 #define ATOMIC_LLONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
 <del>#define ATOMIC_ADDRESS_LOCK_FREE <em>implementation-defined</em></del>
 </pre></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1474"></a>1474. [FCD] weak compare-and-exchange confusion</h3>
+<p><b>Section:</b> 29.6.5 [atomics.types.operations.req] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Duplicate of:</b> <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></p>
+<p><b>Discussion:</b></p>
+
+
+
+<p><b>Addresses US-175, US-165, CH-23, GB-135</b></p>
+<p>
+29.6.5 [atomics.types.operations.req] p. 25: The first sentence is grammatically incorrect.
+</p>
+<p><i>[
+2010-10-28 Daniel adds:
+]</i></p>
+
+<p>
+Duplicate issue <a href="lwg-closed.html#1475">1475</a> also has a proposed resolution, but both issues are resolved with
+below proposed resolution.
+</p>
+
+<p><i>[
+2011-02-15 Howard fixes numbering, Hans improves the wording
+]</i></p>
+
+
+<p><i>[2011-02-24 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 6 votes.
+</p> 
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p>Change 29.6.5 [atomics.types.operations.req] p. 23 as indicated:</p>
+
+<blockquote><p>
+[ <em>Note</em>: <ins>For example, t</ins><del>T</del>he effect of 
+<del>the compare-and-exchange operations</del><ins><tt>atomic_compare_exchange_strong</tt></ins> is
+</p><blockquote><pre>
+if (memcmp(object, expected, sizeof(*object)) == 0)
+  memcpy(object, &amp;desired, sizeof(*object));
+else
+  memcpy(expected, object, sizeof(*object));
+</pre></blockquote>
+<p> &mdash; <em>end note</em> ] [..]</p>
+</blockquote>
+</li>
+
+<li>
+<p>Change 29.6.5 [atomics.types.operations.req] p. 25 as indicated:</p>
+<blockquote><p>
+25 <em>Remark</em>: <del>The weak compare-and-exchange operations may fail spuriously, that is, return false while
+leaving the contents of memory pointed to by <tt>expected</tt> before the operation is the same that same
+as that of the <tt>object</tt> and the same as that of <tt>expected</tt> after the operation</del><ins>A weak 
+compare-and-exchange operation may fail spuriously. That is, even when the contents of memory referred to by 
+<tt>expected</tt> and <tt>object</tt> are equal, it may return false and store back to <tt>expected</tt> the same 
+memory contents that were originally there.</ins>. [ <em>Note</em>: This spurious
+failure enables implementation of compare-and-exchange on a broader class of machines, e.g., loadlocked
+store-conditional machines. A consequence of spurious failure is that nearly all uses of weak
+compare-and-exchange will be in a loop.
+<p/>
+When a compare-and-exchange is in a loop, the weak version will yield better performance on some
+platforms. When a weak compare-and-exchange would require a loop and a strong one would not, the
+strong one is preferable. &mdash; <em>end note</em> ]
+</p>
+</blockquote>
+</li>
+</ol>
 
 
 
