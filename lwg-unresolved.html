@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-25 at 15:02:58 UTC</p>
+<p>Revised 2011-02-25 at 15:02:06 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -2266,7 +2266,7 @@ be specified.
 <hr>
 <h3><a name="1353"></a>1353. [FCD] Clarify the state of a <i>moved-from</i> object</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-16</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2295,48 +2295,14 @@ message c++std-lib-28958, and refined with help from Alisdair, Daniel, and Howar
 ]</i></p>
 
 
+<p><i>[2011-02-25 P/R wording superseded by N3241.
+]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p>
-    <p><i>Add a new definition to 17.3 Definitions [definitions]:</i></p>
-    
-    <blockquote>
-    <p>17.3.24 [defns.valid.unspecified]<br/>
-    <b>valid but unspecified state</b><br/>
-    an object state that is not specified except that the object's invariants are met, and operations 
-    on the object perform as specified, 
-    subject only to the operation's normal preconditions.</p>
-    <p>
-    [<i>Example:</i> If an object <tt>x</tt> of type <tt>std::vector&lt;int&gt;</tt> is in a valid but 
-    unspecified state, <tt>x.empty()</tt> can be called unconditionally, and
-    <tt>x.front()</tt> can be called provided <tt>x.empty()</tt> returns
-    <tt>false</tt>. <i>--end example</i>]</p>
-    </blockquote>
-    
-    <p><i>Change Table 34 - MoveConstructible requirements [moveconstructible] as 
-    indicated:</i></p>
-    <blockquote>
-    <p><del>[ <i>Note:</i> <tt>rv</tt> remains a valid object. Its state is 
-    unspecified&nbsp; <i>--end note</i> ]</del><br/>
-    <ins><i>Postcondition:</i><tt> rv</tt> is in a valid but 
-    unspecified state ([defns.valid.unspecified]).</ins></p>
-    </blockquote>
-    
-    <p><i>Change Table 36 - MoveAssignable requirements [moveassignable] as 
-    indicated:</i></p>
-    <blockquote>
-    <p><del>[ <i>Note:</i> <tt>rv</tt> remains a valid object. Its state is 
-    unspecified&nbsp; <i>--end note</i> ]</del><br/>
-    <ins><i>Postcondition:</i><tt> rv</tt> is in a valid but 
-    unspecified state ([defns.valid.unspecified]).</ins></p>
-    </blockquote>
-    
-    <p><i>No change in the half-dozen or so places in the standard library that 
-    use &quot;valid but unspecified state&quot; directly, and no change in the many places 
-    that require <tt>MoveCostructible</tt> or <tt>MoveAssignable</tt>, 
-    since <tt>MoveCostructible</tt> and <tt>MoveAssignable</tt> will now 
-    normatively require &quot;valid but unspecified state&quot;.</i></p>
-
+<p>Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3241.html">N3241</a></p>
 
 
 
@@ -2425,7 +2391,9 @@ environment, much like <tt>&lt;thread></tt>.
 </li>
 
 <li><p>Remove the last row 30.3 [thread.threads] <tt>&lt;threads&gt;</tt>
-from Table 16 &mdash; C++ headers for freestanding implementations:</p>
+from Table 16 &mdash; C++ headers for freestanding implementations and insert
+a new one instead (To the editor: For the actual target Clause please see the comment
+in bullet 5 of this proposed resolution):</p>
 
 <blockquote>
 <table border="1">
@@ -2443,6 +2411,11 @@ from Table 16 &mdash; C++ headers for freestanding implementations:</p>
 <tr>
 <td><del>30.3 [thread.threads] Threads</del></td>
 <td><del><tt>&lt;thread&gt;</tt></del></td>
+</tr>
+
+<tr>
+<td><ins>?? Library support</ins></td>
+<td><ins><tt>&lt;library_support&gt;</tt></ins></td>
 </tr>
 
 </table>
@@ -2477,7 +2450,7 @@ namespace std {
 the editor's discretion):</p>
 
 <blockquote>
-<p><ins>?? Library Support [library.support]</ins></p>
+<p><ins>?? Library support [library.support]</ins></p>
 <blockquote><p>
 <ins>The header <tt>&lt;library_support&gt;</tt> defines an implementation-defined set 
 of macros to allow a program detect the presence of standard headers in freestanding
@@ -2486,9 +2459,9 @@ standard headers, thus shall provide all macros. &mdash; <i>end note</i>]</ins>
 </p></blockquote>
 <blockquote><p>
 <ins>For each standard header listed in Tables 14 (C++ library headers) and 15 (C++ headers for C library facilities)
-the <tt>&lt;library_support&gt;</tt> header shall define a macro with name <code>_ _HAS_<i>XXX</i>_HEADER_ _</code>
-where <code><i>XXX</i></code> is replaced by the uppercase version of the name of the header. Each such
-macro shall expand to the value <code>_ _cplusplus</code>.
+that is provided by the implementation, <tt>&lt;library_support&gt;</tt> shall define a macro with name 
+<code>_ _HAS_<i>XXX</i>_HEADER_ _</code> where <code><i>XXX</i></code> is replaced by the uppercase version of the 
+name of the header. Each such macro shall expand to the value <code>_ _cplusplus</code>.
 [<i>Example</i>:</ins></p>
 <blockquote><pre>
 <ins>#include &lt;library_support&gt;
@@ -2586,7 +2559,7 @@ Add the following to 18.8.5, [propogation]
 <hr>
 <h3><a name="1374"></a>1374. [FCD] Clarify moved-from objects are &quot;toxic&quot;</h3>
 <p><b>Section:</b> 20.2.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2637,6 +2610,7 @@ undefined behavior.
 
 
 <p><b>Proposed resolution:</b></p>
+<p>Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3241.html">N3241</a></p>
 
 
 
