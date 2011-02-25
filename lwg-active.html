@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-25 at 15:02:06 UTC</p>
+<p>Revised 2011-02-25 at 16:02:44 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -161,7 +161,8 @@ ownership of it.
 <li>1553 issues total, up by 14.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 7 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2026">2026</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
+<li>Added the following 6 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
+<li>Added the following Tentatively NAD issue: <a href="lwg-active.html#2026">2026</a>.</li>
 <li>Added the following 7 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
 <li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
@@ -10344,10 +10345,10 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 
 <hr>
 <h3><a name="2026"></a>2026. <tt>hash</tt> should be <tt>std</tt> qualified for unordered container</h3>
-<p><b>Section:</b> 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-24</p>
+<p><b>Section:</b> 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 Tom Plum pointed out to me that there's an apparent inconsistency in the <tt>std::</tt> qualification of template names in the unordered containers:
@@ -10397,6 +10398,11 @@ as <tt>::std::x</tt>, unless explicitly described otherwise. For example, if the
 is described as calling library function <tt>G</tt>, the function <tt>::std::G</tt> is meant.
 </p></blockquote>
 
+<p><i>[2011-02-25 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively NAD after 5 votes.
+</p> 
 
 
 <p><b>Proposed resolution:</b></p>

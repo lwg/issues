@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-25 at 15:02:06 UTC</p>
+<p>Revised 2011-02-25 at 16:02:44 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5287,71 +5287,6 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 
 </li>
 </ol>
-
-
-
-
-
-<hr>
-<h3><a name="2026"></a>2026. <tt>hash</tt> should be <tt>std</tt> qualified for unordered container</h3>
-<p><b>Section:</b> 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-24</p>
-<p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Tom Plum pointed out to me that there's an apparent inconsistency in the <tt>std::</tt> qualification of template names in the unordered containers:
-</p>
-
-<blockquote><pre>
- template &lt;class Key,
-           class T,
-           class Hash = hash&lt;Key&gt;,
-           class Pred = std::equal_to&lt;Key&gt;,
-           class Alloc = std::allocator&lt;std::pair&lt;const Key, T&gt; &gt; &gt;
-   class unordered_map;
-</pre></blockquote>
-
-<p>
-Is there a reason that hash is not qualified with <tt>std::</tt>? TR1 also
-does not use <tt>std::</tt> here.
-</p>
-
-<p><i>[
-2011-02-07 Chris Jefferson adds:
-]</i></p>
-
-<p>
-I assumed (I might be wrong) it is because <tt>hash</tt> is designed to be a
-customisation point, like <tt>swap</tt>.
-</p>
-
-<p><i>[
-2011-02-07 Howard Hinnant adds:
-]</i></p>
-
-<p>I think this is incorrect.  We mean <tt>std::hash</tt>, though clients
-are free to specialize <tt>std::hash</tt> on user-defined types.  With the
-possible exception of <tt>begin</tt>/<tt>end</tt> (which I'm not sure if
-we've settled that), <tt>swap</tt> is the only intended customization point (look up a function by ADL) in the <tt>std::</tt> lib.
-</p>
-
-<p><i>[
-2011-02-24 Chris Jefferson adds:
-]</i></p>
-
-<p>I recommend NAD, due to 17.6.1.1 [contents] p3:</p>
-<blockquote><p>
-Whenever a name <tt>x</tt> defined in the standard library is mentioned, the name <tt>x</tt> is assumed to be fully qualified
-as <tt>::std::x</tt>, unless explicitly described otherwise. For example, if the Effects section for library function <tt>F</tt>
-is described as calling library function <tt>G</tt>, the function <tt>::std::G</tt> is meant.
-</p></blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-</p>
 
 
 
