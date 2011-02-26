@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-26 at 21:02:31 UTC</p>
+<p>Revised 2011-02-26 at 23:02:15 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5933,7 +5933,7 @@ instead of <tt>MoveInsertable</tt> requirement?
 <hr>
 <h3><a name="2034"></a>2034. Initialization of atomics is misspecified so that it doesn't preserve sequential consistency</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -5965,7 +5965,7 @@ most interested committee members. The P/R represents a well-considered consensu
 <blockquote><p>
 3 There shall be a single total order <i>S</i> on all <tt>memory_order_seq_cst</tt> operations, consistent 
 with the &quot;happens before&quot; order and modification orders for all affected locations, such that each 
-<tt>memory_order_seq_cst</tt> operation<ins>, <i>B</i></ins> that loads a value observes either the last 
+<tt>memory_order_seq_cst</tt> operation that loads a value observes either the last 
 preceding modification according to this order <i>S</i><ins>, A</ins>, or the result of an operation 
 <ins>X</ins> that is not <tt>memory_order_seq_cst</tt>. <ins>Furthermore, if there is a last preceding 
 <tt>memory_order_seq_cst</tt> modification <i>A</i>, then <i>X</i> must not happen before <i>A</i>.</ins>
