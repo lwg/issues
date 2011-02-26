@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-26 at 19:02:38 UTC</p>
+<p>Revised 2011-02-26 at 19:02:35 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5673,66 +5673,6 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 
 </li>
 </ol>
-
-
-
-
-
-<hr>
-<h3><a name="2027"></a>2027. Initialization of the stored task of a <tt>packaged_task</tt></h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-09 <b>Last modified:</b> 2011-02-25</p>
-<p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Related with LWG issue <a href="lwg-active.html#1514">1514</a>.
-</p>
-
-<p>
-The move constructor of <tt>packaged_task</tt> does not specify how the stored task is constructed. 
-The obvious way is to move-construct it using the task stored in the argument. Moreover, the 
-constructor should be provided with a throws clause similar to one used for the other constructors, 
-as the move constructor of the stored task is not required to be nothrow.</p>
-
-<p>
-As for the other constructors, the terms "stores a copy of <tt>f</tt>" do not reflect the intent, which is 
-to allow <tt>f</tt> to be moved when possible.
-</p>
-
-<p><i>[2011-02-25: Alberto updates wording]</i></p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>(wording written assuming LWG <a href="lwg-active.html#1514">1514</a> is also accepted)</p>
-
-<ol>
-<li>
-<p>Change 30.6.10.1 [futures.task.members] paragraph 3:</p>
-
-<blockquote><p>
-3 <em>Effects</em>: constructs a new <tt>packaged_task</tt> object with an associated asynchronous state and <del>stores a
-copy of <tt>f</tt> as the object's stored task</del><ins>initializes the object's stored task with <tt>std::forward&lt;F&gt;(f)</tt></ins>. 
-The constructors that take an <tt>Allocator</tt> argument use it to allocate memory needed to store the internal data structures.
-</p></blockquote>
-
-</li>
-
-<li>
-<p>Change 30.6.10.1 [futures.task.members] paragraph 5:</p>
-
-<blockquote><p>
-5 <em>Effects</em>: constructs a new <tt>packaged_task</tt> object and transfers ownership of <tt>other</tt>'s associated asynchronous
-state to <tt>*this</tt>, leaving <tt>other</tt> with no associated asynchronous state. <ins>Moves the stored task from <tt>other</tt> 
-to <tt>*this</tt>.</ins>
-</p></blockquote>
-
-</li>
-
-</ol>
-
 
 
 
