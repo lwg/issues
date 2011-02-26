@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-26 at 19:02:35 UTC</p>
+<p>Revised 2011-02-26 at 20:02:39 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -949,9 +949,10 @@ and allocator, and using at least <tt>n</tt> buckets. If <tt>n</tt> is not provi
 Then inserts elements from the range <tt>[f, l)</tt>. <tt>max_load_factor()</tt> returns <tt>1.0</tt>.
 </p></blockquote>
 <blockquote><p>
-4 <i>Complexity</i>: <del>Average case linear, worst case quadratic</del><ins>Let <tt><i>N</i></tt> be equal to 
-<tt>distance(f, l)</tt>. Average case linear in <tt><i>N</i></tt>, worst case quadratic in <tt><i>N</i></tt> to 
-insert the elements. If <tt>n</tt> is provided, linear in <tt>n</tt> to construct the buckets.</ins>.
+4 <i>Complexity</i>: <del>Average case linear, worst case quadratic</del><ins>Constant if <tt>n</tt> is not 
+provided, else linear in <tt>n</tt> to construct the buckets. In the average case linear in <tt><i>N</i></tt> 
+and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, where <tt><i>N</i></tt> is equal to 
+<tt>distance(f, l)</tt></ins>.
 </p></blockquote>
 </blockquote>
 </li>
@@ -989,8 +990,10 @@ and allocator, and using at least <tt>n</tt> buckets. If <tt>n</tt> is not provi
 Then inserts elements from the range <tt>[f, l)</tt>. <tt>max_load_factor()</tt> returns <tt>1.0</tt>.
 </p></blockquote>
 <blockquote><p>
-4 <i>Complexity</i>: Average case linear <ins>in <tt>max(n, <i>N</i>)</tt></ins>, worst case quadratic <ins>in <tt><i>N</i></tt>, 
-where <tt><i>N</i></tt> has the value <tt>distance(f, l)</tt></ins>.
+4 <i>Complexity</i>: <del>Average case linear, worst case quadratic</del><ins>Constant if <tt>n</tt> is not 
+provided, else linear in <tt>n</tt> to construct the buckets. In the average case linear in <tt><i>N</i></tt> 
+and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, where <tt><i>N</i></tt> is equal to 
+<tt>distance(f, l)</tt></ins>.
 </p></blockquote>
 </blockquote>
 </li>
@@ -1028,8 +1031,10 @@ and allocator, and using at least <tt>n</tt> buckets. If <tt>n</tt> is not provi
 Then inserts elements from the range <tt>[f, l)</tt>. <tt>max_load_factor()</tt> returns <tt>1.0</tt>.
 </p></blockquote>
 <blockquote><p>
-4 <i>Complexity</i>: Average case linear <ins>in <tt>max(n, <i>N</i>)</tt></ins>, worst case quadratic <ins>in <tt><i>N</i></tt>, 
-where <tt><i>N</i></tt> has the value <tt>distance(f, l)</tt></ins>.
+4 <i>Complexity</i>: <del>Average case linear, worst case quadratic</del><ins>Constant if <tt>n</tt> is not 
+provided, else linear in <tt>n</tt> to construct the buckets. In the average case linear in <tt><i>N</i></tt> 
+and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, where <tt><i>N</i></tt> is equal to 
+<tt>distance(f, l)</tt></ins>.
 </p></blockquote>
 </blockquote>
 </li>
@@ -1067,8 +1072,10 @@ and allocator, and using at least <tt>n</tt> buckets. If <tt>n</tt> is not provi
 Then inserts elements from the range <tt>[f, l)</tt>. <tt>max_load_factor()</tt> returns <tt>1.0</tt>.
 </p></blockquote>
 <blockquote><p>
-4 <i>Complexity</i>: Average case linear <ins>in <tt>max(n, <i>N</i>)</tt></ins>, worst case quadratic <ins>in <tt><i>N</i></tt>, 
-where <tt><i>N</i></tt> has the value <tt>distance(f, l)</tt></ins>.
+4 <i>Complexity</i>: <del>Average case linear, worst case quadratic</del><ins>Constant if <tt>n</tt> is not 
+provided, else linear in <tt>n</tt> to construct the buckets. In the average case linear in <tt><i>N</i></tt> 
+and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, where <tt><i>N</i></tt> is equal to 
+<tt>distance(f, l)</tt></ins>.
 </p></blockquote>
 </blockquote>
 </li>
