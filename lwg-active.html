@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-26 at 20:02:39 UTC</p>
+<p>Revised 2011-02-26 at 21:02:31 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,12 +156,12 @@ ownership of it.
 <ul>
 <li>D74: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>94 open issues, up by 14.</li>
+<li>95 open issues, up by 15.</li>
 <li>1460 closed issues, up by 1.</li>
-<li>1554 issues total, up by 15.</li>
+<li>1555 issues total, up by 16.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 5 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
+<li>Added the following 6 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>, <a href="lwg-active.html#2034">2034</a>.</li>
 <li>Added the following Tentatively NAD issue: <a href="lwg-active.html#2026">2026</a>.</li>
 <li>Added the following 8 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>.</li>
 <li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
@@ -6540,6 +6540,7 @@ was accepted during the Batavia meeting):
 <h3><a name="1459"></a>1459. [FCD] Overlapping evaluations are allowed</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+<p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1458">1458</a></p>
@@ -11403,6 +11404,54 @@ instead of <tt>MoveInsertable</tt> requirement?
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2034"></a>2034. Initialization of atomics is misspecified so that it doesn't preserve sequential consistency</h3>
+<p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-26</p>
+<p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+This violates the core intent of the memory model, as stated in the note in 1.10 [intro.multithread] p. 21.
+</p>
+
+<p>
+This was discovered by Mark Batty, and pointed out in their POPL 2011 paper, "Mathematizing C++ Concurrency",
+section 4, "Sequential consistency of SC atomics".  The problem is quite technical, but well-explained in that paper.
+</p>
+
+<p>
+This particular issue was not understood at the time the FCD comments were generated. But it is closely related 
+to a number of FCD comments. It should have arisen from 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3224.html#US171">US-171</a>, though that's not 
+the actual history.
+</p>
+
+<p>This issue has been under discussion for several months in a group that included a half dozen or so of the 
+most interested committee members. The P/R represents a well-considered consensus among us:</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify 29.3 [atomics.order] p.3, so that the normative part reads:</p>
+
+<blockquote><p>
+3 There shall be a single total order <i>S</i> on all <tt>memory_order_seq_cst</tt> operations, consistent 
+with the &quot;happens before&quot; order and modification orders for all affected locations, such that each 
+<tt>memory_order_seq_cst</tt> operation<ins>, <i>B</i></ins> that loads a value observes either the last 
+preceding modification according to this order <i>S</i><ins>, A</ins>, or the result of an operation 
+<ins>X</ins> that is not <tt>memory_order_seq_cst</tt>. <ins>Furthermore, if there is a last preceding 
+<tt>memory_order_seq_cst</tt> modification <i>A</i>, then <i>X</i> must not happen before <i>A</i>.</ins>
+[ <i>Note</i>: Although it is not explicitly required that <i>S</i> include locks, it can always be extended 
+to an order that does include lock and unlock operations, since the ordering between those is already included 
+in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
+</p></blockquote>
 
 
 

@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-26 at 20:02:39 UTC</p>
+<p>Revised 2011-02-26 at 21:02:31 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3168,6 +3168,7 @@ difference_type position(size_type sub = 0) const;
 <h3><a name="1459"></a>1459. [FCD] Overlapping evaluations are allowed</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+<p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1458">1458</a></p>
@@ -5924,6 +5925,54 @@ instead of <tt>MoveInsertable</tt> requirement?
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2034"></a>2034. Initialization of atomics is misspecified so that it doesn't preserve sequential consistency</h3>
+<p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-26</p>
+<p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+This violates the core intent of the memory model, as stated in the note in 1.10 [intro.multithread] p. 21.
+</p>
+
+<p>
+This was discovered by Mark Batty, and pointed out in their POPL 2011 paper, "Mathematizing C++ Concurrency",
+section 4, "Sequential consistency of SC atomics".  The problem is quite technical, but well-explained in that paper.
+</p>
+
+<p>
+This particular issue was not understood at the time the FCD comments were generated. But it is closely related 
+to a number of FCD comments. It should have arisen from 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3224.html#US171">US-171</a>, though that's not 
+the actual history.
+</p>
+
+<p>This issue has been under discussion for several months in a group that included a half dozen or so of the 
+most interested committee members. The P/R represents a well-considered consensus among us:</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify 29.3 [atomics.order] p.3, so that the normative part reads:</p>
+
+<blockquote><p>
+3 There shall be a single total order <i>S</i> on all <tt>memory_order_seq_cst</tt> operations, consistent 
+with the &quot;happens before&quot; order and modification orders for all affected locations, such that each 
+<tt>memory_order_seq_cst</tt> operation<ins>, <i>B</i></ins> that loads a value observes either the last 
+preceding modification according to this order <i>S</i><ins>, A</ins>, or the result of an operation 
+<ins>X</ins> that is not <tt>memory_order_seq_cst</tt>. <ins>Furthermore, if there is a last preceding 
+<tt>memory_order_seq_cst</tt> modification <i>A</i>, then <i>X</i> must not happen before <i>A</i>.</ins>
+[ <i>Note</i>: Although it is not explicitly required that <i>S</i> include locks, it can always be extended 
+to an order that does include lock and unlock operations, since the ordering between those is already included 
+in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
+</p></blockquote>
 
 
 
