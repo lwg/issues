@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D74)</h1>
-<p>Revised 2011-02-26 at 10:02:59 UTC</p>
+<p>Revised 2011-02-26 at 11:02:19 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,9 +156,9 @@ ownership of it.
 <ul>
 <li>D74: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>93 open issues, up by 13.</li>
+<li>94 open issues, up by 14.</li>
 <li>1460 closed issues, up by 1.</li>
-<li>1553 issues total, up by 14.</li>
+<li>1554 issues total, up by 15.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following 6 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>.</li>
@@ -3173,7 +3173,7 @@ template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp
 <hr>
 <h3><a name="1318"></a>1318. N2982 removes previous allocator capabilities</h3>
 <p><b>Section:</b> 20.9.4.1 [allocator.traits.types] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-02-26</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1375">1375</a></p>
 <p><b>Discussion:</b></p>
@@ -3475,6 +3475,7 @@ Default
 <td><ins><tt>const T&amp;</tt></ins></td>
 </tr>
 
+<tr>
 <td><tt>X::value_type</tt></td>
 
 <td>Identical to <tt>T</tt></td>
@@ -3482,6 +3483,7 @@ Default
 <td>&nbsp;</td>
 
 <td>&nbsp;</td>
+</tr>
 </table>
 </blockquote>
 
@@ -6922,7 +6924,7 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -7019,7 +7021,8 @@ This requirement set is <strong>intentionally</strong> incomplete. The reason fo
 this incompleteness is the based on the fact, that if we would make it right for C++0x, we would end up defining
 something like a complete <tt>ArithmeticLike</tt> concept for <tt>TC::rep</tt>, <tt>TC::duration</tt>, and <tt>TC::time_point</tt>. 
 But this looks out-of scope for C++0x to me. The effect is that we essentially do not exactly say, which arithmetic 
-or comparison operations can be used in the time-dependent functions from Clause 30. &mdash; <i>end comment</i>]</p>
+or comparison operations can be used in the time-dependent functions from Clause 30, even though I expect that
+all declared functions of <tt>duration</tt> and <tt>time_point</tt> are well-formed and well-defined. &mdash; <i>end comment</i>]</p>
 <blockquote><p>
 3 [ <i>Note</i>: the relative difference in durations between those reported by a given clock and the SI definition is
 a measure of the quality of implementation. &mdash; <i>end note</i> ]
@@ -7027,6 +7030,7 @@ a measure of the quality of implementation. &mdash; <i>end note</i> ]
 
 <blockquote><p>
 <ins>? A type <tt>TC</tt> meets the <tt><i>TrivialClock</i></tt> requirements if:</ins>
+</p>
 <ul>
 <li><p>
 <ins><tt>TC</tt> satisfies the <tt>Clock</tt> requirements (20.11.1 [time.clock.req]),</ins>
@@ -7047,10 +7051,10 @@ particular, that operations of these types will not throw exceptions &mdash; <i>
 <ins>the function <tt>TC::now()</tt> does not throw exceptions, and</ins>
 </p></li>
 <li><p>
-<ins>the type <tt>TC::time_point::clock</tt> does meet the <tt>TrivialClock</tt> requirement, recursively.</ins>
+<ins>the type <tt>TC::time_point::clock</tt> does meet the <tt>TrivialClock</tt> requirements, recursively.</ins>
 </p></li>
 </ul>
-</p></blockquote>
+</blockquote>
 </li>
 
 <li>
@@ -8243,6 +8247,42 @@ item type or members.</ins>
 It probably should, though that's not completely clear.
 In particular, atomics may want to throw in implementations that support transactional memory.
 </p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+</p>
+
+
+
+
+
+<hr>
+<h3><a name="1524"></a>1524. [FCD] Allocations functions are missing <i>happens-before</i> requirements and guarantees</h3>
+<p><b>Section:</b> 5.3.4 [expr.new], 5.3.5 [expr.delete] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-26</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-34</b></p>
+
+<p>Technical details:
+<p/>
+When the same unit of storage is allocated and deallocated repeatedly, operations on it can't be allowed to
+race between the allocator and the user program. But I don't see any mention of <i>happens-before</i> in the
+descriptions of allocation and deallocation functions.
+<p/>
+Proposed resolution (not wording yet):
+</p>
+<ul>
+<li><p>The call to an allocation function returning a pointer <tt>P</tt> must happen-before the matching
+deallocation call with <tt>P</tt> as a parameter. Otherwise the behavior is undefined. I don't know whether
+receiving <tt>P</tt> with <tt>memory_order_consume</tt> fits this requirement. <tt>memory_order_relaxed</tt> does not.</p>
+</li>
+<li><p>If some memory is passed to a deallocation function, the implementation must ensure that the
+deallocation call happens-before any allocation call that returns the same memory address.</p>
+</li>
+</ul>
+
 
 
 <p><b>Proposed resolution:</b></p>
