@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-26 at 11:02:36 UTC</p>
+<p>Revised 2011-02-26 at 15:02:08 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -921,6 +921,46 @@ established only between a thread and a signal handler executed in the same thre
 </p></blockquote></blockquote>
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="1480"></a>1480. [FCD] Atomic fences don't have <em>synchronizes with</em> relation</h3>
+<p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+<p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-137</b></p>
+<p>
+Thread fence not only establish synchronizes with relationships,
+there are semantics of fences that are expressed not in
+terms of <em>synchronizes with</em> relationships (for example see 29.3 [atomics.order] p.5).
+These semantics also need to apply to the use of
+<tt>atomic_signal_fence</tt> in a restricted way.
+</p>
+<p><i>[Batavia: Concurrency group discussed issue, and is OK with the proposed resolution.]</i></p>
+
+
+<p><i>[2011-02-26 Reflector discussion]</i></p>
+
+<p>
+Moved to Tentatively Ready after 5 votes.
+</p> 
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Change 29.8 [atomics.fences] p. 6 as indicated:</p>
+<blockquote><pre>
+void atomic_signal_fence(memory_order);  
+</pre><blockquote><p>
+6 <em>Effects</em>: equivalent to <tt>atomic_thread_fence(order)</tt>, except that <del>synchronizes 
+with relationships</del><ins>the resulting ordering constraints</ins> are established only between a 
+thread and a signal handler executed in the same thread.
+</p></blockquote></blockquote>
 
 
 
