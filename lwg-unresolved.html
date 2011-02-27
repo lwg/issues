@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-26 at 23:02:31 UTC</p>
+<p>Revised 2011-02-27 at 12:02:41 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -771,7 +771,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -905,10 +905,7 @@ worst case <ins>&#x1d4aa;(<tt>n</tt>) +</ins> &#x1d4aa;(<tt><i>N</i><sup>2</sup>
 </tr>
 
 <tr>
-<tr>
 <td colspan="4" style="text-align:center;">&hellip;</td>
-</tr>
-
 </tr>
 
 </table>
@@ -3469,7 +3466,7 @@ operation, constitutes a data race.</del>
 <hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-27</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3865,7 +3862,11 @@ by the call to <tt>m.try_lock_for(rel_time)</tt>.
 </li>
 
 <li><p>Modify the time-related <i>Throws</i> elements in 30.5.1 [thread.condition.condvar], p. 19, p. 25, p. 36 and add some
-new <i>Throws</i> elements as indicated. The latter are needed to honor possible exceptions from predicates:</p>
+new <i>Throws</i> elements as indicated. The latter are needed to honor possible exceptions from predicates [As an editorial
+recommendation it is suggested if issue 1497 is accepted to insert the new <i>Throws</i> element following [thread.condition.condvar] 
+p. 14 <strong>in front of</strong> the added "<tt>std::system_error</tt> when an exception is required (30.2.2)" of 1497 and insert
+the word "Otherwise, " between these sentences. The same recommendation is given for the similar <i>Throws</i> element addition
+following [thread.condition.condvar] p. 29]:</p>
 
 <p>
 [...]
@@ -5973,6 +5974,92 @@ preceding modification according to this order <i>S</i><ins>, A</ins>, or the re
 to an order that does include lock and unlock operations, since the ordering between those is already included 
 in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
 </p></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
+<p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-02-27</p>
+<p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>During the Pittsburgh meeting the proposal <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3066.html">N3066</a>
+became accepted because it fixed several severe issues related to the iterator specification. But the current working draft (N3225)
+does not reflect all these changes. Since I'm unaware whether every correction can be done editorial, this issue is submitted to take
+care of that. To give one example: All expressions of Table 108 &mdash; &quot;Output iterator requirements&quot; have a post-condition
+that the iterator is incrementable. This is impossible, because it would exclude any finite sequence that is accessed by an output 
+iterator, such as a pointer to a C array. The N3066 wording changes did not have these effects.
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify the column contents of Table 108 &mdash; &quot;Output iterator requirements&quot;, 24.2.4 [output.iterators], as indicated:</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 108 &mdash; Output iterator requirements (in addition to Iterator)</caption>
+
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational semantics</th>
+<th>Assertion&frasl;note<br/>pre-&frasl;post-condition</th>
+</tr>
+
+<tr>
+<td><tt>*r = o</tt></td>
+<td>result is not used</td>
+<td><tt>&nbsp;</tt></td>
+<td><i>Remark</i>: After this operation<br/>
+<tt>r</tt> is not required to be<br/>
+dereferenceable.<br/>
+post: <tt>r</tt> is incrementable.
+</td>
+</tr>
+
+<tr>
+<td><tt>++r</tt></td>
+<td><tt>X&amp;</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td><tt>&amp;r == &amp;++r</tt>.<br/>
+<i>Remark</i>: After this operation<br/>
+<tt>r</tt> is not required to be<br/>
+dereferenceable <ins>or incrementable</ins>.<br/>
+<del>post: <tt>r</tt> is incrementable.</del>
+</td>
+</tr>
+
+<tr>
+<td><tt>r++</tt></td>
+<td>convertible to <tt>const X&amp;</tt></td>
+<td><tt>{ X tmp = r;<br/>
+  ++r;<br/>
+  return tmp; }</tt>
+</td>
+<td><i>Remark</i>: After this operation<br/>
+<tt>r</tt> is not required to be<br/>
+dereferenceable <ins>or incrementable</ins>.<br/>
+<del>post: <tt>r</tt> is incrementable.</del>
+</td>
+</tr>
+
+<tr>
+<td><tt>*r++ = o</tt></td>
+<td>result is not used</td>
+<td><tt>&nbsp;</tt></td>
+<td><i>Remark</i>: After this operation<br/>
+<tt>r</tt> is not required to be<br/>
+dereferenceable <ins>or incrementable</ins>.<br/>
+<del>post: <tt>r</tt> is incrementable.</del>
+</td>
+</tr>
+</table>
+</blockquote>
+
 
 
 
