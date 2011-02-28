@@ -19,12 +19,12 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-27 at 12:02:41 UTC</p>
+<p>Revised 2011-02-28 at 12:02:47 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
 <p><b>Section:</b> 30.5.2 [thread.condition.condvarany] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvarany">issues</a> in [thread.condition.condvarany].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -101,7 +101,7 @@ single paper.
 <hr>
 <h3><a name="966"></a>966. Various threading bugs #16</h3>
 <p><b>Section:</b> 30.5.1 [thread.condition.condvar] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvar">issues</a> in [thread.condition.condvar].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -323,7 +323,7 @@ precondition is not met.
 <hr>
 <h3><a name="985"></a>985. Allowing throwing move</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -471,7 +471,7 @@ Should wait to get direction from Dave/Rani
 
 <blockquote>
 <p>
-The suggested change of 23.3.2.3 [deque.modifiers]/2 should be removed,
+The suggested change of 23.3.3.4 [deque.modifiers]/2 should be removed,
 because the current wording does say more general things:
 </p>
 
@@ -483,7 +483,7 @@ non-CopyConstructible <tt>T</tt>, the effects are unspecified.
 </p></blockquote>
 
 <p>
-The suggested change of 23.4.1.2 [vector.capacity]/2 should be removed,
+The suggested change of 23.3.6.3 [vector.capacity]/2 should be removed,
 because the current wording does say more general things:
 </p>
 
@@ -548,7 +548,7 @@ object move constructor</ins>.</p>
 </blockquote>
 
 <p>
-23.3.2.3 [deque.modifiers] change paragraph 2 to say:
+23.3.3.4 [deque.modifiers] change paragraph 2 to say:
 </p>
 
 <blockquote><p>
@@ -562,7 +562,7 @@ the move constructor of <tt>T</tt>.</ins>
 </p></blockquote>
 
 <p>
-23.4.1.2 [vector.capacity] paragraph 2 change to say:
+23.3.6.3 [vector.capacity] paragraph 2 change to say:
 </p>
 
 <blockquote><p>
@@ -579,7 +579,7 @@ unless the exception is thrown by the contained object move constructor</ins>.
 </p></blockquote>
 
 <p>
-23.4.1.2 [vector.capacity] paragraph 12 change to say:
+23.3.6.3 [vector.capacity] paragraph 12 change to say:
 </p>
 
 <blockquote><p>
@@ -590,7 +590,7 @@ the contained object move constructor.</ins>
 </p></blockquote>
 
 <p>
-23.4.1.4 [vector.modifiers] change paragraph 1 to say:
+23.3.6.5 [vector.modifiers] change paragraph 1 to say:
 </p>
 
 <blockquote><p>
@@ -609,7 +609,7 @@ exception is thrown by the move constructor of <tt>T</tt>.</ins>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
 <p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -771,7 +771,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-27</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -913,7 +913,7 @@ worst case <ins>&#x1d4aa;(<tt>n</tt>) +</ins> &#x1d4aa;(<tt><i>N</i><sup>2</sup>
 
 </li>
 
-<li><p>Modify 23.7.1.1 [unord.map.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
+<li><p>Modify 23.5.4.2 [unord.map.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
 editorial oversight.):</p>
 
 <blockquote><pre>
@@ -954,7 +954,7 @@ and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, whe
 </blockquote>
 </li>
 
-<li><p>Modify 23.7.2.1 [unord.multimap.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
+<li><p>Modify 23.5.5.2 [unord.multimap.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
 editorial oversight.):</p>
 
 <blockquote><pre>
@@ -995,7 +995,7 @@ and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, whe
 </blockquote>
 </li>
 
-<li><p>Modify 23.7.3.1 [unord.set.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
+<li><p>Modify 23.5.6.2 [unord.set.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
 editorial oversight.):</p>
 
 <blockquote><pre>
@@ -1036,7 +1036,7 @@ and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, whe
 </blockquote>
 </li>
 
-<li><p>Modify 23.7.4.1 [unord.multiset.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
+<li><p>Modify 23.5.7.2 [unord.multiset.cnstr] p. 1-4 as indicated (The edits of p. 1 and p. 3 attempt to fix some
 editorial oversight.):</p>
 
 <blockquote><pre>
@@ -1086,7 +1086,7 @@ and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, whe
 <hr>
 <h3><a name="1213"></a>1213. Meaning of valid and singular iterator underspecified</h3>
 <p><b>Section:</b> 24.2 [iterator.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-19 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-19 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#iterator.requirements">issues</a> in [iterator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1150,7 +1150,7 @@ iterator: Of-course it must still be equality-comparable and in general be a rea
 
 <p>
 Second, the standard doesn't clearly say whether a past-the-end value is
-a valid iterator or not. E.g. 20.9.8 [specialized.algorithms]/1 says:
+a valid iterator or not. E.g. 20.6.12 [specialized.algorithms]/1 says:
 </p>
 
 <blockquote><p>
@@ -1235,7 +1235,7 @@ Consider to await the paper.
 <hr>
 <h3><a name="1214"></a>1214. Insufficient/inconsistent key immutability requirements for  associative containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
@@ -1444,7 +1444,7 @@ always using <tt>const_iterator</tt> in their function parameter lists. &mdash;
 <hr>
 <h3><a name="1252"></a>1252. <tt>wbuffer_convert::state_type</tt> inconsistency</h3>
 <p><b>Section:</b> 22.3.3.2.3 [conversions.buffer] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Bo Persson  <b>Opened:</b> 2009-10-21 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Bo Persson  <b>Opened:</b> 2009-10-21 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1497,8 +1497,8 @@ Howard to draft wording, move to Review. Run it by Bill. Need to move this in Ma
 
 <hr>
 <h3><a name="1297"></a>1297. <tt>unique_ptr</tt>'s relational operator functions should induce a total order</h3>
-<p><b>Section:</b> 20.9.9.4 [unique.ptr.special] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-23 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.7.1.4 [unique.ptr.special] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-23 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1514,7 +1514,7 @@ The currently suggested resolution for <tt>shared_ptr</tt> comparison as of
 the <em>composite pointer type</em> (5.9 [expr.rel]). This is not
 exactly possible for <tt>unique_ptr</tt> in the presence of user-defined
 pointer-like types but the existing definition of <tt>std::duration</tt>
-comparison as of 20.11.3.6 [time.duration.comparisons] via
+comparison as of 20.11.5.6 [time.duration.comparisons] via
 <tt>common_type</tt> of both argument types demonstrates a solution of this
 problem. The approach can be seen as the general way to define a <em>composite
 pointer type</em> and this is the approach which is used for here suggested
@@ -1544,7 +1544,7 @@ weak ordering on the pointer values.
 <p><b>Proposed resolution:</b></p>
 
 <p>
-Change 20.9.9.4 [unique.ptr.special]/4-7 as indicated: <i>[The implicit
+Change 20.7.1.4 [unique.ptr.special]/4-7 as indicated: <i>[The implicit
 requirements and remarks imposed on the last three operators are the same as for
 the first one due to the normative "equivalent to" usage within a Requires
 element, see 17.5.1.4 [structure.specifications]/4. The effects of this
@@ -1616,8 +1616,8 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 
 <hr>
 <h3><a name="1318"></a>1318. N2982 removes previous allocator capabilities</h3>
-<p><b>Section:</b> 20.9.4.1 [allocator.traits.types] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-02-26</p>
+<p><b>Section:</b> 20.6.8.1 [allocator.traits.types] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1375">1375</a></p>
 <p><b>Discussion:</b></p>
@@ -2038,7 +2038,7 @@ Default
 <li>
 <p>
 Add the following typedef declarations to allocator_traits 
-20.9.4 [allocator.traits]:
+20.6.8 [allocator.traits]:
 </p>
 
 <blockquote><pre>
@@ -2061,7 +2061,7 @@ template &lt;class Alloc&gt; struct allocator_traits {
 
 <li>
 <p>
-Add the following descriptions to 20.9.4.1 [allocator.traits.types] after p. 4:
+Add the following descriptions to 20.6.8.1 [allocator.traits.types] after p. 4:
 </p>
 
 <blockquote>
@@ -2087,7 +2087,7 @@ Add the following descriptions to 20.9.4.1 [allocator.traits.types] after p. 4:
 
 <li>
 <p>
-Add the following descriptions at the beginning of 20.9.4.2 [allocator.traits.members]:
+Add the following descriptions at the beginning of 20.6.8.2 [allocator.traits.members]:
 </p>
 
 <blockquote>
@@ -2113,7 +2113,7 @@ Add the following descriptions at the beginning of 20.9.4.2 [allocator.traits.me
 <li>
 <p>
 Add the following typdef and member function declarations to scoped_allocator_adaptor 
-20.10 [allocator.adaptor]:
+20.12 [allocator.adaptor]:
 </p>
 
 <blockquote><pre>
@@ -2131,7 +2131,7 @@ class scoped_allocator_adaptor : public OuterAlloc {
 </pre></blockquote>
 </li>
 
-<li><p>Add the following prototype descriptions to 20.10.3 [allocator.adaptor.members]:</p>
+<li><p>Add the following prototype descriptions to 20.12.4 [allocator.adaptor.members]:</p>
 
 <blockquote>
 <pre>const outer_allocator_type&amp; outer_allocator() const noexcept;</pre>
@@ -2172,14 +2172,14 @@ for each of the following class templates:
 
 <blockquote><p>
 <tt>basic_string</tt> 21.4 [basic.string]<br/>
-<tt>deque</tt> 23.3.2 [deque]<br/>
-<tt>forward_list</tt> 23.3.3 [forwardlist]<br/>
-<tt>list</tt> 23.3.4 [list]<br/>
-<tt>vector</tt> 23.4.1 [vector]<br/>
-<tt>map</tt> 23.6.1 [map]<br/>
-<tt>multimap</tt> 23.6.2 [multimap]<br/>
-<tt>set</tt> 23.6.3 [set]<br/>
-<tt>multiset</tt> 23.6.4 [multiset]<br/>
+<tt>deque</tt> 23.3.3 [deque]<br/>
+<tt>forward_list</tt> 23.3.4 [forwardlist]<br/>
+<tt>list</tt> 23.3.5 [list]<br/>
+<tt>vector</tt> 23.3.6 [vector]<br/>
+<tt>map</tt> 23.4.4 [map]<br/>
+<tt>multimap</tt> 23.4.5 [multimap]<br/>
+<tt>set</tt> 23.4.6 [set]<br/>
+<tt>multiset</tt> 23.4.7 [multiset]<br/>
 </p></blockquote>
 </li>
 
@@ -2207,10 +2207,10 @@ for each of the following class templates:
 </p>
 
 <blockquote><p>
-<tt>unordered_map</tt> 23.7.1 [unord.map]<br/>
-<tt>unordered_multimap</tt> 23.7.2 [unord.multimap]<br/>
-<tt>unordered_set</tt> 23.7.3 [unord.set]<br/>
-<tt>unordered_multiset</tt> 23.7.4 [unord.multiset]<br/>
+<tt>unordered_map</tt> 23.5.4 [unord.map]<br/>
+<tt>unordered_multimap</tt> 23.5.5 [unord.multimap]<br/>
+<tt>unordered_set</tt> 23.5.6 [unord.set]<br/>
+<tt>unordered_multiset</tt> 23.5.7 [unord.multiset]<br/>
 </p></blockquote>
 </li>
 
@@ -2241,7 +2241,7 @@ public:
 <hr>
 <h3><a name="1330"></a>1330. Move container requirements into requirements tables</h3>
 <p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-11-16</p>
+ <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-11-15</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2377,7 +2377,7 @@ be done in time for 0x.  The issue remains open, but Deferred.
 <hr>
 <h3><a name="1345"></a>1345. [FCD] Library classes should have <tt>noexcept</tt> move operations</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2514,7 +2514,7 @@ be specified.
 <hr>
 <h3><a name="1353"></a>1353. [FCD] Clarify the state of a <i>moved-from</i> object</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2560,7 +2560,7 @@ message c++std-lib-28958, and refined with help from Alisdair, Daniel, and Howar
 <h3><a name="1358"></a>1358. [FCD] Add <tt>&lt;chrono></tt> and <tt>&lt;ratio></tt> to
 freestanding implementations</h3>
 <p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#compliance">issues</a> in [compliance].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2739,7 +2739,7 @@ and ending with <code>_HEADER_ _</code>.</ins>
 <hr>
 <h3><a name="1364"></a>1364. [FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2770,7 +2770,7 @@ same exception introduce a race.
 <hr>
 <h3><a name="1369"></a>1369. [FCD] <tt>rethrow_exception</tt> may introduce data races</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2806,8 +2806,8 @@ Add the following to 18.8.5, [propogation]
 
 <hr>
 <h3><a name="1374"></a>1374. [FCD] Clarify moved-from objects are &quot;toxic&quot;</h3>
-<p><b>Section:</b> 20.2.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
+<p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2867,7 +2867,7 @@ undefined behavior.
 <hr>
 <h3><a name="1396"></a>1396. [FCD] <tt>regex</tt> should support allocators</h3>
 <p><b>Section:</b> 28.8 [re.regex] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#re.regex">active issues</a> in [re.regex].</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.regex">issues</a> in [re.regex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2911,8 +2911,8 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">
 
 <hr>
 <h3><a name="1421"></a>1421. [FCD] Accidental move-only library types due to new core language rules</h3>
-<p><b>Section:</b> 23.5 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 23.6 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1350">1350</a></p>
@@ -2960,14 +2960,14 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3112.pdf">
 
 <hr>
 <h3><a name="1448"></a>1448. [FCD] Concerns about <tt>basic_stringbuf::str(basic_string)</tt> postconditions</h3>
-<p><b>Section:</b> 27.8.1.3 [stringbuf.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 27.8.2.3 [stringbuf.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-124</b></p>
 
 <p>
-N3092 27.8.1.3 [stringbuf.members] contains this text specifying the postconditions of
+N3092 27.8.2.3 [stringbuf.members] contains this text specifying the postconditions of
 <tt>basic_stringbuf::str(basic_string)</tt>:
 </p>
 <blockquote><p>
@@ -3037,7 +3037,7 @@ matter, but it looks a bit inconsistent.
 <hr>
 <h3><a name="1450"></a>1450. [FCD] Contradiction in regex_constants</h3>
 <p><b>Section:</b> 28.5.2 [re.matchflag] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-127</b></p>
@@ -3060,7 +3060,7 @@ One of the bitmask elements should be removed
 from the declaration and should be defined
 separately, in the same manner as
 <tt>ios_base::adjustfield</tt>, <tt>ios_base::basefield</tt> and
-<tt>ios_base::floatfield</tt> are defined by 27.5.2.1.2 [ios::fmtflags] p.2
+<tt>ios_base::floatfield</tt> are defined by 27.5.3.1.2 [ios::fmtflags] p.2
 and Table 120. These are constants of a bitmask
 type, but are not distinct elements, they have
 more than one value set in the bitmask.
@@ -3115,7 +3115,7 @@ constants <tt>regex_constants::match_default</tt> and <tt>regex_constants::forma
 <hr>
 <h3><a name="1452"></a>1452. [FCD] "target sequence" is not defined</h3>
 <p><b>Section:</b> 28.10.4 [re.results.acc] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.results.acc">issues</a> in [re.results.acc].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3164,7 +3164,7 @@ difference_type position(size_type sub = 0) const;
 <hr>
 <h3><a name="1459"></a>1459. [FCD] Overlapping evaluations are allowed</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3248,7 +3248,7 @@ Please clarify.
 <hr>
 <h3><a name="1460"></a>1460. [FCD] Missing lock-free property for type <tt>bool</tt> should be added</h3>
 <p><b>Section:</b> 29.4 [atomics.lockfree] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.lockfree">issues</a> in [atomics.lockfree].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3277,7 +3277,7 @@ Add <tt>ATOMIC_BOOL_LOCK_FREE</tt> to 29.4 [atomics.lockfree] and to 29.2 [atomi
 <hr>
 <h3><a name="1461"></a>1461. [FCD] Rename all <tt>ATOMIC_*</tt> macros as <tt>STD_ATOMIC_*</tt></h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3369,7 +3369,7 @@ atomic_flag guard = <ins>STD_</ins>ATOMIC_FLAG_INIT;
 <hr>
 <h3><a name="1478"></a>1478. [FCD] Clarify race conditions in atomics initialization</h3>
 <p><b>Section:</b> 29.6 [atomics.types.operations] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.operations">issues</a> in [atomics.types.operations].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3466,7 +3466,7 @@ operation, constitutes a data race.</del>
 <hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-27</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3494,7 +3494,7 @@ or negative <tt>rel_time</tt> is allowed.
 
 <ol>
 <li>
-<p>Change the Operational semantics of <tt>C1::now()</tt> in 20.11.1 [time.clock.req], 
+<p>Change the Operational semantics of <tt>C1::now()</tt> in 20.11.3 [time.clock.req], 
 Table 59 &mdash; <tt>Clock</tt> requirements as follows:
 </p>
 
@@ -3547,7 +3547,7 @@ and <tt>C1::time_point</tt> may throw exceptions.
 </p>
 <p>The alternative proposal uses the following strategy: The general <tt>Clock</tt>
 requirements remain untouched, but we require that any functions of the library-provided
-clocks from sub-clause 20.11.5 [time.clock] and their associated types shall not
+clocks from sub-clause 20.11.7 [time.clock] and their associated types shall not
 throw exceptions. Second, we replace existing <tt>noexcept</tt> specifications of
 functions from Clause 30 that depend on durations, clocks, or time points by wording that
 clarifies that these functions can only throw, if the operations of user-provided durations,
@@ -3558,7 +3558,7 @@ clocks, or time points used as arguments to these functions throw exceptions.
 <p><b>Proposed resolution:</b></p>
 
 <ol>
-<li><p>Add the following new requirement set at the end of sub-clause 20.11.1 [time.clock.req]: [<i>Comment</i>:
+<li><p>Add the following new requirement set at the end of sub-clause 20.11.3 [time.clock.req]: [<i>Comment</i>:
 This requirement set is <strong>intentionally</strong> incomplete. The reason for
 this incompleteness is the based on the fact, that if we would make it right for C++0x, we would end up defining
 something like a complete <tt>ArithmeticLike</tt> concept for <tt>TC::rep</tt>, <tt>TC::duration</tt>, and <tt>TC::time_point</tt>. 
@@ -3575,7 +3575,7 @@ a measure of the quality of implementation. &mdash; <i>end note</i> ]
 </p>
 <ul>
 <li><p>
-<ins><tt>TC</tt> satisfies the <tt>Clock</tt> requirements (20.11.1 [time.clock.req]),</ins>
+<ins><tt>TC</tt> satisfies the <tt>Clock</tt> requirements (20.11.3 [time.clock.req]),</ins>
 </p></li>
 <li><p>
 <ins>the types <tt>TC::rep</tt>, <tt>TC::duration</tt>, and <tt>TC::time_point</tt> satisfy 
@@ -3587,7 +3587,7 @@ particular, that operations of these types will not throw exceptions &mdash; <i>
 </p></li>
 <li><p>
 <ins>lvalues of the types <tt>TC::rep</tt>, <tt>TC::duration</tt>, and <tt>TC::time_point</tt> are swappable 
-(20.2.2 [swappable.requirements]),</ins>
+(17.6.3.2 [swappable.requirements]),</ins>
 </p></li>
 <li><p>
 <ins>the function <tt>TC::now()</tt> does not throw exceptions, and</ins>
@@ -3600,7 +3600,7 @@ particular, that operations of these types will not throw exceptions &mdash; <i>
 </li>
 
 <li>
-<p>Modify 20.11.5 [time.clock] p. 1 as follows:</p>
+<p>Modify 20.11.7 [time.clock] p. 1 as follows:</p>
 
 <blockquote><p>
 1 - The types defined in this subclause shall satisfy the <tt><ins>Trivial</ins>Clock</tt> requirements (20.11.1). 
@@ -3608,7 +3608,7 @@ particular, that operations of these types will not throw exceptions &mdash; <i>
 </li>
 
 <li>
-<p>Modify 20.11.5.1 [time.clock.system] p. 1, class <tt>system_clock</tt> synopsis, as follows:</p>
+<p>Modify 20.11.7.1 [time.clock.system] p. 1, class <tt>system_clock</tt> synopsis, as follows:</p>
 
 <blockquote><pre>
 class system_clock {
@@ -3628,7 +3628,7 @@ public:
 </li>
 
 <li>
-<p>Modify the prototype declarations in 20.11.5.1 [time.clock.system] p. 3 + p. 4 as indicated (This 
+<p>Modify the prototype declarations in 20.11.7.1 [time.clock.system] p. 3 + p. 4 as indicated (This 
 edit also fixes the miss of the <tt>static</tt> specifier in these prototype declarations):</p>
 
 <blockquote><pre>
@@ -3647,7 +3647,7 @@ edit also fixes the miss of the <tt>static</tt> specifier in these prototype dec
 </li>
 
 <li>
-<p>Modify 20.11.5.2 [time.clock.steady] p. 1, class <tt>steady_clock</tt> synopsis, as follows:</p>
+<p>Modify 20.11.7.2 [time.clock.steady] p. 1, class <tt>steady_clock</tt> synopsis, as follows:</p>
 
 <blockquote><pre>
 class steady_clock {
@@ -3665,7 +3665,7 @@ public:
 </li>
 
 <li>
-<p> Modify 20.11.5.3 [time.clock.hires] p. 1, class <tt>high_resolution_clock</tt> synopsis, as follows:</p>
+<p> Modify 20.11.7.3 [time.clock.hires] p. 1, class <tt>high_resolution_clock</tt> synopsis, as follows:</p>
 
 <blockquote><pre>
 class high_resolution_clock {
@@ -3691,7 +3691,7 @@ The finest resolution provided by an implementation is called the <i>native reso
 
 <blockquote><p>
 <ins>? Implementation-provided clocks that are used for these functions shall meet the <tt>TrivialClock</tt>
-requirements (20.11.1 [time.clock.req]).</ins>
+requirements (20.11.3 [time.clock.req]).</ins>
 </p></blockquote>
 </li>
 
@@ -3719,7 +3719,7 @@ void sleep_until(const chrono::time_point&lt;Clock, Duration&gt;&amp; abs_time) 
 5 - <i>Synchronization</i>: None.
 <p/>
 <ins>? - <i>Throws</i>: Nothing unless an exception is thrown by <tt>Clock::now()</tt> or by an operation of <tt>abs_time</tt>.
-[<i>Note</i>: Instantiations of time point types and clocks supplied by the implementation as specified in 20.11.5 [time.clock] 
+[<i>Note</i>: Instantiations of time point types and clocks supplied by the implementation as specified in 20.11.7 [time.clock] 
 do not throw exceptions. &mdash; <i>end note</i>]</ins>
 </p>
 </blockquote></blockquote>
@@ -3733,7 +3733,7 @@ void sleep_for(const chrono::duration&lt;Rep, Period&gt;&amp; rel_time) <del>noe
 7 <i>Synchronization</i>: None.
 <p/>
 <ins>? <i>Throws</i>: Nothing unless an exception is thrown by an operation of <tt>rel_time</tt>.
-[<i>Note</i>: Instantiations of duration types supplied by the implementation as specified in 20.11.5 [time.clock] 
+[<i>Note</i>: Instantiations of duration types supplied by the implementation as specified in 20.11.7 [time.clock] 
 do not throw exceptions. &mdash; <i>end note</i>]</ins>
 </p>
 </blockquote></blockquote>
@@ -3760,7 +3760,7 @@ available, but implementations are expected to make a strong effort to do so. &m
 [...]
 <p/>
 9 <i>Throws</i>: Nothing <ins>unless an exception is thrown by an operation of <tt>rel_time</tt>.
-[<i>Note</i>: Instantiations of duration types supplied by the implementation as specified in 20.11.5 [time.clock] 
+[<i>Note</i>: Instantiations of duration types supplied by the implementation as specified in 20.11.7 [time.clock] 
 do not throw exceptions. &mdash; <i>end note</i>]</ins>.
 <p/>
 10 The expression <tt>m.try_lock_until(abs_time)</tt> shall be well-formed and have the following semantics:
@@ -3778,7 +3778,7 @@ if the lock is available, but implementations are expected to make a strong effo
 <p/>
 16 <i>Throws</i>: Nothing <ins>unless an exception is thrown by the <tt>now()</tt> function of the
 used clock or by an operation of <tt>abs_time</tt>.
-[<i>Note</i>: Instantiations of time point types and clocks supplied by the implementation as specified in 20.11.5 [time.clock] 
+[<i>Note</i>: Instantiations of time point types and clocks supplied by the implementation as specified in 20.11.7 [time.clock] 
 do not throw exceptions. &mdash; <i>end note</i>]</ins>.
 </p>
 </blockquote>
@@ -3890,7 +3890,7 @@ while (!pred())
 </p>
 <blockquote><p>
 19 <i>Throws</i>: <ins>Any exception thrown by <tt>Clock::now()</tt> or by an operation of <tt>abs_time</tt>. [<i>Note</i>: Instantiations 
-of time point types and clocks supplied by the implementation as specified in 20.11.5 [time.clock] do not throw exceptions. &mdash; 
+of time point types and clocks supplied by the implementation as specified in 20.11.7 [time.clock] do not throw exceptions. &mdash; 
 <i>end note</i>] Otherwise</ins> <tt>system_error</tt> when an exception is required (30.2.2).
 </p></blockquote>
 <p>
@@ -3898,7 +3898,7 @@ of time point types and clocks supplied by the implementation as specified in 20
 </p>
 <blockquote><p>
 25 <i>Throws</i>: <ins>Any exception thrown by an operation of <tt>rel_time</tt>. [<i>Note</i>: Instantiations of duration types supplied 
-by the implementation as specified in 20.11.5 [time.clock] do not throw exceptions. &mdash; <i>end note</i>] Otherwise</ins>
+by the implementation as specified in 20.11.7 [time.clock] do not throw exceptions. &mdash; <i>end note</i>] Otherwise</ins>
 <tt>system_error</tt> when an exception is required (30.2.2).
 </p></blockquote>
 
@@ -3951,7 +3951,7 @@ return wait_until(lock, chrono::steady_clock::now() + rel_time, std::move(pred))
 </p>
 <blockquote><p>
 36 <i>Throws</i>: <ins>Any exception thrown by an operation of <tt>rel_time</tt> or <tt>pred</tt>. [<i>Note</i>: Instantiations of duration types supplied 
-by the implementation as specified in 20.11.5 [time.clock] do not throw exceptions. &mdash; <i>end note</i>] Otherwise</ins>
+by the implementation as specified in 20.11.7 [time.clock] do not throw exceptions. &mdash; <i>end note</i>] Otherwise</ins>
 <tt>system_error</tt> when an exception is required (30.2.2).
 </p></blockquote>
 </li>
@@ -3981,7 +3981,7 @@ while (!pred())
 </p>
 <blockquote><p>
 15 <i>Throws</i>: <ins>Any exception thrown by <tt>Clock::now()</tt> or by an operation of <tt>abs_time</tt>. [<i>Note</i>: Instantiations of 
-time point types and clocks supplied by the implementation as specified in 20.11.5 [time.clock] do not throw exceptions. &mdash;
+time point types and clocks supplied by the implementation as specified in 20.11.7 [time.clock] do not throw exceptions. &mdash;
 <i>end note</i>] Otherwise</ins> <tt>system_error</tt> when an exception is required (30.2.2).
 </p></blockquote>
 <p>
@@ -3989,7 +3989,7 @@ time point types and clocks supplied by the implementation as specified in 20.11
 </p>
 <blockquote><p>
 20 <i>Throws</i>: <ins>Any exception thrown by an operation of <tt>rel_time</tt>. [<i>Note</i>: Instantiations of duration types supplied 
-by the implementation as specified in 20.11.5 [time.clock] do not throw exceptions. &mdash; <i>end note</i>]. Otherwise</ins>
+by the implementation as specified in 20.11.7 [time.clock] do not throw exceptions. &mdash; <i>end note</i>]. Otherwise</ins>
 <tt>system_error</tt> when an exception is required (30.2.2).
 </p></blockquote>
 <p>
@@ -4036,7 +4036,7 @@ return wait_until(lock, chrono::steady_clock::now() + rel_time, std::move(pred))
 </p>
 <blockquote><p>
 30 <i>Throws</i>: <ins>Any exception thrown by an operation of <tt>rel_time</tt> or <tt>pred</tt>. [<i>Note</i>: Instantiations 
-of duration types supplied by the implementation as specified in 20.11.5 [time.clock] do not throw exceptions. &mdash; 
+of duration types supplied by the implementation as specified in 20.11.7 [time.clock] do not throw exceptions. &mdash; 
 <i>end note</i>] Otherwise</ins> <tt>system_error</tt> when an exception is required (30.2.2).
 </p></blockquote>
 </li>
@@ -4050,7 +4050,7 @@ of duration types supplied by the implementation as specified in 20.11.5 [time.c
 <hr>
 <h3><a name="1502"></a>1502. [FCD] Specification of [futures.state]</h3>
 <p><b>Section:</b> 30.6.4 [futures.state] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.state">issues</a> in [futures.state].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4068,7 +4068,7 @@ of duration types supplied by the implementation as specified in 20.11.5 [time.c
 <hr>
 <h3><a name="1504"></a>1504. [FCD] Term "are serialized" is not defined</h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -4119,7 +4119,7 @@ state. &mdash; <em>end note</em> ]
 <h3><a name="1505"></a>1505. [FCD] Synchronization between
 <tt>promise::set_value</tt> and <tt>future::get</tt></h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -4178,7 +4178,7 @@ operation on a future object with the same associated asynchronous state marked 
 <h3><a name="1507"></a>1507. [FCD] <tt>promise::<i>XXX</i>_at_thread_exit</tt> functions have no
 synchronization requirements</h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -4212,7 +4212,7 @@ and add two new paragraphs, after 30.6.5/28 and 30.6.5/31.
 <hr>
 <h3><a name="1521"></a>1521. Requirements on internal pointer representations in containers</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Mike Spertus <b>Opened:</b> 2010-10-16 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Mike Spertus <b>Opened:</b> 2010-10-16 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -4273,7 +4273,7 @@ item type or members.</ins>
 <hr>
 <h3><a name="1523"></a>1523. [FCD] <tt>noexcept</tt> for Clause 29</h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2010-11-13 <b>Last modified:</b> 2010-11-16</p>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2010-11-13 <b>Last modified:</b> 2010-11-14</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -4297,7 +4297,7 @@ In particular, atomics may want to throw in implementations that support transac
 <hr>
 <h3><a name="1524"></a>1524. [FCD] Allocation functions are missing <i>happens-before</i> requirements and guarantees</h3>
 <p><b>Section:</b> 5.3.4 [expr.new], 5.3.5 [expr.delete] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-34</b></p>
@@ -4355,7 +4355,7 @@ shall occur in a single total order, and each such deallocation call shall happe
 <hr>
 <h3><a name="2003"></a>2003. String exception inconsistency in erase.</h3>
 <p><b>Section:</b> 21.4.1 [string.require] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> José Daniel García Sánchez <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> José Daniel García Sánchez <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.require">issues</a> in [string.require].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4390,8 +4390,8 @@ shall throw any exceptions.
 
 <hr>
 <h3><a name="2005"></a>2005. <tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</h3>
-<p><b>Section:</b> 23.6.1.3 [map.modifiers], 23.6.2.2 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -4440,7 +4440,7 @@ Proposed resolution:
 </p>
 
 <ol>
-<li>Change 23.6.1.3 [map.modifiers] around p. 1 as indicated:
+<li>Change 23.4.4.4 [map.modifiers] around p. 1 as indicated:
 <blockquote><pre>
 template &lt;class P&gt; pair&lt;iterator, bool&gt; insert(P&amp;&amp; x);
 template &lt;class P&gt; <del>pair&lt;</del>iterator<del>, bool&gt;</del> insert(const_iterator position, P&amp;&amp; x);
@@ -4471,7 +4471,7 @@ is implicitly convertible to <tt>value_type</tt>.</ins>
 </p>
 </blockquote></blockquote>
 </li>
-<li>Change 23.6.2.2 [multimap.modifiers] around p. 1 as indicated:
+<li>Change 23.4.5.3 [multimap.modifiers] around p. 1 as indicated:
 <blockquote><pre>
 template &lt;class P&gt; iterator insert(P&amp;&amp; x);
 template &lt;class P&gt; iterator insert(const_iterator position, P&amp;&amp; x);
@@ -4514,7 +4514,7 @@ We need <tt>is_convertible</tt>, not <tt>is_constructible</tt>, both in ordered 
 
 <p><b>Proposed resolution:</b></p>
 <ol>
-<li>Add a new Remarks element after 23.6.1.3 [map.modifiers] p. 1:
+<li>Add a new Remarks element after 23.4.4.4 [map.modifiers] p. 1:
 <blockquote><pre>
 template &lt;class P&gt; pair&lt;iterator, bool&gt; insert(P&amp;&amp; x);
 template &lt;class P&gt; pair&lt;iterator, bool&gt; insert(const_iterator position, P&amp;&amp; x);
@@ -4535,7 +4535,7 @@ is implicitly convertible to <tt>value_type</tt>.</ins>
 </p>
 </blockquote></blockquote>
 </li>
-<li>Change 23.6.2.2 [multimap.modifiers] around p. 1 as indicated:
+<li>Change 23.4.5.3 [multimap.modifiers] around p. 1 as indicated:
 <blockquote><pre>
 template &lt;class P&gt; iterator insert(P&amp;&amp; x);
 template &lt;class P&gt; iterator insert(const_iterator position, P&amp;&amp; x);
@@ -4564,8 +4564,8 @@ is implicitly convertible to <tt>value_type</tt>.</ins>
 
 <hr>
 <h3><a name="2008"></a>2008. Conflicting Error Conditions for <tt>packaged_task::operator()</tt></h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-06-21 <b>Last modified:</b> 2011-02-17</p>
+<p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-06-21 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -4585,7 +4585,7 @@ invocation has completed).
 <p><strong>Previous</strong> proposed resolution:</p>
 
 <p>
-Change the first bullet item in 30.6.10.1 [futures.task.members] /22:
+Change the first bullet item in 30.6.9.1 [futures.task.members] /22:
 </p>
 
 <blockquote><pre>
@@ -4619,7 +4619,7 @@ already ready</del> <ins><tt>operator()</tt> has already been called</ins>.
 <ol>
 <li>
 <p>
-Change the first bullet item in 30.6.10.1 [futures.task.members] p. 17:
+Change the first bullet item in 30.6.9.1 [futures.task.members] p. 17:
 </p>
 
 <blockquote><pre>
@@ -4650,7 +4650,7 @@ ready</del><ins>stored task has already been invoked</ins>.
 
 <li>
 <p>
-Change the first bullet item in 30.6.10.1 [futures.task.members] p. 21:
+Change the first bullet item in 30.6.9.1 [futures.task.members] p. 21:
 </p>
 
 <blockquote><pre>
@@ -4689,7 +4689,7 @@ exception</del><ins>stored task has already been invoked</ins>.
 <hr>
 <h3><a name="2009"></a>2009. Reporting out-of-bound values on numeric string conversions</h3>
 <p><b>Section:</b> 21.5 [string.conversions] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2010-11-14</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2010-11-13</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.conversions">issues</a> in [string.conversions].</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -4774,13 +4774,13 @@ outside the range of representable values for the return type</ins>.
 
 <hr>
 <h3><a name="2010"></a>2010. <tt>is_* traits</tt> for binding operations can't be meaningfully specialized</h3>
-<p><b>Section:</b> 20.8.10.1.1 [func.bind.isbind] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Sean Hunt <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.8.9.1.1 [func.bind.isbind] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Sean Hunt <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.isbind">issues</a> in [func.bind.isbind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-20.8.10.1.1 [func.bind.isbind] says for <tt>is_bind_expression</tt>:
+20.8.9.1.1 [func.bind.isbind] says for <tt>is_bind_expression</tt>:
 </p>
 
 <blockquote><p>
@@ -4827,7 +4827,7 @@ should be fixed in Madrid, moved to Open.
 <hr>
 <h3><a name="2011"></a>2011. unexpected output required of strings</h3>
 <p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.io">issues</a> in [string.io].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4865,7 +4865,7 @@ template&lt;class charT, class traits, class Allocator&gt;
   basic_ostream&lt;charT, traits&gt;&amp;
     operator&lt;&lt;(basic_ostream&lt;charT, traits&gt;&amp; os, const basic_string&lt;charT,traits,Allocator&gt;&amp; str);
 </pre><blockquote><p>
-<i>Effects:</i> Behaves as a formatted output function (27.7.2.6.1 [ostream.formatted.reqmts]). After constructing 
+<i>Effects:</i> Behaves as a formatted output function (27.7.3.6.1 [ostream.formatted.reqmts]). After constructing 
 a <tt>sentry</tt> object, if this object returns <tt>true</tt> when converted to a value of type <tt>bool</tt>, 
 determines padding as described in 22.4.2.2.2 [facet.num.put.virtuals], then inserts the resulting sequence of
 characters seq as if by calling <tt>os.rdbuf()-&gt;sputn(seq, n)</tt>, where <tt>n</tt> is the larger of 
@@ -4968,13 +4968,13 @@ form. Howard volunteered to drught for Madrid, move to Open.
 
 <hr>
 <h3><a name="2012"></a>2012. Associative maps should insert <tt>pair</tt>, not <tt>tuple</tt></h3>
-<p><b>Section:</b> 23.6 [associative] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 23.4 [associative] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative">issues</a> in [associative].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-I'm seeing something strange in the paragraphs 23.6.1.3 [map.modifiers] and 23.6.2.2 [multimap.modifiers]:
+I'm seeing something strange in the paragraphs 23.4.4.4 [map.modifiers] and 23.4.5.3 [multimap.modifiers]:
 they both talk about <tt>tuple&lt;const key_type, mapped_type&gt;</tt> but I think they
 should be talking about <tt>pair&lt;const key_type, mapped_type&gt;</tt> because, among
 other reasons, a <tt>tuple</tt> is not convertible to a <tt>pair</tt>. If I replace <tt>tuple</tt>
@@ -5005,8 +5005,8 @@ Apply the resolution proposed by the 2010-10-29 comment in <a href="lwg-active.h
 
 <hr>
 <h3><a name="2013"></a>2013. Do library implementers have the freedom to add <tt>constexpr</tt>?</h3>
-<p><b>Section:</b> 17.6.4.6 [constexpr.functions] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 17.6.5.6 [constexpr.functions] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>Suppose that a particular function is not tagged as constexpr in the standard,
@@ -5046,8 +5046,8 @@ functions or constructors an implementation shall provide corresponding definiti
 
 <hr>
 <h3><a name="2015"></a>2015. Incorrect pre-conditions for some type traits</h3>
-<p><b>Section:</b> 20.7.4 [meta.unary] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-08 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.9.4 [meta.unary] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-08 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary">issues</a> in [meta.unary].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5108,7 +5108,7 @@ a complete type.</p>
 <ol>
 <li>
 <p>
-Modify the pre-conditions of the following type traits in 20.7.4.3 [meta.unary.prop], Table 48 &mdash; Type property predicates:
+Modify the pre-conditions of the following type traits in 20.9.4.3 [meta.unary.prop], Table 48 &mdash; Type property predicates:
 </p>
 
 <blockquote>
@@ -5243,7 +5243,7 @@ shall be a complete type</ins>.</td>
 
 <li>
 <p>
-Modify the pre-conditions of the following type traits in 20.7.6 [meta.rel], Table 50 &mdash; Type relationship predicates:
+Modify the pre-conditions of the following type traits in 20.9.6 [meta.rel], Table 50 &mdash; Type relationship predicates:
 </p>
 
 <blockquote>
@@ -5297,8 +5297,8 @@ classes. &mdash; <i>end note</i> ]</td>
 
 <hr>
 <h3><a name="2016"></a>2016. <tt>Allocators</tt> must be no-throw <i>swappable</i></h3>
-<p><b>Section:</b> 20.2.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-11-17 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 17.6.3.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-11-17 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.requirements">issues</a> in [allocator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5331,7 +5331,7 @@ if these compile-time predicates evaluate to <tt>true</tt>, the <em>additional</
 <tt>CopyAssignable</tt>,  no-throw <tt>MoveAssignable</tt>, and no-throw lvalue <tt>Swappable</tt>, 
 respectively, are imposed on the allocator types.</li>
 <li>23.2.1 [container.requirements.general] p. 9 misses to refer to the correct swap conditions: The current wording does not relate to
-20.2.2 [swappable.requirements] as it should and omits to mention that lvalues shall be swapped. Additional there is one
+17.6.3.2 [swappable.requirements] as it should and omits to mention that lvalues shall be swapped. Additional there is one
 situation described twice in p. 8 and p. 9 (undefined behaviour unless <tt>a.get_allocator() == b.get_allocator()</tt>
 or <tt>allocator_traits&lt;allocator_type&gt;::propagate_on_container_swap::value == true</tt>), which should be cleaned up.</li>
 </ol>
@@ -5410,7 +5410,7 @@ when the client container is swapped. <ins>See Note B, below.</ins></td>
 </li>
 
 <li>
-<p>Following 20.2.5 [allocator.requirements] p. 3 insert a new normative paragraph:</p>
+<p>Following 17.6.3.5 [allocator.requirements] p. 3 insert a new normative paragraph:</p>
 
 <blockquote><p>
 <ins>Note B: If <tt>X::propagate_on_container_copy_assignment::value</tt> is true, <tt>X</tt> shall 
@@ -5418,7 +5418,7 @@ satisfy the <tt>CopyAssignable</tt> requirements (Table 39  [copyassignable]).
 If <tt>X::propagate_on_container_move_assignment::value</tt> is true, <tt>X</tt> shall satisfy the 
 <tt>MoveAssignable</tt> requirements (Table 38  [moveassignable]) and the move operation
 shall not throw exceptions. If <tt>X::propagate_on_container_swap::value</tt> is true, lvalues of 
-<tt>X</tt> shall be swappable (20.2.2 [swappable.requirements]) and the <tt>swap</tt> operation 
+<tt>X</tt> shall be swappable (17.6.3.2 [swappable.requirements]) and the <tt>swap</tt> operation 
 shall not throw exceptions.</ins>
 </p></blockquote>
 </li>
@@ -5443,10 +5443,10 @@ other than <tt>array</tt>, shall exchange the values of <tt>a</tt> and <tt>b</tt
 copy, or swap operations on the individual container elements. <ins>Lvalues of a</ins><del>A</del>ny <tt>Compare</tt>, 
 <tt>Pred</tt>, or <tt>Hash</tt> object<del>s</del> belonging to <tt>a</tt> and <tt>b</tt> shall be swappable 
 and shall be exchanged by <del>unqualified calls to non-member</del> <ins>calling</ins> <tt>swap</tt> 
-<ins>as described in 20.2.2 [swappable.requirements]</ins>. If <tt>allocator_traits&lt;allocator_type&gt;::propagate_on_container_swap::value</tt> 
+<ins>as described in 17.6.3.2 [swappable.requirements]</ins>. If <tt>allocator_traits&lt;allocator_type&gt;::propagate_on_container_swap::value</tt> 
 is <tt>true</tt>, then <ins>lvalues of <tt>allocator_type</tt> shall be swappable and</ins> the allocators of <tt>a</tt> and 
 <tt>b</tt> shall also be exchanged using <ins>a</ins> <del>an unqualified call to non-member</del> 
-<tt>swap</tt> <ins>call</ins> <ins>as described in 20.2.2 [swappable.requirements]</ins>. Otherwise, 
+<tt>swap</tt> <ins>call</ins> <ins>as described in 17.6.3.2 [swappable.requirements]</ins>. Otherwise, 
 <del>they</del><ins>the allocators</ins> shall not be swapped, and the behavior is undefined unless
 <tt>a.get_allocator() == b.get_allocator()</tt>. Every iterator referring to an element in one container before
 the swap shall refer to the same element in the other container after the swap. It is unspecified whether an
@@ -5463,7 +5463,7 @@ iterator with value <tt>a.end()</tt> before the swap will have value <tt>b.end()
 <hr>
 <h3><a name="2018"></a>2018. <tt>regex_traits::isctype</tt> Returns clause is wrong</h3>
 <p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.traits">issues</a> in [re.traits].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5500,8 +5500,8 @@ categories, rather than pseudocode in terms of bitwise operations.
 
 <hr>
 <h3><a name="2021"></a>2021. Further incorrect usages of <tt>result_of</tt></h3>
-<p><b>Section:</b> 20.8.10.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.9 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.8.9.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5511,7 +5511,7 @@ declaration of the function call operator overload of <tt>reference_wrapper</tt>
 but there are more such specification defects:
 </p>
 <ol>
-<li>According to 20.8.10.1.2 [func.bind.bind] p. 3: 
+<li>According to 20.8.9.1.2 [func.bind.bind] p. 3: 
 <blockquote><p>
 [..] The effect of <tt>g(u1, u2, ..., uM)</tt> shall be <tt>INVOKE(fd, v1, v2, ..., vN, result_of&lt;FD cv (V1, V2, ..., VN)&gt;::type)</tt> [..]
 </p></blockquote>
@@ -5521,7 +5521,7 @@ the above usage must refer to <tt>result_of&lt;FD cv <strong>&amp;</strong> (V1,
 </p>
 </li>
 <li><p>
-Similar in 20.8.10.1.2 [func.bind.bind] p. 10 bullet 2 we have:
+Similar in 20.8.9.1.2 [func.bind.bind] p. 10 bullet 2 we have:
 </p>
 <blockquote><p>
 if the value of <tt>is_bind_expression&lt;TiD&gt;::value</tt> is true, the argument is <tt>tid(std::forward&lt;Uj&gt;(uj)...)</tt>
@@ -5547,20 +5547,20 @@ future&lt;typename result_of&lt;F(Args...)&gt;::type&gt;
 async(F&amp;&amp; f, Args&amp;&amp;... args);
 </pre></blockquote><p>
 This usage has the some same problems as we have found in <tt>reference_wrapper</tt> (<a href="lwg-active.html#2017">2017</a>) and more: According to
-the specification in 30.6.9 [futures.async] the effective result type is that of the call of
+the specification in 30.6.8 [futures.async] the effective result type is that of the call of
 </p><blockquote><pre>
 INVOKE(decay_copy(std::forward&lt;F&gt;(f)), decay_copy(std::forward&lt;Args&gt;(args))...)
 </pre></blockquote><p>
 First, <tt>decay_copy</tt> potentially modifies the effective types to <tt>decay&lt;F&gt;::type</tt> and <tt>decay&lt;Args&gt;::type...</tt>.
 Second, the current specification is not really clear, what the value category of callable type or the arguments shall be: According
-to the second bullet of 30.6.9 [futures.async] p. 3:
+to the second bullet of 30.6.8 [futures.async] p. 3:
 </p>
 <blockquote><p>
 Invocation of the deferred function evaluates <tt>INVOKE(g, xyz)</tt> where <tt>g</tt> is the stored value of 
 <tt>decay_copy(std::forward&lt;F&gt;(f))</tt> and <tt>xyz</tt> is the stored copy of 
 <tt>decay_copy(std::forward&lt;Args&gt;(args))...</tt>.
 </p></blockquote><p>
-This seems to imply that lvalues are provided in contrast to the direct call expression of 30.6.9 [futures.async] p. 2
+This seems to imply that lvalues are provided in contrast to the direct call expression of 30.6.8 [futures.async] p. 2
 which implies rvalues instead. The specification needs to be clarified.
 </p>
 </li>
@@ -5573,7 +5573,7 @@ The suggested wording changes are against the working draft N3225.
 </p>
 <ol>
 <li>
-<p>Change 20.8.10.1.2 [func.bind.bind] p. 3 as indicated:</p>
+<p>Change 20.8.9.1.2 [func.bind.bind] p. 3 as indicated:</p>
 
 <blockquote><p>
 <i>Returns</i>: A forwarding call wrapper <tt>g</tt> with a weak result type (20.8.2). The effect of 
@@ -5585,7 +5585,7 @@ where <i>cv</i> represents the <i>cv</i>-qualifiers of <tt>g</tt> and the values
 </li>
 
 <li>
-<p>Change 20.8.10.1.2 [func.bind.bind] p. 10 bullet 2 as indicated:</p>
+<p>Change 20.8.9.1.2 [func.bind.bind] p. 10 bullet 2 as indicated:</p>
 
 <blockquote><p>
 if the value of <tt>is_bind_expression&lt;TiD&gt;::value</tt> is <tt>true</tt>, the argument is 
@@ -5597,13 +5597,13 @@ if the value of <tt>is_bind_expression&lt;TiD&gt;::value</tt> is <tt>true</tt>, 
 
 <li>
 <p>
-This resolution assumes that the wording of 30.6.9 [futures.async] is incorrectly implying rvalues
+This resolution assumes that the wording of 30.6.8 [futures.async] is incorrectly implying rvalues
 as arguments of <tt>INVOKE</tt>, those should be lvalues instead.
 </p>
 
 <p>
 Change the function signatures in header <tt>&lt;future&gt;</tt> synopsis 30.6.1 [futures.overview] p. 1
-and in 30.6.9 [futures.async] p. 1 as indicated:
+and in 30.6.8 [futures.async] p. 1 as indicated:
 </p>
 
 <blockquote><pre>
@@ -5617,7 +5617,7 @@ async(launch policy, F&amp;&amp; f, Args&amp;&amp;... args);
 </li>
 
 <li>
-<p>Change 30.6.9 [futures.async] p. 4 as indicated: [Note: There is one tiny editorial correction that completes one
+<p>Change 30.6.8 [futures.async] p. 4 as indicated: [Note: There is one tiny editorial correction that completes one
 <tt>::</tt> scope specifier]
 [Note: This sub-section need more wording: The call expressions used imply a different value category]
 </p>
@@ -5636,14 +5636,14 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 
 <hr>
 <h3><a name="2025"></a>2025. Incorrect semantics of move assignment operator of <tt>packaged_task</tt></h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-According to 30.6.10.1 [futures.task.members] p. 7 bullet 2:
+According to 30.6.9.1 [futures.task.members] p. 7 bullet 2:
 </p>
 <blockquote><pre>
 packaged_task&amp; operator=(packaged_task&amp;&amp; other);
@@ -5667,7 +5667,7 @@ The suggested wording changes are against the working draft N3225.
 
 <ol>
 <li>
-<p>Change  30.6.10.1 [futures.task.members] p. 7 bullet 2 as indicated:</p>
+<p>Change  30.6.9.1 [futures.task.members] p. 7 bullet 2 as indicated:</p>
 
 <blockquote><pre>
 packaged_task&amp; operator=(packaged_task&amp;&amp; other);
@@ -5690,7 +5690,7 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 <hr>
 <h3><a name="2028"></a>2028. <tt>messages_base::catalog</tt> overspecified</h3>
 <p><b>Section:</b> 22.4.7.1 [locale.messages] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-14 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-14 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -5748,13 +5748,13 @@ namespace std {
 
 <hr>
 <h3><a name="2032"></a>2032. Incorrect synchronization clause of <tt>async</tt> function</h3>
-<p><b>Section:</b> 30.6.9 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.async">issues</a> in [futures.async].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Clause 30.6.9 [futures.async] has undergone significant rewording
+Clause 30.6.8 [futures.async] has undergone significant rewording
 in Batavia. Due to co-presence of at least three different sources
 of modification there is a part where changes have overlapped
 (marked by an Editor's note), which should be reconciled. Moreover,
@@ -5789,7 +5789,7 @@ otherwise it is a <dfn>non-timed waiting function</dfn>.</ins>
 
 <li>
 <p>
-Edit within 30.6.9 [futures.async] paragraph 3 bullet 2 as follows.
+Edit within 30.6.8 [futures.async] paragraph 3 bullet 2 as follows.
 </p>
 
 <blockquote>
@@ -5819,7 +5819,7 @@ the function is no longer considered deferred.
 
 <li>
 <p>
-Edit 30.6.9 [futures.async] paragraph 5 as follows.
+Edit 30.6.8 [futures.async] paragraph 5 as follows.
 </p>
 
 <blockquote>
@@ -5890,7 +5890,7 @@ from a call to a waiting function on the associated asynchronous state.</del>
 
 <hr>
 <h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
-<p><b>Section:</b> 23.4.1.2 [vector.capacity], 23.3.2.2 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+<p><b>Section:</b> 23.3.6.3 [vector.capacity], 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
  <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-02-22</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -5934,7 +5934,7 @@ instead of <tt>MoveInsertable</tt> requirement?
 <hr>
 <h3><a name="2034"></a>2034. Initialization of atomics is misspecified so that it doesn't preserve sequential consistency</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-27</p>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -5982,7 +5982,7 @@ in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
 <hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-02-27</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>

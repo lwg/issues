@@ -19,11 +19,11 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-27 at 12:02:41 UTC</p>
+<p>Revised 2011-02-28 at 12:02:47 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
-<p><b>Section:</b> 23.3.4.4 [list.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+<p><b>Section:</b> 23.3.5.5 [list.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
  <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-09-24 <b>Last modified:</b> 2010-11-13</p>
 <p><b>View all other</b> <a href="lwg-index.html#list.ops">issues</a> in [list.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -45,7 +45,7 @@ allocators compare equal.
 <p>
 Relative to the August 2009 WP,
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2857.pdf">N2857</a>,
-change 23.3.4.4 [list.ops],
+change 23.3.5.5 [list.ops],
 paragraphs 22-25 as follows:
 </p>
 
@@ -89,7 +89,7 @@ exception is thrown other than by a comparison there are no effects.
 <hr>
 <h3><a name="1253"></a>1253. invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-02-23</p>
+ <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-02-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -297,7 +297,7 @@ element, the <del><tt>insert()</tt></del> <ins>insertion</ins>
 
 <hr>
 <h3><a name="1310"></a>1310. <tt>forward_list splice_after</tt> from lvalues</h3>
-<p><b>Section:</b> 23.3.3.5 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+<p><b>Section:</b> 23.3.4.6 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
  <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2010-11-13</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -356,7 +356,7 @@ surprise) I'm also proposing to overload <tt>merge</tt> this way as well.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Add to the synopsis of 23.3.3 [forwardlist]:
+Add to the synopsis of 23.3.4 [forwardlist]:
 </p>
 
 <blockquote><pre>
@@ -382,7 +382,7 @@ public:
 </pre></blockquote>
 
 <p>
-Add to the signatures of 23.3.3.5 [forwardlist.ops]:
+Add to the signatures of 23.3.4.6 [forwardlist.ops]:
 </p>
 
 <blockquote>
@@ -493,7 +493,7 @@ template&lt;class ForwardIterator1, class ForwardIterator2&gt;
 <hr>
 <h3><a name="1371"></a>1371. [FCD] standard exceptions require stronger no-throw guarantees</h3>
 <p><b>Section:</b> 19 [diagnostics] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-75</b></p>
@@ -546,8 +546,8 @@ assignment operator that do not exit with an exception.
 
 <hr>
 <h3><a name="1413"></a>1413. [FCD] Specify whether <tt>high_resolution_clock</tt> is a distinct type or a typedef</h3>
-<p><b>Section:</b> 20.11.5.3 [time.clock.hires] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-16</p>
+<p><b>Section:</b> 20.11.7.3 [time.clock.hires] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-14</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-112</b></p>
@@ -590,7 +590,7 @@ only in their use of these types.
 <hr>
 <h3><a name="1456"></a>1456. [FCD] Missing fixed-size atomic_ typedefs</h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -692,7 +692,7 @@ Add the following entries to table 143:
 <hr>
 <h3><a name="1457"></a>1457. [FCD] Splitting lock-free properties</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-130</b></p>
@@ -799,7 +799,7 @@ was accepted during the Batavia meeting):
 <hr>
 <h3><a name="1474"></a>1474. [FCD] weak compare-and-exchange confusion</h3>
 <p><b>Section:</b> 29.6.5 [atomics.types.operations.req] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></p>
 <p><b>Discussion:</b></p>
@@ -877,7 +877,7 @@ strong one is preferable. &mdash; <em>end note</em> ]
 <hr>
 <h3><a name="1479"></a>1479. [FCD] Fence functions should be <tt>extern "C"</tt></h3>
 <p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -929,7 +929,7 @@ established only between a thread and a signal handler executed in the same thre
 <hr>
 <h3><a name="1480"></a>1480. [FCD] Atomic fences don't have <em>synchronizes with</em> relation</h3>
 <p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -969,7 +969,7 @@ thread and a signal handler executed in the same thread.
 <hr>
 <h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
 <p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1090,7 +1090,7 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="1486"></a>1486. [FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
@@ -1139,7 +1139,7 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="1494"></a>1494. [FCD] Term "are serialized" not defined</h3>
 <p><b>Section:</b> 30.4.4.2 [thread.once.callonce] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-190</b></p>
@@ -1224,7 +1224,7 @@ executions.</ins>
 <hr>
 <h3><a name="1497"></a>1497. [FCD] <tt>lock()</tt> postcondition can not be generally achieved</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-27</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1529,8 +1529,8 @@ while (!pred())
 
 <hr>
 <h3><a name="1514"></a>1514. [FCD] <tt>packaged_task</tt> constructors need review</h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -1567,7 +1567,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Alter the list of constructors in both 30.6.10 [futures.task] and in 30.6.10.1 [futures.task.members] as indicated:
+Alter the list of constructors in both 30.6.9 [futures.task] and in 30.6.9.1 [futures.task.members] as indicated:
 </p>
 <blockquote>
 <pre><del>template &lt;class F&gt;
@@ -1589,8 +1589,8 @@ explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F&amp;&amp; f);
 <hr>
 <h3><a name="1515"></a>1515. [FCD] <tt>packaged_task::make_ready_at_thread_exit</tt> has no
 synchronization requirements</h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-22</p>
+<p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -1625,7 +1625,7 @@ Moved to Tentatively Ready after 5 votes.
 
 
 <p><b>Proposed resolution:</b></p>
-<p>Add a new paragraph following 30.6.10.1 [futures.task.members] p. 19:</p>
+<p>Add a new paragraph following 30.6.9.1 [futures.task.members] p. 19:</p>
 
 <blockquote><pre>
 void make_ready_at_thread_exit(ArgTypes... args);
@@ -1650,8 +1650,8 @@ detects that the state is set to ready.</ins>
 
 <hr>
 <h3><a name="2000"></a>2000. Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></h3>
-<p><b>Section:</b> 30.6.10.2 [futures.task.nonmembers] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 30.6.9.2 [futures.task.nonmembers] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1684,7 +1684,7 @@ Change [futures.task.nonmembers]/3:
 <hr>
 <h3><a name="2001"></a>2001. Class template <tt>basic_regex</tt> uses non existent <tt>string_type</tt></h3>
 <p><b>Section:</b> 28.8.3 [re.regex.assign] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Volker Lukas <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> Volker Lukas <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1801,7 +1801,7 @@ namespace std {
 
 <hr>
 <h3><a name="2004"></a>2004. <tt>duration::operator*</tt> has template parameters in funny order</h3>
-<p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+<p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
  <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2010-11-13</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
@@ -1841,7 +1841,7 @@ template &lt;class Rep1, class <del>Period</del><ins>Rep2</ins>, class <del>Rep2
 <hr>
 <h3><a name="2006"></a>2006. <tt>emplace</tt> broken for associative containers</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
@@ -1910,8 +1910,8 @@ N3178 was looked at in session and moved to NAD.
 
 <hr>
 <h3><a name="2007"></a>2007. Incorrect specification of return value for <tt>map&lt;&gt;::at()</tt></h3>
-<p><b>Section:</b> 23.6.1.2 [map.access] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 23.4.4.3 [map.access] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#map.access">issues</a> in [map.access].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1940,8 +1940,8 @@ corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
 
 <hr>
 <h3><a name="2014"></a>2014. More restrictions on macro names</h3>
-<p><b>Section:</b> 17.6.3.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 17.6.4.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1959,7 +1959,7 @@ Moved to Tentatively Ready after 5 votes.
 
 
 <p><b>Proposed resolution:</b></p>
-<p>Modify 17.6.3.3.1 [macro.names] paragraph 2 as follows:</p>
+<p>Modify 17.6.4.3.1 [macro.names] paragraph 2 as follows:</p>
 
 <blockquote><p>
 A translation unit shall not <tt>#define</tt> or <tt>#undef</tt> names
@@ -1975,8 +1975,8 @@ described in clause 7.6 [dcl.attr]</ins>.
 
 <hr>
 <h3><a name="2017"></a>2017. <tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></h3>
-<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2011-02-24</p>
+<p><b>Section:</b> 20.8.3 [refwrap] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -2128,7 +2128,7 @@ int main()
 
 <p>
 There is one further defect in the usage of <tt>result_of</tt> within
-<tt>reference_wrapper</tt>'s function call operator: According to 20.8.4.4 [refwrap.invoke] p. 1
+<tt>reference_wrapper</tt>'s function call operator: According to 20.8.3.4 [refwrap.invoke] p. 1
 the invokable entity of type <tt>T</tt> is provided as lvalue, but 
 <tt>result_of</tt> is fed as if it were an rvalue. This does not only lead to
 potentially incorrect result types, but it will also have the effect that
@@ -2162,7 +2162,7 @@ Moved to Tentatively Ready after 5 votes.
 <ol>
 <li>
 <p>
-Change the synopsis in 20.8.4 [refwrap] paragraph 1:
+Change the synopsis in 20.8.3 [refwrap] paragraph 1:
 </p>
 
 <blockquote><pre>
@@ -2182,7 +2182,7 @@ namespace std {
 
 <li>
 <p>
-Change the signature in 20.8.4.4 [refwrap.invoke] before paragraph 1
+Change the signature in 20.8.3.4 [refwrap.invoke] before paragraph 1
 </p>
 
 <blockquote><pre>
@@ -2202,7 +2202,7 @@ operator()(ArgTypes&amp;&amp;... args) const;
 <hr>
 <h3><a name="2019"></a>2019. <tt>isblank</tt> not supported by <tt>std::locale</tt></h3>
 <p><b>Section:</b> 22.3.3.1 [classification] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>C99 added <tt>isblank</tt> and <tt>iswblank</tt> to <tt>&lt;locale.h&gt;</tt> but <tt>&lt;locale&gt;</tt> does not
@@ -2238,8 +2238,8 @@ static const mask graph = alnum | punct;
 
 <hr>
 <h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
-<p><b>Section:</b> 20.11.3.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -2249,7 +2249,7 @@ As of issue <a href="lwg-defects.html#1171">1171</a> several time-utility functi
 Alas this was done without adapting the corresponding return elements, which has the effect that 
 none of current arithmetic functions of class template <tt>duration</tt> marked as <tt>constexpr</tt> 
 can ever be <tt>constexpr</tt> functions (which makes them ill-formed, no diagnostics required as 
-of recent core rules), because they invoke a non-constant expression, e.g. 20.11.3.5 [time.duration.nonmember]/2:
+of recent core rules), because they invoke a non-constant expression, e.g. 20.11.5.5 [time.duration.nonmember]/2:
 </p>
 <blockquote><pre>
 template &lt;class Rep1, class Period1, class Rep2, class Period2>
@@ -2355,8 +2355,8 @@ operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, 
 
 <hr>
 <h3><a name="2022"></a>2022. <tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</h3>
-<p><b>Section:</b> 20.8.4 [refwrap] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-23</p>
+<p><b>Section:</b> 20.8.3 [refwrap] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -2365,7 +2365,7 @@ operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, 
 Issue <a href="lwg-defects.html#1295">1295</a> correctly removed function types and references to function types from the
 bullet 1 of 20.8.2 [func.require] p. 3 because neither function types nor function references
 satisfy the requirements for a target object which is <em>defined</em> to be an object of a callable 
-type. This has the effect that the reference in 20.8.4 [refwrap] p. 2
+type. This has the effect that the reference in 20.8.3 [refwrap] p. 2
 </p>
 <blockquote><p>
 <tt>reference_wrapper</tt> has a weak result type (20.8.2).
@@ -2381,7 +2381,7 @@ There are basically two approaches to solve the problem:
 function types and references thereof. This extension must be specified independend from the concept
 of a call wrapper, though.</p>
 </li>
-<li><p>Add one extra sentence to 20.8.4 [refwrap] p. 2 that simply defines the member type
+<li><p>Add one extra sentence to 20.8.3 [refwrap] p. 2 that simply defines the member type
 <tt>result_type</tt> for <tt>reference_wrapper&lt;T&gt;</tt>, when <tt>T</tt> is a function type.</p>
 </li>
 </ol>
@@ -2389,7 +2389,7 @@ of a call wrapper, though.</p>
 I checked the current usages of <i>weak result type</i> to have a base to argue for one or the other
 approach. It turns out, that there is no further reference to this definition in regard to
 function types or references thereof. The only other reference can be found in 
-20.8.10.1.2 [func.bind.bind] p. 3, where <tt>g</tt> is required to be a class type.
+20.8.9.1.2 [func.bind.bind] p. 3, where <tt>g</tt> is required to be a class type.
 </p>
 
 <p><i>[2011-02-23 Reflector discussion]</i></p>
@@ -2406,7 +2406,7 @@ The suggested wording changes are against the working draft N3225.
 
 <ol>
 <li>
-<p>Change 20.8.4 [refwrap] p. 2 as indicated:</p>
+<p>Change 20.8.3 [refwrap] p. 2 as indicated:</p>
 
 <blockquote><p>
 2 <tt>reference_wrapper<ins>&lt;T&gt;</ins></tt> has a weak result type (20.8.2). <ins>If <tt>T</tt> is a function type, 
@@ -2424,7 +2424,7 @@ The suggested wording changes are against the working draft N3225.
 <hr>
 <h3><a name="2023"></a>2023. Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></h3>
 <p><b>Section:</b> 30.4.2.1 [thread.lock.guard], 30.4.2.2 [thread.lock.unique] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -2548,7 +2548,7 @@ bool try_lock();
 <hr>
 <h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
 <p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2606,8 +2606,8 @@ support aggregate initialization syntax.</ins>
 
 <hr>
 <h3><a name="2026"></a>2026. <tt>hash</tt> should be <tt>std</tt> qualified for unordered container</h3>
-<p><b>Section:</b> 23.7 [unord] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-25</p>
+<p><b>Section:</b> 23.5 [unord] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2676,8 +2676,8 @@ Moved to Tentatively NAD after 5 votes.
 
 <hr>
 <h3><a name="2027"></a>2027. Initialization of the stored task of a <tt>packaged_task</tt></h3>
-<p><b>Section:</b> 30.6.10.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-09 <b>Last modified:</b> 2011-02-26</p>
+<p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-09 <b>Last modified:</b> 2011-02-28</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -2712,7 +2712,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <ol>
 <li>
-<p>Change 30.6.10.1 [futures.task.members] paragraph 3:</p>
+<p>Change 30.6.9.1 [futures.task.members] paragraph 3:</p>
 
 <blockquote><p>
 3 <em>Effects</em>: constructs a new <tt>packaged_task</tt> object with an associated asynchronous state and <del>stores a
@@ -2723,7 +2723,7 @@ The constructors that take an <tt>Allocator</tt> argument use it to allocate mem
 </li>
 
 <li>
-<p>Change 30.6.10.1 [futures.task.members] paragraph 5:</p>
+<p>Change 30.6.9.1 [futures.task.members] paragraph 5:</p>
 
 <blockquote><p>
 5 <em>Effects</em>: constructs a new <tt>packaged_task</tt> object and transfers ownership of <tt>other</tt>'s associated asynchronous
@@ -2743,7 +2743,7 @@ to <tt>*this</tt>.</ins>
 <hr>
 <h3><a name="2029"></a>2029. Missing '<tt>noexcept</tt>' on <tt>basic_regex</tt> move-assignment operator</h3>
 <p><b>Section:</b> 28.8 [re.regex] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-02-16 <b>Last modified:</b> 2011-02-24</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-02-16 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#re.regex">active issues</a> in [re.regex].</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.regex">issues</a> in [re.regex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
@@ -2806,8 +2806,8 @@ basic_regex&amp; operator=(basic_regex&amp;&amp; e) <ins>noexcept</ins>;
 
 <hr>
 <h3><a name="2030"></a>2030. <tt>packaged_task::result_type</tt> should be removed</h3>
-<p><b>Section:</b> 30.6.10 [futures.task] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-24</p>
+<p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#Ready">Tentatively Ready</a>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Ready">Tentatively Ready</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2838,7 +2838,7 @@ Moved to Tentatively Ready after 5 votes.
 
 
 <p><b>Proposed resolution:</b></p>
-<p>Alter the class definition of <tt>packaged_task</tt> in 30.6.10 [futures.task] p. 2 as follows:</p>
+<p>Alter the class definition of <tt>packaged_task</tt> in 30.6.9 [futures.task] p. 2 as follows:</p>
 <blockquote><pre>
 template&lt;class R, class... ArgTypes&gt;
 class packaged_task&lt;R(ArgTypes...)&gt; {
