@@ -19,13 +19,13 @@
 </style>
 </head>
 <body>
-<h1>C++ Standard Library Issues List (Revision R74)</h1>
+<h1>C++ Standard Library Issues List (Revision D75)</h1>
 <h1>Index by Section</h1>
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
 <p>This document is the Index by Section for the <a href="lwg-active.html">Library Active Issues List</a>.</p>
 <h2>Index by Section (non-Ready active issues only)</h2>
 <p><a href="lwg-index.html">(view all issues)</a></p>
-<p>Revised 2011-02-28 at 12:02:47 UTC</p>
+<p>Revised 2011-03-05 at 15:03:29 UTC</p>
 <h2><a name="Section 5"></a>Section 5 (1 issues)</h2>
 <p><a href="lwg-index.html#Section 5">(view all issues)</a></p>
 <table border="1" cellpadding="4">
@@ -48,7 +48,7 @@
 <td align="center">2011-02-28</td>
 </tr>
 </table>
-<h2><a name="Section 17"></a>Section 17 (9 issues)</h2>
+<h2><a name="Section 17"></a>Section 17 (10 issues)</h2>
 <p><a href="lwg-index.html#Section 17">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -116,6 +116,15 @@ freestanding implementations</td>
 <td align="center">2011-02-28</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1332">1332</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1332"></a></td>
+<td align="left">17.6.3.4 [hash.requirements]<a name="hash.requirements"</a></td>
+<td align="left">Let Hash objects throw!</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#2016">2016</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="2016"></a></td>
 <td align="left">17.6.3.5 [allocator.requirements]<a name="allocator.requirements"</a></td>
@@ -126,12 +135,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2014">2014</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2014"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2014"></a></td>
 <td align="left">17.6.4.3.1 [macro.names]<a name="macro.names"</a></td>
 <td align="left">More restrictions on macro names</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2013">2013</a></td>
@@ -196,7 +205,7 @@ freestanding implementations</td>
 <td align="center">2011-02-21</td>
 </tr>
 </table>
-<h2><a name="Section 20"></a>Section 20 (10 issues)</h2>
+<h2><a name="Section 20"></a>Section 20 (14 issues)</h2>
 <p><a href="lwg-index.html#Section 20">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -207,6 +216,33 @@ freestanding implementations</td>
   <td align="center"><b>Proposed Resolution</b></td>
   <td align="center"><b>Duplicates</b></td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1385">1385</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1385"></a></td>
+<td align="left">20.4.2.4 [tuple.creation]<a name="tuple.creation"</a></td>
+<td align="left">[FCD] <tt>tuple_cat</tt> should be a single variadic signature</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1401">1401</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1401"></a></td>
+<td align="left">20.6 [memory]<a name="memory"</a></td>
+<td align="left">[FCD] <tt>unique_ptr&lt;T&gt; == nullptr</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1408">1408</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1408"></a></td>
+<td align="left">20.6.4 [util.dynamic.safety]<a name="util.dynamic.safety"</a></td>
+<td align="left">[FCD] Allow recycling of pointers after <tt>undeclare_no_pointers</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1318">1318</a></td>
@@ -228,21 +264,21 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2017">2017</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2017"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2017"></a></td>
 <td align="left">20.8.3 [refwrap]<a name="refwrap"</a></td>
 <td align="left"><tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2022">2022</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2022"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2022"></a></td>
 <td align="left">20.8.3 [refwrap]</td>
 <td align="left"><tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-24</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2010">2010</a></td>
@@ -263,6 +299,15 @@ freestanding implementations</td>
 <td align="center">2011-02-21</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#2040">2040</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2040"></a></td>
+<td align="left">20.9 [meta]<a name="meta"</a></td>
+<td align="left">Missing type traits related to <tt>is_convertible</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-04</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#2015">2015</a></td>
 <td align="left"><a href="lwg-active.html#New">New</a><a name="2015"></a></td>
 <td align="left">20.9.4 [meta.unary]<a name="meta.unary"</a></td>
@@ -272,22 +317,22 @@ freestanding implementations</td>
 <td align="center">2011-02-21</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#2020">2020</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2020"></a></td>
-<td align="left">20.11.5.5 [time.duration.nonmember]<a name="time.duration.nonmember"</a></td>
-<td align="left">Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-02-21</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#2004">2004</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2004"></a></td>
-<td align="left">20.11.5.5 [time.duration.nonmember]</td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2004"></a></td>
+<td align="left">20.11.5.5 [time.duration.nonmember]<a name="time.duration.nonmember"</a></td>
 <td align="left"><tt>duration::operator*</tt> has template parameters in funny order</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2020">2020</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2020"></a></td>
+<td align="left">20.11.5.5 [time.duration.nonmember]</td>
+<td align="left">Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1413">1413</a></td>
@@ -353,12 +398,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2019">2019</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2019"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2019"></a></td>
 <td align="left">22.3.3.1 [classification]<a name="classification"</a></td>
 <td align="left"><tt>isblank</tt> not supported by <tt>std::locale</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1252">1252</a></td>
@@ -385,10 +430,10 @@ freestanding implementations</td>
 <td align="left"><tt>messages_base::catalog</tt> overspecified</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-04</td>
 </tr>
 </table>
-<h2><a name="Section 23"></a>Section 23 (15 issues)</h2>
+<h2><a name="Section 23"></a>Section 23 (17 issues)</h2>
 <p><a href="lwg-index.html#Section 23">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -429,12 +474,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1253">1253</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1253"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1253"></a></td>
 <td align="left">23.2.4 [associative.reqmts]<a name="associative.reqmts"</a></td>
 <td align="left">invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-24</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1214">1214</a></td>
@@ -464,22 +509,40 @@ freestanding implementations</td>
 <td align="center">2011-02-28</td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1418">1418</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1418"></a></td>
+<td align="left">23.3.3.3 [deque.capacity]<a name="deque.capacity"</a></td>
+<td align="left">[FCD] Effects of <tt>resize(size())</tt> on a <tt>deque</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#1310">1310</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1310"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1310"></a></td>
 <td align="left">23.3.4.6 [forwardlist.ops]<a name="forwardlist.ops"</a></td>
 <td align="left"><tt>forward_list splice_after</tt> from lvalues</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1420">1420</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1420"></a></td>
+<td align="left">23.3.5.3 [list.capacity]<a name="list.capacity"</a></td>
+<td align="left">[FCD] Effects of <tt>resize(size())</tt> on a <tt>list</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1215">1215</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1215"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1215"></a></td>
 <td align="left">23.3.5.5 [list.ops]<a name="list.ops"</a></td>
 <td align="left"><tt>list::merge</tt> with unequal allocators</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2010-11-13</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2033">2033</a></td>
@@ -501,12 +564,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2007">2007</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2007"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2007"></a></td>
 <td align="left">23.4.4.3 [map.access]<a name="map.access"</a></td>
 <td align="left">Incorrect specification of return value for <tt>map&lt;&gt;::at()</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2005">2005</a></td>
@@ -536,7 +599,7 @@ freestanding implementations</td>
 <td align="center">2011-02-21</td>
 </tr>
 </table>
-<h2><a name="Section 24"></a>Section 24 (3 issues)</h2>
+<h2><a name="Section 24"></a>Section 24 (4 issues)</h2>
 <p><a href="lwg-index.html#Section 24">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -564,7 +627,16 @@ freestanding implementations</td>
 <td align="left">Output iterator requirements are broken</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-28</td>
+<td align="center">2011-03-04</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2038">2038</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2038"></a></td>
+<td align="left">24.2.4 [output.iterators]</td>
+<td align="left">Missing definition for <tt>incrementable</tt> iterator</td>
+<td align="center"><font color="red">No</font></td>
+<td align="left"></td>
+<td align="center">2011-03-04</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1320">1320</a></td>
@@ -576,7 +648,51 @@ freestanding implementations</td>
 <td align="center">2010-11-13</td>
 </tr>
 </table>
-<h2><a name="Section 27"></a>Section 27 (1 issues)</h2>
+<h2><a name="Section 25"></a>Section 25 (1 issues)</h2>
+<p><a href="lwg-index.html#Section 25">(view all issues)</a></p>
+<table border="1" cellpadding="4">
+<tr>
+  <td align="center"><a href="lwg-toc.html"><b>Issue</b></a></td>
+  <td align="center"><a href="lwg-status.html"><b>Status</b></a></td>
+  <td align="center"><a href="lwg-index.html"><b>Section</b></a></td>
+  <td align="center"><b>Title</b></td>
+  <td align="center"><b>Proposed Resolution</b></td>
+  <td align="center"><b>Duplicates</b></td>
+  <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2039">2039</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2039"></a></td>
+<td align="left">25.3.1 [alg.copy]<a name="alg.copy"</a></td>
+<td align="left">Issues with <tt>std::reverse</tt> and <tt>std::copy_if</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-04</td>
+</tr>
+</table>
+<h2><a name="Section 26"></a>Section 26 (1 issues)</h2>
+<p><a href="lwg-index.html#Section 26">(view all issues)</a></p>
+<table border="1" cellpadding="4">
+<tr>
+  <td align="center"><a href="lwg-toc.html"><b>Issue</b></a></td>
+  <td align="center"><a href="lwg-status.html"><b>Status</b></a></td>
+  <td align="center"><a href="lwg-index.html"><b>Section</b></a></td>
+  <td align="center"><b>Title</b></td>
+  <td align="center"><b>Proposed Resolution</b></td>
+  <td align="center"><b>Duplicates</b></td>
+  <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1438">1438</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1438"></a></td>
+<td align="left">26.5.4.2 [rand.adapt.disc]<a name="rand.adapt.disc"</a></td>
+<td align="left">[FCD] No definition for <tt>base()</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
+</tr>
+</table>
+<h2><a name="Section 27"></a>Section 27 (2 issues)</h2>
 <p><a href="lwg-index.html#Section 27">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -587,6 +703,15 @@ freestanding implementations</td>
   <td align="center"><b>Proposed Resolution</b></td>
   <td align="center"><b>Duplicates</b></td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2036">2036</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2036"></a></td>
+<td align="left">27.7.2.1 [istream]<a name="istream"</a></td>
+<td align="left"><tt>istream &gt;&gt; char</tt> and <tt>eofbit</tt></td>
+<td align="center"><font color="red">No</font></td>
+<td align="left"></td>
+<td align="center">2011-03-04</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1448">1448</a></td>
@@ -630,12 +755,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2029">2029</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2029"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2029"></a></td>
 <td align="left">28.8 [re.regex]<a name="re.regex"</a></td>
 <td align="left">Missing '<tt>noexcept</tt>' on <tt>basic_regex</tt> move-assignment operator</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1396">1396</a></td>
@@ -648,12 +773,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2001">2001</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2001"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2001"></a></td>
 <td align="left">28.8.3 [re.regex.assign]<a name="re.regex.assign"</a></td>
 <td align="left">Class template <tt>basic_regex</tt> uses non existent <tt>string_type</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1452">1452</a></td>
@@ -665,7 +790,7 @@ freestanding implementations</td>
 <td align="center">2011-02-21</td>
 </tr>
 </table>
-<h2><a name="Section 29"></a>Section 29 (12 issues)</h2>
+<h2><a name="Section 29"></a>Section 29 (13 issues)</h2>
 <p><a href="lwg-index.html#Section 29">(view all issues)</a></p>
 <table border="1" cellpadding="4">
 <tr>
@@ -679,12 +804,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1456">1456</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1456"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1456"></a></td>
 <td align="left">29 [atomics]<a name="atomics"</a></td>
 <td align="left">[FCD] Missing fixed-size atomic_ typedefs</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1523">1523</a></td>
@@ -706,12 +831,21 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1457">1457</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1457"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1457"></a></td>
 <td align="left">29.2 [atomics.syn]<a name="atomics.syn"</a></td>
 <td align="left">[FCD] Splitting lock-free properties</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2037">2037</a></td>
+<td align="left"><a href="lwg-active.html#New">New</a><a name="2037"></a></td>
+<td align="left">29.2 [atomics.syn]</td>
+<td align="left"><tt>atomic</tt> free functions incorrectly specified</td>
+<td align="center"><font color="red">No</font></td>
+<td align="left"></td>
+<td align="center">2011-03-04</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2034">2034</a></td>
@@ -742,12 +876,12 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2024">2024</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2024"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2024"></a></td>
 <td align="left">29.5 [atomics.types.generic]<a name="atomics.types.generic"</a></td>
 <td align="left">Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1478">1478</a></td>
@@ -760,30 +894,30 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1474">1474</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1474"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1474"></a></td>
 <td align="left">29.6.5 [atomics.types.operations.req]<a name="atomics.types.operations.req"</a></td>
 <td align="left">[FCD] weak compare-and-exchange confusion</td>
 <td align="center">Yes</td>
 <td align="left"><a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></td>
-<td align="center">2011-02-25</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1480">1480</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1480"></a></td>
-<td align="left">29.8 [atomics.fences]<a name="atomics.fences"</a></td>
-<td align="left">[FCD] Atomic fences don't have <em>synchronizes with</em> relation</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-02-28</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1479">1479</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1479"></a></td>
-<td align="left">29.8 [atomics.fences]</td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1479"></a></td>
+<td align="left">29.8 [atomics.fences]<a name="atomics.fences"</a></td>
 <td align="left">[FCD] Fence functions should be <tt>extern "C"</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1480">1480</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1480"></a></td>
+<td align="left">29.8 [atomics.fences]</td>
+<td align="left">[FCD] Atomic fences don't have <em>synchronizes with</em> relation</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
 </tr>
 </table>
 <h2><a name="Section 30"></a>Section 30 (21 issues)</h2>
@@ -827,30 +961,30 @@ freestanding implementations</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2023">2023</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2023"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2023"></a></td>
 <td align="left">30.4.2.1 [thread.lock.guard]<a name="thread.lock.guard"</a></td>
 <td align="left">Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1494">1494</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1494"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1494"></a></td>
 <td align="left">30.4.4.2 [thread.once.callonce]<a name="thread.once.callonce"</a></td>
 <td align="left">[FCD] Term "are serialized" not defined</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-28</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1497">1497</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1497"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1497"></a></td>
 <td align="left">30.5 [thread.condition]<a name="thread.condition"</a></td>
 <td align="left">[FCD] <tt>lock()</tt> postcondition can not be generally achieved</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-28</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#966">966</a></td>
@@ -910,12 +1044,12 @@ synchronization requirements</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2031">2031</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2031"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2031"></a></td>
 <td align="left">30.6.6 [futures.unique_future]<a name="futures.unique_future"</a></td>
 <td align="left"><tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-22</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2032">2032</a></td>
@@ -928,40 +1062,40 @@ synchronization requirements</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2030">2030</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2030"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2030"></a></td>
 <td align="left">30.6.9 [futures.task]<a name="futures.task"</a></td>
 <td align="left"><tt>packaged_task::result_type</tt> should be removed</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-25</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#2027">2027</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2027"></a></td>
+<td align="right"><a href="lwg-active.html#1514">1514</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1514"></a></td>
 <td align="left">30.6.9.1 [futures.task.members]<a name="futures.task.members"</a></td>
-<td align="left">Initialization of the stored task of a <tt>packaged_task</tt></td>
+<td align="left">[FCD] <tt>packaged_task</tt> constructors need review</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-28</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#1515">1515</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1515"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="1515"></a></td>
 <td align="left">30.6.9.1 [futures.task.members]</td>
 <td align="left">[FCD] <tt>packaged_task::make_ready_at_thread_exit</tt> has no
 synchronization requirements</td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-24</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#1514">1514</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="1514"></a></td>
+<td align="right"><a href="lwg-active.html#2027">2027</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2027"></a></td>
 <td align="left">30.6.9.1 [futures.task.members]</td>
-<td align="left">[FCD] <tt>packaged_task</tt> constructors need review</td>
+<td align="left">Initialization of the stored task of a <tt>packaged_task</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2008">2008</a></td>
@@ -983,12 +1117,34 @@ synchronization requirements</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-active.html#2000">2000</a></td>
-<td align="left"><a href="lwg-active.html#Ready">Tentatively Ready</a><a name="2000"></a></td>
+<td align="left"><a href="lwg-active.html#Voting">Tentatively Voting</a><a name="2000"></a></td>
 <td align="left">30.6.9.2 [futures.task.nonmembers]<a name="futures.task.nonmembers"</a></td>
 <td align="left">Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
-<td align="center">2011-02-21</td>
+<td align="center">2011-03-05</td>
+</tr>
+</table>
+<h2><a name="Section D"></a>Section D (1 issues)</h2>
+<p><a href="lwg-index.html#Section D">(view all issues)</a></p>
+<table border="1" cellpadding="4">
+<tr>
+  <td align="center"><a href="lwg-toc.html"><b>Issue</b></a></td>
+  <td align="center"><a href="lwg-status.html"><b>Status</b></a></td>
+  <td align="center"><a href="lwg-index.html"><b>Section</b></a></td>
+  <td align="center"><b>Title</b></td>
+  <td align="center"><b>Proposed Resolution</b></td>
+  <td align="center"><b>Duplicates</b></td>
+  <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#1279">1279</a></td>
+<td align="left"><a href="lwg-active.html#Voting">Voting</a><a name="1279"></a></td>
+<td align="left">D.10.1 [depr.base]<a name="depr.base"</a></td>
+<td align="left">forbid <tt>[u|bi]nary_function</tt> specialization</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-03-05</td>
 </tr>
 </table>
 </body>

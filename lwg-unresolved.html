@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-02-28 at 12:02:47 UTC</p>
+<p>Revised 2011-03-05 at 15:03:29 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5690,7 +5690,7 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 <hr>
 <h3><a name="2028"></a>2028. <tt>messages_base::catalog</tt> overspecified</h3>
 <p><b>Section:</b> 22.4.7.1 [locale.messages] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-14 <b>Last modified:</b> 2011-02-25</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-14 <b>Last modified:</b> 2011-03-04</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -5721,6 +5721,10 @@ supplied for this very purpose!
 <p><i>[2011-02-24: Chris Jefferson updates the proposed wording, changing <i>unspecified</i> to <i>unspecified signed integral type</i>]</i></p>
 
 
+<p><i>[2011-03-02: Daniel updates the proposed wording, changing <i>unspecified signed integral type</i> to
+ <i>unspecified signed integer type</i> (We don't want to allow for <tt>bool</tt> or <tt>char</tt>)]</i></p>
+
+
 
 <p><b>Proposed resolution:</b></p>
 <ol>
@@ -5731,7 +5735,7 @@ supplied for this very purpose!
 namespace std {
   class messages_base {
   public:
-    typedef <del>int</del><ins><em>unspecified signed integral type</em></ins> catalog;
+    typedef <del>int</del><ins><em>unspecified signed integer type</em></ins> catalog;
   };
   ...
 }
@@ -5982,7 +5986,8 @@ in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
 <hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-02-28</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-04</p>
+<p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5994,10 +5999,256 @@ that the iterator is incrementable. This is impossible, because it would exclude
 iterator, such as a pointer to a C array. The N3066 wording changes did not have these effects.
 </p>
 
+<p><i>[2011-03-01: Daniel comments:]</i></p>
+
+
+<p>This issue has some overlap with the issue <a href="lwg-active.html#2038">2038</a> and I would prefer if we
+could solve both at one location. I suggest the following approach:
+</p>
+<ol>
+<li><p>The terms <tt><i>dereferencable</i></tt> and <tt><i>incrementable</i></tt> could be defined in a more
+general way not restricted to iterators (similar to the concepts <tt>HasDereference</tt> and 
+<tt>HasPreincrement</tt> from working draft N2914). But on the other hand, all current usages of 
+<tt><i>dereferencable</i></tt> and <tt><i>incrementable</i></tt> are involved with types that satisfy 
+iterator requirements. Thus, I believe that it is sufficient for C++0x to add corresponding definitions to 
+24.2.1 [iterator.requirements.general] and to let all previous usages of these terms refer to this 
+sub-clause. Since the same problem occurs with the past-the-end iterator, this proposal suggest providing 
+similar references to usages that precede its definition as well.
+</p></li>
+<li><p>We also need to ensure that all iterator expressions get either an operational semantics in
+terms of others or we need to add missing pre- and post-conditions. E.g. we have the following
+ones without semantics:
+</p><blockquote><pre>
+*r++ = o // output iterator
+*r--     // bidirectional iterator
+</pre></blockquote><p>
+According to the <a href="http://www.sgi.com/tech/stl/OutputIterator.html">SGI specification</a>
+these correspond to
+</p><blockquote><pre>
+{ *r = o; ++r; }                         // output iterator
+{ reference tmp = *r; --r; return tmp; } // bidirectional iterator
+</pre></blockquote><p>
+respectively. Please note especially the latter expression for bidirectional iterator. It fixes a problem
+that we have for forward iterator as well: Both these iterator categories provide stronger guarantees
+than input iterator, because the result of the dereference operation is <tt>reference</tt>, and <strong>not</strong>
+only convertible to the value type (The exact form from the SGI documentation does not correctly refer to
+<tt>reference</tt>).
+</p></li>
+</ol>
 
 
 <p><b>Proposed resolution:</b></p>
-<p>Modify the column contents of Table 108 &mdash; &quot;Output iterator requirements&quot;, 24.2.4 [output.iterators], as indicated:</p>
+<ol>
+<li><p>Add a reference to 24.2.1 [iterator.requirements.general] to the following parts of the
+library preceding Clause 24 Iterators library: (I stopped from 23.2.5 [unord.req] on, because
+the remaining references are the concrete containers)</p>
+<ol>
+<li><p>17.6.3.2 [swappable.requirements] p. 5:</p>
+
+<blockquote><p>
+5 A type <tt>X</tt> satisfying any of the iterator requirements (24.2) is <tt><i>ValueSwappable</i></tt> if, 
+for any dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> object <tt>x</tt> of type 
+<tt>X</tt>, <tt>*x</tt> is swappable.
+</p></blockquote>
+</li>
+
+<li><p>17.6.3.5 [allocator.requirements], Table 27 &mdash> &quot;Descriptive variable definitions&quot;, 
+row with the expression <tt>c</tt>:</p>
+
+<blockquote><p>
+a dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> pointer of type <tt>C*</tt>
+</p></blockquote>
+
+</li>
+
+<li><p>20.6.3.2 [pointer.traits.functions]:</p>
+<blockquote><p>
+<i>Returns</i>: The first template function returns a dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> 
+pointer to <tt>r</tt> obtained by calling <tt>Ptr::pointer_to(r)</tt>;  [&hellip;]
+</p></blockquote>
+</li>
+
+<li><p>21.4.3 [string.iterators] p. 2:</p>
+<blockquote><p>
+<i>Returns</i>: An iterator which is the past-the-end value <ins>(24.2.1 [iterator.requirements.general])</ins>.
+</p></blockquote>
+</li>
+
+<li><p>22.4.5.1.2 [locale.time.get.virtuals] p. 11:</p>
+<blockquote><pre>
+iter_type do_get(iter_type s, iter_type end, ios_base&amp; f,
+  ios_base::iostate&amp; err, tm *t, char format, char modifier) const;
+</pre><blockquote><p>
+<i>Requires</i>: <tt>t</tt> shall be dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins>.
+</p></blockquote></blockquote>
+</li>
+
+<li><p>23.2.1 [container.requirements.general] p. 6:</p>
+
+<blockquote><p>
+[&hellip;]  <tt>end()</tt> returns an iterator which is the past-the-end <ins>(24.2.1 [iterator.requirements.general])</ins> 
+value for the container.  [&hellip;]
+</p></blockquote>
+</li>
+
+<li><p>23.2.3 [sequence.reqmts] p. 3:</p>
+
+<blockquote><p>
+[&hellip;]  <tt>q</tt> denotes a valid dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> 
+const iterator to <tt>a</tt>,  [&hellip;]
+</p></blockquote>
+</li>
+
+<li><p>23.2.4 [associative.reqmts] p. 8 (I omit intentionally one further reference in the same sub-clause):</p>
+
+<blockquote><p>
+[&hellip;]  <tt>q</tt> denotes a valid dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> 
+const iterator to <tt>a</tt>,  [&hellip;]
+</p></blockquote>
+</li>
+
+<li><p>23.2.5 [unord.req] p. 10 (I omit intentionally one further reference in the same sub-clause):</p>
+
+<blockquote><p>
+[&hellip;]  <tt>q</tt> and <tt>q1</tt> are valid dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> 
+const iterators to <tt>a</tt>,  [&hellip;]
+</p></blockquote>
+</li>
+</ol>
+
+</li>
+<li><p>Edit 24.2.1 [iterator.requirements.general] p. 5 as indicated (The intent is to properly define
+<i>incrementable</i> and to ensure some further library guarantee related to past-the-end iterator values):</p>
+
+<blockquote><p>
+5 Just as a regular pointer to an array guarantees that there is a pointer value pointing past the last element
+of the array, so for any iterator type there is an iterator value that points past the last element of a
+corresponding sequence. These values are called <i>past-the-end values</i>. Values of an iterator <tt>i</tt> for which the
+expression <tt>*i</tt> is defined are called <i>dereferenceable</i>. <ins>Values of an iterator <tt>i</tt> for which the
+expression <tt>++i</tt> is defined are called <i>incrementable</i>. </ins> The library never assumes that 
+past-the-end values are dereferenceable <ins>or incrementable</ins>. Iterators can also have singular values 
+that are not associated with any sequence. [&hellip;]
+</p></blockquote>
+</li>
+
+<li><p>Modify the column contents of Table 106 &mdash; &quot;Iterator requirements&quot;, 
+24.2.2 [iterator.iterators], as indicated:</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 106 &mdash; Iterator requirements</caption>
+
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational semantics</th>
+<th>Assertion&frasl;note<br/>pre-&frasl;post-condition</th>
+</tr>
+
+<tr>
+<td><tt>*r</tt></td>
+<td><tt>reference</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td>pre: <tt>r</tt> is dereferenceable.</td>
+</tr>
+
+<tr>
+<td><tt>++r</tt></td>
+<td><tt>X&amp;</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td><ins>pre: <tt>r</tt> is incrementable.</ins></td>
+</tr>
+
+</table>
+</blockquote>
+</li>
+
+<li><p>Modify the column contents of Table 107 &mdash; &quot;Input iterator requirements&quot;, 
+24.2.3 [input.iterators], as indicated:</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 107 &mdash; Input iterator requirements (in addition to Iterator)</caption>
+
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational semantics</th>
+<th>Assertion&frasl;note<br/>pre-&frasl;post-condition</th>
+</tr>
+
+<tr>
+<td><tt>a != b</tt></td>
+<td>contextually<br/>
+convertible to <tt>bool</tt></td>
+<td><tt>!(a == b)</tt></td>
+<td>pre: <tt>(a, b)</tt> is in the domain<br/>
+of <tt>==</tt>.
+</td>
+</tr>
+
+<tr>
+<td><tt>*a</tt></td>
+<td>convertible to <tt>T</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td>pre: <tt>a</tt> is dereferenceable.<br/>
+The expression<br/>
+<tt>(void)*a, *a</tt> is equivalent<br/>
+to <tt>*a</tt>.<br/>
+If <tt>a == b</tt> and <tt>(a,b)</tt> is in<br/>
+the domain of <tt>==</tt> then <tt>*a</tt> is<br/>
+equivalent to <tt>*b</tt>.
+</td>
+</tr>
+
+<tr>
+<td><tt>a-&gt;m</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td><tt>(*a).m</tt></td>
+<td>pre: <tt>a</tt> is dereferenceable.
+</td>
+</tr>
+
+<tr>
+<td><tt>++r</tt></td>
+<td><tt>X&amp;</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td>pre: <tt>r</tt> is dereferenceable<br/>
+<ins>and <tt>r</tt> is incrementable</ins>.<br/>
+post: <tt>r</tt> is dereferenceable or<br/>
+<tt>r</tt> is past-the-end.<br/>
+post: any copies of the<br/>
+previous value of <tt>r</tt> are no<br/>
+longer required either to be<br/>
+dereferenceable<ins>, incrementable,</ins><br/>
+or to be in the domain of <tt>==</tt>.
+</td>
+</tr>
+
+<tr>
+<td><tt>(void)r++</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td><ins><tt>(void)++r</tt></ins></td>
+<td><del>equivalent to <tt>(void)++r</tt></del></td>
+</tr>
+
+<tr>
+<td><tt>*r++</tt></td>
+<td>convertible to <tt>T</tt></td>
+<td><tt>{ T tmp = *r;<br/>
+++r;<br/>
+return tmp; }
+</tt></td>
+<td><tt>&nbsp;</tt></td>
+</tr>
+
+</table>
+</blockquote>
+</li>
+
+<li>
+<p>Modify the column contents of Table 108 &mdash; &quot;Output iterator requirements&quot;, 
+24.2.4 [output.iterators], as indicated:</p>
 
 <blockquote>
 <table border="1">
@@ -6014,7 +6265,8 @@ iterator, such as a pointer to a C array. The N3066 wording changes did not have
 <td><tt>*r = o</tt></td>
 <td>result is not used</td>
 <td><tt>&nbsp;</tt></td>
-<td><i>Remark</i>: After this operation<br/>
+<td><ins>pre: <tt>r</tt> is dereferenceable.</ins><br/>
+<i>Remark</i>: After this operation<br/>
 <tt>r</tt> is not required to be<br/>
 dereferenceable.<br/>
 post: <tt>r</tt> is incrementable.
@@ -6025,7 +6277,8 @@ post: <tt>r</tt> is incrementable.
 <td><tt>++r</tt></td>
 <td><tt>X&amp;</tt></td>
 <td><tt>&nbsp;</tt></td>
-<td><tt>&amp;r == &amp;++r</tt>.<br/>
+<td><ins>pre: <tt>r</tt> is incrementable.</ins><br/>
+<tt>&amp;r == &amp;++r</tt>.<br/>
 <i>Remark</i>: After this operation<br/>
 <tt>r</tt> is not required to be<br/>
 dereferenceable <ins>or incrementable</ins>.<br/>
@@ -6050,7 +6303,7 @@ dereferenceable <ins>or incrementable</ins>.<br/>
 <tr>
 <td><tt>*r++ = o</tt></td>
 <td>result is not used</td>
-<td><tt>&nbsp;</tt></td>
+<td><ins><tt>{ *r = o; ++r; }</tt></ins></td>
 <td><i>Remark</i>: After this operation<br/>
 <tt>r</tt> is not required to be<br/>
 dereferenceable <ins>or incrementable</ins>.<br/>
@@ -6059,7 +6312,600 @@ dereferenceable <ins>or incrementable</ins>.<br/>
 </tr>
 </table>
 </blockquote>
+</li>
 
+<li><p>Modify the column contents of Table 109 &mdash; &quot;Forward iterator requirements&quot;, 
+24.2.5 [forward.iterators], as indicated [<i>Rationale</i>: Since the return type of the
+expression <tt>*r++</tt> is now guaranteed to be type <tt>reference</tt>, the implied operational
+semantics from input iterator based on value copies is wrong &mdash; <i>end rationale</i>]</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 109 &mdash; Forward iterator requirements (in addition to input iterator)</caption>
+
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational semantics</th>
+<th>Assertion&frasl;note<br/>pre-&frasl;post-condition</th>
+</tr>
+
+<tr>
+<td><tt>r++</tt></td>
+<td>convertible to <tt>const X&amp;</tt></td>
+<td><tt>{ X tmp = r;<br/>
+  ++r;<br/>
+  return tmp; }</tt>
+</td>
+<td><tt>&nbsp;</tt></td>
+</tr>
+
+<tr>
+<td><tt>*r++</tt></td>
+<td>reference</td>
+<td><ins><tt>{ reference tmp = *r;<br/>
+ ++r;<br/> 
+ return tmp; }</tt></ins></td>
+<td><tt>&nbsp;</tt></td>
+</tr>
+</table>
+</blockquote>
+
+</li>
+
+<li><p>Modify the column contents of Table 110 &mdash; &quot;Bidirectional iterator requirements&quot;, 
+24.2.6 [bidirectional.iterators], as indicated:</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 110 &mdash; Bidirectional iterator requirements (in addition to forward iterator)</caption>
+
+<tr>
+<th>Expression</th>
+<th>Return type</th>
+<th>Operational semantics</th>
+<th>Assertion&frasl;note<br/>pre-&frasl;post-condition</th>
+</tr>
+
+<tr>
+<td><tt>--r</tt></td>
+<td><tt>X&amp;</tt></td>
+<td><tt>&nbsp;</tt></td>
+<td>pre: <ins><tt>r</tt> is dereferenceable or<br/>
+<tt>r</tt> is past-the-end. T</ins><del>t</del>here<br/>
+exists <tt>s</tt> such that<br/>
+<tt>r == ++s</tt>.<br/>
+post: <tt>r</tt> is dereferenceable<br/>
+<ins> and <tt>r</tt> is incrementable</ins>.<br/>
+<tt>--(++r) == r</tt>.<br/>
+<tt>--r == --s</tt> implies <tt>r == s</tt>.<br/>
+<tt>&amp;r == &amp;--r</tt>.
+</td>
+</tr>
+
+<tr>
+<td><tt>r--</tt></td>
+<td>convertible to <tt>const X&amp;</tt></td>
+<td><tt>{ X tmp = r;<br/>
+  --r;<br/>
+  return tmp; }</tt>
+</td>
+<td><tt>&nbsp;</tt></td>
+</tr>
+
+<tr>
+<td><tt>*r--</tt></td>
+<td>reference</td>
+<td><ins><tt>{ reference tmp = *r;<br/>
+ --r;<br/> 
+ return tmp; }</tt></ins></td>
+<td><tt>&nbsp;</tt></td>
+</tr>
+</table>
+</blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2036"></a>2036. <tt>istream &gt;&gt; char</tt> and <tt>eofbit</tt></h3>
+<p><b>Section:</b> 27.7.2.1 [istream] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-04</p>
+<p><b>View all other</b> <a href="lwg-index.html#istream">issues</a> in [istream].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>The question is:  When a single character is extracted from an <tt>istream</tt> using <tt>operator&gt;&gt;</tt>, 
+does <tt>eofbit</tt> get set if this is the last character extracted from the stream?  The current standard is at 
+best ambiguous on the subject. 27.7.2.1 [istream]/p3 describes all extraction operations with:</p>
+
+<blockquote><p>
+3 If <tt>rdbuf()-&gt;sbumpc()</tt> or <tt>rdbuf()-&gt;sgetc()</tt> returns <tt>traits::eof()</tt>, then the input 
+function, except as explicitly noted otherwise, completes its actions and does <tt>setstate(eofbit)</tt>, which may 
+throw <tt>ios_base::failure</tt> (27.5.5.4 [iostate.flags]), before returning.
+</p></blockquote>
+
+<p>And 27.7.2.2.3 [istream::extractors]/p12 in describing <tt>operator&gt;&gt;(basic_istream&lt;charT,traits&gt;&amp; in, charT&amp; c);</tt> 
+offers no further clarification:
+</p>
+
+<blockquote><p>
+12 <i>Effects</i>: Behaves like a formatted input member (as described in [istream.formatted.reqmts]) of <tt>in</tt>. 
+After a <tt>sentry</tt> object is constructed a character is extracted from <tt>in</tt>, if one is available, and 
+stored in <tt>c</tt>. Otherwise, the function calls <tt>in.setstate(failbit)</tt>.
+</p></blockquote>
+
+<p>I coded it one way in libc++, and g++ coded it another way.  Chris Jefferson noted that some boost code was 
+sensitive to the difference and fails for libc++.  Therefore I believe that it is very important that we specify 
+this extraction operator in enough detail that both vendors and clients know what behavior is required and expected.
+</p>
+
+<p>Here is a brief code example demonstrating the issue:</p>
+
+<blockquote><pre>
+#include &lt;sstream&gt;
+#include &lt;cassert&gt;
+
+int main()
+{
+  std::istringstream ss("1");
+  char t;
+  ss &gt;&gt; t;
+  assert(!ss.eof());
+};
+</pre></blockquote>
+
+<p>For every type capable of reading this istringstream but <tt>char</tt>, <tt>ss.eof()</tt> will be true after the 
+extraction (<tt>bool</tt>, <tt>int</tt>, <tt>double</tt>, etc.).  So for consistency's sake we might want to have 
+<tt>char</tt> behave the same way as other built-in types.</p>
+
+<p>However Jean-Marc Bourguet offers this counter example code using an interactive stream.  He argues that 
+setting <tt>eof</tt> inhibits reading the next line:</p>
+
+<blockquote><pre>
+#include &lt;iostream&gt;
+
+int main()
+{
+ char c;
+ std::cin &gt;&gt; std::noskipws;
+ std::cout &lt;&lt; "First line: ";
+ while (std::cin &gt;&gt; c) {
+    if (c == '\n') {
+       std::cout &lt;&lt; "Next line: ";
+    }
+ }
+}
+</pre></blockquote>
+
+<p>As these two code examples demonstrate, whether or not <tt>eofbit</tt> gets set is an observable difference and it 
+is impacting real-world code.  I feel it is critical that we clearly and unambiguously choose one behavior or the other.  
+I am proposing wording for both behaviors and ask the LWG to choose one (and only one!).</p>
+
+<p>Wording for setting <tt>eof</tt> bit:</p>
+
+<p>Modify 27.7.2.2.3 [istream::extractors]/p12 as follows:</p>
+
+<blockquote><p>
+12 <i>Effects</i>: Behaves like a formatted input member (as described in [istream.formatted.reqmts]) of <tt>in</tt>. 
+After a <tt>sentry</tt> object is constructed a character is extracted from <tt>in</tt>, if one is available, and 
+stored in <tt>c</tt>. <del>Otherwise, the function calls <tt>in.setstate(failbit)</tt>.</del>  <ins>If a character is 
+extracted and it is the last character in the pending sequence, the function calls <tt>in.setstate(eofbit)</tt>.  
+If a character is not extracted the function calls <tt>in.setstate(failbit | eofbit)</tt>.</ins>
+</p></blockquote>
+
+<p>Wording for not setting <tt>eof</tt> bit:</p>
+
+<blockquote><p>
+12 <i>Effects</i>: Behaves like a formatted input member (as described in [istream.formatted.reqmts]) of <tt>in</tt>. 
+After a <tt>sentry</tt> object is constructed a character is extracted from <tt>in</tt><del>, if one is available, 
+and stored in <tt>c</tt>. Otherwise, the function calls <tt>in.setstate(failbit)</tt>.</del> <ins>with 
+<tt>in.rdbuf()-&gt;sbumpc()</tt>.  If <tt>traits::eof()</tt> is returned, the function calls 
+<tt>in.setstate(failbit | eofbit)</tt>.  Otherwise the return value is converted to type <tt>charT</tt> and stored
+in <tt>c</tt>.</ins>
+</p></blockquote>
+
+<p><i>[2011-02-27: Jean-Marc Bourguet comments]</i></p>
+
+
+<p>Just for completeness: it [the counter example] doesn't inhibit to read the next line, it inhibits the prompt 
+to be put at the appropriate time.</p>
+
+<p>More information to take into account when deciding:</p>
+
+<ul>
+<li><p>if I'm reading correctly the section to get boolean values when <tt>boolalpha</tt> is set, there we mandate 
+that <tt>eof</tt> isn't set if trying to read past the end of the pending sequence wasn't needed to determine the result.
+</p></li>
+
+<li><p>
+see also the behaviour of <tt>getline</tt> (which isn't a formatted input function but won't set <tt>eof</tt> 
+if it occurs just after the delimiter)
+</p></li>
+
+<li><p>
+if I'm reading the C standard correctly <tt>scanf("%c")</tt> wouldn't set <tt>feof</tt> either in that situation.
+</p></li>
+</ul>
+
+<p><i>[2011-02-28: Martin Sebor comments]</i></p>
+
+
+<p>[Responds to bullet 1 of Jean-Marc's list]</p>
+
+<p>
+Yes, this matches the stdcxx test suite for <tt>num_get</tt> and <tt>time_get</tt>
+but not <tt>money_get</tt> when the currency symbol is last. I don't see
+where in the locale.money.get.virtuals section we specify whether
+<tt>eofbit</tt> is or isn't set and when.
+<p/>
+IMO, if we try to fix the <tt>char</tt> extractor to be consistent we
+should also fix all the others extractors and manipulators that
+aren't consistent (including <tt>std::get_money</tt> and <tt>std::get_time</tt>).
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p></p>
+
+
+
+
+
+<hr>
+<h3><a name="2037"></a>2037. <tt>atomic</tt> free functions incorrectly specified</h3>
+<p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-03-01 <b>Last modified:</b> 2011-03-04</p>
+<p><b>View other</b> <a href="lwg-index-open.html#atomics.syn">active issues</a> in [atomics.syn].</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.syn">issues</a> in [atomics.syn].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>In earlier specifications of atomics the template specialization <tt>atomic&lt;<i>integer</i>&gt;</tt> 
+was derived from <tt>atomic_integer</tt> (e.g. <tt>atomic&lt;int&gt;</tt> was derived from <tt>atomic_int</tt>), 
+and the working draft required free functions such as</p>
+
+<blockquote><pre>
+int atomic_load(const atomic_int*)
+</pre></blockquote>
+
+<p>for each of the <tt>atomic_integer</tt> types. This worked fine with normal function overloading.</p>
+
+<p>For the post-Batavia working draft, N3193 removed the requirement that <tt>atomic&lt;integer&gt;</tt> 
+be derived from <tt>atomic_integer</tt> and replaced the free functions taking pointers to 
+<tt>atomic_integer</tt> with template functions taking <tt>atomic_type*</tt>, such as</p>
+
+<blockquote><pre>
+template &lt;class T&gt; T atomic_load(const atomic_type*);
+</pre></blockquote>
+
+<p>and a code comment explaining that <tt>atomic_type</tt> can be either <tt>atomic&lt;T&gt;</tt> or a 
+named base class of <tt>atomic&lt;T&gt;</tt>. The latter possibility is supposed to allow existing 
+implementations based on the previous specification to continue to conform.</p>
+
+<p>From history, this allowance seems to imply that functions like <tt>atomic_load</tt> can be non-template 
+free functions, as they were before. The explicit requirements do not allow this, and, by requiring that 
+they be templates, make them far more complicated. As the specification is currently written, code that 
+uses an implementation that uses a base class would have to provide an explicit template type:</p>
+
+<blockquote><pre>
+atomic&lt;int&gt; my_atomic_int;
+atomic_load&lt;int&gt;(&amp;my_atomic_int);
+</pre></blockquote>
+
+<p>That type argument isn't needed when <tt>atomic_type</tt> is <tt>atomic&lt;T&gt;</tt>, but cautious 
+users would always provide it to make their code portable across different implementations of the 
+standard library.</p>
+
+<p>One possibility for the implementor would be to do some template meta-programming to infer the type 
+<tt>T</tt> when there are no function parameters of type <tt>T</tt>, but without running afoul of the 
+prohibition on adding parameters with default values (17.6.5.4 [global.functions]/3).</p>
+
+<p>So the promise that implementations of the previous specification continue to conform has not been 
+met. The specification of these free functions should be rewritten to support library code written to 
+the previous specification or the vacuous promise should be removed.
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p></p>
+
+
+
+
+
+<hr>
+<h3><a name="2038"></a>2038. Missing definition for <tt>incrementable</tt> iterator</h3>
+<p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-04</p>
+<p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
+<p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+
+<p>In comp.lang.c++, Vicente Botet raises the following questions:</p>
+
+<blockquote><p>
+&quot;In "24.2.4 Output iterators" there are 3 uses of incrementable. I've
+not found the definition. Could some one point me where it is defined?
+<p/>
+Something similar occurs with dereferenceable. While the definition is
+given in "24.2.1 In general" it is used several times before.
+<p/>
+Shouldn't these definitions be moved to some previous section?&quot;
+</p></blockquote>
+
+<p>He's right: both terms are used without being properly defined.
+<p/>
+There is no definition of "incrementable".
+<p/>
+While there is a definition of "dereferenceable", it is, in fact, a definition of 
+"dereferenceable iterator". "dereferenceable" is used throughout Clause 23 (Containers) 
+before its definition in Clause 24. In almost all cases it's referring to iterators, 
+but in 17.6.3.2 [swappable.requirements] there is a mention of "dereferenceable object"; in 
+17.6.3.5 [allocator.requirements] the table of Descriptive variable definitions refers to a 
+"dereferenceable pointer"; 20.6.3.2 [pointer.traits.functions] refers to a 
+"dereferenceable pointer"; in 22.4.5.1.2 [locale.time.get.virtuals]&frasl;11 (<tt>do_get</tt>) 
+there is a requirement that a pointer "shall be dereferenceable". In those specific cases 
+it is not defined.
+</p>
+
+<p><i>[2011-03-02: Daniel comments:]</i></p>
+
+
+<p>I believe that the currently proposed resolution of issue <a href="lwg-active.html#2035">2035</a> solves this
+issue as well.</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p></p>
+
+
+
+
+
+<hr>
+<h3><a name="2039"></a>2039. Issues with <tt>std::reverse</tt> and <tt>std::copy_if</tt></h3>
+<p><b>Section:</b> 25.3.1 [alg.copy], 25.3.10 [alg.reverse] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-03-02 <b>Last modified:</b> 2011-03-04</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+
+<ol>
+<li><p>In the description of <tt>std::reverse</tt></p>
+<blockquote><p>
+<i>Effects</i>: For each non-negative integer <tt>i &lt;= (last - first)/2</tt>, applies <tt>iter_swap</tt> 
+to all pairs of iterators <tt>first + i</tt>, <tt>(last - i) - 1</tt>.
+</p></blockquote>
+<p>
+should be changed to
+</p><blockquote><p>
+<i>Effects</i>: For each non-negative integer <tt>i <strong>&lt;</strong> (last - first)/2</tt>, applies <tt>iter_swap</tt> 
+to all pairs of iterators <tt>first + i</tt>, <tt>(last - i) - 1</tt>.
+</p></blockquote><p>
+Here <tt>i</tt> shall be strictly less than <tt>(last - first)/2</tt>.
+</p>
+</li>
+<li><p>In the description of <tt>std::copy_if</tt> <i>Returns</i> paragraph is missing.</p></li>
+</ol>
+
+<p><i>[2011-03-02: Daniel drafts wording]</i></p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li><p>Modify 25.3.10 [alg.reverse] p. 1 as indicated:</p>
+
+<blockquote><p>
+1 <i>Effects</i>: For each non-negative integer <tt>i &lt;<del>=</del> (last - first)/2</tt>, applies <tt>iter_swap</tt> 
+to all pairs of iterators <tt>first + i</tt>, <tt>(last - i) - 1</tt>.
+</p></blockquote>
+</li>
+
+<li><p>Add the following <i>Returns</i> element after 25.3.1 [alg.copy] p. 9:</p>
+
+<blockquote><pre>
+template&lt;class InputIterator, class OutputIterator, class Predicate&gt;
+OutputIterator copy_if(InputIterator first, InputIterator last,
+   OutputIterator result, Predicate pred);
+</pre><blockquote><p>
+8 <i>Requires</i>: The ranges <tt>[first,last)</tt> and <tt>[result,result + (last - first))</tt> shall not overlap.
+<p/>
+9 <i>Effects</i>: Copies all of the elements referred to by the iterator <tt>i</tt> in the range <tt>[first,last)</tt> 
+for which <tt>pred(*i)</tt> is true.
+<p/>
+<ins>?? <i>Returns</i>: The end of the resulting range.</ins>
+<p/>
+10 <i>Complexity</i>: Exactly <tt>last - first</tt> applications of the corresponding predicate.
+<p/>
+11 <i>Remarks</i>: Stable.
+</p></blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2040"></a>2040. Missing type traits related to <tt>is_convertible</tt></h3>
+<p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-03-03 <b>Last modified:</b> 2011-03-04</p>
+<p><b>View all other</b> <a href="lwg-index.html#meta">issues</a> in [meta].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>When <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a>
+was suggested, it concentrated on constructions, assignments, and destructions, but overlooked 
+to complement the single remaining compiler-support trait</p>
+
+<blockquote><pre>
+template &lt;class From, class To&gt; struct is_convertible;
+</pre></blockquote>
+
+<p>with the no-throw and triviality related aspects as it had been done with the other
+expression-based traits. Specifically, the current specification misses to add the
+following traits:
+</p>
+
+<blockquote><pre>
+template &lt;class From, class To&gt; struct is_nothrow_convertible;
+template &lt;class From, class To&gt; struct is_trivially_convertible;
+</pre></blockquote>
+
+<p>In particular the lack of <tt>is_nothrow_convertible</tt> is severly restricting. This
+was recently recognized when the proposal for <tt>decay_copy</tt> was prepared by 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3255.html">n3255</a>.
+There does not exist a portable means to define the correct conditional <tt>noexcept</tt>
+specification for the  <tt>decay_copy</tt> function template, which is declared as:</p>
+
+<blockquote><pre>
+template &lt;class T&gt; 
+typename decay&lt;T&gt;::type decay_copy(T&amp;&amp; v) noexcept(<i>???</i>);
+</pre></blockquote>
+
+<p>The semantics of <tt>decay_copy</tt> bases on an implicit conversion which again
+influences the overload set of functions that are viable here. In most circumstances
+this will have the same effect as comparing against the trait 
+<tt>std::is_nothrow_move_constructible</tt>, but there is no guarantee for that being
+the right answer. It is possible to construct examples, where this would lead
+to the false result, e.g.</p>
+
+<blockquote><pre>
+struct S {
+  S(const S&amp;) noexcept(false);
+ 
+  template&lt;class T&gt;
+  explicit S(T&amp;&amp;) noexcept(true);
+};
+</pre></blockquote>
+
+<p><tt>std::is_nothrow_move_constructible</tt> will properly honor the explicit template
+constructor because of the direct-initialization context which is part of the
+<tt>std::is_constructible</tt> definition and will in this case select it, such that
+<tt>std::is_nothrow_move_constructible&lt;S&gt;::value == true</tt>, but if we had
+the traits <tt>is_nothrow_convertible</tt>, <tt>is_nothrow_convertible&lt;S, S&gt;::value</tt>
+would evaluate to <tt>false</tt>, because it would use the copy-initialization context
+that is part of the <tt>is_convertible</tt> definition, excluding any explicit
+constructors and giving the opposite result.</p>
+
+<p>The <tt>decay_copy</tt> example is surely not one of the most convincing examples, but
+<tt>is_nothrow_convertible</tt> has several use-cases, and can e.g. be used to express
+whether calling the following implicit conversion function could throw an exception or not:</p>
+
+<blockquote><pre>
+template&lt;class T, class U&gt;
+T implicit(U&amp;&amp; u) noexcept(is_nothrow_convertible&lt;U, T&gt;::value) 
+{
+  return std::forward&lt;U&gt;(u);
+}
+</pre></blockquote>
+
+<p>Therefore I suggest to add the missing trait <tt>is_nothrow_convertible</tt> and for
+completeness also the missing trait <tt>is_trivially_convertible</tt> to 20.9 [meta].</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li><p>Ammend the following declarations to the header <tt>&lt;type_traits&gt;</tt> synopsis
+in 20.9.2 [meta.type.synop]:</p>
+
+<blockquote><pre>
+namespace std {
+  &hellip;
+  // 20.9.6, type relations:
+  template &lt;class T, class U&gt; struct is_same;
+  template &lt;class Base, class Derived&gt; struct is_base_of;
+  template &lt;class From, class To&gt; struct is_convertible;
+  <ins>template &lt;class From, class To&gt; struct is_trivially_convertible;</ins>
+  <ins>template &lt;class From, class To&gt; struct is_nothrow_convertible;</ins>
+
+  &hellip;
+}
+</pre></blockquote>
+</li>
+
+<li><p>Modify Table 51 &mdash; &quot;Type relationship predicates&quot; as indicated. The removal of the
+remaining traces of the trait <tt>is_explicitly_convertible</tt> is an editorial
+step, it was removed by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3047.html">n3047</a>:
+</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 51 &mdash; Type relationship predicates</caption>
+
+<tr>
+<th>Template</th>
+<th>Condition</th>
+<th>Comments</th>
+</tr>
+
+<tr>
+<td colspan="3" style="text-align:center;">&hellip;</td> 
+</tr>
+
+<tr>
+<td><tt>template &lt;class From, class To&gt;<br/>
+struct is_convertible;</tt></td>
+<td><i>see below</i></td>
+<td><tt>From</tt> and <tt>To</tt> shall be complete<br/>
+types, arrays of unknown bound, or<br/>
+(possibly cv-qualified) <tt>void</tt><br/>
+types.</td>
+</tr>
+
+<tr>
+<td><del><tt>template &lt;class From, class To&gt;<br/>
+struct is_explicitly_convertible;</tt></del></td>
+<td><del><tt>is_constructible&lt;To, From&gt;::value</tt></del></td>
+<td><del>a synonym for a two-argument<br/>
+version of <tt>is_constructible</tt>.<br/>
+An implementation may define it<br/>
+as an alias template.</del></td>
+</tr>
+
+<tr>
+<td><ins><tt>template &lt;class From, class To&gt;<br/>
+struct is_trivially_convertible;</tt></ins></td>
+<td><ins><tt>is_convertible&lt;From,<br/>
+ To&gt;::value</tt> is <tt>true</tt> and the<br/>
+conversion, as defined by<br/>
+<tt>is_convertible</tt>, is known<br/>
+to call no operation that is<br/>
+not trivial ([basic.types], [special]).</ins></td>
+<td><ins><tt>From</tt> and <tt>To</tt> shall be complete<br/>
+types, arrays of unknown bound,<br/>
+or (possibly cv-qualified) <tt>void</tt><br/>
+types.</ins></td>
+</tr>
+
+<tr>
+<td><ins><tt>template &lt;class From, class To&gt;<br/>
+struct is_nothrow_convertible;</tt></ins></td>
+<td><ins><tt>is_convertible&lt;From,<br/>
+ To&gt;::value</tt> is <tt>true</tt> and the<br/>
+conversion, as defined by<br/>
+<tt>is_convertible</tt>, is known<br/>
+not to throw any<br/>
+exceptions ([expr.unary.noexcept]).</ins></td>
+<td><ins><tt>From</tt> and <tt>To</tt> shall be complete<br/>
+types, arrays of unknown bound,<br/>
+or (possibly cv-qualified) <tt>void</tt><br/>
+types.</ins></td>
+</tr>
+
+<tr>
+<td colspan="3" style="text-align:center;">&hellip;</td> 
+</tr>
+
+</table>
+</blockquote>
+
+</li>
+</ol>
 
 
 
