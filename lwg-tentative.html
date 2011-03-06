@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-06 at 14:03:32 UTC</p>
+<p>Revised 2011-03-06 at 19:03:49 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -327,7 +327,7 @@ element, the <del><tt>insert()</tt></del> <ins>insertion</ins>
 <hr>
 <h3><a name="1310"></a>1310. <tt>forward_list splice_after</tt> from lvalues</h3>
 <p><b>Section:</b> 23.3.4.6 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -385,7 +385,7 @@ surprise) I'm also proposing to overload <tt>merge</tt> this way as well.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Add to the synopsis of 23.3.4 [forwardlist]:
+Add to the synopsis of 23.3.4.1 [forwardlist.overview]:
 </p>
 
 <blockquote><pre>
@@ -393,6 +393,7 @@ template &lt;class T, class Allocator = allocator&lt;T&gt; &gt;
 class forward_list {
 public:
   ...
+  // <i>[forwardlist.ops], forward_list operations:</i>
   <ins>void splice_after(const_iterator p, forward_list&amp; x);</ins>
   void splice_after(const_iterator p, forward_list&amp;&amp; x);
   <ins>void splice_after(const_iterator p, forward_list&amp; x, const_iterator i);</ins>
@@ -428,7 +429,7 @@ void splice_after(const_iterator p, forward_list&amp;&amp; x);
 void splice_after(const_iterator p, forward_list&amp;&amp; x, const_iterator i);
 </pre>
 <blockquote>
-<p>5 ...</p>
+<p>4 ...</p>
 </blockquote>
 
 <pre>
@@ -438,7 +439,7 @@ void splice_after(const_iterator p, forward_list&amp;&amp; x,
                 const_iterator first, const_iterator last);
 </pre>
 <blockquote>
-<p>9 ...</p>
+<p>7 ...</p>
 </blockquote>
 
 <pre>
@@ -448,7 +449,7 @@ void merge(forward_list&amp;&amp; x);
 template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp);
 </pre>
 <blockquote>
-<p>18 ...</p>
+<p>16 ...</p>
 </blockquote>
 
 </blockquote>

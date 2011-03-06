@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-06 at 14:03:32 UTC</p>
+<p>Revised 2011-03-06 at 19:03:49 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -2902,8 +2902,27 @@ Batavia 2010:
 Howard to draft wording, move to Review. Run it by Bill. Need to move this in Madrid.
 </p>
 
+<p><i>[2011-03-06: Howard drafts wording]</i></p>
+
+
 
 <p><b>Proposed resolution:</b></p>
+<p>Modify the <tt>state_type</tt> typedef in the synopsis of 22.3.3.2.3 [conversions.buffer] p.2 as shown
+[This makes the synopsis consistent with 22.3.3.2.3 [conversions.buffer] p.9]:</p>
+
+<blockquote><pre>
+namespace std {
+template&lt;class Codecvt,
+  class Elem = wchar_t,
+  class Tr = std::char_traits&lt;Elem&gt; &gt;
+class wbuffer_convert
+  : public std::basic_streambuf&lt;Elem, Tr&gt; {
+public:
+  typedef typename <del>Tr</del><ins>Codecvt</ins>::state_type state_type;
+  [&hellip;]
+};
+}
+</pre></blockquote>
 
 
 
@@ -3355,7 +3374,7 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 <hr>
 <h3><a name="1310"></a>1310. <tt>forward_list splice_after</tt> from lvalues</h3>
 <p><b>Section:</b> 23.3.4.6 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3413,7 +3432,7 @@ surprise) I'm also proposing to overload <tt>merge</tt> this way as well.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Add to the synopsis of 23.3.4 [forwardlist]:
+Add to the synopsis of 23.3.4.1 [forwardlist.overview]:
 </p>
 
 <blockquote><pre>
@@ -3421,6 +3440,7 @@ template &lt;class T, class Allocator = allocator&lt;T&gt; &gt;
 class forward_list {
 public:
   ...
+  // <i>[forwardlist.ops], forward_list operations:</i>
   <ins>void splice_after(const_iterator p, forward_list&amp; x);</ins>
   void splice_after(const_iterator p, forward_list&amp;&amp; x);
   <ins>void splice_after(const_iterator p, forward_list&amp; x, const_iterator i);</ins>
@@ -3456,7 +3476,7 @@ void splice_after(const_iterator p, forward_list&amp;&amp; x);
 void splice_after(const_iterator p, forward_list&amp;&amp; x, const_iterator i);
 </pre>
 <blockquote>
-<p>5 ...</p>
+<p>4 ...</p>
 </blockquote>
 
 <pre>
@@ -3466,7 +3486,7 @@ void splice_after(const_iterator p, forward_list&amp;&amp; x,
                 const_iterator first, const_iterator last);
 </pre>
 <blockquote>
-<p>9 ...</p>
+<p>7 ...</p>
 </blockquote>
 
 <pre>
@@ -3476,7 +3496,7 @@ void merge(forward_list&amp;&amp; x);
 template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp);
 </pre>
 <blockquote>
-<p>18 ...</p>
+<p>16 ...</p>
 </blockquote>
 
 </blockquote>
@@ -3489,7 +3509,7 @@ template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp
 <hr>
 <h3><a name="1318"></a>1318. N2982 removes previous allocator capabilities</h3>
 <p><b>Section:</b> 20.6.8.1 [allocator.traits.types] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1375">1375</a></p>
 <p><b>Discussion:</b></p>
@@ -3678,18 +3698,21 @@ allows us to remove the unused symbol <tt>t</tt> from the table, but we adapt
 the symbols <tt>r</tt> and <tt>s</tt> to purely refer to the typenames
 <tt>reference</tt> and <tt>const_reference</tt>.</p>
 
+<p><i>[2011-03-06 Daniel adapts numbering to N3242]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p>
 <ol>
 <li>
 <p>
-Edit the following three rows from Table 43:
+Edit the following three rows from Table 27:
 </p>
 
 <blockquote>
 <table border="1">
-<caption>Table 43 &mdash; Descriptive variable definitions</caption>
+<caption>Table 27 &mdash; Descriptive variable definitions</caption>
 <tr>
 <th>
 Variable
@@ -3735,12 +3758,12 @@ by conversion from a value <tt>r</tt>.</td>
 </li>
 <li>
 <p>
-Add the following rows to Table 44, Allocator requirements:
+Add the following rows to Table 28, Allocator requirements:
 </p>
 
 <blockquote>
 <table border="1">
-<caption>Table 44 &mdash; Allocator requirements</caption>
+<caption>Table 28 &mdash; Allocator requirements</caption>
 <tr>
 <th>
 Expression
@@ -3807,12 +3830,12 @@ Default
 
 <li>
 <p>
-Change the following two rows in Table 44:
+Change the following two rows in Table 28:
 </p>
 
 <blockquote>
 <table border="1">
-<caption>Table 44 &mdash; Allocator requirements</caption>
+<caption>Table 28 &mdash; Allocator requirements</caption>
 <tr>
 <th>
 Expression
@@ -3984,8 +4007,8 @@ Add the following descriptions at the beginning of 20.6.8.2 [allocator.traits.me
 
 <li>
 <p>
-Add the following typdef and member function declarations to scoped_allocator_adaptor 
-20.12 [allocator.adaptor]:
+Add the following typdef and member function declarations to the
+<tt>scoped_allocator_adaptor</tt> synopsis in 20.12.1 [allocator.adaptor.syn]:
 </p>
 
 <blockquote><pre>
@@ -4310,7 +4333,7 @@ be done in time for 0x.  The issue remains open, but Deferred.
 <hr>
 <h3><a name="1332"></a>1332. Let Hash objects throw!</h3>
 <p><b>Section:</b> 17.6.3.4 [hash.requirements] <b>Status:</b> <a href="lwg-active.html#Voting">Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-26 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-26 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Voting">Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -4445,13 +4468,13 @@ of type <tt>hash&lt;Key&gt;</tt> and <tt>k</tt> is an object of type <tt>Key</tt
 <ol>
 <li>
 <p>
-Change Table 40 &mdash; Hash requirements [hash] as indicated:
+Change Table 26 &mdash; <tt>Hash</tt> requirements [tab:hash] as indicated:
 </p>
 
 <blockquote>
 <table border="1">
 
-<caption>Table 40 &mdash; Hash requirements [hash]</caption>
+<caption>Table 26 &mdash; <tt>Hash</tt> requirements [tab:hash]</caption>
 
 <tr>
 <th>Expression</th>
@@ -4462,7 +4485,7 @@ Change Table 40 &mdash; Hash requirements [hash] as indicated:
 <tr>
 <td><tt>h(k)</tt></td>
 <td><tt>size_t</tt></td>
-<td><del>Shall not throw exceptions.</del> [..]</td>
+<td><del>Shall not throw exceptions.</del> [&hellip;]</td>
 </tr>
 
 </table>
@@ -4471,12 +4494,12 @@ Change Table 40 &mdash; Hash requirements [hash] as indicated:
 
 <li>
 <p>
-Add to 20.8.12 [unord.hash]/1 a new bullet:
+Add to 20.8.12 [unord.hash] p. 1 a new bullet:
 </p>
 
 <blockquote>
 <p>
-1 The unordered associative containers defined in Clause 23.5 use
+1 The unordered associative containers defined in Clause 23.5 [unord] use
 specializations of the class template <tt>hash</tt>
 as the default hash function. For all object types <tt>Key</tt> for which there
 exists a specialization <tt>hash&lt;Key&gt;</tt>, the
@@ -4484,12 +4507,12 @@ instantiation <tt>hash&lt;Key&gt;</tt> shall:
 </p>
 <ul>
 <li>
-satisfy the <tt>Hash</tt> requirements (20.2.4), with <tt>Key</tt> as the
+satisfy the <tt>Hash</tt> requirements ([hash.requirements]), with <tt>Key</tt> as the
 function call argument type, the <tt>DefaultConstructible</tt> requirements
-(33), the <tt>CopyAssignable</tt> requirements (37),
+(Table [defaultconstructible]), the <tt>CopyAssignable</tt> requirements (Table [copyassignable]),
 </li>
 <li>
-be swappable (20.2.2) for lvalues,
+be swappable ([swappable.requirements]) for lvalues,
 </li>
 <li>
 provide two nested types <tt>result_type</tt> and <tt>argument_type</tt> which
@@ -4704,7 +4727,7 @@ message c++std-lib-28958, and refined with help from Alisdair, Daniel, and Howar
 <h3><a name="1358"></a>1358. [FCD] Add <tt>&lt;chrono></tt> and <tt>&lt;ratio></tt> to
 freestanding implementations</h3>
 <p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#compliance">issues</a> in [compliance].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4754,6 +4777,12 @@ environment, much like <tt>&lt;thread></tt>.
 
 <p><i>[2011-02-25: Alberto drafts wording]</i></p>
 
+
+<p><i>[2011-03-06: Daniel observes:]</i></p>
+
+
+<p>Accepting the proposal <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3256.html">n3256</a> 
+would solve this issue.</p>
 
 
 <p><b>Proposed resolution:</b></p>
