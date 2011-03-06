@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-03-05</td>
+  <td align="left">2011-03-06</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-03-05 at 15:03:29 UTC</p>
+<p>Revised 2011-03-06 at 14:03:32 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -14456,7 +14456,7 @@ putting in &lt;cstdlib&gt;.  That's issue <a href="lwg-closed.html#323">323</a>.
 <hr>
 <h3><a name="296"></a>296. Missing descriptions and requirements of pair operators</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2001-01-14 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2001-01-14 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -14485,7 +14485,7 @@ precedes <tt>pair</tt> in the document this is an easy connection to make.
 Reading the current working paper I make two observations:
 </p>
 
-<ol type="i">
+<ol style="list-style-type:lower-roman">
 <li>
 relops no longer immediately precedes <tt>pair</tt> in the order of
 specification.  However, even if it did, there is a lot of <tt>pair</tt>
@@ -14559,9 +14559,9 @@ it pertains to <tt>unique_ptr</tt>.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready
-</blockquote>
+</p></blockquote>
 
 
 
@@ -14575,36 +14575,36 @@ template &lt;class T1, class T2&gt;
 bool operator!=(const pair&lt;T1,T2&gt;&amp; x, const pair&lt;T1,T2&gt;&amp; y);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <tt>!(x==y)</tt>
-</blockquote>
+</p></blockquote>
 
 <pre>
 template &lt;class T1, class T2&gt;
 bool operator&gt; (const pair&lt;T1,T2&gt;&amp; x, const pair&lt;T1,T2&gt;&amp; y);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <tt>y &lt; x</tt>
-</blockquote>
+</p></blockquote>
 
 <pre>
 template &lt;class T1, class T2&gt;
 bool operator&gt;=(const pair&lt;T1,T2&gt;&amp; x, const pair&lt;T1,T2&gt;&amp; y);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <tt>!(x &lt; y)</tt>
-</blockquote>
+</p></blockquote>
 
 <pre>
 template &lt;class T1, class T2&gt;
 bool operator&lt;=(const pair&lt;T1,T2&gt;&amp; x, const pair&lt;T1,T2&gt;&amp; y);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <tt>!(y &lt; x)</tt>
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -17004,7 +17004,7 @@ the two vectors, including their reallocation guarantees.
 <hr>
 <h3><a name="343"></a>343. Unspecified library header dependencies</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2001-10-09 <b>Last modified:</b> 2011-03-04</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2001-10-09 <b>Last modified:</b> 2011-03-03</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
@@ -21618,7 +21618,7 @@ v0[valarray&lt;size_t&gt;(vi, 5)] = v1;
 <hr>
 <h3><a name="431"></a>431. Swapping containers with unequal allocators</h3>
 <p><b>Section:</b> 17.6.3.5 [allocator.requirements], 25 [algorithms] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2003-09-20 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2003-09-20 <b>Last modified:</b> 2010-11-19</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.requirements">issues</a> in [allocator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -24087,7 +24087,7 @@ This is a defect because it constrains an lvalue to returning a modifiable lvalu
 <hr>
 <h3><a name="482"></a>482. Swapping pairs</h3>
 <p><b>Section:</b> 20.3 [pairs], 20.4 [tuple] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Andrew Koenig <b>Opened:</b> 2004-09-14 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Andrew Koenig <b>Opened:</b> 2004-09-14 <b>Last modified:</b> 2010-11-19</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -24129,7 +24129,7 @@ Recommend <del>NAD</del><ins>Resolved</ins>, fixed by
 <hr>
 <h3><a name="485"></a>485. output iterator insufficiently constrained</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Chris Jefferson <b>Opened:</b> 2004-10-13 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Chris Jefferson <b>Opened:</b> 2004-10-13 <b>Last modified:</b> 2011-03-04</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
@@ -30997,7 +30997,7 @@ issue to Ready status to be voted into the WP at Kona.
 <hr>
 <h3><a name="635"></a>635. domain of <tt>allocator::address</tt></h3>
 <p><b>Section:</b> 17.6.3.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2007-02-08 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2007-02-08 <b>Last modified:</b> 2010-11-19</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.requirements">issues</a> in [allocator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -37342,7 +37342,7 @@ Remove this mention of the CharacterClass production.
 <hr>
 <h3><a name="719"></a>719. <tt>std::is_literal</tt> type traits should be provided</h3>
 <p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-08-25 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-08-25 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta">issues</a> in [meta].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#750">750</a></p>
@@ -37376,7 +37376,7 @@ I strongly suggest that the standard provides a type traits for
 literal types in 20.9.4.3 [meta.unary.prop] for several reasons:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>To keep the traits in sync with existing types.</li>
 <li>I see many reasons for programmers to use this trait in template
    code to provide optimized template definitions for these types,
@@ -37592,7 +37592,7 @@ just after the existing entry <tt>nan</tt>.
 <hr>
 <h3><a name="723"></a>723. <tt>basic_regex</tt> should be moveable</h3>
 <p><b>Section:</b> 28.8 [re.regex] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-08-29 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-08-29 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View other</b> <a href="lwg-index-open.html#re.regex">active issues</a> in [re.regex].</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.regex">issues</a> in [re.regex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -37641,7 +37641,7 @@ In the class definition of <tt>basic_regex</tt>, just below 28.8 [re.regex]/3,
 perform the following changes:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Just after <tt>basic_regex(const basic_regex&amp;);</tt> insert:
@@ -38448,7 +38448,7 @@ e, fmt, flags)</tt>, and then returns <tt>result</tt>.
 <hr>
 <h3><a name="728"></a>728. Problem in [rand.eng.mers]/6</h3>
 <p><b>Section:</b> 26.5.3.2 [rand.eng.mers] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.eng.mers">issues</a> in [rand.eng.mers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -38466,7 +38466,7 @@ Matsumoto have chosen a dif ferent multiplier for their 64 bit Mersenne Twister
 I see two possible resolutions: 
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>Restrict the parameter <tt>W</tt> of the <tt>mersenne_twister_template</tt> to values of 32 or 64 and use the 
 multiplier from [the above reference] for the 64-bit case (my preference)</li>
 <li>Interpret the state array for any <tt>W</tt> as a 32-bit array of appropriate length (and a specified byte 
@@ -41425,7 +41425,7 @@ character buffer of sufficient size</ins>.
 <hr>
 <h3><a name="774"></a>774. Member swap undefined for most containers</h3>
 <p><b>Section:</b> 23 [containers] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-01-14 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-01-14 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#containers">issues</a> in [containers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -41665,7 +41665,7 @@ an exception.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.3.3 [deque], class template deque synopsis change as indicated:
@@ -41698,7 +41698,7 @@ with that of <tt>x</tt>.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.3.4 [forwardlist], class template <tt>forward_list</tt> synposis change as indicated:
@@ -41732,7 +41732,7 @@ with that of <tt>x</tt>.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.3.5 [list], class template <tt>list</tt> synopsis change as indicated:
@@ -41804,7 +41804,7 @@ contradict the general contract of 23.2.1 [container.requirements.general] p. 10
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.3.6 [vector], class template <tt>vector</tt> synopsis change as indicated:
@@ -41847,7 +41847,7 @@ headers <tt>&lt;map&gt;</tt> or <tt>&lt;set&gt;</tt> are included.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.4.4 [map], class template <tt>map</tt> synopsis change as indicated:
@@ -41896,7 +41896,7 @@ of <tt>*this</tt> and <tt>x</tt>.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.4.5 [multimap], class template <tt>multimap</tt> synopsis change as indicated:
@@ -41936,7 +41936,7 @@ of <tt>*this</tt> and <tt>x</tt>.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.4.6 [set], class template <tt>set</tt> synopsis change as indicated:
@@ -41980,7 +41980,7 @@ of <tt>*this</tt> and <tt>x</tt>.</ins>
 </li>
 
 <li>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 In 23.4.7 [multiset], class template <tt>multiset</tt> synosis, change as indicated:
@@ -43143,7 +43143,7 @@ imag          real
 <hr>
 <h3><a name="782"></a>782. Extended <tt>seed_seq</tt> constructor is useless</h3>
 <p><b>Section:</b> 26.5.7.1 [rand.util.seedseq] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-27 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-27 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.util.seedseq">issues</a> in [rand.util.seedseq].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43207,7 +43207,7 @@ Issue <a href="lwg-defects.html#803">803</a> claims to make this issue moot.
 
 
 <p><b>Proposed resolution:</b></p>
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 <p>
 In 26.5.7.1 [rand.util.seedseq]/2, class <tt>seed_seq</tt> synopsis replace:
@@ -43753,7 +43753,7 @@ b) If <tt>firstB == lastB</tt> <ins>or the sequence <tt>w</tt> has the length ze
 <hr>
 <h3><a name="793"></a>793. <tt>discrete_distribution</tt> missing constructor</h3>
 <p><b>Section:</b> 26.5.8.6.1 [rand.dist.samp.discrete] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.discrete">issues</a> in [rand.dist.samp.discrete].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43879,7 +43879,7 @@ discrete_distribution(result_type nf, double xmin, double xmax, Func fw);
 <p>
 <i>Requires:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 fw shall be callable with one argument of type double, and shall
 return values of a type convertible to double;</li>
@@ -43895,7 +43895,7 @@ and non-infinity;</li>
 <p>
 <i>Effects:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>If nf == 0, sets n = 1 and lets the sequence w have length n = 1 and
    consist of the single value <tt><i>w</i><sub><i>0</i></sub></tt> = 1.</li>
 
@@ -43962,7 +43962,7 @@ discrete_distribution(result_type nf, double xmin, double xmax, Func fw);
 <p>
 <i>Requires:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>If nf &gt; 0, the relation <tt><i>x</i><sub><i>min</i></sub></tt> &lt; <tt><i>x</i><sub><i>max</i></sub></tt> shall hold, and for all sample values
 <tt><i>x</i><sub><i>k</i></sub></tt>, fw(<tt><i>x</i><sub><i>k</i></sub></tt>) shall return a weight value <tt><i>w</i><sub><i>k</i></sub></tt> that is non-negative, non-NaN,
 and non-infinity;</li>
@@ -43974,7 +43974,7 @@ and non-infinity;</li>
 <p>
 <i>Effects:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>If nf == 0, sets n = 1 and lets the sequence w have length n = 1 and
    consist of the single value <tt><i>w</i><sub><i>0</i></sub></tt> = 1.</li>
 
@@ -44000,9 +44000,10 @@ For each k = 0, . . . ,n-1, calculates:
 
 
 
-<p><b>Rationale:</b></p>
+<p><b>Rationale:</b></p><p>
 Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -44011,7 +44012,7 @@ Addressed by
 <hr>
 <h3><a name="794"></a>794. <tt>piecewise_constant_distribution</tt> missing constructor</h3>
 <p><b>Section:</b> 26.5.8.6.2 [rand.dist.samp.pconst] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.pconst">issues</a> in [rand.dist.samp.pconst].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -44055,7 +44056,7 @@ Pre San Francisco, Daniel provided wording.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 The here proposed changes of the WP refer to the current state of
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2691.pdf">N2691</a>.
 For reasons explained in <a href="lwg-defects.html#793">793</a>, the author decided to propose a function
@@ -44064,7 +44065,7 @@ that does not take advantage of the full flexibility of
 <tt>piecewise_constant_distribution</tt>,
 because it restricts on a constant bin width, but the use-case seems to
 be popular enough to justify it's introduction.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -44109,7 +44110,7 @@ piecewise_constant_distribution(size_t nf, RealType xmin, RealType xmax, Func fw
 <p>
 [p5_2] <i>Requires:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li><tt>fw</tt> shall be callable with one argument of type <tt>RealType</tt>, and shall
 return values of a type convertible to double;
 </li>
@@ -44125,10 +44126,10 @@ The following relations shall hold: <tt><i>x<sub>min</sub></i></tt> &lt; <tt><i>
 <p>
 [p5_3] <i>Effects:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>If nf == 0,</p>
- <ol type="a">
+ <ol style="list-style-type:lower-alpha">
  <li>
 sets deltax = <tt><i>x<sub>max</sub></i></tt> - <tt><i>x<sub>min</sub></i></tt>, and</li>
 <li> lets the sequence <tt>w</tt> have length <tt>n = 1</tt> and consist of the single
@@ -44140,7 +44141,7 @@ sets deltax = <tt><i>x<sub>max</sub></i></tt> - <tt><i>x<sub>min</sub></i></tt>,
 </li>
 <li>
 <p>Otherwise,</p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li> sets <tt>n = nf</tt>, <tt>deltax = </tt>(<tt><i>x<sub>max</sub></i></tt> - <tt><i>x<sub>min</sub></i></tt>)/n,
                  <tt><i>x<sub>cent</sub></i></tt> = <tt><i>x<sub>min</sub></i></tt> + 0.5 * deltax, and
 </li>
@@ -44218,7 +44219,7 @@ piecewise_constant_distribution(size_t nf, RealType xmin, RealType xmax, Func fw
 <p>
 [p5_2] <i>Requires:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 For all sample values <tt><i>x<sub>k</sub></i></tt> defined below, fw(<tt><i>x<sub>k</sub></i></tt>) shall return a weight
 value <tt><i>w<sub>k</sub></i></tt> that is non-negative, non-NaN, and non-infinity;
@@ -44231,10 +44232,10 @@ The following relations shall hold: <tt><i>x<sub>min</sub></i></tt> &lt; <tt><i>
 <p>
 [p5_3] <i>Effects:</i>
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>If nf == 0,</p>
- <ol type="a">
+ <ol style="list-style-type:lower-alpha">
  <li>
 sets deltax = <tt><i>x<sub>max</sub></i></tt> - <tt><i>x<sub>min</sub></i></tt>, and</li>
 <li> lets the sequence <tt>w</tt> have length <tt>n = 1</tt> and consist of the single
@@ -44246,7 +44247,7 @@ sets deltax = <tt><i>x<sub>max</sub></i></tt> - <tt><i>x<sub>min</sub></i></tt>,
 </li>
 <li>
 <p>Otherwise,</p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li> sets <tt>n = nf</tt>, <tt>deltax = </tt>(<tt><i>x<sub>max</sub></i></tt> - <tt><i>x<sub>min</sub></i></tt>)/n,
                  <tt><i>x<sub>cent</sub></i></tt> = <tt><i>x<sub>min</sub></i></tt> + 0.5 * deltax, and
 </li>
@@ -44286,8 +44287,10 @@ and with the probability densities:
 
 
 <p><b>Rationale:</b></p>
+<p>
 Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -44472,7 +44475,7 @@ Addressed by
 <hr>
 <h3><a name="801"></a>801. <tt>tuple</tt> and <tt>pair</tt> trivial members</h3>
 <p><b>Section:</b> 20.4 [tuple] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Lawrence Crowl <b>Opened:</b> 2008-02-18 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Lawrence Crowl <b>Opened:</b> 2008-02-18 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple">issues</a> in [tuple].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -44928,11 +44931,11 @@ Addressed by
 <hr>
 <h3><a name="804"></a>804. Some problems with classes <tt>error_code</tt>/<tt>error_condition</tt></h3>
 <p><b>Section:</b> 19.5 [syserr] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-02-24 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-02-24 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#syserr">issues</a> in [syserr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 <p>
 19.5.2.1 [syserr.errcode.overview]/1, class <tt>error_code</tt> and
@@ -45167,9 +45170,9 @@ void assign(int val, const error_category&amp; cat);
 Change 19.5.3.4 [syserr.errcondition.observers] Class error_condition observers as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 const error_category&amp; category() const;
-<blockquote>
+</p><blockquote>
 <p>
 <i>Returns:</i> <tt><ins>*</ins>cat_</tt>.
 </p>
@@ -46266,7 +46269,7 @@ y = b;
 <hr>
 <h3><a name="815"></a>815. <tt>std::function</tt> and <tt>reference_closure</tt> do not use perfect forwarding</h3>
 <p><b>Section:</b> 20.8.11.2.4 [func.wrap.func.inv] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-16 <b>Last modified:</b> 2010-11-19</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-16 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.inv">issues</a> in [func.wrap.func.inv].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46406,7 +46409,7 @@ and the second <tt>ArgType</tt> is <tt>int&amp;</tt>.  Both <em>must</em> work!
 in the 2009-05-01 comment of above mentioned issue Howard
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 Recommends to replace the <tt>CopyConstructible</tt> requirement by a
 <tt>MoveConstructible</tt> requirement
@@ -47649,7 +47652,7 @@ Note this wording incorporates resolutions for <a href="lwg-defects.html#806">80
 <hr>
 <h3><a name="823"></a>823. <tt>identity&lt;void&gt;</tt> seems broken</h3>
 <p><b>Section:</b> 20.2.3 [forward] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Walter Brown <b>Opened:</b> 2008-04-09 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Walter Brown <b>Opened:</b> 2008-04-09 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#forward">issues</a> in [forward].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47701,7 +47704,7 @@ has been decided, this issue should remain open. An alternative for
 removing it, would be, to do the following:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Let <tt>identity</tt> stay as a <em>real</em> function object, which would
@@ -50219,7 +50222,7 @@ local_iterator begin(size_type n)<del> const</del>;
 <hr>
 <h3><a name="853"></a>853. <tt>to_string</tt> needs updating with <tt>zero</tt> and <tt>one</tt></h3>
 <p><b>Section:</b> 20.5 [template.bitset] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-18 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-18 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#template.bitset">issues</a> in [template.bitset].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50233,10 +50236,10 @@ post San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Daniel found problems with the wording and provided fixes.  Moved from Ready
 to Review.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit:
@@ -50268,7 +50271,7 @@ Recommend Tentatively Ready.
 
 
 <p><b>Proposed resolution:</b></p>
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 <p>replace in 20.5 [template.bitset]/1 (class <tt>bitset</tt>)
 </p>
@@ -50292,9 +50295,9 @@ template &lt;class charT, class traits&gt;
   basic_string&lt;charT, traits, allocator&lt;charT&gt; &gt;
   to_string(<ins>charT zero = charT('0'), charT one = charT('1')</ins>) const;
 </pre>
-<blockquote>
+<blockquote><p>
 37 <i>Returns:</i> <tt>to_string&lt;charT, traits, allocator&lt;charT&gt; &gt;(<ins>zero, one</ins>)</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 <li>
@@ -50307,9 +50310,9 @@ template &lt;class charT&gt;
   basic_string&lt;charT, char_traits&lt;charT&gt;, allocator&lt;charT&gt; &gt;
   to_string(<ins>charT zero = charT('0'), charT one = charT('1')</ins>) const;
 </pre>
-<blockquote>
+<blockquote><p>
 38 <i>Returns:</i> <tt>to_string&lt;charT, char_traits&lt;charT&gt;, allocator&lt;charT&gt; &gt;(<ins>zero, one</ins>)</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
@@ -50322,9 +50325,9 @@ replace in 20.5.2 [bitset.members]/39
 basic_string&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt;
   to_string(<ins>char zero = '0', char one = '1'</ins>) const;
 </pre>
-<blockquote>
+<blockquote><p>
 39 <i>Returns:</i> <tt>to_string&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt;(<ins>zero, one</ins>)</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
@@ -51615,7 +51618,7 @@ calling thread.
 <hr>
 <h3><a name="861"></a>861. Incomplete specification of EqualityComparable for std::forward_list</h3>
 <p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-06-24 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-06-24 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -51644,7 +51647,7 @@ because of the special design choices of <tt>forward_list</tt>.
 I propose to apply one of the following resolutions, which are described as:
 </p>
 
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 Provide a definition, which is optimal for this special container without
 previous size test. This choice prevents two <tt>O(N)</tt> calls of <tt>std::distance()</tt>
@@ -51683,9 +51686,9 @@ post San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Martin provided wording for Option C.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt
@@ -51714,21 +51717,21 @@ Howard: Commented out options A and B.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Mark NAD Editorial. Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2986.pdf">N2986</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Reopened.
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2986.pdf">N2986</a>
 was rejected in full committee on procedural grounds.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-01-30 Howard updated Table numbers.
@@ -51740,9 +51743,9 @@ was rejected in full committee on procedural grounds.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to Ready for Pittsburgh.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -51760,16 +51763,16 @@ Option (C):
 In 23.2.1 [container.requirements.general] change Table 90 -- Container requirements as indicated:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Change the text in the Assertion/note column in the row for "<tt>X u</tt>;"
 as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 post: <tt>u.<del>size() == 0</del><ins>empty() == true</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51778,9 +51781,9 @@ Change the text in the Assertion/note column in the row for "<tt>X();</tt>"
 as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>X().<del>size() == 0</del><ins>empty() == true</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51788,12 +51791,12 @@ as follows:
 Change the text in the Operational Semantics column in the row for
 "<tt>a == b</tt>" as follows:
 </p>
-<blockquote>
+<blockquote><p>
 <tt>==</tt> is an equivalence relation.
 <tt><del>a.size()</del><ins>distance(a.begin(), a.end())</ins> ==
    <del>b.size()</del><ins>distance(b.begin(), b.end())</ins> &amp;&amp;
 equal(a.begin(), a.end(), b.begin())</tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51812,9 +51815,9 @@ Change the text in the Operational Semantics column in the row for
 "<tt>a.size()</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt><del>a.end() - a.begin()</del><ins>distance(a.begin(), a.end())</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51823,10 +51826,10 @@ Change the text in the Operational Semantics column in the row for
 "<tt>a.max_size()</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt><del>size()</del><ins>distance(begin(), end())</ins></tt> of the largest
 possible container
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51835,9 +51838,9 @@ Change the text in the Operational Semantics column in the row for
 "<tt>a.empty()</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt><del>a.size() == 0</del><ins>a.begin() == a.end()</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -51847,17 +51850,17 @@ Change the text in the Operational Semantics column in the row for
 In 23.2.1 [container.requirements.general] change Table 93 -- Allocator-aware container requirements as indicated:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Change the text in the Assertion/note column in the row for "<tt>X() /
 X u;</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> <tt>A</tt> is <tt>DefaultConstructible</tt> post: <tt><del>u.size() ==
 0</del><ins>u.empty() == true</ins></tt>, <tt>get_allocator() == A()</tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51866,10 +51869,10 @@ Change the text in the Assertion/note column in the row for "<tt>X(m) /
 X u(m);</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 post: <tt><del>u.size() == 0</del><ins>u.empty() == true</ins>,
 get_allocator() == m</tt>
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -51879,16 +51882,16 @@ get_allocator() == m</tt>
 In 23.2.3 [sequence.reqmts] change Table 94 -- Sequence container requirements as indicated:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Change the text in the Assertion/note column in the row for "<tt>X(n,
 t) / X a(n, t)</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 post: <tt><del>size()</del><ins>distance(begin(), end())</ins> == n [..]</tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51897,10 +51900,10 @@ Change the text in the Assertion/note column in the row for "<tt>X(i,
 j) / X a(i, j)</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 [..] post: <del><tt>size() ==</tt> distance between <tt>i</tt> and
 <tt>j</tt></del><ins><tt>distance(begin(), end()) == distance(i, j)</tt></ins> [..]
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51908,10 +51911,10 @@ j) / X a(i, j)</tt>" as follows:
 Change the text in the Assertion/note column in the row for
 "<tt>a.clear()</tt>" as follows:
 </p>
-<blockquote>
+<blockquote><p>
 <tt><ins>a.</ins>erase(<ins>a.</ins>begin(), <ins>a.</ins>end())</tt> post:
 <tt><del>size() == 0</del><ins>a.empty() == true</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -51930,7 +51933,7 @@ for all tables and adds some missing objects
 ]</i></p>
 
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 
 <li>
 <p>
@@ -51938,10 +51941,10 @@ Change the text in the Complexity column in the row for <tt>X(i,j,c)/X
 a(i,j,c);</tt> as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>N</tt> log <tt>N</tt> in general (<tt>N</tt> <ins><tt> == distance(i,
 j)</tt></ins><del>is the distance from <tt>i</tt> to <tt>j</tt></del>); ...
-</blockquote>
+</p></blockquote>
 
 </li>
 
@@ -51950,10 +51953,10 @@ j)</tt></ins><del>is the distance from <tt>i</tt> to <tt>j</tt></del>); ...
 Change the text in the Complexity column in the row for
 "<tt>a.insert(i, j)</tt>" as follows:
 </p>
-<blockquote>
+<blockquote><p>
 <tt>N log(<ins>a.</ins>size() + N)</tt> <del>(<tt>N</tt> is the distance from <tt>i</tt> to
 <tt>j</tt>)</del><ins> where <tt>N == distance(i, j)</tt></ins>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51961,9 +51964,9 @@ Change the text in the Complexity column in the row for
 Change the text in the Complexity column in the row for
 "<tt>a.erase(k)</tt>" as follows:
 </p>
-<blockquote>
+<blockquote><p>
 <tt>log(<ins>a.</ins>size()) + <ins>a.</ins>count(k)</tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51972,11 +51975,11 @@ Change the text in the Complexity column in the row for
 "<tt>a.erase(q1, q2)</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>log(<ins>a.</ins>size()) + N</tt> where <tt>N</tt> <del>is the distance from <tt>q1</tt>
 to <tt>q2</tt></del>
    <ins><tt>== distance(q1, q2)</tt></ins>.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51985,10 +51988,10 @@ Change the text in the Assertion/note column in the row for
 "<tt>a.clear()</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt><ins>a.</ins>erase(a.begin(),a.end())</tt> post: <tt><del>size() ==
 0</del><ins>a.empty() == true</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -51997,9 +52000,9 @@ Change the text in the Complexity column in the row for "<tt>a.clear()</tt>"
 as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 linear in <tt><ins>a.</ins>size()</tt>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -52008,32 +52011,32 @@ Change the text in the Complexity column in the row for
 "<tt>a.count(k)</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>log(<ins>a.</ins>size()) + <ins>a.</ins>count(k)</tt>
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
 
 <li>
 <p>
-In 23.2.5 [unord.req] change Table 98 -- Unordered associative container requirements as indicated:
+In 23.2.5 [unord.req] change Table 98 &mdash; Unordered associative container requirements as indicated:
 </p>
 <p><i>[
 The same rational as for Table 96 applies here
 ]</i></p>
 
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Change the text in the Assertion/note column in the row for
 "<tt>a.clear()</tt>" as follows:
 </p>
 
-<blockquote>
+<blockquote><p>
 [..] Post: <tt>a.<del>size() == 0</del><ins>empty() == true</ins></tt>
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -53406,7 +53409,7 @@ Addressed by
 <hr>
 <h3><a name="875"></a>875. Missing <tt>initializer_list</tt> constructor for <tt>piecewise_constant_distribution</tt></h3>
 <p><b>Section:</b> 26.5.8.6.2 [rand.dist.samp.pconst] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-22 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-22 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.pconst">issues</a> in [rand.dist.samp.pconst].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -53469,7 +53472,7 @@ piecewise_constant_distribution(initializer_list&lt;RealType&gt; bl, Func fw);
 [p5_2] <i>Requires:</i>
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <tt>fw</tt> shall be callable with one argument of type <tt>RealType</tt>, and shall
    return values of a type convertible to <tt>double</tt>;
@@ -53489,10 +53492,10 @@ following relations shall hold for <tt>k = 0, . . . , nf-1: b<sub><i>k</i></sub>
 [p5_3] <i>Effects:</i>
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>If <tt>nf == 0</tt>,</p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 lets the sequence <tt>w</tt> have length <tt>n = 1</tt> and consist of the single
      value <tt>w<sub>0</sub> = 1</tt>, and
@@ -53505,7 +53508,7 @@ lets the sequence <tt>b</tt> have length <tt>n+1</tt> with <tt>b<sub>0</sub> = 0
 
 <li>
 <p>Otherwise,</p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 sets <tt>n = nf</tt>, and <tt>[bl.begin(), bl.end())</tt> shall form the sequence <tt>b</tt> of
 length <tt>n+1</tt>, and
@@ -53586,7 +53589,7 @@ piecewise_constant_distribution(initializer_list&lt;RealType&gt; bl, Func fw);
 [p5_2] <i>Requires:</i>
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 The relation <tt>0 &lt; S = w<sub>0</sub>+. . .+w<sub>n-1</sub></tt> shall hold. 
 For all sampled values <tt><i>x<sub>k</sub></i></tt> defined below, <tt>fw(<i>x<sub>k</sub></i>)</tt> shall return a weight
@@ -53602,10 +53605,10 @@ following relations shall hold for <tt>k = 0, . . . , nf-1: b<sub><i>k</i></sub>
 [p5_3] <i>Effects:</i>
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>If <tt>nf == 0</tt>,</p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 lets the sequence <tt>w</tt> have length <tt>n = 1</tt> and consist of the single
      value <tt>w<sub>0</sub> = 1</tt>, and
@@ -53618,7 +53621,7 @@ lets the sequence <tt>b</tt> have length <tt>n+1</tt> with <tt>b<sub>0</sub> = 0
 
 <li>
 <p>Otherwise,</p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 sets <tt>n = nf</tt>, and <tt>[bl.begin(), bl.end())</tt> shall form the sequence <tt>b</tt> of
 length <tt>n+1</tt>, and
@@ -53655,8 +53658,10 @@ and with the probability densities:
 
 
 <p><b>Rationale:</b></p>
+<p>
 Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -53665,7 +53670,7 @@ Addressed by
 <hr>
 <h3><a name="876"></a>876. <tt>basic_string</tt> access operations should give stronger guarantees</h3>
 <p><b>Section:</b> 21.4 [basic.string] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-22 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-22 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#basic.string">issues</a> in [basic.string].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -53748,12 +53753,12 @@ We support part A. 2 of the issue.
 <p>
 On support part A. 3 of the issue:
 </p>
-<blockquote>
-Pete's broader comment: now that we know that basic_string will be a
+<blockquote><p>
+Pete's broader comment: now that we know that <tt>basic_string</tt> will be a
 block of contiguous memory, we should just rewrite its specification
 with that in mind. The expression of the specification will be simpler
 and probably more correct as a result.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p><i>[
@@ -53774,15 +53779,15 @@ Howard: Commented out part B.
 
 
 <p><b>Proposed resolution:</b></p>
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 <ol>
 <li>
 <p>In 21.4.4 [string.capacity], just after p. 1 add a new paragraph:
 </p>
-<blockquote>
+<blockquote><p>
 <i>Throws:</i> Nothing.
-</blockquote>
+</p></blockquote>
 
 </li>
 <li>
@@ -56630,7 +56635,7 @@ and rvalues otherwise.
 <hr>
 <h3><a name="907"></a>907. Bitset's immutable element retrieval is inconsistently defined</h3>
 <p><b>Section:</b> 20.5.2 [bitset.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-09-26 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-09-26 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#bitset.members">issues</a> in [bitset.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -56683,7 +56688,7 @@ constexpr bool operator[](size_t pos) const;
 Three interpretations:
 </p>
 
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 The <tt>operator[]</tt> overload is indeed allowed to throw an exception
 (via <tt>test()</tt>, if <tt>pos</tt> corresponds to an invalid bit position) which does
@@ -56714,11 +56719,11 @@ Three alternatives are proposed, corresponding to the three bullets
 (A), (B), and (C), the author suggests to follow proposal (C).
 </p>
 
-<b>
+<p><b>
 Proposed alternatives:
-</b>
+</b></p>
 
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 <p>
 Remove the <tt>constexpr</tt> specifier in front of <tt>operator[]</tt> overload and
@@ -56736,21 +56741,21 @@ before 20.5.2 [bitset.members]/56 and before /64 to read:
 Change the throws clause of p. 65 to read:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Throws:</i> <del>nothing</del>
 <ins><tt>out_of_range</tt> if <tt>pos</tt> does not correspond to a valid bit
 position</ins>.
-</blockquote>
+</p></blockquote>
 </li>
 <li>
 <p>
 Replace the throws clause p. 57 to read:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Throws:</i> <del><tt>out_of_range</tt> if <tt>pos</tt> does not correspond to a valid bit
 position</del> <ins>nothing</ins>.
-</blockquote>
+</p></blockquote>
 </li>
 <li>
 <p>
@@ -56768,10 +56773,10 @@ was applied.
 Change the returns clause p. 66 to read:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <del><tt>test(pos)</tt></del> <ins><tt>true</tt> if the bit at position <tt>pos</tt> in <tt>*this</tt>
 has the value one, otherwise <tt>false</tt></ins>.
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 
@@ -56801,7 +56806,7 @@ Move to Tentatively Ready.
 
 <p><b>Proposed resolution:</b></p>
 
-<ol type="A", start="3">
+<ol style="list-style-type:upper-alpha", start="3">
 <li>
 <p>
 Undo the addition of the <tt>constexpr</tt> specifier to the <tt>test</tt> member
@@ -56818,10 +56823,10 @@ was applied.
 Change the returns clause p. 66 to read:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <del><tt>test(pos)</tt></del> <ins><tt>true</tt> if the bit at position <tt>pos</tt> in <tt>*this</tt>
 has the value one, otherwise <tt>false</tt></ins>.
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 
@@ -56924,7 +56929,7 @@ the assignment from plain <tt>bool</tt>.
 <hr>
 <h3><a name="909"></a>909. <tt>regex_token_iterator</tt> should use <tt>initializer_list</tt></h3>
 <p><b>Section:</b> 28.12.2 [re.tokiter] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-09-26 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-09-26 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.tokiter">issues</a> in [re.tokiter].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -56948,15 +56953,15 @@ range type:
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 We strongly recommend alternative B of the proposed resolution
 in order that existing code not be broken.
 With that understanding, move to Tentatively Ready.
-</blockquote>
+</p></blockquote>
 
 <p><b>Original proposed wording:</b></p>
 
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li><br/>
 <ol>
 <li>
@@ -56980,12 +56985,12 @@ regex_token_iterator(BidirectionalIterator a, BidirectionalIterator b,
 In 28.12.2.1 [re.tokiter.cnstr]/12 change the last sentence
 </p>
 
-<blockquote>
+<blockquote><p>
 The third constructor initializes the member <tt>subs</tt> to hold
 a copy of the sequence of integer values pointed to by the
 iterator range <tt>[<del>&amp;</del>submatches<ins>.begin()</ins>,
 <del>&amp;</del>submatches<ins>.end()</ins> <del>+ N</del>)</tt>.
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -57012,12 +57017,12 @@ regex_token_iterator(BidirectionalIterator a, BidirectionalIterator b,
 In 28.12.2.1 [re.tokiter.cnstr]/12 change the last sentence
 </p>
 
-<blockquote>
+<blockquote><p>
 The third <ins>and fourth</ins> constructor initialize<del>s</del> the member <tt>subs</tt>
 to hold a copy of the sequence of integer values pointed to
 by the iterator range <tt>[&amp;submatches,&amp;submatches + N)</tt>
 <ins>and <tt>[submatches.begin(),submatches.end())</tt>, respectively</ins>.
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -57028,7 +57033,7 @@ by the iterator range <tt>[&amp;submatches,&amp;submatches + N)</tt>
 
 <p><b>Proposed resolution:</b></p>
 
-<ol type="A" start="2">
+<ol style="list-style-type:upper-alpha" start="2">
 
 <li><br/>
 <ol>
@@ -57052,12 +57057,12 @@ regex_token_iterator(BidirectionalIterator a, BidirectionalIterator b,
 In 28.12.2.1 [re.tokiter.cnstr]/12 change the last sentence
 </p>
 
-<blockquote>
+<blockquote><p>
 The third <ins>and fourth</ins> constructor initialize<del>s</del> the member <tt>subs</tt>
 to hold a copy of the sequence of integer values pointed to
 by the iterator range <tt>[&amp;submatches,&amp;submatches + N)</tt>
 <ins>and <tt>[submatches.begin(),submatches.end())</tt>, respectively</ins>.
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 </li>
@@ -60341,15 +60346,15 @@ Move to <del>NAD Editorial</del><ins>Resolved</ins>, resolved by <a href="lwg-de
 <hr>
 <h3><a name="954"></a>954. Various threading bugs #4</h3>
 <p><b>Section:</b> 20.11.3 [time.clock.req] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.req">issues</a> in [time.clock.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Table 55 -- Clock Requirements (in 20.11.3 [time.clock.req])
+Table 55 &mdash; Clock Requirements (in 20.11.3 [time.clock.req])
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 the requirements for <tt>C1::time_point</tt> require <tt>C1</tt> and <tt>C2</tt>
 to "refer to the same epoch", but "epoch" is not defined.
@@ -60377,7 +60382,7 @@ it's a template. What is the required type?
 ]</i></p>
 
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 "epoch" is purposefully not defined beyond the common English
@@ -60396,22 +60401,22 @@ The <tt>time_point</tt> represents an offset (<tt>duration</tt>) from an epoch.
 <p>
 The sentence:
 </p>
-<blockquote>
+<blockquote><p>
 Different clocks 
 may share a <tt>time_point</tt>
 definition if it is valid to 
 compare their <tt>time_point</tt>s by 
 comparing their respective 
 <tt>duration</tt>s.
-</blockquote>
+</p></blockquote>
 
 <p>
 is redundant and could be removed.  I believe the sentence which follows the above:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>C1</tt> and <tt>C2</tt> shall refer to the same epoch.
-</blockquote>
+</p></blockquote>
 
 <p>
 is sufficient.  If two clocks share the same epoch, then by definition, comparing
@@ -60426,9 +60431,9 @@ desired that this value be usable in compile-time computation and branching.
 <p>
 This should probably instead be worded:
 </p>
-<blockquote>
+<blockquote><p>
 An instantiation of <tt>ratio</tt>.
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 
@@ -60454,11 +60459,11 @@ Move to Open pending proposed wording.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 In regards to (d) I suggest to say "a specialization of ratio" instead of
 "An instantiation of ratio". This seems to be the better matching standard
 core language term for this kind of entity.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-05-25 Ganesh adds:
@@ -60488,24 +60493,24 @@ which is part of ISO/IEC 18026 "Information technology -- Spatial Reference Mode
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
 <p><b>Proposed resolution:</b></p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 Change 20.11.3 [time.clock.req] p1:
 </p>
-<blockquote>
+<blockquote><p>
 -1- A clock is a bundle consisting of a native <tt>duration</tt>, a native <tt>time_point</tt>, and a function <tt>now()</tt> to get the 
 current <tt>time_point</tt>.  <ins>The origin of the clock's <tt>time_point</tt> is referred to as the clock's <i>epoch</i> as defined in 
 section 6.3 of ISO/IEC 18026.</ins>
 A clock shall meet the requirements in Table 45.
-</blockquote>
+</p></blockquote>
 </li>
 <li>
 <p>
@@ -60529,7 +60534,7 @@ The native <tt>time_point</tt> type of the clock.
 </table>
 </li>
 </ol>
-<ol type="a" start="4">
+<ol style="list-style-type:lower-alpha" start="4">
 <li>
 <p>
 Change the row starting with <tt>C1::period</tt> of the table "Clock Requirements":
@@ -63551,7 +63556,7 @@ presence of an overloaded <tt>operator&amp;</tt>.
 <hr>
 <h3><a name="1004"></a>1004. Response to UK 179</h3>
 <p><b>Section:</b> 17.6.4.8 [res.on.functions] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#res.on.functions">issues</a> in [res.on.functions].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -63610,7 +63615,7 @@ allowed in the applicable <i>Required behavior:</i> paragraph.
 <hr>
 <h3><a name="1006"></a>1006. <tt>operator delete</tt> in garbage collected implementation</h3>
 <p><b>Section:</b> 18.6.1 [new.delete] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#new.delete">issues</a> in [new.delete].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -63782,7 +63787,7 @@ be a safely-derived pointer.
 <hr>
 <h3><a name="1011"></a>1011. <tt>next/prev</tt> wrong iterator type</h3>
 <p><b>Section:</b> 24.4.4 [iterator.operations] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#iterator.operations">issues</a> in [iterator.operations].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -63870,7 +63875,7 @@ template &lt;class <del>Input</del><ins>Forward</ins>Iterator>
 <hr>
 <h3><a name="1012"></a>1012. <tt>reverse_iterator</tt> default ctor should value initialize</h3>
 <p><b>Section:</b> 24.5.1.3.1 [reverse.iter.cons] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
@@ -63978,7 +63983,7 @@ iterator of type <tt>Iterator</tt>.</ins>
 <hr>
 <h3><a name="1014"></a>1014. Response to UK 317 and JP 74</h3>
 <p><b>Section:</b> 28.8.2 [re.regex.construct] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.regex.construct">issues</a> in [re.regex.construct].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -64056,7 +64061,7 @@ basic_regex&amp; operator=(initializer_list&lt;charT&gt; il);
 <hr>
 <h3><a name="1019"></a>1019. Response to UK 205</h3>
 <p><b>Section:</b> 20.9.3 [meta.help] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.help">issues</a> in [meta.help].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -64170,7 +64175,7 @@ struct integral_constant {
 <hr>
 <h3><a name="1021"></a>1021. Response to UK 211</h3>
 <p><b>Section:</b> 20.7.1.2.3 [unique.ptr.single.asgn] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
@@ -64223,7 +64228,7 @@ private data member, avoiding many of the implicit conversion pitfalls.
 <hr>
 <h3><a name="1030"></a>1030. Response to JP 44</h3>
 <p><b>Section:</b> 20.7.2.5 [util.smartptr.shared.atomic] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
@@ -64315,7 +64320,7 @@ following clause.
 <hr>
 <h3><a name="1033"></a>1033. <tt>thread::join()</tt> effects?</h3>
 <p><b>Section:</b> 30.3.1.5 [thread.thread.member] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.member">issues</a> in [thread.thread.member].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -64449,7 +64454,7 @@ represented by <tt>*this</tt> has completed.</ins> <tt>get_id() == id()</tt>.
 <hr>
 <h3><a name="1034"></a>1034. Response to UK 222</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -64708,7 +64713,7 @@ specification of <tt>swap()</tt>: </i> </p>
 <hr>
 <h3><a name="1037"></a>1037. Response to UK 232</h3>
 <p><b>Section:</b> 23.2.3 [sequence.reqmts] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#sequence.reqmts">issues</a> in [sequence.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -64756,7 +64761,7 @@ In 23.2.3 [sequence.reqmts] Table 84, remove reference to
 <hr>
 <h3><a name="1038"></a>1038. Response to UK 233</h3>
 <p><b>Section:</b> 23.2.3 [sequence.reqmts] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#sequence.reqmts">issues</a> in [sequence.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -64859,7 +64864,7 @@ containers to the following rows:
 <hr>
 <h3><a name="1039"></a>1039. Response to UK 234</h3>
 <p><b>Section:</b> 23.2.3 [sequence.reqmts] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#sequence.reqmts">issues</a> in [sequence.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -64922,7 +64927,7 @@ In 23.2.3 [sequence.reqmts] Table 84, replace iterator with auto in semantics fo
 <hr>
 <h3><a name="1040"></a>1040. Response to UK 238</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -65102,7 +65107,7 @@ operations are atomic load operations.</ins>
 <hr>
 <h3><a name="1044"></a>1044. Response to UK 325</h3>
 <p><b>Section:</b> 30.4 [thread.mutex] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex">issues</a> in [thread.mutex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -65158,7 +65163,7 @@ struct adopt_lock_t <ins>{}</ins>;
 <hr>
 <h3><a name="1045"></a>1045. Response to UK 326</h3>
 <p><b>Section:</b> 30.4.2.2.1 [thread.lock.unique.cons] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
@@ -65757,7 +65762,7 @@ unique_future&lt;R&gt; get_future();
 <hr>
 <h3><a name="1054"></a>1054. <tt>forward</tt> broken</h3>
 <p><b>Section:</b> 20.2.3 [forward] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-13 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-13 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#forward">issues</a> in [forward].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -65781,9 +65786,10 @@ this issue I have not done so yet.
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+
+<blockquote><p>
 Move to Open, awaiting the promised paper.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-08-02 Howard adds:
@@ -65842,7 +65848,7 @@ Cast an rvalue <tt>t</tt> to an rvalue <tt>T</tt> (identity).
 It disallows:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 Cast an rvalue <tt>t</tt> to an lvalue <tt>T</tt>.
 </li>
@@ -65990,22 +65996,22 @@ boost::enable_if_c&lt;
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 A paper,
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2951.html">N2951</a>,
 is available which compares several implementations (including David's) with respect to several
 use cases (including Jason's) and provides wording for one implementation.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Solved by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2951.html">N2951</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -66118,7 +66124,7 @@ of the enum <tt>T</tt>.
 <hr>
 <h3><a name="1065"></a>1065. Response to UK 168</h3>
 <p><b>Section:</b> 17.6.1.1 [contents] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-15 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-15 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#contents">issues</a> in [contents].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -66188,7 +66194,7 @@ multiple configurations of the library.]</ins>
 <hr>
 <h3><a name="1066"></a>1066. Response to UK 189 and JP 27</h3>
 <p><b>Section:</b> 18 [language.support] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-15 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-15 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses UK 189 and JP 27</b></p>
@@ -66298,7 +66304,7 @@ template &lt;class T&gt; void throw_with_nested<ins> [[noreturn]] </ins>(T&amp;&
 <hr>
 <h3><a name="1070"></a>1070. Ambiguous move overloads in function</h3>
 <p><b>Section:</b> 20.8.11.2 [func.wrap.func] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-19 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-19 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func">issues</a> in [func.wrap.func].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -66409,7 +66415,7 @@ class function&lt;R(ArgTypes...)&gt;
 <hr>
 <h3><a name="1071"></a>1071. is_bind_expression should derive from integral_constant&lt;bool&gt;</h3>
 <p><b>Section:</b> 20.8.9.1.1 [func.bind.isbind] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-19 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-19 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.isbind">issues</a> in [func.bind.isbind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -66564,7 +66570,7 @@ be publicly derived
 <hr>
 <h3><a name="1073"></a>1073. Declaration of <tt>allocator_arg</tt> should be <tt>constexpr</tt></h3>
 <p><b>Section:</b> 20.6 [memory] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-19 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-19 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#memory">issues</a> in [memory].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -66602,7 +66608,7 @@ const<ins>expr</ins> allocator_arg_t allocator_arg = allocator_arg_t();
 <hr>
 <h3><a name="1075"></a>1075. Response to US 65, US 74.1</h3>
 <p><b>Section:</b> 20 [utilities], 23 [containers] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alan Talbot <b>Opened:</b> 2009-03-20 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Alan Talbot <b>Opened:</b> 2009-03-20 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#utilities">issues</a> in [utilities].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -66790,7 +66796,7 @@ requires a disposition that addresses the concerns.
 <p>
 The notes in the NB comment list (US 65 & US 74.1) say that:
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 this issue has not introduced any new arguments not previously discussed,
 </li>
@@ -66805,7 +66811,7 @@ the issue is resolved by
 <p>
 My opinion is:
 </p>
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 there are new arguments in both comments regarding concepts (which were
 not present in the library when the scoped allocator proposal was voted
@@ -66840,10 +66846,10 @@ rather than later so there is more time to deal with it.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -66851,7 +66857,9 @@ rather than later so there is more time to deal with it.
 
 
 <p><b>Rationale:</b></p>
+<p>
 Scoped allocators have been revised significantly.
+</p>
 
 
 
@@ -66860,7 +66868,7 @@ Scoped allocators have been revised significantly.
 <hr>
 <h3><a name="1079"></a>1079. UK-265: <code>RandomAccessIterator</code>'s <code>operator-</code> has nonsensical effects clause</h3>
 <p><b>Section:</b> 24.2.7 [random.access.iterators] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Doug Gregor <b>Opened:</b> 2009-03-20 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Doug Gregor <b>Opened:</b> 2009-03-20 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#random.access.iterators">issues</a> in [random.access.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -67103,7 +67111,7 @@ void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y);
 <hr>
 <h3><a name="1089"></a>1089. Response to JP 76</h3>
 <p><b>Section:</b> 30 [thread] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-22 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-03-22 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread">issues</a> in [thread].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -67550,7 +67558,7 @@ void swap(packaged_task&lt;R(ArgTypes...)&gt;&amp; x, packaged_task&lt;R(ArgType
 <hr>
 <h3><a name="1093"></a>1093. Multiple definitions for <tt>random_shuffle</tt> algorithm</h3>
 <p><b>Section:</b> 25.3.12 [alg.random.shuffle] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-22 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-22 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#alg.random.shuffle">issues</a> in [alg.random.shuffle].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -67560,7 +67568,7 @@ There are a couple of issues with the declaration of the <tt>random_shuffle</tt>
 algorithm accepting a random number engine.
 </p>
 
-<ol type="i">
+<ol style="list-style-type:lower-roman">
 <li>
 The Iterators must be shuffle iterators, yet this requirement is missing.
 </li>
@@ -67664,9 +67672,9 @@ wording needs updating to reflect removal of concepts.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave Open, Walter to work on it.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010 Pittsburgh:  Moved to <del>NAD Editorial</del><ins>Resolved</ins>, addressed by
@@ -67704,7 +67712,7 @@ template&lt;RandomAccessIterator Iter, UniformRandomNumberGenerator Rand&gt;
 <hr>
 <h3><a name="1094"></a>1094. Response to JP 65 and JP 66</h3>
 <p><b>Section:</b> 27.5.5.4 [iostate.flags] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2009-03-24 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2009-03-24 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#iostate.flags">issues</a> in [iostate.flags].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -67781,7 +67789,7 @@ choice for this type is pointer-to-member. <i>-- end note</i>]</del>
 <hr>
 <h3><a name="1095"></a>1095. <i>Shared objects and the library</i> wording unclear</h3>
 <p><b>Section:</b> 17.6.4.10 [res.on.objects] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-03-27 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-03-27 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -67859,7 +67867,7 @@ locking mechanism. <i>--end note</i>]
 <hr>
 <h3><a name="1097"></a>1097. #define __STDCPP_THREADS</h3>
 <p><b>Section:</b> 18.2 [support.types] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2009-04-03 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2009-04-03 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#support.types">issues</a> in [support.types].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -68042,7 +68050,7 @@ namespace std {
 <hr>
 <h3><a name="1098"></a>1098. definition of get_pointer_safety()</h3>
 <p><b>Section:</b> 20.6.4 [util.dynamic.safety] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2009-04-03 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2009-04-03 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#util.dynamic.safety">issues</a> in [util.dynamic.safety].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -68293,7 +68301,7 @@ constructors shall not participate in overload resolution.
 <hr>
 <h3><a name="1103"></a>1103. <tt>system_error</tt> constructor postcondition overly strict</h3>
 <p><b>Section:</b> 19.5.6.2 [syserr.syserr.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-04-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-04-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -68556,7 +68564,7 @@ need not be repeated here).
 <hr>
 <h3><a name="1104"></a>1104. <tt>basic_ios::move</tt> should accept lvalues</h3>
 <p><b>Section:</b> 27.5.5.3 [basic.ios.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-04-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-04-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#basic.ios.members">issues</a> in [basic.ios.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -68725,7 +68733,7 @@ if an exception was stored. &mdash; <i>end note</i>]
 <hr>
 <h3><a name="1108"></a>1108. thread.req.exception overly constrains implementations</h3>
 <p><b>Section:</b> 30.2.2 [thread.req.exception] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Christopher Kohlhoff <b>Opened:</b> 2009-04-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Christopher Kohlhoff <b>Opened:</b> 2009-04-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -68842,7 +68850,7 @@ ec == errc::resource_unavailable_try_again // holds true
 <hr>
 <h3><a name="1110"></a>1110. Is <tt>for_each</tt> overconstrained?</h3>
 <p><b>Section:</b> 25.2.4 [alg.foreach] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-04-29 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-04-29 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#alg.foreach">issues</a> in [alg.foreach].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -69052,7 +69060,7 @@ Change 25.2.4 [alg.foreach]/2 as indicated:
 <hr>
 <h3><a name="1113"></a>1113. <tt>bitset::to_string</tt> could be simplified</h3>
 <p><b>Section:</b> 20.5 [template.bitset] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-09 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-09 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#template.bitset">issues</a> in [template.bitset].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -69072,26 +69080,26 @@ than that of <a href="lwg-defects.html#853">853</a>.
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Move to Open,
 and look at the issue again after <a href="lwg-defects.html#853">853</a> has been accepted.
 We further recommend this be deferred until after the next Committee Draft.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 post-Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Tentatively Ready.
-</blockquote>
+</p></blockquote>
 
 
 
 <p><b>Proposed resolution:</b></p>
 
-<ol type="A">
+<ol style="list-style-type:upper-alpha">
 <li>
 <p>
 In 20.5 [template.bitset]/1 (class bitset) ammend:
@@ -69135,7 +69143,7 @@ above 37)
 <hr>
 <h3><a name="1114"></a>1114. Type traits underspecified</h3>
 <p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-05-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-05-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta">issues</a> in [meta].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -69646,7 +69654,7 @@ namespace std {
 <hr>
 <h3><a name="1123"></a>1123. no requirement that standard streams be flushed</h3>
 <p><b>Section:</b> 27.5.3.1.6 [ios::Init] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> James Kanze <b>Opened:</b> 2009-05-14 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> James Kanze <b>Opened:</b> 2009-05-14 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#ios::Init">issues</a> in [ios::Init].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -69802,7 +69810,7 @@ calls <tt>cout.flush()</tt>,
 <hr>
 <h3><a name="1126"></a>1126. <tt>istreambuff_iterator::equal</tt> needs a const & parameter</h3>
 <p><b>Section:</b> 24.6.3.5 [istreambuf.iterator::equal] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-28 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-28 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#istreambuf.iterator::equal">issues</a> in [istreambuf.iterator::equal].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -70039,7 +70047,7 @@ be a literal constructor.</ins>
 <hr>
 <h3><a name="1130"></a>1130. <tt>copy_exception</tt> name misleading</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2009-05-13 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2009-05-13 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -70243,7 +70251,7 @@ future_error(future_errc::broken_promise))</tt>.  Destroys ...
 <hr>
 <h3><a name="1131"></a>1131. C++0x does not need <tt>alignment_of</tt></h3>
 <p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Niels Dekker <b>Opened:</b> 2009-06-01 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Niels Dekker <b>Opened:</b> 2009-06-01 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -70443,7 +70451,7 @@ type <tt>T</tt> or to <i>default-alignment</i>.
 <hr>
 <h3><a name="1133"></a>1133. Does N2844 break current specification of list::splice?</h3>
 <p><b>Section:</b> 23.3.4.6 [forwardlist.ops], 23.3.5.5 [list.ops] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-09 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-09 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -70608,7 +70616,7 @@ template &lt;class Compare&gt; void merge(list&lt;T,Allocator&gt;&amp;&amp; x, C
 <hr>
 <h3><a name="1134"></a>1134. Redundant specification of stdint.h, fenv.h, tgmath.h, and maybe complex.h</h3>
 <p><b>Section:</b> X [stdinth], X [fenv], 26.8 [c.math], X [cmplxh] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Robert Klarer <b>Opened:</b> 2009-05-26 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Robert Klarer <b>Opened:</b> 2009-05-26 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -70764,7 +70772,7 @@ enumeration type or to pointer type.
 <hr>
 <h3><a name="1136"></a>1136. Incomplete specification of <tt>nested_exception::rethrow_nested()</tt></h3>
 <p><b>Section:</b> 18.8.6 [except.nested] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-06-06 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-06-06 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#except.nested">issues</a> in [except.nested].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -70841,7 +70849,7 @@ shall be called.</ins>
 <hr>
 <h3><a name="1137"></a>1137. Return type of <tt>conj</tt> and <tt>proj</tt></h3>
 <p><b>Section:</b> 26.4.9 [cmplx.over] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Marc Steinbach <b>Opened:</b> 2009-06-11 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Marc Steinbach <b>Opened:</b> 2009-06-11 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#cmplx.over">issues</a> in [cmplx.over].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -70940,7 +70948,7 @@ the effectively cast arguments.
 <hr>
 <h3><a name="1138"></a>1138. unusual return value for operator+</h3>
 <p><b>Section:</b> 21.4.8.1 [string::op+] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-06-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-06-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -71142,7 +71150,7 @@ Needs to also consider issues <a href="lwg-defects.html#923">923</a> and <a href
 <hr>
 <h3><a name="1144"></a>1144. "thread safe" is undefined</h3>
 <p><b>Section:</b> 18.5 [support.start.term] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-16 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-16 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#support.start.term">issues</a> in [support.start.term].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -71744,7 +71752,7 @@ Solved by
 <hr>
 <h3><a name="1152"></a>1152. expressions parsed differently than intended</h3>
 <p><b>Section:</b> 22.4.2.2.2 [facet.num.put.virtuals] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Seungbeom Kim <b>Opened:</b> 2009-06-27 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Seungbeom Kim <b>Opened:</b> 2009-06-27 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.put.virtuals">issues</a> in [facet.num.put.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -71828,7 +71836,7 @@ Change Table 83 &mdash; Floating-point conversions in  22.4.2.2.2 [facet.num.put
 <hr>
 <h3><a name="1157"></a>1157. Local types can now instantiate templates</h3>
 <p><b>Section:</b> 17.6.4.2.1 [namespace.std] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-28 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-28 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
@@ -71913,7 +71921,7 @@ library requirements for the original template.
 <hr>
 <h3><a name="1158"></a>1158. Encouragement to use monotonic clock</h3>
 <p><b>Section:</b> 30.2.4 [thread.req.timing] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-28 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-28 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.req.timing">issues</a> in [thread.req.timing].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -71990,7 +71998,7 @@ required to use a monotonic clock because such a clock may be unavailable.
 <hr>
 <h3><a name="1159"></a>1159. Unclear spec for <tt>resource_deadlock_would_occur</tt></h3>
 <p><b>Section:</b> 30.4.2.2.2 [thread.lock.unique.locking] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-28 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> LWG <b>Opened:</b> 2009-06-28 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.lock.unique.locking">issues</a> in [thread.lock.unique.locking].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1219">1219</a></p>
@@ -72520,7 +72528,7 @@ Pending a paper from Anthony Williams / Detlef Vollmann.
 <hr>
 <h3><a name="1170"></a>1170. String <i>char-like types</i> no longer PODs</h3>
 <p><b>Section:</b> 21.1 [strings.general] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-06-22 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-06-22 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 
@@ -72604,7 +72612,7 @@ types are called <i>char-like objects</i> or simply
 <hr>
 <h3><a name="1171"></a>1171. duration types should be literal</h3>
 <p><b>Section:</b> 20.11.5 [time.duration] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-06 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-06 <b>Last modified:</b> 2010-12-04</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration">issues</a> in [time.duration].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -72905,7 +72913,7 @@ Addressed in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2
 <hr>
 <h3><a name="1177"></a>1177. Improve "diagnostic required" wording</h3>
 <p><b>Section:</b> 20.11.5 [time.duration] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-07-18 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-07-18 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration">issues</a> in [time.duration].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -73236,7 +73244,7 @@ required.</del>
 <hr>
 <h3><a name="1178"></a>1178. Header dependencies</h3>
 <p><b>Section:</b> 17.6.5.2 [res.on.headers] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-07-18 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-07-18 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -73270,7 +73278,7 @@ the synopses of those other headers.</ins>
 <hr>
 <h3><a name="1180"></a>1180. Missing string_type member typedef in class <tt>sub_match</tt></h3>
 <p><b>Section:</b> 28.9.1 [re.submatch.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-07-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-07-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -73819,7 +73827,7 @@ template &lt;class BiIter&gt;
 <hr>
 <h3><a name="1182"></a>1182. Unfortunate hash dependencies</h3>
 <p><b>Section:</b> 20.8.12 [unord.hash] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-28 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-28 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.hash">issues</a> in [unord.hash].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -74348,7 +74356,7 @@ Solved by
 <hr>
 <h3><a name="1187"></a>1187. std::decay</h3>
 <p><b>Section:</b> 20.9.7.6 [meta.trans.other] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jason Merrill <b>Opened:</b> 2009-08-07 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jason Merrill <b>Opened:</b> 2009-08-07 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.trans.other">issues</a> in [meta.trans.other].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -74401,7 +74409,7 @@ argument passing. &mdash; <i>end note</i>]
 <hr>
 <h3><a name="1189"></a>1189. Awkward interface for changing the number of buckets in an unordered associative container</h3>
 <p><b>Section:</b> 23.2.5 [unord.req], 23.5 [unord] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2009-08-10 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2009-08-10 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -74803,7 +74811,7 @@ T&amp;&amp; get(array&lt;T,N&gt; &amp;&amp; a);
 <hr>
 <h3><a name="1192"></a>1192. <tt>basic_string</tt> missing definitions for <tt>cbegin</tt> / <tt>cend</tt> / <tt>crbegin</tt> / <tt>crend</tt></h3>
 <p><b>Section:</b> 21.4.3 [string.iterators] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-08-14 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-08-14 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -74912,7 +74920,7 @@ const_reverse_iterator rend() const;
 <hr>
 <h3><a name="1193"></a>1193. <tt>default_delete</tt> cannot be instantiated with  incomplete types</h3>
 <p><b>Section:</b> 20.7.1.1 [unique.ptr.dltr] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-08-18 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-08-18 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -75010,7 +75018,7 @@ The template parameter <tt>T</tt> of <tt>default_delete</tt> may be an incomplet
 <hr>
 <h3><a name="1194"></a>1194. Unintended <tt>queue</tt> constructor</h3>
 <p><b>Section:</b> 23.6 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-08-20 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-08-20 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -75506,7 +75514,7 @@ stack& operator=(stack&amp;&amp; s);
 <hr>
 <h3><a name="1195"></a>1195. "Diagnostic required" wording is insufficient to  prevent UB</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-08-18 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-08-18 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -75983,7 +75991,7 @@ Mark <del>NAD Editorial</del><ins>Resolved</ins>, solved by issue <a href="lwg-d
 <hr>
 <h3><a name="1197"></a>1197. Can unordered containers have <tt>bucket_count() == 0</tt>?</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-08-24 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-08-24 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -76309,7 +76317,7 @@ class stack {
 <hr>
 <h3><a name="1199"></a>1199. Missing extended copy constructor in container adaptors</h3>
 <p><b>Section:</b> 23.6 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-08-26 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-08-26 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -76521,7 +76529,7 @@ first argument and <tt>a</tt> as the second argument.
 <hr>
 <h3><a name="1204"></a>1204. Global permission to move</h3>
 <p><b>Section:</b> 17.6.4.9 [res.on.arguments] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-09-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-09-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#res.on.arguments">issues</a> in [res.on.arguments].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -76697,7 +76705,7 @@ required.
 <hr>
 <h3><a name="1205"></a>1205. Some algorithms could more clearly document their handling of empty ranges</h3>
 <p><b>Section:</b> 25 [algorithms] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-09-13 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-09-13 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#algorithms">issues</a> in [algorithms].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -77116,7 +77124,7 @@ non-empty sequence, but not less than another empty sequence.
 <hr>
 <h3><a name="1206"></a>1206. Incorrect requires for <tt>move_backward</tt> and <tt>copy_backward</tt></h3>
 <p><b>Section:</b> 25.3.2 [alg.move] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-09-13 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-09-13 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -77586,7 +77594,7 @@ template &lt;class Compare&gt; void sort(Compare comp);
 <hr>
 <h3><a name="1208"></a>1208. valarray initializer_list constructor has incorrect effects</h3>
 <p><b>Section:</b> 26.6.2.2 [valarray.cons] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-09-23 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-09-23 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#valarray.cons">issues</a> in [valarray.cons].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -77638,7 +77646,7 @@ valarray(initializer_list&lt;T&gt; il);
 <hr>
 <h3><a name="1209"></a>1209. match_results should be moveable</h3>
 <p><b>Section:</b> 28.10.1 [re.results.const] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2009-09-15 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2009-09-15 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -78038,7 +78046,7 @@ Solved by
 <hr>
 <h3><a name="1216"></a>1216. LWG 1066 Incomplete?</h3>
 <p><b>Section:</b> 18.8.6 [except.nested] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-09-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-09-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#except.nested">issues</a> in [except.nested].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -78072,7 +78080,7 @@ Add <tt>[[noreturn]]</tt> to <tt>rethrow_nested()</tt> in 18.8.6 [except.nested]
 <hr>
 <h3><a name="1218"></a>1218. mutex destructor synchronization</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -78136,7 +78144,7 @@ the reference count. &mdash; <i>end note</i>]
 <hr>
 <h3><a name="1220"></a>1220. What does condition_variable wait on?</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -78180,7 +78188,7 @@ user-supplied lock types.
 <hr>
 <h3><a name="1221"></a>1221. condition_variable wording</h3>
 <p><b>Section:</b> 30.5.1 [thread.condition.condvar] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvar">issues</a> in [thread.condition.condvar].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -78247,7 +78255,7 @@ wait functions in a loop or using the overloads of <tt>wait</tt>,
 <hr>
 <h3><a name="1222"></a>1222. condition_variable incorrect effects for exception safety</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2009-09-30 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -78685,7 +78693,7 @@ derived from class <tt>error_category</tt>.</ins>
 <hr>
 <h3><a name="1227"></a>1227. <tt>&lt;bitset&gt;</tt> synopsis overspecified</h3>
 <p><b>Section:</b> 20.5 [template.bitset] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Bo Persson <b>Opened:</b> 2009-10-05 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Bo Persson <b>Opened:</b> 2009-10-05 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#template.bitset">issues</a> in [template.bitset].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -78924,7 +78932,7 @@ template &lt;class ErrorConditionEnum&gt;
 <hr>
 <h3><a name="1231"></a>1231. <tt>weak_ptr</tt> comparisons incompletely resolved</h3>
 <p><b>Section:</b> 20.7.2.3.5 [util.smartptr.weak.obs] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-10 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-10 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -79210,7 +79218,7 @@ not implicitly convertible to <tt>X::value_type</tt>.
 <hr>
 <h3><a name="1237"></a>1237. Constrained error_code/error_condition members</h3>
 <p><b>Section:</b> 19.5 [syserr] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-14 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-14 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#syserr">issues</a> in [syserr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -79543,7 +79551,7 @@ explicit operator bool() const;
 <hr>
 <h3><a name="1241"></a>1241. unique_copy needs to require EquivalenceRelation</h3>
 <p><b>Section:</b> 25.3.9 [alg.unique] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-17 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-10-17 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#alg.unique">issues</a> in [alg.unique].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -79672,7 +79680,7 @@ Solved by
 <hr>
 <h3><a name="1245"></a>1245. <tt>std::hash&lt;string&gt;</tt> &amp; co</h3>
 <p><b>Section:</b> 20.8.12 [unord.hash] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2009-10-22 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2009-10-22 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.hash">issues</a> in [unord.hash].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -79902,7 +79910,7 @@ parameter. <i>&mdash; end note</i>]</ins></p>
 <hr>
 <h3><a name="1247"></a>1247. <tt>auto_ptr</tt> is overspecified</h3>
 <p><b>Section:</b> D.12.1 [auto.ptr] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#auto.ptr">issues</a> in [auto.ptr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -80137,7 +80145,7 @@ before it has been initialized the behavior is undefined.</del>
 <hr>
 <h3><a name="1250"></a>1250. <tt>&lt;bitset&gt;</tt> still overspecified</h3>
 <p><b>Section:</b> 20.5 [template.bitset] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2009-10-29 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2009-10-29 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#template.bitset">issues</a> in [template.bitset].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -80192,7 +80200,7 @@ namespace std {
 <hr>
 <h3><a name="1254"></a>1254. Misleading sentence in <tt>vector&lt;bool&gt;::flip</tt></h3>
 <p><b>Section:</b> 23.3.7 [vector.bool] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2009-11-01 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2009-11-01 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.bool">issues</a> in [vector.bool].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -80237,7 +80245,7 @@ but unused bits.</del>
 <hr>
 <h3><a name="1255"></a>1255. <tt>declval</tt> should be added to the library</h3>
 <p><b>Section:</b> 20.2 [utility] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-03 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-03 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility">issues</a> in [utility].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -80516,7 +80524,7 @@ type, and rvalues otherwise.</del>
 <hr>
 <h3><a name="1256"></a>1256. <tt>weak_ptr</tt> comparison functions should be removed</h3>
 <p><b>Section:</b> 20.7.2.3 [util.smartptr.weak] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-04 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-04 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -80560,7 +80568,7 @@ public:
 <hr>
 <h3><a name="1257"></a>1257. Header &lt;ios&gt; still contains a <code>concept_map</code></h3>
 <p><b>Section:</b> 27.5 [iostreams.base] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-11-04 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2009-11-04 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#iostreams.base">issues</a> in [iostreams.base].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -80755,7 +80763,7 @@ T<ins> t</ins>(create&lt;Args&gt;()...);
 <hr>
 <h3><a name="1261"></a>1261. Insufficent overloads for <tt>to_string</tt> / <tt>to_wstring</tt></h3>
 <p><b>Section:</b> 21.5 [string.conversions] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2009-11-10 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2009-11-10 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.conversions">issues</a> in [string.conversions].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -80867,7 +80875,7 @@ character buffer of sufficient size <tt>buffsz</tt>.
 <hr>
 <h3><a name="1262"></a>1262. <tt>std::less&lt;std::shared_ptr&lt;T&gt;&gt;</tt> is underspecified</h3>
 <p><b>Section:</b> 20.7.2.2.7 [util.smartptr.shared.cmp] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-11-10 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-11-10 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -81117,7 +81125,7 @@ containers. &mdash; <i>end note</i>]
 <hr>
 <h3><a name="1264"></a>1264. <tt>quick_exit</tt> support for freestanding implementations</h3>
 <p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-11-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-11-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#compliance">issues</a> in [compliance].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -81260,7 +81268,7 @@ deferred function happens-before any call to <tt>wait()</tt> on a
 <hr>
 <h3><a name="1267"></a>1267. Incorrect wording for <tt>condition_variable_any::wait_for</tt></h3>
 <p><b>Section:</b> 30.5.2 [thread.condition.condvarany] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-17 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-17 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvarany">issues</a> in [thread.condition.condvarany].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -81339,7 +81347,7 @@ supplied by all concurrently waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or
 <hr>
 <h3><a name="1268"></a>1268. The Mutex requirements in 30.4.1 and 30.4.2 are wrong</h3>
 <p><b>Section:</b> 30.4 [thread.mutex] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-17 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-17 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex">issues</a> in [thread.mutex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -81850,7 +81858,7 @@ packaged_task::operator()<del>.</del><ins>, or</ins>
 <hr>
 <h3><a name="1270"></a>1270. <tt>result_of</tt> should be moved to <tt>&lt;type_traits&gt;</tt></h3>
 <p><b>Section:</b> X [func.ret] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-11-19 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-11-19 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.ret">issues</a> in [func.ret].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -82048,7 +82056,7 @@ static_assert(std::is_same&lt;<wbr />std::result_of&lt;PF1()&gt;::type, bool&gt;
 <hr>
 <h3><a name="1271"></a>1271. CR undefined in duration operators</h3>
 <p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-21 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-21 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
@@ -82375,7 +82383,7 @@ Solved by
 <hr>
 <h3><a name="1276"></a>1276. <tt>forwardlist</tt> missing allocator constructors</h3>
 <p><b>Section:</b> 23.3.4 [forwardlist] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-12 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-12 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist">issues</a> in [forwardlist].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -82430,7 +82438,7 @@ forward_list(forward_list<del>&lt;T,Allocator&gt;</del>&amp;&amp; x);
 <hr>
 <h3><a name="1277"></a>1277. <tt>std::thread::id</tt> should be trivially copyable</h3>
 <p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-24 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-24 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -82492,7 +82500,7 @@ copyable class (9 [class]).</ins>
 <hr>
 <h3><a name="1278"></a>1278. inconsistent return values for <tt>forward_list::insert_after</tt></h3>
 <p><b>Section:</b> 23.3.4.5 [forwardlist.modifiers] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Bo Persson <b>Opened:</b> 2009-11-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Bo Persson <b>Opened:</b> 2009-11-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.modifiers">issues</a> in [forwardlist.modifiers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -82624,7 +82632,7 @@ args.
 <hr>
 <h3><a name="1280"></a>1280. initialization of stream iterators</h3>
 <p><b>Section:</b> 24.6.1.1 [istream.iterator.cons], 24.6.2.1 [ostream.iterator.cons.des] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-12-04 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-12-04 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#istream.iterator.cons">issues</a> in [istream.iterator.cons].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -83162,7 +83170,7 @@ assignment.</del>
 <hr>
 <h3><a name="1284"></a>1284. <tt>vector&lt;bool&gt; initializer_list</tt> constructor missing an allocator argument</h3>
 <p><b>Section:</b> 23.3.7 [vector.bool] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Bo Persson <b>Opened:</b> 2009-12-09 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Bo Persson <b>Opened:</b> 2009-12-09 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.bool">issues</a> in [vector.bool].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -83202,7 +83210,7 @@ vector(initializer_list&lt;bool&gt;<ins>, const Allocator&amp; = Allocator()</in
 <hr>
 <h3><a name="1285"></a>1285. <tt>allocator_traits</tt> call to <tt>new</tt></h3>
 <p><b>Section:</b> 20.6.8.2 [allocator.traits.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-12-10 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-12-10 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.traits.members">issues</a> in [allocator.traits.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -83271,7 +83279,7 @@ T(std::forward&lt;Args&gt;(args)...)</tt>.
 <hr>
 <h3><a name="1286"></a>1286. <tt>allocator_traits::select_on_container_copy_construction</tt> type-o</h3>
 <p><b>Section:</b> 20.6.8.2 [allocator.traits.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-12-10 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2009-12-10 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.traits.members">issues</a> in [allocator.traits.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -83320,7 +83328,7 @@ expression is well-formed; otherwise, <tt>rhs</tt>.
 <hr>
 <h3><a name="1287"></a>1287. <tt>std::function</tt> requires <tt>CopyConstructible</tt> target object</h3>
 <p><b>Section:</b> 20.8.11.2.1 [func.wrap.func.con] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-12-13 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-12-13 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.con">issues</a> in [func.wrap.func.con].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -83377,7 +83385,7 @@ throw exceptions.
 <hr>
 <h3><a name="1288"></a>1288. <tt>std::function</tt> assignment from rvalues</h3>
 <p><b>Section:</b> 20.8.11.2.1 [func.wrap.func.con] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-12-13 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2009-12-13 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.con">issues</a> in [func.wrap.func.con].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -83503,7 +83511,7 @@ template&lt;class F, class A&gt; void assign(F<ins>&amp;&amp;</ins>, const A&amp
 <hr>
 <h3><a name="1290"></a>1290. Don't require <tt>[u|bi]nary_function</tt> inheritance</h3>
 <p><b>Section:</b> 20.8 [function.objects] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-14 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-14 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#function.objects">issues</a> in [function.objects].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -84288,7 +84296,7 @@ function type, <tt>result_type</tt> shall be a synonym for the return type of
 <hr>
 <h3><a name="1298"></a>1298. Missing specialization of <tt>ctype_byname&lt;char&gt;</tt></h3>
 <p><b>Section:</b> 22.2 [locale.syn] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-12-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-12-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -84337,7 +84345,7 @@ template &lt;class charT&gt; class ctype_byname;
 <hr>
 <h3><a name="1299"></a>1299. Confusing typo in specification for <tt>get_time</tt></h3>
 <p><b>Section:</b> 27.7.5 [ext.manip] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-12-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-12-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#ext.manip">issues</a> in [ext.manip].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -84492,7 +84500,7 @@ states of <tt>*this</tt> and <tt>other</tt>.</ins>
 <hr>
 <h3><a name="1303"></a>1303. <tt>shared_ptr</tt>, <tt>unique_ptr</tt>, and rvalue references v2</h3>
 <p><b>Section:</b> 20.7.1.2 [unique.ptr.single], 20.7.2.2 [util.smartptr.shared] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2010-01-23 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2010-01-23 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr.single">issues</a> in [unique.ptr.single].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -84870,7 +84878,7 @@ template &lt;class Clock, class Duration&gt;
 <hr>
 <h3><a name="1306"></a>1306. <tt>pointer</tt> and <tt>const_pointer</tt> for <tt>&lt;array&gt;</tt></h3>
 <p><b>Section:</b> 23.3.2 [array] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-01-24 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-01-24 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#array">issues</a> in [array].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -84967,7 +84975,7 @@ Solved by
 <hr>
 <h3><a name="1309"></a>1309. Missing expressions for <tt>Move/CopyConstructible</tt></h3>
 <p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-02-03 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-02-03 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -84990,7 +84998,7 @@ where <tt>rv</tt> is defined to be as "non-const rvalue of type <tt>T</tt>"  and
 This causes two different defects:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 We cannot move/copy-initialize a <em>const</em> lvalue of type <tt>T</tt> as in:
@@ -85075,7 +85083,7 @@ suggestion is motivated to make type descriptions clearer: First, <tt>a</tt>,
 is described in a manner consistent with the container requirements tables.]</i>
 </p>
 
-<blockquote>
+<blockquote><p>
 1 The template definitions in the C++ standard library refer to various named
 requirements whose details are set out in tables 31-38. In these tables,
 <tt>T</tt> is a<ins>n object or reference</ins> type to be supplied by a C++
@@ -85086,7 +85094,7 @@ identifier;</ins> <del>is a value of type (possibly <tt>const</tt>) <tt>T</tt>;
 and</del> <tt>rv</tt> is a<ins>n</ins> <del>non-const</del> rvalue of type
 <tt>T</tt><ins>; and <tt>v</tt> is an lvalue of type (possibly <tt>const</tt>)
 <tt>T</tt> or an rvalue of type <tt>const T</tt></ins>.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -85369,7 +85377,7 @@ Solved by
 <hr>
 <h3><a name="1312"></a>1312. <tt>vector::data</tt> no longer returns a raw pointer</h3>
 <p><b>Section:</b> 23.3.6.4 [vector.data] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-07 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-07 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -86350,7 +86358,7 @@ basic_string&amp; replace(<ins>const_</ins>iterator i1, <ins>const_</ins>iterato
 <hr>
 <h3><a name="1324"></a>1324. Still too many implicit conversions for <tt>pair</tt> and  <tt>tuple</tt></h3>
 <p><b>Section:</b> 20.3.2 [pairs.pair], 20.4.2.1 [tuple.cnstr] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-20 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-20 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs.pair">issues</a> in [pairs.pair].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -86770,7 +86778,7 @@ bitset(
 <hr>
 <h3><a name="1326"></a>1326. Missing/wrong preconditions for <tt>pair</tt> and <tt>tuple</tt> functions</h3>
 <p><b>Section:</b> 20.3.2 [pairs.pair], 20.4.2.1 [tuple.cnstr] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-07 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-03-07 <b>Last modified:</b> 2011-03-05</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs.pair">issues</a> in [pairs.pair].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -86784,7 +86792,7 @@ CopyConstructible requirements are bad descriptions for non-const
 references. Some examples:
 </p>
 
-<ol type="a">
+<ol style="list-style-type:lower-alpha">
 <li>
 <p>
 20.4.2.1 [tuple.cnstr] before p.4 and p.8, resp.:
@@ -86858,20 +86866,20 @@ template &lt;class... UTypes&gt;
 explicit tuple(UTypes&amp;&amp;... u);
 </pre>
 
-<blockquote>
+<blockquote><p>
 6 <i>Requires:</i> Each type in <tt>Types</tt> shall satisfy the
 requirements of <tt>MoveConstructible</tt> (Table 33) from the
 corresponding type in <tt>UTypes</tt>. <tt>sizeof...(Types) ==
 sizeof...(UTypes)</tt>.
-</blockquote>
+</p></blockquote>
 
 <pre>
 tuple(tuple&amp;&amp; u);
 </pre>
-<blockquote>
+<blockquote><p>
 10 <i>Requires:</i> Each <tt>type</tt> in <tt>Types</tt> shall shall
 satisfy the requirements of <tt>MoveConstructible</tt> (Table 33).
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p>
@@ -86881,20 +86889,20 @@ the <tt>MoveConstructible</tt> requirements. In this case the correct
 requirements would be
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>is_constructible&lt;Ti, Ui&gt;::value</tt> shall evaluate to true
 for all <tt>Ti</tt> in <tt>Types</tt> and for all <tt>Ui</tt> in
 <tt>UTypes</tt>
-</blockquote>
+</p></blockquote>
 
 <p>
 and
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>is_constructible&lt;Ti, Ti&gt;::value</tt> shall evaluate to true
 for all <tt>Ti</tt> in <tt>Types</tt>
-</blockquote>
+</p></blockquote>
 
 <p>
 respectively.
@@ -86913,12 +86921,12 @@ suggested resolution. Further-on the P/R has been adapted to the FCD numbering.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 The issue became updated to fix some minor inconsistencies and to ensure a
 similarly required fix for <tt>std::pair</tt>, which has the same specification
 problem as <tt>std::tuple</tt>, since <tt>pair</tt> became extended to support
 reference members as well.
-</blockquote>
+</p></blockquote>
 
 <p><i>[Original proposed resolution:]</i></p>
 
@@ -87487,8 +87495,9 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140
 
 
 <p><b>Proposed resolution:</b></p>
+<p>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-
+</p>
 
 
 
@@ -87497,7 +87506,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1327"></a>1327. templates defined in <tt>&lt;cmath></tt> replacing C macros with the same name</h3>
 <p><b>Section:</b> 26.8 [c.math] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Michael Wong <b>Opened:</b> 2010-03-07 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> Michael Wong <b>Opened:</b> 2010-03-07 <b>Last modified:</b> 2010-11-26</p>
 <p><b>View all other</b> <a href="lwg-index.html#c.math">issues</a> in [c.math].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -87602,7 +87611,7 @@ Apply proposed resolution for <a href="http://www.open-std.org/jtc1/sc22/wg21/do
 <hr>
 <h3><a name="1328"></a>1328. istream extractors not setting failbit if eofbit is already set</h3>
 <p><b>Section:</b> 27.7.2.1.3 [istream::sentry] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-02-17 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-02-17 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#istream::sentry">issues</a> in [istream::sentry].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -88462,7 +88471,7 @@ signature the inserted elements are default constructed, and for the second sign
 <hr>
 <h3><a name="1344"></a>1344. [FCD] Replace <tt>throw()</tt> with <tt>noexcept</tt></h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-12-04</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
@@ -88519,7 +88528,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3156.html"
 <hr>
 <h3><a name="1346"></a>1346. [FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-12-04</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
@@ -88580,7 +88589,7 @@ This issue is resolved by the adoption of <a href="http://www.open-std.org/jtc1/
 <hr>
 <h3><a name="1347"></a>1347. [FCD] Apply <tt>noexcept</tt> judiciously throughout the library</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-12-04</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
@@ -88821,7 +88830,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html"
 <hr>
 <h3><a name="1360"></a>1360. [FCD] Add <tt>&lt;atomic></tt> to free-standing implementations</h3>
 <p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#compliance">issues</a> in [compliance].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -88905,7 +88914,7 @@ Amend the note in 17.6.3.9 [res.on.arguments] p1 bullet 3.
 <hr>
 <h3><a name="1363"></a>1363. [FCD] <tt>offsetof</tt> should be marked <tt>noexcept</tt></h3>
 <p><b>Section:</b> 18.2 [support.types] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#support.types">issues</a> in [support.types].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89043,7 +89052,7 @@ Resolved in Batavia by accepting  <a href="http://www.open-std.org/jtc1/sc22/wg2
 <hr>
 <h3><a name="1367"></a>1367. [FCD] Deprecate library support for checking dynamic exception specifications</h3>
 <p><b>Section:</b> D.13 [exception.unexpected] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-72</b></p>
@@ -89231,7 +89240,7 @@ All calls of this function return references to the same object.
 <hr>
 <h3><a name="1377"></a>1377. [FCD] The revised <tt>forward</tt> is not compatible with access-control</h3>
 <p><b>Section:</b> 20.2 [utility] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-23</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility">issues</a> in [utility].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89284,7 +89293,7 @@ Resolved as NAD Editorial by paper <a href="http://www.open-std.org/jtc1/sc22/wg
 <hr>
 <h3><a name="1378"></a>1378. [FCD] <tt>pair</tt> and <tt>tuple</tt> have too many conversions</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89332,7 +89341,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1379"></a>1379. [FCD] <tt>pair</tt> copy-assignment not consistent for references</h3>
 <p><b>Section:</b> 20.3.2 [pairs.pair] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs.pair">issues</a> in [pairs.pair].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89397,7 +89406,7 @@ requirements of <tt>CopyAssignable</tt>.
 <hr>
 <h3><a name="1380"></a>1380. [FCD] <tt>pair</tt> and <tt>tuple</tt> of references need to better specify move-semantics</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89488,7 +89497,7 @@ Strike 20.3.5.4 and the matching declarations in
 <hr>
 <h3><a name="1382"></a>1382. [FCD] <tt>pair</tt> and <tt>tuple</tt> constructors should <tt>forward</tt> arguments</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89538,7 +89547,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1383"></a>1383. [FCD] Inconsistent defaulted move/copy members in <tt>pair</tt> and <tt>tuple</tt></h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89766,7 +89775,7 @@ typedef ratio&lt;num, den&gt; type;
 <hr>
 <h3><a name="1389"></a>1389. [FCD] Compile-time rational arithmetic and overflow</h3>
 <p><b>Section:</b> 20.10.4 [ratio.arithmetic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#ratio.arithmetic">issues</a> in [ratio.arithmetic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89935,7 +89944,7 @@ Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/20
 <hr>
 <h3><a name="1392"></a>1392. [FCD] <tt>result_of</tt> should support pointer-to-data-member</h3>
 <p><b>Section:</b> 20.9.4 [meta.unary] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-23</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary">issues</a> in [meta.unary].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90052,7 +90061,7 @@ is_constructible.
 <hr>
 <h3><a name="1397"></a>1397. [FCD] Deprecate '98 binders</h3>
 <p><b>Section:</b> 20.8 [function.objects] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#function.objects">issues</a> in [function.objects].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90111,7 +90120,7 @@ Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/20
 <hr>
 <h3><a name="1399"></a>1399. [FCD] <tt>function</tt> does not need an <tt>explicit</tt> default constructor</h3>
 <p><b>Section:</b> 20.8.11.2 [func.wrap.func] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func">issues</a> in [func.wrap.func].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90155,7 +90164,7 @@ public:typedef R result_type;
 <hr>
 <h3><a name="1400"></a>1400. FCD <tt>function</tt> does not need an <tt>explicit</tt> default constructor</h3>
 <p><b>Section:</b> 20.8.11.2.1 [func.wrap.func.con] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.con">issues</a> in [func.wrap.func.con].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90186,7 +90195,7 @@ function(allocator_arg_t, const A&amp; a);
 <hr>
 <h3><a name="1402"></a>1402. [FCD] <tt>nullptr</tt> constructors for smart pointers should be <tt>constexpr</tt></h3>
 <p><b>Section:</b> 20.6 [memory] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#memory">issues</a> in [memory].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90218,7 +90227,7 @@ add "constexpr" to shared_ptr(nullptr_t).
 <hr>
 <h3><a name="1403"></a>1403. [FCD] Inconsistent definitions for <tt>allocator_arg</tt></h3>
 <p><b>Section:</b> 20.6.6 [allocator.tag] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses JP-85</b></p>
@@ -90417,7 +90426,7 @@ shared_ptr(auto_ptr&lt;Y&gt;&amp;); to
 <hr>
 <h3><a name="1409"></a>1409. [FCD] Specify whether <tt>monotonic_clock</tt> is a distinct type or a typedef</h3>
 <p><b>Section:</b> X [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90457,7 +90466,7 @@ This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/
 <hr>
 <h3><a name="1410"></a>1410. [FCD] Add a feature-detect macro for <tt>monotonic_clock</tt></h3>
 <p><b>Section:</b> X [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1411">1411</a></p>
@@ -90513,7 +90522,7 @@ This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/
 <hr>
 <h3><a name="1412"></a>1412. [FCD] Make monotonic clocks mandatory</h3>
 <p><b>Section:</b> X [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90782,7 +90791,7 @@ Change "implementation defined" to "undefined"
 <hr>
 <h3><a name="1423"></a>1423. [FCD] Ballot Comment JP-6</h3>
 <p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#map">issues</a> in [map].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90828,7 +90837,7 @@ explicit map(const Allocator&amp;);
 <hr>
 <h3><a name="1424"></a>1424. [FCD] Ballot Comment JP-7</h3>
 <p><b>Section:</b> 23.4.5 [multimap] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 Constructor accepting an allocator as a single parameter
@@ -90861,7 +90870,7 @@ explicit multimap(const Allocator&amp;);
 <hr>
 <h3><a name="1425"></a>1425. [FCD] Ballot Comment JP-8</h3>
 <p><b>Section:</b> 23.4.6 [set] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#set">issues</a> in [set].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90895,7 +90904,7 @@ explicit set(const Allocator&amp;);
 <hr>
 <h3><a name="1426"></a>1426. [FCD] Ballot Comment JP-9</h3>
 <p><b>Section:</b> 23.4.7 [multiset] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses JP-9</b></p>
@@ -90929,7 +90938,7 @@ explicit multiset(const Allocator&amp;);
 <hr>
 <h3><a name="1427"></a>1427. [FCD] Ballot Comment JP-10</h3>
 <p><b>Section:</b> 23.5.4 [unord.map] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.map">issues</a> in [unord.map].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90970,7 +90979,7 @@ explicit unordered_map(const Allocator&amp;);
 <hr>
 <h3><a name="1428"></a>1428. [FCD] Ballot Comment JP-11</h3>
 <p><b>Section:</b> 23.5.5 [unord.multimap] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses JP-11</b></p>
@@ -91009,7 +91018,7 @@ explicit unordered_multimap(const Allocator&amp;);
 <hr>
 <h3><a name="1429"></a>1429. [FCD] Ballot Comment JP-12</h3>
 <p><b>Section:</b> 23.5.6 [unord.set] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses JP-12</b></p>
@@ -91046,7 +91055,7 @@ explicit unordered_set(const Allocator&amp;);
 <hr>
 <h3><a name="1430"></a>1430. [FCD] Ballot Comment JP-13</h3>
 <p><b>Section:</b> 23.5.7 [unord.multiset] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-23</p>
+ <b>Submitter:</b> Japan <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses JP-13</b></p>
@@ -91662,7 +91671,7 @@ See Appendix 1 - Additional Details
 <hr>
 <h3><a name="1445"></a>1445. [FCD] Several iostreams member functions incorrectly specified</h3>
 <p><b>Section:</b> 27.7 [iostream.format] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS/PJ Plauger <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS/PJ Plauger <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#iostream.format">issues</a> in [iostream.format].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91700,7 +91709,7 @@ Addressed by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2
 <hr>
 <h3><a name="1447"></a>1447. [FCD] Request to resolve issue LWG 1328</h3>
 <p><b>Section:</b> 27.7 [iostream.format] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#iostream.format">issues</a> in [iostream.format].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91809,7 +91818,7 @@ signatures are added:
 <hr>
 <h3><a name="1453"></a>1453. [FCD] Default constructed match_results behavior for certain operations </h3>
 <p><b>Section:</b> 28.10.4 [re.results.acc] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.results.acc">issues</a> in [re.results.acc].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91854,7 +91863,7 @@ Addressed by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2
 <hr>
 <h3><a name="1455"></a>1455. [FCD] C language compatibility for atomics</h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
@@ -91896,7 +91905,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1462"></a>1462. [FCD] Ambiguous value assignment to <tt>atomic_bool</tt></h3>
 <p><b>Section:</b> X [atomics.types.integral] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.integral">issues</a> in [atomics.types.integral].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1463">1463</a></p>
@@ -91979,7 +91988,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1464"></a>1464. [FCD] Underspecified typedefs for atomic integral types</h3>
 <p><b>Section:</b> X [atomics.types.integral] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.integral">issues</a> in [atomics.types.integral].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92043,7 +92052,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1465"></a>1465. [FCD] Missing arithmetic operators for <tt>atomic_address</tt></h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92105,7 +92114,7 @@ namespace std {
 <hr>
 <h3><a name="1466"></a>1466. [FCD] Silent <tt>const</tt> breakage by <tt>compare_exchange_*</tt> member functions</h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92179,7 +92188,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1467"></a>1467. [FCD] Deriving <tt>atomic&lt;T*&gt;</tt> from <tt>atomic_address</tt> breaks type safety</h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92242,7 +92251,7 @@ of the referenced type. These specializations shall have trivial default constru
 <hr>
 <h3><a name="1468"></a>1468. [FCD] <tt>atomic_address::compare_exchange_*</tt> member functions should match <tt>atomic_compare_exchange_*</tt> free functions</h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92313,7 +92322,7 @@ namespace std {
 <hr>
 <h3><a name="1469"></a>1469. [FCD] <tt>atomic&lt;T*&gt;</tt> inheritance from <tt>atomic_address</tt> breaks type safety</h3>
 <p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92405,7 +92414,7 @@ namespace std {
 <hr>
 <h3><a name="1481"></a>1481. [FCD] Missing Lockable requirements</h3>
 <p><b>Section:</b> 30.2 [thread.req] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-138</b></p>
@@ -92443,7 +92452,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1482"></a>1482. [FCD] Timeout operations are under-specified</h3>
 <p><b>Section:</b> 30.2.4 [thread.req.timing] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.req.timing">issues</a> in [thread.req.timing].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92481,7 +92490,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1490"></a>1490. [FCD] Mutex requirements too stringent</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92523,7 +92532,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1491"></a>1491. [FCD] <tt>try_lock</tt> does not guarantee forward progress</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92562,7 +92571,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n32
 <hr>
 <h3><a name="1492"></a>1492. [FCD] Mutex requirements should not be bound to threads</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92598,7 +92607,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1498"></a>1498. [FCD] Unclear specification for [thread.condition]</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-29</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92800,7 +92809,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <h3><a name="1501"></a>1501. [FCD] spec for managing associated asynchronous
 state has problems</h3>
 <p><b>Section:</b> 30.6 [futures] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures">issues</a> in [futures].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92834,7 +92843,7 @@ Resolved in Batavia by accepting
 <hr>
 <h3><a name="1508"></a>1508. [FCD] Rename <tt>packaged_task::operator bool()</tt></h3>
 <p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92901,7 +92910,7 @@ public:
 <hr>
 <h3><a name="1513"></a>1513. [FCD] 'launch' enum too restrictive</h3>
 <p><b>Section:</b> 30.6 [futures] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures">issues</a> in [futures].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -93595,7 +93604,7 @@ Remove the recently added paragraph 3 from [cmplx.over]:
 <hr>
 <h3><a name="2002"></a>2002. Class template <tt>match_results</tt> does not specify the semantics of <tt>operator==</tt></h3>
 <p><b>Section:</b> 28.10.8 [re.results.nonmember] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-10-24 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-10-24 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>

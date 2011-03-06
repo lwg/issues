@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-05 at 15:03:29 UTC</p>
+<p>Revised 2011-03-06 at 14:03:32 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -89,7 +89,7 @@ exception is thrown other than by a comparison there are no effects.
 <hr>
 <h3><a name="1253"></a>1253. invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -137,15 +137,20 @@ now include <tt>insert()</tt> and <tt>emplace()</tt> calls as well ("mutating op
 ]</i></p>
 
 
+<p><i>[2011-03-06 Daniel Kr&uuml;gler adapts wording to numbering changes to match the N3242 draft]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p>
+<ol>
+<li>
 <p>
-Modify bullet 1 of 23.2.1 [container.requirements.general], p11:
+Modify bullet 1 of 23.2.1 [container.requirements.general], p. 10:
 </p>
 
 <p>
-11 Unless otherwise specified (see 23.2.4.1, 23.2.5.1, 23.3.2.3, and 23.3.5.4)
+10 Unless otherwise specified (see [associative.reqmts.except], [unord.req.except], [deque.modifiers], and [vector.modifiers])
 all container types defined in this Clause meet the following additional
 requirements:
 </p>
@@ -159,8 +164,11 @@ function has no effects.
 <li>...</li>
 </ul>
 
+</li>
+
+<li>
 <p>
-Modify 23.2.4 [associative.reqmts], p4:
+Modify 23.2.4 [associative.reqmts], p. 4:
 </p>
 
 <blockquote><p>
@@ -172,6 +180,9 @@ and <tt>multimap</tt> classes support equivalent keys. For <tt>multiset</tt> and
 <tt>erase</tt> preserve the relative ordering of equivalent elements.
 </p></blockquote>
 
+</li>
+
+<li>
 <p>
 Modify Table 102 &mdash; Associative container requirements in 
 23.2.4 [associative.reqmts]:
@@ -188,13 +199,13 @@ Modify Table 102 &mdash; Associative container requirements in
 </tr>
 
 <tr>
-<td colspan="4" style="text-align:center;">...</td>
+<td colspan="4" style="text-align:center;">[&hellip;]</td>
 </tr>
 
 <tr>
 <td><tt>a_eq.emplace(args)</tt></td>
 <td><tt>iterator</tt></td>
-<td>[..] <i>Effects:</i> Inserts a <tt>T</tt> object <tt>t</tt> constructed with
+<td>[&hellip;] <i>Effects:</i> Inserts a <tt>T</tt> object <tt>t</tt> constructed with
 <tt>std::forward&lt;Args&gt;(args)...</tt> and returns the iterator pointing to
 the newly inserted element. <ins>If a range containing elements equivalent to
 <tt>t</tt> exists in <tt>a_eq</tt>, <tt>t</tt> is inserted at the end of that
@@ -216,14 +227,17 @@ right <del>after</del> <ins>before</ins> <tt>p</tt></td>
 </tr>
 
 <tr>
-<td colspan="4" style="text-align:center;">...</td>
+<td colspan="4" style="text-align:center;">[&hellip;]</td>
 </tr>
 
 </table>
 </blockquote>
 
+</li>
+
+<li>
 <p>
-Modify 23.2.4 [associative.reqmts], p9:
+Modify 23.2.4 [associative.reqmts], p. 9:
 </p>
 
 <blockquote><p>
@@ -233,8 +247,11 @@ the validity of iterators and references to the container, and the
 erased elements.
 </p></blockquote>
 
+</li>
+
+<li>
 <p>
-Modify 23.2.4.1 [associative.reqmts.except], p2:
+Modify 23.2.4.1 [associative.reqmts.except], p. 2:
 </p>
 
 <blockquote><p>
@@ -244,8 +261,11 @@ a single element, the <del><tt>insert()</tt> function</del> <ins>insertion</ins>
 has no effect.
 </p></blockquote>
 
+</li>
+
+<li>
 <p>
-Modify 23.2.5 [unord.req], p13 and p14:
+Modify 23.2.5 [unord.req], p. 13 and p. 14:
 </p>
 
 <blockquote>
@@ -263,6 +283,8 @@ preserve the relative order of elements within each equivalent-key group unless
 otherwise specified.
 </p>
 
+[&hellip;]
+
 <p>
 13 The <tt>insert</tt> <ins>and <tt>emplace</tt></ins> members shall not affect
 the validity of references to container elements, but may invalidate all
@@ -279,8 +301,11 @@ the number of elements inserted, <tt>B</tt> is the container's bucket count, and
 </p>
 </blockquote>
 
+</li>
+
+<li>
 <p>
-Modify 23.2.5.1 [unord.req.except], p2:
+Modify 23.2.5.1 [unord.req.except], p. 2:
 </p>
 
 <blockquote><p>
@@ -290,6 +315,10 @@ operation other than the container's hash function from within an
 element, the <del><tt>insert()</tt></del> <ins>insertion</ins>
 <del>function</del> has no effect.
 </p></blockquote>
+
+</li>
+</ol>
+
 
 
 
@@ -493,7 +522,7 @@ template&lt;class ForwardIterator1, class ForwardIterator2&gt;
 <hr>
 <h3><a name="1371"></a>1371. [FCD] standard exceptions require stronger no-throw guarantees</h3>
 <p><b>Section:</b> 19 [diagnostics] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-75</b></p>
@@ -547,7 +576,7 @@ assignment operator that do not exit with an exception.
 <hr>
 <h3><a name="1413"></a>1413. [FCD] Specify whether <tt>high_resolution_clock</tt> is a distinct type or a typedef</h3>
 <p><b>Section:</b> 20.11.7.3 [time.clock.hires] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-14</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-16</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-112</b></p>
@@ -971,7 +1000,7 @@ thread and a signal handler executed in the same thread.
 <hr>
 <h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
 <p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1092,7 +1121,7 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="1486"></a>1486. [FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
@@ -1843,7 +1872,7 @@ template &lt;class Rep1, class <del>Period</del><ins>Rep2</ins>, class <del>Rep2
 <hr>
 <h3><a name="2006"></a>2006. <tt>emplace</tt> broken for associative containers</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-02-21</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-02-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
@@ -2609,7 +2638,7 @@ support aggregate initialization syntax.</ins>
 <hr>
 <h3><a name="2026"></a>2026. <tt>hash</tt> should be <tt>std</tt> qualified for unordered container</h3>
 <p><b>Section:</b> 23.5 [unord] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-28</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
