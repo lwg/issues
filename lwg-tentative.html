@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-06 at 21:03:32 UTC</p>
+<p>Revised 2011-03-06 at 22:03:12 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -722,7 +722,7 @@ Add the following entries to table 143:
 <hr>
 <h3><a name="1457"></a>1457. [FCD] Splitting lock-free properties</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.syn">active issues</a> in [atomics.syn].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.syn">issues</a> in [atomics.syn].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -806,11 +806,12 @@ Moved to Tentatively Ready after 5 votes.
 applying <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a>]</i></p>
 
 
+<p><i>[2011-03-06: Daniel adapts the wording to N3242]</i></p>
+
+
 <p><b>Proposed resolution:</b></p>
 <p>
-Change 29.4 [atomics.lockfree] as indicated (The removal of the <tt>ATOMIC_ADDRESS_LOCK_FREE</tt>
-is an editorial step, because that macro was removed when <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a>
-was accepted during the Batavia meeting):
+Change 29.4 [atomics.lockfree] as indicated:
 </p>
 <blockquote><pre>
 #define ATOMIC_CHAR_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
@@ -821,7 +822,6 @@ was accepted during the Batavia meeting):
 #define ATOMIC_INT_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
 #define ATOMIC_LONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
 #define ATOMIC_LLONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-<del>#define ATOMIC_ADDRESS_LOCK_FREE <em>implementation-defined</em></del>
 </pre></blockquote>
 
 

@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-06 at 21:03:32 UTC</p>
+<p>Revised 2011-03-06 at 22:03:12 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6460,7 +6460,7 @@ Add the following entries to table 143:
 <hr>
 <h3><a name="1457"></a>1457. [FCD] Splitting lock-free properties</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.syn">active issues</a> in [atomics.syn].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.syn">issues</a> in [atomics.syn].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -6544,11 +6544,12 @@ Moved to Tentatively Ready after 5 votes.
 applying <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a>]</i></p>
 
 
+<p><i>[2011-03-06: Daniel adapts the wording to N3242]</i></p>
+
+
 <p><b>Proposed resolution:</b></p>
 <p>
-Change 29.4 [atomics.lockfree] as indicated (The removal of the <tt>ATOMIC_ADDRESS_LOCK_FREE</tt>
-is an editorial step, because that macro was removed when <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a>
-was accepted during the Batavia meeting):
+Change 29.4 [atomics.lockfree] as indicated:
 </p>
 <blockquote><pre>
 #define ATOMIC_CHAR_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
@@ -6559,7 +6560,6 @@ was accepted during the Batavia meeting):
 #define ATOMIC_INT_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
 #define ATOMIC_LONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
 #define ATOMIC_LLONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-<del>#define ATOMIC_ADDRESS_LOCK_FREE <em>implementation-defined</em></del>
 </pre></blockquote>
 
 
@@ -6682,7 +6682,7 @@ Add <tt>ATOMIC_BOOL_LOCK_FREE</tt> to 29.4 [atomics.lockfree] and to 29.2 [atomi
 <hr>
 <h3><a name="1461"></a>1461. [FCD] Rename all <tt>ATOMIC_*</tt> macros as <tt>STD_ATOMIC_*</tt></h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Canada <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics">active issues</a> in [atomics].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -6694,13 +6694,25 @@ in <tt>STD_ATOMIC_</tt>... to indicate they are <tt>STD</tt> macros as
 other standard macros. The rationale that they all seem too long seems weak.
 </p>
 
+<p><i>[2011-03-06: Daniel adapts suggested wording to N3242 and comments]</i></p>
+
+
+<p>I suggest to declare this issue as NAD. Reason for this suggestion is, that
+C1x is currently going to suggest exactly the same macros as additions to
+header <tt>&lt;stdatomic.h&gt;</tt>, therefore C++0x should not define a
+whole new set. I'm making this suggestion with the understanding that
+C1x is intending to keep in sync in this regard. For example, the most
+<a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1548.pdf">recent 
+draft of C1x</a> does contain the macro <tt>ATOMIC_ADDRESS_LOCK_FREE</tt>
+which has recently been removed from the C++ working draft.</p>
+
 
 <p><b>Proposed resolution:</b></p>
 <ol>
 <li><p>Change sub-clause 29.2 [atomics.syn] as indicated:</p>
 <blockquote><pre>
 [..]
-// <em>29.4, lock-free property</em>
+// <em>[atomics.lockfree], lock-free property</em>
 #define <ins>STD_</ins>ATOMIC_CHAR_LOCK_FREE <em>unspecified</em>
 #define <ins>STD_</ins>ATOMIC_CHAR16_T_LOCK_FREE <em>unspecified</em>
 #define <ins>STD_</ins>ATOMIC_CHAR32_T_LOCK_FREE <em>unspecified</em>
@@ -6709,9 +6721,8 @@ other standard macros. The rationale that they all seem too long seems weak.
 #define <ins>STD_</ins>ATOMIC_INT_LOCK_FREE <em>unspecified</em>
 #define <ins>STD_</ins>ATOMIC_LONG_LOCK_FREE <em>unspecified</em>
 #define <ins>STD_</ins>ATOMIC_LLONG_LOCK_FREE <em>unspecified</em>
-#define <ins>STD_</ins>ATOMIC_ADDRESS_LOCK_FREE <em>unspecified</em>
 
-// <em>29.6, operations on atomic types</em>
+// <em>[atomics.types.operations.req], operations on atomic types</em>
 #define <ins>STD_</ins>ATOMIC_VAR_INIT(value) <em>see below</em>
 [..]
 </pre></blockquote>
@@ -6727,22 +6738,23 @@ other standard macros. The rationale that they all seem too long seems weak.
 #define <ins>STD_</ins>ATOMIC_INT_LOCK_FREE <em>implementation-defined</em>
 #define <ins>STD_</ins>ATOMIC_LONG_LOCK_FREE <em>implementation-defined</em>
 #define <ins>STD_</ins>ATOMIC_LLONG_LOCK_FREE <em>implementation-defined</em>
-#define <ins>STD_</ins>ATOMIC_ADDRESS_LOCK_FREE <em>implementation-defined</em>
 </pre><blockquote>
 <p>
 1 The <tt><ins>STD_</ins>ATOMIC_..._LOCK_FREE</tt> macros indicate the lock-free property of the corresponding atomic types, [..]
 </p></blockquote></blockquote>
 </li>
 <li>
-<p>Change 29.6 [atomics.types.operations] p. 5 as indicated:</p>
+<p>Change 29.6.5 [atomics.types.operations.req] p. 6 as indicated:</p>
 <blockquote><pre>
 #define <ins>STD_</ins>ATOMIC_VAR_INIT(value) <em>see below</em>
 </pre><blockquote><p>
-5 <em>Remarks</em>: A macro that expands to a token sequence suitable for initializing an atomic variable of
-a type that is initializion-compatible with value. Concurrent access to the variable being initialized,
-even via an atomic operation, constitutes a data race. [ <em>Example:</em>
+5 <em>Remarks</em>: The macro expands to a token sequence suitable for constant initialization 
+an atomic variable of static storage duration of a type that is initialization-compatible
+with <i>value</i>. [ <i>Note</i>: This operation may need to initialize locks. &mdash; <i>end note</i> ] 
+Concurrent access to the variable being initialized, even via an atomic operation, constitutes 
+a data race. [ <em>Example:</em>
 </p><blockquote><pre>
-atomic_int v = <ins>STD_</ins>ATOMIC_VAR_INIT(5);
+atomic&lt;int&gt; v = <ins>STD_</ins>ATOMIC_VAR_INIT(5);
 </pre></blockquote>
 <p>&mdash; <em>end example</em> ]</p>
 </blockquote></blockquote>
