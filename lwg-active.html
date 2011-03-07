@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-07 at 22:03:11 UTC</p>
+<p>Revised 2011-03-07 at 23:03:59 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -2932,7 +2932,7 @@ public:
 <hr>
 <h3><a name="1253"></a>1253. invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-03-06</p>
+ <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-03-07</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -3126,7 +3126,7 @@ preserve the relative order of elements within each equivalent-key group unless
 otherwise specified.
 </p>
 
-[&hellip;]
+<p>[&hellip;]</p>
 
 <p>
 13 The <tt>insert</tt> <ins>and <tt>emplace</tt></ins> members shall not affect
@@ -8198,7 +8198,7 @@ while (!pred())
 <hr>
 <h3><a name="1502"></a>1502. [FCD] Specification of [futures.state]</h3>
 <p><b>Section:</b> 30.6.4 [futures.state] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-07</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-08</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.state">issues</a> in [futures.state].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -8214,17 +8214,17 @@ while (!pred())
 2011-03-07 Jonathan Wakely adds:
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 It's not clear which paragraph this refers to, I had to go to the
 ballot comments where US-195 reveals it's para 8, which in the FCD
 (N3092) says:
-<blockquote>
+</p><blockquote><p>
  Accesses to the same associated asynchronous state conflict (1.10).
-</blockquote>
+</p></blockquote>
 <p>This is now para 10 in N3242:</p>
-<blockquote>
+<blockquote><p>
  Accesses to the same shared state conflict (1.10).
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p><i>[2011-03-07: Lawrence comments and drafts wording]</i></p>
@@ -8244,7 +8244,7 @@ conflict when accessing that value.</p>
 10 <del>Accesses to the same shared state conflict (1.10).</del><ins>Some 
   operations, e.g. <code>shared_future::get()</code>
  (30.6.7 [futures.shared_future]), may return a reference to a
- value held in their shared state. Accesses through
+ value held in their shared state. Accesses and modifications through
  those references by concurrent threads to the same 
  shared state may potentially conflict (1.10).
  [<i>Note:</i> As a consquence, accesses must either use
