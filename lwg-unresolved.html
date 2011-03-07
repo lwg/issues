@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-07 at 22:03:53 UTC</p>
+<p>Revised 2011-03-07 at 22:03:11 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -4640,12 +4640,13 @@ conflict when accessing that value.</p>
 <p>Modify 30.6.4 [futures.state] p10 as follows:</p>
 
 <blockquote><p>
-10 <ins>Some operations, e.g. <code>shared_future::get()</code>
+10 <del>Accesses to the same shared state conflict (1.10).</del><ins>Some 
+  operations, e.g. <code>shared_future::get()</code>
  (30.6.7 [futures.shared_future]), may return a reference to a
- value held in their shared state.</ins> Accesses <ins>through
- those references by concurrent threads</ins> to the same 
- shared state <ins>may potentially</ins> conflict (1.10).
- <ins>[<i>Note:</i> As a consquence, accesses must either use
+ value held in their shared state. Accesses through
+ those references by concurrent threads to the same 
+ shared state may potentially conflict (1.10).
+ [<i>Note:</i> As a consquence, accesses must either use
  read-only operations or provide additional synchronization.
  &mdash; <i>end note</i>]</ins>
 </p></blockquote>
