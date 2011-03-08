@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-08 at 19:03:07 UTC</p>
+<p>Revised 2011-03-08 at 20:03:09 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -4913,7 +4913,7 @@ and ending with <code>_HEADER_ _</code>.</ins>
 <hr>
 <h3><a name="1364"></a>1364. [FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-08</p>
 <p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -4933,9 +4933,20 @@ multiple <tt>exception_ptr</tt> objects that all refer to the
 same exception introduce a race.
 </p>
 
+<p><i>[2011-03-08: Lawrence comments and drafts wording]</i></p>
+
+
+<p>I think fundamentally, this issue is NAD, but clarification would not hurt.</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
+<p>Add a new paragraph to 18.8.5 [propagation] after paragraph 6 as follows:</p>
+
+<p><ins>
+[<i>Note:</i> Exception objects have no synchronization requirements, and expressions 
+using them may conflict (1.10 [intro.multithread]). &mdash; <i>end note</i>]
+</ins></p>
 
 
 
