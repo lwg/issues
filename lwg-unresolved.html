@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-07 at 23:03:31 UTC</p>
+<p>Revised 2011-03-08 at 19:03:07 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -4768,7 +4768,7 @@ operation on a future object with the same associated asynchronous state marked 
 <h3><a name="1507"></a>1507. [FCD] <tt>promise::<i>XXX</i>_at_thread_exit</tt> functions have no
 synchronization requirements</h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-08</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -4778,7 +4778,7 @@ synchronization requirements</h3>
 <tt>promise::<i>XXX</i>_at_thread_exit</tt> functions have no
 synchronization requirements. Specifying synchronization
 for these member functions requires coordinating with the
-words in 30.6.5/21 and 25, which give synchronization
+words in 30.6.5 [futures.promise]/21 and 25, which give synchronization
 requirements for <tt>promise::set_value</tt> and
 <tt>promise::set_exception</tt> (30.6.5 [futures.promise] p. 26 ff., p. 29 ff.).
 </p>
@@ -4787,13 +4787,263 @@ Resolution proposed by ballot comment:
 ]</i></p>
 
 <blockquote><p>
-Change 30.6.5/21 to mention <tt>set_value_at_thread_exit</tt> and
-<tt>set_exception_at_thread_exit;</tt> with this text, replace 30.6.5/25 
-and add two new paragraphs, after 30.6.5/28 and 30.6.5/31.
+Change 30.6.5 [futures.promise]/21 to mention <tt>set_value_at_thread_exit</tt> and
+<tt>set_exception_at_thread_exit;</tt> with this text, replace 30.6.5 [futures.promise]/25 
+and add two new paragraphs, after 30.6.5 [futures.promise]/28 and 30.6.5 [futures.promise]/31.
 </p></blockquote>
+
+<p><i>[2011-03-8: Lawrence comments and drafts wording]</i></p>
+
+
+<p>This comment applies as well to other <tt>*_at_thread_exit</tt>
+functions.  The following resolution adds synchronization paragraphs
+to all of them and edits a couple of related synchronization
+paragraphs.</p>
 
 
 <p><b>Proposed resolution:</b></p>
+<ol>
+<li><p>Edit 30.5 [thread.condition] paragraphs 6-9 as follows:</p>
+
+<blockquote><pre>
+void notify_all_at_thread_exit(condition_variable&amp; cond, unique_lock&lt;mutex&gt; lk);
+</pre>
+<blockquote>
+<p>
+-6- <i>Requires</i>: <tt>lk</tt> is locked by the calling thread and either
+</p>
+<ul>
+<li>no other thread is waiting on <tt>cond</tt>, or</li>
+<li><tt>lk.mutex()</tt> returns the same value for each of the lock arguments supplied by all concurrently
+waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or <tt>wait_until</tt>) threads.</li>
+</ul>
+<p>
+-7- <i>Effects</i>: transfers ownership of the lock associated with <tt>lk</tt> into internal storage and schedules 
+<tt>cond</tt> to be notified when the current thread exits, after all objects of thread storage duration 
+associated with the current thread have been destroyed. This notification shall be as if
+</p>
+<blockquote><pre>
+lk.unlock();
+cond.notify_all();
+</pre></blockquote>
+<p>
+<ins>-?- <i>Synchronization:</i> The call to <code>notify_all_at_thread_exit</code>
+and the completion of the destructors for all the current thread's variables of 
+thread storage duration synchronize with (1.10 [intro.multithread]) calls 
+to functions waiting on <code>cond</code>.</ins>
+<p/>
+-8- <i>Note</i>: The supplied lock will be held until the thread exits, and care must be taken to ensure that
+this does not cause deadlock due to lock ordering issues. After calling <tt>notify_all_at_thread_exit</tt>
+it is recommended that the thread should be exited as soon as possible, and that no blocking or
+time-consuming tasks are run on that thread.
+<p/>
+-9- <i>Note</i>: It is the user's responsibility to ensure that waiting threads do not erroneously 
+assume that the thread has finished if they experience spurious wakeups. This typically requires 
+that the condition being waited for is satisfied while holding the lock on <tt>lk</tt>, and that 
+this lock is not released and reacquired prior to calling <tt>notify_all_at_thread_exit</tt>.
+</p>
+</blockquote></blockquote>
+</li>
+
+<li><p>Edit 30.6.5 [futures.promise], paragraphs 14-27 as follows:</p>
+
+<blockquote><pre>
+void promise::set_value(const R&amp; r);
+void promise::set_value(R&amp;&amp; r);
+void promise&lt;R&amp;&gt;::set_value(R&amp; r);
+void promise&lt;void&gt;::set_value();
+</pre>
+<blockquote>
+<p>
+-14- <i>Effects</i>: atomically stores the value <tt>r</tt> in the shared state and makes that state 
+ready (30.6.4 [futures.state]).
+<p/>
+-15- <i>Throws</i>:
+</p>
+<ul>
+<li><tt>future_error</tt> if its shared state already has a stored value or exception, or</li>
+<li>for the first version, any exception thrown by the copy constructor of <tt>R</tt>, or</li>
+<li>for the second version, any exception thrown by the move constructor of <tt>R</tt>.</li>
+</ul>
+<p>
+-16- <i>Error conditions</i>:
+</p>
+<ul>
+<li><tt>promise_already_satisfied</tt> if its shared state already has a stored value or exception.</li>
+<li><tt>no_state</tt> if <tt>*this</tt> has no shared state.</li>
+</ul>
+<p>
+-17- <i>Synchronization</i>: calls to <tt>set_value</tt><ins>,</ins> <del>and</del> <tt>set_exception</tt><ins>,
+<code>set_value_at_thread_exit</code>, and <code>set_exception_at_thread_exit</code></ins> on a single 
+<tt>promise</tt> object are serialized. [ <i>Note</i>: And they synchronize and serialize with other functions 
+through the referred shared state. &mdash; <i>end note</i> ]
+</p>
+</blockquote></blockquote>
+
+<blockquote><pre>
+void set_exception(exception_ptr p);
+</pre>
+<blockquote>
+<p>
+-18- <i>Effects</i>: atomically stores the exception pointer <tt>p</tt> in the shared state and makes that 
+state ready (30.6.4 [futures.state]).
+</p>
+
+<p>
+-19- <i>Throws</i>: <tt>future_error</tt> if its shared state already has a stored value or exception.
+</p>
+
+<p>
+-20- <i>Error conditions</i>:
+</p>
+<ul>
+<li><tt>promise_already_satisfied</tt> if its shared state already has a stored value or exception.</li>
+<li><tt>no_state</tt> if <tt>*this</tt> has no shared state.</li>
+</ul>
+
+<p>
+-21- <i>Synchronization</i>: calls to <tt>set_value</tt><ins>,</ins> <del>and</del> <tt>set_exception</tt><ins>,
+<code>set_value_at_thread_exit</code>, and <code>set_exception_at_thread_exit</code></ins> on a single 
+<tt>promise</tt> object are serialized. [ <i>Note</i>: And they synchronize and serialize with other functions 
+through the referred shared state. &mdash; <i>end note</i> ]
+</p>
+</blockquote></blockquote>
+
+<blockquote><pre>
+void promise::set_value_at_thread_exit(const R&amp; r);
+void promise::set_value_at_thread_exit(R&amp;&amp; r);
+void promise&lt;R&amp;&gt;::set_value_at_thread_exit(R&amp; r);
+void promise&lt;void&gt;::set_value_at_thread_exit();
+</pre>
+<blockquote>
+<p>
+-22- <i>Effects</i>: Stores the value <tt>r</tt> in the shared state without making that state 
+ready immediately. Schedules that state to be made ready when the current thread exits, after 
+all objects of thread storage duration associated with the current thread have been destroyed.
+<p/>
+-23- <i>Throws</i>: <tt>future_error</tt> if an error condition occurs.
+<p/>
+-24- <i>Error conditions</i>:
+</p>
+<ul>
+<li><tt>promise_already_satisfied</tt> if its shared state already has a stored value or exception.</li>
+<li><tt>no_state</tt> if <tt>*this</tt> has no shared state.</li>
+</ul>
+<p>
+<ins>-??- <i>Synchronization</i>: calls to <code>set_value</code>, <code>set_exception</code>,
+<code>set_value_at_thread_exit</code>, and <code>set_exception_at_thread_exit</code>
+on a single promise object are serialized. [<i>Note:</i> And they synchronize and serialize
+with other functions through the referred shared state. &mdash; <i>end note</i>]
+The completion of the destructors for all the current thread's variables of thread storage 
+duration synchronizes with (1.10 [intro.multithread]) the successful return from 
+any member function that detects that the state is set to ready.</ins>
+</p>
+</blockquote></blockquote>
+
+<blockquote><pre>
+void promise::set_exception_at_thread_exit(exception_ptr p);
+</pre>
+<blockquote>
+<p>
+-25- <i>Effects</i>: Stores the exception pointer <tt>p</tt> in the shared state without 
+making that state ready immediately. Schedules that state to be made ready when the current 
+thread exits, after all objects of thread storage duration associated with the current 
+thread have been destroyed.
+<p/>
+-26- <i>Throws</i>: <tt>future_error</tt> if an error condition occurs.
+<p/>
+-27- <i>Error conditions</i>:
+</p>
+<ul>
+<li><tt>promise_already_satisfied</tt> if its shared state already has a stored value or exception.</li>
+<li><tt>no_state</tt> if <tt>*this</tt> has no shared state.</li>
+</ul>
+<p>
+<ins>-??- <i>Synchronization</i>: calls to <code>set_value</code>, <code>set_exception</code>,
+<code>set_value_at_thread_exit</code>, and <code>set_exception_at_thread_exit</code>
+on a single promise object are serialized. [<i>Note:</i> And they synchronize and serialize 
+with other functions through the referred shared state. &mdash; <i>end note</i>]
+The completion of the destructors for all the current thread's variables of thread storage 
+duration synchronizes with (1.10 [intro.multithread]) the successful return from 
+any member function that detects that the state is set to ready.</ins>
+</p>
+</blockquote></blockquote>
+</li>
+
+<li><p>Edit 30.6.9.1 [futures.task.members], paragraph 15-21 as follows:</p>
+
+<blockquote><pre>
+void operator()(ArgTypes... args);
+</pre>
+<blockquote>
+<p>
+-15- <i>Effects</i>: <tt><var>INVOKE</var>(f, t1, t2, ..., tN, R)</tt>, where <tt>f</tt> is the stored task 
+of <tt>*this</tt> and <tt>t1</tt>, <tt>t2</tt>, <tt>...</tt>, <tt>tN</tt> are the values in 
+<tt>args...</tt>. If the task returns normally, the return value is stored as the asynchronous 
+result in the shared state of <tt>*this</tt>, otherwise the exception thrown by the task is 
+stored. The shared state of <tt>*this</tt> is made ready, and any threads blocked in a function 
+waiting for the shared state of <tt>*this</tt> to become ready are unblocked.
+<p/>
+-16- <i>Throws</i>: a <tt>future_error</tt> exception object if there is no shared state or the stored 
+task has already been invoked.
+<p/>
+-17- <i>Error conditions</i>:
+</p>
+<ul>
+<li><tt>promise_already_satisfied</tt> if the shared state is already ready.</li>
+<li><tt>no_state</tt> if <tt>*this</tt> has no shared state.</li>
+</ul>
+<p>
+-18- <i>Synchronization</i>: a successful call to <tt>operator()</tt> synchronizes with (1.10 [intro.multithread]) 
+a call to any member function of a <tt>future</tt> or <tt>shared_future</tt> object that shares the 
+shared state of <tt>*this</tt>. The completion of the invocation of the stored task and the storage 
+of the result (whether normal or exceptional) into the shared state synchronizes with (1.10 [intro.multithread]) 
+the successful return from any member function that detects that the state is set to ready. [ <i>Note</i>: 
+<tt>operator()</tt> synchronizes and serializes with other functions through the shared state. &mdash; <i>end note</i> ]
+</p>
+</blockquote></blockquote>
+
+<blockquote><pre>
+void make_ready_at_thread_exit(ArgTypes... args);
+</pre>
+<blockquote>
+<p>
+-19- <i>Effects</i>: <tt><var>INVOKE</var>(f, t1, t2, ..., tN, R)</tt>, where <tt>f</tt> is the 
+stored task and <tt>t1</tt>, <tt>t2</tt>, <tt>...</tt>, <tt>tN</tt> are the values in <tt>args...</tt>. 
+If the task returns normally, the return value is stored as the asynchronous result in the shared 
+state of <tt>*this</tt>, otherwise the exception thrown by the task is stored. In either case, 
+this shall be done without making that state ready (30.6.4 [futures.state]) immediately. 
+Schedules the shared state to be made ready when the current thread exits, after all objects of 
+thread storage duration associated with the current thread have been destroyed.
+<p/>
+-20- <i>Throws</i>: <tt>future_error</tt> if an error condition occurs.
+<p/>
+-21- <i>Error conditions</i>:
+</p>
+<ul>
+<li><tt>promise_already_satisfied</tt> if the shared state already has a stored value or exception.</li>
+<li><tt>no_state</tt> if <tt>*this</tt> has no shared state.</li>
+</ul>
+<p>
+<ins>-??- <i>Synchronization:</i> a successful call to <code>make_ready_at_thread_exit</code>
+synchronizes with (1.10 [intro.multithread]) a call to any member function of
+a <code>future</code> or <code>shared_future</code> object that shares the shared state of 
+<code>*this</code>. The completion of</ins>
+</p>
+<ul>
+<li><p><ins>the invocation of the stored task and the storage of the result (whether normal or 
+exceptional) into the shared state</ins></p></li>
+<li><p><ins>the destructors for all the current thread's variables of thread storage duration</ins></p></li>
+</ul>
+<p>
+<ins>synchronize with (1.10 [intro.multithread]) the successful return from any member function
+that detects that the state is set to ready. [<i>Note:</i> <code>make_ready_at_thread_exit</code>
+synchronizes and serializes with other functions through the shared state. &mdash; <i>end note</i>]</ins>
+</p>
+</blockquote></blockquote>
+
+</li>
+</ol>
 
 
 
