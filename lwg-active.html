@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-03-08</td>
+  <td align="left">2011-03-09</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-08 at 21:03:20 UTC</p>
+<p>Revised 2011-03-09 at 05:03:58 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -3510,7 +3510,7 @@ template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp
 <hr>
 <h3><a name="1318"></a>1318. N2982 removes previous allocator capabilities</h3>
 <p><b>Section:</b> 20.6.8.1 [allocator.traits.types] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-03-06</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-02-11 <b>Last modified:</b> 2011-03-09</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1375">1375</a></p>
 <p><b>Discussion:</b></p>
@@ -3929,6 +3929,52 @@ Default
 </table>
 </blockquote>
 
+</li>
+
+<li><p>Add the following note after 20.6.3 [pointer.traits] p. 1 (The intent is to
+encourage non-normatively implementations to provide specializations for <tt>pointer_traits</tt>
+for non-standard pointer types and reference types which are "native" for the supported
+platform):</p>
+
+<blockquote><p>
+1 The class template <tt>pointer_traits</tt> supplies a uniform interface to certain attributes 
+of pointer-like types.
+</p><blockquote><pre>
+namespace std {
+  template &lt;class Ptr&gt; struct pointer_traits {
+    typedef Ptr pointer;
+    typedef <em>see below</em> element_type;
+    typedef <em>see below</em> difference_type;
+    template &lt;class U&gt; using rebind = <em>see below</em>;
+    static pointer pointer_to(<em>see below</em> r);
+  };
+
+  template &lt;class T&gt; struct pointer_traits&lt;T*&gt; {
+    typedef T* pointer;
+    typedef T element_type;
+    typedef ptrdiff_t difference_type;
+    template &lt;class U&gt; using rebind = U*;
+    static pointer pointer_to(<em>see below</em> r);
+  };
+}
+</pre></blockquote>
+<p>
+<ins>? [ <i>Note</i>: If there is an additional pointer type <tt>_ _ far</tt> 
+such that the difference of two <tt>_ _ far</tt> is of type <tt>long</tt>,
+an implementation may define</ins></p>
+<blockquote><pre>
+<ins>namespace std {
+  template &lt;class T&gt; struct pointer_traits&lt;T _ _ far*&gt; {
+    typedef T _ _ far* pointer;
+    typedef T element_type;
+    typedef long difference_type;
+    template &lt;class U&gt; using rebind = U _ _ far*;
+    static pointer pointer_to(<em>see below</em> r);
+  };
+}</ins>
+</pre></blockquote>
+<p><ins>&mdash; <i>end note</i> ]</ins></p>
+</blockquote>
 </li>
 
 <li>
@@ -12392,7 +12438,7 @@ aren't consistent (including <tt>std::get_money</tt> and <tt>std::get_time</tt>)
 <hr>
 <h3><a name="2037"></a>2037. <tt>atomic</tt> free functions incorrectly specified</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-03-01 <b>Last modified:</b> 2011-03-08</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-03-01 <b>Last modified:</b> 2011-03-09</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.syn">active issues</a> in [atomics.syn].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.syn">issues</a> in [atomics.syn].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -12528,7 +12574,7 @@ bool atomic_compare_exchange_strong_explicit(<em><del>atomic_type</del><ins>atom
   
 <i>// 29.6.2, templated operations on atomic types</i>
 <del><i>// In the following declarations, <em>atomic_type</em> is either
-// </i><code>atomic&lt;T&gt;</code><i> or a named base class for </i> <code>T</code><i> from
+// </i><code>atomic&lt;T&gt;</code><i> or a named base class for</i> <code>T</code><i> from
 // Table 145 or inferred from
 // Table 146.</i></del>
 template &lt;class T&gt;
@@ -12573,8 +12619,8 @@ template &lt;class T&gt;
 T atomic_fetch_xor_explicit(<del><em>atomic-type</em></del><ins>atomic&lt;T&gt;</ins>*, T, memory_order);
 
 <i>// 29.6.3, arithmetic operations on atomic types</i>
-<ins><i>// In the following declarations, <em>atomic-type</em> is either 
-// </i><code>atomic&lt;T&gt;</code> <i> or a named base class for</i> <code>T</code> <i>from 
+<ins><i>// In the following declarations, <em>atomic-integral</em> is either 
+// </i><code>atomic&lt;T&gt;</code> <i>or a named base class for</i> <code>T</code> <i>from 
 // Table 145 or inferred from 
 // Table 146.
 // If it is</i> <code>atomic&lt;T&gt;</code><i>,
