@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-09 at 20:03:01 UTC</p>
+<p>Revised 2011-03-09 at 20:03:27 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -8470,7 +8470,7 @@ operation on a future object with the same associated asynchronous state marked 
 <h3><a name="1507"></a>1507. [FCD] <tt>promise::<i>XXX</i>_at_thread_exit</tt> functions have no
 synchronization requirements</h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-08</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-09</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -8502,9 +8502,25 @@ functions.  The following resolution adds synchronization paragraphs
 to all of them and edits a couple of related synchronization
 paragraphs.</p>
 
+<p><i>[2011-03-09: Hans adds some improvements]</i></p>
+
+
 
 <p><b>Proposed resolution:</b></p>
 <ol>
+<li><p>Edit 30.4.1.2 [thread.mutex.requirements.mutex] paragraph 5 as follows:</p>
+
+<blockquote><p>
+5 The implementation shall provide lock and unlock operations, as described below. <del>The implementation shall
+serialize those operations.</del><ins>For purposes of determining the existence of a data race, these
+behave as atomic operations (1.10 [intro.multithread]).  The lock and unlock operations on
+a single mutex shall appear to occur in a single total order. [<i>Note</i>: this can be viewed as the 
+modification order (1.10 [intro.multithread]) of the mutex. &mdash; <i>end note</i>]</ins> [ <i>Note</i>: 
+Construction and destruction of an object of a mutex type need not be thread-safe; other synchronization 
+should be used to ensure that mutex objects are initialized and visible to other threads. &mdash; <i>end note</i> ]
+</p></blockquote>
+</li>
+
 <li><p>Edit 30.5 [thread.condition] paragraphs 6-9 as follows:</p>
 
 <blockquote><pre>
