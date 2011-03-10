@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-03-09</td>
+  <td align="left">2011-03-10</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-09 at 22:03:22 UTC</p>
+<p>Revised 2011-03-10 at 18:03:33 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6213,7 +6213,7 @@ const Engine&amp; base() const <ins>noexcept</ins>;
 <hr>
 <h3><a name="1448"></a>1448. [FCD] Concerns about <tt>basic_stringbuf::str(basic_string)</tt> postconditions</h3>
 <p><b>Section:</b> 27.8.2.3 [stringbuf.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-09</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-10</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-124</b></p>
@@ -6371,6 +6371,14 @@ Nevertheless, it doesn't hurt IMO if we clarify the behavior of <tt>str()</tt>
 here in respect to <tt>app</tt>.
 </p>
 
+<p><i>[2011-03-10: P.J.Plauger comments:]</i></p>
+
+
+<p>I think we should say nothing special about <tt>app</tt> at construction
+time (thus leaving the write pointer at the beginning of the buffer).
+Leave implementers wiggle room to ensure subsequent append writes as they see 
+fit, but don't change existing rules for initial seek position.</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -6387,10 +6395,11 @@ to <tt>mode</tt>.
 <p/>
 3 <i>Postconditions</i>: If <tt>mode &amp; ios_base::out</tt> is true, <tt>pbase()</tt> 
 points to the first underlying character and <tt>epptr() &gt;= pbase() + s.size()</tt> 
-holds; in addition, if <tt>mode &amp; <del>ios_base::in</del><ins>(ios_base::ate|ios_base::app)</ins></tt> 
-is true, <tt>pptr() == pbase() + s.data()</tt> holds, otherwise <tt>pptr() == pbase()</tt> 
-is true. If <tt>mode &amp; ios_base::in</tt> is true, <tt>eback()</tt> points to the 
-first underlying character, and both <tt>gptr() == eback() and egptr() == eback() + s.size()</tt> 
+holds; in addition, if <tt>mode &amp; <del>ios_base::in</del><ins>(ios_base::ate | ios_base::app)</ins></tt> 
+is true, <tt>pptr() == pbase() + <del>s.data()</del><ins>s.size()</ins></tt> holds, 
+otherwise <tt>pptr() == pbase()</tt> is true. If <tt>mode &amp; ios_base::in</tt> 
+is true, <tt>eback()</tt> points to the first underlying character, and both 
+<tt>gptr() == eback() and egptr() == eback() + s.size()</tt> 
 hold.
 </p>
 </blockquote></blockquote>
