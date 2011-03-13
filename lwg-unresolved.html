@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-13 at 18:03:05 UTC</p>
+<p>Revised 2011-03-13 at 20:03:56 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -4731,7 +4731,7 @@ a resolution at this stage.
 <hr>
 <h3><a name="1460"></a>1460. [FCD] Missing lock-free property for type <tt>bool</tt> should be added</h3>
 <p><b>Section:</b> 29.4 [atomics.lockfree] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-12</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-13</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.lockfree">issues</a> in [atomics.lockfree].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4915,7 +4915,7 @@ a deleted copy assignment operator, and a <tt>constexpr</tt> value constructor.
 <tt>char16_t</tt>, <tt>char32_t</tt>, <ins>and</ins> <tt>wchar_t</tt>, and any other types needed by the typedefs in the header 
 <tt>&lt;cstdint&gt;</tt><del>)</del> on the <tt>atomic</tt> class
 template. For each integral type integral, the specialization <tt>atomic&lt;<i>integral</i>&gt;</tt> provides additional atomic
-operations appropriate to integral types. <del>[Editorís note: Iím guessing that this is the correct rendering of
+operations appropriate to integral types. <del>[Editor's note: I'm guessing that this is the correct rendering of
 the text in the paper; if this sentence was intended to impose a requirement, rather than a description, it
 will have to be changed.]</del>
 <p/>
@@ -6351,7 +6351,7 @@ shall occur in a single total order, and each such deallocation call shall happe
 <hr>
 <h3><a name="2003"></a>2003. String exception inconsistency in erase.</h3>
 <p><b>Section:</b> 21.4.1 [string.require] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> JoseÃÅ Daniel GarciÃÅa SaÃÅnchez <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Jos&eacute; Daniel Garc&iacute;a S&aacute;nchez <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-03-13</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.require">issues</a> in [string.require].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -9208,6 +9208,66 @@ conversion specifier returned by stage 1. If so it is accumulated.</ins>
 If the character is either discarded or accumulated then in is advanced by <tt>++in</tt> and processing
 returns to the beginning of stage 2.
 </p></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="2042"></a>2042. Comparing <tt>forward_list::before_begin()</tt> to <tt>forward_list::end()</tt></h3>
+<p><b>Section:</b> 23.3.4.3 [forwardlist.iter] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2011-03-13 <b>Last modified:</b> 2011-03-13</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>For an object <tt>c</tt> of type <tt>forward_list&lt;X, Alloc&gt;</tt>, the iterators
+<tt>c.before_begin()</tt> and <tt>c.end()</tt> are part of the same underlying sequence,
+so the expression <tt>c.before_begin() == c.end()</tt>  must be well-defined.
+But the standard says nothing about what the result of this expression
+should be.  The forward iterator requirements says no dereferenceable
+iterator is equal to a non-dereferenceable iterator and that two
+dereferenceable iterators are equal if and only if they point to the
+same element.  But since <tt>before_begin()</tt> and <tt>end()</tt> are both
+non-dereferenceable, neither of these rules applies.
+</p>
+
+<p>
+Many <tt>forward_list</tt> methods, such as <tt>insert_after()</tt>, have a
+precondition that the iterator passed to them must not be equal to
+<tt>end()</tt>. Thus, user code might look like the following:
+</p>
+<blockquote><pre>
+void foo(forward_list&lt;int&gt;&amp; c, forward_list&lt;int&gt;::iterator it)
+{
+  assert(it != c.end());
+  c.insert_after(it, 42);
+}
+</pre></blockquote>
+
+<p>
+Conversely, <tt>before_begin()</tt> was specifically designed to be used with
+methods like <tt>insert_after()</tt>, so if <tt>c.before_begin()</tt> is passed to 
+this function the assertion must not fail.
+</p>
+
+<blockquote><p>
+</p></blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>Add to the definition of <tt>forward_list::before_begin()</tt> 23.3.4.3 [forwardlist.iter] 
+the following:</p>
+
+<blockquote><pre>
+iterator before_begin();
+const_iterator before_begin() const;
+const_iterator cbefore_begin() const;
+</pre><blockquote><p>
+-1- <i>Returns</i>: A non-dereferenceable iterator that, when incremented, is equal to the iterator returned by <tt>begin()</tt>.
+<p/>
+<ins>-?- <i>Remarks</i>: <tt>before_begin() == end()</tt> shall equal false.</ins>
+</p></blockquote></blockquote>
 
 
 
