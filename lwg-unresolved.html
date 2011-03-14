@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-14 at 22:03:52 UTC</p>
+<p>Revised 2011-03-14 at 23:03:54 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -7509,7 +7509,7 @@ categories, rather than pseudocode in terms of bitwise operations.
 <hr>
 <h3><a name="2021"></a>2021. Further incorrect usages of <tt>result_of</tt></h3>
 <p><b>Section:</b> 20.8.9.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -7577,7 +7577,7 @@ which implies rvalues instead. The specification needs to be clarified.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 <ol>
 <li>
@@ -7645,7 +7645,7 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 <hr>
 <h3><a name="2025"></a>2025. Incorrect semantics of move assignment operator of <tt>packaged_task</tt></h3>
 <p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-15</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -7670,7 +7670,7 @@ an rvalue via appropriate usage of <tt>std::move</tt>.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -7684,7 +7684,7 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 </p>
 <ul>
 <li><p>[...]</p></li>
-<li><p><tt>packaged_task&lt;R, ArgTypes...&gt;(<ins>std::move(</ins>other<ins>)</ins>).swap(*this)</tt>.</p></li>
+<li><p><tt>packaged_task(<ins>std::move(</ins>other<ins>)</ins>).swap(*this)</tt>.</p></li>
 </ul>
 </blockquote></blockquote>
 

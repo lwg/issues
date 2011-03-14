@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-14 at 22:03:52 UTC</p>
+<p>Revised 2011-03-14 at 23:03:54 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
@@ -2271,7 +2271,7 @@ static const mask graph = alnum | punct;
 <hr>
 <h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
 <p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -2307,12 +2307,12 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225. Additional to the normative wording
+The suggested wording changes are against the working draft N3242. Additional to the normative wording
 changes some editorial fixes are suggested.
 </p>
 <ol>
 <li>
-<p>Change the following arithmetic function specifications as follows:</p>
+<p>In 20.11.5.5 [time.duration.nonmember], change the following arithmetic function specifications as follows:</p>
 <blockquote><pre>
 template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
 constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;<del>{</del>&gt;<del>}</del>::type
@@ -2388,7 +2388,7 @@ operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, 
 <hr>
 <h3><a name="2022"></a>2022. <tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</h3>
 <p><b>Section:</b> 20.8.3 [refwrap] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -2433,7 +2433,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -2456,7 +2456,7 @@ The suggested wording changes are against the working draft N3225.
 <hr>
 <h3><a name="2023"></a>2023. Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></h3>
 <p><b>Section:</b> 30.4.2.1 [thread.lock.guard], 30.4.2.2 [thread.lock.unique] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -2506,7 +2506,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -2580,7 +2580,7 @@ bool try_lock();
 <hr>
 <h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
 <p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2616,7 +2616,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>

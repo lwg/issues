@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-14 at 22:03:52 UTC</p>
+<p>Revised 2011-03-14 at 23:03:54 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -11819,7 +11819,7 @@ static const mask graph = alnum | punct;
 <hr>
 <h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
 <p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -11855,12 +11855,12 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225. Additional to the normative wording
+The suggested wording changes are against the working draft N3242. Additional to the normative wording
 changes some editorial fixes are suggested.
 </p>
 <ol>
 <li>
-<p>Change the following arithmetic function specifications as follows:</p>
+<p>In 20.11.5.5 [time.duration.nonmember], change the following arithmetic function specifications as follows:</p>
 <blockquote><pre>
 template &lt;class Rep1, class Period1, class Rep2, class Period2&gt;
 constexpr typename common_type&lt;duration&lt;Rep1, Period1&gt;, duration&lt;Rep2, Period2&gt;<del>{</del>&gt;<del>}</del>::type
@@ -11936,7 +11936,7 @@ operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, 
 <hr>
 <h3><a name="2021"></a>2021. Further incorrect usages of <tt>result_of</tt></h3>
 <p><b>Section:</b> 20.8.9.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -12004,7 +12004,7 @@ which implies rvalues instead. The specification needs to be clarified.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 <ol>
 <li>
@@ -12072,7 +12072,7 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 <hr>
 <h3><a name="2022"></a>2022. <tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</h3>
 <p><b>Section:</b> 20.8.3 [refwrap] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -12117,7 +12117,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -12140,7 +12140,7 @@ The suggested wording changes are against the working draft N3225.
 <hr>
 <h3><a name="2023"></a>2023. Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></h3>
 <p><b>Section:</b> 30.4.2.1 [thread.lock.guard], 30.4.2.2 [thread.lock.unique] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -12190,7 +12190,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -12264,7 +12264,7 @@ bool try_lock();
 <hr>
 <h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
 <p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -12300,7 +12300,7 @@ Moved to Tentatively Ready after 5 votes.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -12323,7 +12323,7 @@ support aggregate initialization syntax.</ins>
 <hr>
 <h3><a name="2025"></a>2025. Incorrect semantics of move assignment operator of <tt>packaged_task</tt></h3>
 <p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-15</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -12348,7 +12348,7 @@ an rvalue via appropriate usage of <tt>std::move</tt>.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-The suggested wording changes are against the working draft N3225.
+The suggested wording changes are against the working draft N3242.
 </p>
 
 <ol>
@@ -12362,7 +12362,7 @@ packaged_task&amp; operator=(packaged_task&amp;&amp; other);
 </p>
 <ul>
 <li><p>[...]</p></li>
-<li><p><tt>packaged_task&lt;R, ArgTypes...&gt;(<ins>std::move(</ins>other<ins>)</ins>).swap(*this)</tt>.</p></li>
+<li><p><tt>packaged_task(<ins>std::move(</ins>other<ins>)</ins>).swap(*this)</tt>.</p></li>
 </ul>
 </blockquote></blockquote>
 
