@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-14 at 21:03:29 UTC</p>
+<p>Revised 2011-03-14 at 22:03:52 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -12974,7 +12974,7 @@ in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
 <hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-02</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -13023,6 +13023,16 @@ only convertible to the value type (The exact form from the SGI documentation do
 <tt>reference</tt>).
 </p></li>
 </ol>
+
+<p><i>[2011-03-14: Daniel comments and updates the suggested wording]</i></p>
+
+
+<p>In addition to the before mentioned necessary changes there is another one need, which
+became obvious due to issue <a href="lwg-active.html#2042">2042</a>: <tt>forward_list&lt;&gt;::before_begin()</tt> returns
+an iterator value which is not dereferencable, but obviously the intention is that it should
+be incrementable. This leads to the conclusion that imposing dereferencable as a requirement
+for the expressions <tt>++r</tt> is wrong: We only need the iterator to be incrementable. A
+similar conclusion applies to the expression <tt>--r</tt> of bidirectional iterators.</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -13201,8 +13211,7 @@ equivalent to <tt>*b</tt>.
 <td><tt>++r</tt></td>
 <td><tt>X&amp;</tt></td>
 <td><tt>&nbsp;</tt></td>
-<td>pre: <tt>r</tt> is dereferenceable<br/>
-<ins>and <tt>r</tt> is incrementable</ins>.<br/>
+<td>pre: <tt>r</tt> is <del>dereferenceable</del><ins>incrementable</ins>.<br/>
 post: <tt>r</tt> is dereferenceable or<br/>
 <tt>r</tt> is past-the-end.<br/>
 post: any copies of the<br/>
@@ -13359,12 +13368,9 @@ semantics from input iterator based on value copies is wrong &mdash; <i>end rati
 <td><tt>--r</tt></td>
 <td><tt>X&amp;</tt></td>
 <td><tt>&nbsp;</tt></td>
-<td>pre: <ins><tt>r</tt> is dereferenceable or<br/>
-<tt>r</tt> is past-the-end. T</ins><del>t</del>here<br/>
-exists <tt>s</tt> such that<br/>
+<td>pre: there exists <tt>s</tt> such that<br/>
 <tt>r == ++s</tt>.<br/>
-post: <tt>r</tt> is dereferenceable<br/>
-<ins> and <tt>r</tt> is incrementable</ins>.<br/>
+post: <tt>r</tt> is <del>dereferenceable</del><ins>incrementable</ins>.<br/>
 <tt>--(++r) == r</tt>.<br/>
 <tt>--r == --s</tt> implies <tt>r == s</tt>.<br/>
 <tt>&amp;r == &amp;--r</tt>.
@@ -14207,7 +14213,7 @@ returns to the beginning of stage 2.
 <hr>
 <h3><a name="2042"></a>2042. Comparing <tt>forward_list::before_begin()</tt> to <tt>forward_list::end()</tt></h3>
 <p><b>Section:</b> 23.3.4.3 [forwardlist.iter] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2011-03-13 <b>Last modified:</b> 2011-03-13</p>
+ <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2011-03-13 <b>Last modified:</b> 2011-03-14</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>For an object <tt>c</tt> of type <tt>forward_list&lt;X, Alloc&gt;</tt>, the iterators
@@ -14240,8 +14246,15 @@ methods like <tt>insert_after()</tt>, so if <tt>c.before_begin()</tt> is passed 
 this function the assertion must not fail.
 </p>
 
-<blockquote><p>
-</p></blockquote>
+<p><i>[2011-03-14: Daniel comments and updates the suggested wording]</i></p>
+
+
+<p>The suggested wording changes are necessary but not sufficient. Since there
+does not exist an equivalent semantic definition of <tt>cbefore_begin()</tt> as
+we have for <tt>cbegin()</tt>, this still leaves the question open whether
+the normative remark applies to <tt>cbefore_begin()</tt> as well. A simple fix
+is to define the operational semantics of <tt>cbefore_begin()</tt> in terms of
+<tt>before_begin()</tt>.</p>
 
 
 
@@ -14256,6 +14269,8 @@ const_iterator before_begin() const;
 const_iterator cbefore_begin() const;
 </pre><blockquote><p>
 -1- <i>Returns</i>: A non-dereferenceable iterator that, when incremented, is equal to the iterator returned by <tt>begin()</tt>.
+<p/>
+<ins>-?- <i>Effects</i>: <tt>cbefore_begin()</tt> is equivalent to <tt>const_cast&lt;forward_list const&amp;>(*this).before_begin()</tt>.</ins>
 <p/>
 <ins>-?- <i>Remarks</i>: <tt>before_begin() == end()</tt> shall equal false.</ins>
 </p></blockquote></blockquote>
