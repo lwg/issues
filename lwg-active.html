@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-15 at 20:03:28 UTC</p>
+<p>Revised 2011-03-15 at 22:03:42 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -1673,7 +1673,7 @@ precondition is not met.
 <hr>
 <h3><a name="985"></a>985. Allowing throwing move</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2011-03-15</p>
 <p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1850,34 +1850,41 @@ non-<tt>CopyConstructible</tt> type, there are no effects.
 
 </blockquote>
 
+<p><i>[2011-03-15: Daniel updates wording to sync with N3242 and comments]</i></p>
+
+
+<blockquote><p>
+The issue has nearly been resolved by previous changes to the working paper, in 
+particular all suggested changes for <tt>deque</tt> and <tt>vector</tt> are no 
+longer necessary. The still remaining parts involve the unordered associative containers.
+</p></blockquote>
+
 
 
 <p><b>Proposed resolution:</b></p>
 
 <p>
-23.2.1 [container.requirements.general]  paragraph 11 add footnote:
+23.2.1 [container.requirements.general]  paragraph 10 add footnote:
 </p>
 
 <blockquote>
 <p>
--11- Unless otherwise specified (see 23.1.4.1, 23.1.5.1, 23.2.2.3, and
-23.2.6.4) all container types defined in this Clause meet the following
-additional requirements:
+-10- Unless otherwise specified (see 23.2.4.1 [associative.reqmts.except], 23.2.5.1 [unord.req.except], 
+23.3.3.4 [deque.modifiers], and 23.3.6.5 [vector.modifiers]) all container types defined in this 
+Clause meet the following additional requirements:
 </p>
 <ul>
-<li>...</li>
+<li>&hellip;</li>
 </ul>
 
 <p>
-<ins>[<i>Note</i>: for compatibility with C++
-2003, when "no effect" is required, standard containers should not use the
-value_type's throwing move constructor when the contained object is by itself a
-standard container. -- <i>end note</i>]</ins>
+<ins>[<i>Note</i>: for compatibility with C++ 2003, when "no effect" is required, standard containers should not use the
+<tt>value_type</tt>'s throwing move constructor when the contained object is by itself a standard container. &mdash; <i>end note</i>]</ins>
 </p>
 
 </blockquote>
 
-<p>23.2.5.1 [unord.req.except] change paragraph 2 to say: </p>
+<p>23.2.5.1 [unord.req.except] change paragraph 2+4 to say: </p>
 
 <blockquote>
 <p>
@@ -1886,9 +1893,9 @@ thrown by any operation other than the container's hash function from within an
 <tt>insert()</tt> function inserting a single element, the <tt>insert()</tt>
 function has no effect<ins> unless the exception is thrown by the contained
 object move constructor</ins>.
-</p>
-
-<p>
+<p/>
+[&hellip;]
+<p/>
 -4- For unordered associative containers, if an exception is
 thrown from within a <tt>rehash()</tt> function other than by the container's hash
 function or comparison function, the <tt>rehash()</tt> function has no effect
@@ -1898,22 +1905,33 @@ object move constructor</ins>.</p>
 </blockquote>
 
 <p>
-23.3.3.4 [deque.modifiers] change paragraph 2 to say:
+Keep 23.3.3.4 [deque.modifiers] paragraph 2 unchanged <em>[Drafting note: The originally
+proposed wording did suggest to add a last sentence as follows:</em>
 </p>
+<blockquote><p>
+<em><ins>If an exception is thrown by <tt>push_back()</tt> or <tt>emplace_back()</tt>
+function, that function has no effects unless the exception is thrown by
+the move constructor of <tt>T</tt>.</ins></em> 
+</p></blockquote>
+<p> &mdash; <em> end drafting note ]</em></p>
 
 <blockquote><p>
 -2- <i>Remarks:</i> If an exception is thrown other than by
-the copy constructor<ins>, move constructor</ins>
-or assignment operator of <tt>T</tt>
-there are no effects.
-<ins>If an exception is thrown by <tt>push_back()</tt> or <tt>emplace_back()</tt>
-function, that function has no effects unless the exception is thrown by
-the move constructor of <tt>T</tt>.</ins>
+the copy constructor, move constructor, assignment operator, 
+or move assignment operator of <tt>T</tt> there are no effects.
+If an exception is thrown by the move constructor of a non-CopyInsertable 
+<tt>T</tt>, the effects are unspecified.
 </p></blockquote>
 
 <p>
-23.3.6.3 [vector.capacity] paragraph 2 change to say:
+Keep 23.3.6.3 [vector.capacity] paragraph 2 unchanged <em>[Drafting note: The originally
+proposed wording did suggest to change the last sentence as follows:</em>
 </p>
+<blockquote><p>
+<em>If an exception is thrown, there are no effects<ins> unless the exception is thrown by the 
+contained object move constructor</ins>.</em> 
+</p></blockquote>
+<p> &mdash; <em> end drafting note ]</em></p>
 
 <blockquote><p>
 -2- <i>Effects:</i> A directive that informs a <tt>vector</tt>
@@ -1924,31 +1942,46 @@ if reallocation happens; and equal
 to the previous value of <tt>capacity()</tt>
 otherwise. Reallocation happens at this point if and only if the current
 capacity is less than the argument of <tt>reserve()</tt>.
-If an exception is thrown, there are no effects<ins>
-unless the exception is thrown by the contained object move constructor</ins>.
+If an exception is thrown other than by the move constructor of a 
+non-<tt>CopyInsertable</tt> type, there are no effects.
 </p></blockquote>
 
 <p>
-23.3.6.3 [vector.capacity] paragraph 12 change to say:
+Keep 23.3.6.3 [vector.capacity] paragraph 12 unchanged <em>[Drafting note: The originally
+proposed wording did suggest to change the old paragraph as follows:</em>
 </p>
-
 <blockquote><p>
--12- <i>Requires:</i> <del>If <tt>value_type</tt> has a move constructor,
+<em>-12- <i>Requires:</i> <del>If <tt>value_type</tt> has a move constructor,
 that constructor shall not throw any exceptions.</del>
 <ins>If an exception is thrown, there are no effects unless the exception is thrown by
-the contained object move constructor.</ins>
+the contained object move constructor.</ins></em>
+</p></blockquote>
+<p> &mdash; <em> end drafting note ]</em></p>
+
+<blockquote><p>
+-12- <i>Requires:</i> If an exception is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> 
+<tt>T</tt> there are no effects.
 </p></blockquote>
 
 <p>
-23.3.6.5 [vector.modifiers] change paragraph 1 to say:
+Keep 23.3.6.5 [vector.modifiers] paragraph 1 unchanged <em>[Drafting note: The originally
+proposed wording did suggest to change the old paragraph as follows:</em>
 </p>
-
 <blockquote><p>
--1- <del><i>Requires:</i> If <tt>value_type</tt> has a move constructor,
+<em>-1- <del><i>Requires:</i> If <tt>value_type</tt> has a move constructor,
 that constructor shall not throw any exceptions.</del>
 <ins><i>Remarks:</i> If an exception is thrown by <tt>push_back()</tt>
 or <tt>emplace_back()</tt> function, that function has no effect unless the
-exception is thrown by the move constructor of <tt>T</tt>.</ins>
+exception is thrown by the move constructor of <tt>T</tt>.</ins></em>
+</p></blockquote>
+<p> &mdash; <em> end drafting note ]</em></p>
+
+<blockquote><p>
+-1- <i>Remarks</i>: Causes reallocation if the new size is greater than the old capacity. If no reallocation happens,
+all the iterators and references before the insertion point remain valid. If an exception is thrown other
+than by the copy constructor, move constructor, assignment operator, or move assignment operator
+of <tt>T</tt> or by any <tt>InputIterator</tt> operation there are no effects. If an exception is thrown by the move
+constructor of a non-<tt>CopyInsertable</tt> <tt>T</tt>, the effects are unspecified.
 </p></blockquote>
 
 
@@ -5454,7 +5487,7 @@ void swap(promise&lt;R&gt;&amp; x, promise&lt;R&gt;&amp; y) <ins>noexcept</ins>;
 <hr>
 <h3><a name="1353"></a>1353. [FCD] Clarify the state of a <i>moved-from</i> object</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-25</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-15</p>
 <p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -5469,7 +5502,7 @@ and unnecessary duplication.
 </p>
 
 <p><i>[
-Resolution propsed by ballot comment
+Resolution proposed by ballot comment
 ]</i></p>
 
 <p>
