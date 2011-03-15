@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-15 at 22:03:42 UTC</p>
+<p>Revised 2011-03-15 at 23:03:55 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -8039,7 +8039,7 @@ instead of <tt>MoveInsertable</tt> requirement?
 <hr>
 <h3><a name="2034"></a>2034. Initialization of atomics is misspecified so that it doesn't preserve sequential consistency</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-02-27</p>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-03-16</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.order">active issues</a> in [atomics.order].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -8063,6 +8063,9 @@ the actual history.
 <p>This issue has been under discussion for several months in a group that included a half dozen or so of the 
 most interested committee members. The P/R represents a well-considered consensus among us:</p>
 
+<p><i>[2011-03-16: Jens updates wording]</i></p>
+
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -8072,13 +8075,15 @@ most interested committee members. The P/R represents a well-considered consensu
 3 There shall be a single total order <i>S</i> on all <tt>memory_order_seq_cst</tt> operations, consistent 
 with the &quot;happens before&quot; order and modification orders for all affected locations, such that each 
 <tt>memory_order_seq_cst</tt> operation that loads a value observes either the last 
-preceding modification according to this order <i>S</i><ins>, A</ins>, or the result of an operation 
-<ins>X</ins> that is not <tt>memory_order_seq_cst</tt>. <ins>Furthermore, if there is a last preceding 
-<tt>memory_order_seq_cst</tt> modification <i>A</i>, then <i>X</i> must not happen before <i>A</i>.</ins>
+preceding modification according to this order <i>S</i><ins>, <i>A</i> (if any)</ins>, or the result of an operation 
+<ins><i>X</i></ins> that <del>is not</del><ins>does not happen before <i>A</i> and that is not</ins> <tt>memory_order_seq_cst</tt>. 
 [ <i>Note</i>: Although it is not explicitly required that <i>S</i> include locks, it can always be extended 
 to an order that does include lock and unlock operations, since the ordering between those is already included 
 in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
 </p></blockquote>
+
+
+
 
 
 
