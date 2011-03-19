@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-16 at 19:03:23 UTC</p>
+<p>Revised 2011-03-19 at 22:03:10 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -5941,7 +5941,7 @@ of duration types supplied by the implementation as specified in 20.11.7 [time.c
 <hr>
 <h3><a name="1502"></a>1502. [FCD] Specification of [futures.state]</h3>
 <p><b>Section:</b> 30.6.4 [futures.state] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-08</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-19</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.state">issues</a> in [futures.state].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5978,9 +5978,8 @@ such as <code>shared_future::get()</code>, that return a reference
 to a value held in the shared state.  User code could potentially
 conflict when accessing that value.</p>
 
+<p>Lawrence proposed resolution:</p>
 
-
-<p><b>Proposed resolution:</b></p>
 <p>Modify 30.6.4 [futures.state] p10 as follows:</p>
 
 <blockquote><p>
@@ -5993,6 +5992,20 @@ conflict when accessing that value.</p>
  [<i>Note:</i> As a consequence, accesses must either use
  read-only operations or provide additional synchronization.
  &mdash; <i>end note</i>]</ins>
+</p></blockquote>
+
+<p><i>[2011-03-19: Detlef suggests an alternative resolution, shown below.]</i></p>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify 30.6.4 [futures.state] p10 as follows:</p>
+
+<blockquote><p>
+10 Accesses to the same shared state conflict (1.10 [intro.multithread]). <ins>[<i>Note</i>: 
+This explicitely specifies that the shared state is visible in the objects that reference this state 
+in the sense of data race avoidance 17.6.5.9 [res.on.data.races]. &mdash; <i>end note</i>]</ins>
 </p></blockquote>
 
 
