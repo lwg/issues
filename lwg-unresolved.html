@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-19 at 22:03:10 UTC</p>
+<p>Revised 2011-03-20 at 11:03:28 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -6015,7 +6015,7 @@ in the sense of data race avoidance 17.6.5.9 [res.on.data.races]. &mdash; <i>end
 <hr>
 <h3><a name="1504"></a>1504. [FCD] Term "are serialized" is not defined</h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -6036,6 +6036,11 @@ Replace "are serialized" with "shall not introduce a data race (17.6.4.8)".
 2010-11-02 Daniel translates proposal into proper wording changes
 ]</i></p>
 
+
+<p><i>[2011-03-19: Detlef comments]</i></p>
+
+
+<p>The proposed resolution for <a href="lwg-active.html#1507">1507</a> would cover this issue as well.</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -6066,7 +6071,7 @@ state. &mdash; <em>end note</em> ]
 <h3><a name="1505"></a>1505. [FCD] Synchronization between
 <tt>promise::set_value</tt> and <tt>future::get</tt></h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -6092,6 +6097,14 @@ associated asynchronous state marked ready."
 <p><i>[
 2010-11-02 Daniel translates proposal into proper wording changes
 ]</i></p>
+
+
+<p><i>[2011-03-19: Detlef comments]</i></p>
+
+
+<p>The proposed resolution for <a href="lwg-active.html#1507">1507</a> would cover this issue as well.
+Effectively it will reject the request but a clarification is added that the 
+normative wording is already in 30.6.4 [futures.state].</p>
 
 
 
@@ -6125,7 +6138,7 @@ operation on a future object with the same associated asynchronous state marked 
 <h3><a name="1507"></a>1507. [FCD] <tt>promise::<i>XXX</i>_at_thread_exit</tt> functions have no
 synchronization requirements</h3>
 <p><b>Section:</b> 30.6.5 [futures.promise] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-10</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-20</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.promise">active issues</a> in [futures.promise].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.promise">issues</a> in [futures.promise].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -6158,6 +6171,35 @@ to all of them and edits a couple of related synchronization
 paragraphs.</p>
 
 <p><i>[2011-03-09: Hans and Anthony add some improvements]</i></p>
+
+
+<p><i>[2011-03-19: Detlef comments]</i></p>
+
+
+<p>In regard to the suggested part:</p>
+
+<blockquote><p>
+These operations do not provide any ordering guarantees with
+respect to other operations, except through operations on futures
+that reference the same shared state.
+</p></blockquote>
+
+<p>I would like this to change to:</p>
+
+<blockquote><p>
+These operations do not provide any ordering guarantees with
+respect to other operations on the same promise object.
+[<i>Note</i>: They synchronize with calls to operations on
+objects that refer to the same shared state according to
+30.6.4 [futures.state]. &mdash; <i>end note</i>]
+</p></blockquote>
+
+<p>The current proposed resolution has exactly the same paragraph at
+for places. I propose to have it only once as new paragraph 2.</p>
+
+<p>This also covers <a href="lwg-active.html#1504">1504</a> (US-196) and <a href="lwg-active.html#1505">1505</a> (US-197).
+US-197 is essentially rejected with this resolution, but a clarification is added 
+that the normative wording is already in 30.6.4 [futures.state].</p>
 
 
 
