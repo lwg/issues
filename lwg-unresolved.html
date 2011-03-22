@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-22 at 23:03:49 UTC</p>
+<p>Revised 2011-03-22 at 23:03:41 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -2718,51 +2718,6 @@ of each call shall synchronize with (1.10 [intro.multithread]) the next call in 
 </li>
 </ol>
 
-
-
-
-
-
-<hr>
-<h3><a name="1396"></a>1396. [FCD] <tt>regex</tt> should support allocators</h3>
-<p><b>Section:</b> 28.8 [re.regex] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View other</b> <a href="lwg-index-open.html#re.regex">active issues</a> in [re.regex].</p>
-<p><b>View all other</b> <a href="lwg-index.html#re.regex">issues</a> in [re.regex].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Duplicate of:</b> <a href="lwg-closed.html#1451">1451</a></p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-104, US-141</b></p>
-<p>
-<tt>std::basic_regex</tt> should have an allocator for all the
-reasons that a <tt>std::string</tt> does. For example, I can use
-<tt>boost::interprocess</tt> to put a <tt>string</tt> or <tt>vector</tt>
-in shared memory, but not a <tt>regex</tt>.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment
-]</i></p>
-
-<p>
-Add allocators to regexes
-</p>
-
-<p><i>[
-2010-10-24 Daniel adds:
-]</i></p>
-
-
-<blockquote><p>
-Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">n3171</a> would solve this issue.
-</p></blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">n3171</a>.
-</p>
 
 
 
