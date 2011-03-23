@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-22 at 23:03:41 UTC</p>
+<p>Revised 2011-03-23 at 00:03:24 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3046,55 +3046,6 @@ rules of the grammar specified for the regular expression object, modified accor
 Table 136 for any bitmask elements set. <ins>Type <tt>regex_constants::match_flag_type</tt> also defines the 
 constants <tt>regex_constants::match_default</tt> and <tt>regex_constants::format_default</tt>.</ins>
 </p></blockquote>
-
-
-
-
-
-<hr>
-<h3><a name="1452"></a>1452. [FCD] "target sequence" is not defined</h3>
-<p><b>Section:</b> 28.10.4 [re.results.acc] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View all other</b> <a href="lwg-index.html#re.results.acc">issues</a> in [re.results.acc].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-125</b></p>
-
-<p>The term "target sequence" is not defined (28.10.4 [re.results.acc] p. 2).</p>
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-Replace "target sequence" with "string being searched/matched"
-</p>
-
-<p><i>[
-2010-11-01 Daniel comments:
-]</i></p>
-
-<p>
-The proposed resolution looks incomplete to me, there are more normative
-usages of the term <em>target sequence</em> in clause 28, e.g.
-28.12.2 [re.tokiter] p. 7.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-Wording changes are against N3126. They are intended not to conflict with the wording changes
-suggested by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3158.html">n3158</a>.
-</p>
-<p>
-Change 28.10.4 [re.results.acc] p. 2 as indicated:
-</p>
-<blockquote><pre>
-difference_type position(size_type sub = 0) const;
-</pre><blockquote><p>
-2 <em>Returns</em>: The distance from the start of the <del>target sequence</del><ins>string being matched</ins> to <tt>(*this)[sub].first</tt>.
-</p></blockquote></blockquote>
 
 
 
