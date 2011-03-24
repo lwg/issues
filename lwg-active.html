@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-24 at 17:03:57 UTC</p>
+<p>Revised 2011-03-24 at 17:03:17 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -7828,11 +7828,8 @@ it obviously does nothing I feel a standard needs to say this explicitely.</p>
 <p><i>[2011-03-24 Daniel comments]</i></p>
 
 
-<p>The proposed resolution performs a an additional fly-by fix in regard to a missing
-requirement of this member function. This fix is IMO an uncontroversial subset of
-the issues listed in <a href="lwg-active.html#2033">2033</a>. We could also change <tt>CopyInsertable</tt> to 
-<tt>MoveInsertable</tt>, but I don't suggest to apply this fix now, it should better be
-solved with <a href="lwg-active.html#2033">2033</a>.</p>
+<p>This issue partially overlaps with <a href="lwg-active.html#2033">2033</a>. <tt>CopyInsertable</tt> should be 
+<tt>MoveInsertable</tt> and there is missing the <tt>DefaultConstructible</tt> requirements.</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -7854,9 +7851,9 @@ If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> value-initialized eleme
 
 <hr>
 <h3><a name="1526"></a>1526. [FCD] C++ should not impose thread safety requirements on C99 library implementations</h3>
-<p><b>Section:</b> 17.6.5.9 [res.on.data.races] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+<p><b>Section:</b> 17.6.5.9 [res.on.data.races] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
  <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-111</b></p>
 
