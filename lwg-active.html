@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-03-24 at 16:03:54 UTC</p>
+<p>Revised 2011-03-24 at 16:03:28 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,9 +156,9 @@ ownership of it.
 <ul>
 <li>D75: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>93 open issues, down by 3.</li>
+<li>94 open issues, down by 2.</li>
 <li>1471 closed issues, up by 11.</li>
-<li>1564 issues total, up by 8.</li>
+<li>1565 issues total, up by 9.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following 2 Immediate issues: <a href="lwg-active.html#2041">2041</a>, <a href="lwg-active.html#2042">2042</a>.</li>
@@ -7842,6 +7842,38 @@ If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> value-initialized eleme
 10 <i>Requires</i>: <tt>T</tt> <ins>shall satisfy the <tt>DefaultConstructible</tt> requirements and</ins> 
 shall be <tt>CopyInsertable</tt> into <tt>*this</tt>.
 </p></blockquote></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1526"></a>1526. [FCD] C++ should not impose thread safety requirements on C99 library implementations</h3>
+<p><b>Section:</b> 17.6.5.9 [res.on.data.races] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-111</b></p>
+
+<p>Section 17.6.5.9 [res.on.data.races], Data Race Avoidance, requires the C++ Standard Library to avoid data races 
+that might otherwise result from two threads making calls to C++ Standard Library functions on 
+distinct objects. The C standard library is part of the C++ Standard Library and some C++ Standary library 
+functions (parts of the Localization library, as well as Numeric Conversions in 21.5), are specified 
+to make use of the C standard library. Therefore, the C++ standard indirectly imposes a requirement 
+on the thread safety of the C standard library. However, since the C standard does not address the 
+concept of thread safety conforming C implementations exist that do no provide such guarantees. 
+This conflict needs to be reconciled.</p>
+
+<p>Suggested resolution by national body comment:</p>
+
+<blockquote><p>
+remove the requirement to make use of <tt>strtol()</tt> and <tt>sprintf()</tt> since these functions depend on the 
+global C locale and thus cannot be made thread safe.
+</p></blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
