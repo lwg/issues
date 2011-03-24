@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-24 at 16:03:28 UTC</p>
+<p>Revised 2011-03-24 at 16:03:12 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -3271,7 +3271,7 @@ global C locale and thus cannot be made thread safe.
 <hr>
 <h3><a name="2003"></a>2003. String exception inconsistency in erase.</h3>
 <p><b>Section:</b> 21.4.1 [string.require] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Jos&eacute; Daniel Garc&iacute;a S&aacute;nchez <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-03-13</p>
+ <b>Submitter:</b> Jos&eacute; Daniel Garc&iacute;a S&aacute;nchez <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.require">issues</a> in [string.require].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3289,6 +3289,18 @@ However in 21.4.6.5 [string::erase] p2 the first version of <tt>erase</tt> has
 <i>Throws</i>: <tt>out_of_range</tt> if <tt>pos > size()</tt>.
 </p></blockquote>
 
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>
+Beman: Don't want to just change this, can we just say "unless otherwise specified"?
+<p/>
+Alisdair: Leave open, but update proposed resolution to say something like "unless otherwise specified".
+<p/>
+General agreement that it should be corrected but not a stop-ship.
+<p/>
+Action: Update proposed wording for issue 2003 as above, but leave Open. 
+</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -3306,9 +3318,9 @@ shall throw any exceptions.
 
 <hr>
 <h3><a name="2005"></a>2005. <tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</h3>
-<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 In [unord.map.modifiers], the signature:
@@ -3603,92 +3615,6 @@ exception</del><ins>stored task has already been invoked</ins>.
 
 
 <hr>
-<h3><a name="2009"></a>2009. Reporting out-of-bound values on numeric string conversions</h3>
-<p><b>Section:</b> 21.5 [string.conversions] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2011-03-07</p>
-<p><b>View all other</b> <a href="lwg-index.html#string.conversions">issues</a> in [string.conversions].</p>
-<p><b>Discussion:</b></p>
-<p>
-The functions (<tt>w</tt>)<tt>stoi</tt> and (<tt>w</tt>)<tt>stof</tt>
-are specified in terms of calling C library APIs for potentially wider
-types.  The integer and floating-point versions have subtly different
-behaviour when reading values that are too large to convert.  The
-floating point case will throw <tt>out_of_bound</tt> if the read value
-is too large to convert to the wider type used in the implementation,
-but behaviour is undefined if the converted value cannot narrow to a
-float.  The integer case will throw <tt>out_of_bounds</tt> if the
-converted value cannot be represented in the narrower type, but throws
-<tt>invalid_argument</tt>, rather than <tt>out_of_range</tt>, if the
-conversion to the wider type fails due to overflow.
-</p>
-
-<p>
-Suggest that the Throws clause for both specifications should be
-consistent, supporting the same set of fail-modes with the matching set
-of exceptions.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-21.5p3 [string.conversions]
-</p>
-
-<blockquote><pre>
-int stoi(const string&amp; str, size_t *idx = 0, int base = 10);
-long stol(const string&amp; str, size_t *idx = 0, int base = 10);
-unsigned long stoul(const string&amp; str, size_t *idx = 0, int base = 10);
-long long stoll(const string&amp; str, size_t *idx = 0, int base = 10);
-unsigned long long stoull(const string&amp; str, size_t *idx = 0, int base = 10);
-</pre>
-
-<blockquote>
-<p>
-...
-</p>
-<p>
-3 <i>Throws:</i> <tt>invalid_argument</tt> if <tt>strtol</tt>,
-<tt>strtoul</tt>, <tt>strtoll</tt>, or <tt>strtoull</tt> reports that no
-conversion could be performed. Throws <tt>out_of_range</tt> if
-<ins><tt>strtol</tt>, <tt>strtoul</tt>, <tt>strtoll</tt> or
-<tt>strtoull</tt> sets <tt>errno</tt> to <tt>ERANGE</tt>, or if</ins>
-the converted value is outside the range of representable values for the
-return type.
-</p>
-</blockquote>
-</blockquote>
-
-<p>
-21.5p6 [string.conversions]
-</p>
-
-<blockquote><pre>
-float stof(const string&amp; str, size_t *idx = 0);
-double stod(const string&amp; str, size_t *idx = 0);
-long double stold(const string&amp; str, size_t *idx = 0);
-</pre>
-
-<blockquote>
-<p>
-...
-</p>
-<p>
-6 <i>Throws:</i> <tt>invalid_argument</tt> if <tt>strtod</tt> or
-<tt>strtold</tt> reports that no conversion could be performed. Throws
-<tt>out_of_range</tt> if <tt>strtod</tt> or <tt>strtold</tt> sets
-<tt>errno</tt> to <tt>ERANGE</tt> <ins> or if the converted value is
-outside the range of representable values for the return type</ins>.
-</p>
-</blockquote>
-</blockquote>
-
-
-
-
-
-
-<hr>
 <h3><a name="2010"></a>2010. <tt>is_* traits</tt> for binding operations can't be meaningfully specialized</h3>
 <p><b>Section:</b> 20.8.9.1.1 [func.bind.isbind] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Sean Hunt <b>Opened:</b> 2010-07-19 <b>Last modified:</b> 2011-02-20</p>
@@ -3743,7 +3669,7 @@ should be fixed in Madrid, moved to Open.
 <hr>
 <h3><a name="2011"></a>2011. unexpected output required of strings</h3>
 <p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.io">issues</a> in [string.io].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3862,9 +3788,6 @@ inserted "after x or X", and not before the string. I believe that this is a
 defect in the standard, and not in the three compilers I tried.
 </p>
 
-
-
-
 <p><i>[
 2010 Batavia (post meeting session)
 ]</i></p>
@@ -3876,6 +3799,16 @@ to conform to the current spec, as the current implementations have the preferre
 form. Howard volunteered to drught for Madrid, move to Open.
 </p>
 
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>
+Daniel Kr&uuml;gler volunteered to provide wording, interacting with Dietmar and
+Bill. 
+</p>
+
+
+
 <p><b>Proposed resolution:</b></p>
 
 
@@ -3884,10 +3817,10 @@ form. Howard volunteered to drught for Madrid, move to Open.
 
 <hr>
 <h3><a name="2012"></a>2012. Associative maps should insert <tt>pair</tt>, not <tt>tuple</tt></h3>
-<p><b>Section:</b> 23.4 [associative] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 23.4 [associative] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative">issues</a> in [associative].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 I'm seeing something strange in the paragraphs 23.4.4.4 [map.modifiers] and 23.4.5.3 [multimap.modifiers]:
@@ -3907,6 +3840,15 @@ The proposed resolution is obvious.
 <p>
 This is by far not the only necessary fix within both sub-clauses. For details see the 2010-10-29 comment in 
 <a href="lwg-active.html#2005">2005</a>.
+</p>
+
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>
+Paolo: Don't think we can do it now.
+<p/>
+Daniel K: Agrees. 
 </p>
 
 
@@ -4378,10 +4320,10 @@ iterator with value <tt>a.end()</tt> before the swap will have value <tt>b.end()
 
 <hr>
 <h3><a name="2018"></a>2018. <tt>regex_traits::isctype</tt> Returns clause is wrong</h3>
-<p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.traits">issues</a> in [re.traits].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>28.7 [re.traits] p. 12 says:</p>
 
@@ -4416,10 +4358,10 @@ categories, rather than pseudocode in terms of bitwise operations.
 
 <hr>
 <h3><a name="2021"></a>2021. Further incorrect usages of <tt>result_of</tt></h3>
-<p><b>Section:</b> 20.8.9.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-03-14</p>
+<p><b>Section:</b> 20.8.9.1.2 [func.bind.bind], 30.6.1 [futures.overview], 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-07 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 Issue <a href="lwg-active.html#2017">2017</a> points out some incorrect usages of <tt>result_of</tt> in the
@@ -4545,69 +4487,6 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 </p></blockquote>
 </li>
 </ol>
-
-
-
-
-
-<hr>
-<h3><a name="2028"></a>2028. <tt>messages_base::catalog</tt> overspecified</h3>
-<p><b>Section:</b> 22.4.7.1 [locale.messages] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-14 <b>Last modified:</b> 2011-03-02</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-In 22.4.7.1 [locale.messages], <tt>messages_base::catalog</tt> is specified to be a typedef to <tt>int</tt>.  
-This type is subsequently used to open, access and close catalogs.
-</p>
-
-<p>
-However, an OS may have catalog/messaging services that are indexed and managed by types other than <tt>int</tt>.  
-For example <tt>POSIX</tt>, publishes the <a href="http://www.unix.org/single_unix_specification/">following messaging API</a>:
-</p>
-
-<blockquote><pre>
-typedef <em>unspecified</em> nl_catd;
-
-nl_catd catopen(const char* name , int oflag);
-char*   catgets(nl_catd catd, int set_id, int msg_id, const char* s);
-int     catclose(nl_catd catd);
-</pre></blockquote>
-
-<p>
-I.e., the catalog is managed with an unspecified type, not necessarily an <tt>int</tt>.  
-Mac OS uses a <tt>void*</tt> for <tt>nl_catd</tt> (which is conforming to the <tt>POSIX</tt> standard).  
-The current <tt>messages_base</tt> spec effectively outlaws using the built-in OS messaging service 
-supplied for this very purpose!
-</p>
-
-<p><i>[2011-02-24: Chris Jefferson updates the proposed wording, changing <i>unspecified</i> to <i>unspecified signed integral type</i>]</i></p>
-
-
-<p><i>[2011-03-02: Daniel updates the proposed wording, changing <i>unspecified signed integral type</i> to
- <i>unspecified signed integer type</i> (We don't want to allow for <tt>bool</tt> or <tt>char</tt>)]</i></p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<ol>
-<li>
-<p>Modify 22.4.7.1 [locale.messages]:</p>
-
-<blockquote><pre>
-namespace std {
-  class messages_base {
-  public:
-    typedef <del>int</del><ins><em>unspecified signed integer type</em></ins> catalog;
-  };
-  ...
-}
-</pre></blockquote>
-
-</li>
-
-</ol>
-
 
 
 
@@ -4757,11 +4636,11 @@ from a call to a waiting function on the associated asynchronous state.</del>
 
 <hr>
 <h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
-<p><b>Section:</b> 23.3.6.3 [vector.capacity], 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-02-22</p>
+<p><b>Section:</b> 23.3.6.3 [vector.capacity], 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 I have several questions with regard to the working paper N3225 (C++0x working draft):
@@ -4854,11 +4733,11 @@ in the &quot;happens before&quot; ordering. &mdash; <i>end note</i> ]
 
 <hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
-<p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-14</p>
+<p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>During the Pittsburgh meeting the proposal <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3066.html">N3066</a>
 became accepted because it fixed several severe issues related to the iterator specification. But the current working draft (N3225)
@@ -5286,151 +5165,6 @@ post: <tt>r</tt> is <del>dereferenceable</del><ins>incrementable</ins>.<br/>
 
 
 <hr>
-<h3><a name="2036"></a>2036. <tt>istream &gt;&gt; char</tt> and <tt>eofbit</tt></h3>
-<p><b>Section:</b> 27.7.2.1 [istream] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-01</p>
-<p><b>View all other</b> <a href="lwg-index.html#istream">issues</a> in [istream].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>The question is:  When a single character is extracted from an <tt>istream</tt> using <tt>operator&gt;&gt;</tt>, 
-does <tt>eofbit</tt> get set if this is the last character extracted from the stream?  The current standard is at 
-best ambiguous on the subject. 27.7.2.1 [istream]/p3 describes all extraction operations with:</p>
-
-<blockquote><p>
-3 If <tt>rdbuf()-&gt;sbumpc()</tt> or <tt>rdbuf()-&gt;sgetc()</tt> returns <tt>traits::eof()</tt>, then the input 
-function, except as explicitly noted otherwise, completes its actions and does <tt>setstate(eofbit)</tt>, which may 
-throw <tt>ios_base::failure</tt> (27.5.5.4 [iostate.flags]), before returning.
-</p></blockquote>
-
-<p>And 27.7.2.2.3 [istream::extractors]/p12 in describing <tt>operator&gt;&gt;(basic_istream&lt;charT,traits&gt;&amp; in, charT&amp; c);</tt> 
-offers no further clarification:
-</p>
-
-<blockquote><p>
-12 <i>Effects</i>: Behaves like a formatted input member (as described in [istream.formatted.reqmts]) of <tt>in</tt>. 
-After a <tt>sentry</tt> object is constructed a character is extracted from <tt>in</tt>, if one is available, and 
-stored in <tt>c</tt>. Otherwise, the function calls <tt>in.setstate(failbit)</tt>.
-</p></blockquote>
-
-<p>I coded it one way in libc++, and g++ coded it another way.  Chris Jefferson noted that some boost code was 
-sensitive to the difference and fails for libc++.  Therefore I believe that it is very important that we specify 
-this extraction operator in enough detail that both vendors and clients know what behavior is required and expected.
-</p>
-
-<p>Here is a brief code example demonstrating the issue:</p>
-
-<blockquote><pre>
-#include &lt;sstream&gt;
-#include &lt;cassert&gt;
-
-int main()
-{
-  std::istringstream ss("1");
-  char t;
-  ss &gt;&gt; t;
-  assert(!ss.eof());
-};
-</pre></blockquote>
-
-<p>For every type capable of reading this istringstream but <tt>char</tt>, <tt>ss.eof()</tt> will be true after the 
-extraction (<tt>bool</tt>, <tt>int</tt>, <tt>double</tt>, etc.).  So for consistency's sake we might want to have 
-<tt>char</tt> behave the same way as other built-in types.</p>
-
-<p>However Jean-Marc Bourguet offers this counter example code using an interactive stream.  He argues that 
-setting <tt>eof</tt> inhibits reading the next line:</p>
-
-<blockquote><pre>
-#include &lt;iostream&gt;
-
-int main()
-{
- char c;
- std::cin &gt;&gt; std::noskipws;
- std::cout &lt;&lt; "First line: ";
- while (std::cin &gt;&gt; c) {
-    if (c == '\n') {
-       std::cout &lt;&lt; "Next line: ";
-    }
- }
-}
-</pre></blockquote>
-
-<p>As these two code examples demonstrate, whether or not <tt>eofbit</tt> gets set is an observable difference and it 
-is impacting real-world code.  I feel it is critical that we clearly and unambiguously choose one behavior or the other.  
-I am proposing wording for both behaviors and ask the LWG to choose one (and only one!).</p>
-
-<p>Wording for setting <tt>eof</tt> bit:</p>
-
-<p>Modify 27.7.2.2.3 [istream::extractors]/p12 as follows:</p>
-
-<blockquote><p>
-12 <i>Effects</i>: Behaves like a formatted input member (as described in [istream.formatted.reqmts]) of <tt>in</tt>. 
-After a <tt>sentry</tt> object is constructed a character is extracted from <tt>in</tt>, if one is available, and 
-stored in <tt>c</tt>. <del>Otherwise, the function calls <tt>in.setstate(failbit)</tt>.</del>  <ins>If a character is 
-extracted and it is the last character in the pending sequence, the function calls <tt>in.setstate(eofbit)</tt>.  
-If a character is not extracted the function calls <tt>in.setstate(failbit | eofbit)</tt>.</ins>
-</p></blockquote>
-
-<p>Wording for not setting <tt>eof</tt> bit:</p>
-
-<blockquote><p>
-12 <i>Effects</i>: Behaves like a formatted input member (as described in [istream.formatted.reqmts]) of <tt>in</tt>. 
-After a <tt>sentry</tt> object is constructed a character is extracted from <tt>in</tt><del>, if one is available, 
-and stored in <tt>c</tt>. Otherwise, the function calls <tt>in.setstate(failbit)</tt>.</del> <ins>with 
-<tt>in.rdbuf()-&gt;sbumpc()</tt>.  If <tt>traits::eof()</tt> is returned, the function calls 
-<tt>in.setstate(failbit | eofbit)</tt>.  Otherwise the return value is converted to type <tt>charT</tt> and stored
-in <tt>c</tt>.</ins>
-</p></blockquote>
-
-<p><i>[2011-02-27: Jean-Marc Bourguet comments]</i></p>
-
-
-<p>Just for completeness: it [the counter example] doesn't inhibit to read the next line, it inhibits the prompt 
-to be put at the appropriate time.</p>
-
-<p>More information to take into account when deciding:</p>
-
-<ul>
-<li><p>if I'm reading correctly the section to get boolean values when <tt>boolalpha</tt> is set, there we mandate 
-that <tt>eof</tt> isn't set if trying to read past the end of the pending sequence wasn't needed to determine the result.
-</p></li>
-
-<li><p>
-see also the behaviour of <tt>getline</tt> (which isn't a formatted input function but won't set <tt>eof</tt> 
-if it occurs just after the delimiter)
-</p></li>
-
-<li><p>
-if I'm reading the C standard correctly <tt>scanf("%c")</tt> wouldn't set <tt>feof</tt> either in that situation.
-</p></li>
-</ul>
-
-<p><i>[2011-02-28: Martin Sebor comments]</i></p>
-
-
-<p>[Responds to bullet 1 of Jean-Marc's list]</p>
-
-<p>
-Yes, this matches the stdcxx test suite for <tt>num_get</tt> and <tt>time_get</tt>
-but not <tt>money_get</tt> when the currency symbol is last. I don't see
-where in the locale.money.get.virtuals section we specify whether
-<tt>eofbit</tt> is or isn't set and when.
-<p/>
-IMO, if we try to fix the <tt>char</tt> extractor to be consistent we
-should also fix all the others extractors and manipulators that
-aren't consistent (including <tt>std::get_money</tt> and <tt>std::get_time</tt>).
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p></p>
-
-
-
-
-
-<hr>
 <h3><a name="2037"></a>2037. <tt>atomic</tt> free functions incorrectly specified</h3>
 <p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#New">New</a>
  <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-03-01 <b>Last modified:</b> 2011-03-09</p>
@@ -5713,11 +5447,11 @@ refers to either <tt>atomic&lt;</tt><em>integral</em><tt>&gt;</tt> or to a named
 
 <hr>
 <h3><a name="2038"></a>2038. Missing definition for <tt>incrementable</tt> iterator</h3>
-<p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-02</p>
+<p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 
 <p>In comp.lang.c++, Vicente Botet raises the following questions:</p>
@@ -5752,6 +5486,7 @@ it is not defined.
 
 <p>I believe that the currently proposed resolution of issue <a href="lwg-active.html#2035">2035</a> solves this
 issue as well.</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
