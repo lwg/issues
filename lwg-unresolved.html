@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-24 at 15:03:49 UTC</p>
+<p>Revised 2011-03-24 at 15:03:58 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
@@ -321,331 +321,12 @@ precondition is not met.
 
 
 <hr>
-<h3><a name="985"></a>985. Allowing throwing move</h3>
-<p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2009-02-12 <b>Last modified:</b> 2011-03-15</p>
-<p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
-<p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-<b>Introduction</b>
-</p>
-
-<p>This proposal is meant to resolve potential regression of the
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2800.pdf">N2800</a>
-draft, see
-next section, and to relax the requirements for containers of types with
-throwing move constructors.</p>
-
-<p>The basic problem is that some containers operations, like <tt>push_back</tt>,
-have a strong exception safety
-guarantee (i.e. no side effects upon exception) that are not achievable when
-throwing move constructors are used since there is no way to guarantee revert
-after partial move. For such operations the implementation can at most provide
-the basic guarantee (i.e. valid but unpredictable) as it does with multi
-copying operations (e.g. range insert).</p>
-
-<p>For example, <tt>vector&lt;T&gt;::push_back()</tt> (where <tt>T</tt> has a move
-constructor) might resize the <tt>vector</tt> and move the objects to the new underlying
-buffer. If move constructor throws it might
-not be possible to recover the throwing object or to move the old objects back to
-the original buffer.</p>
-
-<p>The current draft is explicit by disallowing throwing move
-for some operations (e.g. <tt>vector&lt;&gt;::reserve</tt>) and not clear about other
-operations mentioned in 23.2.1 [container.requirements.general]/10
-(e.g. single element <tt>insert</tt>): it guarantees strong exception
-safety without explicitly disallowing a throwing move constructor.
-</p>
-
-<p>
-<b>Regression</b>
-</p>
-
-<p>This section only refers to cases in which the contained object
-is by itself a standard container.</p>
-
-<p>Move constructors of standard containers are allowed to throw and therefore
-existing operations are broken, compared with C++03, due to move optimization.
-(In fact existing implementations like Dinkumware are actually throwing).</p>
-
-<p>For example, <tt>vector&lt; list&lt;int&gt; &gt;::reserve</tt> yields
-undefined behavior since <tt>list&lt;int&gt;</tt>'s move constructor is allowed to throw.
-On the other hand, the same operation has strong exception safety guarantee in
-C++03.</p>
-
-<p>There are few options to solve this regression:</p>
-
-<ol>
-<li>
-Disallow throwing move and throwing default constructor
-</li>
-
-<li>
-Disallow throwing move but disallowing usage after move
-</li>
-
-<li>
-Special casing
-</li>
-
-<li>
-Disallow throwing move and making it optional
-</li>
-
-</ol>
-
-<p>Option 1 is suggested by proposal
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2815.html">N2815</a>
-but it might not be applicable for existing implementations for which
-containers default constructors are throwing.</p>
-
-<p>Option 2 limits the usage significantly and it's error prone
-by allowing zombie objects that are nothing but destructible (e.g. no <tt>clear()</tt>
-is allowed after move). It also potentially complicates the implementation by
-introducing special state.</p>
-
-<p>Option 3 is possible, for example, using default
-construction and <tt>swap</tt> instead of move for standard containers case. The
-implementation is also free to provide special hidden operation for non
-throwing move without forcing the user the cope with the limitation of option-2
-when using the public move.</p>
-
-<p>Option 4 impact the efficiency in all use cases due to rare throwing move.</p>
-
-<p>The proposed wording will imply option 1 or 3 though option 2 is also
-achievable using more wording. I personally oppose to option 2 that has impact
-on usability.</p>
-
-<p>
-<b>Relaxation for user types</b>
-</p>
-
-<p>Disallowing throwing move constructors in general seems very restrictive
-since, for example, common implementation of move will be default construction
-+ <tt>swap</tt> so move will throw if the
-default constructor will throw. This is currently the case with the Dinkumware
-implementation of node based containers (e.g. <tt>std::list</tt>)
-though this section doesn't refer to standard types.</p>
-
-<p>For throwing move constructors it seem that the implementation should have
-no problems to provide the basic guarantee instead of the strong one. It's
-better to allow throwing move constructors with basic guarantee than to
-disallow it silently (compile and run), via undefined behavior.</p>
-
-<p>There might still be cases in which the relaxation will break existing generic
-code that assumes the strong guarantee but it's broken either way given a
-throwing move constructor since this is not a preserving optimization. </p>
-
-<p><i>[
-Batavia (2009-05):
-]</i></p>
-
-<blockquote>
-<p>
-Bjarne comments (referring to his draft paper):
-"I believe that my suggestion simply solves that.
-Thus, we don't need a throwing move."
-</p>
-<p>
-Move to Open and recommend it be deferred until after the next
-Committee Draft is issued.
-</p>
-</blockquote>
-
-<p><i>[
-2009-10 Santa Cruz:
-]</i></p>
-
-
-<blockquote><p>
-Should wait to get direction from Dave/Rani
-(<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2983.html">N2983</a>).
-</p></blockquote>
-
-<p><i>[
-2010-03-28 Daniel updated wording to sync with N3092.
-]</i></p>
-
-
-<blockquote>
-<p>
-The suggested change of 23.3.3.4 [deque.modifiers]/2 should be removed,
-because the current wording does say more general things:
-</p>
-
-<blockquote><p>
-2 <i>Remarks:</i> If an exception is thrown other than by the copy constructor,
-move constructor, assignment operator, or move assignment operator of <tt>T</tt>
-there are no effects. If an exception is thrown by the move constructor of a
-non-CopyConstructible <tt>T</tt>, the effects are unspecified.
-</p></blockquote>
-
-<p>
-The suggested change of 23.3.6.3 [vector.capacity]/2 should be removed,
-because the current wording does say more general things:
-</p>
-
-<blockquote><p>
-2 <i>Effects:</i> A directive that informs a <tt>vector</tt> of a planned change
-in size, so that it can manage the storage allocation accordingly. After
-<tt>reserve()</tt>, <tt>capacity()</tt> is greater or equal to the argument of
-<tt>reserve</tt> if reallocation happens; and equal to the previous value of
-<tt>capacity()</tt> otherwise. Reallocation happens at this point if and only if
-the current capacity is less than the argument of <tt>reserve()</tt>. If an
-exception is thrown other than by the move constructor of a
-non-<tt>CopyConstructible</tt> type, there are no effects.
-</p></blockquote>
-
-</blockquote>
-
-<p><i>[2011-03-15: Daniel updates wording to sync with N3242 and comments]</i></p>
-
-
-<blockquote><p>
-The issue has nearly been resolved by previous changes to the working paper, in 
-particular all suggested changes for <tt>deque</tt> and <tt>vector</tt> are no 
-longer necessary. The still remaining parts involve the unordered associative containers.
-</p></blockquote>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>
-23.2.1 [container.requirements.general]  paragraph 10 add footnote:
-</p>
-
-<blockquote>
-<p>
--10- Unless otherwise specified (see 23.2.4.1 [associative.reqmts.except], 23.2.5.1 [unord.req.except], 
-23.3.3.4 [deque.modifiers], and 23.3.6.5 [vector.modifiers]) all container types defined in this 
-Clause meet the following additional requirements:
-</p>
-<ul>
-<li>&hellip;</li>
-</ul>
-
-<p>
-<ins>[<i>Note</i>: for compatibility with C++ 2003, when "no effect" is required, standard containers should not use the
-<tt>value_type</tt>'s throwing move constructor when the contained object is by itself a standard container. &mdash; <i>end note</i>]</ins>
-</p>
-
-</blockquote>
-
-<p>23.2.5.1 [unord.req.except] change paragraph 2+4 to say: </p>
-
-<blockquote>
-<p>
--2- For unordered associative containers, if an exception is
-thrown by any operation other than the container's hash function from within an
-<tt>insert()</tt> function inserting a single element, the <tt>insert()</tt>
-function has no effect<ins> unless the exception is thrown by the contained
-object move constructor</ins>.
-<p/>
-[&hellip;]
-<p/>
--4- For unordered associative containers, if an exception is
-thrown from within a <tt>rehash()</tt> function other than by the container's hash
-function or comparison function, the <tt>rehash()</tt> function has no effect
-<ins>unless the exception is thrown by the contained
-object move constructor</ins>.</p>
-
-</blockquote>
-
-<p>
-Keep 23.3.3.4 [deque.modifiers] paragraph 2 unchanged <em>[Drafting note: The originally
-proposed wording did suggest to add a last sentence as follows:</em>
-</p>
-<blockquote><p>
-<em><ins>If an exception is thrown by <tt>push_back()</tt> or <tt>emplace_back()</tt>
-function, that function has no effects unless the exception is thrown by
-the move constructor of <tt>T</tt>.</ins></em> 
-</p></blockquote>
-<p> &mdash; <em> end drafting note ]</em></p>
-
-<blockquote><p>
--2- <i>Remarks:</i> If an exception is thrown other than by
-the copy constructor, move constructor, assignment operator, 
-or move assignment operator of <tt>T</tt> there are no effects.
-If an exception is thrown by the move constructor of a non-CopyInsertable 
-<tt>T</tt>, the effects are unspecified.
-</p></blockquote>
-
-<p>
-Keep 23.3.6.3 [vector.capacity] paragraph 2 unchanged <em>[Drafting note: The originally
-proposed wording did suggest to change the last sentence as follows:</em>
-</p>
-<blockquote><p>
-<em>If an exception is thrown, there are no effects<ins> unless the exception is thrown by the 
-contained object move constructor</ins>.</em> 
-</p></blockquote>
-<p> &mdash; <em> end drafting note ]</em></p>
-
-<blockquote><p>
--2- <i>Effects:</i> A directive that informs a <tt>vector</tt>
-of a planned change in size, so
-that it can manage the storage allocation accordingly. After <tt>reserve()</tt>,
-<tt>capacity()</tt> is greater or equal to the argument of <tt>reserve</tt>
-if reallocation happens; and equal
-to the previous value of <tt>capacity()</tt>
-otherwise. Reallocation happens at this point if and only if the current
-capacity is less than the argument of <tt>reserve()</tt>.
-If an exception is thrown other than by the move constructor of a 
-non-<tt>CopyInsertable</tt> type, there are no effects.
-</p></blockquote>
-
-<p>
-Keep 23.3.6.3 [vector.capacity] paragraph 12 unchanged <em>[Drafting note: The originally
-proposed wording did suggest to change the old paragraph as follows:</em>
-</p>
-<blockquote><p>
-<em>-12- <i>Requires:</i> <del>If <tt>value_type</tt> has a move constructor,
-that constructor shall not throw any exceptions.</del>
-<ins>If an exception is thrown, there are no effects unless the exception is thrown by
-the contained object move constructor.</ins></em>
-</p></blockquote>
-<p> &mdash; <em> end drafting note ]</em></p>
-
-<blockquote><p>
--12- <i>Requires:</i> If an exception is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> 
-<tt>T</tt> there are no effects.
-</p></blockquote>
-
-<p>
-Keep 23.3.6.5 [vector.modifiers] paragraph 1 unchanged <em>[Drafting note: The originally
-proposed wording did suggest to change the old paragraph as follows:</em>
-</p>
-<blockquote><p>
-<em>-1- <del><i>Requires:</i> If <tt>value_type</tt> has a move constructor,
-that constructor shall not throw any exceptions.</del>
-<ins><i>Remarks:</i> If an exception is thrown by <tt>push_back()</tt>
-or <tt>emplace_back()</tt> function, that function has no effect unless the
-exception is thrown by the move constructor of <tt>T</tt>.</ins></em>
-</p></blockquote>
-<p> &mdash; <em> end drafting note ]</em></p>
-
-<blockquote><p>
--1- <i>Remarks</i>: Causes reallocation if the new size is greater than the old capacity. If no reallocation happens,
-all the iterators and references before the insertion point remain valid. If an exception is thrown other
-than by the copy constructor, move constructor, assignment operator, or move assignment operator
-of <tt>T</tt> or by any <tt>InputIterator</tt> operation there are no effects. If an exception is thrown by the move
-constructor of a non-<tt>CopyInsertable</tt> <tt>T</tt>, the effects are unspecified.
-</p></blockquote>
-
-
-
-
-
-
-<hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
-<p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-02-20</p>
+<p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#facet.num.get.virtuals">active issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 As specified in the latest draft,
@@ -745,6 +426,10 @@ Move to Open, needs more study.
 </p>
 </blockquote>
 
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>Move to deferred</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -804,11 +489,11 @@ field represents a value outside the range of representable values,
 
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
-<p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-02-27</p>
+<p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 When I look at the <tt>unordered_*</tt> constructors, I think the complexity is poorly
@@ -871,6 +556,11 @@ has a complexity of <tt>n</tt> bucket allocations, but this part of the work is 
 <tt>X a(i, j, n);</tt>, even though it is considerable larger (in the average case) for 
 <tt>n &#8811; distance(i, j)</tt>.
 </p>
+
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>Move to deferred</p>
 
 
 
@@ -1476,198 +1166,6 @@ always using <tt>const_iterator</tt> in their function parameter lists. &mdash;
 
 
 <hr>
-<h3><a name="1252"></a>1252. <tt>wbuffer_convert::state_type</tt> inconsistency</h3>
-<p><b>Section:</b> 22.3.3.2.3 [conversions.buffer] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Bo Persson  <b>Opened:</b> 2009-10-21 <b>Last modified:</b> 2011-03-06</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-The synopsis for <tt>wbuffer_convert</tt> 22.3.3.2.3 [conversions.buffer]/2 contains
-</p>
-
-<blockquote><pre>
-typedef typename Tr::state_type   state_type; 
-</pre></blockquote>
-
-<p>
-making <tt>state_type</tt> a synonym for (possibly) some
-<tt>char_traits&lt;x&gt;::state_type</tt>. 
-</p>
-
-<p>
-However, in paragraph 9 of the same section, we have 
-</p>
-
-<blockquote><pre>
-typedef typename Codecvt::state_type state_type;
-</pre>
-
-<blockquote><p>
-The type shall be a synonym for <tt>Codecvt::state_type</tt>.
-</p></blockquote>
-</blockquote>
-
-<p>
-From what I can see, it might be hard to implement <tt>wbuffer_convert</tt> if 
-the types were not both <tt>std::mbstate_t</tt>, but I cannot find a requirement 
-that they must be the same type.
-</p>
-
-<p><i>[
-Batavia 2010:
-]</i></p>
-
-
-<p>
-Howard to draft wording, move to Review. Run it by Bill. Need to move this in Madrid.
-</p>
-
-<p><i>[2011-03-06: Howard drafts wording]</i></p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Modify the <tt>state_type</tt> typedef in the synopsis of 22.3.3.2.3 [conversions.buffer] p.2 as shown
-[This makes the synopsis consistent with 22.3.3.2.3 [conversions.buffer] p.9]:</p>
-
-<blockquote><pre>
-namespace std {
-template&lt;class Codecvt,
-  class Elem = wchar_t,
-  class Tr = std::char_traits&lt;Elem&gt; &gt;
-class wbuffer_convert
-  : public std::basic_streambuf&lt;Elem, Tr&gt; {
-public:
-  typedef typename <del>Tr</del><ins>Codecvt</ins>::state_type state_type;
-  [&hellip;]
-};
-}
-</pre></blockquote>
-
-
-
-
-
-<hr>
-<h3><a name="1297"></a>1297. <tt>unique_ptr</tt>'s relational operator functions should induce a total order</h3>
-<p><b>Section:</b> 20.7.1.4 [unique.ptr.special] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-23 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-The comparison functions of <tt>unique_ptr</tt> currently directly delegate to
-the underlying comparison functions of <tt>unique_ptr&lt;T, D&gt;::pointer</tt>.
-This is disadvantageous, because this would not guarantee to induce a total
-ordering for native pointers and it is hard to define a total order for mixed
-types anyway.
-</p>
-<p>
-The currently suggested resolution for <tt>shared_ptr</tt> comparison as of
-<a href="lwg-defects.html#1262">1262</a> uses a normalization strategy: They perform the comparison on
-the <em>composite pointer type</em> (5.9 [expr.rel]). This is not
-exactly possible for <tt>unique_ptr</tt> in the presence of user-defined
-pointer-like types but the existing definition of <tt>std::duration</tt>
-comparison as of 20.11.5.6 [time.duration.comparisons] via
-<tt>common_type</tt> of both argument types demonstrates a solution of this
-problem. The approach can be seen as the general way to define a <em>composite
-pointer type</em> and this is the approach which is used for here suggested
-wording change.
-</p>
-<p>
-For consistency reasons I would have preferred the same normalization strategy
-for <tt>==</tt> and <tt>!=</tt>, but Howard convinced me not to do so (now).
-</p>
-
-<p><i>[
-2010-11-03 Daniel comments and adjustes the currently proposed wording changes:
-]</i></p>
-
-
-<p>
-Issue <a href="lwg-active.html#1401">1401</a> is remotely related. <a href="#1401_extra_bullet">Bullet A</a> of its proposed resolution 
-provides an alternative solution for issue discussed here and addresses NB comment GB-99.
-Additionally I updated the below suggested wording in regard to the following:
-It is an unncessary requirement that the below defined effective composite pointer-like
-type <tt>CT</tt> satisfies the <tt>LessThanComparable</tt> requirements. All what is 
-needed is, that the function object type <tt>less&lt;CT&gt;</tt> induces a strict
-weak ordering on the pointer values.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>
-Change 20.7.1.4 [unique.ptr.special]/4-7 as indicated: <i>[The implicit
-requirements and remarks imposed on the last three operators are the same as for
-the first one due to the normative "equivalent to" usage within a Requires
-element, see 17.5.1.4 [structure.specifications]/4. The effects of this
-change are that all real pointers wrapped in a <tt>unique_ptr</tt> will order
-like <tt>shared_ptr</tt> does.]</i>
-</p>
-
-<blockquote><pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
-  bool operator&lt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
-</pre>
-
-<blockquote>
-<p>
-<ins>? <i>Requires:</i> Let <tt>CT</tt> be <tt>common_type&lt;unique_ptr&lt;T1,
-D1&gt;::pointer, unique_ptr&lt;T2, D2&gt;::pointer&gt;::type</tt>. Then
-the specialization <tt>less&lt;CT&gt</tt> shall be a function object type ([function.objects]) 
-that induces a strict weak ordering ([alg.sorting]) on the pointer values.</ins>
-</p>
-
-<p>
-4 <i>Returns:</i> <tt><ins>less&lt;CT&gt;()(x.get(), y.get())</ins><del>x.get()
-&lt; y.get()</del></tt>.
-</p>
-
-<p>
-<ins>? <i>Remarks:</i> If <tt>unique_ptr&lt;T1, D1&gt;::pointer</tt> is not
-implicitly convertible to <tt>CT</tt> or <tt>unique_ptr&lt;T2,
-D2&gt;::pointer</tt> is not implicitly convertible to <tt>CT</tt>, the program
-is ill-formed.</ins>
-</p>
-</blockquote>
-
-<pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
-  bool operator&lt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
-</pre>
-
-<blockquote><p>
-5 <ins><i>Effects:</i> Equivalent to <tt>return !(y &lt; x)</tt></ins>
-<del><i>Returns:</i> <tt>x.get() &lt;= y.get()</tt></del>.
-</p></blockquote>
-
-<pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
-  bool operator&gt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
-</pre>
-
-<blockquote><p>
-6 <ins><i>Effects:</i> Equivalent to <tt>return (y &lt; x)</tt></ins>
-<del><i>Returns:</i> <tt>x.get() &gt; y.get()</tt></del>.
-</p></blockquote>
-
-<pre>
-template &lt;class T1, class D1, class T2, class D2&gt;
-  bool operator&gt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
-</pre>
-
-<blockquote><p>
-7 <ins><i>Effects:</i> Equivalent to <tt>return !(x &lt; y)</tt></ins>
-<del><i>Returns:</i> <tt>x.get() &gt;= y.get()</tt></del>.
-</p></blockquote>
-</blockquote>
-
-
-
-
-
-
-<hr>
 <h3><a name="1330"></a>1330. Move container requirements into requirements tables</h3>
 <p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
  <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2010-11-16</p>
@@ -1804,296 +1302,9 @@ be done in time for 0x.  The issue remains open, but Deferred.
 
 
 <hr>
-<h3><a name="1345"></a>1345. [FCD] Library classes should have <tt>noexcept</tt> move operations</h3>
-<p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
-<p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-61</b></p>
-<p>
-All library types should have non-throwing move
-constructors and move-assignment operators unless
-wrapping a type with a potentially throwing move operation.
-When such a type is a class-template, these
-operations should have a conditional <tt>noexcept</tt>
-specification.
-</p>
-<p>
-There are many other places where a <tt>noexcept</tt>
-specification may be considered, but the move operations
-are a special case that must be called out, to effectively
-support the <tt>move_if_noexcept</tt> function template.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-Review every class and class template in the library. If <tt>noexcept</tt> 
-move constructor/assignment operators can be implicitly declared, then they
-should be implicitly declared, or explicitly defaulted. Otherwise, a move 
-constructor/move assignment operator with a <tt>noexcept</tt> exception
-specification should be provided.
-</p>
-
-<p><i>[
-2010-10-31 Daniel comments:
-]</i></p>
-
-
-<blockquote><p>
-The proposed resolution of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html">n3157</a>
-would satisfy this request.
-</p></blockquote>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html">n3157</a>
-</p>
-
-
-
-
-
-<hr>
-<h3><a name="1348"></a>1348. [FCD] Exception safety of unspecified types</h3>
-<p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
-<p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
-<p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-64</b></p>
-<p>
-There are a number of unspecified types used throughout
-the library, such as the container iterators. Many of these
-unspecified types have restrictions or expectations on
-their behaviour in terms of exceptions. Are they permitted
-or required to use exception specifications, more
-specifically the new <tt>noexcept</tt> specification? For example,
-if <tt>vector&lt;T>::iterator</tt> is implemented as a native pointer,
-all its operations will have an (effective) <tt>noexcept</tt>
-specification. If the implementation uses a class type to
-implement this iterator, is it permitted or required to
-support that same guarantee?
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment
-]</i></p>
-
-<p>
-Clearly state the requirements for exception
-specifications on all unspecified library types. For
-example, all container iterator operations should
-be conditionally <tt>noexcept</tt>, with the condition
-matching the same operation applied to the
-allocator's <tt>pointer_type</tt>, a certain subset of which
-are already required not to throw.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1358"></a>1358. [FCD] Add <tt>&lt;chrono></tt> and <tt>&lt;ratio></tt> to
-freestanding implementations</h3>
-<p><b>Section:</b> 17.6.1.3 [compliance] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-06</p>
-<p><b>View all other</b> <a href="lwg-index.html#compliance">issues</a> in [compliance].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-55</b></p>
-<p>
-The <tt>&lt;thread></tt> header uses <tt>duration</tt> types, found in the
-<tt>&lt;chrono></tt> header, and which rely on the <tt>ratio</tt> types
-declared in the <tt>&lt;ratio></tt> header.
-</p>
-
-<p><i>[
-Extracts from lengthy Rapperswil discussion:
-]</i></p>
-
-<p>
-There is a concern that this issue is a misunderstanding of the actual
-requirements of a free-standing implementation to support the <tt>&lt;thread></tt>
-header.  In general, a free-standanding implementation will provide an <em>empty</em>
-header, specifically so that a user can test for the absence of the 
-<tt>_ _ STDCPP_THREADS _ _</tt> macro.  This idiom as used as there is no portable way to test for the lack of a header.
-</p>
-<p>
-At this point, it was suggested the NB comment is trying to solve the wrong problem, and that <tt>_ _ STDCPP_THREADS _ _</tt> should be a pre-defined macro in clause 16 that can be tested before including <tt>&lt;thread></tt>.  That would remove the need to add additional headers to the free-standanding requirements.
-</p>
-<p>
-It is worth noting that Japan requested <tt>&lt;ratio></tt> as a free-standing header in their CD1 comments.  No-one seemed keen to require clocks of a free-standing implementation though.
-</p>
-
-<p>Detlef volunteers to look at a way to redraft 17.6.1.3 p3.</p> 
-
-<p><i>[
-Original resolution proposed by NB comment:
-]</i></p>
-
-
-<blockquote>
-<p>
-Add the <tt>&lt;chrono></tt> and <tt>&lt;ratio></tt> headers to the
-freestanding requirements.
-</p>
-<p>
-It might be necessary to address scaled-down
-expectations of clock support in a freestanding
-environment, much like <tt>&lt;thread></tt>.
-</p>
-</blockquote>
-
-<p><i>[2011-02-25: Alberto drafts wording]</i></p>
-
-
-<p><i>[2011-03-06: Daniel observes:]</i></p>
-
-
-<p>Accepting the proposal <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3256.html">n3256</a> 
-would solve this issue.</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<ol>
-<li><p>Add a new entry in Table 14 &mdash; C++ library headers:</p>
-
-<blockquote>
-<table border="1">
-<caption>Table 14 &mdash; C++ library headers</caption>
-<tr>
-<td style="text-align:center;">&hellip;</td>
-</tr>
-<tr>
-<td><tt>&lt;iterator&gt;</tt></td>
-</tr>
-<tr>
-<td><ins><tt>&lt;library_support&gt;</tt></ins></td>
-</tr>
-<tr>
-<td><tt>&lt;limits&gt;</tt></td>
-</tr>
-<tr>
-<td style="text-align:center;">&hellip;</td>
-</tr>
-</table>
-</blockquote>  
-</li>
-
-<li><p>Remove the last row 30.3 [thread.threads] <tt>&lt;threads&gt;</tt>
-from Table 16 &mdash; C++ headers for freestanding implementations and insert
-a new one instead (To the editor: For the actual target Clause please see the comment
-in bullet 5 of this proposed resolution):</p>
-
-<blockquote>
-<table border="1">
-<caption>Table 16 &mdash; C++ headers for freestanding implementations</caption>
-
-<tr>
-<th>Subclause</th>
-<th>Header(s)</th>
-</tr>
-
-<tr>
-<td colspan="2" style="text-align:center;">&hellip;</td>
-</tr>
-
-<tr>
-<td><del>30.3 [thread.threads] Threads</del></td>
-<td><del><tt>&lt;thread&gt;</tt></del></td>
-</tr>
-
-<tr>
-<td><ins>?? Library support</ins></td>
-<td><ins><tt>&lt;library_support&gt;</tt></ins></td>
-</tr>
-
-</table>
-
-</blockquote>
- </li>
- 
- <li><p>Modify paragraph 17.6.1.3 [compliance] p. 3:</p>
- <blockquote><p>
- 3 The supplied version of the header <tt>&lt;cstdlib&gt;</tt> shall declare at least the functions 
- <tt>abort</tt>, <tt>atexit</tt>, <tt>at_quick_exit</tt>, <tt>exit</tt>, and <tt>quick_exit</tt> 
- (18.5). <del>The supplied version of the header <tt>&lt;thread&gt;</tt> shall meet the
-same requirements as for a hosted implementation or including it shall have no effect</del>. The 
-other headers listed in this table shall meet the same requirements as for a hosted 
-implementation. <ins>A program can detect the presence of standard headers not listed in Table
-16 using the facilities provided by the <tt>&lt;library_support&gt;</tt> header.</ins>
-</p></blockquote>
-</li>
- 
-<li><p>Remove the following line from the header <tt>&lt;thread&gt;</tt> synopsis in 30.3 [thread.threads] p. 1:</p>
-<blockquote><pre>
-namespace std {
-  <del>#define __STDCPP_THREADS__ __cplusplus</del>
-
-  class thread;
-  [...]
-}
-</pre></blockquote>
-</li>
-
-<li><p>Add a new section in Clause 18 or 20 (or any other suitable place at
-the editor's discretion):</p>
-
-<blockquote>
-<p><ins>?? Library support [library.support]</ins></p>
-<blockquote><p>
-<ins>The header <tt>&lt;library_support&gt;</tt> defines an implementation-defined set 
-of macros to allow a program detect the presence of standard headers in freestanding
-implementations. [<i>Note</i>: Hosted implementations shall provide all
-standard headers, thus shall provide all macros. &mdash; <i>end note</i>]</ins>
-</p></blockquote>
-<blockquote><p>
-<ins>For each standard header listed in Tables 14 (C++ library headers) and 15 (C++ headers for C library facilities)
-that is provided by the implementation, <tt>&lt;library_support&gt;</tt> shall define a macro with name 
-<code>_ _HAS_<i>XXX</i>_HEADER_ _</code> where <code><i>XXX</i></code> is replaced by the uppercase version of the 
-name of the header. Each such macro shall expand to the value <code>_ _cplusplus</code>.
-[<i>Example</i>:</ins></p>
-<blockquote><pre>
-<ins>#include &lt;library_support&gt;
-
-#ifdef _ _HAS_THREADS_HEADER_ _
-  #include &lt;threads&gt;
-  // code that exploit the presence of threads
-#else
-  // fallback code that doesn't rely on threads
-#endif</ins>
-</pre></blockquote>
-<p><ins>&mdash; <i>end example</i>]</ins></p>
-</blockquote>
-<blockquote><p>
-<ins>No other standard header shall define macros with a name beginning with <code>_ _HAS_</code>
-and ending with <code>_HEADER_ _</code>.</ins>
-</p></blockquote>
-
-</blockquote>
-</li>
-</ol>
-
-
-
-
-
-<hr>
 <h3><a name="1364"></a>1364. [FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-08</p>
-<p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2126,354 +1337,6 @@ same exception introduce a race.
 [<i>Note:</i> Exception objects have no synchronization requirements, and expressions 
 using them may conflict (1.10 [intro.multithread]). &mdash; <i>end note</i>]
 </ins></p>
-
-
-
-
-
-<hr>
-<h3><a name="1369"></a>1369. [FCD] <tt>rethrow_exception</tt> may introduce data races</h3>
-<p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-16</p>
-<p><b>View other</b> <a href="lwg-index-open.html#propagation">active issues</a> in [propagation].</p>
-<p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-74</b></p>
-<p>
-One idea for the <tt>exception_ptr</tt> type was that a reference-counted
-implementation could simply 'reactivate' the same
-exception object in the context of a call to
-<tt>rethrow_exception</tt>. Such an implementation would allow
-the same exception object to be active in multiple threads
-(such as when multiple threads join on a <tt>shared_future</tt>)
-and introduce potential data races in any exception
-handler that catches exceptions by reference - notably
-existing library code written before this capability was
-added. <tt>rethrow_exception</tt> should <em>always</em> make a copy
-of the target exception object.
-</p>
-
-<p><i>[Resolution suggested by NB comment]</i></p>
-
-
-<p>
-Add the following to 18.8.5, [propogation]
-</p>
-<blockquote><p><ins>
-<i>Throws</i>: a copy of the exception object to which <tt>p</tt> refers.
-</ins></p></blockquote>
-
-<p><i>[2011-03-15: Anthony drafts wording]</i></p>
-
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-<ol>
-<li><p>Alter 15.1 [except.throw] p. 5 as follows:</p>
-
-<blockquote><p>
-5 When the thrown object is a class object, the copy/move constructor and the destructor shall be accessible,
-even if the copy/move operation is elided (12.8 [class.copy]). <ins>The copy constructor shall be
-accessible, and is odr-used (3.2 [basic.def.odr]), even if the copy operation is elided, 
-or a move constructor used to construct the exception object.</ins>
-</p></blockquote>
-</li>
-
-<li><p>Alter 18.8.5 [propagation] p. 7 as follows:</p>
-
-<blockquote><pre>
-exception_ptr current_exception() noexcept;
-</pre><blockquote>
-<p>
-7 <i>Returns</i>: An <tt>exception_ptr</tt> object that refers to <del>the currently handled exception 
-(15.3 [except.handle]) or</del> a copy of the currently handled exception, or a null <tt>exception_ptr</tt> 
-object if no exception is being handled. The referenced object shall remain valid at least as long as there 
-is an <tt>exception_ptr</tt> object that refers to it. If the function needs to allocate memory and the 
-attempt fails, it returns an <tt>exception_ptr</tt> object that refers to an instance of <tt>bad_alloc</tt>. 
-It is unspecified whether the return values of two successive calls to <tt>current_exception</tt> refer to 
-the same exception object. [ <i>Note</i>: That is, it is unspecified whether <tt>current_exception</tt> 
-creates a new copy each time it is called. &mdash; <i>end note</i> ] If the attempt to copy the current 
-exception object throws an exception,<ins> or is otherwise not possible,</ins> the function returns an 
-<tt>exception_ptr</tt> object that refers to the thrown exception <ins>if any</ins> or, <del>if this is not possible,</del> 
-to an instance of <tt>bad_exception</tt>. [ <i>Note</i>: The copy constructor of the thrown exception 
-may also fail, so the implementation is allowed to substitute a <tt>bad_exception</tt> object to avoid 
-infinite recursion. &mdash; <i>end note</i> ]
-</p>
-</blockquote></blockquote>
-</li>
-
-<li><p>Alter 18.8.5 [propagation] p. 9 and add a new paragraph after p. 9 as follows:</p>
-
-<blockquote><pre>
-[[noreturn]] void rethrow_exception(exception_ptr p);
-</pre><blockquote>
-<p>
-8 <i>Requires</i>: <tt>p</tt> shall not be a null pointer.
-<p/>
-9 <i>Throws</i>: <ins>a copy of</ins> the exception object to which <tt>p</tt> refers<ins>, or any exception 
-thrown by the attempt to copy the exception object to which <tt>p</tt> refers</ins>.
-<p/>
-<ins>? <i>Synchronization</i>: Calls to <tt>rethrow_exception</tt> on <tt>exception_ptr</tt> objects
-that refer to the same exception object shall appear to occur in a single total order. The completion 
-of each call shall synchronize with (1.10 [intro.multithread]) the next call in that total order.</ins>
-</p>
-</blockquote></blockquote>
-</li>
-</ol>
-
-
-
-
-
-
-<hr>
-<h3><a name="1421"></a>1421. [FCD] Accidental move-only library types due to new core language rules</h3>
-<p><b>Section:</b> 23.6 [container.adaptors] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View all other</b> <a href="lwg-index.html#container.adaptors">issues</a> in [container.adaptors].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Duplicate of:</b> <a href="lwg-closed.html#1350">1350</a></p>
-<p><b>Discussion:</b></p>
-
-<p><b>Addresses DE-22, CH-15</b></p>
-<p>
-With the final acceptance of move operations as special
-members and introduction of corresponding suppression
-rules of implicitly generated copy operations the some
-library types that were copyable in C++03 are no longer
-copyable (only movable) in C++03, among them <tt>queue</tt>,
-<tt>priority_queue</tt>, and <tt>stack</tt>.
-</p>
-
-<p><i>[
-2010-10-26: Daniel comments:
-]</i></p>
-
-
-<p>
-Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3112.pdf">n3112</a> should fix this.
-</p>
-
-<p><i>[2011-02-17: Lawrence comments:]</i></p>
-
-
-<p>
-The only open issue in CH 15 with respect to the concurrency group
-was the treatment of <tt>atomic_future</tt>. Since we removed <tt>atomic_future</tt>
-in Batavia, I think all that remains is to remove the open issue from 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3112.pdf">N3112</a> and adopt it.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3112.pdf">n3112</a>
-</p>
-
-
-
-
-
-<hr>
-<h3><a name="1448"></a>1448. [FCD] Concerns about <tt>basic_stringbuf::str(basic_string)</tt> postconditions</h3>
-<p><b>Section:</b> 27.8.2.3 [stringbuf.members] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-22</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-124</b></p>
-
-<p>
-N3092 27.8.2.3 [stringbuf.members] contains this text specifying the postconditions of
-<tt>basic_stringbuf::str(basic_string)</tt>:
-</p>
-<blockquote><p>
-Postconditions: If <tt>mode &amp; ios_base::out</tt> is <tt>true</tt>,
-<tt>pbase()</tt> points to the first underlying character and <tt>epptr() >=
-pbase() + s.size()</tt> holds; in addition, if <tt>mode &amp; ios_base::in</tt>
-is <tt>true</tt>, <tt>pptr() == pbase() + s.data()</tt> holds, otherwise
-<tt>pptr() == pbase()</tt> is <tt>true</tt>. [...]
-</p></blockquote>
-<p>
-Firstly, there's a simple mistake: It should be <tt>pbase() + s.length()</tt>,
-not <tt>pbase() + s.data()</tt>.
-</p>
-<p>
-Secondly, it doesn't match existing implementations. As far as I can tell,
-GCC 4.5 does not test for <tt>mode &amp; ios_base::in</tt> in the second part
-of that sentence, but for <tt>mode &amp; (ios_base::app | ios_base_ate)</tt>,
-and Visual C++ 9 for <tt>mode &amp; ios_base::app</tt>. Besides, the wording of
-the C++0x draft doesn't make any sense to me. I suggest changing the second part
-of the sentence to one of the following:
-</p>
-<p>
-Replace <tt>ios_base::in</tt> with <tt>(ios_base::ate | ios_base::app)</tt>,
-but this would require Visual C++ to change (replacing only with
-<tt>ios_base::ate</tt> would require GCC to change, and would make
-<tt>ios_base::app</tt> completely useless with <tt>stringstreams</tt>):
-</p>
-<p>
-in addition, if <tt>mode &amp; (ios_base::ate | ios_base::app)</tt> is <tt>true</tt>,
-<tt>pptr() == pbase() + s.length()</tt> holds, otherwise <tt>pptr() == pbase()</tt>
-is <tt>true</tt>.
-</p>
-<p>
-Leave <tt>pptr()</tt> unspecified if <tt>mode &amp; ios_base::app</tt>, but not
-<tt>mode &amp; ios_base::ate</tt> (implementations already differ in this case, and it
-is always possible to use <tt>ios_base::ate</tt> to get the effect of appending, so it
-is not necessary to require any implementation to change):
-</p>
-<p>
-in addition, if <tt>mode &amp; ios_base::ate</tt> is <tt>true</tt>,
-<tt>pptr() == pbase() + s.length()</tt> holds, if neither <tt>mode &amp; ios_base::ate</tt>
-nor <tt>mode &amp; ios_base::app</tt> is <tt>true</tt>, <tt>pptr() == pbase()</tt> holds,
-otherwise <tt>pptr() >= pbase() &amp;&amp; pptr() &lt;= pbase() + s.length()</tt>
-(which of the values in this range is unspecified).
-</p>
-<p>
-Slightly stricter:
-</p>
-<p>
-in addition, if <tt>mode &amp; ios_base::ate</tt> is <tt>true</tt>,
-<tt>pptr() == pbase() + s.length()</tt> holds, if neither
-<tt>mode &amp; ios_base::ate</tt> nor <tt>mode &amp; ios_base::app</tt> is <tt>true</tt>,
-<tt>pptr() == pbase()</tt> holds, otherwise <tt>pptr() == pbase() || pptr() == pbase() + s.length()</tt>
-(which of these two values is unspecified). A small table might help to better explain the three cases.
-BTW, at the end of the postconditions is this text: &quot;<tt>egptr() == eback() + s.size()</tt> hold&quot;.
-Is there a perference for <tt>basic_string::length</tt> or <tt>basic_string::size</tt>? It doesn't really
-matter, but it looks a bit inconsistent.
-</p>
-
-<p><i>[2011-03-09: Nicolai Josuttis comments and drafts wording]</i></p>
-
-
-<p>First, it seems the current wording is just an editorial mistake.
-When we added issue <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/lwg-defects.html#432">432</a>
-to the draft standard (in <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n1733.pdf">n1733</a>), 
-the wording in the issue:
-</p>
-
-<blockquote><p>
-If <tt>mode &amp; ios_base::out</tt> is true, initializes the output sequence
-such that <tt>pbase()</tt> points to the first underlying character, <tt>epptr()</tt> 
-points one past the last underlying character, and if <tt>(mode &amp; ios_base::ate)</tt> is true,
-<tt>pptr()</tt> is set equal to <tt>epptr()</tt> else <tt>pptr()</tt> is set equal to 
-<tt>pbase()</tt>.
-</p></blockquote>
-
-<p>became:</p>
-
-<blockquote><p>
-If <tt>mode &amp; ios_base::out</tt> is true, initializes the output sequence
-such that <tt>pbase()</tt> points to the first underlying character, <tt>epptr()</tt> 
-points one past the last underlying character, and <tt>pptr()</tt> is equal to <tt>epptr()</tt>
-if <tt>mode &amp; ios_base::in</tt> is true, otherwise <tt>pptr()</tt> is equal to 
-<tt>pbase()</tt>.
-</p></blockquote>
-
-<p>
-which beside some changes of the order of words changed
-</p>
-<blockquote><pre>
-ios_base::ate
-</pre></blockquote>
-<p>
-into
-</p>
-<blockquote><pre>
-ios_base::in
-</pre></blockquote>
-<p>
-So, from this point of view, clearly <tt>mode &amp; ios_base::ate</tt> was meant.
-</p>
-
-<p>
-Nevertheless, with this proposed resolution we'd have no wording regarding <tt>ios_base::app</tt>.
-Currently the only statements about <tt>app</tt> in the Standard are just in two tables:
-</p>
-<ul>
-<li>Table 125 &mdash; &quot;<tt>openmode</tt> effects&quot; says that the effect of 
-<tt>app</tt> is "seek to end before each write"
-</li>
-
-<li>Table 132 &mdash; &quot;File open modes&quot; says that the stdio equivalent 
-for <tt>app</tt> is <tt>"a"</tt>
-</li>
-</ul>
-<p>
-Indeed we seem to have different behavior currently in respect to <tt>app</tt>: For
-</p>
-
-<blockquote><pre>
-stringstream s2(ios_base::out|ios_base::in|ios_base::app);
-s2.str("s2 hello");
-s1 &lt;&lt; "more";
-</pre></blockquote>
-
-<ul>
-<li>Visual C++ 10 does overwrite (=> <tt>"moreello"</tt>)</li>
-<li>G++ 4.5 does append (=> <tt>"s2 hellomore"</tt>)</li>
-</ul>
-
-<p>BTW, for fstreams, both implementations append when <tt>app</tt> is set:
-If <tt>f2.txt</tt> has contents <tt>"xy"</tt>,</p>
-
-<blockquote><pre>
-fstream f2("f2.txt",ios_base::out|ios_base::in|ios_base::app);
-f1 &lt;&lt; "more";
-</pre></blockquote>
-
-<p>appends <tt>"more"</tt> so that the contents is <tt>"xymore"</tt>.</p>
-
-<p>So IMO <tt>app</tt> should set the write pointer to the end so that each writing 
-appends.
-<p/>
-I don't know whether what the standard says is enough. You can argue the 
-statement in Table 125 clearly states that such a buffer should always append, 
-which of course also applies to <tt>str()</tt> of stringbuffer.
-<p/>
-Nevertheless, it doesn't hurt IMO if we clarify the behavior of <tt>str()</tt>
-here in respect to <tt>app</tt>.
-</p>
-
-<p><i>[2011-03-10: P.J.Plauger comments:]</i></p>
-
-
-<p>I think we should say nothing special about <tt>app</tt> at construction
-time (thus leaving the write pointer at the beginning of the buffer).
-Leave implementers wiggle room to ensure subsequent append writes as they see 
-fit, but don't change existing rules for initial seek position.</p>
-
-<p><i>[Madrid meeting: It was observed that a different issue should be opened that
-clarifies the meaning of <tt>app</tt> for <tt>stringstream</tt>]</i></p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>Change 27.8.2.3 [stringbuf.members] p. 3 as indicated:</p>
-
-<blockquote><pre>
-void str(const basic_string&lt;charT,traits,Allocator&gt;&amp; s);
-</pre><blockquote>
-<p>
-2 <i>Effects</i>: Copies the content of <tt>s</tt> into the <tt>basic_stringbuf</tt> 
-underlying character sequence and initializes the input and output sequences according 
-to <tt>mode</tt>.
-<p/>
-3 <i>Postconditions</i>: If <tt>mode &amp; ios_base::out</tt> is true, <tt>pbase()</tt> 
-points to the first underlying character and <tt>epptr() &gt;= pbase() + s.size()</tt> 
-holds; in addition, if <tt>mode &amp; <del>ios_base::in</del><ins>ios_base::ate</ins></tt> 
-is true, <tt>pptr() == pbase() + <del>s.data()</del><ins>s.size()</ins></tt> holds, 
-otherwise <tt>pptr() == pbase()</tt> is true. If <tt>mode &amp; ios_base::in</tt> 
-is true, <tt>eback()</tt> points to the first underlying character, and both 
-<tt>gptr() == eback() and egptr() == eback() + s.size()</tt> 
-hold.
-</p>
-</blockquote></blockquote>
 
 
 
@@ -4182,11 +3045,10 @@ synchronizes and serializes with other functions through the shared state. &mdas
 
 <hr>
 <h3><a name="1521"></a>1521. Requirements on internal pointer representations in containers</h3>
-<p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Mike Spertus <b>Opened:</b> 2010-10-16 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View other</b> <a href="lwg-index-open.html#container.requirements.general">active issues</a> in [container.requirements.general].</p>
+<p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
+ <b>Submitter:</b> Mike Spertus <b>Opened:</b> 2010-10-16 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-104, US-141</b></p>
 
@@ -4222,6 +3084,11 @@ This issue is being opened as part of the response to NB comments US-104/141.
 See paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">N3171</a>
 in the pre-Batavia mailing. 
 </p>
+
+<p><i>[2011-03-23 Madrid meeting]</i></p>
+
+
+<p>Deferred</p>
 
 
 
@@ -6916,75 +5783,11 @@ issue as well.</p>
 
 
 <hr>
-<h3><a name="2039"></a>2039. Issues with <tt>std::reverse</tt> and <tt>std::copy_if</tt></h3>
-<p><b>Section:</b> 25.3.1 [alg.copy], 25.3.10 [alg.reverse] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-03-02 <b>Last modified:</b> 2011-03-03</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-
-<ol>
-<li><p>In the description of <tt>std::reverse</tt></p>
-<blockquote><p>
-<i>Effects</i>: For each non-negative integer <tt>i &lt;= (last - first)/2</tt>, applies <tt>iter_swap</tt> 
-to all pairs of iterators <tt>first + i</tt>, <tt>(last - i) - 1</tt>.
-</p></blockquote>
-<p>
-should be changed to
-</p><blockquote><p>
-<i>Effects</i>: For each non-negative integer <tt>i <strong>&lt;</strong> (last - first)/2</tt>, applies <tt>iter_swap</tt> 
-to all pairs of iterators <tt>first + i</tt>, <tt>(last - i) - 1</tt>.
-</p></blockquote><p>
-Here <tt>i</tt> shall be strictly less than <tt>(last - first)/2</tt>.
-</p>
-</li>
-<li><p>In the description of <tt>std::copy_if</tt> <i>Returns</i> paragraph is missing.</p></li>
-</ol>
-
-<p><i>[2011-03-02: Daniel drafts wording]</i></p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<ol>
-<li><p>Modify 25.3.10 [alg.reverse] p. 1 as indicated:</p>
-
-<blockquote><p>
-1 <i>Effects</i>: For each non-negative integer <tt>i &lt;<del>=</del> (last - first)/2</tt>, applies <tt>iter_swap</tt> 
-to all pairs of iterators <tt>first + i</tt>, <tt>(last - i) - 1</tt>.
-</p></blockquote>
-</li>
-
-<li><p>Add the following <i>Returns</i> element after 25.3.1 [alg.copy] p. 9:</p>
-
-<blockquote><pre>
-template&lt;class InputIterator, class OutputIterator, class Predicate&gt;
-OutputIterator copy_if(InputIterator first, InputIterator last,
-   OutputIterator result, Predicate pred);
-</pre><blockquote><p>
-8 <i>Requires</i>: The ranges <tt>[first,last)</tt> and <tt>[result,result + (last - first))</tt> shall not overlap.
-<p/>
-9 <i>Effects</i>: Copies all of the elements referred to by the iterator <tt>i</tt> in the range <tt>[first,last)</tt> 
-for which <tt>pred(*i)</tt> is true.
-<p/>
-<ins>?? <i>Returns</i>: The end of the resulting range.</ins>
-<p/>
-10 <i>Complexity</i>: Exactly <tt>last - first</tt> applications of the corresponding predicate.
-<p/>
-11 <i>Remarks</i>: Stable.
-</p></blockquote></blockquote>
-</li>
-</ol>
-
-
-
-
-
-<hr>
 <h3><a name="2040"></a>2040. Missing type traits related to <tt>is_convertible</tt></h3>
-<p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-03-03 <b>Last modified:</b> 2011-03-05</p>
+<p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-03-03 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta">issues</a> in [meta].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>When <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a>
 was suggested, it concentrated on constructions, assignments, and destructions, but overlooked 
@@ -7008,7 +5811,7 @@ template &lt;class From, class To&gt; struct is_trivially_convertible;
 was recently recognized when the proposal for <tt>decay_copy</tt> was prepared by 
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3255.html">n3255</a>.
 There does not exist a portable means to define the correct conditional <tt>noexcept</tt>
-specification for the  <tt>decay_copy</tt> function template, which is declared as:</p>
+specification for the <tt>decay_copy</tt> function template, which is declared as:</p>
 
 <blockquote><pre>
 template &lt;class T&gt; 
@@ -7054,6 +5857,17 @@ T implicit_cast(U&amp;&amp; u) noexcept(is_nothrow_convertible&lt;U, T&gt;::valu
 
 <p>Therefore I suggest to add the missing trait <tt>is_nothrow_convertible</tt> and for
 completeness also the missing trait <tt>is_trivially_convertible</tt> to 20.9 [meta].</p>
+
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>
+Daniel K: This is a new feature so out of scope.
+<p/>
+Pablo: Any objections to moving 2040 to Open?
+<p/>
+No objections. 
+</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -7240,75 +6054,6 @@ conversion specifier returned by stage 1. If so it is accumulated.</ins>
 If the character is either discarded or accumulated then in is advanced by <tt>++in</tt> and processing
 returns to the beginning of stage 2.
 </p></blockquote>
-
-
-
-
-
-<hr>
-<h3><a name="2042"></a>2042. Comparing <tt>forward_list::before_begin()</tt> to <tt>forward_list::end()</tt></h3>
-<p><b>Section:</b> 23.3.4.3 [forwardlist.iter] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2011-03-13 <b>Last modified:</b> 2011-03-14</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>For an object <tt>c</tt> of type <tt>forward_list&lt;X, Alloc&gt;</tt>, the iterators
-<tt>c.before_begin()</tt> and <tt>c.end()</tt> are part of the same underlying sequence,
-so the expression <tt>c.before_begin() == c.end()</tt>  must be well-defined.
-But the standard says nothing about what the result of this expression
-should be.  The forward iterator requirements says no dereferenceable
-iterator is equal to a non-dereferenceable iterator and that two
-dereferenceable iterators are equal if and only if they point to the
-same element.  But since <tt>before_begin()</tt> and <tt>end()</tt> are both
-non-dereferenceable, neither of these rules applies.
-</p>
-
-<p>
-Many <tt>forward_list</tt> methods, such as <tt>insert_after()</tt>, have a
-precondition that the iterator passed to them must not be equal to
-<tt>end()</tt>. Thus, user code might look like the following:
-</p>
-<blockquote><pre>
-void foo(forward_list&lt;int&gt;&amp; c, forward_list&lt;int&gt;::iterator it)
-{
-  assert(it != c.end());
-  c.insert_after(it, 42);
-}
-</pre></blockquote>
-
-<p>
-Conversely, <tt>before_begin()</tt> was specifically designed to be used with
-methods like <tt>insert_after()</tt>, so if <tt>c.before_begin()</tt> is passed to 
-this function the assertion must not fail.
-</p>
-
-<p><i>[2011-03-14: Daniel comments and updates the suggested wording]</i></p>
-
-
-<p>The suggested wording changes are necessary but not sufficient. Since there
-does not exist an equivalent semantic definition of <tt>cbefore_begin()</tt> as
-we have for <tt>cbegin()</tt>, this still leaves the question open whether
-the normative remark applies to <tt>cbefore_begin()</tt> as well. A simple fix
-is to define the operational semantics of <tt>cbefore_begin()</tt> in terms of
-<tt>before_begin()</tt>.</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>Add to the definition of <tt>forward_list::before_begin()</tt> 23.3.4.3 [forwardlist.iter] 
-the following:</p>
-
-<blockquote><pre>
-iterator before_begin();
-const_iterator before_begin() const;
-const_iterator cbefore_begin() const;
-</pre><blockquote><p>
--1- <i>Returns</i>: A non-dereferenceable iterator that, when incremented, is equal to the iterator returned by <tt>begin()</tt>.
-<p/>
-<ins>-?- <i>Effects</i>: <tt>cbefore_begin()</tt> is equivalent to <tt>const_cast&lt;forward_list const&amp;>(*this).before_begin()</tt>.</ins>
-<p/>
-<ins>-?- <i>Remarks</i>: <tt>before_begin() == end()</tt> shall equal false.</ins>
-</p></blockquote></blockquote>
 
 
 

@@ -19,14 +19,92 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-24 at 15:03:49 UTC</p>
+<p>Revised 2011-03-24 at 15:03:58 UTC</p>
 <h2>Immediate Issues</h2>
+<hr>
+<h3><a name="1252"></a>1252. <tt>wbuffer_convert::state_type</tt> inconsistency</h3>
+<p><b>Section:</b> 22.3.3.2.3 [conversions.buffer] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> Bo Persson  <b>Opened:</b> 2009-10-21 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The synopsis for <tt>wbuffer_convert</tt> 22.3.3.2.3 [conversions.buffer]/2 contains
+</p>
+
+<blockquote><pre>
+typedef typename Tr::state_type   state_type; 
+</pre></blockquote>
+
+<p>
+making <tt>state_type</tt> a synonym for (possibly) some
+<tt>char_traits&lt;x&gt;::state_type</tt>. 
+</p>
+
+<p>
+However, in paragraph 9 of the same section, we have 
+</p>
+
+<blockquote><pre>
+typedef typename Codecvt::state_type state_type;
+</pre>
+
+<blockquote><p>
+The type shall be a synonym for <tt>Codecvt::state_type</tt>.
+</p></blockquote>
+</blockquote>
+
+<p>
+From what I can see, it might be hard to implement <tt>wbuffer_convert</tt> if 
+the types were not both <tt>std::mbstate_t</tt>, but I cannot find a requirement 
+that they must be the same type.
+</p>
+
+<p><i>[
+Batavia 2010:
+]</i></p>
+
+
+<p>
+Howard to draft wording, move to Review. Run it by Bill. Need to move this in Madrid.
+</p>
+
+<p><i>[2011-03-06: Howard drafts wording]</i></p>
+
+
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>Moved to Immediate</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Modify the <tt>state_type</tt> typedef in the synopsis of 22.3.3.2.3 [conversions.buffer] p.2 as shown
+[This makes the synopsis consistent with 22.3.3.2.3 [conversions.buffer] p.9]:</p>
+
+<blockquote><pre>
+namespace std {
+template&lt;class Codecvt,
+  class Elem = wchar_t,
+  class Tr = std::char_traits&lt;Elem&gt; &gt;
+class wbuffer_convert
+  : public std::basic_streambuf&lt;Elem, Tr&gt; {
+public:
+  typedef typename <del>Tr</del><ins>Codecvt</ins>::state_type state_type;
+  [&hellip;]
+};
+}
+</pre></blockquote>
+
+
+
+
+
 <hr>
 <h3><a name="1349"></a>1349. [FCD] <tt>swap</tt> should not throw</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
  <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-23</p>
-<p><b>View other</b> <a href="lwg-index-open.html#library">active issues</a> in [library].</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-65</b></p>
 <p>
@@ -147,6 +225,794 @@ template&lt;class T&gt; void swap(valarray&lt;T&gt;&amp;, valarray&lt;T&gt;&amp;
 </li>
 
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="1401"></a>1401. [FCD] <tt>unique_ptr&lt;T&gt; == nullptr</tt></h3>
+<p><b>Section:</b> 20.6 [memory] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all other</b> <a href="lwg-index.html#memory">issues</a> in [memory].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-99</b></p>
+<p>
+One reason that the <tt>unique_ptr</tt> constructor taking a
+<tt>nullptr_t</tt> argument is not <tt>explicit</tt> is to allow conversion
+of <tt>nullptr</tt> to <tt>unique_ptr</tt> in contexts like equality
+comparison. Unfortunately <tt>operator==</tt> for <tt>unique_ptr</tt> is a
+little more clever than that, deducing template parameters for both
+arguments. This means that <tt>nullptr</tt> does not get deduced
+as <tt>unique_ptr</tt> type, and there are no other comparison
+functions to match.
+</p>
+
+<p><i>[
+Resolution proposed by ballot comment:
+]</i></p>
+
+<blockquote><p>
+Add the following signatures to 20.6 [memory] p.1, <tt>&lt;memory&gt;</tt>
+header synopsis:
+</p><blockquote><pre>
+template&lt;typename T, typename D&gt;
+bool operator==(const unique_ptr&lt;T, D&gt; &amp; lhs, nullptr_t);
+template&lt;typename T, typename D&gt;
+bool operator==(nullptr_t, const unique_ptr&lt;T, D&gt; &amp; rhs);
+template&lt;typename T, typename D&gt;
+bool operator!=(const unique_ptr&lt;T, D&gt; &amp; lhs, nullptr_t);
+template&lt;typename T, typename D&gt;
+bool operator!=(nullptr_t, const unique_ptr&lt;T, D&gt; &amp; rhs);
+</pre></blockquote>
+</blockquote>
+
+<p><i>[
+2010-11-02 Daniel comments and provides a proposed resolution:
+]</i></p>
+
+
+<blockquote><p>
+The same problem applies to <tt>shared_ptr</tt> as well: In both cases there are no
+conversions considered because the comparison functions are templates. I agree with
+the direction of the proposed resolution, but I believe it would be very surprising
+and inconsistent, if given a smart pointer object <tt>p</tt>, the expression
+<tt>p == nullptr</tt> would be provided, but not <tt>p &lt; nullptr</tt> and the
+other relational operators. According to 5.9 [expr.rel] they are defined
+if null pointer values meet other pointer values, even though the result is unspecified
+for all except some trivial ones. But null pointer values are nothing special here: 
+The Library already defines the relational operators for both <tt>unique_ptr</tt> and 
+<tt>shared_ptr</tt> and the outcome of comparing non-null pointer values will be equally 
+unspecified. If the idea of supporting <tt>nullptr_t</tt> arguments for relational
+operators is not what the committee prefers, I suggest at least to consider to remove 
+the existing relational operators for both <tt>unique_ptr</tt> and <tt>shared_ptr</tt>
+for consistency. But that would not be my preferred resolution of this issue.
+<p/>
+The number of overloads triple the current number, but I think it is much clearer to 
+provide them explicitly instead of adding wording that attempts to say that "sufficient overloads" are
+provided. The following proposal makes the declarations explicit.
+<p/>
+Additionally, the proposal adds the missing declarations for some <tt>shared_ptr</tt>
+comparison functions for consistency.
+</p></blockquote>
+
+<p><i>[
+2010-11-03 Daniel adds:
+]</i></p>
+
+
+<p>
+Issue <a href="lwg-defects.html#1297">1297</a> is remotely related. The following proposed resolution splits
+<a href="#1401_extra_bullet">this bullet</a> into sub-bullets A and B. Sub-bullet A would 
+also solve <a href="lwg-defects.html#1297">1297</a>, but sub-bullet B would not.
+<p/>
+A further remark in regard to the proposed semantics of the ordering of <tt>nullptr</tt>
+against other pointer(-like) values: One might think that the following definition might
+be superior because of simplicity:
+</p>
+<blockquote><pre>
+template&lt;class T&gt;
+bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t);
+template&lt;class T&gt;
+bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a);
+</pre><blockquote><p>
+<i>Returns</i>: <tt>false</tt>.
+</p></blockquote></blockquote>
+<p>
+The underlying idea behind this approach is the assumption that nullptr corresponds
+to the least ordinal pointer value. But this assertion does not hold for all supported
+architectures, therefore this approach was not followed because it would lead to
+the inconsistency, that the following assertion could fire: 
+</p>
+<blockquote><pre>
+shared_ptr&lt;int&gt; p(new int);
+shared_ptr&lt;int&gt; null;
+bool v1 = p &lt; nullptr;
+bool v2 = p &lt; null;
+assert(v1 == v2);
+</pre></blockquote>
+
+<p><i>[2011-03-06: Daniel comments]</i></p>
+
+
+<p>The current issue state is not acceptable, because the Batavia meeting
+did not give advice whether choice A or B of bullet 3 should be applied.
+Option B will now be removed and if this resolution is accepted, issue
+<a href="lwg-defects.html#1297">1297</a> should be declared as resolved by <a href="lwg-active.html#1401">1401</a>.
+This update also resyncs the wording with N3242.</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Wording changes are against N3242.
+</p>
+<ol>
+<li>Change 20.6.2 [memory.syn] p. 1, header <tt>&lt;memory&gt;</tt> synopsis as indicated.
+<tt>noexcept</tt> specifications are only added, where the guarantee exists, that the function
+shall no throw an exception (as replacement of &quot;<i>Throws</i>: Nothing&quot;. Note that
+the <tt>noexcept</tt> additions to the <tt>shared_ptr</tt> comparisons are editorial, because
+they are already part of the accepted paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3195.htm">n3195</a>:
+<blockquote><pre>
+namespace std {
+  [&hellip;]
+  // <i>[unique.ptr] Class unique_ptr:</i>
+  template &lt;class T&gt; class default_delete;
+  template &lt;class T&gt; class default_delete&lt;T[]&gt;;
+  template &lt;class T, class D = default_delete&lt;T&gt;&gt; class unique_ptr;
+  template &lt;class T, class D&gt; class unique_ptr&lt;T[], D&gt;;
+
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator==(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator!=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&lt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&lt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&gt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&gt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator==(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator==(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator!=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator!=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  
+  // <i>[util.smartptr.weakptr], Class bad_weak_ptr:</i>
+  class bad_weak_ptr;
+
+  // <i>[util.smartptr.shared], Class template shared_ptr:</i>
+  template&lt;class T&gt; class shared_ptr;
+
+  // <i>[util.smartptr.shared.cmp], shared_ptr comparisons:</i>
+  template&lt;class T, class U&gt;
+  bool operator==(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b) <ins> noexcept</ins>;
+  template&lt;class T, class U&gt;
+  bool operator!=(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b) <ins> noexcept</ins>;
+  template&lt;class T, class U&gt;
+  bool operator&lt;(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b) <ins> noexcept</ins>;
+  template&lt;class T, class U&gt;
+  bool operator&gt;(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b) <ins> noexcept</ins>;
+  template&lt;class T, class U&gt;
+  bool operator&lt;=(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b) <ins> noexcept</ins>;
+  template&lt;class T, class U&gt;
+  bool operator&gt;=(shared_ptr&lt;T&gt; const&amp; a, shared_ptr&lt;U&gt; const&amp; b) <ins> noexcept</ins>;
+
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator==(shared_ptr&lt;T&gt; const&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator==(nullptr_t, shared_ptr&lt;T&gt; const&amp; a) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator!=(shared_ptr&lt;T&gt; const&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator!=(nullptr_t, shared_ptr&lt;T&gt; const&amp; a) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;(shared_ptr&lt;T&gt; const&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;(nullptr_t, shared_ptr&lt;T&gt; const&amp; a) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;(shared_ptr&lt;T&gt; const&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;(nullptr_t, shared_ptr&lt;T&gt; const&amp; a) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;=(shared_ptr&lt;T&gt; const&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;=(nullptr_t, shared_ptr&lt;T&gt; const&amp; a) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;=(shared_ptr&lt;T&gt; const&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;=(nullptr_t, shared_ptr&lt;T&gt; const&amp; a) noexcept;</ins>
+
+  [&hellip;]
+}
+</pre></blockquote>
+</li>
+<li>Change the synopsis just after 20.7.1 [unique.ptr] p. 6 as indicated:
+<blockquote><pre>
+namespace std {
+  [&hellip;]
+  
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator==(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator!=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&lt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&lt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&gt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+  template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&gt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator==(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator==(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator!=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator!=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&lt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+  <ins>template &lt;class T, class D&gt;</ins>
+  <ins>bool operator&gt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+
+}
+</pre></blockquote>
+</li>
+<li><a name="1401_extra_bullet">This bullet does now only suggest the first approach:</a>
+<p>Change 20.7.1.4 [unique.ptr.special] p. 4-7 as indicated and add a series of prototype
+descriptions:</p>
+<blockquote><pre>
+template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&lt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+</pre>
+
+<blockquote>
+<p>
+<ins>? <i>Requires:</i> Let <tt>CT</tt> be <tt>common_type&lt;unique_ptr&lt;T1,
+D1&gt;::pointer, unique_ptr&lt;T2, D2&gt;::pointer&gt;::type</tt>. Then
+the specialization <tt>less&lt;CT&gt</tt> shall be a function object type ([function.objects]) 
+that induces a strict weak ordering ([alg.sorting]) on the pointer values.</ins>
+</p>
+
+<p>
+4 <i>Returns:</i> <tt><ins>less&lt;CT&gt;()(x.get(), y.get())</ins><del>x.get()
+&lt; y.get()</del></tt>.
+</p>
+
+<p>
+<ins>? <i>Remarks:</i> If <tt>unique_ptr&lt;T1, D1&gt;::pointer</tt> is not
+implicitly convertible to <tt>CT</tt> or <tt>unique_ptr&lt;T2,
+D2&gt;::pointer</tt> is not implicitly convertible to <tt>CT</tt>, the program
+is ill-formed.</ins>
+</p>
+</blockquote>
+
+<pre>
+template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&lt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+</pre>
+
+<blockquote><p>
+5 <i>Returns:</i> <tt><ins>!(y &lt; x)</ins><del>x.get() &lt;= y.get()</del></tt>.
+</p></blockquote>
+
+<pre>
+template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&gt;(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+</pre>
+
+<blockquote><p>
+6 <i>Returns:</i> <tt><ins>(y &lt; x)</ins><del>x.get() &gt; y.get()</del></tt>.
+</p></blockquote>
+
+<pre>
+template &lt;class T1, class D1, class T2, class D2&gt;
+  bool operator&gt;=(const unique_ptr&lt;T1, D1&gt;&amp; x, const unique_ptr&lt;T2, D2&gt;&amp; y);
+</pre>
+
+<blockquote><p>
+7 <i>Returns:</i> <tt><ins>!(x &lt; y)</ins><del>x.get() &gt;= y.get()</del></tt>.
+</p></blockquote>
+</blockquote>
+
+<blockquote><pre>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator==(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t) noexcept;</ins>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator==(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>!x</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator!=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t) noexcept;</ins>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator!=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>(bool) x</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&lt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&gt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+</pre>
+<blockquote><p>
+<ins>? <i>Requires:</i> The specialization <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt</tt> 
+shall be a function object type ([function.objects]) that induces a strict weak ordering ([alg.sorting])
+on the pointer values.</ins>
+</p></blockquote>
+<blockquote><p>
+<ins>? <i>Returns</i>: <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt;()(x.get(), nullptr)</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&lt;(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&gt;(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+</pre>
+<blockquote><p>
+<ins>? <i>Requires:</i> The specialization <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt</tt> 
+shall be a function object type ([function.objects]) that induces a strict weak ordering ([alg.sorting])
+on the pointer values.</ins>
+</p></blockquote>
+<blockquote><p>
+<ins>? <i>Returns</i>: <tt>less&lt;unique_ptr&lt;T, D&gt;::pointer&gt;()(nullptr, x.get())</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&lt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&gt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>!(nullptr &lt; x)</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&lt;=(nullptr_t, const unique_ptr&lt;T, D&gt;&amp; x);</ins>
+<ins>template &lt;class T, class D&gt;</ins>
+<ins>bool operator&gt;=(const unique_ptr&lt;T, D&gt;&amp; x, nullptr_t);</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>!(x &lt; nullptr)</tt>.</ins>
+</p></blockquote></blockquote>
+
+
+</li>
+<li>Change 20.7.2.2 [util.smartptr.shared] p. 1, class template <tt>shared_ptr</tt>
+synopsis as indicated. For consistency reasons the remaining normal relation
+operators are added as well:
+<blockquote><pre>
+namespace std {
+
+  [&hellip;]
+
+  // <i>[util.smartptr.shared.cmp], shared_ptr comparisons:</i>
+  template&lt;class T, class U&gt;
+  bool operator==(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+  bool operator!=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  template&lt;class T, class U&gt;
+  bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;
+  <ins>template&lt;class T, class U&gt;</ins>
+  <ins>bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;</ins>
+  <ins>template&lt;class T, class U&gt;</ins>
+  <ins>bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;</ins>
+  <ins>template&lt;class T, class U&gt;</ins>
+  <ins>bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, const shared_ptr&lt;U&gt;&amp; b) noexcept;</ins>
+
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator==(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator==(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator!=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator!=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&lt;class T&gt;</ins>
+  <ins>bool operator&lt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+  <ins>template&gt;class T&gt;</ins>
+  <ins>bool operator&gt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+
+  [&hellip;]
+}
+</pre></blockquote>
+</li>
+<li>Add the following series of prototype specifications at the very end of 20.7.2.2.7 [util.smartptr.shared.cmp].
+For mixed comparison the general &quot;generation&quot; rule of 20.2.1 [operators] p. 10 does not apply, 
+therefore all of them are defined. Below wording takes advantage of the simplified definition of the
+<em>composite pointer type</em> if one partner is a null pointer constant:
+<blockquote><pre>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator==(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator==(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>!a</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator!=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator!=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>(bool) a</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&lt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&gt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>less&lt;T*&gt;()(a.get(), nullptr)</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&lt;(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&gt;(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>less&lt;T*&gt;()(nullptr, a.get())</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&lt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&gt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>!(nullptr &lt; a)</tt>.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&lt;=(nullptr_t, const shared_ptr&lt;T&gt;&amp; a) noexcept;</ins>
+<ins>template&lt;class T&gt;</ins>
+<ins>bool operator&gt;=(const shared_ptr&lt;T&gt;&amp; a, nullptr_t) noexcept;</ins>
+</pre><blockquote><p>
+<ins>? <i>Returns</i>: <tt>!(a &lt; nullptr)</tt>.</ins>
+</p></blockquote></blockquote>
+
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="1448"></a>1448. [FCD] Concerns about <tt>basic_stringbuf::str(basic_string)</tt> postconditions</h3>
+<p><b>Section:</b> 27.8.2.3 [stringbuf.members] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-124</b></p>
+
+<p>
+N3092 27.8.2.3 [stringbuf.members] contains this text specifying the postconditions of
+<tt>basic_stringbuf::str(basic_string)</tt>:
+</p>
+<blockquote><p>
+Postconditions: If <tt>mode &amp; ios_base::out</tt> is <tt>true</tt>,
+<tt>pbase()</tt> points to the first underlying character and <tt>epptr() >=
+pbase() + s.size()</tt> holds; in addition, if <tt>mode &amp; ios_base::in</tt>
+is <tt>true</tt>, <tt>pptr() == pbase() + s.data()</tt> holds, otherwise
+<tt>pptr() == pbase()</tt> is <tt>true</tt>. [...]
+</p></blockquote>
+<p>
+Firstly, there's a simple mistake: It should be <tt>pbase() + s.length()</tt>,
+not <tt>pbase() + s.data()</tt>.
+</p>
+<p>
+Secondly, it doesn't match existing implementations. As far as I can tell,
+GCC 4.5 does not test for <tt>mode &amp; ios_base::in</tt> in the second part
+of that sentence, but for <tt>mode &amp; (ios_base::app | ios_base_ate)</tt>,
+and Visual C++ 9 for <tt>mode &amp; ios_base::app</tt>. Besides, the wording of
+the C++0x draft doesn't make any sense to me. I suggest changing the second part
+of the sentence to one of the following:
+</p>
+<p>
+Replace <tt>ios_base::in</tt> with <tt>(ios_base::ate | ios_base::app)</tt>,
+but this would require Visual C++ to change (replacing only with
+<tt>ios_base::ate</tt> would require GCC to change, and would make
+<tt>ios_base::app</tt> completely useless with <tt>stringstreams</tt>):
+</p>
+<p>
+in addition, if <tt>mode &amp; (ios_base::ate | ios_base::app)</tt> is <tt>true</tt>,
+<tt>pptr() == pbase() + s.length()</tt> holds, otherwise <tt>pptr() == pbase()</tt>
+is <tt>true</tt>.
+</p>
+<p>
+Leave <tt>pptr()</tt> unspecified if <tt>mode &amp; ios_base::app</tt>, but not
+<tt>mode &amp; ios_base::ate</tt> (implementations already differ in this case, and it
+is always possible to use <tt>ios_base::ate</tt> to get the effect of appending, so it
+is not necessary to require any implementation to change):
+</p>
+<p>
+in addition, if <tt>mode &amp; ios_base::ate</tt> is <tt>true</tt>,
+<tt>pptr() == pbase() + s.length()</tt> holds, if neither <tt>mode &amp; ios_base::ate</tt>
+nor <tt>mode &amp; ios_base::app</tt> is <tt>true</tt>, <tt>pptr() == pbase()</tt> holds,
+otherwise <tt>pptr() >= pbase() &amp;&amp; pptr() &lt;= pbase() + s.length()</tt>
+(which of the values in this range is unspecified).
+</p>
+<p>
+Slightly stricter:
+</p>
+<p>
+in addition, if <tt>mode &amp; ios_base::ate</tt> is <tt>true</tt>,
+<tt>pptr() == pbase() + s.length()</tt> holds, if neither
+<tt>mode &amp; ios_base::ate</tt> nor <tt>mode &amp; ios_base::app</tt> is <tt>true</tt>,
+<tt>pptr() == pbase()</tt> holds, otherwise <tt>pptr() == pbase() || pptr() == pbase() + s.length()</tt>
+(which of these two values is unspecified). A small table might help to better explain the three cases.
+BTW, at the end of the postconditions is this text: &quot;<tt>egptr() == eback() + s.size()</tt> hold&quot;.
+Is there a perference for <tt>basic_string::length</tt> or <tt>basic_string::size</tt>? It doesn't really
+matter, but it looks a bit inconsistent.
+</p>
+
+<p><i>[2011-03-09: Nicolai Josuttis comments and drafts wording]</i></p>
+
+
+<p>First, it seems the current wording is just an editorial mistake.
+When we added issue <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/lwg-defects.html#432">432</a>
+to the draft standard (in <a href="http://www.open-std.org/jtc1/sc22/wg21/prot/14882fdis/n1733.pdf">n1733</a>), 
+the wording in the issue:
+</p>
+
+<blockquote><p>
+If <tt>mode &amp; ios_base::out</tt> is true, initializes the output sequence
+such that <tt>pbase()</tt> points to the first underlying character, <tt>epptr()</tt> 
+points one past the last underlying character, and if <tt>(mode &amp; ios_base::ate)</tt> is true,
+<tt>pptr()</tt> is set equal to <tt>epptr()</tt> else <tt>pptr()</tt> is set equal to 
+<tt>pbase()</tt>.
+</p></blockquote>
+
+<p>became:</p>
+
+<blockquote><p>
+If <tt>mode &amp; ios_base::out</tt> is true, initializes the output sequence
+such that <tt>pbase()</tt> points to the first underlying character, <tt>epptr()</tt> 
+points one past the last underlying character, and <tt>pptr()</tt> is equal to <tt>epptr()</tt>
+if <tt>mode &amp; ios_base::in</tt> is true, otherwise <tt>pptr()</tt> is equal to 
+<tt>pbase()</tt>.
+</p></blockquote>
+
+<p>
+which beside some changes of the order of words changed
+</p>
+<blockquote><pre>
+ios_base::ate
+</pre></blockquote>
+<p>
+into
+</p>
+<blockquote><pre>
+ios_base::in
+</pre></blockquote>
+<p>
+So, from this point of view, clearly <tt>mode &amp; ios_base::ate</tt> was meant.
+</p>
+
+<p>
+Nevertheless, with this proposed resolution we'd have no wording regarding <tt>ios_base::app</tt>.
+Currently the only statements about <tt>app</tt> in the Standard are just in two tables:
+</p>
+<ul>
+<li>Table 125 &mdash; &quot;<tt>openmode</tt> effects&quot; says that the effect of 
+<tt>app</tt> is "seek to end before each write"
+</li>
+
+<li>Table 132 &mdash; &quot;File open modes&quot; says that the stdio equivalent 
+for <tt>app</tt> is <tt>"a"</tt>
+</li>
+</ul>
+<p>
+Indeed we seem to have different behavior currently in respect to <tt>app</tt>: For
+</p>
+
+<blockquote><pre>
+stringstream s2(ios_base::out|ios_base::in|ios_base::app);
+s2.str("s2 hello");
+s1 &lt;&lt; "more";
+</pre></blockquote>
+
+<ul>
+<li>Visual C++ 10 does overwrite (=> <tt>"moreello"</tt>)</li>
+<li>G++ 4.5 does append (=> <tt>"s2 hellomore"</tt>)</li>
+</ul>
+
+<p>BTW, for fstreams, both implementations append when <tt>app</tt> is set:
+If <tt>f2.txt</tt> has contents <tt>"xy"</tt>,</p>
+
+<blockquote><pre>
+fstream f2("f2.txt",ios_base::out|ios_base::in|ios_base::app);
+f1 &lt;&lt; "more";
+</pre></blockquote>
+
+<p>appends <tt>"more"</tt> so that the contents is <tt>"xymore"</tt>.</p>
+
+<p>So IMO <tt>app</tt> should set the write pointer to the end so that each writing 
+appends.
+<p/>
+I don't know whether what the standard says is enough. You can argue the 
+statement in Table 125 clearly states that such a buffer should always append, 
+which of course also applies to <tt>str()</tt> of stringbuffer.
+<p/>
+Nevertheless, it doesn't hurt IMO if we clarify the behavior of <tt>str()</tt>
+here in respect to <tt>app</tt>.
+</p>
+
+<p><i>[2011-03-10: P.J.Plauger comments:]</i></p>
+
+
+<p>I think we should say nothing special about <tt>app</tt> at construction
+time (thus leaving the write pointer at the beginning of the buffer).
+Leave implementers wiggle room to ensure subsequent append writes as they see 
+fit, but don't change existing rules for initial seek position.</p>
+
+<p><i>[Madrid meeting: It was observed that a different issue should be opened that
+clarifies the meaning of <tt>app</tt> for <tt>stringstream</tt>]</i></p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>Change 27.8.2.3 [stringbuf.members] p. 3 as indicated:</p>
+
+<blockquote><pre>
+void str(const basic_string&lt;charT,traits,Allocator&gt;&amp; s);
+</pre><blockquote>
+<p>
+2 <i>Effects</i>: Copies the content of <tt>s</tt> into the <tt>basic_stringbuf</tt> 
+underlying character sequence and initializes the input and output sequences according 
+to <tt>mode</tt>.
+<p/>
+3 <i>Postconditions</i>: If <tt>mode &amp; ios_base::out</tt> is true, <tt>pbase()</tt> 
+points to the first underlying character and <tt>epptr() &gt;= pbase() + s.size()</tt> 
+holds; in addition, if <tt>mode &amp; <del>ios_base::in</del><ins>ios_base::ate</ins></tt> 
+is true, <tt>pptr() == pbase() + <del>s.data()</del><ins>s.size()</ins></tt> holds, 
+otherwise <tt>pptr() == pbase()</tt> is true. If <tt>mode &amp; ios_base::in</tt> 
+is true, <tt>eback()</tt> points to the first underlying character, and both 
+<tt>gptr() == eback() and egptr() == eback() + s.size()</tt> 
+hold.
+</p>
+</blockquote></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="2042"></a>2042. Comparing <tt>forward_list::before_begin()</tt> to <tt>forward_list::end()</tt></h3>
+<p><b>Section:</b> 23.3.4.3 [forwardlist.iter] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2011-03-13 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>For an object <tt>c</tt> of type <tt>forward_list&lt;X, Alloc&gt;</tt>, the iterators
+<tt>c.before_begin()</tt> and <tt>c.end()</tt> are part of the same underlying sequence,
+so the expression <tt>c.before_begin() == c.end()</tt>  must be well-defined.
+But the standard says nothing about what the result of this expression
+should be.  The forward iterator requirements says no dereferenceable
+iterator is equal to a non-dereferenceable iterator and that two
+dereferenceable iterators are equal if and only if they point to the
+same element.  But since <tt>before_begin()</tt> and <tt>end()</tt> are both
+non-dereferenceable, neither of these rules applies.
+</p>
+
+<p>
+Many <tt>forward_list</tt> methods, such as <tt>insert_after()</tt>, have a
+precondition that the iterator passed to them must not be equal to
+<tt>end()</tt>. Thus, user code might look like the following:
+</p>
+<blockquote><pre>
+void foo(forward_list&lt;int&gt;&amp; c, forward_list&lt;int&gt;::iterator it)
+{
+  assert(it != c.end());
+  c.insert_after(it, 42);
+}
+</pre></blockquote>
+
+<p>
+Conversely, <tt>before_begin()</tt> was specifically designed to be used with
+methods like <tt>insert_after()</tt>, so if <tt>c.before_begin()</tt> is passed to 
+this function the assertion must not fail.
+</p>
+
+<p><i>[2011-03-14: Daniel comments and updates the suggested wording]</i></p>
+
+
+<p>The suggested wording changes are necessary but not sufficient. Since there
+does not exist an equivalent semantic definition of <tt>cbefore_begin()</tt> as
+we have for <tt>cbegin()</tt>, this still leaves the question open whether
+the normative remark applies to <tt>cbefore_begin()</tt> as well. A simple fix
+is to define the operational semantics of <tt>cbefore_begin()</tt> in terms of
+<tt>before_begin()</tt>.</p>
+
+<p><i>[2011-03-24 Madrid meeting]</i></p>
+
+
+<p>
+General agreement that this is a serious bug.
+<p/>
+Pablo: Any objections to moving 2042 to Immediate?
+<p/>
+No objections. 
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>Add to the definition of <tt>forward_list::before_begin()</tt> 23.3.4.3 [forwardlist.iter] 
+the following:</p>
+
+<blockquote><pre>
+iterator before_begin();
+const_iterator before_begin() const;
+const_iterator cbefore_begin() const;
+</pre><blockquote><p>
+-1- <i>Returns</i>: A non-dereferenceable iterator that, when incremented, is equal to the iterator returned by <tt>begin()</tt>.
+<p/>
+<ins>-?- <i>Effects</i>: <tt>cbefore_begin()</tt> is equivalent to <tt>const_cast&lt;forward_list const&amp;>(*this).before_begin()</tt>.</ins>
+<p/>
+<ins>-?- <i>Remarks</i>: <tt>before_begin() == end()</tt> shall equal false.</ins>
+</p></blockquote></blockquote>
 
 
 
