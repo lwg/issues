@@ -19,12 +19,12 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-24 at 17:03:09 UTC</p>
+<p>Revised 2011-03-24 at 21:03:44 UTC</p>
 <h2>Tentative Issues</h2>
 <hr>
 <h3><a name="1215"></a>1215. <tt>list::merge</tt> with unequal allocators</h3>
 <p><b>Section:</b> 23.3.5.5 [list.ops] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-09-24 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-09-24 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#list.ops">issues</a> in [list.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89,7 +89,7 @@ exception is thrown other than by a comparison there are no effects.
 <hr>
 <h3><a name="1253"></a>1253. invalidation of iterators and <tt>emplace</tt> vs. <tt>insert</tt> inconsistence in assoc. containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-03-07</p>
+ <b>Submitter:</b> Boris Du&scaron;ek <b>Opened:</b> 2009-10-24 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -327,7 +327,7 @@ element, the <del><tt>insert()</tt></del> <ins>insertion</ins>
 <hr>
 <h3><a name="1310"></a>1310. <tt>forward_list splice_after</tt> from lvalues</h3>
 <p><b>Section:</b> 23.3.4.6 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2011-03-06</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-02-05 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -462,7 +462,7 @@ template &lt;class Compare&gt; void merge(forward_list&amp;&amp; x, Compare comp
 <hr>
 <h3><a name="1320"></a>1320. Header for <tt>iter_swap</tt></h3>
 <p><b>Section:</b> 24.3 [iterator.synopsis] <b>Status:</b> <a href="lwg-active.html#NAD Future">Tentatively NAD Future</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2010-11-13</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2011-03-24</p>
 <p><b>Discussion:</b></p>
 <p>
 The <tt>iter_swap</tt> function template appears in the
@@ -523,7 +523,7 @@ template&lt;class ForwardIterator1, class ForwardIterator2&gt;
 <hr>
 <h3><a name="1371"></a>1371. [FCD] standard exceptions require stronger no-throw guarantees</h3>
 <p><b>Section:</b> 19 [diagnostics] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-75</b></p>
@@ -577,7 +577,7 @@ assignment operator that do not exit with an exception.
 <hr>
 <h3><a name="1374"></a>1374. [FCD] Clarify moved-from objects are &quot;toxic&quot;</h3>
 <p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-22</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -637,7 +637,7 @@ undefined behavior.
 <hr>
 <h3><a name="1413"></a>1413. [FCD] Specify whether <tt>high_resolution_clock</tt> is a distinct type or a typedef</h3>
 <p><b>Section:</b> 20.11.7.3 [time.clock.hires] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-16</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-112</b></p>
@@ -678,118 +678,9 @@ only in their use of these types.
 
 
 <hr>
-<h3><a name="1457"></a>1457. [FCD] Splitting lock-free properties</h3>
-<p><b>Section:</b> 29.2 [atomics.syn] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-06</p>
-<p><b>View other</b> <a href="lwg-index-open.html#atomics.syn">active issues</a> in [atomics.syn].</p>
-<p><b>View all other</b> <a href="lwg-index.html#atomics.syn">issues</a> in [atomics.syn].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses GB-130</b></p>
-<p>
-The synopsis for the <tt>&lt;atomic&gt;</tt> header lists the macros
-<tt>ATOMIC_INTEGRAL_LOCK_FREE</tt> and <tt>ATOMIC_ADDRESS_LOCK_FREE</tt>.
-</p>
-<p>
-The <tt>ATOMIC_INTEGRAL_LOCK_FREE</tt> macro has been replaced with a set of macros 
-for each integral type, as listed in 29.4 [atomics.lockfree].
-</p>
-
-<p><i>[Proposed resolution as of comment]</i></p>
-
-
-<blockquote>
-<p>
-Against FCD, N3092:
-</p>
-<p>
-In [atomics.syn], header <tt>&lt;atomic&gt;</tt> synopsis replace as indicated:
-</p>
-<blockquote><pre>
-// 29.4, lock-free property
-<del>#define ATOMIC_INTEGRAL_LOCK_FREE <em>unspecified</em></del>
-<ins>#define ATOMIC_CHAR_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_CHAR16_T_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_CHAR32_T_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_WCHAR_T_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_SHORT_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_INT_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_LONG_LOCK_FREE <em>implementation-defined</em></ins>
-<ins>#define ATOMIC_LLONG_LOCK_FREE <em>implementation-defined</em></ins>
-#define ATOMIC_ADDRESS_LOCK_FREE <em>unspecified</em>
-</pre></blockquote>
-</blockquote>
-
-<p><i>[
-2010-10-26: Daniel adds:
-]</i></p>
-
-
-<p>
-The proposed resolution below is against the FCD working draft. After application
-of the editorial issues <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3162.html#US144">US-144</a>
-and <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3162.html#US146">US-146</a> the remaining difference
-against the working draft is the usage of <em>implementation-defined</em> instead of <em>unspecified</em>, effectively
-resulting in this delta:
-</p>
-
-<blockquote><pre>
-// 29.4, lock-free property
-#define ATOMIC_CHAR_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_CHAR16_T_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_CHAR32_T_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_WCHAR_T_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_SHORT_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_INT_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_LONG_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_LLONG_LOCK_FREE <del><em>unspecified</em></del><ins><em>implementation-defined</em></ins>
-#define ATOMIC_ADDRESS_LOCK_FREE <em>unspecified</em>
-</pre></blockquote>
-
-<p>
-It is my understanding that the intended wording should be <em>unspecified</em> as for <tt>ATOMIC_ADDRESS_LOCK_FREE</tt>
-but if this is right, we need to use the same wording in 29.4 [atomics.lockfree], which consequently uses
-the term <em>implementation-defined</em>. I recommend to keep 29.2 [atomics.syn] as it currently is and to
-fix 29.4 [atomics.lockfree] instead as indicated:
-</p>
-
-<p><i>[2011-02-24 Reflector discussion]</i></p>
-
-<p>
-Moved to Tentatively Ready after 5 votes.
-</p> 
-
-
-<p><i>[2011-02-20: Daniel adapts the proposed wording to N3225 and fixes an editorial omission of
-applying <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a>]</i></p>
-
-
-<p><i>[2011-03-06: Daniel adapts the wording to N3242]</i></p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-Change 29.4 [atomics.lockfree] as indicated:
-</p>
-<blockquote><pre>
-#define ATOMIC_CHAR_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_CHAR16_T_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_CHAR32_T_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_WCHAR_T_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_SHORT_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_INT_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_LONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-#define ATOMIC_LLONG_LOCK_FREE <del><em>implementation-defined</em></del><ins><em>unspecified</em></ins>
-</pre></blockquote>
-
-
-
-
-
-<hr>
 <h3><a name="1474"></a>1474. [FCD] weak compare-and-exchange confusion</h3>
 <p><b>Section:</b> 29.6.5 [atomics.types.operations.req] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1470">1470</a>, <a href="lwg-closed.html#1475">1475</a>, <a href="lwg-closed.html#1476">1476</a>, <a href="lwg-closed.html#1477">1477</a></p>
 <p><b>Discussion:</b></p>
@@ -867,7 +758,7 @@ strong one is preferable. &mdash; <em>end note</em> ]
 <hr>
 <h3><a name="1479"></a>1479. [FCD] Fence functions should be <tt>extern "C"</tt></h3>
 <p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -919,7 +810,7 @@ established only between a thread and a signal handler executed in the same thre
 <hr>
 <h3><a name="1480"></a>1480. [FCD] Atomic fences don't have <em>synchronizes with</em> relation</h3>
 <p><b>Section:</b> 29.8 [atomics.fences] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#atomics.fences">active issues</a> in [atomics.fences].</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.fences">issues</a> in [atomics.fences].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -957,179 +848,9 @@ thread and a signal handler executed in the same thread.
 
 
 <hr>
-<h3><a name="1485"></a>1485. [FCD] Unclear <tt>thread::id</tt> specification</h3>
-<p><b>Section:</b> 30.3.1.1 [thread.thread.id] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.thread.id">issues</a> in [thread.thread.id].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-184</b></p>
-<p>
-It is unclear when a <tt>thread::id</tt> ceases to be meaningful.
-The sentence "The library may reuse the value of a
-<tt>thread::id</tt> of a terminated thread that can no longer be
-joined." implies that some terminated threads can be
-joined. It says nothing about detached threads.
-</p>
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<blockquote><p>
-Require a unique <tt>thread::id</tt> for every thread that is
-(1) detached and not terminated or (2) has an associated <tt>std::thread</tt> 
-object.
-</p></blockquote>
-
-<p><i>[
-2010-11-22 Howard Hinnant observes
-]</i></p>
-
-
-<p>
-A thread can either be running or terminated. Additionally a thread can be joined, detached, or neither.  
-These combine into the five possible states shown in this table:
-</p>
-
-<table border="1">
-<tr>
-<th></th><th>Running</th><th>Terminated</th>
-</tr>
-<tr>
-<th>Neither joined nor detached</th><td>shall not reuse id</td><td>shall not reuse id</td>
-</tr>
-<tr>
-<th>detached</th><td>shall not reuse id</td><td>may reuse id</td>
-</tr>
-<tr>
-<th>joined</th><td>impossible state</td><td>may reuse id</td>
-</tr>
-</table>
-<p>
-Only if a thread is neither joined nor detached can it be joined. Or said differently, if a 
-thread has already been joined or detached, then it can not be joined. The sentence:
-</p>
-<blockquote><p>
-The library may reuse the value of a <tt>thread::id</tt> of a terminated thread that can no longer be joined.
-</p></blockquote>
-<p>
-precisely defines the two states shown in the above table where a thread::id may be reused.
-</p>
-<p>
-The following program illustrates all of the possibilities:
-</p>
-<blockquote><pre>
-#include &lt;mutex>
-#include &lt;thread>
-#include &lt;iostream>
-#include &lt;chrono>
-
-std::mutex mut;
-
-void f()
-{
-   std::lock_guard&lt;std::mutex&gt; _(mut);
-   std::cout &lt;&lt; "f id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; " terminating\n";
-}
-
-void g()
-{
-   std::lock_guard&lt;std::mutex&gt; _(mut);
-   std::cout &lt;&lt; "g id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; " terminating\n";
-}
-
-int main()
-{
-   std::cout &lt;&lt; "main id = " &lt;&lt; std::this_thread::get_id() &lt;&lt; "\n";
-   std::thread t1(f);
-   std::thread(g).detach();
-   std::this_thread::sleep_for(std::chrono::seconds(1));
-   std::cout &lt;&lt; "g's thread::id can be reused here because g has terminated and is detached.\n";
-   std::cout &lt;&lt; "f's thread::id can't be reused here because f has terminated but is still joinable.\n";
-   std::cout &lt;&lt; "f id = " &lt;&lt; t1.get_id() &lt;&lt; "\n";
-   t1.join();
-   std::cout &lt;&lt; "f's thread::id can be reused here because f has terminated and is joined.\n";
-   std::cout &lt;&lt; "f id = " &lt;&lt; t1.get_id() &lt;&lt; "\n";
-}
-
-main id = 0x7fff71197ca0
-f id = 0x100381000 terminating
-g id = 0x100581000 terminating
-g's thread::id can be reused here because g has terminated and is detached.
-f's thread::id can't be reused here because f has terminated but is still joinable.
-f id = 0x100381000
-f's thread::id can be reused here because f has terminated and is joined.
-f id = 0x0
-</pre></blockquote>
-
-<p><i>[2011-02-11 Reflector discussion]</i></p>
-
-<p>
-Moved to Tentatively NAD after 5 votes.
-</p>
-
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="1486"></a>1486. [FCD] Value of <tt>this_thread::get_id()</tt> underspecified for detached thread</h3>
-<p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
-<p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses CH-24</b></p>
-<p>
-What would be the value <tt>this_thread::get_id()</tt> when called from a detached thread?
-</p>
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-Add some text to clarify that <tt>get_id()</tt> still returns the same value even after detaching.
-</p>
-
-<p><i>[
-2010-11-22 Howard Hinnant observes
-]</i></p>
-
-
-<p>
-30.3.2 [thread.thread.this]/1 contains the following sentence describing <tt>this_thread::get_id()</tt>:
-</p>
-
-<blockquote><p>
-... No other thread of execution shall have this id and this thread of execution shall always have this id.
-</p></blockquote>
-
-<p>I don't object to adding "even if detached" to this sentence, but it seems unnecessary to me. "Always" means always.</p>
-
-<p><i>[2011-02-11 Reflector discussion]</i></p>
-
-<p>
-Moved to Tentatively NAD after 5 votes.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
 <h3><a name="1494"></a>1494. [FCD] Term "are serialized" not defined</h3>
 <p><b>Section:</b> 30.4.4.2 [thread.once.callonce] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-190</b></p>
@@ -1214,7 +935,7 @@ executions.</ins>
 <hr>
 <h3><a name="1497"></a>1497. [FCD] <tt>lock()</tt> postcondition can not be generally achieved</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1520,7 +1241,7 @@ while (!pred())
 <hr>
 <h3><a name="1514"></a>1514. [FCD] <tt>packaged_task</tt> constructors need review</h3>
 <p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -1577,71 +1298,9 @@ explicit packaged_task(allocator_arg_t, const Allocator&amp; a, F&amp;&amp; f);
 
 
 <hr>
-<h3><a name="1515"></a>1515. [FCD] <tt>packaged_task::make_ready_at_thread_exit</tt> has no
-synchronization requirements</h3>
-<p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-05</p>
-<p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-208</b></p>
-
-<p>
-<tt>packaged_task::make_ready_at_thread_exit</tt> has no
-synchronization requirements.
-</p>
-
-<p><i>[
-Resolution proposed by ballot comment:
-]</i></p>
-
-<p>
-Figure out what the synchronization requirements
-should be and write them.
-</p>
-
-<p><i>[2011-02-09 Anthony provides a proposed resolution]</i></p>
-
-
-<p><i>[2011-02-19 Additional edits by Hans, shown in the proposed resolution section]</i></p>
-
-
-<p><i>[2011-02-22 Reflector discussion]</i></p>
-
-<p>
-Moved to Tentatively Ready after 5 votes.
-</p> 
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Add a new paragraph following 30.6.9.1 [futures.task.members] p. 19:</p>
-
-<blockquote><pre>
-void make_ready_at_thread_exit(ArgTypes... args);
-</pre></blockquote>
-<blockquote>
-<p>
-19 - ...
-</p>
-<p>
-<ins>?? - <i>Synchronization</i>: Following a successful call to <tt>make_ready_at_thread_exit</tt>, the
-destruction of all objects with thread storage duration associated with
-the current thread happens before the associated asynchronous state is
-made ready. The marking of the associated asynchronous state as ready
-synchronizes with (1.10 [intro.multithread]) the successful return from any function that
-detects that the state is set to ready.</ins>
-</p>
-</blockquote>
-
-
-
-
-
-<hr>
 <h3><a name="2000"></a>2000. Missing definition of <tt>packaged_task</tt> specialization of <tt>uses_allocator</tt></h3>
 <p><b>Section:</b> 30.6.9.2 [futures.task.nonmembers] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2010-08-29 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1674,7 +1333,7 @@ Change [futures.task.nonmembers]/3:
 <hr>
 <h3><a name="2001"></a>2001. Class template <tt>basic_regex</tt> uses non existent <tt>string_type</tt></h3>
 <p><b>Section:</b> 28.8.3 [re.regex.assign] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Volker Lukas <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Volker Lukas <b>Opened:</b> 2010-10-21 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1792,7 +1451,7 @@ namespace std {
 <hr>
 <h3><a name="2004"></a>2004. <tt>duration::operator*</tt> has template parameters in funny order</h3>
 <p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -1831,7 +1490,7 @@ template &lt;class Rep1, class <del>Period</del><ins>Rep2</ins>, class <del>Rep2
 <hr>
 <h3><a name="2006"></a>2006. <tt>emplace</tt> broken for associative containers</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2010-10-18 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
@@ -1901,7 +1560,7 @@ N3178 was looked at in session and moved to NAD.
 <hr>
 <h3><a name="2007"></a>2007. Incorrect specification of return value for <tt>map&lt;&gt;::at()</tt></h3>
 <p><b>Section:</b> 23.4.4.3 [map.access] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-01 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#map.access">issues</a> in [map.access].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1931,7 +1590,7 @@ corresponding</ins> to <tt>x</tt><ins> in <tt>*this</tt></ins>.
 <hr>
 <h3><a name="2014"></a>2014. More restrictions on macro names</h3>
 <p><b>Section:</b> 17.6.4.3.1 [macro.names] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#macro.names">issues</a> in [macro.names].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1966,7 +1625,7 @@ described in clause 7.6 [dcl.attr]</ins>.
 <hr>
 <h3><a name="2017"></a>2017. <tt>std::reference_wrapper</tt> makes incorrect usage of <tt>std::result_of</tt></h3>
 <p><b>Section:</b> 20.8.3 [refwrap] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2010-11-15 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -2192,7 +1851,7 @@ operator()(ArgTypes&amp;&amp;... args) const;
 <hr>
 <h3><a name="2019"></a>2019. <tt>isblank</tt> not supported by <tt>std::locale</tt></h3>
 <p><b>Section:</b> 22.3.3.1 [classification] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>C99 added <tt>isblank</tt> and <tt>iswblank</tt> to <tt>&lt;locale.h&gt;</tt> but <tt>&lt;locale&gt;</tt> does not
@@ -2229,7 +1888,7 @@ static const mask graph = alnum | punct;
 <hr>
 <h3><a name="2020"></a>2020. Time utility arithmetic <tt>constexpr</tt> functions have invalid effects</h3>
 <p><b>Section:</b> 20.11.5.5 [time.duration.nonmember] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-03-14</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-06 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#time.duration.nonmember">active issues</a> in [time.duration.nonmember].</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration.nonmember">issues</a> in [time.duration.nonmember].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -2346,7 +2005,7 @@ operator%(const duration&lt;Rep1, Period1&gt;&amp; lhs, const duration&lt;Rep2, 
 <hr>
 <h3><a name="2022"></a>2022. <tt>reference_wrapper&lt;T&gt;::result_type</tt> is underspecified</h3>
 <p><b>Section:</b> 20.8.3 [refwrap] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#refwrap">active issues</a> in [refwrap].</p>
 <p><b>View all other</b> <a href="lwg-index.html#refwrap">issues</a> in [refwrap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -2412,192 +2071,9 @@ The suggested wording changes are against the working draft N3242.
 
 
 <hr>
-<h3><a name="2023"></a>2023. Incorrect requirements for <tt>lock_guard</tt> and <tt>unique_lock</tt></h3>
-<p><b>Section:</b> 30.4.2.1 [thread.lock.guard], 30.4.2.2 [thread.lock.unique] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-There are two different <tt>*Lockable</tt> requirements imposed on template arguments
-of the class template <tt>lock_guard</tt> as of 30.4.2.1 [thread.lock.guard] p. 1+2:
-</p>
-<blockquote><p>
-1 [..] The supplied <tt>Mutex</tt> type shall meet the <tt>BasicLockable</tt> requirements (30.2.5.2).
-</p></blockquote>
-
-<blockquote><p>
-2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).
-</p></blockquote>
-<p>
-The <tt>Lockable</tt> requirements include the availability of a member function <tt>try_lock()</tt>,
-but there is no operational semantics in the specification of <tt>lock_guard</tt> that would rely
-on such a function. It seems to me that paragraph 2 should be removed.
-<p/>
-Similarly, 30.4.2.2 [thread.lock.unique] p. 1+2 refer to exactly the same two requirements.
-In this case it seems as if the intention was that the template arguement <tt>Mutex</tt> should
-always provide the <tt>try_lock()</tt> member function, because several member functions of
-<tt>unique_lock</tt> (<tt>unique_lock(mutex_type&amp; m, try_to_lock_t)</tt> or <tt>bool try_lock()</tt>) 
-take advantage of such a function without adding extra requirements for this.
-It seems that the requirement subset <tt>BasicLockable</tt> should be removed.
-<p/>
-I searched for further possible misusages of the <tt>*Lockable</tt> requirements, but could not
-find any more.
-</p>
-
-<p><i>[2011-02-23]</i></p>
-
-
-<p>Howard suggests an alternative approach in regard to <tt>unique_lock</tt>: The current
-minimum requirements on its template argument should better be reduced to <tt>BasicLockable</tt> 
-instead of the current <tt>Lockable</tt>, including ammending member-wise constraints where required. 
-This suggestions was supported by Anthony, Daniel, and Pablo.
-<p/>
-Daniel drafts wording that follows this separation strategy.
-</p>
-
-<p><i>[2011-02-24 Reflector discussion]</i></p>
-
-<p>
-Moved to Tentatively Ready after 5 votes.
-</p> 
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-The suggested wording changes are against the working draft N3242.
-</p>
-
-<ol>
-<li>
-<p>Remove 30.4.2.1 [thread.lock.guard] p. 2 completely:</p>
-
-<blockquote><p>
-<del>2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).</del>
-</p></blockquote>
-
-</li>
-
-<li>
-<p>Change 30.4.2.2 [thread.lock.unique] p. 1-3 as indicated. The intend is to make <tt>BasicLockable</tt>
-the fundamental requirement for <tt>unique_lock</tt>. We also update the note to reflect these changes and
-synchronize one remaining reference of 'mutex' by the proper term 'lockable object' in sync
-to the wording changes of <tt>lock_guard</tt>:</p>
-
-<blockquote><p>
-1 [..] The behavior of a program is undefined if the contained pointer <tt>pm</tt> is not null
-and the <del>mutex</del><ins>lockable object</ins> pointed to by <tt>pm</tt> does not exist for the entire remaining lifetime (3.8) 
-of the <tt>unique_lock</tt> object. The supplied <tt>Mutex</tt> type shall meet the 
-<tt>BasicLockable</tt> requirements (30.2.5.2). <del>[Editor's note:
-BasicLockable is redundant, since the following additional paragraph requires Lockable.]</del>
-</p></blockquote>
-
-<blockquote><p>
-<del>2 The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements (30.2.5.3).</del>
-</p></blockquote>
-
-<blockquote><p>
-3 [ <i>Note</i>: <tt>unique_lock&lt;Mutex&gt;</tt> meets the <tt><ins>Basic</ins>Lockable</tt> requirements. If 
-<ins><tt>Mutex</tt> meets the <tt>Lockable</tt> requirements ([thread.req.lockable.req]), <tt>unique_lock&lt;Mutex&gt;</tt> 
-also meets the <tt>Lockable</tt> requirements and if</ins> <tt>Mutex</tt> meets the <tt>TimedLockable</tt> 
-requirements (30.2.5.4), <tt>unique_lock&lt;Mutex&gt;</tt> also meets the <tt>TimedLockable</tt> 
-requirements. &mdash; <i>end note</i> ]
-</p></blockquote>
-
-</li>
-
-<li><p>Modify 30.4.2.2.1 [thread.lock.unique.cons] to add the now necessary member-wise
-additional constraints for <tt>Lockable</tt>:</p>
-
-<blockquote><pre>
-unique_lock(mutex_type&amp; m, try_to_lock_t) noexcept;
-</pre><blockquote><p>
-8 <i>Requires</i>: <ins>The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements ([thread.req.lockable.req]).</ins> 
-If <tt>mutex_type</tt> is not a recursive mutex the calling thread does not own the mutex.
-<p/>
-9 <i>Effects</i>: Constructs an object of type <tt>unique_lock</tt> and calls <tt>m.try_lock()</tt>.
-</p></blockquote></blockquote>
-</li>
-
-<li><p>Modify 30.4.2.2.2 [thread.lock.unique.locking] to add the now necessary member-wise
-additional constraints for <tt>Lockable</tt>:</p>
-
-<blockquote><pre>
-bool try_lock();
-</pre><blockquote><p>
-<ins>? <i>Requires</i>: The supplied <tt>Mutex</tt> type shall meet the <tt>Lockable</tt> requirements ([thread.req.lockable.req]).</ins> 
-<p/>
-4 <i>Effects</i>: <tt>pm-&gt;try_lock()</tt>
-</p></blockquote></blockquote>
-</li>
-</ol>
-
-
-
-
-
-<hr>
-<h3><a name="2024"></a>2024. Inconsistent implementation requirements for <tt>atomic&lt;<i>integral</i>&gt;</tt> and <tt>atomic&lt;T*&gt;</tt></h3>
-<p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-14</p>
-<p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Paragraph 5 and 6 of 29.5 [atomics.types.generic] impose different requirements on implementations for
-specializations of the <tt>atomic</tt> class template for integral types and for pointer types:
-</p>
-<blockquote><p>
-5 The atomic integral specializations and the specialization <tt>atomic&lt;bool&gt;</tt> shall have standard layout. 
-They shall each have a trivial default constructor and a trivial destructor. They shall each support aggregate
-initialization syntax.
-</p></blockquote>
-
-<blockquote><p>
-6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
-trivial default constructors and trivial destructors.
-</p></blockquote>
-
-<p>
-It looks like an oversight to me, that for pointer specializations the requirements for standard layout and
-support for aggregate initialization syntax are omitted. In fact, this been confirmed by the 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">N3193</a> proposal author. I suggest
-to impose the same implementation requirements for pointer types as for integral types, this should not impose 
-unrealistic requirements on implementations.
-</p>
-
-<p><i>[2011-02-10 Reflector discussion]</i></p>
-
-<p>
-Moved to Tentatively Ready after 5 votes.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>
-The suggested wording changes are against the working draft N3242.
-</p>
-
-<ol>
-<li>
-<p>Change 29.5 [atomics.types.generic] p. 6 as indicated:</p>
-
-<blockquote><p>
-6 There are pointer partial specializations on the <tt>atomic</tt> class template. These specializations shall have 
-<ins>standard layout,</ins> trivial default constructors<ins>,</ins> and trivial destructors. <ins> They shall each 
-support aggregate initialization syntax.</ins>
-</p></blockquote>
-
-</li>
-</ol>
-
-
-
-
-
-<hr>
 <h3><a name="2026"></a>2026. <tt>hash</tt> should be <tt>std</tt> qualified for unordered container</h3>
 <p><b>Section:</b> 23.5 [unord] <b>Status:</b> <a href="lwg-active.html#NAD">Tentatively NAD</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-02-25</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-07 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively NAD">Tentatively NAD</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2667,7 +2143,7 @@ Moved to Tentatively NAD after 5 votes.
 <hr>
 <h3><a name="2027"></a>2027. Initialization of the stored task of a <tt>packaged_task</tt></h3>
 <p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-09 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-09 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
@@ -2733,7 +2209,7 @@ to <tt>*this</tt>.</ins>
 <hr>
 <h3><a name="2029"></a>2029. Missing '<tt>noexcept</tt>' on <tt>basic_regex</tt> move-assignment operator</h3>
 <p><b>Section:</b> 28.8 [re.regex] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-02-16 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-02-16 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.regex">issues</a> in [re.regex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2796,7 +2272,7 @@ basic_regex&amp; operator=(basic_regex&amp;&amp; e) <ins>noexcept</ins>;
 <hr>
 <h3><a name="2030"></a>2030. <tt>packaged_task::result_type</tt> should be removed</h3>
 <p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2844,7 +2320,7 @@ public:
 <hr>
 <h3><a name="2031"></a>2031. <tt>std::future&lt;&gt;::share()</tt> only applies to rvalues</h3>
 <p><b>Section:</b> 30.6.6 [futures.unique_future] <b>Status:</b> <a href="lwg-active.html#Voting">Tentatively Voting</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.unique_future">issues</a> in [futures.unique_future].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Tentatively Voting">Tentatively Voting</a> status.</p>
 <p><b>Discussion:</b></p>

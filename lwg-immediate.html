@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-24 at 17:03:09 UTC</p>
+<p>Revised 2011-03-24 at 21:03:44 UTC</p>
 <h2>Immediate Issues</h2>
 <hr>
 <h3><a name="1252"></a>1252. <tt>wbuffer_convert::state_type</tt> inconsistency</h3>
@@ -102,7 +102,7 @@ public:
 <hr>
 <h3><a name="1349"></a>1349. [FCD] <tt>swap</tt> should not throw</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-23</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -939,10 +939,111 @@ hold.
 
 
 <hr>
+<h3><a name="1478"></a>1478. [FCD] Clarify race conditions in atomics initialization</h3>
+<p><b>Section:</b> 29.6 [atomics.types.operations] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all other</b> <a href="lwg-index.html#atomics.types.operations">issues</a> in [atomics.types.operations].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses GB-136</b></p>
+<p>
+GB requests normative clarification in 29.6 [atomics.types.operations] p.4 that
+concurrent access constitutes a race, as already done on p.6 and p.7.
+</p>
+<p><i>[
+Resolution proposed in ballot comment:
+]</i></p>
+
+
+<blockquote><p>
+Initialisation of atomics:
+<p/>
+We believe the intent is that for any atomics there is a distinguished
+initialisation write, but that this need not happens-before all the
+other operations on that atomic - specifically so that the
+initialisation write might be non-atomic and hence give rise to a data
+race, and hence undefined behaviour, in examples such as this (from
+Hans):
+</p>
+<blockquote><pre>
+atomic&lt;atomic&lt;int&gt; *&gt; p
+f()                      |
+{ atomic&lt;int&gt;x;          | W_na x
+  p.store(&amp;x,mo_rlx);    | W_rlx p=&amp;x
+}                        |
+</pre></blockquote><p>
+(where na is nonatomic and rlx is relaxed). We suspect also that no
+other mixed atomic/nonatomic access to the same location is intended
+to be permitted. Either way, a note would probably help.
+</p></blockquote>
+
+<p><i>[2011-02-26: Hans comments and drafts wording]</i></p>
+
+
+<p>I think the important point here is to clarify that races on atomics
+are possible, and can be introduced as a result of non-atomic
+initialization operations.  There are other parts of this that remain unclear
+to me, such as whether there are other ways to introduce data races on atomics,
+or whether the races with initialization also introduce undefined behavior
+by the 3.8 lifetime rules.  But I don't think that it is necessary to resolve
+those issues before releasing the standard.  That's particularly true
+since we've introduced <tt>atomic_init</tt>, which allows easier ways to
+construct initialization races.
+</p>
+
+<p><i>[2011-03 Madrid]</i></p>
+
+<p>Accepted to be applied immediately to the WP</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li><p>Update 29.6.5 [atomics.types.operations.req] p. 5 as follows:</p>
+
+<blockquote><pre>
+constexpr A::A(C desired);
+</pre><blockquote><p>
+5 <i>Effects</i>: Initializes the object with the value <tt>desired</tt>. <del>[ <i>Note</i>: 
+Construction is not atomic. &mdash; <i>end note</i> ]</del><ins> Initialization is not an 
+atomic operation (1.10) [intro.multithread]. [<i>Note</i>: It is possible to have an
+access to an atomic object <tt>A</tt> race with its construction, for example
+by communicating the address of the just-constructed object <tt>A</tt> to another thread 
+via <code>memory_order_relaxed</code> atomic operations on a suitable atomic pointer variable, 
+and then immediately accessing <tt>A</tt> in the receiving thread.  This results in undefined 
+behavior. &mdash; <i>end note</i>]</ins>
+</p></blockquote></blockquote>
+</li>
+
+<li><p>In response to the editor comment to 29.6.5 [atomics.types.operations.req] p. 8: 
+The first <i>Effects</i> element is the correct and intended one:</p>
+
+<blockquote><pre>
+void atomic_init(volatile A *object, C desired);
+void atomic_init(A *object, C desired);
+</pre><blockquote><p>
+8 <i>Effects</i>: Non-atomically initializes <tt>*object</tt> with value <tt>desired</tt>.
+This function shall only be applied to objects that have been default constructed, and then only once.
+[ <i>Note</i>: these semantics ensure compatibility with C. &mdash; <i>end note</i> ] [ <i>Note</i>: 
+Concurrent access from another thread, even via an atomic operation, constitutes a data 
+race. &mdash; <i>end note</i> ] <del>[<i>Editor's note</i>: The preceding text is from the WD as 
+amended by N3196. N3193 makes different changes, marked up in the paper as follows:]
+<i>Effects</i>: Dynamically initializes an atomic variable. Non-atomically That is, non-atomically assigns the
+value desired to <tt>*object</tt>. [ <i>Note</i>: this operation may need to initialize 
+locks. &mdash; <i>end note</i> ] Concurrent access from another thread, even via an atomic 
+operation, constitutes a data race.</del>
+</p></blockquote></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
  <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View other</b> <a href="lwg-index-open.html#thread.thread.this">active issues</a> in [thread.thread.this].</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1365,6 +1466,69 @@ template &lt;class Rep, class Period&gt;
 
 
 <hr>
+<h3><a name="1524"></a>1524. [FCD] Allocation functions are missing <i>happens-before</i> requirements and guarantees</h3>
+<p><b>Section:</b> 18.6.1.4 [new.delete.dataraces] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all other</b> <a href="lwg-index.html#new.delete.dataraces">issues</a> in [new.delete.dataraces].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p><b>Addresses US-34</b></p>
+
+<p>Technical details:
+<p/>
+When the same unit of storage is allocated and deallocated repeatedly, operations on it can't be allowed to
+race between the allocator and the user program. But I don't see any mention of <i>happens-before</i> in the
+descriptions of allocation and deallocation functions.
+<p/>
+Proposed resolution (not wording yet):
+</p>
+<ul>
+<li><p>The call to an allocation function returning a pointer <tt>P</tt> must happen-before the matching
+deallocation call with <tt>P</tt> as a parameter. Otherwise the behavior is undefined. I don't know whether
+receiving <tt>P</tt> with <tt>memory_order_consume</tt> fits this requirement. <tt>memory_order_relaxed</tt> does not.</p>
+</li>
+<li><p>If some memory is passed to a deallocation function, the implementation must ensure that the
+deallocation call happens-before any allocation call that returns the same memory address.</p>
+</li>
+</ul>
+
+<p><i>[2011-02-26: Hans comments and drafts wording]</i></p>
+
+
+<p>The second requirement already exists, almost verbatim, as 18.6.1.4 [new.delete.dataraces] p. 1. 
+I think this is where the statement belongs.  However, this paragraph requires work to correctly address 
+the first part of the issue.
+</p>
+
+<p><i>[Adopted at Madrid, 2011-03]</i></p>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Change 18.6.1.4 [new.delete.dataraces] p. 1 as follows:</p>
+
+<blockquote><p>
+1 <del>The library versions of <tt>operator new</tt> and <tt>operator delete</tt>, user replacement versions of global 
+<tt>operator new</tt> and <tt>operator delete</tt>, and the C standard library functions <tt>calloc</tt>, <tt>malloc</tt>, 
+<tt>realloc</tt>, and <tt>free</tt> shall not introduce data races (1.10 [intro.multithread]) as a result 
+of concurrent calls from different threads.</del><ins> For purposes of determining the existence of data races,
+the library versions of <tt>operator new</tt>, user replacement versions of global <tt>operator new</tt>, and the C 
+standard library functions <tt>calloc</tt> and <tt>malloc</tt> shall behave as though they accessed and modified only 
+the storage referenced by the return value. The library versions of <tt>operator delete</tt>, user replacement
+versions of <tt>operator delete</tt>, and the C standard library function <tt>free</tt> shall behave as though they 
+accessed and modified only the storage referenced by their first argument. The C standard library <tt>realloc</tt> 
+function shall behave as though it accessed and modified only the storage referenced by its first argument and by 
+its return value.</ins> Calls to these functions that allocate or deallocate a particular unit of storage 
+shall occur in a single total order, and each such deallocation call shall happen before the next allocation 
+(if any) in this order.
+</p></blockquote>
+
+
+
+
+
+<hr>
 <h3><a name="1525"></a>1525. [FCD] Effects of <tt>resize(size())</tt> on a <tt>vector</tt></h3>
 <p><b>Section:</b> 23.3.6.3 [vector.capacity] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
  <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-03-24</p>
@@ -1405,53 +1569,272 @@ If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> value-initialized eleme
 
 
 <hr>
-<h3><a name="2025"></a>2025. Incorrect semantics of move assignment operator of <tt>packaged_task</tt></h3>
+<h3><a name="2008"></a>2008. Conflicting Error Conditions for <tt>packaged_task::operator()</tt></h3>
 <p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-12-08 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-06-21 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-According to 30.6.9.1 [futures.task.members] p. 7 bullet 2:
+The Throws clause for <tt>packaged_task::operator()</tt> says that it throws "a
+<tt>future_error</tt> exception object if there is no associated asynchronous
+state or the stored task has already been invoked." However, the Error
+Conditions clause does not define an error condition when the stored task has
+already been invoked, only when the associated state is already ready (i.e. the
+invocation has completed).
 </p>
+
+<p><i>[2011-02-17 Anthony provides an alternative resolution]</i></p>
+
+
+<p><strong>Previous</strong> proposed resolution:</p>
+
+<p>
+Change the first bullet item in 30.6.9.1 [futures.task.members] /22:
+</p>
+
 <blockquote><pre>
-packaged_task&amp; operator=(packaged_task&amp;&amp; other);
-</pre><blockquote><p>
-7 <i>Effects</i>:<br/>
+void operator()(ArgTypes... args);
+</pre>
+<blockquote>
+<p>
+20 ...
+</p>
+<p>
+21 ...
+</p>
+<p>
+22 <i>Error conditions:</i>
 </p>
 <ul>
-<li><p>[...]</p></li>
-<li><p><tt>packaged_task&lt;R, ArgTypes...&gt;(other).swap(*this)</tt>.</p></li>
+<li>
+<tt>promise_already_satisfied</tt> if <del>the associated asynchronous state is
+already ready</del> <ins><tt>operator()</tt> has already been called</ins>.
+</li>
+<li>
+<tt>no_state</tt> if <tt>*this</tt> has no associated asynchronous state.
+</li>
 </ul>
-</blockquote></blockquote>
-<p>
-The argument <tt>other</tt> given to the move constructor is an lvalue and must be converted into 
-an rvalue via appropriate usage of <tt>std::move</tt>.
-</p>
+</blockquote>
+</blockquote>
+
+<p><i>[Adopted at Madrid, 2011-03]</i></p>
+
+
+
 
 <p><b>Proposed resolution:</b></p>
-<p>
-The suggested wording changes are against the working draft N3242.
-</p>
-
 <ol>
 <li>
-<p>Change  30.6.9.1 [futures.task.members] p. 7 bullet 2 as indicated:</p>
+<p>
+Change the first bullet item in 30.6.9.1 [futures.task.members] p. 17:
+</p>
 
 <blockquote><pre>
-packaged_task&amp; operator=(packaged_task&amp;&amp; other);
-</pre><blockquote><p>
-7 <i>Effects</i>:<br/>
+void operator()(ArgTypes... args);
+</pre>
+<blockquote>
+<p>
+15 ...
+</p>
+<p>
+16 ...
+</p>
+<p>
+17 <i>Error conditions:</i>
 </p>
 <ul>
-<li><p>[...]</p></li>
-<li><p><tt>packaged_task(<ins>std::move(</ins>other<ins>)</ins>).swap(*this)</tt>.</p></li>
+<li>
+<tt>promise_already_satisfied</tt> if the <del>associated asynchronous state is already 
+ready</del><ins>stored task has already been invoked</ins>.
+</li>
+<li>
+<tt>no_state</tt> if <tt>*this</tt> has no associated asynchronous state.
+</li>
 </ul>
-</blockquote></blockquote>
+</blockquote>
+</blockquote>
+</li>
+
+<li>
+<p>
+Change the first bullet item in 30.6.9.1 [futures.task.members] p. 21:
+</p>
+
+<blockquote><pre>
+void make_ready_at_thread_exit(ArgTypes... args);
+</pre>
+<blockquote>
+<p>
+19 ...
+</p>
+<p>
+20 ...
+</p>
+<p>
+21 <i>Error conditions:</i>
+</p>
+<ul>
+<li>
+<tt>promise_already_satisfied</tt> if the <del>associated asynchronous state already has a stored value or
+exception</del><ins>stored task has already been invoked</ins>.
+</li>
+<li>
+<tt>no_state</tt> if <tt>*this</tt> has no associated asynchronous state.
+</li>
+</ul>
+</blockquote>
+</blockquote>
 
 </li>
 </ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="2032"></a>2032. Incorrect synchronization clause of <tt>async</tt> function</h3>
+<p><b>Section:</b> 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-03-24</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.async">issues</a> in [futures.async].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Clause 30.6.8 [futures.async] has undergone significant rewording
+in Batavia. Due to co-presence of at least three different sources
+of modification there is a part where changes have overlapped
+(marked by an Editor's note), which should be reconciled. Moreover,
+I believe that a few non-overlapping sentences are now incorrect
+and should be fixed, so the problem cannot be handled editorially.
+(See c++std-lib-29667.)
+</p>
+
+<p><i>[Adopted in Madrid, 2011-03]</i></p>
+
+
+
+
+<p><b>Proposed resolution:</b></p>
+<ol>
+<li>
+<p> 
+Edit 30.6.4 [futures.state], paragraph 3 as follows.
+</p>
+
+<blockquote>
+<p>
+An <dfn>asynchronous return object</dfn>
+is an object that reads results from an associated asynchronous state.
+A <dfn>waiting function</dfn> of an asynchronous return object
+is one that potentially blocks
+to wait for the associated asynchronous state to be made ready.
+<ins>If a waiting function can return
+before the state is made ready because of a timeout (30.2.5),
+then it is a <dfn>timed waiting function</dfn>,
+otherwise it is a <dfn>non-timed waiting function</dfn>.</ins>
+</p>
+</blockquote>
+</li>
+
+<li>
+<p>
+Edit within 30.6.8 [futures.async] paragraph 3 bullet 2 as follows.
+</p>
+
+<blockquote>
+<p>
+<i>Effects:</i>
+[...]
+</p>
+<ul><li>if <code>policy &amp; launch::deferred</code> is non-zero &mdash; [...]
+The associated asynchronous state is not made ready
+until the function has completed.
+The first call to a <ins>non-timed waiting</ins> function
+<ins>(30.6.4 [futures.state])</ins>
+<del>requiring a non-timed wait</del>
+on an asynchronous return object
+referring to <del>the</del> <ins>this</ins>
+associated asynchronous state
+<del>created by this <code>async</code> call to become ready</del>
+shall invoke the deferred function
+in the thread that called the waiting function<del>;</del><ins>.</ins>
+<del>once</del> <ins>Once</ins> evaluation of
+<code><var>INVOKE</var>(g, xyz)</code> begins,
+the function is no longer considered deferred.
+[...]
+</li></ul>
+</blockquote>
+</li>
+
+<li>
+<p>
+Edit 30.6.8 [futures.async] paragraph 5 as follows.
+</p>
+
+<blockquote>
+<p>
+<i>Synchronization:</i>
+Regardless of the provided <code>policy</code> argument,
+</p>
+<ul>
+<li>
+the invocation of <code>async</code> synchronizes with (1.10)
+the invocation of <code>f</code>.
+[<i>Note:</i>
+this statement applies even when the corresponding future object
+is moved to another thread.
+&mdash;<i>end note</i>];
+and
+</li>
+<li>
+the completion of the function <code>f</code>
+is sequenced before (1.10) the associated asynchronous state is made ready.
+[<i>Note:</i>
+<code>f</code> might not be called at all,
+so its completion might never happen.
+&mdash;<i>end note</i>]
+</li>
+</ul>
+
+<p>
+<del>If <code>policy &amp; launch::async</code> is non-zero,</del>
+<ins>If the implementation chooses the <code>launch::async</code> policy,</ins>
+</p>
+<ul>
+<li>
+a call to a waiting function on an asynchronous return object
+that shares the associated asynchronous state
+created by this <code>async</code> call
+shall block until the associated thread has completed,
+as if joined (30.3.1.5);
+</li>
+<li>
+<del>the <code>join()</code> on the created thread object</del>
+<ins>the associated thread completion</ins>
+synchronizes with (1.10)
+the return from the first function
+that successfully detects the ready status of the associated asynchronous state
+or with the return from the last function that 
+releases the associated asynchronous state <del>returns</del>,
+whichever happens first.
+<del><b>[Editor's note:
+N3196 changes the following sentence as indicated.
+N3188 removes the sentence.
+Please pick one.]</b>
+If the invocation is deferred,
+the completion of the invocation of the deferred function
+synchronizes with the successful return
+from a call to a waiting function on the associated asynchronous state.</del>
+</li>
+</ul>
+</blockquote>
+
+</li>
+</ol>
+
 
 
 
