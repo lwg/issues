@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-25 at 08:03:46 UTC</p>
+<p>Revised 2011-03-25 at 09:03:43 UTC</p>
 <h2>Immediate Issues</h2>
 <hr>
 <h3><a name="1252"></a>1252. <tt>wbuffer_convert::state_type</tt> inconsistency</h3>
@@ -94,6 +94,92 @@ public:
 };
 }
 </pre></blockquote>
+
+
+
+
+
+<hr>
+<h3><a name="1279"></a>1279. forbid <tt>[u|bi]nary_function</tt> specialization</h3>
+<p><b>Section:</b> D.10.1 [depr.base] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2009-11-30 <b>Last modified:</b> 2011-03-25</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+A program should not be allowed to add specialization of class templates
+<tt>unary_function</tt> and <tt>binary_function</tt>, in force of 17.6.4.2.1 [namespace.std]/1.
+If a program were allowed to specialize these templates, the library could no
+longer rely on them to provide the intended typedefs or there might be other
+undesired interactions.
+</p>
+
+<p><i>[
+2010-03-27 Daniel adds:
+]</i></p>
+
+
+<blockquote><p>
+Accepting issue <a href="lwg-defects.html#1290">1290</a> would resolve this issue as NAD editorial.
+</p></blockquote>
+
+<p><i>[
+2010-10-24 Daniel adds:
+]</i></p>
+
+
+<blockquote><p>
+Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3145.html">n3145</a> would resolve this issue as NAD editorial.
+</p></blockquote>
+
+<p><i>[
+2010 Batavia:
+]</i></p>
+
+
+<blockquote><p>
+Pete: Is this issue actually addressed by N3198, or did deprecating unary/binary_function?
+<p/>
+We determined that this issue is NOT resolved and that it must be resolved or else 
+N3198 could break code that does specialize unary&frasl;binary function.
+<p/>
+Matt: don't move to NAD
+<p/>
+Howard: I suggest we go further and move 1279 to ready for Madrid.
+<p/>
+Group: Agrees move 1279 to ready for Madrid 
+</p></blockquote>
+
+<p>
+Previous proposed resolution:
+</p>
+
+<blockquote><p>
+1 The following <del>classes</del> <ins>class templates</ins> are provided to
+simplify the typedefs of the argument and result types<del>:</del><ins>. A
+program shall not declare specializations of these templates.</ins>
+</p></blockquote>
+
+<p><i>[2011-03-06 Daniel comments]</i></p>
+
+
+<blockquote><p>
+This meeting outcome was not properly reflected in the proposed resolution. I
+also adapted the suggested wording to the N3242 numbering and content state.
+During this course of action it turned out that the first suggested wording
+change has already been applied.
+</p></blockquote>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>
+Change paragraph D.10.1 [depr.base]/1 as follows:
+</p>
+
+<blockquote><p>
+1 The class templates <tt>unary_function</tt> and <tt>binary_function</tt> are deprecated. 
+<ins>A program shall not declare specializations of these templates.</ins>
+</p></blockquote>
 
 
 
