@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-24 at 21:03:44 UTC</p>
+<p>Revised 2011-03-25 at 08:03:46 UTC</p>
 <h2>Immediate Issues</h2>
 <hr>
 <h3><a name="1252"></a>1252. <tt>wbuffer_convert::state_type</tt> inconsistency</h3>
@@ -102,7 +102,7 @@ public:
 <hr>
 <h3><a name="1349"></a>1349. [FCD] <tt>swap</tt> should not throw</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-23</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -941,7 +941,7 @@ hold.
 <hr>
 <h3><a name="1478"></a>1478. [FCD] Clarify race conditions in atomics initialization</h3>
 <p><b>Section:</b> 29.6 [atomics.types.operations] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.operations">issues</a> in [atomics.types.operations].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1468,7 +1468,7 @@ template &lt;class Rep, class Period&gt;
 <hr>
 <h3><a name="1524"></a>1524. [FCD] Allocation functions are missing <i>happens-before</i> requirements and guarantees</h3>
 <p><b>Section:</b> 18.6.1.4 [new.delete.dataraces] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> Hans Boehm <b>Opened:</b> 2011-02-26 <b>Last modified:</b> 2011-03-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#new.delete.dataraces">issues</a> in [new.delete.dataraces].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1531,7 +1531,7 @@ shall occur in a single total order, and each such deallocation call shall happe
 <hr>
 <h3><a name="1525"></a>1525. [FCD] Effects of <tt>resize(size())</tt> on a <tt>vector</tt></h3>
 <p><b>Section:</b> 23.3.6.3 [vector.capacity] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-03-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
@@ -1547,8 +1547,9 @@ it obviously does nothing I feel a standard needs to say this explicitely.</p>
 <p><i>[2011-03-24 Daniel comments]</i></p>
 
 
-<p>This issue partially overlaps with <a href="lwg-active.html#2033">2033</a>. <tt>CopyInsertable</tt> should be 
-<tt>MoveInsertable</tt> and there is missing the <tt>DefaultConstructible</tt> requirements.</p>
+<p>During the edit of this issue some non-conflicting overlap with <a href="lwg-active.html#2033">2033</a> became obvious. 
+<tt>CopyInsertable</tt> should be <tt>MoveInsertable</tt> and there is missing the <tt>DefaultConstructible</tt> 
+requirements, but this should be fixed by <a href="lwg-active.html#2033">2033</a>.</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -1571,7 +1572,7 @@ If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> value-initialized eleme
 <hr>
 <h3><a name="2008"></a>2008. Conflicting Error Conditions for <tt>packaged_task::operator()</tt></h3>
 <p><b>Section:</b> 30.6.9.1 [futures.task.members] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-06-21 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2010-06-21 <b>Last modified:</b> 2011-03-25</p>
 <p><b>View other</b> <a href="lwg-index-open.html#futures.task.members">active issues</a> in [futures.task.members].</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task.members">issues</a> in [futures.task.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
@@ -1698,7 +1699,7 @@ exception</del><ins>stored task has already been invoked</ins>.
 <hr>
 <h3><a name="2032"></a>2032. Incorrect synchronization clause of <tt>async</tt> function</h3>
 <p><b>Section:</b> 30.6.8 [futures.async] <b>Status:</b> <a href="lwg-active.html#Immediate">Immediate</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2011-02-17 <b>Last modified:</b> 2011-03-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.async">issues</a> in [futures.async].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Immediate">Immediate</a> status.</p>
 <p><b>Discussion:</b></p>
