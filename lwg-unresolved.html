@@ -19,13 +19,12 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-03-25 at 09:03:43 UTC</p>
+<p>Revised 2011-04-18 at 21:04:32 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
 <p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
  <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View other</b> <a href="lwg-index-open.html#facet.num.get.virtuals">active issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -192,7 +191,6 @@ field represents a value outside the range of representable values,
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
  <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View other</b> <a href="lwg-index-open.html#unord.req">active issues</a> in [unord.req].</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -661,7 +659,6 @@ Consider to await the paper.
 <h3><a name="1214"></a>1214. Insufficient/inconsistent key immutability requirements for  associative containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2011-02-20</p>
-<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2156,7 +2153,7 @@ categories, rather than pseudocode in terms of bitwise operations.
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-Issue <a href="lwg-active.html#2017">2017</a> points out some incorrect usages of <tt>result_of</tt> in the
+Issue <a href="lwg-defects.html#2017">2017</a> points out some incorrect usages of <tt>result_of</tt> in the
 declaration of the function call operator overload of <tt>reference_wrapper</tt>,
 but there are more such specification defects:
 </p>
@@ -2180,7 +2177,7 @@ and its type <tt>Vi</tt> is <tt>result_of&lt;TiD cv (Uj...)&gt;::type</tt>
 <p>
 Again, <tt>tid</tt> is defined as &quot;lvalue of type <tt>TiD</tt> constructed from <tt>std::forward&lt;Ti&gt;(ti)</tt>&quot;. This means that
 the above usage must refer to <tt>result_of&lt;TiD cv <strong>&amp;</strong> (Uj...)&gt;</tt> instead. We also have similar defect as in
-<a href="lwg-active.html#2017">2017</a> in regard to the argument types, this leads us to the further corrected form 
+<a href="lwg-defects.html#2017">2017</a> in regard to the argument types, this leads us to the further corrected form 
 <tt>result_of&lt;TiD cv <strong>&amp;</strong> (Uj<strong>&amp;&amp;</strong>...)&gt;</tt>. This is not the end: Since the <tt>Vi</tt>
 are similar sensitive to the argument problem, the last part must say: 
 <p/>
@@ -2196,7 +2193,7 @@ template &lt;class F, class... Args&gt;
 future&lt;typename result_of&lt;F(Args...)&gt;::type&gt;
 async(F&amp;&amp; f, Args&amp;&amp;... args);
 </pre></blockquote><p>
-This usage has the some same problems as we have found in <tt>reference_wrapper</tt> (<a href="lwg-active.html#2017">2017</a>) and more: According to
+This usage has the some same problems as we have found in <tt>reference_wrapper</tt> (<a href="lwg-defects.html#2017">2017</a>) and more: According to
 the specification in 30.6.8 [futures.async] the effective result type is that of the call of
 </p><blockquote><pre>
 INVOKE(decay_copy(std::forward&lt;F&gt;(f)), decay_copy(std::forward&lt;Args&gt;(args))...)
@@ -2288,7 +2285,6 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 <h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
 <p><b>Section:</b> 23.3.6.3 [vector.capacity], 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2385,7 +2381,7 @@ only convertible to the value type (The exact form from the SGI documentation do
 
 
 <p>In addition to the before mentioned necessary changes there is another one need, which
-became obvious due to issue <a href="lwg-active.html#2042">2042</a>: <tt>forward_list&lt;&gt;::before_begin()</tt> returns
+became obvious due to issue <a href="lwg-defects.html#2042">2042</a>: <tt>forward_list&lt;&gt;::before_begin()</tt> returns
 an iterator value which is not dereferencable, but obviously the intention is that it should
 be incrementable. This leads to the conclusion that imposing dereferencable as a requirement
 for the expressions <tt>++r</tt> is wrong: We only need the iterator to be incrementable. A
@@ -2998,6 +2994,193 @@ types.</ins></td>
 
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="2043"></a>2043. <tt>std{in,out,err}</tt> should be usable as field names</h3>
+<p><b>Section:</b> 27.9.2 [c.files] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2011-03-23 <b>Last modified:</b> 2011-04-18</p>
+<p><b>View all other</b> <a href="lwg-index.html#c.files">issues</a> in [c.files].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+People often define structs and classes with fields named <tt>stdin</tt>,
+<tt>stdout</tt>, or <tt>stderr</tt>. According to 27.9.2 [c.files], 
+though, these are macros.
+<p/>
+glibc defines them to themselves, allowing their non-portable use as
+field names, while the Mac OS X libc defines them to either <tt>__stdoutp</tt>
+or <tt>(&amp;__sF[1])</tt>, etc depending on <tt>__DARWIN_UNIX03</tt>. It's possible to
+allow their use while, as far as I can see, only requiring minor
+changes to various libc's, so C++1x should allow it.
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>This wording is relative to the FDIS.</p>
+
+<ol>
+<li><p>In 27.9.2 [c.files] add "stderr", "stdin", and "stdout" to a new Values section in Table
+134 &mdash; Header <tt>&lt;cstdio&gt;</tt> synopsis:</p>
+
+<blockquote>
+<table border="1">
+<caption>134 &mdash; Header <tt>&lt;cstdio&gt;</tt> synopsis</caption>
+
+<tr>
+<th colspan="6" style="text-align:center;">Type Name(s)</th>
+</tr>
+
+<tr>
+<th colspan="6" style="text-align:left;">Macros:</th>
+</tr>
+
+<tr>
+<td><tt>BUFSIZ</tt></td>
+<td><tt>FOPEN_MAX</tt></td>
+<td><tt>SEEK_CUR</tt></td>
+<td><tt>TMP_MAX</tt></td>
+<td><tt>_IONBF</tt></td>
+<td><tt>stdout</tt></td>
+</tr>
+
+<tr>
+<td><tt>EOF</tt></td>
+<td><tt>L_tmpnam</tt></td>
+<td><tt>SEEK_END</tt></td>
+<td><tt>_IOFBF</tt></td>
+<td><tt>stderr</tt></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td><tt>FILENAME_MAX</tt></td>
+<td><tt>NULL &lt;cstdio&gt;</tt></td>
+<td><tt>SEEK_SET</tt></td>
+<td><tt>_IOLBF</tt></td>
+<td><tt>stdin</tt></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<th style="text-align:left;">Types:</th>
+<td><tt>FILE</tt></td>
+<td><tt>fpos_t</tt></td>
+<td><tt>size_t &lt;cstdio&gt;</tt></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<th colspan="6" style="text-align:left;">Functions:</th>
+</tr>
+
+<tr>
+<td colspan="6" style="text-align:center;">&hellip;</td>
+</tr>
+
+<tr>
+<th colspan="6" style="text-align:left;"><ins>Values:</ins></th>
+</tr>
+
+<tr>
+<td><ins><tt>stderr</tt></ins></td>
+<td><ins><tt>stdin</tt></ins></td>
+<td><ins><tt>stdout</tt></ins></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
+</blockquote>
+
+</li>
+
+<li><p>Add a new paragraph after paragraph 2 as indicated:</p>
+
+<blockquote><p>
+2 Calls to the function <tt>tmpnam</tt> with an argument of <tt>NULL</tt> may 
+introduce a data race (17.6.5.9) with other calls to <tt>tmpnam</tt> with an 
+argument of <tt>NULL</tt>.<br/>
+See also: ISO C 7.9, Amendment 1 4.6.2.
+<p/>
+<ins>? The macros <tt>stderr</tt>, <tt>stdin</tt>, and <tt>stdout</tt> shall 
+expand to <tt>stderr</tt>, <tt>stdin</tt>, and <tt>stdout</tt>, respectively. 
+[<i>Note:</i> This allows uses of <tt>#ifdef</tt> to detect their presence, 
+while allowing code in other scopes to use them as identifiers. &mdash; <i>end note</i>]</ins>
+</p></blockquote>
+</li>
+
+<li><p>In C.2 [diff.library] add "stderr", "stdin", and "stdout" to 
+Table 150 &mdash; Standard values:</p>
+
+<blockquote>
+<table border="1">
+<caption>Table 150 &mdash; Standard values</caption>
+
+<tr>
+<td><tt>CHAR_BIT</tt></td>
+<td><tt>FLT_DIG</tt></td>
+<td><tt>INT_MIN</tt></td>
+<td><tt>MB_LEN_MAX</tt></td>
+</tr>
+
+<tr>
+<td colspan="4" style="text-align:center;">&hellip;</td>
+</tr>
+
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td><tt>SHRT_MIN</tt></td>
+</tr>
+
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td><ins><tt>stderr</tt></ins></td>
+</tr>
+
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td><ins><tt>stdin</tt></ins></td>
+</tr>
+
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td><ins><tt>stdout</tt></ins></td>
+</tr>
+
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td><tt>UCHAR_MAX</tt></td>
+</tr>
+
+<tr>
+<td colspan="4" style="text-align:center;">&hellip;</td>
+</tr>
+
+</table>
+</blockquote>
+
+</li>
+
+</ol>
+
 
 
 
