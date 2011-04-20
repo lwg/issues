@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-04-20 at 18:04:20 UTC</p>
+<p>Revised 2011-04-20 at 19:04:54 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -3410,6 +3410,74 @@ referred to by <tt>rhs</tt> (if any).
 <li><tt>valid()</tt> returns the same value as <tt>rhs.valid()</tt> returned prior to the constructor invocation.</li>
 <li><tt>rhs.valid() == false</tt>.</li>
 </ul>
+</blockquote>
+</blockquote>
+
+</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="2047"></a>2047. Incorrect move-assignment semantics of <tt>unique_tr&lt;T, E&gt;</tt> with lvalue-reference deleter</h3>
+<p><b>Section:</b> 20.7.1.2.3 [unique.ptr.single.asgn] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-16 <b>Last modified:</b> 2011-04-20</p>
+<p><b>View all other</b> <a href="lwg-index.html#unique.ptr.single.asgn">issues</a> in [unique.ptr.single.asgn].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>The semantics described in 20.7.1.2.3 [unique.ptr.single.asgn] p. 6</p>
+<blockquote><p>
+<i>Effects</i>: Transfers ownership from <tt>u</tt> to <tt>*this</tt> as if [&hellip;] followed 
+by an assignment from <tt>std::forward&lt;D&gt;(u.get_deleter())</tt>.
+</p></blockquote>
+<p>
+contradicts to the pre-conditions described in p. 4:
+</p>
+<blockquote><p>
+<i>Requires</i>: [&hellip;] Otherwise, <tt>E</tt> is a reference type and assignment of the
+deleter from an lvalue of type <tt>E</tt> shall be well-formed [&hellip;].
+</p></blockquote>
+<p>
+Either the pre-conditions are incorrect or the semantics should be an assignment from
+<tt>std::forward&lt;<span style="color:red;font-weight:bolder">E</span>&gt;(u.get_deleter())</tt>, instead.
+</p>
+<p>It turns out that this contradiction is due to an incorrect transcription from the proposed
+resolution of <a href="lwg-defects.html#983">983</a> to the finally accepted proposal 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3073.html">n3073</a> (see
+bullet 12) as confirmed by Howard Hinnant, thus the type argument provided to <tt>std::forward</tt>
+must be fixed as indicated.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>This wording is relative to the FDIS.</p>
+
+<ol>
+<li><p>Edit 20.7.1.2.3 [unique.ptr.single.asgn] p. 6 as indicated:</p>
+
+<blockquote><pre>
+template &lt;class U, class E&gt; unique_ptr&amp; operator=(unique_ptr&lt;U, E&gt;&amp;&amp; u) noexcept;
+</pre><blockquote><p>
+4 - <i>Requires</i>: If <tt>E</tt> is not a reference type, assignment of the deleter from an rvalue 
+of type <tt>E</tt> shall be well-formed and shall not throw an exception. Otherwise, <tt>E</tt> is a 
+reference type and assignment of the deleter from an lvalue of type <tt>E</tt> shall be well-formed and 
+shall not throw an exception.
+<p/>
+5 - <i>Remarks</i>: This operator shall not participate in overload resolution unless:</p>
+<ul>
+<li><tt>unique_ptr&lt;U, E&gt;::pointer</tt> is implicitly convertible to <tt>pointer</tt> and</li>
+<li><tt>U</tt> is not an array type.</li>
+</ul>
+<p>
+6 - <i>Effects</i>: Transfers ownership from <tt>u</tt> to <tt>*this</tt> as if by calling 
+<tt>reset(u.release())</tt> followed by an assignment from <tt>std::forward&lt;<del>D</del><ins>E</ins>&gt;(u.get_deleter())</tt>.
+<p/>
+7 - <i>Returns</i>: <tt>*this</tt>.
+</p>
 </blockquote>
 </blockquote>
 
