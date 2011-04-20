@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-19</td>
+  <td align="left">2011-04-20</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-04-19 at 22:04:33 UTC</p>
+<p>Revised 2011-04-20 at 18:04:20 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: Madrid meeting preview<ul>
 <li><b>Summary:</b><ul>
-<li>28 open issues, down by 68.</li>
+<li>29 open issues, down by 67.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1568 issues total, up by 12.</li>
+<li>1569 issues total, up by 13.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 3 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>.</li>
+<li>Added the following 4 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -4912,6 +4912,101 @@ and <tt>x</tt> are both sorted according to this ordering. <ins><tt>get_allocato
 
 </li>
 
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="2046"></a>2046. <tt>shared_future(future&lt;R&gt;&amp;&amp;)</tt> should be allowed to throw</h3>
+<p><b>Section:</b> 30.6.7 [futures.shared_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Peter Sommerlad <b>Opened:</b> 2011-04-04 <b>Last modified:</b> 2011-04-20</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.shared_future">issues</a> in [futures.shared_future].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+
+<p>
+Requiring the constructor <tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> not to throw 
+is a pessimisation of the case where a future is returned from a call to 
+<tt>async(function,launch::deferred)</tt> and possible other cases.
+<p/>
+Such a future not dealing with multiple threads only needs to keep (a copy of) the function 
+to be called it later. However, creating a <tt>shared_future</tt> from that future will require more 
+infrastructure, like space for the value of type <tt>R</tt>, an <tt>exception_ptr</tt>, and a synchronized 
+reference counter for the <tt>shared_future</tt>'s instances.
+<p/>
+Enforcing the constructor <tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> not to throw, 
+implies that any implementation of <tt>future</tt> will need to pre-allocate space for <tt>shared_future</tt>'s 
+infrastructure, that also requires an operating system resource for synchronization, regardless 
+if is ever needed.
+<p/>
+All this came up when discussing D/N3267 and Concurrency Working Group decided that the constructor 
+<tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> should be allowed to throw. 
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+<p>This wording is relative to the FDIS.</p>
+
+<ol>
+<li><p>In 30.6.7 [futures.shared_future] p. 3, change class template <tt>shared_future</tt> synopsis 
+as indicated:</p>
+
+<blockquote><pre>
+namespace std {
+  template &lt;class R&gt;
+  class shared_future {
+  public:
+    shared_future() noexcept;
+    shared_future(const shared_future&amp; rhs);
+    shared_future(future&lt;R&gt;&amp;&amp;) <del>noexcept</del>;
+    shared_future(shared_future&amp;&amp; rhs) noexcept;
+    ~shared_future();
+
+    [&hellip;]
+
+  };
+}
+</pre></blockquote>
+
+</li>
+
+<li><p>Edit 30.6.7 [futures.shared_future] before p. 9, and insert two new paragraphs as indicated:</p>
+
+<blockquote><pre>
+shared_future(future&lt;R&gt;&amp;&amp;) <del>noexcept</del>;
+</pre><blockquote>
+<p><ins>? - <i>Effects</i>:</ins></p>
+<ul>
+<li><ins>constructs a <tt>shared_future</tt> object that refers to the shared state that was originally 
+referred to by <tt>rhs</tt> (if any).</ins></li>
+<li><ins>If the constructor exits with an exception, <tt>rhs</tt> shall remain unchanged.</ins></li>
+</ul>
+<p>
+<ins>? - <i>Postconditions</i>:</ins></p>
+<ul>
+<li><ins><tt>valid()</tt> returns the same value as <tt>rhs.valid()</tt> returned prior to the constructor invocation.</ins></li>
+<li><ins><tt>rhs.valid() == false</tt>.</ins></li>
+</ul>
+</blockquote>
+<pre>
+shared_future(shared_future&amp;&amp; rhs) noexcept;
+</pre><blockquote><p>
+9 - <i>Effects</i>: move constructs a <tt>shared_future</tt> object that refers to the shared state that was originally
+referred to by <tt>rhs</tt> (if any).
+<p/>
+10 - <i>Postconditions</i>:</p>
+<ul>
+<li><tt>valid()</tt> returns the same value as <tt>rhs.valid()</tt> returned prior to the constructor invocation.</li>
+<li><tt>rhs.valid() == false</tt>.</li>
+</ul>
+</blockquote>
+</blockquote>
+
+</li>
 </ol>
 
 
