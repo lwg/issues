@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-04-20 at 19:04:54 UTC</p>
+<p>Revised 2011-04-20 at 20:04:56 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -5015,7 +5015,7 @@ referred to by <tt>rhs</tt> (if any).
 
 
 <hr>
-<h3><a name="2047"></a>2047. Incorrect move-assignment semantics of <tt>unique_tr&lt;T, E&gt;</tt> with lvalue-reference deleter</h3>
+<h3><a name="2047"></a>2047. Incorrect "mixed" move-assignment semantics of <tt>unique_tr</tt></h3>
 <p><b>Section:</b> 20.7.1.2.3 [unique.ptr.single.asgn] <b>Status:</b> <a href="lwg-active.html#New">New</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-16 <b>Last modified:</b> 2011-04-20</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr.single.asgn">issues</a> in [unique.ptr.single.asgn].</p>
@@ -5030,8 +5030,9 @@ by an assignment from <tt>std::forward&lt;D&gt;(u.get_deleter())</tt>.
 contradicts to the pre-conditions described in p. 4:
 </p>
 <blockquote><p>
-<i>Requires</i>: [&hellip;] Otherwise, <tt>E</tt> is a reference type and assignment of the
-deleter from an lvalue of type <tt>E</tt> shall be well-formed [&hellip;].
+<i>Requires</i>: If E is not a reference type, assignment of the deleter from an rvalue of type <tt>E</tt> shall be
+well-formed and shall not throw an exception. Otherwise, <tt>E</tt> is a reference type and assignment of the
+deleter from an lvalue of type <tt>E</tt> shall be well-formed and shall not throw an exception.
 </p></blockquote>
 <p>
 Either the pre-conditions are incorrect or the semantics should be an assignment from
