@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-20</td>
+  <td align="left">2011-04-21</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-04-20 at 20:04:02 UTC</p>
+<p>Revised 2011-04-21 at 17:04:06 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -154,7 +154,7 @@ ownership of it.
 
 <h2>Revision History</h2>
 <ul>
-<li>D75: Madrid meeting preview<ul>
+<li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
 <li>31 open issues, down by 65.</li>
 <li>1540 closed issues, up by 80.</li>
@@ -4922,7 +4922,7 @@ and <tt>x</tt> are both sorted according to this ordering. <ins><tt>get_allocato
 <hr>
 <h3><a name="2046"></a>2046. <tt>shared_future(future&lt;R&gt;&amp;&amp;)</tt> should be allowed to throw</h3>
 <p><b>Section:</b> 30.6.7 [futures.shared_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Peter Sommerlad <b>Opened:</b> 2011-04-04 <b>Last modified:</b> 2011-04-20</p>
+ <b>Submitter:</b> Peter Sommerlad <b>Opened:</b> 2011-04-04 <b>Last modified:</b> 2011-04-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.shared_future">issues</a> in [futures.shared_future].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4949,65 +4949,7 @@ All this came up when discussing D/N3267 and Concurrency Working Group decided t
 
 <p><b>Proposed resolution:</b></p>
 
-<p>This wording is relative to the FDIS.</p>
-
-<ol>
-<li><p>In 30.6.7 [futures.shared_future] p. 3, change class template <tt>shared_future</tt> synopsis 
-as indicated:</p>
-
-<blockquote><pre>
-namespace std {
-  template &lt;class R&gt;
-  class shared_future {
-  public:
-    shared_future() noexcept;
-    shared_future(const shared_future&amp; rhs);
-    shared_future(future&lt;R&gt;&amp;&amp;) <del>noexcept</del>;
-    shared_future(shared_future&amp;&amp; rhs) noexcept;
-    ~shared_future();
-
-    [&hellip;]
-
-  };
-}
-</pre></blockquote>
-
-</li>
-
-<li><p>Edit 30.6.7 [futures.shared_future] before p. 9, and insert two new paragraphs as indicated:</p>
-
-<blockquote><pre>
-shared_future(future&lt;R&gt;&amp;&amp;) <del>noexcept</del>;
-</pre><blockquote>
-<p><ins>? - <i>Effects</i>:</ins></p>
-<ul>
-<li><ins>constructs a <tt>shared_future</tt> object that refers to the shared state that was originally 
-referred to by <tt>rhs</tt> (if any).</ins></li>
-<li><ins>If the constructor exits with an exception, <tt>rhs</tt> shall remain unchanged.</ins></li>
-</ul>
-<p>
-<ins>? - <i>Postconditions</i>:</ins></p>
-<ul>
-<li><ins><tt>valid()</tt> returns the same value as <tt>rhs.valid()</tt> returned prior to the constructor invocation.</ins></li>
-<li><ins><tt>rhs.valid() == false</tt>.</ins></li>
-</ul>
-</blockquote>
-<pre>
-shared_future(shared_future&amp;&amp; rhs) noexcept;
-</pre><blockquote><p>
-9 - <i>Effects</i>: move constructs a <tt>shared_future</tt> object that refers to the shared state that was originally
-referred to by <tt>rhs</tt> (if any).
-<p/>
-10 - <i>Postconditions</i>:</p>
-<ul>
-<li><tt>valid()</tt> returns the same value as <tt>rhs.valid()</tt> returned prior to the constructor invocation.</li>
-<li><tt>rhs.valid() == false</tt>.</li>
-</ul>
-</blockquote>
-</blockquote>
-
-</li>
-</ol>
+<p>Apply the proposed resolution of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3269.htm">n3269</a></p>
 
 
 
