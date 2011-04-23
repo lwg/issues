@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-21</td>
+  <td align="left">2011-04-23</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-04-21 at 17:04:06 UTC</p>
+<p>Revised 2011-04-23 at 14:04:30 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>31 open issues, down by 65.</li>
+<li>32 open issues, down by 64.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1571 issues total, up by 15.</li>
+<li>1572 issues total, up by 16.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 6 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>.</li>
+<li>Added the following 7 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -2516,7 +2516,7 @@ item type or members.</ins>
 <hr>
 <h3><a name="1526"></a>1526. [FCD] C++ should not impose thread safety requirements on C99 library implementations</h3>
 <p><b>Section:</b> 17.6.5.9 [res.on.data.races] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-04-23</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-111</b></p>
@@ -2544,7 +2544,7 @@ global C locale and thus cannot be made thread safe.
 
 
 
-<p><b>Rationale:</b></p>No consensus to make a change at this time
+<p><b>Rationale:</b></p><p>No consensus to make a change at this time</p>
 
 <p><b>Proposed resolution:</b></p>
 
@@ -4922,7 +4922,7 @@ and <tt>x</tt> are both sorted according to this ordering. <ins><tt>get_allocato
 <hr>
 <h3><a name="2046"></a>2046. <tt>shared_future(future&lt;R&gt;&amp;&amp;)</tt> should be allowed to throw</h3>
 <p><b>Section:</b> 30.6.7 [futures.shared_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Peter Sommerlad <b>Opened:</b> 2011-04-04 <b>Last modified:</b> 2011-04-21</p>
+ <b>Submitter:</b> Peter Sommerlad <b>Opened:</b> 2011-04-04 <b>Last modified:</b> 2011-04-23</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.shared_future">issues</a> in [futures.shared_future].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -4942,7 +4942,7 @@ implies that any implementation of <tt>future</tt> will need to pre-allocate spa
 infrastructure, that also requires an operating system resource for synchronization, regardless 
 if is ever needed.
 <p/>
-All this came up when discussing D/N3267 and Concurrency Working Group decided that the constructor 
+All this came up when discussing D&#47;N3267 and Concurrency Working Group decided that the constructor 
 <tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> should be allowed to throw. 
 </p>
 
@@ -5028,7 +5028,7 @@ shall not throw an exception.
 <hr>
 <h3><a name="2048"></a>2048. Unnecessary <tt>mem_fn</tt> overloads</h3>
 <p><b>Section:</b> 20.8 [function.objects], 20.8.10 [func.memfn] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-04-20</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-04-23</p>
 <p><b>View all other</b> <a href="lwg-index.html#function.objects">issues</a> in [function.objects].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5072,7 +5072,7 @@ cv-qualified and ref-qualified functions to support the case where <tt>R T::*</t
 matches a pointer to member function type.)
 <p/>
 LWG issue <a href="lwg-defects.html#920">920</a> pointed out that additional overloads were missing for
-member functions with ref-qualifiers.  These were not strictly
+member functions with ref-qualifiers. These were not strictly
 necessary, because such functions are covered by the <tt>mem_fn(R T::* pm)</tt> signature.
 <p/>
 Concepts were removed from the draft and N3000 restored the original
@@ -5080,7 +5080,7 @@ single signature and accompanying remark.
 <p/>
 LWG <a href="lwg-closed.html#1230">1230</a> was opened to strike the remark again and to add an overload
 for member functions (this overload was unnecessary for syntactic reasons and 
-insufficient as it didn't handle member functions with cv-qualifiers and/or 
+insufficient as it didn't handle member functions with cv-qualifiers and&#47;or 
 ref-qualifiers.)
 <p/>
 <a href="lwg-defects.html#920">920</a> (and <a href="lwg-closed.html#1230">1230</a>) were resolved by restoring a full set of
@@ -5113,7 +5113,7 @@ namespace std {
   [&hellip;]
   // <i>[func.memfn], member function adaptors:</i>
   template&lt;class R, class T&gt; <i>unspecified</i> mem_fn(R T::*);
-  <del>template&lt;class R, class T, class... Args&gt;
+<del>  template&lt;class R, class T, class... Args&gt;
   <i>unspecified</i> mem_fn(R (T::*)(Args...));
   template&lt;class R, class T, class... Args&gt;
   <i>unspecified</i> mem_fn(R (T::*)(Args...) const);
@@ -5176,6 +5176,85 @@ template&lt;class R, class T, class... Args&gt;
 
 </ol>
 
+
+
+
+
+
+<hr>
+<h3><a name="2049"></a>2049. <tt>is_destructible</tt> is underspecified</h3>
+<p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-04-23</p>
+<p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>The conditions for the type trait <tt>is_destructible</tt> to be true
+are described in Table 49 &mdash; Type property predicates:</p>
+<blockquote><p>
+For a complete type <tt>T</tt> and given<br/>
+<tt>template &lt;class U&gt;
+struct test { U u; };</tt>,<br/>
+<tt>test&lt;T&gt;::~test()</tt> is not deleted.
+</p></blockquote>
+
+<p>This specification does not say what the result would be for function
+types or for abstract types:</p>
+<ol>
+<li>For an abstract type <tt>X</tt> the instantiation <tt>test&lt;X&gt;</tt>
+is already ill-formed, so we cannot say anything about whether the destructor
+would be deleted or not.</li>
+<li>In regard to function types, there exists a special rule in the core language, 14.3.1 [temp.arg.type] p. 3,
+which excludes member functions to be declared via the type of the template parameter:
+<blockquote><p>
+If a declaration acquires a function type through a type dependent on a <i>template-parameter</i>
+and this causes a declaration that does not use the syntactic form of a function declarator 
+to have function type, the program is ill-formed. 
+<p/>
+[ <i>Example</i>:</p>
+<blockquote><pre>
+template&lt;class T&gt; struct A {
+  static T t;
+};
+typedef int function();
+A&lt;function&gt; a; // ill-formed: would declare A&lt;function&gt;::t
+               // as a static member function
+</pre></blockquote>
+<p>
+&mdash; <i>end example</i> ]
+</p></blockquote>
+which has the same consequence as for abstract types, namely that the corresponding
+instantiation of <tt>test</tt> is already ill-formed and we cannot say anything
+about the destructor.
+</li>
+</ol>
+<p>To solve this problem, I suggest to specify function types as trivially and nothrowing
+destructible, because above mentioned rule is very special for templates. For non-templates,
+a typedef can be used to introduce a member as member function as clarified in 8.3.5 [dcl.fct]
+p. 10.</p>
+<p>For abstract types, two different suggestions have been brought to my attention:
+Either declare them as unconditionally non-destructible or check whether the expression
+</p>
+<blockquote><pre>
+std::declval&lt;T&amp;&gt;().~T()
+</pre></blockquote>
+<p>is well-formed in an unevaluated context. The first solution is very easy to specify,
+but the second version has the advantage for providing more information to user-code. This 
+information could be quite useful, if generic code is supposed to invoke the destructor
+of a reference to a base class indirectly via a delete expression, as suggested by
+Howard Hinnant:</p>
+<blockquote><pre>
+template &lt;class T&gt;
+my_pointer&lt;T&gt;::~my_pointer() noexcept(noexcept(is_nothrow_destructible&lt;T&gt;::value))
+{
+   delete ptr_;
+}
+</pre></blockquote>
+<p>Additional to the <tt>is_destructible</tt> traits, its derived forms <tt>is_trivially_destructible</tt>
+and <tt>is_nothrow_destructible</tt> are similarly affected, because their wording refers to "the indicated
+destructor" and probably need to be adapted as well.</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
