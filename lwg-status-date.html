@@ -26,7 +26,7 @@
 This document is the Index by Status and Date for the <a href="lwg-active.html">Library Active Issues List</a>,
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.
 </p>
-<p>Revised 2011-04-23 at 19:04:44 UTC</p>
+<p>Revised 2011-04-24 at 20:04:18 UTC</p>
 <h2><a name="Ready"</a>Ready (3 issues)</h2>
 <table border="1" cellpadding="4">
 <tr>
@@ -201,6 +201,24 @@ This document is the Index by Status and Date for the <a href="lwg-active.html">
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#2035">2035</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="2035"></a></td>
+<td align="left">24.2.4 [output.iterators]<a name="output.iterators"</a></td>
+<td align="left">Output iterator requirements are broken</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-active.html#2038">2038</a></td>
+<td align="left"><a href="lwg-active.html#Open">Open</a><a name="2038"></a></td>
+<td align="left">24.2.4 [output.iterators]</td>
+<td align="left">Missing definition for <tt>incrementable</tt> iterator</td>
+<td align="center"><font color="red">No</font></td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#2040">2040</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="2040"></a></td>
 <td align="left">20.9 [meta]<a name="meta"</a></td>
@@ -246,24 +264,6 @@ This document is the Index by Status and Date for the <a href="lwg-active.html">
 <td align="center">2011-03-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-active.html#2035">2035</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="2035"></a></td>
-<td align="left">24.2.4 [output.iterators]<a name="output.iterators"</a></td>
-<td align="left">Output iterator requirements are broken</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-03-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#2038">2038</a></td>
-<td align="left"><a href="lwg-active.html#Open">Open</a><a name="2038"></a></td>
-<td align="left">24.2.4 [output.iterators]</td>
-<td align="left">Missing definition for <tt>incrementable</tt> iterator</td>
-<td align="center"><font color="red">No</font></td>
-<td align="left"></td>
-<td align="center">2011-03-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-active.html#2018">2018</a></td>
 <td align="left"><a href="lwg-active.html#Open">Open</a><a name="2018"></a></td>
 <td align="left">28.7 [re.traits]<a name="re.traits"</a></td>
@@ -303,6 +303,15 @@ This document is the Index by Status and Date for the <a href="lwg-active.html">
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-active.html#1175">1175</a></td>
+<td align="left"><a href="lwg-active.html#Deferred">Deferred</a><a name="1175"></a></td>
+<td align="left">23.2.5 [unord.req]<a name="unord.req"</a></td>
+<td align="left"><tt>unordered</tt> complexity</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-active.html#1526">1526</a></td>
 <td align="left"><a href="lwg-active.html#Deferred">Deferred</a><a name="1526"></a></td>
 <td align="left">17.6.5.9 [res.on.data.races]<a name="res.on.data.races"</a></td>
@@ -325,15 +334,6 @@ This document is the Index by Status and Date for the <a href="lwg-active.html">
 <td align="left"><a href="lwg-active.html#Deferred">Deferred</a><a name="1521"></a></td>
 <td align="left">23.2.1 [container.requirements.general]<a name="container.requirements.general"</a></td>
 <td align="left">Requirements on internal pointer representations in containers</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-03-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-active.html#1175">1175</a></td>
-<td align="left"><a href="lwg-active.html#Deferred">Deferred</a><a name="1175"></a></td>
-<td align="left">23.2.5 [unord.req]<a name="unord.req"</a></td>
-<td align="left"><tt>unordered</tt> complexity</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-03-24</td>
@@ -805,6 +805,78 @@ the C++0x and C1x threads APIs</td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-defects.html#1195">1195</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1195"></a></td>
+<td align="left">17 [library]<a name="library"</a></td>
+<td align="left">"Diagnostic required" wording is insufficient to  prevent UB</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1255">1255</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1255"></a></td>
+<td align="left">20.2 [utility]<a name="utility"</a></td>
+<td align="left"><tt>declval</tt> should be added to the library</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#907">907</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="907"></a></td>
+<td align="left">20.5.2 [bitset.members]<a name="bitset.members"</a></td>
+<td align="left">Bitset's immutable element retrieval is inconsistently defined</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1171">1171</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1171"></a></td>
+<td align="left">20.11.5 [time.duration]<a name="time.duration"</a></td>
+<td align="left">duration types should be literal</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#671">671</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="671"></a></td>
+<td align="left">22.4.2.2.2 [facet.num.put.virtuals]<a name="facet.num.put.virtuals"</a></td>
+<td align="left">precision of <tt>hexfloat</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#870">870</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="870"></a></td>
+<td align="left">23.2.5 [unord.req]<a name="unord.req"</a></td>
+<td align="left">Do unordered containers not support function pointers for predicate&#47;hasher?</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1340">1340</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1340"></a></td>
+<td align="left">23.3.4.5 [forwardlist.modifiers]<a name="forwardlist.modifiers"</a></td>
+<td align="left">Why does <tt>forward_list::resize</tt> take the object to be copied by value?</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1279">1279</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1279"></a></td>
+<td align="left">D.10.1 [depr.base]<a name="depr.base"</a></td>
+<td align="left">forbid <tt>[u|bi]nary_function</tt> specialization</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1349">1349</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1349"></a></td>
 <td align="left">17 [library]<a name="library"</a></td>
@@ -1165,15 +1237,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2011-04-18</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1279">1279</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1279"></a></td>
-<td align="left">D.10.1 [depr.base]<a name="depr.base"</a></td>
-<td align="left">forbid <tt>[u|bi]nary_function</tt> specialization</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-18</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1309">1309</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1309"></a></td>
 <td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
@@ -1205,15 +1268,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1113"></a></td>
 <td align="left">20.5 [template.bitset]</td>
 <td align="left"><tt>bitset::to_string</tt> could be simplified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-03-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#907">907</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="907"></a></td>
-<td align="left">20.5.2 [bitset.members]<a name="bitset.members"</a></td>
-<td align="left">Bitset's immutable element retrieval is inconsistently defined</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-03-05</td>
@@ -1271,15 +1325,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-03-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1171">1171</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1171"></a></td>
-<td align="left">20.11.5 [time.duration]<a name="time.duration"</a></td>
-<td align="left">duration types should be literal</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1362">1362</a></td>
@@ -1376,15 +1421,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1234"></a></td>
 <td align="left">23.2.3 [sequence.reqmts]<a name="sequence.reqmts"</a></td>
 <td align="left">"Do the right thing" and NULL</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1340">1340</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1340"></a></td>
-<td align="left">23.3.4.5 [forwardlist.modifiers]<a name="forwardlist.modifiers"</a></td>
-<td align="left">Why does <tt>forward_list::resize</tt> take the object to be copied by value?</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-24</td>
@@ -2155,15 +2191,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-29</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#671">671</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="671"></a></td>
-<td align="left">22.4.2.2.2 [facet.num.put.virtuals]<a name="facet.num.put.virtuals"</a></td>
-<td align="left">precision of hexfloat</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-29</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#836">836</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="836"></a></td>
 <td align="left">22.4.6.1.2 [locale.money.get.virtuals]<a name="locale.money.get.virtuals"</a></td>
@@ -2216,15 +2243,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="869"></a></td>
 <td align="left">23.2.5 [unord.req]<a name="unord.req"</a></td>
 <td align="left">Bucket (local) iterators and iterating past end</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-29</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#870">870</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="870"></a></td>
-<td align="left">23.2.5 [unord.req]</td>
-<td align="left">Do unordered containers not support function pointers for predicate/hasher?</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-29</td>
@@ -2728,15 +2746,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-25</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1195">1195</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1195"></a></td>
-<td align="left">17 [library]<a name="library"</a></td>
-<td align="left">"Diagnostic required" wording is insufficient to  prevent UB</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1065">1065</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1065"></a></td>
 <td align="left">17.6.1.1 [contents]<a name="contents"</a></td>
@@ -2876,15 +2885,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1103"></a></td>
 <td align="left">19.5.6.2 [syserr.syserr.members]<a name="syserr.syserr.members"</a></td>
 <td align="left"><tt>system_error</tt> constructor postcondition overly strict</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1255">1255</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1255"></a></td>
-<td align="left">20.2 [utility]<a name="utility"</a></td>
-<td align="left"><tt>declval</tt> should be added to the library</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-24</td>
@@ -3719,6 +3719,15 @@ the C++0x and C1x threads APIs</td>
   <td align="center"><b>Proposed Resolution</b></td>
   <td align="center"><b>Duplicates</b></td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#629">629</a></td>
+<td align="left"><a href="lwg-active.html#CD1">CD1</a><a name="629"></a></td>
+<td align="left">26.4.6 [complex.ops]<a name="complex.ops"</a></td>
+<td align="left"><tt>complex&lt;T&gt;</tt> insertion and locale dependence</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#804">804</a></td>
@@ -5953,15 +5962,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-29</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#629">629</a></td>
-<td align="left"><a href="lwg-active.html#CD1">CD1</a><a name="629"></a></td>
-<td align="left">26.4.6 [complex.ops]<a name="complex.ops"</a></td>
-<td align="left">complex<T> insertion and locale dependence</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-29</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#595">595</a></td>
 <td align="left"><a href="lwg-active.html#CD1">CD1</a><a name="595"></a></td>
 <td align="left">26.4.7 [complex.value.ops]<a name="complex.value.ops"</a></td>
@@ -8137,6 +8137,51 @@ the C++0x and C1x threads APIs</td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-defects.html#1322">1322</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1322"></a></td>
+<td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
+<td align="left">Explicit <tt>CopyConstructible</tt> requirements are insufficient</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1116">1116</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1116"></a></td>
+<td align="left">20.4.2 [tuple.tuple]<a name="tuple.tuple"</a></td>
+<td align="left">Literal constructors for tuple</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#827">827</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="827"></a></td>
+<td align="left">20.7.2.2.1 [util.smartptr.shared.const]<a name="util.smartptr.shared.const"</a></td>
+<td align="left"><tt>constexpr shared_ptr::shared_ptr()?</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1174">1174</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1174"></a></td>
+<td align="left">20.9.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
+<td align="left">type property predicates</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1055">1055</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1055"></a></td>
+<td align="left">20.9.7.6 [meta.trans.other]<a name="meta.trans.other"</a></td>
+<td align="left">Response to UK 98</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1345">1345</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1345"></a></td>
 <td align="left">17 [library]<a name="library"</a></td>
@@ -9140,15 +9185,6 @@ synchronization requirements</td>
 <td align="center">2010-11-25</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1322">1322</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1322"></a></td>
-<td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
-<td align="left">Explicit <tt>CopyConstructible</tt> requirements are insufficient</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1377">1377</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1377"></a></td>
 <td align="left">20.2 [utility]<a name="utility"</a></td>
@@ -9565,15 +9601,6 @@ of moved-from state</td>
 <td align="center">2010-11-20</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1116">1116</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1116"></a></td>
-<td align="left">20.4.2 [tuple.tuple]<a name="tuple.tuple"</a></td>
-<td align="left">Literal constructors for tuple</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1117">1117</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1117"></a></td>
 <td align="left">20.4.2.1 [tuple.cnstr]<a name="tuple.cnstr"</a></td>
@@ -9637,18 +9664,9 @@ of moved-from state</td>
 <td align="center">2010-11-20</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#827">827</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="827"></a></td>
-<td align="left">20.7.2.2.1 [util.smartptr.shared.const]<a name="util.smartptr.shared.const"</a></td>
-<td align="left"><tt>constexpr shared_ptr::shared_ptr()?</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1407">1407</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1407"></a></td>
-<td align="left">20.7.2.2.1 [util.smartptr.shared.const]</td>
+<td align="left">20.7.2.2.1 [util.smartptr.shared.const]<a name="util.smartptr.shared.const"</a></td>
 <td align="left">[FCD] Synch <tt>shared_ptr</tt> constructors taking movable types</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -9700,18 +9718,9 @@ of moved-from state</td>
 <td align="center">2010-11-20</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1174">1174</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1174"></a></td>
-<td align="left">20.9.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
-<td align="left">type property predicates</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1260">1260</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1260"></a></td>
-<td align="left">20.9.4.3 [meta.unary.prop]</td>
+<td align="left">20.9.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
 <td align="left"><tt>is_constructible&lt;int*,void*&gt;</tt> reports true</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -9722,15 +9731,6 @@ of moved-from state</td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1394"></a></td>
 <td align="left">20.9.4.3 [meta.unary.prop]</td>
 <td align="left">[FCD] Ballot Comment DE-19</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1055">1055</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1055"></a></td>
-<td align="left">20.9.7.6 [meta.trans.other]<a name="meta.trans.other"</a></td>
-<td align="left">Response to UK 98</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-20</td>
@@ -10875,6 +10875,15 @@ mutex requirements are inconsistent</td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-closed.html#822">822</a></td>
+<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="822"></a></td>
+<td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
+<td align="left">Object with explicit copy constructor no longer <tt>CopyConstructible</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-04-24</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-closed.html#1358">1358</a></td>
 <td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="1358"></a></td>
 <td align="left">17.6.1.3 [compliance]<a name="compliance"</a></td>
@@ -11151,15 +11160,6 @@ explicit to avoid treatment as initializer-list constructor</td>
 <td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="657"></a></td>
 <td align="left">17.6.2.2 [using.headers]<a name="using.headers"</a></td>
 <td align="left">unclear requirement about header inclusion</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-03-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-closed.html#822">822</a></td>
-<td align="left"><a href="lwg-active.html#NAD">NAD</a><a name="822"></a></td>
-<td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
-<td align="left">Object with explicit copy constructor no longer <tt>CopyConstructible</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-03-05</td>

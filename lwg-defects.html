@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-23</td>
+  <td align="left">2011-04-24</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-04-23 at 19:04:44 UTC</p>
+<p>Revised 2011-04-24 at 20:04:18 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -52,7 +52,7 @@
   <p>This document contains only library issues which have been closed
   by the Library Working Group (LWG) after being found to be defects
   in the standard.  That is, issues which have a status of <a href="lwg-active.html#DR">DR</a>,
-  <a href="lwg-active.html#TC">TC</a>, or <a href="lwg-active.html#RR">RR</a>. See the
+  <a href="lwg-active.html#TC1">TC1</a>, or <a href="lwg-active.html#Resolved">Resolved</a>. See the
   <a href="lwg-closed.html">Library Closed Issues List</a> for issues closed as non-defects.  See the
   <a href="lwg-active.html">Library Active Issues List</a> for active issues and more information.  The
   introductory material in that document also applies to this
@@ -30636,9 +30636,9 @@ template &lt;class <del>ForwardIterator</del> <ins>InputIterator</ins>&gt;
 
 
 <hr>
-<h3><a name="629"></a>629. complex<T> insertion and locale dependence</h3>
+<h3><a name="629"></a>629. <tt>complex&lt;T&gt;</tt> insertion and locale dependence</h3>
 <p><b>Section:</b> 26.4.6 [complex.ops] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2007-01-28 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2007-01-28 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#complex.ops">issues</a> in [complex.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -30655,7 +30655,7 @@ Further notes/ideas from the lib-reflector, messages 17982-17984:
 
 <blockquote>
 <p>
-Add additional entries in num_punct to cover the complex separator (French would be ';').
+Add additional entries in <tt>num_punct</tt> to cover the complex separator (French would be ';').
 </p>
 <p>
 Insert a space before the comma, which should eliminate the ambiguity.
@@ -32270,9 +32270,9 @@ four characters long, usually three letters and a space.
 
 
 <hr>
-<h3><a name="671"></a>671. precision of hexfloat</h3>
+<h3><a name="671"></a>671. precision of <tt>hexfloat</tt></h3>
 <p><b>Section:</b> 22.4.2.2.2 [facet.num.put.virtuals] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> John Salmon <b>Opened:</b> 2007-04-20 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> John Salmon <b>Opened:</b> 2007-04-20 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.put.virtuals">issues</a> in [facet.num.put.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -32283,18 +32283,18 @@ I am trying to understand how TR1 supports hex float (%a) output.
 As far as I can tell, it does so via the following:
 </p>
 <p>
-8.15 Additions to header &lt;locale&gt; [tr.c99.locale]
+8.15 Additions to header <tt>&lt;locale&gt;</tt> [tr.c99.locale]
 </p>
 <p>
 In subclause 22.4.2.2.2 [facet.num.put.virtuals], Table 58 Floating-point conversions, after
-the line:
-floatfield == ios_base::scientific %E
+the line:<br/>
+<tt>floatfield == ios_base::scientific %E</tt>
 </p>
 <p>
 add the two lines:
 </p>
 <blockquote><pre>
-floatfield == ios_base::fixed | ios_base::scientific && !uppercase %a
+floatfield == ios_base::fixed | ios_base::scientific &amp;&amp; !uppercase %a
 floatfield == ios_base::fixed | ios_base::scientific %A 2
 </pre></blockquote>
 <p>
@@ -32308,14 +32308,14 @@ conversion specifier.  end note]
 Following the thread, in 22.4.2.2.2 [facet.num.put.virtuals], we find:
 </p>
 <p>
-For conversion from a floating-point type, if (flags & fixed) != 0 or
-if str.precision() > 0, then str.precision() is specified in the
+For conversion from a floating-point type, if <tt>(flags &amp; fixed) != 0</tt> or
+if <tt>str.precision() &gt; 0</tt>, then <tt>str.precision()</tt> is specified in the
 conversion specification.
 </p>
 <p>
-This would seem to imply that when floatfield == fixed|scientific, the
+This would seem to imply that when <tt>floatfield == fixed|scientific</tt>, the
 precision of the conversion specifier is to be taken from
-str.precision().  Is this really what's intended?  I sincerely hope
+<tt>str.precision()</tt>.  Is this really what's intended?  I sincerely hope
 that I'm either missing something or this is an oversight.  Please
 tell me that the committee did not intend to mandate that hex floats
 (and doubles) should by default be printed as if by %.6a.
@@ -47924,7 +47924,7 @@ We therefore agree with Daniel's observation. Move to <del>NAD Editorial</del><i
 <hr>
 <h3><a name="827"></a>827. <tt>constexpr shared_ptr::shared_ptr()?</tt></h3>
 <p><b>Section:</b> 20.7.2.2.1 [util.smartptr.shared.const] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-04-11 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-04-11 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#util.smartptr.shared.const">issues</a> in [util.smartptr.shared.const].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -48009,7 +48009,7 @@ Recommend we declare the default constructor <tt>constexpr</tt> as the issue sug
 
 <blockquote>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Solved by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.html">N2994</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.htm">N2994</a>.
 </blockquote>
 
 
@@ -52721,34 +52721,31 @@ If the bucket is empty, then <tt>b.begin(n) == b.end(n)</tt>.</ins></td>
 
 
 <hr>
-<h3><a name="870"></a>870. Do unordered containers not support function pointers for predicate/hasher?</h3>
+<h3><a name="870"></a>870. Do unordered containers not support function pointers for predicate&#47;hasher?</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-17 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-17 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 Good ol' associative containers allow both function pointers and
-function objects as feasible
-comparators, as described in 23.2.4 [associative.reqmts]/2:
+function objects as feasible comparators, as described in 
+23.2.4 [associative.reqmts]&#47;2:
 </p>
 
 <blockquote>
 Each associative container is parameterized on <tt>Key</tt> and an ordering
-relation <tt>Compare</tt> that
-induces a strict weak ordering (25.3) on elements of Key. [..]. The
-object of type <tt>Compare</tt> is
-called the comparison object of a container. This comparison object
-may be a pointer to
+relation <tt>Compare</tt> that induces a strict weak ordering (25.3) on 
+elements of Key. [..]. The object of type <tt>Compare</tt> is called the 
+comparison object of a container. This comparison object may be a pointer to
 function or an object of a type with an appropriate function call operator.[..]
 </blockquote>
 
 <p>
 The corresponding wording for unordered containers is not so clear,
-but I read it to disallow
-function pointers for the hasher and I miss a clear statement for the
-equality predicate, see
-23.2.5 [unord.req]/3+4+5:
+but I read it to disallow function pointers for the hasher and I miss 
+a clear statement for the equality predicate, see
+23.2.5 [unord.req]&#47;3+4+5:
 </p>
 
 <blockquote>
@@ -52761,19 +52758,18 @@ equivalence relation on values of type <tt>Key</tt>.[..]
 </p>
 <p>
 A hash function is a function object that takes a single argument of
-type <tt>Key</tt> and returns a
-value of type <tt>std::size_t</tt>.
+type <tt>Key</tt> and returns a value of type <tt>std::size_t</tt>.
 </p>
 <p>
-Two values <tt>k1</tt> and <tt>k2</tt> of type <tt>Key</tt> are considered equal if the
-container's equality function object
-returns <tt>true</tt> when passed those values.[..]
+Two values <tt>k1</tt> and <tt>k2</tt> of type <tt>Key</tt> are considered 
+equal if the container's equality function object returns <tt>true</tt> 
+when passed those values.[..]
 </p>
 </blockquote>
 
 <p>
 and table 97 says in the column "assertion...post-condition" for the
-expression X::hasher:
+expression <tt>X::hasher</tt>:
 </p>
 
 <blockquote>
@@ -52782,7 +52778,7 @@ expression X::hasher:
 </blockquote>
 
 <p>
-Note that 20.8 [function.objects]/1 defines as "Function objects are
+Note that 20.8 [function.objects]&#47;1 defines as "Function objects are
 objects with an <tt>operator()</tt> defined.[..]"
 </p>
 <p>
@@ -52803,7 +52799,8 @@ the following
 
 <blockquote>
 Ask Daniel to provide proposed wording that: makes it explicit that
-function pointers are function objects at the beginning of 20.8 [function.objects]; fixes the "requirements" for typedefs in
+function pointers are function objects at the beginning of 
+20.8 [function.objects]; fixes the "requirements" for typedefs in
 20.8.3 [refwrap] to instead state that the function objects
 defined in that clause have these typedefs, but not that these typedefs
 are requirements on function objects; remove the wording that explicitly
@@ -52827,7 +52824,7 @@ pointers.
 
 <p>
 The below provided wording also affects some part of the library which is
-involved with <em>callable types</em> (20.8.1 [func.def]/3). Reason for
+involved with <em>callable types</em> (20.8.1 [func.def]&#47;3). Reason for
 this is that <em>callable objects</em> do have a lot in common with <em>function
 objects</em>. A simple formula seems to be:
 </p>
@@ -52849,7 +52846,7 @@ between the above subset of callable objects and function objects which seem to
 be unintended: Backed by the Santa Cruz outcome function objects should include
 both function pointers and "object[s] with an operator() defined". This clearly
 excludes class types with a conversion function to a function pointer or all
-similar conversion function situations described in 13.3 [over.match]/2
+similar conversion function situations described in 13.3 [over.match]&#47;2
 b. 2. In contrast to this, the wording for callable types seems to be less
 constrained (20.8.1 [func.def]/3):
 </p>
@@ -52860,8 +52857,7 @@ left of a function call operator.
 </blockquote>
 
 <p>
-The rationale given in <a
-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1673.html#fn2">N1673</a>
+The rationale given in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1673.html#fn2">N1673</a>
 and a recent private communication with Peter Dimov revealed that the intention
 of this wording was to cover the above mentioned class types with conversion
 functions as well. To me the current wording of callable types can be read
@@ -52889,15 +52885,16 @@ conversion function to e.g. pointer to function from being used in algorithms.
 <p>
 Now this last term "function objects" itself brings us to a third unsatisfactory
 state: The term is used both for objects (e.g. "Function objects are
-objects[..]" in 20.8 [function.objects]/1) and for types (e.g. "Each
+objects[..]" in 20.8 [function.objects]&#47;1) and for types (e.g. "Each
 unordered associative container is parameterized [..] by a function object Hash
-that acts as a hash function [..]" in 23.2.5 [unord.req]/3). This
+that acts as a hash function [..]" in 23.2.5 [unord.req]&#47;3). This
 impreciseness should be fixed and I suggest to introduce the term <em>function
 object type</em> as the counter part to <em>callable type</em>. This word seems
 to be a quite natural choice, because the library already uses it here and there
 (e.g. "Hash shall be a unary function object type such that the expression
 <tt>hf(k)</tt> has type <tt>std::size_t</tt>." in Table 98, "<tt>X::hasher</tt>"
-or "Requires: <tt>T</tt> shall be a function object type [..]" in 20.8.11.2.5 [func.wrap.func.targ]/3).
+or "Requires: <tt>T</tt> shall be a function object type [..]" in 
+20.8.11.2.5 [func.wrap.func.targ]&#47;3).
 </p>
 
 <p>
@@ -52918,7 +52915,7 @@ San Francisco:
 
 <blockquote>
 This is fixed by
-<a href ref="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2776.pdf">N2776</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2776.pdf">N2776</a>.
 </blockquote>
 
 </blockquote>
@@ -52931,17 +52928,19 @@ This is fixed by
 
 <li>
 <p>
-Change 20.8 [function.objects]/1 as indicated:
+Change 20.8 [function.objects]&#47;1 as indicated:
 </p>
 
 <blockquote>
 <p>
 1 <del>Function objects are objects with an <tt>operator()</tt>
 defined.</del> <ins>An object type (3.9 [basic.types]) that can be the
-type of the <em>postfix-expression</em> in a function call (5.2.2 [expr.call], 13.3.1.1 [over.match.call]) is called a <em>function
+type of the <em>postfix-expression</em> in a function call (5.2.2 [expr.call], 
+13.3.1.1 [over.match.call]) is called a <em>function
 object type</em><sup>*</sup>. A <em>function object</em> is an object of a
 <em>function object type</em>.</ins> In the places where one would expect to
-pass a pointer to a function to an algorithmic template (Clause 25 [algorithms]), the interface is specified to accept <del>an object with
+pass a pointer to a function to an algorithmic template (Clause 25 [algorithms]), 
+the interface is specified to accept <del>an object with
 an <tt>operator()</tt> defined</del><ins>a function object</ins>. This not only
 makes algorithmic templates work with pointers to functions, but also enables
 them to work with arbitrary function objects.
@@ -52956,7 +52955,7 @@ provide a conversion to a pointer to function.
 
 <li>
 <p>
-Change 20.8.1 [func.def]/3 as indicated: <i>[The intent is to make the
+Change 20.8.1 [func.def]&#47;3 as indicated: <i>[The intent is to make the
 commonality of callable types and function object
 types more explicit and to get rid of wording redundancies]</i>
 </p>
@@ -52971,7 +52970,7 @@ objects can appear immediately to the left of a function call operator</del>
 
 <li>
 <p>
-Change 20.8.9 [bind]/1 as indicated:
+Change 20.8.9 [bind]&#47;1 as indicated:
 </p>
 
 <blockquote>
@@ -52983,7 +52982,7 @@ additional arguments.
 
 <li>
 <p>
-Change 20.8.9.1 [func.bind]/1 as indicated:
+Change 20.8.9.1 [func.bind]&#47;1 as indicated:
 </p>
 
 <blockquote>
@@ -52994,7 +52993,7 @@ Change 20.8.9.1 [func.bind]/1 as indicated:
 
 <li>
 <p>
-Change 20.8.11 [func.wrap]/1 as indicated:
+Change 20.8.11 [func.wrap]&#47;1 as indicated:
 </p>
 
 <blockquote>
@@ -53005,8 +53004,8 @@ arbitrary <del>function</del> <ins>callable</ins> objects.
 
 <li>
 <p>
-Change 20.8.11.2 [func.wrap.func]/2 as indicated <i>[The reason for this
-change is that 20.8.11.2 [func.wrap.func]/1 clearly says that all callable
+Change 20.8.11.2 [func.wrap.func]&#47;2 as indicated <i>[The reason for this
+change is that 20.8.11.2 [func.wrap.func]&#47;1 clearly says that all callable
 types may be wrapped by <tt>std::function</tt> and current implementations
 indeed do provide support for pointer to members as well. One further suggested
 improvement is to set the below definition of Callable in italics]</i>:
@@ -53019,8 +53018,9 @@ is <del>Callable</del> <ins><em>Callable</em></ins> for argument types
 type <tt>R</tt><del>,</del> if<del>, given lvalues <tt>t1, t2, ..., tN</tt> of
 types <tt>T1, T2, ..., TN</tt>, respectively,</del> <ins>the expression</ins>
 <tt><i>INVOKE</i>(f, <ins>declval&lt;ArgTypes&gt;()..., R</ins><del>t1, t2, ...,
-tN</del>)</tt><ins>, considered as an unevaluated operand (5 [expr]),</ins> is well formed (20.7.2)<del> and, if <tt>R</tt> is not
-<tt>void</tt>, convertible to <tt>R</tt></del>.
+tN</del>)</tt><ins>, considered as an unevaluated operand (5 [expr]),</ins> 
+is well formed (20.7.2)<del> and, if <tt>R</tt> is not <tt>void</tt>, convertible 
+to <tt>R</tt></del>.
 </blockquote>
 </li>
 
@@ -53028,7 +53028,7 @@ tN</del>)</tt><ins>, considered as an unevaluated operand (5 [expr]),</ins> is w
 
 <li>
 <p>
-Change 20.8.11.2.1 [func.wrap.func.con]/7 as indicated:
+Change 20.8.11.2.1 [func.wrap.func.con]&#47;7 as indicated:
 </p>
 
 <blockquote><pre>
@@ -53054,7 +53054,7 @@ holding only a pointer or reference to an object and a member function pointer.
 
 <li>
 <p>
-Change 20.8.11.2.1 [func.wrap.func.con]/11 as indicated:
+Change 20.8.11.2.1 [func.wrap.func.con]&#47;11 as indicated:
 </p>
 
 <blockquote><pre>
@@ -53075,7 +53075,7 @@ reference to an object and a member function pointer. &mdash; <i>end note</i>]
 
 <li>
 <p>
-Change 20.8.11.2.4 [func.wrap.func.inv]/3 as indicated:
+Change 20.8.11.2.4 [func.wrap.func.inv]&#47;3 as indicated:
 </p>
 
 <blockquote><pre>
@@ -53093,7 +53093,7 @@ exception thrown by the wrapped <del>function</del> <ins>callable</ins> object.
 
 <li>
 <p>
-Change 20.8.11.2.5 [func.wrap.func.targ]/3 as indicated:
+Change 20.8.11.2.5 [func.wrap.func.targ]&#47;3 as indicated:
 </p>
 
 <blockquote><pre>
@@ -53113,7 +53113,7 @@ and return type <tt>R</tt>.
 
 <li>
 <p>
-Change 23.2.4 [associative.reqmts]/2 as indicated: <i>[The suggested
+Change 23.2.4 [associative.reqmts]&#47;2 as indicated: <i>[The suggested
 removal seems harmless, because 25.4 [alg.sorting]1 already clarifies
 that <tt>Compare</tt> is a function object type. Nevertheless it is recommended,
 because the explicit naming of "pointer to function" is misleading]</i>
@@ -53121,17 +53121,18 @@ because the explicit naming of "pointer to function" is misleading]</i>
 
 <blockquote>
 2 Each associative container is parameterized on <tt>Key</tt> and an ordering
-relation <tt>Compare</tt> that induces a strict weak ordering (25.4 [alg.sorting]) on elements of <tt>Key</tt>. In addition, <tt>map</tt>
-and <tt>multimap</tt> associate an arbitrary type <tt>T</tt> with the
-<tt>Key</tt>. The object of type <tt>Compare</tt> is called the comparison
-object of a container. <del>This comparison object may be a pointer to function
-or an object of a type with an appropriate function call operator.</del>
+relation <tt>Compare</tt> that induces a strict weak ordering (25.4 [alg.sorting]) 
+on elements of <tt>Key</tt>. In addition, <tt>map</tt> and <tt>multimap</tt> 
+associate an arbitrary type <tt>T</tt> with the <tt>Key</tt>. The object of type 
+<tt>Compare</tt> is called the comparison object of a container. <del>This 
+comparison object may be a pointer to function or an object of a type with an 
+appropriate function call operator.</del>
 </blockquote>
 </li>
 
 <li>
 <p>
-Change 23.2.5 [unord.req]/3 as indicated:
+Change 23.2.5 [unord.req]&#47;3 as indicated:
 </p>
 
 <blockquote>
@@ -53144,7 +53145,7 @@ induces an equivalence relation on values of type Key. [..]
 
 <li>
 <p>
-Change 25.1 [algorithms.general]/7 as indicated: <i>[The intent is to
+Change 25.1 [algorithms.general]&#47;7 as indicated: <i>[The intent is to
 bring this part in sync with 20.8 [function.objects]]</i>
 </p>
 
@@ -53163,7 +53164,7 @@ or an object of a type with an appropriate function call operator.</del>
 
 <li>
 <p>
-Change 20.7.1.2 [unique.ptr.single]/1 as indicated:
+Change 20.7.1.2 [unique.ptr.single]&#47;1 as indicated:
 </p>
 
 <blockquote>
@@ -56631,7 +56632,7 @@ and rvalues otherwise.
 <hr>
 <h3><a name="907"></a>907. Bitset's immutable element retrieval is inconsistently defined</h3>
 <p><b>Section:</b> 20.5.2 [bitset.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-09-26 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-09-26 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#bitset.members">issues</a> in [bitset.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -56802,7 +56803,7 @@ Move to Tentatively Ready.
 
 <p><b>Proposed resolution:</b></p>
 
-<ol style="list-style-type:upper-alpha", start="3">
+<ol style="list-style-type:upper-alpha" start="3">
 <li>
 <p>
 Undo the addition of the <tt>constexpr</tt> specifier to the <tt>test</tt> member
@@ -66642,7 +66643,7 @@ use cases (including Jason's) and provides wording for one implementation.
 <hr>
 <h3><a name="1055"></a>1055. Response to UK 98</h3>
 <p><b>Section:</b> 20.9.7.6 [meta.trans.other] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-03-12 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.trans.other">issues</a> in [meta.trans.other].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -66702,7 +66703,7 @@ Addressed in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2
 
 <blockquote>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Solved by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2984.html">N2984</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2984.htm">N2984</a>.
 </blockquote>
 
 
@@ -69895,7 +69896,7 @@ corresponding condition is true, otherwise <tt>false_type</tt></ins>.
 <hr>
 <h3><a name="1116"></a>1116. Literal constructors for tuple</h3>
 <p><b>Section:</b> 20.4.2 [tuple.tuple] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-23 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-23 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.tuple">issues</a> in [tuple.tuple].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -69924,7 +69925,7 @@ clear of that class while other constructor-related issues settle.
 
 <blockquote>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Solved by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.html">N2994</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.htm">N2994</a>.
 </blockquote>
 
 
@@ -73223,7 +73224,7 @@ types are called <i>char-like objects</i> or simply
 <hr>
 <h3><a name="1171"></a>1171. duration types should be literal</h3>
 <p><b>Section:</b> 20.11.5 [time.duration] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-06 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-07-06 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.duration">issues</a> in [time.duration].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -73257,7 +73258,7 @@ I suggest this issue moves from New to Open.
 
 <p>
 Half of this issue was dealt with in paper
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.html">n2994</a>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.htm">n2994</a>
 on constexpr constructors.
 </p>
 
@@ -73465,7 +73466,7 @@ the allocator should propagate from the existing container, and <tt>X()</tt>.
 <hr>
 <h3><a name="1174"></a>1174. type property predicates</h3>
 <p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Jason Merrill <b>Opened:</b> 2009-07-16 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Jason Merrill <b>Opened:</b> 2009-07-16 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -73508,7 +73509,7 @@ Addressed in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2
 
 <blockquote>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Solved by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2984.html">N2984</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2984.htm">N2984</a>.
 </blockquote>
 
 
@@ -76124,7 +76125,7 @@ stack& operator=(stack&amp;&amp; s);
 <hr>
 <h3><a name="1195"></a>1195. "Diagnostic required" wording is insufficient to  prevent UB</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-08-18 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-08-18 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -76146,8 +76147,8 @@ incomplete type.
 
 <p>
 The problem with this approach is that such a requirement is
-insufficient to prevent
-undefined behavior, if this situation occurs. According to  [defns.diagnostic]
+insufficient to prevent undefined behavior, if this situation occurs. 
+According to  [defns.diagnostic]
 a <i>diagnostic message</i> is defined as
 </p>
 
@@ -76158,12 +76159,10 @@ implementation's output messages.
 
 <p>
 which doesn't indicate any relation to an ill-formed program. In fact,
-"compiler warnings"
-are a typical expression of such diagnostics. This means that above
-wording can be interpreted
-by compiler writers that they satisfy the requirements of the standard
-if they just produce
-such a "warning", if the compiler happens to compile code like this:
+"compiler warnings" are a typical expression of such diagnostics. This means 
+that above wording can be interpreted by compiler writers that they satisfy 
+the requirements of the standard if they just produce such a "warning", if 
+the compiler happens to compile code like this:
 </p>
 
 <blockquote><pre>
@@ -76204,10 +76203,11 @@ Move to NAD.
 </p>
 <p>
 It's not clear that there's any important difference between
-"ill-formed" and "diagnostic required". From 1.4 [intro.compliance],  [defns.ill.formed], and  [defns.well.formed] it appears that an ill-formed program is one
-that is not correctly constructed according to the syntax rules and
-diagnosable semantic rules, which means that... "a conforming
-implementation shall issue at least one diagnostic message." The
+"ill-formed" and "diagnostic required". From 1.4 [intro.compliance], 
+ [defns.ill.formed], and  [defns.well.formed] 
+it appears that an ill-formed program is one that is not correctly constructed 
+according to the syntax rules and diagnosable semantic rules, which means 
+that... "a conforming implementation shall issue at least one diagnostic message." The
 author's intent seems to be that we should be requiring a fatal error
 instead of a mere warning, but the standard just doesn't have language
 to express that distinction. The strongest thing we can ever require is
@@ -76391,7 +76391,7 @@ replacing</i>
 
 <p>
 <i>[If
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n3025.html">N3025</a>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3025.html">N3025</a>
 is accepted this bullet is applied identically in that paper as well.]</i>
 </p>
 
@@ -76425,7 +76425,7 @@ replacing</i>
 
 <p>
 <i>[If
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n3025.html">N3025</a>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3025.html">N3025</a>
 is accepted this bullet is applied identically in that paper as well.]</i>
 </p>
 
@@ -81233,16 +81233,16 @@ but unused bits.</del>
 <hr>
 <h3><a name="1255"></a>1255. <tt>declval</tt> should be added to the library</h3>
 <p><b>Section:</b> 20.2 [utility] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-03 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-11-03 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility">issues</a> in [utility].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 During the Santa Cruz meeting it was decided to split off the provision
-of the library utility <tt>value()</tt> proposed in <a
-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2979.html">N2979</a>
+of the library utility <tt>value()</tt> proposed in 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2979.html">N2979</a>
 from the concrete request of the
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2939.html#uk300">UK 300</a>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2939.html#UK300">UK 300</a>
 comment.
 The provision of a new library component that allows the production of
 values in unevaluated expressions is considered as important
@@ -81368,8 +81368,8 @@ For another example see class template <tt>common_type</tt>
 <li>
 <p>
 This bullet just makes clear that after applying <a
-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2984.html
-">N2984</a>, the changes in 20.9.4.3 [meta.unary.prop], before
+href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2984.htm">N2984</a>, 
+the changes in 20.9.4.3 [meta.unary.prop], before
 table Type property queries should <em>not</em> use <tt>declval</tt>,
 because the well-formedness requirement of the specification of
 <tt>is_constructible</tt> would become more complicated, because we
@@ -83618,7 +83618,7 @@ args.
 <hr>
 <h3><a name="1279"></a>1279. forbid <tt>[u|bi]nary_function</tt> specialization</h3>
 <p><b>Section:</b> D.10.1 [depr.base] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2009-11-30 <b>Last modified:</b> 2011-04-18</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2009-11-30 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -83656,7 +83656,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3145
 Pete: Is this issue actually addressed by N3198, or did deprecating unary/binary_function?
 <p/>
 We determined that this issue is NOT resolved and that it must be resolved or else 
-N3198 could break code that does specialize unary&frasl;binary function.
+N3198 could break code that does specialize unary&#47;binary function.
 <p/>
 Matt: don't move to NAD
 <p/>
@@ -87173,7 +87173,7 @@ template &lt;class T&gt;
 <hr>
 <h3><a name="1322"></a>1322. Explicit <tt>CopyConstructible</tt> requirements are insufficient</h3>
 <p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -87239,7 +87239,7 @@ any other reasonable name like <tt>MoveConvertible</tt> and
 all three problems mentioned above.
 </p>
 
-<p><i>[Batavia: Resolved by accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3215.html">n3215</a>.]</i></p>
+<p><i>[Batavia: Resolved by accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3215.htm">n3215</a>.]</i></p>
 
 
 
@@ -89911,7 +89911,7 @@ for (; n--; ++first)
 <h3><a name="1340"></a>1340. Why does <tt>forward_list::resize</tt> take the object to be copied by value?</h3>
 <p><b>Section:</b> 23.3.4.5 [forwardlist.modifiers] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
  <b>Submitter:</b> 		
-James McNellis <b>Opened:</b> 2010-07-16 <b>Last modified:</b> 2010-11-24</p>
+James McNellis <b>Opened:</b> 2010-07-16 <b>Last modified:</b> 2011-04-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.modifiers">issues</a> in [forwardlist.modifiers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -89956,10 +89956,10 @@ Post-Rapperswil
 
 
 <p>
-Daniel changed the P/R slightly, because one paragraph number has been changed since the issue
+Daniel changed the P&#47;R slightly, because one paragraph number has been changed since the issue
 had been submitted. He also added a similar Requires element that exists in all other containers with
 a <tt>resize</tt> member function. He deliberately did not touch the wrong usage of "default-constructed" because that
-will be taken care of by LWG issue <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/lwg-active.html#868">868</a>.
+will be taken care of by LWG issue <a href="lwg-defects.html#868">868</a>.
 </p>
 
 <blockquote>
