@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-24</td>
+  <td align="left">2011-04-25</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-04-24 at 20:04:18 UTC</p>
+<p>Revised 2011-04-25 at 21:04:15 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6674,7 +6674,7 @@ two places:</p>
 <hr>
 <h3><a name="149"></a>149. Insert should return iterator to first element inserted</h3>
 <p><b>Section:</b> 23.2.3 [sequence.reqmts] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Andrew Koenig <b>Opened:</b> 1999-06-28 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Andrew Koenig <b>Opened:</b> 1999-06-28 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#sequence.reqmts">issues</a> in [sequence.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -6739,9 +6739,9 @@ Summit:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Reopened by Alisdair.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit Alisdair adds:
@@ -6914,9 +6914,9 @@ p8 23.3.4.5 [forwardlist.modifiers] change return type from <tt>void</tt> to <tt
 Add paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 Returns: position.
-</blockquote>
+</p></blockquote>
 
 <p>
 p10 23.3.4.5 [forwardlist.modifiers] change return type from <tt>void</tt> to <tt>iterator</tt>:
@@ -6931,9 +6931,9 @@ template &lt;class InputIterator&gt;
 Add paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 Returns: position.
-</blockquote>
+</p></blockquote>
 
 <p>
 p12 23.3.4.5 [forwardlist.modifiers] change return type from <tt>void</tt> to <tt>iterator</tt> on following declarations:
@@ -7056,10 +7056,10 @@ p13 21.4.6.4 [string::insert] change return type from <tt>void</tt> to <tt>itera
 Add paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> an iterator which refers to the copy of the first inserted
 character, or <tt>p</tt> if <tt>n == 0</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 p15 21.4.6.4 [string::insert] change return type from <tt>void</tt> to <tt>iterator</tt>:
@@ -7074,10 +7074,10 @@ template&lt;class InputIterator&gt;
 Add paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> an iterator which refers to the copy of the first inserted
 character, or <tt>p</tt> if <tt>first == last</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 p17 21.4.6.4 [string::insert] change return type from <tt>void</tt> to <tt>iterator</tt>:
@@ -7091,10 +7091,10 @@ p17 21.4.6.4 [string::insert] change return type from <tt>void</tt> to <tt>itera
 Add paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> an iterator which refers to the copy of the first inserted
 character, or <tt>p</tt> if <tt>il</tt> is empty.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -32554,7 +32554,7 @@ swap to be rvalues).
 <hr>
 <h3><a name="673"></a>673. <tt>unique_ptr</tt> update</h3>
 <p><b>Section:</b> 20.7.1 [unique.ptr] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2007-05-04 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2007-05-04 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr">issues</a> in [unique.ptr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -32563,7 +32563,7 @@ Since the publication of
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1856.html">N1856</a>
 there have been a few small but significant advances which should be included into
 <tt>unique_ptr</tt>.  There exists a
-<a href="http://home.twcny.rr.com/hinnant/cpp_extensions/unique_ptr.html">example implmenation</a>
+<a href="http://home.roadrunner.com/~hinnant/unique_ptr.hpp">example implementation</a>
 for all of these changes.
 </p>
 
@@ -32573,9 +32573,8 @@ for all of these changes.
 <p>
 Even though <tt>unique_ptr&lt;void&gt;</tt> is not a valid use case (unlike for <tt>shared_ptr&lt;void&gt;</tt>),
 unexpected cases to crop up which require the instantiation of the interface of <tt>unique_ptr&lt;void&gt;</tt>
-even if it is never used.  For example see
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/lwg-defects.html#541">LWG 541</a> for how this accidently
-happened to <tt>auto_ptr</tt>.  I believe the most robust way to protect <tt>unique_ptr</tt> against this
+even if it is never used.  For example see <a href="lwg-defects.html#541">541</a> for how this accidently happened to <tt>auto_ptr</tt>.  
+I believe the most robust way to protect <tt>unique_ptr</tt> against this
 type of failure is to augment the return type of <tt>unique_ptr&lt;T&gt;:operator*()</tt> with
 <tt>add_lvalue_reference&lt;T&gt;::type</tt>.  This means that given an instantiated <tt>unique_ptr&lt;void&gt;</tt>
 the act of dereferencing it will simply return <tt>void</tt> instead of causing a compile time failure.
@@ -32599,7 +32598,7 @@ for <tt>unique_ptr</tt> by having the deleter define the pointer type:
 <tt>D::pointer</tt>.  Furthermore this type can easily be defaulted to
 <tt>T*</tt> should the deleter <tt>D</tt> choose not to define a pointer
 type (example implementation
-<a href="http://home.twcny.rr.com/hinnant/cpp_extensions/unique_ptr.html">here</a>).
+<a href="http://home.roadrunner.com/~hinnant/unique_ptr.hpp">here</a>).
 This change has no run time overhead.  It has no interface overhead on
 authors of custom delter types.  It simply allows (but not requires)
 authors of custom deleter types to define a smart pointer for the
@@ -43393,7 +43392,7 @@ terminated thread that can no longer be joined.</ins>
 <hr>
 <h3><a name="786"></a>786. Thread library timed waits, UTC and monotonic clocks</h3>
 <p><b>Section:</b> 20.11 [time] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Christopher Kohlhoff, Jeff Garland <b>Opened:</b> 2008-02-03 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Christopher Kohlhoff, Jeff Garland <b>Opened:</b> 2008-02-03 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#time">issues</a> in [time].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43511,7 +43510,7 @@ Change the constructor <tt>explicit system_time(time_t secs, nanoseconds ns
 
 <p><b>Rationale:</b></p>
 Addressed by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2661.html">N2661: A Foundation to Sleep On</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2661.htm">N2661: A Foundation to Sleep On</a>.
 
 
 
@@ -47128,7 +47127,7 @@ is <tt>Ti<ins>D</ins> <i>cv</i> &amp;</tt>.
 <hr>
 <h3><a name="818"></a>818. wording for memory ordering</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-03-22 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-03-22 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47259,7 +47258,7 @@ all of the atomics issues in one paper.
 
 <p>
 This issue is addressed in
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2783.html">N2783</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2783.htm">N2783</a>.
 </p>
 </blockquote>
 
@@ -49742,13 +49741,13 @@ Strike this <tt>pow</tt> overload in 26.4.1 [complex.syn] and in 26.4.8 [complex
 <hr>
 <h3><a name="845"></a>845. atomics cannot support aggregate initialization</h3>
 <p><b>Section:</b> X [atomics.types] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types">issues</a> in [atomics.types].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 The atomic classes (and class templates) are required to support aggregate
-initialization (X [atomics.types.integral]p2 / X [atomics.types.address]p1)
+initialization (X [atomics.types.integral]p2 &#47; X [atomics.types.address]p1)
 yet also have user declared constructors, so cannot be aggregates.
 </p>
 <p>
@@ -49796,7 +49795,7 @@ Lawrence will provide wording.
 </p>
 <p>
 This issue is addressed in
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2783.html">N2783</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2783.htm">N2783</a>.
 </p>
 </blockquote>
 
@@ -49898,12 +49897,12 @@ and a constexpr <del>explicit</del> value constructor.
 <hr>
 <h3><a name="846"></a>846. No definition for constructor</h3>
 <p><b>Section:</b> X [atomics.types] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types">issues</a> in [atomics.types].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The atomic classes and class templates (X [atomics.types.integral] /
+The atomic classes and class templates (X [atomics.types.integral] &#47;
 X [atomics.types.address]) have a constexpr
 constructor taking a value of the appropriate type for that atomic.
 However, neither clause provides semantics or a definition for this
@@ -49924,7 +49923,7 @@ Lawrence will provide wording.
 </p>
 <p>
 This issue is addressed in
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2783.html">N2783</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2783.htm">N2783</a>.
 </p>
 </blockquote>
 
@@ -51029,7 +51028,7 @@ note</i>]
 <hr>
 <h3><a name="859"></a>859. Monotonic Clock is Conditionally Supported?</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2008-06-23 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2008-06-23 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -51037,7 +51036,7 @@ note</i>]
 <p>Related to <a href="lwg-defects.html#958">958</a>, <a href="lwg-closed.html#959">959</a>.</p>
 
 <p>
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2661.html">N2661</a>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2661.htm">N2661</a>
 says that there is a class named <tt>monotonic_clock</tt>. It also says that this
 name may be a synonym for <tt>system_clock</tt>, and that it's conditionally
 supported. So the actual requirement is that it can be monotonic or not,
@@ -59136,7 +59135,7 @@ Remove from 20.2.3 [forward]:
 <hr>
 <h3><a name="940"></a>940. <tt>std::distance</tt></h3>
 <p><b>Section:</b> 24.4.4 [iterator.operations] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Thomas <b>Opened:</b> 2008-12-14 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Thomas <b>Opened:</b> 2008-12-14 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#iterator.operations">issues</a> in [iterator.operations].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -59195,7 +59194,7 @@ contradiction to that resolution:
 
 <p>
 Referring to
-<a href ref="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2798.pdf">N2798</a>,
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2798.pdf">N2798</a>,
 24.4.4 [iterator.operations]/ p.4 says:
 </p>
 
@@ -61304,7 +61303,7 @@ void detach();
 <hr>
 <h3><a name="964"></a>964. Various threading bugs #14</h3>
 <p><b>Section:</b> 30.5.2 [thread.condition.condvarany] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-04-18</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2009-01-07 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvarany">issues</a> in [thread.condition.condvarany].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -61373,7 +61372,7 @@ single paper.
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved 2011-03 Madrid meeting by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n3278">N3278</a>
+Resolved 2011-03 Madrid meeting by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3278.htm">N3278</a>
 
 
 
@@ -82335,7 +82334,7 @@ supplied by all concurrently waiting (via <tt>wait</tt>, <tt>wait_for</tt>, or
 <hr>
 <h3><a name="1268"></a>1268. The Mutex requirements in 30.4.1 and 30.4.2 are wrong</h3>
 <p><b>Section:</b> 30.4 [thread.mutex] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-17 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2009-11-17 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex">issues</a> in [thread.mutex].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -82407,7 +82406,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130
 
 
 <blockquote>
-Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.html">n3197</a>.
+Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.htm">n3197</a>.
 </blockquote>
 
 
@@ -84583,7 +84582,7 @@ template&lt;class F, class A&gt; void assign(F<ins>&amp;&amp;</ins>, const A&amp
 <hr>
 <h3><a name="1290"></a>1290. Don't require <tt>[u|bi]nary_function</tt> inheritance</h3>
 <p><b>Section:</b> 20.8 [function.objects] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-14 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-12-14 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#function.objects">issues</a> in [function.objects].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -84669,7 +84668,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3145
 ]</i></p>
 
 <p>
-Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3198.html">n3198</a>.
+Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3198.htm">n3198</a>.
 </p>
 
 <p>
@@ -84837,8 +84836,8 @@ Change 20.8.10 [func.memfn]/2+3 as indicated: <i>[The intent is to remove
 the requirement that mem_fn's return type has to derive
 from <tt>[u|bi]nary_function</tt>. The reason for suggesting the
 change here is to better support empty-base-class optimization
-choices as has been pointed out in <a
-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1837.pdf">N1837</a>]</i>
+choices as has been pointed out in 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1837.pdf">N1837</a>]</i>
 </p>
 
 <blockquote>
@@ -84867,7 +84866,7 @@ function with cv-qualifier <em>cv</em> and taking one argument of type
 </p>
 
 <p><b>Proposed resolution:</b></p>
-Addressed by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3198.html">n3198</a>.
+Addressed by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3198.htm">n3198</a>.
 
 
 
@@ -90010,7 +90009,7 @@ signature the inserted elements are default constructed, and for the second sign
 <hr>
 <h3><a name="1344"></a>1344. [FCD] Replace <tt>throw()</tt> with <tt>noexcept</tt></h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1351">1351</a></p>
@@ -90055,7 +90054,7 @@ Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers
 <p><b>Proposed resolution:</b></p>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3148.html">n3148</a>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3150.html">n3150</a>
-See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3195.html">n3195</a>
+See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3195.htm">n3195</a>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3155.html">n3155</a>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3156.html">n3156</a>
 
@@ -90127,7 +90126,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3157.html"
 <hr>
 <h3><a name="1346"></a>1346. [FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</h3>
 <p><b>Section:</b> 17 [library] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#library">issues</a> in [library].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1352">1352</a></p>
@@ -90178,7 +90177,7 @@ Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers
 
 
 <p><b>Proposed resolution:</b></p>
-This issue is resolved by the adoption of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3195.html">n3195</a>
+This issue is resolved by the adoption of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3195.htm">n3195</a>
 
 
 
@@ -91774,7 +91773,7 @@ typedef ratio&lt;num, den&gt; type;
 <hr>
 <h3><a name="1389"></a>1389. [FCD] Compile-time rational arithmetic and overflow</h3>
 <p><b>Section:</b> 20.10.4 [ratio.arithmetic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#ratio.arithmetic">issues</a> in [ratio.arithmetic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91801,8 +91800,8 @@ compute these values".
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3131.html">n3131</a> would solve this issue.
 </blockquote>
 
-<p><i>[Batavia: Resoved by accepting
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3210.html">n3210</a>.]</i></p>
+<p><i>[Batavia: Resolved by accepting
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3210.pdf">n3210</a>.]</i></p>
 
 
 
@@ -92060,7 +92059,7 @@ is_constructible.
 <hr>
 <h3><a name="1397"></a>1397. [FCD] Deprecate '98 binders</h3>
 <p><b>Section:</b> 20.8 [function.objects] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#function.objects">issues</a> in [function.objects].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92110,7 +92109,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3145
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3198.html">N3198</a>.
+Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3198.htm">N3198</a>.
 
 
 
@@ -92966,7 +92965,7 @@ The object must be live until the corresponding <tt>undeclare_no_pointers()</tt>
 <hr>
 <h3><a name="1409"></a>1409. [FCD] Specify whether <tt>monotonic_clock</tt> is a distinct type or a typedef</h3>
 <p><b>Section:</b> X [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92997,7 +92996,7 @@ this issue by replacing <tt>monotonic_clock</tt> with <tt>steady_clock</tt>, whi
 
 
 <p><b>Proposed resolution:</b></p>
-This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.html">n3191</a>.
+This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.htm">n3191</a>.
 
 
 
@@ -93006,7 +93005,7 @@ This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/
 <hr>
 <h3><a name="1410"></a>1410. [FCD] Add a feature-detect macro for <tt>monotonic_clock</tt></h3>
 <p><b>Section:</b> X [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1411">1411</a></p>
@@ -93053,7 +93052,7 @@ so there is no need to detect it.
 
 
 <p><b>Proposed resolution:</b></p>
-This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.html">n3191</a>.
+This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.htm">n3191</a>.
 
 
 
@@ -93062,7 +93061,7 @@ This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/
 <hr>
 <h3><a name="1412"></a>1412. [FCD] Make monotonic clocks mandatory</h3>
 <p><b>Section:</b> X [time.clock.monotonic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#time.clock.monotonic">issues</a> in [time.clock.monotonic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -93087,7 +93086,7 @@ this issue by replacing <tt>monotonic_clock</tt> with <tt>steady_clock</tt>, whi
 ]</i></p>
 
 <p>
-This is resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.html">n3191</a>.
+This is resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.htm">n3191</a>.
 The original resolution is preserved for reference:
 </p>
 <blockquote>
@@ -93110,7 +93109,7 @@ required to use a monotonic clock because such a clock may not be available.
 
 
 <p><b>Proposed resolution:</b></p>
-This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.html">n3191</a>.
+This is resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.htm">n3191</a>.
 
 
 
@@ -94861,7 +94860,7 @@ Addressed by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2
 <hr>
 <h3><a name="1455"></a>1455. [FCD] C language compatibility for atomics</h3>
 <p><b>Section:</b> 29 [atomics] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics">issues</a> in [atomics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1454">1454</a></p>
@@ -94888,12 +94887,12 @@ standard.
 ]</i></p>
 
 <p>
-Resolved by adoption of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Resolved by adoption of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 </p>
 
 
 <p><b>Proposed resolution:</b></p>
-Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 
 
 
@@ -95242,7 +95241,7 @@ Resolved 2011-03 Madrid meeting by paper <a href="http://www.open-std.org/jtc1/s
 <hr>
 <h3><a name="1462"></a>1462. [FCD] Ambiguous value assignment to <tt>atomic_bool</tt></h3>
 <p><b>Section:</b> X [atomics.types.integral] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.integral">issues</a> in [atomics.types.integral].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#1463">1463</a></p>
@@ -95311,12 +95310,12 @@ by replacing <tt>atomic_bool</tt> by <tt>atomic&lt;bool&gt;</tt>.
 ]</i></p>
 
 <p>
-Resolved by adoption of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Resolved by adoption of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 </p>
 
 
 <p><b>Proposed resolution:</b></p>
-Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 
 
 
@@ -95325,7 +95324,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1464"></a>1464. [FCD] Underspecified typedefs for atomic integral types</h3>
 <p><b>Section:</b> X [atomics.types.integral] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.integral">issues</a> in [atomics.types.integral].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -95374,13 +95373,13 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3164
 ]</i></p>
 
 <p>
-Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 </p>
 
 
 
 <p><b>Proposed resolution:</b></p>
-Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 
 
 
@@ -95389,7 +95388,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1465"></a>1465. [FCD] Missing arithmetic operators for <tt>atomic_address</tt></h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-25</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -95411,7 +95410,7 @@ replacing <tt>atomic_address</tt> by <tt>atomic&lt;void*&gt;</tt>.
 
 <p><i>[
 Resolved in Batavia by accepting 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 ]</i></p>
 
 
@@ -95451,7 +95450,7 @@ namespace std {
 <hr>
 <h3><a name="1466"></a>1466. [FCD] Silent <tt>const</tt> breakage by <tt>compare_exchange_*</tt> member functions</h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-25</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -95509,14 +95508,14 @@ would solve this issue by replacing <tt>atomic_address</tt> by <tt>atomic&lt;voi
 
 <p><i>[
 Resolved in Batavia by accepting 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 ]</i></p>
 
 
 
 
 <p><b>Proposed resolution:</b></p>
-Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 
 
 
@@ -95525,7 +95524,7 @@ Solved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193
 <hr>
 <h3><a name="1467"></a>1467. [FCD] Deriving <tt>atomic&lt;T*&gt;</tt> from <tt>atomic_address</tt> breaks type safety</h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-25</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -95554,7 +95553,7 @@ removing <tt>atomic_address</tt>.
 </blockquote>
 <p><i>[
 Resolved in Batavia by accepting 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 ]</i></p>
 
 
@@ -95588,7 +95587,7 @@ of the referenced type. These specializations shall have trivial default constru
 <hr>
 <h3><a name="1468"></a>1468. [FCD] <tt>atomic_address::compare_exchange_*</tt> member functions should match <tt>atomic_compare_exchange_*</tt> free functions</h3>
 <p><b>Section:</b> X [atomics.types.address] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-25</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.address">issues</a> in [atomics.types.address].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -95610,7 +95609,7 @@ differently by removing the overloads with <tt>const void*</tt> arguments, becau
 </blockquote>
 <p><i>[
 Resolved in Batavia by accepting 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 ]</i></p>
 
 
@@ -95659,7 +95658,7 @@ namespace std {
 <hr>
 <h3><a name="1469"></a>1469. [FCD] <tt>atomic&lt;T*&gt;</tt> inheritance from <tt>atomic_address</tt> breaks type safety</h3>
 <p><b>Section:</b> 29.5 [atomics.types.generic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types.generic">issues</a> in [atomics.types.generic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -95692,7 +95691,7 @@ removing <tt>atomic_address</tt>.
 </blockquote>
 
 <p><i>[Resolved in Batavia by accepting
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.html">n3193</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3193.htm">n3193</a>.
 ]</i></p>
 
 
@@ -96021,7 +96020,7 @@ thread and a signal handler executed in the same thread.
 <hr>
 <h3><a name="1481"></a>1481. [FCD] Missing Lockable requirements</h3>
 <p><b>Section:</b> 30.2 [thread.req] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-138</b></p>
@@ -96050,7 +96049,7 @@ this issue.
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.html">n3197</a>.
+Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.htm">n3197</a>.
 
 
 
@@ -96522,7 +96521,7 @@ template &lt;class Rep, class Period&gt;
 <hr>
 <h3><a name="1490"></a>1490. [FCD] Mutex requirements too stringent</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -96555,7 +96554,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.html">n3197</a>.
+Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.htm">n3197</a>.
 
 
 
@@ -96564,7 +96563,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1491"></a>1491. [FCD] <tt>try_lock</tt> does not guarantee forward progress</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -96579,7 +96578,8 @@ Resolution proposed by ballot comment:
 
 <blockquote>
 The standard mutex types must not fail spuriously
-in <tt>try_lock</tt>. See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> page 205 - Appendix 1 - Additional Details
+in <tt>try_lock</tt>. See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3141.pdf">n3141</a> 
+page 205 - Appendix 1 - Additional Details
 </blockquote>
 
 <p><i>[
@@ -96594,7 +96594,7 @@ this issue.
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3209.html">n3209</a>.
+Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3209.htm">n3209</a>.
 
 
 
@@ -96603,7 +96603,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n32
 <hr>
 <h3><a name="1492"></a>1492. [FCD] Mutex requirements should not be bound to threads</h3>
 <p><b>Section:</b> 30.4.1 [thread.mutex.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.requirements">issues</a> in [thread.mutex.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -96630,7 +96630,7 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3130
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.html">n3197</a>.
+Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3197.htm">n3197</a>.
 
 
 
@@ -97030,7 +97030,7 @@ while (!pred())
 <hr>
 <h3><a name="1498"></a>1498. [FCD] Unclear specification for [thread.condition]</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-26</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -97039,7 +97039,7 @@ while (!pred())
 It is unclear if a spurious wake-up during the loop and reentering
 of the blocked state due to a repeated execution
 of the loop will adjust the timer of the blocking with the
-respect to the previously specified rel_time value.
+respect to the previously specified <tt>rel_time</tt> value.
 
 <p><i>[
 Resolution proposed by ballot comment:
@@ -97079,7 +97079,7 @@ same paragraph (30.5.1 p 25, p34 and 30.5.2 p 20, p 28 in n3092.pdf)
 </blockquote>
 
 <p><i>[
-2010-11 Batavia: Resolved by applying <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.html">n3191</a>
+2010-11 Batavia: Resolved by applying <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.htm">n3191</a>
 ]</i></p>
 
 
@@ -97222,7 +97222,7 @@ has elapsed.
 
 
 <p><b>Proposed resolution:</b></p>
-Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.html">n3191</a>.
+Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3191.htm">n3191</a>.
 
 
 
@@ -97820,7 +97820,7 @@ Resolved 2011-03 Madrid meeting by paper <a href="http://www.open-std.org/jtc1/s
 <hr>
 <h3><a name="1508"></a>1508. [FCD] Rename <tt>packaged_task::operator bool()</tt></h3>
 <p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -97849,7 +97849,7 @@ conversion to bool.
 
 
 <p><i>[Resolved in Batavia by accepting
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3194.html">n3194</a>.
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3194.htm">n3194</a>.
 ]</i></p>
 
 
