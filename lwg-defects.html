@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-26</td>
+  <td align="left">2011-04-27</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-04-26 at 22:04:09 UTC</p>
+<p>Revised 2011-04-27 at 21:04:09 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -37746,7 +37746,7 @@ in a valid state with an unspecified value.
 <hr>
 <h3><a name="724"></a>724. <tt>DefaultConstructible</tt> is not defined</h3>
 <p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2007-09-12 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2007-09-12 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -37764,7 +37764,7 @@ Bellevue:
 
 <blockquote>
 <p>
-Walking into the default/value-initialization mess...
+Walking into the default&#47;value-initialization mess...
 </p>
 <p>
 Why two lines? Because we need both expressions to be valid.
@@ -37774,7 +37774,7 @@ AJM not sure what the phrase "default constructed" means. This is
 unfortunate, as the phrase is already used 24 times in the library!
 </p>
 <p>
-Example: const int would not accept first line, but will accept the second.
+Example: <tt>const int</tt> would not accept first line, but will accept the second.
 </p>
 <p>
 This is an issue that must be solved by concepts, but we might need to solve it independantly first.
@@ -37787,7 +37787,7 @@ column is valid, but not clear what semantics we need.
 A table where there is no post-condition seems odd, but appears to sum up our position best.
 </p>
 <p>
-At a minimum an object is declared and is destuctible.
+At a minimum an object is declared and is destructible.
 </p>
 <p>
 Move to open, as no-one happy to produce wording on the fly.
@@ -37871,14 +37871,14 @@ T t();
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave Open. Core is looking to make Alisdair's proposed
 resolution correct.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
-2010-01-24 At Alisdiar's request, moved his proposal into the proposed wording
-seciton.  The old wording is preserved here:
+2010-01-24 At Alisdair's request, moved his proposal into the proposed wording
+section.  The old wording is preserved here:
 ]</i></p>
 
 
@@ -37888,7 +37888,8 @@ In section 17.6.3.1 [utility.arg.requirements], before table 33, add the
 following table:
 </p>
 
-<p align=center style='text-align:center'>Table 33: <tt>DefaultConstructible</tt> requirements [defaultconstructible]</p>
+<p align=center style='text-align:center'>Table 33: <tt>DefaultConstructible</tt> 
+requirements [defaultconstructible]</p>
 
 <div align=center>
 
@@ -37939,10 +37940,10 @@ following table:
 San Francisco:
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 We believe concepts will solve this problem
 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2774.pdf">N2774</a>).
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Rationale is obsolete.
@@ -37986,7 +37987,7 @@ following table:
 <hr>
 <h3><a name="727"></a>727. <tt>regex_replace()</tt> doesn't accept <tt>basic_string</tt>s with custom traits and allocators</h3>
 <p><b>Section:</b> 28.11.4 [re.alg.replace] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2007-09-22 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2007-09-22 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.alg.replace">issues</a> in [re.alg.replace].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -38029,9 +38030,9 @@ Move to Open.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Howard to ask Stephan Lavavej to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07-17 Stephan provided wording.
@@ -38077,9 +38078,9 @@ in the Proposed Resolution.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Review. Chair is anxious to move this to Ready in Pittsburgh.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-01-27 Moved to Tentatively Ready after 5 positive votes on c++std-lib.
@@ -38163,7 +38164,7 @@ template &lt;class traits, class charT&gt;
 
 <li>
 <p>
-Change 28.10 [re.results]/3, class template <tt>match_results</tt> as
+Change 28.10 [re.results]&#47;3, class template <tt>match_results</tt> as
 indicated:
 </p>
 
@@ -38362,7 +38363,7 @@ template &lt;class OutputIterator, class BidirectionalIterator,
                   regex_constants::match_default);
 </ins></pre>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> [..]. If any matches are found then, for each such match, if <tt>!(flags &amp;
  regex_constants::format_no_copy)</tt> calls <tt>std::copy(m.prefix().first,
 m.prefix().second,
@@ -38371,7 +38372,7 @@ form of the function
  and <tt>m.format(out, fmt, fmt + char_traits&lt;charT&gt;::length(fmt), flags)</tt>
 for the second
  form</ins>. [..].
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
@@ -38400,11 +38401,11 @@ template &lt;class traits, class charT, class ST, class SA&gt;
                   regex_constants::match_default);
 </ins></pre>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> Constructs an empty string <tt>result</tt> of type <tt>basic_string&lt;charT<ins>,
 ST, SA</ins>&gt;</tt>, calls <tt>regex_replace(back_inserter(result), s.begin(), s.end(),
 e, fmt, flags)</tt>, and then returns <tt>result</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
@@ -38434,14 +38435,14 @@ template &lt;class traits, class charT&gt;
                   regex_constants::match_default);
 </ins></pre>
 
-<blockquote>
+<blockquote><p>
 <ins>
 <i>Effects:</i> Constructs an empty string <tt>result</tt> of type <tt>basic_string&lt;charT&gt;</tt>,
 calls <tt>regex_replace(back_inserter(result), s, s +
 char_traits&lt;charT&gt;::length(s),
 e, fmt, flags)</tt>, and then returns <tt>result</tt>.
 </ins>
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
@@ -38454,9 +38455,9 @@ e, fmt, flags)</tt>, and then returns <tt>result</tt>.
 
 
 <hr>
-<h3><a name="728"></a>728. Problem in [rand.eng.mers]/6</h3>
+<h3><a name="728"></a>728. Problem in [rand.eng.mers]&#47;6</h3>
 <p><b>Section:</b> 26.5.3.2 [rand.eng.mers] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.eng.mers">issues</a> in [rand.eng.mers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -38520,7 +38521,7 @@ Stephan Tolksdorf adds pre-Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 I support the proposed resolution in
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2424.pdf">N2424</a>,
 but there is a typo in the
@@ -38529,17 +38530,17 @@ required behaviour for <tt>mt19937_64</tt>: It should be the 10000<sup>th</sup> 
 9981545732273789042 (not 14002232017267485025). The change to para. 8
 proposed by Charles Karney should also be included in the proposed
 wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Sophia Antipolis:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Note the main part of the issue is resolved by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2424.pdf">N2424</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -38549,7 +38550,7 @@ Note the main part of the issue is resolved by
 <hr>
 <h3><a name="732"></a>732. Defect in [rand.dist.samp.genpdf]</h3>
 <p><b>Section:</b> X [rand.dist.samp.genpdf] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.genpdf">issues</a> in [rand.dist.samp.genpdf].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#795">795</a></p>
@@ -38583,7 +38584,7 @@ Disagreement persists.
 Objection to this issue is that this function takes a general functor.
 The general approach would be to normalize this function, integrate it,
 and take the inverse of the integral, which is not possible in general.
-An example function is sin(1+n*x) -- for any spatial frequency that the
+An example function is sin(1+n*x) &mdash; for any spatial frequency that the
 implementor chooses, there is a value of n that renders that choice
 arbitrarily erroneous.
 </p>
@@ -38598,7 +38599,9 @@ Objector proposes the following possible compromise positions:
 rand.dist.samp.genpdf takes an number of points so that implementor need not guess.
 </li>
 <li>
-replace rand.disk.samp.genpdf with an extension to either or both of the discrete functions to take arguments that take a functor and number of points in place of the list of probabilities. Reference issues 793 and 794.
+replace rand.disk.samp.genpdf with an extension to either or both of the discrete 
+functions to take arguments that take a functor and number of points in place of 
+the list of probabilities. Reference issues 793 and 794.
 </li>
 </ul>
 </blockquote>
@@ -38612,10 +38615,11 @@ for the proposed resolution.
 </p>
 
 
-<p><b>Rationale:</b></p>
+<p><b>Rationale:</b></p><p>
 Addressed by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
-
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> 
+"Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -38623,7 +38627,7 @@ Addressed by
 <hr>
 <h3><a name="734"></a>734. Unnecessary restriction in [rand.dist.norm.chisq]</h3>
 <p><b>Section:</b> 26.5.8.5.3 [rand.dist.norm.chisq] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2007-09-21 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -38632,9 +38636,8 @@ have parameters for the "degrees of freedom" <tt>n</tt> and <tt>m</tt> that are 
 following two reasons this is an unnecessary restriction: First, in many applications such as 
 Bayesian inference or Monte Carlo simulations it is more convenient to treat the respective param- 
 eters as continuous variables. Second, the standard non-naive algorithms (i.e. 
-O(1) algorithms) 
-for simulating from these distributions work with floating-point parameters anyway (all three 
-distributions could be easily implemented using the Gamma distribution, for instance).
+O(1) algorithms) for simulating from these distributions work with floating-point parameters anyway (all 
+three distributions could be easily implemented using the Gamma distribution, for instance).
 </p>
 
 <p>
@@ -38656,10 +38659,10 @@ Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 In N2424. Not wildly enthusiastic, not really felt necessary. Less
 frequently used in practice. Not terribly bad either. Move to OPEN.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Sophia Antipolis:
@@ -38868,7 +38871,7 @@ and its subsections:  [unique.ptr.compiletime.dtor],  [unique.ptr.compiletime.ob
 <hr>
 <h3><a name="742"></a>742. Enabling <tt>swap</tt> for proxy iterators</h3>
 <p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -38975,29 +38978,29 @@ satisfies the semantics of swapping?
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as Open. Dave to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-11-08 Howard adds:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Updated wording to sync with
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n3000.pdf">N3000</a>.
 Also this issue is very closely related to <a href="lwg-defects.html#594">594</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010 Pittsburgh:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to <del>NAD Editorial</del><ins>Resolved</ins>.  Rationale added.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -39070,10 +39073,10 @@ post San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Solved by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2758.pdf">N2758</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -39158,16 +39161,16 @@ template&lt;class T&gt; void swap(shared_ptr&lt;T&gt;&amp; a, shared_ptr&lt;T&gt
 
 
 <hr>
-<h3><a name="744"></a>744. What is the lifetime of an exception pointed to by an exception_ptr?</h3>
+<h3><a name="744"></a>744. What is the lifetime of an exception pointed to by an <tt>exception_ptr</tt>?</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 Without some lifetime guarantee, it is hard to know how this type can be
 used.  Very specifically, I don't see how the current wording would
-guarantee and exception_ptr caught at the end of one thread could be safely
+guarantee and <tt>exception_ptr</tt> caught at the end of one thread could be safely
 stored and rethrown in another thread - the original motivation for this
 API.
 </p>
@@ -39207,7 +39210,7 @@ Move to Open.
 Change 18.8.5 [propagation]/7:
 </p>
 
-<blockquote>
+<blockquote><p>
 -7- Returns: An <tt>exception_ptr</tt> object that refers to the currently
 handled exception or a copy of the currently handled exception, or a
 null <tt>exception_ptr</tt> object if no exception is being handled.
@@ -39219,16 +39222,16 @@ fails, it returns an <tt>exception_ptr</tt> object that refers to an instance of
 calls to <tt>current_exception</tt> refer to the same exception object. [<i>Note:</i>
 that is, it is unspecified whether <tt>current_exception</tt> creates a new copy
 each time it is called. <i>--end note</i>]
-</blockquote>
+</p></blockquote>
 
 
 
 
 
 <hr>
-<h3><a name="746"></a>746. current_exception may fail with bad_alloc</h3>
+<h3><a name="746"></a>746. <tt>current_exception</tt> may fail with <tt>bad_alloc</tt></h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -39285,20 +39288,20 @@ Accept the broad view and move to ready
 Add the following exemption clause to 17.6.5.12 [res.on.exception.handling]:
 </p>
 
-<blockquote>
+<blockquote><p>
 A function may throw a type not listed in its <i>Throws</i> clause so long as it is
 derived from a class named in the <i>Throws</i> clause, and would be caught by an
 exception handler for the base type.
-</blockquote>
+</p></blockquote>
 
 
 
 
 
 <hr>
-<h3><a name="749"></a>749. Currently <tt>has_nothrow_copy_constructor&lt;T&gt;::value</tt> is true if T has 'a' nothrow copy constructor.</h3>
+<h3><a name="749"></a>749. Currently <tt>has_nothrow_copy_constructor&lt;T&gt;::value</tt> is true if <tt>T</tt> has 'a' nothrow copy constructor.</h3>
 <p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2007-10-10 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -39326,39 +39329,39 @@ Change 20.9.4.3 [meta.unary.prop]:
 
 <blockquote>
 <pre>has_trivial_copy_constructor</pre>
-<blockquote>
+<blockquote><p>
 <tt>T</tt> is a trivial type (3.9) or a reference type or a class type <del>with a trivial copy constructor</del>
 <ins>where all copy constructors are trivial</ins> (12.8).
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <blockquote>
 <pre>has_trivial_assign</pre>
-<blockquote>
+<blockquote><p>
 <tt>T</tt> is neither <tt>const</tt> nor a reference type, and <tt>T</tt> is a trivial type (3.9)
 or a class type <del>with a trivial copy assignment operator</del> <ins>where all copy assignment operators are trivial</ins> (12.8).
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <blockquote>
 <pre>has_nothrow_copy_constructor</pre>
-<blockquote>
+<blockquote><p>
 <tt>has_trivial_copy_constructor&lt;T&gt;::value</tt> is <tt>true</tt> or <tt>T</tt> is a class type <del>with
 a</del> <ins>where all</ins> copy constructor<ins>s</ins> <del>that is</del> <ins>are</ins> 
 known not to throw any exceptions or <tt>T</tt> is an
 array of such a class type
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <blockquote>
 <pre>has_nothrow_assign</pre>
-<blockquote>
+<blockquote><p>
 <tt>T</tt> is neither <tt>const</tt> nor a reference type, and
 <tt>has_trivial_assign&lt;T&gt;::value</tt> is <tt>true</tt> or <tt>T</tt> is a class type <del>with a</del>
 <ins>where all</ins> copy
 assignment operator<ins>s</ins> tak<ins>e</ins><del>ing</del> an lvalue of type <tt>T</tt> that is known not to
 throw any exceptions or <tt>T</tt> is an array of such a class type.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -39416,7 +39419,7 @@ requirements on allocator types.
 <hr>
 <h3><a name="753"></a>753. Move constructor in draft</h3>
 <p><b>Section:</b> 17.6.3.1 [utility.arg.requirements] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Yechezkel Mett <b>Opened:</b> 2007-10-14 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Yechezkel Mett <b>Opened:</b> 2007-10-14 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility.arg.requirements">issues</a> in [utility.arg.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -39460,10 +39463,10 @@ For <tt>vector::reserve</tt>, <tt>vector::resize</tt> and the <tt>vector</tt> mo
 23.3.6.5 [vector.modifiers] we have
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> If <tt>value_type</tt> has a move constructor, that constructor shall
 not throw any exceptions.
-</blockquote>
+</p></blockquote>
 
 <p>
 Firstly "If <tt>value_type</tt> has a move constructor" is superfluous; every
@@ -39529,11 +39532,12 @@ Howard adds post-Bellevue:
 
 <blockquote>
 <p>
-Unfortunately I believe the wording recommended by the LWG in Bellevue is incorrect.  <tt>reserve</tt> et. al. will use a move constructor
-if one is available, else it will use a copy constructor.  A type may have both.  If the move constructor is
-used, it must not throw.  If the copy constructor is used, it can throw.  The sentence in the proposed wording
-is correct without the recommended insertion.  The Bellevue LWG recommended moving this issue to Ready.  I am
-unfortunately pulling it back to Open.  But I'm drafting wording to atone for this egregious action. :-)
+Unfortunately I believe the wording recommended by the LWG in Bellevue is incorrect.  <tt>reserve</tt> et. al. 
+will use a move constructor if one is available, else it will use a copy constructor.  A type may have both.  
+If the move constructor is used, it must not throw.  If the copy constructor is used, it can throw.  The 
+sentence in the proposed wording is correct without the recommended insertion.  The Bellevue LWG recommended 
+moving this issue to Ready.  I am unfortunately pulling it back to Open.  But I'm drafting wording to atone 
+for this egregious action. :-)
 </p>
 </blockquote>
 
@@ -39545,7 +39549,7 @@ unfortunately pulling it back to Open.  But I'm drafting wording to atone for th
 <hr>
 <h3><a name="755"></a>755. <tt>std::vector</tt> and <tt>std:string</tt> lack explicit shrink-to-fit operations</h3>
 <p><b>Section:</b> 23.3.6.3 [vector.capacity], 21.4.4 [string.capacity] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2007-10-31 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2007-10-31 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -39620,12 +39624,12 @@ capacity 23.3.6.3 [vector.capacity], add:
 <pre>
 void shrink_to_fit();
 </pre>
-<blockquote>
+<blockquote><p>
 <i>Remarks:</i> <tt>shrink_to_fit</tt> is a non-binding request to reduce
 <tt>capacity()</tt> to <tt>size()</tt>. [<i>Note:</i> The request is non-binding to
 allow latitude for implementation-specific optimizations.
-<i>-- end note</i>]
-</blockquote>
+&mdash; <i>end note</i>]
+</p></blockquote>
 </blockquote>
 
 <p><i>[
@@ -39745,7 +39749,7 @@ Addressed by
 <hr>
 <h3><a name="758"></a>758. <tt>shared_ptr</tt> and <tt>nullptr</tt></h3>
 <p><b>Section:</b> 20.7.2.2 [util.smartptr.shared] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2007-10-31 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Joe Gottman <b>Opened:</b> 2007-10-31 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#util.smartptr.shared">issues</a> in [util.smartptr.shared].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -39972,11 +39976,11 @@ template&lt;class Y, class D, class A&gt; shared_ptr(Y* p, D d, A a);
 In 20.7.2.2.1 [util.smartptr.shared.const]/10,  change
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> Constructs a <tt>shared_ptr</tt> object that <i>owns</i> the
 <del>pointer</del> <ins>object</ins> <tt>p</tt> and the deleter <tt>d</tt>. The second 
 constructor shall use a copy of <tt>a</tt> to allocate memory for internal use.
-</blockquote>
+</p></blockquote>
 
 
 <p><b>Rationale:</b></p>
@@ -39985,9 +39989,9 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
-"pointer" is changed to "object" to handle the fact that nullptr_t isn't a pointer.
-</blockquote>
+<blockquote><p>
+"pointer" is changed to "object" to handle the fact that <tt>nullptr_t</tt> isn't a pointer.
+</p></blockquote>
 
 
 
@@ -39997,7 +40001,7 @@ San Francisco:
 <hr>
 <h3><a name="759"></a>759. A reference is not an object</h3>
 <p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2007-11-06 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2007-11-06 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -40005,10 +40009,10 @@ San Francisco:
 23.2 [container.requirements] says:
 </p>
 
-<blockquote>
+<blockquote><p>
 -12- Objects passed to member functions of a container as rvalue references shall not be elements of that container. No 
 diagnostic required.
-</blockquote>
+</p></blockquote>
 
 <p>
 A reference is not an object, but this sentence appears to claim so.
@@ -40017,11 +40021,11 @@ A reference is not an object, but this sentence appears to claim so.
 <p>
 What is probably meant here:
 </p>
-<blockquote>
+<blockquote><p>
 An object bound to an rvalue
 reference parameter of a member function of a container shall not be
 an element of that container; no diagnostic required.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -40030,14 +40034,14 @@ an element of that container; no diagnostic required.
 Change 23.2 [container.requirements]:
 </p>
 
-<blockquote>
+<blockquote><p>
 -12- <del>Objects passed to member functions of a container as rvalue references shall not be elements</del>
 <ins>An object bound to an rvalue
 reference parameter of a member function of a container shall not be
 an element</ins>
 of that container<del>.</del><ins>;</ins> <del>N</del><ins>n</ins>o 
 diagnostic required.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -40105,7 +40109,7 @@ Bellevue:  Editorial note: the "(unique)" differs from map.
 <hr>
 <h3><a name="762"></a>762. <tt>std::unique_ptr</tt> requires complete type?</h3>
 <p><b>Section:</b> 20.7.1 [unique.ptr] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-11-30 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-11-30 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr">issues</a> in [unique.ptr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -40114,10 +40118,9 @@ In contrast to the proposed <tt>std::shared_ptr</tt>, <tt>std::unique_ptr</tt>
 does currently not support incomplete types, because it
 gives no explicit grant - thus instantiating <tt>unique_ptr</tt> with
 an incomplete pointee type <tt>T</tt> automatically belongs to
-undefined behaviour according to 17.6.4.8 [res.on.functions]/2, last
+undefined behaviour according to 17.6.4.8 [res.on.functions]&#47;2, last
 bullet. This is an unnecessary restriction and prevents
-many well-established patterns - like the bridge pattern -
-for <tt>std::unique_ptr</tt>.
+many well-established patterns - like the bridge pattern - for <tt>std::unique_ptr</tt>.
 </p>
 
 <p><i>[
@@ -40125,7 +40128,7 @@ Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to open. The LWG is comfortable with the intent of allowing
 incomplete types and making <tt>unique_ptr</tt> more like <tt>shared_ptr</tt>, but we are
 not comfortable with the wording. The specification for <tt>unique_ptr</tt>
@@ -40136,7 +40139,7 @@ we need the same level of care here. We also aren't comfortable with the
 "part of the operational semantic" language; it's not used elsewhere in
 the standard, and it's not clear what it means. We need a volunteer to
 produce new wording.
-</blockquote>
+</p></blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -40150,7 +40153,7 @@ The specialization <tt>unique_ptr&lt;T[]&gt;</tt> has some more restrictive cons
 type-completeness on <tt>T</tt> than <tt>unique_ptr&lt;T&gt;</tt>. The following proposed wordings
 try to cope with that. If the committee sees less usefulness on relaxed
 constraints on <tt>unique_ptr&lt;T[]&gt;</tt>, the alternative would be to stop this relaxation
-e.g. by adding one further bullet to 20.7.1.3 [unique.ptr.runtime]/1:
+e.g. by adding one further bullet to 20.7.1.3 [unique.ptr.runtime]&#47;1:
 "<tt>T</tt> shall be a complete type, if used as template argument of
 <tt>unique_ptr&lt;T[], D&gt;</tt>
 </p>
@@ -40169,10 +40172,10 @@ current specification of <tt>unique_ptr</tt>.
 <ol>
 <li>
 <p>
-In 20.7.1 [unique.ptr]/2 add as the last sentence to the existing para:
+In 20.7.1 [unique.ptr]&#47;2 add as the last sentence to the existing para:
 </p>
 
-<blockquote>
+<blockquote><p>
 The <tt>unique_ptr</tt> provides a semantics of strict ownership. A
 <tt>unique_ptr</tt> owns the object it holds a pointer to. A
 <tt>unique_ptr</tt> is not <tt>CopyConstructible</tt>, nor
@@ -40183,12 +40186,12 @@ uses of <tt>unique_ptr</tt> include providing exception safety for
 dynamically allcoated memory, passing ownership of dynamically allocated
 memory to a function, and returning dynamically allocated memory from a
 function. -- <i>end note</i> ]
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
 <p>
-20.7.1.2.1 [unique.ptr.single.ctor]/1: No changes necessary.
+20.7.1.2.1 [unique.ptr.single.ctor]&#47;1: No changes necessary.
 </p>
 
 <blockquote>
@@ -40202,7 +40205,7 @@ The current wording says just this.
 
 <li>
 <p>
-In 20.7.1.2.1 [unique.ptr.single.ctor]/5 change the requires clause to say:
+In 20.7.1.2.1 [unique.ptr.single.ctor]&#47;5 change the requires clause to say:
 </p>
 
 <blockquote>
@@ -40239,7 +40242,7 @@ again requires Completeness of <tt>Y</tt>, if <tt>!SameType&lt;X, Y&gt;</tt>
 
 <li>
 <p>
-Merge 20.7.1.2.1 [unique.ptr.single.ctor]/12+13 thereby removing the sentence
+Merge 20.7.1.2.1 [unique.ptr.single.ctor]&#47;12+13 thereby removing the sentence
 of 12, but transferring the "requires" to 13:
 </p>
 
@@ -40258,12 +40261,12 @@ pointer and the <tt>D</tt> deleter are well-formed and well-defined.
 </li>
 
 <li>
-20.7.1.2.1 [unique.ptr.single.ctor]/17: No changes necessary.
+20.7.1.2.1 [unique.ptr.single.ctor]&#47;17: No changes necessary.
 </li>
 <li>
-<p>20.7.1.2.1 [unique.ptr.single.ctor]/21:</p>
+<p>20.7.1.2.1 [unique.ptr.single.ctor]&#47;21:</p>
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> If <tt>D</tt> is not a reference type, construction of
 the deleter <tt>D</tt> from an rvalue of type <tt>E</tt> shall be well
 formed and shall not throw an exception. If <tt>D</tt> is a reference
@@ -40271,7 +40274,7 @@ type, then <tt>E</tt> shall be the same type as <tt>D</tt> (diagnostic
 required). <tt>U*</tt> shall be implicitly convertible to <tt>T*</tt>.
 <ins>[<i>Note:</i> These requirements imply that <tt>T</tt> and <tt>U</tt>
 be complete types. <i>-- end note</i>]</ins>
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 N.B.: The current wording of 21 already implicitly guarantees that <tt>U</tt>
@@ -40303,7 +40306,7 @@ type-completeness of <tt>T</tt> is delegated to this expression.
 
 <li>
 <p>
-20.7.1.2.3 [unique.ptr.single.asgn]/1: No changes necessary, except the
+20.7.1.2.3 [unique.ptr.single.asgn]&#47;1: No changes necessary, except the
 current editorial issue, that "must shall" has to be changed to
 "shall", but this change is not a special part of this resolution.
 </p>
@@ -40317,16 +40320,16 @@ further requirements on the requirements of the effects clause
 
 <li>
 <p>
-20.7.1.2.3 [unique.ptr.single.asgn]/6:
+20.7.1.2.3 [unique.ptr.single.asgn]&#47;6:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> Assignment of the deleter <tt>D</tt> from an rvalue
 <tt>D</tt> shall not throw an exception. <tt>U*</tt> shall be implicitly
 convertible to <tt>T*</tt>.
 <ins>[<i>Note:</i> These requirements imply that <tt>T</tt> and <tt>U</tt>
 be complete types. <i>-- end note</i>]</ins>
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 N.B.: The current wording of p. 6 already implicitly guarantees that
@@ -40338,7 +40341,7 @@ is true, see (6)+(8).
 
 <li>
 <p>
-20.7.1.2.3 [unique.ptr.single.asgn]/11: No changes necessary.
+20.7.1.2.3 [unique.ptr.single.asgn]&#47;11: No changes necessary.
 </p>
 <p><i>[
 N.B.: Delegation to requirements of effects clause is sufficient.
@@ -40347,32 +40350,32 @@ N.B.: Delegation to requirements of effects clause is sufficient.
 </li>
 
 <li>
-20.7.1.2.4 [unique.ptr.single.observers]/1+4+7+9+11:
+20.7.1.2.4 [unique.ptr.single.observers]&#47;1+4+7+9+11:
 </li>
 
 <blockquote>
 <pre>T* operator-&gt;() const;</pre>
-<blockquote>
+<blockquote><p>
 <ins><i>Note:</i> Use typically requires <tt>T</tt> shall be complete. <i>-- end note</i>]</ins>
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <li>
-20.7.1.2.5 [unique.ptr.single.modifiers]/1: No changes necessary.
+20.7.1.2.5 [unique.ptr.single.modifiers]&#47;1: No changes necessary.
 </li>
 
 <li>
 <p>
-20.7.1.2.5 [unique.ptr.single.modifiers]/4: Just before p. 4 add a new paragraph:
+20.7.1.2.5 [unique.ptr.single.modifiers]&#47;4: Just before p. 4 add a new paragraph:
 </p>
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> The expression <tt>get_deleter()(get())</tt> shall be well-formed,
 shall have well-defined behavior, and shall not throw exceptions.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
-20.7.1.2.5 [unique.ptr.single.modifiers]/7: No changes necessary.
+20.7.1.2.5 [unique.ptr.single.modifiers]&#47;7: No changes necessary.
 </li>
 
 <li>
@@ -40408,9 +40411,9 @@ post Bellevue: Daniel provided revised wording.
 
 
 <hr>
-<h3><a name="765"></a>765. more on iterator validity</h3>
+<h3><a name="765"></a>765. More on iterator validity</h3>
 <p><b>Section:</b> X [iterator.concepts] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2007-12-14 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2007-12-14 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#iterator.concepts">issues</a> in [iterator.concepts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -40491,15 +40494,16 @@ San Francisco:
 
 <blockquote>
 <p>
-Pablo: add a note to the last bullet of paragraph 11 of 23.1.1 clarifying that the end() iterator doesn't refer to an element and that it can therefore be invalidated.
+Pablo: add a note to the last bullet of paragraph 11 of 23.1.1 clarifying that 
+the <tt>end()</tt> iterator doesn't refer to an element and that it can therefore be invalidated.
 </p>
 <p>
 Proposed wording:
 </p>
-<blockquote>
+<blockquote><p>
 [<i>Note:</i> The <tt>end()</tt> iterator does not refer to any element and can
 therefore be invalidated. <i>-- end note</i>]
-</blockquote>
+</p></blockquote>
 <p>
 Howard will add this proposed wording to the issue and then move it to Review.
 </p>
@@ -40548,8 +40552,8 @@ additional requirements:
 <li>
 no <tt>swap()</tt> function invalidates any references, pointers, or
 iterators referring to the elements of the containers being swapped.
-<ins>[<i>Note:</i> The <tt>end()</tt> iterator does not refer to any element. It is therefore
-subject to being invalidated. <i>-- end note</i>]</ins>
+<ins>[<i>Note:</i> The <tt>end()</tt> iterator does not refer to any element. 
+It is therefore subject to being invalidated. &mdash; <i>end note</i>]</ins>
 </li>
 </ul>
 </blockquote>
@@ -40561,7 +40565,7 @@ subject to being invalidated. <i>-- end note</i>]</ins>
 <hr>
 <h3><a name="766"></a>766. Inconsistent exception guarantees between ordered and unordered associative containers</h3>
 <p><b>Section:</b> 23.2 [container.requirements], 23.2.5.1 [unord.req.except] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Ion Gazta&ntilde;aga <b>Opened:</b> 2007-12-22 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Ion Gazta&ntilde;aga <b>Opened:</b> 2007-12-22 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -40586,22 +40590,24 @@ additional requirements:
 <p>
 23.3.3.4 [deque.modifiers] and 23.3.6.5 [vector.modifiers] offer
 additional guarantees for <tt>deque</tt>/<tt>vector insert()</tt> and
-<tt>erase()</tt> members. However, 23.2 [container.requirements]p10 does not mention 23.2.5.1 [unord.req.except] that specifies exception safety guarantees
-for unordered containers. In addition,  23.2.5.1 [unord.req.except]p1 offers the following guaratee for
+<tt>erase()</tt> members. However, 23.2 [container.requirements] p10 
+does not mention 23.2.5.1 [unord.req.except] that specifies exception 
+safety guarantees for unordered containers. In addition,  
+23.2.5.1 [unord.req.except] p1 offers the following guaratee for
 <tt>erase()</tt>:
 </p>
 
-<blockquote>
+<blockquote><p>
 No <tt>erase()</tt> function throws an exception unless that exception
 is thrown by the container's Hash or Pred object (if any).
-</blockquote>
+</p></blockquote>
 
 <p>
 Summary:
 </p>
 
 <p>
-According to 23.2 [container.requirements]p10 no
+According to 23.2 [container.requirements] p10 no
 <tt>erase()</tt> function should throw an exception unless otherwise
 specified. Although does not explicitly mention 23.2.5.1 [unord.req.except], this section offers additional guarantees
 for unordered containers, allowing <tt>erase()</tt> to throw if
@@ -40647,8 +40653,8 @@ exception or swallow it, leaving the object registered.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Create a new sub-section of 23.2.4 [associative.reqmts] (perhaps [associative.req.except]) titled "Exception
-safety guarantees".
+Create a new sub-section of 23.2.4 [associative.reqmts] (perhaps 
+[associative.req.except]) titled "Exception safety guarantees".
 </p>
 
 <blockquote>
@@ -40675,27 +40681,27 @@ assignment operator of the container's Pred object (if any).
 Change 23.2.5.1 [unord.req.except]p1:
 </p>
 
-<blockquote>
+<blockquote><p>
 For unordered associative containers, no <tt>clear()</tt> function
 throws an exception. <del>No</del> <tt>erase(<ins>k</ins>)</tt>
 <del>function</del> <ins>does not</ins> throw<del>s</del> an exception
 unless that exception is thrown by the container's Hash or Pred object
 (if any).
-</blockquote>
+</p></blockquote>
 
 <p>
-Change 23.2 [container.requirements]p10 to add references to new sections:
+Change 23.2 [container.requirements] p10 to add references to new sections:
 </p>
 
-<blockquote>
+<blockquote><p>
 Unless otherwise specified (see [deque.modifiers]<ins>,</ins>
 <del>and</del> [vector.modifiers]<ins>, [associative.req.except],
 [unord.req.except]</ins>) all container types defined in this clause meet
 the following additional requirements:
-</blockquote>
+</p></blockquote>
 
 <p>
-Change 23.2 [container.requirements]p10 referring to <tt>swap</tt>:
+Change 23.2 [container.requirements] p10 referring to <tt>swap</tt>:
 </p>
 
 <blockquote>
@@ -40716,7 +40722,7 @@ Compare object (if any; see [associative.reqmts])</del>.
 <hr>
 <h3><a name="767"></a>767. Forwarding and backward compatibility</h3>
 <p><b>Section:</b> 23 [containers] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Sylvain Pion <b>Opened:</b> 2007-12-28 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Sylvain Pion <b>Opened:</b> 2007-12-28 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#containers">issues</a> in [containers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -40738,12 +40744,12 @@ int main()
 now fails with the following error message:
 </p>
 
-<blockquote>
+<blockquote><p>
 .../include/c++/4.3.0/ext/new_allocator.h: In member function 'void __gnu_cxx::new_allocator&lt;_Tp&gt;::construct(_Tp*, _Args&amp;&amp; ...) [with _Args = int, _Tp = char*]':
 .../include/c++/4.3.0/bits/stl_vector.h:707:   instantiated from 'void std::vector&lt;_Tp, _Alloc&gt;::push_back(_Args&amp;&amp; ...) [with _Args = int, _Tp = char*, _Alloc = std::allocator&lt;char*&gt;]'
 test.cpp:6:   instantiated from here
 .../include/c++/4.3.0/ext/new_allocator.h:114: error: invalid conversion from 'int' to 'char*'
-</blockquote>
+</p></blockquote>
 
 <p>
 As far as I know, g++ follows the current draft here.
@@ -40789,7 +40795,7 @@ Bellevue:
 
 <blockquote>
 <p>
-Motivation is to handle the old-style int-zero-valued NULL pointers.
+Motivation is to handle the old-style int-zero-valued <tt>NULL</tt> pointers.
 Problem: this solution requires concepts in some cases, which some users
 will be slow to adopt. Some discussion of alternatives involving
 prohibiting variadic forms and additional library-implementation
@@ -40798,18 +40804,18 @@ complexity.
 <p>
 Discussion of "perfect world" solutions, the only such solution put
 forward being to retroactively prohibit use of the integer zero for a
-NULL pointer. This approach was deemed unacceptable given the large
-bodies of pre-existing code that do use integer zero for a NULL pointer.
+<tt>NULL</tt> pointer. This approach was deemed unacceptable given the large
+bodies of pre-existing code that do use integer zero for a <tt>NULL</tt> pointer.
 </p>
 <p>
 Another approach is to change the member names. Yet another approach is
 to forbid the extension in absence of concepts.
 </p>
 <p>
-Resolution: These issues (<a href="lwg-defects.html#756">756</a>, <a href="lwg-defects.html#767">767</a>, <a href="lwg-closed.html#760">760</a>, <a href="lwg-closed.html#763">763</a>) will be subsumed into a
-paper to be produced by Alan Talbot in time for review at the 2008
-meeting in France. Once this paper is produced, these issues will be
-moved to <del>NAD</del><ins>Resolved</ins>.
+Resolution: These issues (<a href="lwg-defects.html#756">756</a>, <a href="lwg-defects.html#767">767</a>, <a href="lwg-closed.html#760">760</a>, 
+<a href="lwg-closed.html#763">763</a>) will be subsumed into a paper to be produced by Alan Talbot 
+in time for review at the 2008 meeting in France. Once this paper is produced, 
+these issues will be moved to <del>NAD</del><ins>Resolved</ins>.
 </p>
 </blockquote>
 
@@ -41283,7 +41289,7 @@ template&lt;class R, class... ArgTypes&gt;
 <hr>
 <h3><a name="771"></a>771. Impossible throws clause in [string.conversions]</h3>
 <p><b>Section:</b> 21.5 [string.conversions] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-13 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-13 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.conversions">issues</a> in [string.conversions].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -41292,9 +41298,9 @@ The new <tt>to_string</tt> and <tt>to_wstring</tt> functions described in 21.5 [
 have throws clauses (paragraphs 8 and 16) which say:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Throws:</i> nothing
-</blockquote>
+</p></blockquote>
 
 <p>
 Since all overloads return either a <tt>std::string</tt> or a <tt>std::wstring</tt> by value
@@ -41303,9 +41309,9 @@ constructors can fail due to out-of-memory conditions. Either these throws
 clauses should be removed or should be more detailled like:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Throws:</i> Nothing if the string construction throws nothing
-</blockquote>
+</p></blockquote>
 
 <p>
 Further there is an editorial issue in p. 14: All three <tt>to_wstring</tt>
@@ -41327,9 +41333,9 @@ string to_string(long long val);
 string to_string(unsigned long long val); 
 string to_string(long double val); 
 </pre>
-<blockquote>
+<blockquote><p>
 <del><i>Throws:</i> nothing</del>
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <blockquote>
@@ -41338,9 +41344,9 @@ string to_string(long double val);
 <ins>w</ins>string to_wstring(unsigned long long val); 
 <ins>w</ins>string to_wstring(long double val); 
 </pre>
-<blockquote>
+<blockquote><p>
 <del><i>Throws:</i> nothing</del>
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -41349,29 +41355,29 @@ string to_string(long double val);
 
 
 <hr>
-<h3><a name="772"></a>772.  Impossible return clause in [string.conversions]</h3>
+<h3><a name="772"></a>772. Impossible return clause in [string.conversions]</h3>
 <p><b>Section:</b> 21.5 [string.conversions] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-13 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-13 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.conversions">issues</a> in [string.conversions].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The return clause 21.5 [string.conversions]/paragraph 15 of the new <tt>to_wstring</tt>
+The return clause 21.5 [string.conversions] paragraph 15 of the new <tt>to_wstring</tt>
 overloads says:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> each function returns a <tt>wstring</tt> object holding the character
 representation of the value of its argument that would be generated by
 calling <tt>wsprintf(buf, fmt, val)</tt> with a format specifier of <tt>L"%lld"</tt>, <tt>L"%ulld"</tt>,
 or <tt>L"%f"</tt>, respectively.
-</blockquote>
+</p></blockquote>
 
 <p>
 Problem is: There does not exist any <tt>wsprintf</tt> function in C99 (I checked
 the 2nd edition of ISO 9899, and the first and the second corrigenda from
 2001-09-01 and 2004-11-15). What probably meant here is the function
-<tt>swprintf</tt> from <tt>&lt;wchar.h&gt;/&lt;cwchar&gt;</tt>, but this has the non-equivalent
+<tt>swprintf</tt> from <tt>&lt;wchar.h&gt;&#47;&lt;cwchar&gt;</tt>, but this has the non-equivalent
 declaration:
 </p>
 
@@ -41388,10 +41394,10 @@ therefore the paragraph needs to mention the <tt>size_t</tt> parameter <tt>n</tt
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Change the current wording of 21.5 [string.conversions]/p. 15 to:
+Change the current wording of 21.5 [string.conversions] p. 15 to:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <del>e</del><ins>E</ins>ach function returns a
 <tt>wstring</tt> object holding the character representation of the
 value of its argument that would be generated by calling
@@ -41399,7 +41405,7 @@ value of its argument that would be generated by calling
 val)</tt> with a format specifier <ins><tt>fmt</tt></ins> of <tt>L"%lld"</tt>,
 <tt>L"%ulld"</tt>, or <tt>L"%f"</tt>, respectively<ins>, where <tt>buf</tt>
 designates an internal character buffer of sufficient size <tt>bufsz</tt></ins>.
-</blockquote>
+</p></blockquote>
 
 <p>
 [Hint to the editor: The resolution also adds to mention the name of
@@ -41412,16 +41418,16 @@ paragraph 7 should also mention the meaning of <tt>buf</tt> and <tt>fmt</tt>.
 </p>
 
 <p>
-Change the current wording of 21.5 [string.conversions]/p. 7 to:
+Change the current wording of 21.5 [string.conversions] p. 7 to:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <del>e</del><ins>E</ins>ach function returns a string object holding the
 character representation of the value of its argument that would be
 generated by calling <tt>sprintf(buf, fmt, val)</tt> with a format specifier <ins><tt>fmt</tt></ins> of
 <tt>"%lld"</tt>, <tt>"%ulld"</tt>, or <tt>"%f"</tt>, respectively<ins>, where <tt>buf</tt> designates an internal
 character buffer of sufficient size</ins>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -41429,9 +41435,9 @@ character buffer of sufficient size</ins>.
 
 
 <hr>
-<h3><a name="774"></a>774. Member swap undefined for most containers</h3>
+<h3><a name="774"></a>774. Member <tt>swap</tt> undefined for most containers</h3>
 <p><b>Section:</b> 23 [containers] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-01-14 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-01-14 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#containers">issues</a> in [containers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -41486,29 +41492,29 @@ unordered_set
 <p>
 Suggested resolution:
 </p>
-<blockquote>
+<blockquote><p>
 Provide a definition for each of the affected containers...
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Open and ask Alisdair to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Daniel to provide wording.
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2590.pdf">N2590</a>
 is no longer applicable.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07-28 Daniel provided wording.
@@ -41542,32 +41548,32 @@ hash functions in containers are swapped via unqualified free
 ]</i></p>
 
 
-<blockquote>
-The outcome of this issue should be considered with the outcome of <a href="lwg-defects.html#1198">1198</a> both in style and in content (e.g. bullet 9 suggests to
-define the semantic of <tt>void
-priority_queue::swap(priority_queue&amp;)</tt> in terms of the member
-<tt>swap</tt> of the container).
-</blockquote>
+<blockquote><p>
+The outcome of this issue should be considered with the outcome of 
+<a href="lwg-defects.html#1198">1198</a> both in style and in content (e.g. bullet 9 suggests to
+define the semantic of <tt>void priority_queue::swap(priority_queue&amp;)</tt> 
+in terms of the member <tt>swap</tt> of the container).
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Looked at, but took no action on as it overlaps too much with
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a>.
 Waiting for a new draft WP.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as open. Pablo to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10-26 Pablo updated wording.  Here is the wording he replaced:
@@ -41612,12 +41618,12 @@ swap does never propagate an exception
 Change 23.2.4.1 [associative.reqmts.except]/3 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 For associative containers, no <tt>swap</tt> function throws an exception unless that
 exception is thrown by the <del>copy constructor or copy assignment
 operator</del>
 <ins><tt>swap</tt></ins> of the container's <tt>Pred</tt> object<ins>s</ins><del> (if any)</del>.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -41625,14 +41631,14 @@ operator</del>
 Change 23.2.5.1 [unord.req.except]/3 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 For unordered associative containers, no <tt>swap</tt> function throws an
 exception unless
 that exception is thrown by the <del>copy constructor or copy
 assignment operator</del>
 <ins><tt>swap</tt></ins> of the container's <tt>Hash</tt> or <tt>Pred</tt> object<ins>s,
 respectively</ins><del> (if any)</del>.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -41640,11 +41646,11 @@ respectively</ins><del> (if any)</del>.
 Insert a new paragraph just after 23.3 [sequences]/1:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins>In addition to being available via inclusion of the <tt>&lt;algorithm&gt;</tt> header,
 the <tt>swap</tt> function templates in 25.3.3 [alg.swap] are also available when the
 header <tt>&lt;queue&gt;</tt> is included.</ins>
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 There is a new issue in process that will suggest a minimum header for <tt>swap</tt>
@@ -41664,17 +41670,17 @@ contradict the
 general contract of 23.2.1 [container.requirements.general] p. 10 b. 5]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 <ins><i>Throws:</i> Nothing, unless one of the element-wise <tt>swap</tt> calls throws
 an exception.</ins>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
 <ol style="list-style-type:lower-alpha">
 <li>
 <p>
-In 23.3.3 [deque], class template deque synopsis change as indicated:
+In 23.3.3 [deque], class template <tt>deque</tt> synopsis change as indicated:
 </p>
 <blockquote><pre>
 void swap(deque<del>&lt;T,Alloc&gt;</del>&amp;);
@@ -41707,7 +41713,7 @@ with that of <tt>x</tt>.</ins>
 <ol style="list-style-type:lower-alpha">
 <li>
 <p>
-In 23.3.4 [forwardlist], class template <tt>forward_list</tt> synposis change as indicated:
+In 23.3.4 [forwardlist], class template <tt>forward_list</tt> synopsis change as indicated:
 </p>
 
 <blockquote><pre>
@@ -41789,8 +41795,7 @@ At the end of 23.6.4.3 [priqueue.members] add a new prototype description:
 
 <p><i>[
 This requirement is added to ensure that even a user defined <tt>swap</tt>
-which is found by
-ADL for <tt>Compare</tt> satisfies the <tt>Swappable</tt> requirements
+which is found by ADL for <tt>Compare</tt> satisfies the <tt>Swappable</tt> requirements
 ]</i></p>
 
 
@@ -41823,18 +41828,17 @@ void swap(vector<del>&lt;T,Allocator&gt;</del>&amp;);
 
 <li>
 <p>
-Change 23.3.6.3 [vector.capacity]/8 as indicated:
+Change 23.3.6.3 [vector.capacity] p. 8 as indicated:
 </p>
 
 <blockquote><pre>
 void swap(vector<del>&lt;T,Allocator&gt;</del>&amp; x);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> Exchanges the contents and <tt>capacity()</tt> <ins>and swaps the
-allocators</ins>
-of <tt>*this</tt> with that of <tt>x</tt>.
-</blockquote>
+allocators</ins> of <tt>*this</tt> with that of <tt>x</tt>.
+</p></blockquote>
 </blockquote>
 </li>
 </ol>
@@ -41845,11 +41849,11 @@ of <tt>*this</tt> with that of <tt>x</tt>.
 Insert a new paragraph just before 23.4 [associative]/1:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins>In addition to being available via inclusion of the <tt>&lt;algorithm&gt;</tt> header,
 the <tt>swap</tt> function templates in 25.3.3 [alg.swap] are also available when any of the
 headers <tt>&lt;map&gt;</tt> or <tt>&lt;set&gt;</tt> are included.</ins>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -42030,14 +42034,14 @@ of <tt>*this</tt> and <tt>x</tt>.</ins>
 
 <li>
 <p>
-Insert a new paragraph just before 23.5 [unord]/1:
+Insert a new paragraph just before 23.5 [unord] p. 1:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins>In addition to being available via inclusion of the <tt>&lt;algorithm&gt;</tt> header,
 the <tt>swap</tt> function templates in 25.3.3 [alg.swap] are also available when any of the
 headers <tt>&lt;unordered_map&gt;</tt> or <tt>&lt;unordered_set&gt;</tt> are included.</ins>
-</blockquote>
+</p></blockquote>
 
 </li>
 
@@ -42065,8 +42069,7 @@ requirements
 
 
 <p>
-<ins><i>Effects:</i> Exchanges the contents and hash policy and swaps the
-allocators of <tt>*this</tt>
+<ins><i>Effects:</i> Exchanges the contents and hash policy and swaps the allocators of <tt>*this</tt> 
 with that of <tt>x</tt>, followed by an unqualified <tt>swap</tt> of the <tt>Pred</tt> objects
 and an unqualified <tt>swap</tt> of the <tt>Hash</tt> objects of <tt>*this</tt> and <tt>x</tt>.</ins>
 </p>
@@ -42190,8 +42193,7 @@ and an unqualified <tt>swap</tt> of the <tt>Hash</tt> objects of <tt>*this</tt> 
 <p><i>[
 This resolution is based on the September 2009 WP,
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2960.pdf">N2960</a>,
-except that it
-assumes that
+except that it assumes that
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a>
 and issues <a href="lwg-defects.html#883">883</a> and <a href="lwg-closed.html#1232">1232</a> have already been applied.  Note in
 particular that Table 91 in
@@ -42203,8 +42205,9 @@ removed the old Table 90.  This resolution also addresses issue <a href="lwg-def
 
 <p>
 In 23.2.1 [container.requirements.general], replace the a.swap(b) row in table 90,
-"container requirements" (was table 91 before the application of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a> to the
-WP):
+"container requirements" (was table 91 before the application of 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a> 
+to the WP):
 </p>
 <blockquote>
 <table border="1">
@@ -42227,8 +42230,9 @@ WP):
 <p>
 Modify the notes immediately following Table 90 in
 23.2.1 [container.requirements.general] as follows (The wording below is after the
-application of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a> to <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2960.pdf">N2960</a>.  The editor might also want to combine Notes
-A and B into one.):
+application of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2982.pdf">N2982</a> 
+to <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2960.pdf">N2960</a>.  The 
+editor might also want to combine Notes A and B into one.):
 </p>
 <blockquote><p>
 Notes: the algorithms<del> swap(),</del> equal() and lexicographical_compare()
@@ -42366,7 +42370,7 @@ adaptor's <code>Container</code> or <code>Compare</code> object (if any).
 <hr>
 <h3><a name="775"></a>775. Tuple indexing should be unsigned?</h3>
 <p><b>Section:</b> 20.4.2.5 [tuple.helper] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-01-16 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-01-16 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.helper">issues</a> in [tuple.helper].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -42377,7 +42381,8 @@ I be &gt;= 0.  There is a much easier way to do this - declare I as
 <tt>unsigned</tt>.
 </p>
 <p>
-In fact the proposal is to use <code>std::size_t</code>, matching the type used in the <tt>tuple_size</tt> API.
+In fact the proposal is to use <code>std::size_t</code>, matching the 
+type used in the <tt>tuple_size</tt> API.
 </p>
 <p>
 A second suggestion is that it is hard to imagine an API that deduces
@@ -42475,8 +42480,9 @@ Update <strong>20.4.2.6 [tuple.elem] Element access</strong>
 template &lt;<del>int</del><ins>size_t</ins> I, class... types &gt;
 typename tuple_element&lt;I, tuple&lt;Types...&gt; &gt;::type& get(tuple&lt;Types...&gt;&amp; t);
 </pre>
-1 <em>Requires:</em> <code><del>0 &lt;= I and </del>I &lt; sizeof...(Types)</code>. The program is ill-formed if <code>I</code> is out of bounds.
 <p>
+1 <em>Requires:</em> <code><del>0 &lt;= I and </del>I &lt; sizeof...(Types)</code>. The program is ill-formed if <code>I</code> is out of bounds.
+<p/>
 2 <em>Returns:</em> A reference to the <code>I</code>th element of <code>t</code>, where indexing is zero-based.
 </p>
 <ins><em>Throws:</em> Nothing.</ins>
@@ -42560,14 +42566,14 @@ for pair is also unnecessary.
 
 
 <hr>
-<h3><a name="776"></a>776. Undescribed assign function of std::array</h3>
+<h3><a name="776"></a>776. Undescribed <tt>assign</tt> function of <tt>std::array</tt></h3>
 <p><b>Section:</b> 23.3.2 [array] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-20 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-20 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#array">issues</a> in [array].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The class template array synopsis in 23.3.2 [array]/3 declares a member
+The class template array synopsis in 23.3.2 [array] p. 3 declares a member
 function
 </p>
 
@@ -42586,9 +42592,9 @@ I found only one reference to this function in the issue list,
 <a href="lwg-closed.html#588">588</a> where the question is raised:
 </p>
 
-<blockquote>
+<blockquote><p>
 what's the effect of calling <tt>assign(T&amp;)</tt> on a zero-sized array?
-</blockquote>
+</p></blockquote>
 
 <p>
 which does not answer the basic question of this issue.
@@ -42788,27 +42794,26 @@ explicit bitset( const char* str );
 <hr>
 <h3><a name="779"></a>779. Resolution of #283 incomplete</h3>
 <p><b>Section:</b> 25.3.8 [alg.remove] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-25 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-25 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#alg.remove">issues</a> in [alg.remove].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 The resolution of <a href="lwg-defects.html#283">283</a> did not resolve similar necessary changes for algorithm
-<tt>remove_copy[_if]</tt>,
-which seems to be an oversight.
+<tt>remove_copy[_if]</tt>, which seems to be an oversight.
 </p>
 
 
 <p><b>Proposed resolution:</b></p>
 <p>
-In 25.3.8 [alg.remove]/p.6, replace the N2461 requires clause with:
+In 25.3.8 [alg.remove] p.6, replace the N2461 requires clause with:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> <del>Type <tt>T</tt> is <tt>EqualityComparable</tt> (31).</del> The ranges <tt>[first,last)</tt>
 and <tt>[result,result + (last - first))</tt> shall not overlap. <ins>The expression <tt>*result = *first</tt> shall be
 valid.</ins>
-</blockquote>
+</p></blockquote>
 
 
 
@@ -42816,9 +42821,9 @@ valid.</ins>
 
 
 <hr>
-<h3><a name="780"></a>780. <tt>std::merge()</tt> specification incorrect/insufficient</h3>
+<h3><a name="780"></a>780. <tt>std::merge()</tt> specification incorrect&#47;insufficient</h3>
 <p><b>Section:</b> 25.4.4 [alg.merge] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-25 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-25 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -42864,13 +42869,13 @@ Post Summit Alisdair adds:
 <p>
 Suggest:
 </p>
-<blockquote>
+<blockquote><p>
 (where <tt>last</tt> is equal to <tt>next(result, distance(first1, last1) +
 distance(first2, last2))</tt>, such that resulting range will be sorted in
 non-decreasing order; that is, for every iterator <tt>i</tt> in <tt>[result,last)</tt> other
 than <tt>result</tt>, the condition <tt>*i &lt; *prev(i)</tt> or, respectively, <tt>comp(*i,
 *prev(i))</tt> will be <tt>false</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 Note that this might still not be technically accurate in the case of
@@ -42884,11 +42889,11 @@ Post Summit Daniel adds:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 If we want to use <tt>prev</tt> and <tt>next</tt> here (Note: <tt>merge</tt>
-is sufficiently satisfied with <tt>InputIterator</tt>) we should instead *add* more to
-25 [algorithms]/6, but I can currently not propose any good wording for this.
-</blockquote>
+is sufficiently satisfied with <tt>InputIterator</tt>) we should instead <em>add</em> more to
+25 [algorithms] p. 6, but I can currently not propose any good wording for this.
+</p></blockquote>
 
 <p><i>[
 Batavia (2009-05):
@@ -42896,7 +42901,7 @@ Batavia (2009-05):
 
 <blockquote>
 <p>
-Pete points out the existing wording in [algorithms]/4
+Pete points out the existing wording in [algorithms] p. 4
 that permits the use of + in algorithm specifications.
 </p>
 <p>
@@ -42912,9 +42917,9 @@ Move to Review.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-08-23 Daniel reopens:
@@ -42926,10 +42931,10 @@ Move to Ready.
 The proposed wording must be rephrased, because the part
 </p>
 
-<blockquote>
+<blockquote><p>
 for every iterator <tt>i</tt> in <tt>[result,last)</tt> other than <tt>result</tt>, the condition
 <tt>*i &lt; *(i - 1)</tt> or, respectively, <tt>comp(*i, *(i - 1))</tt> will be <tt>false</tt>"
-</blockquote>
+</p></blockquote>
 
 <p>
 isn't meaningful, because the range <tt>[result,last)</tt> is that of a pure
@@ -43025,7 +43030,7 @@ in <tt>[first,last)</tt> other than <tt>first</tt>, the condition <tt>*i &lt;
 </blockquote>
 
 <p>
-Change 25.4.4 [alg.merge]/6+7 as indicated <i>[This ensures harmonization
+Change 25.4.4 [alg.merge] p. 6+7 as indicated <i>[This ensures harmonization
 between <tt>inplace_merge</tt> and <tt>merge</tt>]</i>
 </p>
 
@@ -43057,7 +43062,7 @@ requirements (Table 33), and the the <tt>MoveAssignable</tt> requirements (Table
 <hr>
 <h3><a name="781"></a>781. <tt>std::complex</tt> should add missing C99 functions</h3>
 <p><b>Section:</b> 26.4.7 [complex.value.ops] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-26 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-01-26 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#complex.value.ops">issues</a> in [complex.value.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43090,7 +43095,7 @@ function).
 
 <p>
 Please note also that the current entry <tt>polar</tt>
-in 26.4.9 [cmplx.over]/1
+in 26.4.9 [cmplx.over] p. 1
 should be removed from the mentioned overload list. It does not make sense to require that a
 function already expecting <em>scalar</em> arguments
 should cast these arguments into corresponding
@@ -43118,15 +43123,14 @@ In 26.4.7 [complex.value.ops] just after p.6 (return clause of <tt>conj</tt>) ad
 <pre>
 template&lt;class T&gt; complex&lt;T&gt; proj(const complex&lt;T&gt;&amp; x);
 </pre>
-<blockquote>
-
+<blockquote><p>
 <i>Effects:</i> Behaves the same as C99 function <tt>cproj</tt>, defined in
 subclause 7.3.9.4."
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p>
-In 26.4.9 [cmplx.over]/1, add one further entry <tt>proj</tt> to
+In 26.4.9 [cmplx.over] p. 1, add one further entry <tt>proj</tt> to
 the overload list.
 </p>
 
@@ -43395,7 +43399,7 @@ terminated thread that can no longer be joined.</ins>
 <hr>
 <h3><a name="786"></a>786. Thread library timed waits, UTC and monotonic clocks</h3>
 <p><b>Section:</b> 20.11 [time] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Christopher Kohlhoff, Jeff Garland <b>Opened:</b> 2008-02-03 <b>Last modified:</b> 2011-04-25</p>
+ <b>Submitter:</b> Christopher Kohlhoff, Jeff Garland <b>Opened:</b> 2008-02-03 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#time">issues</a> in [time].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43511,10 +43515,10 @@ Change the constructor <tt>explicit system_time(time_t secs, nanoseconds ns
 </p>
 
 
-<p><b>Rationale:</b></p>
+<p><b>Rationale:</b></p><p>
 Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2661.htm">N2661: A Foundation to Sleep On</a>.
-
+</p>
 
 
 
@@ -43522,16 +43526,16 @@ Addressed by
 <hr>
 <h3><a name="787"></a>787. complexity of <tt>binary_search</tt></h3>
 <p><b>Section:</b> 25.4.3.4 [binary.search] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-09-08 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2007-09-08 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-In 25.4.3.4 [binary.search]/3 the complexity of <tt>binary_search</tt> is described as
+In 25.4.3.4 [binary.search] p. 3 the complexity of <tt>binary_search</tt> is described as
 </p>
 
-<blockquote>
+<blockquote><p>
 At most <tt>log(last - first) + 2</tt> comparisons.
-</blockquote>
+</p></blockquote>
 
 <p>
 This should be precised and brought in line with the nomenclature used for
@@ -43541,8 +43545,7 @@ This should be precised and brought in line with the nomenclature used for
 <p>
 All existing libraries I'm aware of, delegate to
 <tt>lower_bound</tt> (+ one further comparison). Since
-issue <a href="lwg-defects.html#384">384</a>
-has now WP status, the resolution of #787 should
+issue <a href="lwg-defects.html#384">384</a> has now WP status, the resolution of #787 should
 be brought in-line with <a href="lwg-defects.html#384">384</a> by changing the <tt>+ 2</tt>
 to <tt>+ O(1)</tt>.
 </p>
@@ -43552,11 +43555,11 @@ Sophia Antipolis:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Alisdair prefers to apply an upper bound instead of O(1), but that would
 require fixing for <tt>lower_bound</tt>, <tt>upper_bound</tt> etc. as well. If he really
 cares about it, he'll send an issue to Howard.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -43565,18 +43568,18 @@ cares about it, he'll send an issue to Howard.
 Change 25.4.3.4 [binary.search]/3
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Complexity:</i> At most <tt>log<ins><sub>2</sub></ins>(last - first) + <del>2</del> <ins><i>O</i>(1)</ins></tt> comparisons.
-</blockquote>
+</p></blockquote>
 
 
 
 
 
 <hr>
-<h3><a name="788"></a>788. ambiguity in [istream.iterator]</h3>
+<h3><a name="788"></a>788. Ambiguity in [istream.iterator]</h3>
 <p><b>Section:</b> 24.6.1 [istream.iterator] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-02-06 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-02-06 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#istream.iterator">issues</a> in [istream.iterator].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43586,7 +43589,7 @@ Change 25.4.3.4 [binary.search]/3
 <blockquote>
 <p>
 It is not clear what the initial state of an <tt>istream_iterator</tt> should be. Is
-_value_ initialized by reading the stream, or default/value initialized? If
+_value_ initialized by reading the stream, or default&#47;value initialized? If
 it is initialized by reading the stream, what happens if the initialization
 is deferred until first dereference, when ideally the iterator value should
 have been that of an end-of-stream iterator which is not safely
@@ -43605,7 +43608,7 @@ end-of-stream iterator is a) ambiguous and b) out of date WRT
 issue <a href="lwg-defects.html#468">468</a>:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>istream_iterator</tt> reads (using <tt>operator&gt;&gt;</tt>) successive elements from the
 input stream for which it was constructed. After it is constructed, and
 every time <tt>++</tt> is used, the iterator reads and stores a value of <tt>T</tt>. If
@@ -43621,7 +43624,7 @@ store things into istream iterators. The main peculiarity of the istream
 iterators is the fact that <tt>++</tt> operators are not equality preserving,
 that is, <tt>i == j</tt> does not guarantee at all that <tt>++i == ++j</tt>. Every time <tt>++</tt>
 is used a new value is read.
-</blockquote>
+</p></blockquote>
 
 <p>
 <tt>istream::operator void*()</tt> returns null if <tt>istream::fail()</tt> is <tt>true</tt>,
@@ -43643,10 +43646,10 @@ Summit:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved from Ready to Open for the purposes of using this issue to address NB UK 287.
 Martin to handle.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
@@ -43669,7 +43672,7 @@ Move to Ready.
 Change 24.6.1 [istream.iterator]/1:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>istream_iterator</tt> reads (using <tt>operator&gt;&gt;</tt>) successive elements from the
 input stream for which it was constructed. After it is constructed, and
 every time <tt>++</tt> is used, the iterator reads and stores a value of <tt>T</tt>. If
@@ -43686,7 +43689,7 @@ store things into istream iterators. The main peculiarity of the istream
 iterators is the fact that <tt>++</tt> operators are not equality preserving,
 that is, <tt>i == j</tt> does not guarantee at all that <tt>++i == ++j</tt>. Every time <tt>++</tt>
 is used a new value is read.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -43695,7 +43698,7 @@ is used a new value is read.
 <hr>
 <h3><a name="789"></a>789. <tt>xor_combine_engine(result_type)</tt> should be explicit</h3>
 <p><b>Section:</b> X [rand.adapt.xor] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.adapt.xor">issues</a> in [rand.adapt.xor].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43708,14 +43711,14 @@ Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Non-controversial. Bill is right, but Fermilab believes that this is
 easy to use badly and hard to use right, and so it should be removed
 entirely. Got into TR1 by well defined route, do we have permission to
 remove stuff? Should probably check with Jens, as it is believed he is
 the originator. Broad consensus that this is not a robust engine
 adapter.
-</blockquote>
+</p></blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -43733,7 +43736,7 @@ Remove X [rand.adapt.xor] <tt>xor_combine_engine</tt>.
 <hr>
 <h3><a name="792"></a>792. <tt>piecewise_constant_distribution</tt> is undefined for a range with just one endpoint</h3>
 <p><b>Section:</b> 26.5.8.6.2 [rand.dist.samp.pconst] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.pconst">issues</a> in [rand.dist.samp.pconst].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43748,9 +43751,9 @@ endpoint. (Probably should be the same as an empty range.)
 Change 26.5.8.6.2 [rand.dist.samp.pconst] paragraph 3b:
 </p>
 
-<blockquote>
+<blockquote><p>
 b) If <tt>firstB == lastB</tt> <ins>or the sequence <tt>w</tt> has the length zero</ins>,
-</blockquote>
+</p></blockquote>
 
 
 
@@ -43759,7 +43762,7 @@ b) If <tt>firstB == lastB</tt> <ins>or the sequence <tt>w</tt> has the length ze
 <hr>
 <h3><a name="793"></a>793. <tt>discrete_distribution</tt> missing constructor</h3>
 <p><b>Section:</b> 26.5.8.6.1 [rand.dist.samp.discrete] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2008-02-09 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.discrete">issues</a> in [rand.dist.samp.discrete].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -43782,12 +43785,12 @@ Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 How do you specify the function so that it does not return negative
 values? If you do it is a bad construction. This requirement is already
 there. Where in each bin does one evaluate the function? In the middle.
 Need to revisit tomorrow.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Sophia Antipolis:
@@ -43828,7 +43831,7 @@ Pre San Francisco, Daniel provided wording:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 The here proposed changes of the WP refer to the current state of
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2691.pdf">N2691</a>.
 During the Sophia Antipolis meeting two different proposals came up
@@ -43839,7 +43842,7 @@ function argument that is provided by value. If severe concerns exists that
 stateful functions would be of dominant relevance, it should be possible to
 replace the two occurrences of <tt>Func</tt> by <tt>Func&amp;&amp;</tt> in this proposal as part
 of an editorial process.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -44395,7 +44398,7 @@ public:
 <hr>
 <h3><a name="800"></a>800. Issues in 26.4.7.1 [rand.util.seedseq](6)</h3>
 <p><b>Section:</b> 26.5.7.1 [rand.util.seedseq] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2008-02-18 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Stephan Tolksdorf <b>Opened:</b> 2008-02-18 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.util.seedseq">issues</a> in [rand.util.seedseq].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -44432,9 +44435,9 @@ Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Open: Bill will try to propose a resolution by the next meeting.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 post Bellevue:  Bill provided wording.
@@ -44470,10 +44473,11 @@ for( v.clear(); n &gt; 0; n -= 32 )
 </blockquote>
 
 
-<p><b>Rationale:</b></p>
+<p><b>Rationale:</b></p><p>
 Addressed by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
-
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> 
+"Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -44481,7 +44485,7 @@ Addressed by
 <hr>
 <h3><a name="801"></a>801. <tt>tuple</tt> and <tt>pair</tt> trivial members</h3>
 <p><b>Section:</b> 20.4 [tuple] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Lawrence Crowl <b>Opened:</b> 2008-02-18 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Lawrence Crowl <b>Opened:</b> 2008-02-18 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple">issues</a> in [tuple].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -44582,19 +44586,19 @@ tabled until Alisdair's proposals are disposed of.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 This is partly solved by <a href="lwg-defects.html#1117">1117</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Wait for dust to settle from fixing exception safety problem
 with rvalue refs.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07-20 Alisdair adds:
@@ -44631,9 +44635,9 @@ implied in the process (even if elided).
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as open. Alisdair to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010 Pittsburgh:
@@ -44653,18 +44657,22 @@ constexpr default constructors, but we're not sure.
 ]</i></p>
 
 
-<blockquote>
-Daniel believes his pair/tuple paper will resolve this issue. <tt>constexpr</tt> will allow static initialization, and he is already changing the move and copy constructors to be defaulted.
-</blockquote>
+<blockquote><p>
+Daniel believes his pair&#47;tuple paper will resolve this issue. <tt>constexpr</tt> 
+will allow static initialization, and he is already changing the move and copy 
+constructors to be defaulted.
+</p></blockquote>
 
 <p><i>[
 2010-10-24 Daniel adds:
 ]</i></p>
 
 
-<blockquote>
-The proposed resolution of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> should resolve this issue.
-</blockquote>
+<blockquote><p>
+The proposed resolution of 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> 
+should resolve this issue.
+</p></blockquote>
 
 
 
@@ -44680,7 +44688,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="803"></a>803. Simplification of <tt>seed_seq::seq_seq</tt></h3>
 <p><b>Section:</b> 26.5.7.1 [rand.util.seedseq] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Charles Karney <b>Opened:</b> 2008-02-22 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Charles Karney <b>Opened:</b> 2008-02-22 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.util.seedseq">issues</a> in [rand.util.seedseq].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -44750,16 +44758,16 @@ The chief virtues here are simplicity, portability, and generality.
 </p>
 <ul>
 <li>
-Simplicity -- compare the above specification with the
+Simplicity &mdash; compare the above specification with the
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2461.pdf">n2461</a> proposal.
 </li>
 <li>
-Portability -- with <tt>iterator_traits&lt;InputIterator&gt;::value_type =
+Portability &mdash; with <tt>iterator_traits&lt;InputIterator&gt;::value_type =
 uint_least32_t</tt> the user is guaranteed to get the same behavior across
 platforms.
 </li>
 <li>
-Generality -- any behavior that the
+Generality &mdash; any behavior that the
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2461.pdf">n2461</a>
 proposal can achieve can be
 obtained with this simpler proposal (albeit with a shuffling of bits
@@ -44846,9 +44854,9 @@ Bellevue:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Walter needs to ask Fermilab for guidance. Defer till tomorrow. Bill likes the proposed resolution.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Sophia Antipolis:
@@ -44926,10 +44934,11 @@ for (InputIterator s = begin; s != end; ++s)
 </blockquote>
 
 
-<p><b>Rationale:</b></p>
+<p><b>Rationale:</b></p><p>
 Addressed by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
-
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> 
+"Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -44937,7 +44946,7 @@ Addressed by
 <hr>
 <h3><a name="804"></a>804. Some problems with classes <tt>error_code</tt>/<tt>error_condition</tt></h3>
 <p><b>Section:</b> 19.5 [syserr] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-02-24 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-02-24 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#syserr">issues</a> in [syserr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -45093,9 +45102,9 @@ void assign(int val, const error_category&amp; cat);
 Change 19.5.2.4 [syserr.errcode.observers] Class error_code observers as indicated:
 </p>
 
-<blockquote>
+<blockquote><pre>
 const error_category&amp; category() const;
-<blockquote>
+</pre><blockquote>
 <p>
 <i>Returns:</i> <tt><ins>*</ins>cat_</tt>.
 </p>
@@ -45160,9 +45169,9 @@ error_condition(int val, const error_category&amp; cat);
 Change 19.5.3.3 [syserr.errcondition.modifiers] Class error_condition modifiers as indicated:
 </p>
 
-<blockquote>
+<blockquote><pre>
 void assign(int val, const error_category&amp; cat);
-<blockquote>
+</pre><blockquote>
 <p>
 <i>Postconditions:</i> <tt>val_ == val</tt> and <tt>cat_ == <ins>&amp;</ins>cat</tt>.
 </p>
@@ -45176,9 +45185,9 @@ void assign(int val, const error_category&amp; cat);
 Change 19.5.3.4 [syserr.errcondition.observers] Class error_condition observers as indicated:
 </p>
 
-<blockquote><p>
+<blockquote><pre>
 const error_category&amp; category() const;
-</p><blockquote>
+</pre><blockquote>
 <p>
 <i>Returns:</i> <tt><ins>*</ins>cat_</tt>.
 </p>
@@ -45260,7 +45269,7 @@ string message() const;
 <hr>
 <h3><a name="805"></a>805. <tt>posix_error::posix_errno</tt> concerns</h3>
 <p><b>Section:</b> 19.5 [syserr] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-02-24 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-02-24 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#syserr">issues</a> in [syserr].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -45276,7 +45285,7 @@ namespace posix_error {
 </pre></blockquote>
 
 <p>
-should rather use the new scoped-enum  facility (7.2 [dcl.enum]),
+should rather use the new scoped-enum facility (7.2 [dcl.enum]),
 which would avoid the necessity for a new <tt>posix_error</tt>
 namespace, if I understand correctly.
 </p>
@@ -45330,12 +45339,12 @@ template &lt;&gt; struct is_error_condition_enum&lt;<del>posix_error::posix_errn
 Change System error support 19.5 [syserr] :
 </p>
 
-<blockquote>
+<blockquote><p>
 <del>The <tt>is_error_code_enum</tt> and <tt>is_error_condition_enum</tt> templates may be
 specialized for user-defined types to indicate that such a type is
 eligible for class <tt>error_code</tt> and class <tt>error_condition</tt> automatic
 conversions, respectively.</del>
-</blockquote>
+</p></blockquote>
 
 <p>
 Change System error support 19.5 [syserr] and its subsections:
@@ -45362,12 +45371,12 @@ change all instances of <tt>get_posix_category</tt> to <tt>get_generic_category<
 Change Error category objects 19.5.1.5 [syserr.errcat.objects], paragraph 2:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Remarks:</i> The object's <tt>default_error_condition</tt> and equivalent virtual
 functions shall behave as specified for the class <tt>error_category</tt>. The
 object's name virtual function shall return a pointer to the string
 <del>"POSIX"</del> <ins>"generic"</ins>.
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 19.5.2.5 [syserr.errcode.nonmembers] Class <tt>error_code</tt> non-member functions as indicated:
@@ -45378,9 +45387,9 @@ Change 19.5.2.5 [syserr.errcode.nonmembers] Class <tt>error_code</tt> non-member
 error_code make_error_code(<del>posix_errno</del> <ins>errc</ins> e);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <tt>error_code(<ins>static_cast&lt;int&gt;(</ins>e<ins>)</ins>, <del>posix</del><ins>generic</ins>_category)</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p>
@@ -45392,9 +45401,9 @@ Change 19.5.3.5 [syserr.errcondition.nonmembers] Class <tt>error_condition</tt> 
 error_condition make_error_condition(<del>posix_errno</del> <ins>errc</ins> e);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Returns:</i> <tt>error_condition(<ins>static_cast&lt;int&gt;(</ins>e<ins>)</ins>, <del>posix</del><ins>generic</ins>_category)</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -45516,7 +45525,7 @@ intuitive. There are no uses of <tt>errc</tt> in the current C++ standard.
 <hr>
 <h3><a name="806"></a>806. <tt>unique_ptr::reset</tt> effects incorrect, too permissive</h3>
 <p><b>Section:</b> 20.7.1.2.5 [unique.ptr.single.modifiers] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-03-13 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-03-13 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr.single.modifiers">issues</a> in [unique.ptr.single.modifiers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -45524,13 +45533,13 @@ intuitive. There are no uses of <tt>errc</tt> in the current C++ standard.
 <tt>void unique_ptr::reset(T* p = 0)</tt> is currently specified as:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> If <tt>p == get()</tt> there are no effects. Otherwise <tt>get_deleter()(get())</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 There are two problems with this. One, if <tt>get() == 0</tt> and <tt>p != 0</tt>, the
-deleter is called with a NULL pointer, and this is probably not what's
+deleter is called with a <tt>NULL</tt> pointer, and this is probably not what's
 intended (the destructor avoids calling the deleter with 0.)
 </p>
 
@@ -45542,7 +45551,7 @@ self-resets in 2001 and there were no complaints.
 </p>
 
 <p>
-One might think that self-resets are necessary for operator= to work; it's specified to perform
+One might think that self-resets are necessary for <tt>operator=</tt> to work; it's specified to perform
 </p>
 
 <blockquote><pre>
@@ -45577,9 +45586,9 @@ Change 20.7.1.2.5 [unique.ptr.single.modifiers]:
 <pre>
 void reset(T* p = 0);
 </pre>
-<blockquote>
+<blockquote><p>
 -4- <i>Effects:</i> If <tt><del>p ==</del> get()<ins> == 0</ins></tt> there are no effects. Otherwise <tt>get_deleter()(get())</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p>
@@ -45635,16 +45644,16 @@ or assignment of one of the types in <tt>Types</tt> throws an exception.
 <hr>
 <h3><a name="808"></a>808. [forward] incorrect redundant specification</h3>
 <p><b>Section:</b> 20.2.3 [forward] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-03-13 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-03-13 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#forward">issues</a> in [forward].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 p4 (forward) says:
 </p>
-<blockquote>
+<blockquote><p>
 <i>Return type:</i> If <tt>T</tt> is an lvalue-reference type, an lvalue; otherwise, an rvalue.
-</blockquote>
+</p></blockquote>
 
 <p>
 First of all, lvalue-ness and rvalue-ness are properties of an expression,
@@ -45663,9 +45672,9 @@ have reference type, ever.)
 <p>
 Similar with move:
 </p>
-<blockquote>
+<blockquote><p>
 Return type: an rvalue.
-</blockquote>
+</p></blockquote>
 <p>
 is just wrong and also redundant.
 </p>
@@ -45715,9 +45724,9 @@ template &lt;class T&gt; typename remove_reference&lt;T&gt;::type&amp;&amp; move
 
 
 <hr>
-<h3><a name="809"></a>809. std::swap should be overloaded for array types</h3>
+<h3><a name="809"></a>809. <tt>std::swap</tt> should be overloaded for array types</h3>
 <p><b>Section:</b> 25.3.3 [alg.swap] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Niels Dekker <b>Opened:</b> 2008-02-28 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Niels Dekker <b>Opened:</b> 2008-02-28 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#alg.swap">issues</a> in [alg.swap].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -45736,12 +45745,14 @@ function for a generic wrapper class template.
 href="http://www.boost.org/libs/utility/value_init.htm">value_initialized</a>.)
 Please look at the following template, <code>W</code>, and suppose that is intended to be a very
 <em>generic</em> wrapper:
+</p>
 <pre>
 template&lt;class T&gt; class W {
 public:
    T data;
 };
 </pre>
+<p>
 Clearly <code>W&lt;T&gt;</code> is <em>CopyConstructible and CopyAssignable</em>, and therefore
 <em>Swappable</em>, whenever <code>T</code> is <em>CopyConstructible and CopyAssignable</em>.
 Moreover, <code>W&lt;T&gt;</code> is <em>also</em> Swappable when <code>T</code> is an array type
@@ -45751,22 +45762,25 @@ for the sake of efficiency and exception safety.
 (E.g., <em>Scott Meyers, Effective C++, Third Edition, item 25: Consider support for a non-throwing
 swap</em>.)
 This function template is typically written as follows:
+</p>
 <pre>
 template&lt;class T&gt; void swap(W&lt;T&gt;&amp; x, W&lt;T&gt;&amp; y) {
   using std::swap;
   swap(x.data, y.data);
 }
 </pre>
+<p>
 Unfortunately, this will introduce an undesirable inconsistency, when <code>T</code> is an array.
 For instance, <code>W&lt;std::string[8]&gt;</code> is Swappable, but the current Standard does not
 allow calling the custom swap function that was especially written for <code>W</code>!
+</p>
 <pre>
 W&lt;std::string[8]&gt; w1, w2;  // Two objects of a Swappable type.
 std::swap(w1, w2);  // Well-defined, but inefficient.
 using std::swap;
 swap(w1, w2);  // Ill-formed, just because ADL finds W's swap function!!!
 </pre>
-
+<p>
 <code>W</code>'s <code>swap</code> function would try to call <code>std::swap</code> for an array,
 <code>std::string[8]</code>, which is not supported by the Standard Library.
 This issue is easily solved by providing an overload of <code>std::swap</code> for array types.
@@ -45791,9 +45805,9 @@ Library] Shouldn't std::swap be overloaded for C-style arrays?</a>
 <p>
 Add an extra condition to the definition of Swappable requirements [swappable] in 17.6.3.1 [utility.arg.requirements]:
 </p>
-<blockquote>
+<blockquote><p>
 - <tt>T</tt> is <tt>Swappable</tt> if <tt>T</tt> is an array type whose element type is <tt>Swappable</tt>.
-</blockquote>
+</p></blockquote>
 <p>
 Add the following to 25.3.3 [alg.swap]:
 </p>
@@ -45801,12 +45815,12 @@ Add the following to 25.3.3 [alg.swap]:
 <pre>
 template&lt;class T, size_t N&gt; void swap(T (&amp;a)[N], T (&amp;b)[N]);
 </pre>
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> Type <code>T</code> shall be <tt>Swappable</tt>.
-</blockquote>
-<blockquote>
+</p></blockquote>
+<blockquote><p>
 <i>Effects:</i> <code>swap_ranges(a, a + N, b);</code>
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -45934,7 +45948,7 @@ template &lt;<del>class charT, </del>class moneyT&gt; T8 put_money(const moneyT&
 <hr>
 <h3><a name="811"></a>811. <tt>pair</tt> of pointers no longer works with literal 0</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Doug Gregor <b>Opened:</b> 2008-03-14 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Doug Gregor <b>Opened:</b> 2008-03-14 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46002,9 +46016,9 @@ Related to <a href="lwg-defects.html#885">885</a>.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as open. Howard to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-02-06 Howard provided wording.
@@ -46024,10 +46038,10 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Solved by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2770.pdf">N2770</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 The rationale is obsolete.
@@ -46069,7 +46083,7 @@ resolution.</ins>
 <hr>
 <h3><a name="813"></a>813. "empty" undefined for <tt>shared_ptr</tt></h3>
 <p><b>Section:</b> 20.7.2.2 [util.smartptr.shared] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2008-02-26 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Matt Austern <b>Opened:</b> 2008-02-26 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#util.smartptr.shared">issues</a> in [util.smartptr.shared].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46081,8 +46095,8 @@ and that a copy of a default-constructed <tt>shared_ptr</tt> is empty. Are any
 other <tt>shared_ptr</tt>s empty? For example, is <tt>shared_ptr((T*) 0)</tt> empty? What
 are the properties of an empty <tt>shared_ptr</tt>? We should either clarify this
 term or stop using it.
-<p>
 </p>
+<p>
 One reason it's not good enough to leave this term up to the reader's
 intuition is that, in light of
 <a href="http://www.open-std.org/JTC1/sc22/WG21/docs/papers/2007/n2351.htm">N2351</a>
@@ -46113,9 +46127,9 @@ completely specified by the last mutating operation on that instance.
 Give me an example and I'll tell you whether the <tt>shared_ptr</tt> is empty or
 not.
 </p>
-<blockquote>
+<blockquote><p>
 (*) If it isn't, this is a legitimate defect.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -46199,14 +46213,14 @@ Alisdair's wording is fine.
 <p>
 Append the following sentance to 20.7.2.2 [util.smartptr.shared]
 </p>
-<blockquote>
+<blockquote><p>
 The <code>shared_ptr</code> class template stores a pointer, usually obtained
 via <code>new</code>. <code>shared_ptr</code> implements semantics of
 shared ownership; the last remaining owner of the pointer is responsible for
 destroying the object, or otherwise releasing  the resources associated with
 the stored pointer. <ins>A <code>shared_ptr</code> object that does not own
 a pointer is said to be <i>empty</i>.</ins>
-</blockquote>
+</p></blockquote>
 
 
 
@@ -46215,7 +46229,7 @@ a pointer is said to be <i>empty</i>.</ins>
 <hr>
 <h3><a name="814"></a>814. <tt>vector&lt;bool&gt;::swap(reference, reference)</tt> not defined</h3>
 <p><b>Section:</b> 23.3.7 [vector.bool] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-17 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-17 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.bool">issues</a> in [vector.bool].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46228,9 +46242,9 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Open. Alisdair to provide a resolution.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit Daniel provided wording.
@@ -46241,10 +46255,10 @@ Post Summit Daniel provided wording.
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 We agree with the proposed resolution.
 Move to Tentatively Ready.
-</blockquote>
+</p></blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -46275,7 +46289,7 @@ y = b;
 <hr>
 <h3><a name="815"></a>815. <tt>std::function</tt> and <tt>reference_closure</tt> do not use perfect forwarding</h3>
 <p><b>Section:</b> 20.8.11.2.4 [func.wrap.func.inv] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-16 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-16 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func.inv">issues</a> in [func.wrap.func.inv].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46289,11 +46303,11 @@ Sophia Antipolis:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 According to Doug Gregor, as far as <tt>std::function</tt> is concerned, perfect
 forwarding can not be obtained because of type erasure. Not everyone
 agreed with this diagnosis of forwarding.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-05-01 Howard adds:
@@ -46452,20 +46466,20 @@ do so, if <tt>ArgTypes</tt> aren't at least <tt>MoveConstructible</tt>?
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave this open and wait until concepts are removed from the Working
 Draft so that we know how to write the proposed resolution in terms of
 diffs to otherwise stable text.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as open. Howard to provide wording. Howard welcomes any help.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-12-12 Jonathan Wakely adds:
@@ -46477,13 +46491,13 @@ Leave as open. Howard to provide wording. Howard welcomes any help.
 20.8.11.2 [func.wrap.func] says
 </p>
 
-<blockquote>
+<blockquote><p>
 2  A function object <tt>f</tt> of type <tt>F</tt> is Callable for argument
 types <tt>T1, T2, ..., TN</tt> in <tt>ArgTypes</tt> and a return type
 <tt>R</tt>, if, given lvalues <tt>t1, t2, ..., tN</tt> of types <tt>T1, T2, ...,
 TN</tt>, respectively, <tt>INVOKE (f, t1, t2, ..., tN)</tt> is well formed
 (20.7.2) and, if <tt>R</tt> is not <tt>void</tt>, convertible to <tt>R</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 N.B. lvalues, which means you can't use <tt>function&lt;R(T&amp;&amp;)&gt;</tt>
@@ -46525,14 +46539,14 @@ otherwise"?  I prefer the former, so I propose the following resolution for 815:
 Edit 20.8.11.2 [func.wrap.func] paragraph 2:
 </p>
 
-<blockquote>
+<blockquote><p>
 2  A function object <tt>f</tt> of type <tt>F</tt> is Callable for argument
 types <tt>T1, T2, ..., TN</tt> in <tt>ArgTypes</tt> and a return type
 <tt>R</tt>, if, given <del>l</del>values <tt>t1, t2, ..., tN</tt> of types
 <tt>T1, T2, ..., TN</tt>, respectively, <tt>INVOKE (f, t1, t2, ..., tN)</tt> is
 well formed (20.7.2) and, if <tt>R</tt> is not <tt>void</tt>, convertible to
 <tt>R</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 <p><i>[
@@ -46540,7 +46554,7 @@ well formed (20.7.2) and, if <tt>R</tt> is not <tt>void</tt>, convertible to
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 I don't like the reduction to "values" and prefer the alternative solution
 suggested using "lvalues when Ti is an lvalue-reference and rvalues otherwise".
 The reason why I dislike the shorter version is based on different usages of
@@ -46551,7 +46565,7 @@ expressions. E.g. 17.6.3.1 [utility.arg.requirements]/1 says "<tt>a</tt>,
 of all these parts is that <em>both</em> rvalues and lvalues are required to be
 supported, but this interpretation would violate the intention of the suggested
 fix of #815, if I correctly understand Jonathan's rationale.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-12-12 Howard adds:
@@ -46559,9 +46573,9 @@ fix of #815, if I correctly understand Jonathan's rationale.
 
 
 <blockquote>
-<blockquote>
+<blockquote><p>
 "lvalues when Ti is an lvalue-reference and rvalues otherwise"
-</blockquote>
+</p></blockquote>
 <p>
 doesn't quite work here because the <tt>Ti</tt> aren't deduced.  They are
 specified by the <tt>function</tt> type.  <tt>Ti</tt> might be <tt>const
@@ -46631,7 +46645,7 @@ operand (5 [expr]),</ins> is well formed (20.7.2)<del> and, if
 <hr>
 <h3><a name="816"></a>816. Should <tt>bind()</tt>'s returned functor have a nofail copy ctor when <tt>bind()</tt> is nofail?</h3>
 <p><b>Section:</b> 20.8.9.1.2 [func.bind.bind] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2008-02-08 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2008-02-08 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46659,18 +46673,18 @@ Howard adds:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 <tt>tuple</tt> construction should probably have a similar guarantee.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Howard to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit, Anthony provided wording.
@@ -46681,32 +46695,32 @@ Post Summit, Anthony provided wording.
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Part of all of this issue appears to be rendered moot
 by the proposed resolution to issue <a href="lwg-defects.html#817">817</a> (q.v.).
 We recommend the issues be considered simultaneously
 (or possibly even merged)
 to ensure there is no overlap.
 Move to Open, and likewise for issue <a href="lwg-defects.html#817">817</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Related to <a href="lwg-defects.html#817">817</a> (see below). Leave Open.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready. Decoupling from issue <a href="lwg-defects.html#817">817</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-02-11 Moved from Ready to Tentatively NAD Editorial, rationale added below.
@@ -46755,7 +46769,7 @@ in <tt>BoundArgs...</tt> throw an exception.</ins>
 <hr>
 <h3><a name="817"></a>817. <tt>bind</tt> needs to be moved</h3>
 <p><b>Section:</b> 20.8.9.1.2 [func.bind.bind] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-03-17 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-03-17 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.bind.bind">issues</a> in [func.bind.bind].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -46774,9 +46788,9 @@ This issue is related to issue <a href="lwg-defects.html#816">816</a>.
 US 72:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>bind</tt> should support move-only functors and bound arguments.
-</blockquote>
+</p></blockquote>
 
 <p>
 JP 38:
@@ -46817,20 +46831,20 @@ And also, add the <tt>MoveConstructible</tt> as well as <tt>CopyConstructible</t
 DE 21
 </p>
 
-<blockquote>
+<blockquote><p>
 The specification for bind claims twice that "the values and types for
 the bound arguments v1, v2, ..., vN are determined as specified below".
 No such specification appears to exist.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Howard to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit Alisdair and Howard provided wording.
@@ -46880,18 +46894,18 @@ and recommend both issues be considered together
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 The proposed resolution uses concepts. Leave Open.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as Open. Howard to provide deconceptified wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-11-07 Howard updates wording.
@@ -47130,7 +47144,7 @@ is <tt>Ti<ins>D</ins> <i>cv</i> &amp;</tt>.
 <hr>
 <h3><a name="818"></a>818. wording for memory ordering</h3>
 <p><b>Section:</b> 29.3 [atomics.order] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-03-22 <b>Last modified:</b> 2011-04-25</p>
+ <b>Submitter:</b> Jens Maurer <b>Opened:</b> 2008-03-22 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.order">issues</a> in [atomics.order].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47181,11 +47195,11 @@ constraints.
 I'm then reading p2, where it says:
 </p>
 
-<blockquote>
+<blockquote><p>
 The <tt>memory_order_seq_cst</tt> operations that load a value are acquire operations
 on the affected locations. The <tt>memory_order_seq_cst</tt> operations that store a value
 are release operations on the affected locations.
-</blockquote>
+</p></blockquote>
 
 <p>
 That seems to imply that atomic reads only have acquire semantics.  If that
@@ -47216,10 +47230,10 @@ And why does 29.6 [atomics.types.operations] p9 for "load" say:
 </p>
 
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> The order argument shall not be <tt>memory_order_acquire</tt>
 nor <tt>memory_order_acq_rel</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 (Since this is exactly the same restriction as for "store", it seems to be a typo.)
@@ -47229,12 +47243,12 @@ nor <tt>memory_order_acq_rel</tt>.
 And then: 29.6 [atomics.types.operations] p12:
 </p>
 
-<blockquote>
+<blockquote><p>
 These operations are read-modify-write operations in the sense of the
 "synchronizes with" definition (1.10 [intro.multithread]), so both such an operation and the
 evaluation that produced the input value synchronize with any evaluation
 that reads the updated value.
-</blockquote>
+</p></blockquote>
 
 <p>
 This is redundant with 1.10 [intro.multithread], see above for the reasoning.
@@ -47374,7 +47388,7 @@ is already included in the happens before ordering.
 <hr>
 <h3><a name="819"></a>819. rethrow_if_nested</h3>
 <p><b>Section:</b> 18.8.6 [except.nested] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-25 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-03-25 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#except.nested">issues</a> in [except.nested].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47411,18 +47425,18 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Alisdair was volunteered to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave as Open. Alisdair to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-11-09 Alisdair provided wording.
@@ -47439,9 +47453,9 @@ Leave as Open. Alisdair to provide wording.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to Ready for Pittsburgh.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -47453,13 +47467,13 @@ Change 18.8.6 [except.nested], p8:
 <blockquote><pre>
 template &lt;class E&gt; void rethrow_if_nested(const E&amp; e);
 </pre>
-<blockquote>
+<blockquote><p>
 -8- <i>Effects:</i> <del>Calls <tt>e.rethrow_nested()</tt>
 o</del><ins>O</ins>nly if <ins>the dynamic type of</ins> <tt>e</tt> is
 publicly <ins>and unambiguously</ins> derived from
 <tt>nested_exception</tt> <ins>this calls
 <tt>dynamic_cast&lt;const nested_exception&amp;&gt;(e).rethrow_nested()</tt></ins>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -47470,7 +47484,7 @@ publicly <ins>and unambiguously</ins> derived from
 <hr>
 <h3><a name="820"></a>820. <tt>current_exception()</tt>'s interaction with throwing copy ctors</h3>
 <p><b>Section:</b> 18.8.5 [propagation] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2008-03-26 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Stephan T. Lavavej <b>Opened:</b> 2008-03-26 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#propagation">issues</a> in [propagation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47514,11 +47528,11 @@ consistent and does not introduce any new problems.
 However, the resolution of core issue 475 may relax this requirement:
 </p>
 
-<blockquote>
+<blockquote><p>
 The CWG agreed with the position that <tt>std::uncaught_exception()</tt> should
 return <tt>false</tt> during the copy to the exception object and that <tt>std::terminate()</tt>
 should not be called if that constructor exits with an exception.
-</blockquote>
+</p></blockquote>
 
 <p>
 Since throwing copy constructors will no longer call <tt>terminate()</tt>, option
@@ -47656,7 +47670,7 @@ Note this wording incorporates resolutions for <a href="lwg-defects.html#806">80
 <hr>
 <h3><a name="823"></a>823. <tt>identity&lt;void&gt;</tt> seems broken</h3>
 <p><b>Section:</b> 20.2.3 [forward] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Walter Brown <b>Opened:</b> 2008-04-09 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Walter Brown <b>Opened:</b> 2008-04-09 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#forward">issues</a> in [forward].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47749,9 +47763,9 @@ instead of <tt>identity</tt>.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Mark as <del>NAD Editorial</del><ins>Resolved</ins>, fixed by <a href="lwg-defects.html#939">939</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -47853,9 +47867,9 @@ template&lt;class charT, class traits, class Allocator&gt;
 
 
 <hr>
-<h3><a name="825"></a>825. Missing rvalues reference stream insert/extract operators?</h3>
+<h3><a name="825"></a>825. Missing rvalues reference stream insert&#47;extract operators?</h3>
 <p><b>Section:</b> 19.5.2.1 [syserr.errcode.overview], 20.7.2.2.11 [util.smartptr.shared.io], 22.4.8 [facets.examples], 20.5.4 [bitset.operators], 26.4.6 [complex.ops], 27.6 [stream.buffers], 28.9 [re.submatch] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-04-10 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-04-10 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses UK 220</b></p>
@@ -47881,20 +47895,20 @@ Sophia Antipolis
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Agree with the idea in the issue, Alisdair to provide wording.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Daniel adds 2009-02-14:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 The proposal given in the paper
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2831.html">N2831</a>
 apparently resolves this issue.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Batavia (2009-05):
@@ -47926,7 +47940,7 @@ We therefore agree with Daniel's observation. Move to <del>NAD Editorial</del><i
 <hr>
 <h3><a name="827"></a>827. <tt>constexpr shared_ptr::shared_ptr()?</tt></h3>
 <p><b>Section:</b> 20.7.2.2.1 [util.smartptr.shared.const] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-04-11 <b>Last modified:</b> 2011-04-24</p>
+ <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-04-11 <b>Last modified:</b> 2011-04-27</p>
 <p><b>View all other</b> <a href="lwg-index.html#util.smartptr.shared.const">issues</a> in [util.smartptr.shared.const].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -47979,11 +47993,11 @@ literal types.  Otherwise this should be closed as NAD.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 If Alisdair's 2009-05-01 comment is correct, wouldn't that also make
 <tt>constexpr mutex()</tt> useless, because this class has a non-trivial
 destructor? (<a href="lwg-defects.html#828">828</a>)
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07-21 Alisdair adds:
@@ -48009,10 +48023,10 @@ Recommend we declare the default constructor <tt>constexpr</tt> as the issue sug
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Solved by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.htm">N2994</a>.
-</blockquote>
+</p></blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
