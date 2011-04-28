@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-27</td>
+  <td align="left">2011-04-28</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-04-27 at 21:04:09 UTC</p>
+<p>Revised 2011-04-28 at 21:04:32 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -48062,7 +48062,7 @@ Change 20.7.2.4 [util.smartptr.enab] (2 places):
 <hr>
 <h3><a name="828"></a>828. Static initialization for <tt>std::mutex</tt>?</h3>
 <p><b>Section:</b> 30.4.1.2.1 [thread.mutex.class] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-04-18 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Peter Dimov <b>Opened:</b> 2008-04-18 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.mutex.class">issues</a> in [thread.mutex.class].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -48128,9 +48128,9 @@ Recommend Keep in Review
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Keep in Review status pending feedback from members of the Concurrency subgroup.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 See related comments from Alisdair and Daniel in <a href="lwg-defects.html#827">827</a>.
@@ -48142,10 +48142,10 @@ See related comments from Alisdair and Daniel in <a href="lwg-defects.html#827">
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 <del>NAD Editorial</del><ins>Resolved</ins>.  Addressed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2994.htm">N2994</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -48262,9 +48262,9 @@ creates a new copy each time it is called.
 
 
 <hr>
-<h3><a name="834"></a>834. Unique_ptr::pointer requirements underspecified</h3>
+<h3><a name="834"></a>834. <tt>unique_ptr::pointer</tt> requirements underspecified</h3>
 <p><b>Section:</b> 20.7.1.2 [unique.ptr.single] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-05-14 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-05-14 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr.single">issues</a> in [unique.ptr.single].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -48285,15 +48285,14 @@ impact on at least two key features of <tt>unique_ptr</tt>:
 </ol>
 
 <p>
-<tt>Unique_ptr</tt> specification makes great efforts to require that essentially *all*
+The <tt>unique_ptr</tt> specification makes great efforts to require that essentially <em>all</em>
 operations cannot throw and therefore adds proper wording to the affected
 operations of the deleter as well. If user-provided <tt>pointer</tt>-emulating types
-("smart pointers") will be allowed, either *all* throw-nothing clauses have to
+("smart pointers") will be allowed, either <em>all</em> throw-nothing clauses have to
 be replaced by weaker "An exception is thrown only if <tt>pointer</tt>'s {op} throws
 an exception"-clauses or it has to be said explicitly that all used
-operations of
-<tt>pointer</tt> are required *not* to throw. I understand the main focus of <tt>unique_ptr</tt>
-to be as near as possible to the advantages of native pointers which cannot
+operations of <tt>pointer</tt> are required <em>not</em> to throw. I understand the main 
+focus of <tt>unique_ptr</tt> to be as near as possible to the advantages of native pointers which cannot
 fail and thus strongly favor the second choice. Also, the alternative position
 would make it much harder to write safe and simple template code for
 <tt>unique_ptr</tt>. Additionally, I assume that a general statement need to be given
@@ -48321,9 +48320,9 @@ Howard will go through and enumerate the individual requirements wrt. <tt>pointe
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10-15 Alisdair pulls from Ready:
@@ -48340,11 +48339,11 @@ fully baked yet.
 For reference the proposed resolution is to add the following words:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>unique_ptr&lt;T, D&gt;::pointer</tt>'s operations shall be
 well-formed, shall have well defined behavior, and shall not throw
 exceptions.
-</blockquote>
+</p></blockquote>
 
 <p>
 This leaves me with a big question : which operations?
@@ -48363,21 +48362,21 @@ certain concept, and so nail down the interactions.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 I volunteer to prepare a more fine-grained solution, but I would like
 to ask for feedback that helps me doing so. If this question is asked
 early in the meeting I might be able to fix it within the week, but I
 cannot promise that now.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Leave in open. Daniel to provide wording as already suggested.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-12-22 Daniel provided wording and rationale.
@@ -48402,12 +48401,12 @@ This might be a convincing argument to isolate the common subset into one
 requirement. The reason I did not do that is basically because we might find out
 that they are either over-constraining or under-constraining at this late point
 of specification. Note also that as a result of the idea of a general
-requirement set I added the requirement
+requirement set I added the requirement:
 </p>
 
-<blockquote>
+<blockquote><p>
 A default-initialized object may have a singular value
-</blockquote>
+</p></blockquote>
 
 <p>
 even though this does not play a relevant role for <tt>unique_ptr</tt>.
@@ -48434,13 +48433,13 @@ Solved by
 
 <li>
 <p>
-Change 20.7.1.2 [unique.ptr.single]/1 as indicated: <i>[The intent is to
+Change 20.7.1.2 [unique.ptr.single] p. 1 as indicated: <i>[The intent is to
 replace the coupling between <tt>T*</tt> and the deleter's <tt>operator()</tt>
 by a coupling between <tt>unique_ptr&lt;T, D&gt;::pointer</tt> and this
 <tt>operator()</tt>]</i>
 </p>
 
-<blockquote>
+<blockquote><p>
 1 - The default type for the template parameter <tt>D</tt> is
 <tt>default_delete</tt>. A client-supplied template argument <tt>D</tt> shall be
 a function pointer or functor for which, given a value <tt>d</tt> of type
@@ -48449,12 +48448,12 @@ a function pointer or functor for which, given a value <tt>d</tt> of type
 expression <tt>d(ptr)</tt> is valid and has the effect of deallocating the
 pointer as appropriate for that deleter. <tt>D</tt> may also be an
 lvalue-reference to a deleter.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
 <p>
-Change 20.7.1.2 [unique.ptr.single]/3 as indicated:
+Change 20.7.1.2 [unique.ptr.single] p. 3 as indicated:
 </p>
 
 <blockquote>
@@ -48498,7 +48497,7 @@ function.
 
 <li>
 <p>
-Change 20.7.1.2.1 [unique.ptr.single.ctor]/2+3 as indicated: <i>[The first
+Change 20.7.1.2.1 [unique.ptr.single.ctor] p. 2+3 as indicated: <i>[The first
 change ensures that we explicitly say, how the stored pointer is initialized.
 This is important for a <tt>constexpr</tt> function, because this may make a
 difference for user-defined pointer-like types]</i>
@@ -48523,7 +48522,7 @@ value-initializing the stored pointer</ins>.
 
 <li>
 <p>
-Change 20.7.1.2.1 [unique.ptr.single.ctor]/6+7 as indicated: <i>[This is a
+Change 20.7.1.2.1 [unique.ptr.single.ctor] p. 6+7 as indicated: <i>[This is a
 step-by-fix to ensure consistency to the changes of
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2976.html">N2976</a>]</i>
 </p>
@@ -48577,7 +48576,7 @@ then <tt>get_deleter()</tt> returns a reference to the lvalue <tt>d</tt>.
 
 <li>
 <p>
-Change 20.7.1.2.1 [unique.ptr.single.ctor]/18+22 as indicated: <i>[The intent
+Change 20.7.1.2.1 [unique.ptr.single.ctor] p. 18+22 as indicated: <i>[The intent
 is to clarify that the moved-from source must contain a null pointer, there is
 no other choice left]</i>
 </p>
@@ -48625,7 +48624,7 @@ the internally stored deleter which was constructed from
 
 <li>
 <p>
-Change 20.7.1.2.1 [unique.ptr.single.ctor]/20 as indicated: <i>[With the
+Change 20.7.1.2.1 [unique.ptr.single.ctor] p. 20 as indicated: <i>[With the
 possibility of user-defined pointer-like types the implication does only exist,
 if those are built-in pointers. Note that this change should also be applied
 with the acceptance of <a href="lwg-defects.html#950">950</a>]</i>
@@ -48634,7 +48633,7 @@ with the acceptance of <a href="lwg-defects.html#950">950</a>]</i>
 <blockquote><pre>
 template &lt;class U, class E&gt; unique_ptr(unique_ptr&lt;U, E&gt;&amp;&amp; u);
 </pre>
-<blockquote>
+<blockquote><p>
 20 - <i>Requires:</i> If <tt>D</tt> is not a reference type, construction of the
 deleter <tt>D</tt> from an rvalue of type <tt>E</tt> shall be well formed and
 shall not throw an exception. If <tt>D</tt> is a reference type, then <tt>E</tt>
@@ -48642,13 +48641,13 @@ shall be the same type as <tt>D</tt> (diagnostic required). <tt>unique_ptr&lt;U,
 E&gt;::pointer</tt> shall be implicitly convertible to <tt>pointer</tt>.
 <del>[<i>Note:</i> These requirements imply that <tt>T</tt> and <tt>U</tt> are
 complete types. &mdash; <i>end note</i>]</del>
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
 <li>
 <p>
-Change 20.7.1.2.2 [unique.ptr.single.dtor]/2 as indicated:
+Change 20.7.1.2.2 [unique.ptr.single.dtor] p. 2 as indicated:
 </p>
 
 <blockquote><pre>
@@ -48666,7 +48665,7 @@ are no effects. Otherwise <tt>get_deleter()(get())</tt>.
 
 <li>
 <p>
-Change 20.7.1.2.3 [unique.ptr.single.asgn]/3+8 as indicated: <i>[The intent is to
+Change 20.7.1.2.3 [unique.ptr.single.asgn] p. 3+8 as indicated: <i>[The intent is to
 clarify that the moved-from source must contain a null pointer, there
 is no other choice left]</i>
 </p>
@@ -48702,7 +48701,7 @@ nullptr</tt></ins>.
 
 <li>
 <p>
-Change 20.7.1.2.3 [unique.ptr.single.asgn]/6 as indicated: <i>[With the
+Change 20.7.1.2.3 [unique.ptr.single.asgn] p. 6 as indicated: <i>[With the
 possibility of user-defined pointer-like types the implication does only exist,
 if those are built-in pointers. Note that this change should also be applied
 with the acceptance of <a href="lwg-defects.html#950">950</a>]</i>
@@ -48748,7 +48747,7 @@ unique_ptr&amp; operator=(nullptr_t<del>}</del><ins>)</ins>;
 
 <li>
 <p>
-Change 20.7.1.2.4 [unique.ptr.single.observers]/1+4+12 as indicated:
+Change 20.7.1.2.4 [unique.ptr.single.observers] p. 1+4+12 as indicated:
 </p>
 
 <blockquote><pre>
@@ -48786,30 +48785,30 @@ pointer operator-&gt;() const;
 explicit operator bool() const;
 </pre>
 
-<blockquote>
+<blockquote><p>
 12 - <i>Returns:</i> <tt>get() != <del>0</del><ins>nullptr</ins></tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
 <li>
 <p>
-Change 20.7.1.2.5 [unique.ptr.single.modifiers]/1 as indicated:
+Change 20.7.1.2.5 [unique.ptr.single.modifiers] p. 1 as indicated:
 </p>
 
 <blockquote><pre>
 pointer release();
 </pre>
 
-<blockquote>
+<blockquote><p>
 1 - <i>Postcondition:</i> <tt>get() == <del>0</del> <ins>nullptr</ins></tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
 <li>
 <p>
-Change 20.7.1.2.5 [unique.ptr.single.modifiers]/9 as indicated: <i>[The
+Change 20.7.1.2.5 [unique.ptr.single.modifiers] p. 9 as indicated: <i>[The
 intent is to ensure that potentially user-defined swaps are used. A side-step
 fix and harmonization with the specification of the the deleter is realized.
 Please note the additional requirement in bullet 2 of this proposed resolution
@@ -48840,24 +48839,24 @@ shall not throw an exception under <tt>swap</tt>.
 
 <li>
 <p>
-Change 20.7.1.3.2 [unique.ptr.runtime.observers]/1 as indicated:
+Change 20.7.1.3.2 [unique.ptr.runtime.observers] p. 1 as indicated:
 </p>
 
 <blockquote><pre>
 T&amp; operator[](size_t i) const;
 </pre>
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> <tt>i &lt;</tt> the size of the array to which the stored
 pointer points. <ins>The variable definition <tt>T&amp; t = get()[i]</tt> shall
 be well formed, shall have well-defined behavior, and shall not exit via an
 exception.</ins>
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
 <li>
 <p>
-Change 20.7.1.3.3 [unique.ptr.runtime.modifiers]/1 as indicated:
+Change 20.7.1.3.3 [unique.ptr.runtime.modifiers] p. 1 as indicated:
 </p>
 
 <blockquote><pre>
@@ -48865,10 +48864,10 @@ void reset(pointer p = pointer());
 void reset(nullptr_t p);
 </pre>
 
-<blockquote>
+<blockquote><p>
 1 - <i>Effects:</i> If <tt>get() == <del>0</del> <ins>nullptr</ins></tt> there
 are no effects. Otherwise <tt>get_deleter()(get())</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 
@@ -48887,9 +48886,8 @@ template &lt;class T1, class D1, class T2, class D2&gt;
 
 <blockquote>
 <p>
-<ins><i>Requires:</i> The variable definition <tt>bool b = x.get() ==
-y.get();</tt> shall be well formed, shall have well-defined behavior, and shall
-not exit via an exception.</ins>
+<ins><i>Requires:</i> The variable definition <tt>bool b = x.get() == y.get();</tt> shall be 
+well formed, shall have well-defined behavior, and shall not exit via an exception.</ins>
 </p>
 
 <p>
@@ -49018,9 +49016,9 @@ an exception.</ins>
 
 
 <hr>
-<h3><a name="835"></a>835. tying two streams together (correction to DR 581)</h3>
+<h3><a name="835"></a>835. Tying two streams together (correction to DR 581)</h3>
 <p><b>Section:</b> 27.5.5.3 [basic.ios.members] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-05-17 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-05-17 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#basic.ios.members">issues</a> in [basic.ios.members].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -49071,10 +49069,10 @@ int main ()
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 We agree with the proposed resolution.
 Move to Review.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-05-26 Daniel adds:
@@ -49094,11 +49092,11 @@ This case is explicitly handled in <tt>flush()</tt> and needs to be
 taken care of. My suggested fix is:
 </p>
 
-<blockquote>
+<blockquote><p>
 If <tt>((os.flags() &amp; ios_base::unitbuf) &amp;&amp; !uncaught_exception()</tt>
 <ins><tt>&amp;&amp; os.rdbuf() != 0</tt></ins>) is true, calls <del><tt>os.flush()</tt></del>
 <ins><tt>os.rdbuf()-&gt;pubsync()</tt></ins>.
-</blockquote>
+</p></blockquote>
 
 <p>
 Two secondary questions are:
@@ -49142,20 +49140,20 @@ Move back to Open.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 This proposed wording is written to match the outcome
 of <a href="lwg-closed.html#397">397</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Open. Martin to propose updated wording that will also resolve
 issue <a href="lwg-closed.html#397">397</a> consistently.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-02-15 Martin provided wording.
@@ -49167,9 +49165,9 @@ issue <a href="lwg-closed.html#397">397</a> consistently.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to Ready for Pittsburgh.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -49178,28 +49176,28 @@ Moved to Ready for Pittsburgh.
 <ol>
 <li>
 <p>
-Just before 27.5.5.3 [basic.ios.members]/2 insert a new paragraph:
+Just before 27.5.5.3 [basic.ios.members] p. 2 insert a new paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins><i>Requires:</i> If <tt>(tiestr != 0)</tt> is <tt>true</tt>,
 <tt>tiestr</tt> must not be reachable by traversing the linked list of tied
 stream objects starting from <tt>tiestr-&gt;tie()</tt>.</ins>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
 <p>
-Change 27.7.3.4 [ostream::sentry]/4 as indicated:
+Change 27.7.3.4 [ostream::sentry] p. 4 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 If <tt>((os.flags() &amp; ios_base::unitbuf) &amp;&amp; !uncaught_exception()
 <ins>&amp;&amp; os.good()</ins>)</tt> is <tt>true</tt>, calls
 <del><tt>os.flush()</tt></del> <ins><tt>os.rdbuf()-&gt;pubsync()</tt>. If that
 function returns -1 sets <tt>badbit</tt> in <tt>os.rdstate()</tt> without
 propagating an exception</ins>.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -49207,9 +49205,9 @@ propagating an exception</ins>.
 Add after 27.7.3.4 [ostream::sentry] p17, the following paragraph:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins><i>Throws:</i> Nothing.</ins>
-</blockquote>
+</p></blockquote>
 
 </li>
 
@@ -49222,11 +49220,11 @@ Add after 27.7.3.4 [ostream::sentry] p17, the following paragraph:
 
 <hr>
 <h3><a name="836"></a>836. 
-       effects of <code>money_base::space</code> and
+       Effects of <code>money_base::space</code> and
        <code>money_base::none</code> on <code>money_get</code>
    </h3>
 <p><b>Section:</b> 22.4.6.1.2 [locale.money.get.virtuals] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-05-17 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-05-17 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#locale.money.get.virtuals">issues</a> in [locale.money.get.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Duplicate of:</b> <a href="lwg-closed.html#670">670</a></p>
@@ -49237,13 +49235,13 @@ Add after 27.7.3.4 [ostream::sentry] p17, the following paragraph:
 In paragraph 2, 22.4.6.1.2 [locale.money.get.virtuals] specifies the following:
 
        </p>
-       <blockquote>
+       <blockquote><p>
 
 Where <code>space</code> or <code>none</code> appears in the format
 pattern, except at the end, optional white space (as recognized
 by <code>ct.is</code>) is consumed after any required space.
 
-       </blockquote>
+       </p></blockquote>
        <p>
 
 This requirement can be (and has been) interpreted two mutually
@@ -49272,20 +49270,20 @@ allowed but not required.
 The other is that:
 
        </p>
-       <blockquote>
+       <blockquote><p>
 
 where either <code>money_base::space</code> or <code>money_base::none</code> appears in the format, white space is optional.
 
-       </blockquote>
+       </p></blockquote>
 
 <p><i>[
 San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Martin will revise the proposed resolution.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
@@ -49298,9 +49296,10 @@ There is a noun missing from the proposed resolution. It's not clear
 that the last sentence would be helpful, even if the word were not
 missing:
 </p>
-<blockquote>
-In either case, any required MISSINGWORD followed by all optional whitespace (as recognized by ct.is()) is consumed.
-</blockquote>
+<blockquote><p>
+In either case, any required MISSINGWORD followed by all optional whitespace 
+(as recognized by <tt>ct.is()</tt>) is consumed.
+</p></blockquote>
 <p>
 Strike this sentence and move to Review.
 </p>
@@ -49316,9 +49315,9 @@ Howard: done.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
    
 
@@ -49327,11 +49326,11 @@ Move to Ready.
 
 I propose to change the text to make it clear that the first
 interpretation is intended, that is, to make following change to
-22.4.6.1.2 [locale.money.get.virtuals], p2:
+22.4.6.1.2 [locale.money.get.virtuals], p. 2:
 
        </p>
 
-       <blockquote>
+       <blockquote><p>
 
 When <code><ins>money_base::</ins>space</code>
 or <code><ins>money_base::</ins>none</code> appears <ins>as the last
@@ -49345,17 +49344,17 @@ initial elements of the format pattern, white space is allowed but not
 required.</ins>
 If <code>(str.flags() &amp; str.showbase)</code> is <code>false</code>, ...
 
-       </blockquote>
+       </p></blockquote>
    
 
 
 
 <hr>
 <h3><a name="838"></a>838. 
-   can an <i>end-of-stream</i> iterator become a <i>non-end-of-stream</i> one?
+   Can an <i>end-of-stream</i> iterator become a <i>non-end-of-stream</i> one?
  </h3>
 <p><b>Section:</b> 24.6.1 [istream.iterator] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-05-17 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-05-17 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#istream.iterator">issues</a> in [istream.iterator].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -49367,19 +49366,19 @@ From message c++std-lib-20003...
    <p>
 
 The description of <code>istream_iterator</code> in
-24.6.1 [istream.iterator], p1 specifies that objects of the
+24.6.1 [istream.iterator], p. 1 specifies that objects of the
 class become the <i>end-of-stream</i> (EOS) iterators under the
 following condition (see also issue <a href="lwg-defects.html#788">788</a> another problem
 with this paragraph):
 
    </p>
-   <blockquote>
+   <blockquote><p>
 
 If the end of stream is reached (<code>operator void*()</code> on the
 stream returns <code>false</code>), the iterator becomes equal to
 the <i>end-of-stream</i> iterator value.
 
-   </blockquote>
+   </p></blockquote>
    <p>
 
 One possible implementation approach that has been used in practice is
@@ -49467,9 +49466,9 @@ that no reference is made to exposition only members of
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -49491,7 +49490,7 @@ To this end we propose to change 24.6.1 [istream.iterator], p1,
 as follows:
 
    </p>
-   <blockquote>
+   <blockquote><p>
 
 The result of operator-&gt; on an end<ins>-</ins>of<ins>-</ins>stream
 is not defined. For any other iterator value a <code>const T*</code>
@@ -49499,7 +49498,7 @@ is returned.<ins> Invoking <code>operator++()</code> on
 an <i>end-of-stream</i> iterator is undefined.</ins> It is impossible
 to store things into istream iterators...
 
-   </blockquote>
+   </p></blockquote>
    <p>
 
 Add pre/postconditions to the member function descriptions of <code>istream_iterator</code> like so:
@@ -49508,32 +49507,33 @@ Add pre/postconditions to the member function descriptions of <code>istream_iter
    <blockquote>
 
 <pre>istream_iterator();</pre>
-
+<p>
 <i>Effects</i>: Constructs the <i>end-of-stream</i> iterator.<br/>
 <ins><i>Postcondition</i>: <code>in_stream == 0</code>.</ins>
-
+</p>
 <pre>istream_iterator(istream_type &amp;s);</pre>
-
+<p>
 <i>Effects</i>: Initializes <code>in_stream</code> with &amp;s. value
 may be initialized during construction or the first time it is
 referenced.<br/>
 <ins><i>Postcondition</i>: <code>in_stream == &amp;s</code>.</ins>
-
+</p>
 <pre>istream_iterator(const istream_iterator &amp;x);</pre>
-
+<p>
 <i>Effects</i>: Constructs a copy of <code>x</code>.<br/>
 <ins><i>Postcondition</i>: <code>in_stream == x.in_stream</code>.</ins>
-
+</p>
 <pre>istream_iterator&amp; operator++();</pre>
-
+<p>
 <ins><i>Requires</i>: <code>in_stream != 0</code>.</ins><br/>
 <i>Effects</i>: <code>*in_stream &gt;&gt; value</code>.
-
+</p>
 <pre>istream_iterator&amp; operator++(int);</pre>
-
+<p>
 <ins><i>Requires</i>: <code>in_stream != 0</code>.</ins><br/>
 <i>Effects</i>:
-   <blockquote><pre>
+</p>
+<blockquote><pre>
 istream_iterator tmp (*this);
 *in_stream &gt;&gt; value;
 return tmp;
@@ -49545,17 +49545,17 @@ return tmp;
 
 
 <hr>
-<h3><a name="842"></a>842. ConstructibleAsElement and bit containers</h3>
+<h3><a name="842"></a>842. <tt>ConstructibleAsElement</tt> and bit containers</h3>
 <p><b>Section:</b> 23.2 [container.requirements], 23.3.7 [vector.bool], 20.5 [template.bitset] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-23.2 [container.requirements]/p3 says:
+23.2 [container.requirements] p. 3 says:
 </p>
 
-<blockquote>
+<blockquote><p>
 Objects stored in these components shall be constructed using
 <tt>construct_element</tt> (20.6.9). For each operation that inserts an
 element of type <tt>T</tt> into a container (<tt>insert</tt>,
@@ -49566,7 +49566,7 @@ with a scoped allocator of type <tt>A</tt> (i.e., an allocator for which
 <tt>is_scoped_allocator&lt;A&gt;::value</tt> is <tt>true</tt>), then
 <tt>construct_element</tt> may pass an inner allocator argument to
 <tt>T</tt>'s constructor. <i>-- end note</i>]
-</blockquote>
+</p></blockquote>
 
 <p>
 However <tt>vector&lt;bool, A&gt;</tt> (23.3.7 [vector.bool]) and <tt>bitset&lt;N&gt;</tt> 
@@ -49578,10 +49578,10 @@ is not implementable.
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Change 23.2 [container.requirements]/p3:
+Change 23.2 [container.requirements] p. 3:
 </p>
 
-<blockquote>
+<blockquote><p>
 Objects stored in these components shall be constructed using
 <tt>construct_element</tt> (20.6.9)<ins>, unless otherwise specified</ins>.
 For each operation that inserts an
@@ -49593,17 +49593,17 @@ with a scoped allocator of type <tt>A</tt> (i.e., an allocator for which
 <tt>is_scoped_allocator&lt;A&gt;::value</tt> is <tt>true</tt>), then
 <tt>construct_element</tt> may pass an inner allocator argument to
 <tt>T</tt>'s constructor. <i>-- end note</i>]
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 23.3.7 [vector.bool]/p2:
 </p>
 
-<blockquote>
+<blockquote><p>
 Unless described below, all operations have the same requirements and semantics as the primary <tt>vector</tt> template, 
 except that operations dealing with the <tt>bool</tt> value type map to bit values in the container storage<ins>,
 and <tt>construct_element</tt> (23.2 [container.requirements]) is not used to construct these values</ins>.
-</blockquote>
+</p></blockquote>
 
 <p>
 Move 20.5 [template.bitset] to clause 20.
@@ -49698,7 +49698,7 @@ reference_closure&amp; operator=(const reference_closure&amp; f)
 <hr>
 <h3><a name="844"></a>844. <tt>complex pow</tt> return type is ambiguous</h3>
 <p><b>Section:</b> 26.4.9 [cmplx.over] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#cmplx.over">issues</a> in [cmplx.over].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -49710,17 +49710,17 @@ The current working draft is in an inconsistent state.
 26.4.8 [complex.transcendentals] says that:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>pow(complex&lt;float&gt;(), int())</tt> returns a <tt>complex&lt;float&gt;</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 26.4.9 [cmplx.over] says that:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>pow(complex&lt;float&gt;(), int())</tt> returns a <tt>complex&lt;double&gt;</tt>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Sophia Antipolis:
@@ -49736,9 +49736,9 @@ overload for <tt>pow</tt>, the C99 result is <tt>complex&lt;double&gt;</tt>, see
 <p>
 Special note: ask P.J. Plauger.
 </p>
-<blockquote>
+<blockquote><p>
 Looks fine.
-</blockquote>
+</p></blockquote>
 </blockquote>
 
 
@@ -49758,13 +49758,13 @@ Strike this <tt>pow</tt> overload in 26.4.1 [complex.syn] and in 26.4.8 [complex
 <hr>
 <h3><a name="845"></a>845. atomics cannot support aggregate initialization</h3>
 <p><b>Section:</b> X [atomics.types] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2011-04-25</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2008-06-03 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#atomics.types">issues</a> in [atomics.types].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 The atomic classes (and class templates) are required to support aggregate
-initialization (X [atomics.types.integral]p2 &#47; X [atomics.types.address]p1)
+initialization (X [atomics.types.integral] p. 2 &#47; X [atomics.types.address] p. 1)
 yet also have user declared constructors, so cannot be aggregates.
 </p>
 <p>
@@ -49839,7 +49839,7 @@ typedef struct atomic_<var>itype</var> {
 edit X [atomics.types.integral] paragraph 2 as follows.
 </p>
 
-<blockquote>
+<blockquote><p>
 The atomic integral types shall have standard layout.
 They shall each have a trivial default constructor,
 a constexpr <del>explicit</del> value constructor,
@@ -49847,7 +49847,7 @@ a deleted copy constructor,
 a deleted copy assignment operator,
 and a trivial destructor.
 They shall each support aggregate initialization syntax.
-</blockquote>
+</p></blockquote>
 
 <p>
 within the synopsis of X [atomics.types.address] edit as follows.
@@ -49865,7 +49865,7 @@ typedef struct atomic_address {
 edit X [atomics.types.address] paragraph 1 as follows.
 </p>
 
-<blockquote>
+<blockquote><p>
 The type <code>atomic_address</code> shall have standard layout.
 It shall have a trivial default constructor,
 a constexpr <del>explicit</del> value constructor,
@@ -49873,7 +49873,7 @@ a deleted copy constructor,
 a deleted copy assignment operator,
 and a trivial destructor.
 It shall support aggregate initialization syntax.
-</blockquote>
+</p></blockquote>
 
 <p>
 within the synopsis of 29.5 [atomics.types.generic] edit as follows.
@@ -49899,12 +49899,12 @@ template &lt;&gt; struct atomic&lt;T*&gt; : atomic_address {
 edit 29.5 [atomics.types.generic] paragraph 2 as follows.
 </p>
 
-<blockquote>
+<blockquote><p>
 Specializations of the <code>atomic</code> template
 shall have a deleted copy constructor,
 a deleted copy assignment operator,
 and a constexpr <del>explicit</del> value constructor.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -49975,7 +49975,7 @@ Construction is not atomic.
 <hr>
 <h3><a name="847"></a>847. string exception safety guarantees</h3>
 <p><b>Section:</b> 21.4.1 [string.require] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Herv&eacute; Br&ouml;nnimann <b>Opened:</b> 2008-06-05 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Herv&eacute; Br&ouml;nnimann <b>Opened:</b> 2008-06-05 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.require">issues</a> in [string.require].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -49988,12 +49988,12 @@ member throws exception). The closest the current draft comes to
 offering any guarantees is 21.4 [basic.string], para 3:
 </p>
 
-<blockquote>
+<blockquote><p>
 The class template <tt>basic_string</tt> conforms to the requirements
 for a Sequence Container (23.1.1), for a Reversible Container (23.1),
 and for an Allocator-aware container (91). The iterators supported by
 <tt>basic_string</tt> are random access iterators (24.1.5).
-</blockquote>
+</p></blockquote>
 
 <p>
 However, the chapter 23 only says, on the topic of exceptions:  23.2 [container.requirements],
@@ -50042,29 +50042,29 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Implementors will study this to confirm that it is actually possible.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Daniel adds 2009-02-14:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 The proposed resolution of paper
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2815.html">N2815</a>
 interacts with this issue (the paper does not refer to this issue).
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -50096,9 +50096,9 @@ or add paragraphs to Effects clauses wherever appropriate.
 
 
 <hr>
-<h3><a name="848"></a>848. missing <tt>std::hash</tt> specializations for <tt>std::bitset/std::vector&lt;bool&gt;</tt></h3>
+<h3><a name="848"></a>848. Missing <tt>std::hash</tt> specializations for <tt>std::bitset&#47;std::vector&lt;bool&gt;</tt></h3>
 <p><b>Section:</b> 20.8.12 [unord.hash] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Thorsten Ottosen <b>Opened:</b> 2008-06-05 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Thorsten Ottosen <b>Opened:</b> 2008-06-05 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.hash">issues</a> in [unord.hash].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50107,7 +50107,7 @@ In the current working draft, <tt>std::hash&lt;T&gt;</tt> is specialized for bui
 types and a few other types. Bitsets seems like one that is missing from
 the list, not because it cannot not be done by the user, but because it
 is hard or impossible to write an efficient implementation that works on
-32bit/64bit chunks at a time. For example, <tt>std::bitset</tt> is too much
+32bit&#47;64bit chunks at a time. For example, <tt>std::bitset</tt> is too much
 encapsulated in this respect.
 </p>
 
@@ -50126,10 +50126,10 @@ template&lt;size_t N&gt; struct hash&lt;std::bitset&lt;N&gt;&gt;;
 Modify the last sentence of 20.8.12 [unord.hash]/1 to end with:
 </p>
 
-<blockquote>
+<blockquote><p>
 ... and <tt>std::string</tt>, <tt>std::u16string</tt>, <tt>std::u32string</tt>, <tt>std::wstring</tt>,
 <tt>std::error_code</tt>, <tt>std::thread::id</tt>, <tt>std::bitset</tt>, <tt>and std::vector&lt;bool&gt;</tt>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -50139,7 +50139,7 @@ Modify the last sentence of 20.8.12 [unord.hash]/1 to end with:
 <hr>
 <h3><a name="850"></a>850. Should <tt>shrink_to_fit</tt> apply to <tt>std::deque</tt>?</h3>
 <p><b>Section:</b> 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Niels Dekker <b>Opened:</b> 2008-06-05 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Niels Dekker <b>Opened:</b> 2008-06-05 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#deque.capacity">issues</a> in [deque.capacity].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50155,7 +50155,7 @@ blocks that's bounded by a small constant.
 The container overhead can in fact be arbitrarily large (i.e. is not
 necessarily O(N) where N is the number of elements currently held by the
 <tt>deque</tt>).  As Bill Plauger noted in a reflector message, unless the map of
-block pointers is shrunk, it must hold at least maxN/B pointers where
+block pointers is shrunk, it must hold at least maxN&frasl;B pointers where
 maxN is the maximum of N over the lifetime of the <tt>deque</tt> since its
 creation.  This is independent of how the map is implemented
 (<tt>vector</tt>-like circular buffer and all), and maxN bears no relation to N,
@@ -50168,22 +50168,22 @@ map of the <tt>deque</tt> grew quite large before getting back to normal.  Just
 to put some color on it, assuming a <tt>deque</tt> with 1K pointer elements in
 steady regime, that held, at some point in its lifetime, maxN=10M
 pointers, with one block holding 128 elements, the spine must be at
-least (maxN / 128), in that case 100K.   In that case, shrink-to-fit
+least (maxN &frasl; 128), in that case 100K.   In that case, shrink-to-fit
 would allow to reuse about 100K which would otherwise never be reclaimed
 in the lifetime of the <tt>deque</tt>.
 </p>
 <p>
-An added bonus would be that it *allows* implementations to hang on to
+An added bonus would be that it <em>allows</em> implementations to hang on to
 empty blocks at the end (but does not care if they do or not).  A
 <tt>shrink_to_fit</tt> would take care of both shrinks, and guarantee that at
 most O(B) space is used in addition to the storage to hold the N
-elements and the N/B block pointers.
+elements and the N&frasl;B block pointers.
 </p>
 
 
 <p><b>Proposed resolution:</b></p>
 <p>
-To Class template deque 23.3.3 [deque] synopsis, add:
+To class template <tt>deque</tt> 23.3.3 [deque] synopsis, add:
 </p>
 <blockquote><pre>
 void shrink_to_fit();
@@ -50196,11 +50196,11 @@ To deque capacity 23.3.3.3 [deque.capacity], add:
 void shrink_to_fit();
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Remarks:</i> <tt>shrink_to_fit</tt> is a non-binding request to reduce memory
 use. [<i>Note:</i> The request is non-binding to allow latitude for
-implementation-specific optimizations. -- <i>end note</i>]
-</blockquote>
+implementation-specific optimizations. &mdash; <i>end note</i>]
+</p></blockquote>
 </blockquote>
 
 
@@ -50358,7 +50358,7 @@ basic_string&lt;char, char_traits&lt;char&gt;, allocator&lt;char&gt; &gt;
 <hr>
 <h3><a name="854"></a>854. <tt>default_delete</tt> converting constructor underspecified</h3>
 <p><b>Section:</b> 20.7.1.1.2 [unique.ptr.dltr.dflt] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-18 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2008-06-18 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#unique.ptr.dltr.dflt">issues</a> in [unique.ptr.dltr.dflt].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50396,7 +50396,7 @@ int main()
     std::unique_ptr&lt;int&gt; p1(new int(1));
     std::unique_ptr&lt;const int&gt; p2(move(p1));
     int i = *p2;
-<font color="#C80000">//    *p2 = i;  // should not compile</font>
+<span style="color:#C80000">//    *p2 = i;  // should not compile</span>
 }
 </pre></blockquote>
 
@@ -50430,9 +50430,9 @@ Recommend Keep in Review.
 Batavia (2009-05):
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Keep in Review status for the reasons cited.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07 Frankfurt:
@@ -50459,9 +50459,9 @@ Move back to Open.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -50531,7 +50531,7 @@ struct aligned_union;
 <hr>
 <h3><a name="857"></a>857. <tt>condition_variable::time_wait</tt> return <tt>bool</tt> error prone</h3>
 <p><b>Section:</b> 30.5.1 [thread.condition.condvar] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2008-06-13 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Beman Dawes <b>Opened:</b> 2008-06-13 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition.condvar">issues</a> in [thread.condition.condvar].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50593,9 +50593,9 @@ Howard to provide wording.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -50615,7 +50615,7 @@ namespace std {
 </pre></blockquote>
 
 <p>
-Change Class condition_variable 30.5.1 [thread.condition.condvar] as indicated:
+Change class <tt>condition_variable</tt> 30.5.1 [thread.condition.condvar] as indicated:
 </p>
 
 <blockquote><pre>
@@ -50923,7 +50923,7 @@ The returned value indicates whether the predicate evaluates to
 <hr>
 <h3><a name="858"></a>858. Wording for Minimal Support for Garbage Collection</h3>
 <p><b>Section:</b> 20.6.4 [util.dynamic.safety] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Pete Becker  <b>Opened:</b> 2008-06-21 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Pete Becker  <b>Opened:</b> 2008-06-21 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#util.dynamic.safety">issues</a> in [util.dynamic.safety].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -50931,9 +50931,9 @@ The returned value indicates whether the predicate evaluates to
 The first sentence of the Effects clause for <tt>undeclare_reachable</tt> seems
 to be missing some words. I can't parse
 </p>
-<blockquote>
+<blockquote><p>
 ... for all non-null <tt>p</tt> referencing the argument is no longer declared reachable...
-</blockquote>
+</p></blockquote>
 <p>
 I take it the intent is that <tt>undeclare_reachable</tt> should be called only
 when there has been a corresponding call to <tt>declare_reachable</tt>. In
@@ -50981,31 +50981,31 @@ Minimal Support for Garbage Collection)
 Add at the beginning, before paragraph 39
 </p>
 
-<blockquote>
+<blockquote><p>
 A complete object is <i>declared reachable</i> while the number of calls
 to <tt>declare_reachable</tt> with an argument referencing the object exceeds the
 number of <tt>undeclare_reachable</tt> calls with pointers to the same complete
 object.
-</blockquote>
+</p></blockquote>
 
 <p>
 Change paragraph 42 (Requires clause for <tt>undeclare_reachable</tt>)
 </p>
 
-<blockquote>
+<blockquote><p>
 If <tt>p</tt> is not null, <del><tt>declare_reachable(p)</tt> was previously called</del>
 <ins>the complete object referenced by <tt>p</tt> shall have
 been previously declared reachable</ins>, and shall
 be live <ins>(3.8 [basic.life])</ins> from the time of the call until the last <tt>undeclare_reachable(p)</tt>
 call on the object.
-</blockquote>
+</p></blockquote>
 
 <p>
 Change the first sentence in paragraph 44 (Effects clause for
 <tt>undeclare_reachable</tt>):
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> 
 <del>Once the number of calls to
 <tt>undeclare_reachable(p)</tt> equals the number of calls to
@@ -51020,7 +51020,7 @@ referenced by <tt>p</tt> is no longer declared reachable, then
 dereferencing any pointer to <tt>q</tt> that is not safely derived
 results in undefined behavior.
 </ins> ...
-</blockquote>
+</p></blockquote>
 
 <p>
 Change the final note:
@@ -51045,7 +51045,7 @@ note</i>]
 <hr>
 <h3><a name="859"></a>859. Monotonic Clock is Conditionally Supported?</h3>
 <p><b>Section:</b> 30.5 [thread.condition] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2008-06-23 <b>Last modified:</b> 2011-04-25</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2008-06-23 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.condition">issues</a> in [thread.condition].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -51082,20 +51082,20 @@ San Francisco:
 
 <blockquote>
 <p>
-Nick: maybe instead of saying that chrono::monotonic_clock is
+Nick: maybe instead of saying that <tt>chrono::monotonic_clock</tt> is
 conditionally supported, we could say that it's always there, but not
 necessarily supported..
 </p>
 <p>
 Beman: I'd prefer a typedef that identifies the best clock to use for
-wait_for locks.
+<tt>wait_for</tt> locks.
 </p>
 <p>
 Tom: combine the two concepts; create a duration clock type, but keep
 the is_monotonic test.
 </p>
 <p>
-Howard: if we create a duration_clock type, is it a typedef or an
+Howard: if we create a <tt>duration_clock</tt> type, is it a typedef or an
 entirely true type?
 </p>
 <p>
@@ -51128,11 +51128,11 @@ And paragraph 2 of 30.2.4 [thread.req.timing] has the words strongly encouraging
 implementations to use monotonic clocks for <tt>sleep_for</tt>:
 </p>
 
-<blockquote>
+<blockquote><p>
 2 The member functions whose names end in <tt>_for</tt> take an argument that
 specifies a relative time. Implementations should use a monotonic clock to
 measure time for these functions.
-</blockquote>
+</p></blockquote>
 
 <p>
 I believe the approach taken in describing the effects of <tt>sleep_for</tt>
@@ -51506,7 +51506,7 @@ equivalent error condition from <tt>lock.lock()</tt> or <tt>lock.unlock()</tt>.
 <hr>
 <h3><a name="860"></a>860. Floating-Point State</h3>
 <p><b>Section:</b> 26 [numerics] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Lawrence Crowl <b>Opened:</b> 2008-06-23 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Lawrence Crowl <b>Opened:</b> 2008-06-23 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#numerics">issues</a> in [numerics].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -51590,7 +51590,7 @@ commentary.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 If I understand the history correctly, Nick, as the Posix liaison,
 should probably get a veto on this, since I think it came from Posix (?)
 via WG14 and should probably really be addressed there (?).  But I think
@@ -51598,16 +51598,16 @@ we are basically in agreement that there is no other sane way to do
 this, and hence we don't have to worry too much about stepping on toes. 
 As far as I can tell, this same issue also exists in the latest Posix
 standard (?).
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -51633,9 +51633,9 @@ calling thread.
 
 
 <hr>
-<h3><a name="861"></a>861. Incomplete specification of EqualityComparable for std::forward_list</h3>
+<h3><a name="861"></a>861. Incomplete specification of <tt>EqualityComparable</tt> for <tt>std::forward_list</tt></h3>
 <p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-06-24 <b>Last modified:</b> 2011-03-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-06-24 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -51644,10 +51644,10 @@ Table 89, Container requirements, defines <tt>operator==</tt> in terms of the co
 member function <tt>size()</tt> and the algorithm <tt>std::equal</tt>:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>==</tt> is an equivalence relation. <tt>a.size() == b.size() &amp;&amp;
 equal(a.begin(), a.end(), b.begin()</tt>
-</blockquote>
+</p></blockquote>
 
 <p>
 The new container <tt>forward_list</tt> does not provide a <tt>size</tt> member function
@@ -51821,9 +51821,9 @@ equal(a.begin(), a.end(), b.begin())</tt>
 Add text in the Ass./Note/pre-/post-condition column in the row for
 "<tt>a == b</tt>" as follows:
 </p>
-<blockquote><ins>
+<blockquote><p><ins>
 <i>Requires:</i> <tt>T</tt> is <tt>EqualityComparable</tt>
-</ins></blockquote>
+</ins></p></blockquote>
 </li>
 
 <li>
@@ -51864,13 +51864,13 @@ Change the text in the Operational Semantics column in the row for
 
 <li>
 <p>
-In 23.2.1 [container.requirements.general] change Table 93 -- Allocator-aware container requirements as indicated:
+In 23.2.1 [container.requirements.general] change Table 93 &mdash; Allocator-aware container requirements as indicated:
 </p>
 
 <ol style="list-style-type:lower-alpha">
 <li>
 <p>
-Change the text in the Assertion/note column in the row for "<tt>X() /
+Change the text in the Assertion&#47;note column in the row for "<tt>X() &#47;
 X u;</tt>" as follows:
 </p>
 
@@ -51882,7 +51882,7 @@ X u;</tt>" as follows:
 
 <li>
 <p>
-Change the text in the Assertion/note column in the row for "<tt>X(m) /
+Change the text in the Assertion&#47;note column in the row for "<tt>X(m) &#47;
 X u(m);</tt>" as follows:
 </p>
 
@@ -51896,14 +51896,14 @@ get_allocator() == m</tt>
 
 <li>
 <p>
-In 23.2.3 [sequence.reqmts] change Table 94 -- Sequence container requirements as indicated:
+In 23.2.3 [sequence.reqmts] change Table 94 &mdash; Sequence container requirements as indicated:
 </p>
 
 <ol style="list-style-type:lower-alpha">
 <li>
 <p>
-Change the text in the Assertion/note column in the row for "<tt>X(n,
-t) / X a(n, t)</tt>" as follows:
+Change the text in the Assertion&#47;note column in the row for "<tt>X(n,
+t) &#47; X a(n, t)</tt>" as follows:
 </p>
 
 <blockquote><p>
@@ -51913,8 +51913,8 @@ post: <tt><del>size()</del><ins>distance(begin(), end())</ins> == n [..]</tt>
 
 <li>
 <p>
-Change the text in the Assertion/note column in the row for "<tt>X(i,
-j) / X a(i, j)</tt>" as follows:
+Change the text in the Assertion&#47;note column in the row for "<tt>X(i,
+j) &#47; X a(i, j)</tt>" as follows:
 </p>
 
 <blockquote><p>
@@ -51925,7 +51925,7 @@ j) / X a(i, j)</tt>" as follows:
 
 <li>
 <p>
-Change the text in the Assertion/note column in the row for
+Change the text in the Assertion&#47;note column in the row for
 "<tt>a.clear()</tt>" as follows:
 </p>
 <blockquote><p>
@@ -51938,7 +51938,7 @@ Change the text in the Assertion/note column in the row for
 
 <li>
 <p>
-In 23.2.4 [associative.reqmts] change Table 96 -- Associative container requirements as indicated:
+In 23.2.4 [associative.reqmts] change Table 96 &mdash; Associative container requirements as indicated:
 </p>
 
 <p><i>[
@@ -51954,8 +51954,8 @@ for all tables and adds some missing objects
 
 <li>
 <p>
-Change the text in the Complexity column in the row for <tt>X(i,j,c)/X
-a(i,j,c);</tt> as follows:
+Change the text in the Complexity column in the row for <tt>X(i,j,c)&#47;Xa(i,j,c);</tt> 
+as follows:
 </p>
 
 <blockquote><p>
@@ -52001,7 +52001,7 @@ to <tt>q2</tt></del>
 
 <li>
 <p>
-Change the text in the Assertion/note column in the row for
+Change the text in the Assertion&#47;note column in the row for
 "<tt>a.clear()</tt>" as follows:
 </p>
 
@@ -52047,7 +52047,7 @@ The same rational as for Table 96 applies here
 <ol style="list-style-type:lower-alpha">
 <li>
 <p>
-Change the text in the Assertion/note column in the row for
+Change the text in the Assertion&#47;note column in the row for
 "<tt>a.clear()</tt>" as follows:
 </p>
 
@@ -52069,7 +52069,7 @@ Change the text in the Assertion/note column in the row for
 <hr>
 <h3><a name="865"></a>865. More algorithms that throw away information</h3>
 <p><b>Section:</b> 25.3.6 [alg.fill], 25.3.7 [alg.generate] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-07-13 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-07-13 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -52091,8 +52091,8 @@ void generate_n(OutputIterator first, Size n, Generator gen);</pre></li>
 <p>
 In both cases the minimum requirements on the iterator are
 <tt>OutputIterator</tt>, which means according to the requirements of
-24.2.4 [output.iterators]/2 that only single-pass iterations are guaranteed.
-So, if users of <tt>fill_n</tt> and <tt>generate_n</tt> have *only* an <tt>OutputIterator</tt>
+24.2.4 [output.iterators] p. 2 that only single-pass iterations are guaranteed.
+So, if users of <tt>fill_n</tt> and <tt>generate_n</tt> have <em>only</em> an <tt>OutputIterator</tt>
 available, they have no chance to continue pushing further values
 into it, which seems to be a severe limitation to me.
 </p>
@@ -52127,10 +52127,10 @@ Move to Open.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 We have a consensus for moving forward on this issue, but Daniel needs
 to deconceptify it.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07-25 Daniel provided non-concepts wording.
@@ -52142,9 +52142,9 @@ to deconceptify it.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -52166,10 +52166,10 @@ template&lt;class OutputIterator, class Size, class T&gt;
 Just after the effects clause add a new returns clause saying:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins><i>Returns:</i> For <tt>fill_n</tt> and positive <tt>n</tt>, returns <tt>first + n</tt>. Otherwise
 returns <tt>first</tt> for <tt>fill_n</tt>.</ins>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -52187,10 +52187,10 @@ template&lt;class OutputIterator, class Size, class Generator&gt;
 Just after the effects clause add a new returns clause saying:
 </p>
 
-<blockquote>
+<blockquote><p>
 <ins>For <tt>generate_n</tt> and positive <tt>n</tt>, returns <tt>first + n</tt>. Otherwise
 returns <tt>first</tt> for <tt>generate_n</tt>.</ins>
-</blockquote>
+</p></blockquote>
 </li>
 </ol>
 
@@ -52203,7 +52203,7 @@ returns <tt>first</tt> for <tt>generate_n</tt>.</ins>
 <hr>
 <h3><a name="866"></a>866. Qualification of placement new-expressions</h3>
 <p><b>Section:</b> 20.6.12 [specialized.algorithms], 20.7.2.2.6 [util.smartptr.shared.create] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2008-07-14 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2008-07-14 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#specialized.algorithms">issues</a> in [specialized.algorithms].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -52252,20 +52252,20 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Detlef: If we move this to Ready, it's likely that we'll forget about
 the side comment about the <tt>HasPlacementNew</tt> concept.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 post San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Daniel:  <tt>HasPlacementNew</tt> has been removed from
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2774.pdf">N2774 (Foundational Concepts)</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -52294,9 +52294,9 @@ Replace "<tt>new</tt>" with "<tt>::new</tt>" in:
 
 
 <hr>
-<h3><a name="868"></a>868. default construction and value-initialization</h3>
+<h3><a name="868"></a>868. Default construction and value-initialization</h3>
 <p><b>Section:</b> 23 [containers] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2008-07-22 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2008-07-22 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#containers">issues</a> in [containers].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -52409,16 +52409,16 @@ of
 <ol>
 <li>
 <p>
-21.4.1 [string.require]/2:
+21.4.1 [string.require] p. 2:
 </p>
 
-<blockquote>
+<blockquote><p>
 "[..] The <tt>Allocator</tt> object used shall be a copy of the <tt>Allocator></tt>
 object passed to the <tt>basic_string</tt> object's
 constructor or, if the constructor does not take an <tt>Allocator</tt>
 argument, a copy of a default-constructed
 <tt>Allocator</tt> object."
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -52426,17 +52426,17 @@ argument, a copy of a default-constructed
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2723.pdf">N2723</a>,
 26.5.1.4 [rand.req.eng], Table 109, expression "<tt>T()</tt>":
 </p>
-<blockquote>
-Pre-/post-condition: "Creates an engine with the same initial state as
+<blockquote><p>
+Pre-&#47;post-condition: "Creates an engine with the same initial state as
 all other default-constructed engines of type <tt>X</tt>."
-</blockquote>
+</p></blockquote>
 
 <p>
-as well as in 26.5.5 [rand.predef]/1-9 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>), 26.5.7.1 [rand.util.seedseq]/3, 27.7.2.1.1 [istream.cons]/3, 27.7.3.2 [ostream.cons]/9 (<a
-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf"
->N2914</a>), 28.13 [re.grammar]/2, 30.3.1.4 [thread.thread.assign]/1 (<a
-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf"
->N2914</a>),
+as well as in 26.5.5 [rand.predef]/1-9 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>), 
+26.5.7.1 [rand.util.seedseq]/3, 27.7.2.1.1 [istream.cons]/3, 
+27.7.3.2 [ostream.cons]/9 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>), 
+28.13 [re.grammar]/2, 30.3.1.4 [thread.thread.assign]/1 
+(<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2914.pdf">N2914</a>),
 </p>
 <p><i>[
 Candidates for the "the expression "default constructed" need not be
@@ -52515,18 +52515,18 @@ confusing enough without supporting further ill-defined terms.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010 Pittsburgh:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Moved to review in order to enable conflict resolution with <a href="lwg-defects.html#704">704</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-03-26 Daniel harmonized the wording with the upcoming FCD.
@@ -52539,9 +52539,9 @@ Moved to review in order to enable conflict resolution with <a href="lwg-defects
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Adopted at 2010-11 Batavia
@@ -52555,101 +52555,98 @@ Adopted at 2010-11 Batavia
 Change 17.6.3.1 [utility.arg.requirements] para 2:
 </p>
 
-<blockquote>
+<blockquote><p>
 2 In general, a default constructor is
 not required. Certain container class member function signatures
-specify <del>the default constructor</del><ins>T()</ins>
-as a default argument. T() shall be a well-defined expression (8.5)
+specify <del>the default constructor</del><ins><tt>T()</tt></ins>
+as a default argument. <tt>T()</tt> shall be a well-defined expression (8.5)
 if one of those signatures is called using the default argument
 (8.3.6).
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 23.3.3.2 [deque.cons] para 3:
 </p>
 
-<blockquote>
-3 <i>Effects:</i> Constructs a deque with n
+<blockquote><p>
+3 <i>Effects:</i> Constructs a deque with <tt>n</tt>
 <del>default constructed</del><ins>value-initialized</ins>
 elements. 
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 23.3.3.3 [deque.capacity] para 1:
 </p>
 
-<blockquote>
-1 <i>Effects:</i> If sz &lt; size(), equivalent
-to erase(begin() + sz, end());. If size() &lt; sz, appends sz -
-size() <del>default
-constructed</del><ins>value-initialized</ins>
+<blockquote><p>
+1 <i>Effects:</i> If <tt>sz &lt; size()</tt>, equivalent
+to <tt>erase(begin() + sz, end());</tt>. If <tt>size() &lt; sz</tt>, 
+appends <tt>sz - size()</tt> <del>default constructed</del><ins>value-initialized</ins>
 elements to the sequence.
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 23.3.4.2 [forwardlist.cons] para 3:
 </p>
 
-<blockquote>
-3 <i>Effects:</i> Constructs a forward_list object with n <del>default
-constructed</del><ins>value-initialized</ins>
-elements.
-</blockquote>
+<blockquote><p>
+3 <i>Effects:</i> Constructs a <tt>forward_list</tt> object with <tt>n</tt> 
+<del>default constructed</del><ins>value-initialized</ins> elements.
+</p></blockquote>
 
 <p>
 Change 23.3.4.5 [forwardlist.modifiers] para 22:
 </p>
 
-<blockquote>
+<blockquote><p>
 22 <i>Effects:</i> [...] For the first signature
 the inserted elements are <del>default
 constructed</del><ins>value-initialized</ins>,
-and for the second signature they are copies of c.
-</blockquote>
+and for the second signature they are copies of <tt>c</tt>.
+</p></blockquote>
 
 <p>
 Change 23.3.5.2 [list.cons] para 3:
 </p>
 
-<blockquote>
-3 <i>Effects:</i> Constructs a list with n <del>default
+<blockquote><p>
+3 <i>Effects:</i> Constructs a <tt>list</tt> with <tt>n</tt> <del>default
 constructed</del><ins>value-initialized</ins>
 elements. 
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 23.3.5.3 [list.capacity] para 1:
 </p>
 
-<blockquote>
-1 <i>Effects:</i> If sz &lt; size(), equivalent
-to list&lt;T&gt;::iterator it = begin(); advance(it, sz); erase(it,
-end());. If size() &lt; sz, appends sz - size() <del>default
-constructed</del><ins>value-initialized</ins>
-elements to the sequence.
-</blockquote>
+<blockquote><p>
+1 <i>Effects:</i> If <tt>sz &lt; size()</tt>, equivalent
+to <tt>list&lt;T&gt;::iterator it = begin(); advance(it, sz); erase(it,
+end());</tt>. If <tt>size() &lt; sz</tt>, <tt>appends sz - size()</tt> 
+<del>default constructed</del><ins>value-initialized</ins> elements to 
+the sequence.
+</p></blockquote>
 
 <p>
 Change 23.3.6.2 [vector.cons] para 3:
 </p>
 
-<blockquote>
-3 <i>Effects:</i> Constructs a vector with n
+<blockquote><p>
+3 <i>Effects:</i> Constructs a <tt>vector</tt> with <tt>n</tt>
 <del>default constructed</del><ins>value-initialized</ins>
 elements. 
-</blockquote>
+</p></blockquote>
 
 <p>
 Change 23.3.6.3 [vector.capacity] para 9:
 </p>
 
-<blockquote>
-9 <i>Effects:</i> If sz &lt; size(), equivalent
-to erase(begin() + sz, end());. If size() &lt; sz, appends sz -
-size() <del>default
-constructed</del><ins>value-initialized</ins>
+<blockquote><p>
+9 <i>Effects:</i> If <tt>sz &lt; size()</tt>, equivalent
+to <tt>erase(begin() + sz, end());</tt>. If <tt>size() &lt; sz</tt>, appends 
+<tt>sz - size()</tt> <del>default constructed</del><ins>value-initialized</ins>
 elements to the sequence.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -52659,7 +52656,7 @@ elements to the sequence.
 <hr>
 <h3><a name="869"></a>869. Bucket (local) iterators and iterating past end</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Sohail Somani <b>Opened:</b> 2008-07-22 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Sohail Somani <b>Opened:</b> 2008-07-22 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -52685,19 +52682,19 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 We believe that this is not a substantive change, but the proposed
 change to the wording is clearer than what we have now.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Recommend Tentatively Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -52710,7 +52707,7 @@ Change Table 97 "Unordered associative container requirements" in 23.2.5 [unord.
 <table border="1">
 <caption>Table 97: Unordered associative container requirements</caption>
 <tr>
-<th>expression</th><th>return type</th><th>assertion/note pre/post-condition</th><th>complexity</th>
+<th>expression</th><th>return type</th><th>assertion&#47;note pre&#47;post-condition</th><th>complexity</th>
 </tr>
 <tr>
 <td><tt>b.begin(n)</tt></td>
@@ -52739,7 +52736,7 @@ If the bucket is empty, then <tt>b.begin(n) == b.end(n)</tt>.</ins></td>
 <hr>
 <h3><a name="870"></a>870. Do unordered containers not support function pointers for predicate&#47;hasher?</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-17 <b>Last modified:</b> 2011-04-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-17 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -52749,13 +52746,13 @@ function objects as feasible comparators, as described in
 23.2.4 [associative.reqmts]&#47;2:
 </p>
 
-<blockquote>
+<blockquote><p>
 Each associative container is parameterized on <tt>Key</tt> and an ordering
 relation <tt>Compare</tt> that induces a strict weak ordering (25.3) on 
 elements of Key. [..]. The object of type <tt>Compare</tt> is called the 
 comparison object of a container. This comparison object may be a pointer to
 function or an object of a type with an appropriate function call operator.[..]
-</blockquote>
+</p></blockquote>
 
 <p>
 The corresponding wording for unordered containers is not so clear,
@@ -52788,10 +52785,10 @@ and table 97 says in the column "assertion...post-condition" for the
 expression <tt>X::hasher</tt>:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>Hash</tt> shall be a unary function object type such that the expression
 <tt>hf(k)</tt> has type <tt>std::size_t</tt>.
-</blockquote>
+</p></blockquote>
 
 <p>
 Note that 20.8 [function.objects]&#47;1 defines as "Function objects are
@@ -52813,7 +52810,7 @@ the following
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Ask Daniel to provide proposed wording that: makes it explicit that
 function pointers are function objects at the beginning of 
 20.8 [function.objects]; fixes the "requirements" for typedefs in
@@ -52822,7 +52819,7 @@ defined in that clause have these typedefs, but not that these typedefs
 are requirements on function objects; remove the wording that explicitly
 calls out that associative container comparators may be function
 pointers.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-12-19 Daniel updates wording and rationale.
@@ -52845,9 +52842,9 @@ this is that <em>callable objects</em> do have a lot in common with <em>function
 objects</em>. A simple formula seems to be:
 </p>
 
-<blockquote>
+<blockquote><p>
 callable objects = function objects + pointers to member
-</blockquote>
+</p></blockquote>
 
 <p>
 The latter group is excluded from function objects because of the
@@ -52867,10 +52864,10 @@ b. 2. In contrast to this, the wording for callable types seems to be less
 constrained (20.8.1 [func.def]/3):
 </p>
 
-<blockquote>
+<blockquote><p>
 A callable type is a [..] class type whose objects can appear immediately to the
 left of a function call operator.
-</blockquote>
+</p></blockquote>
 
 <p>
 The rationale given in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1673.html#fn2">N1673</a>
@@ -52880,17 +52877,17 @@ functions as well. To me the current wording of callable types can be read
 either way and I suggest to make the intention more explicit by replacing
 </p>
 
-<blockquote>
+<blockquote><p>
 [..] class type whose objects can appear immediately to the left of a function
 call operator
-</blockquote>
-
+</p></blockquote>
+<p>
 by
-
-<blockquote>
+</p>
+<blockquote><p>
 [..] class type whose objects can appear as the leftmost subexpression of a
 function call expression 5.2.2 [expr.call].
-</blockquote>
+</p></blockquote>
 
 <p>
 and to use the same definition for the class type part of <em>function
@@ -52929,10 +52926,10 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 This is fixed by
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2776.pdf">N2776</a>.
-</blockquote>
+</p></blockquote>
 
 </blockquote>
 
@@ -52961,11 +52958,11 @@ an <tt>operator()</tt> defined</del><ins>a function object</ins>. This not only
 makes algorithmic templates work with pointers to functions, but also enables
 them to work with arbitrary function objects.
 </p>
-<blockquote><ins>
+<blockquote><p><ins>
 * Such a type is either a function pointer or a class type which often has a
 member <tt>operator()</tt>, but in some cases it can omit that member and
 provide a conversion to a pointer to function.
-</ins></blockquote>
+</ins></p></blockquote>
 </blockquote>
 </li>
 
@@ -52976,12 +52973,12 @@ commonality of callable types and function object
 types more explicit and to get rid of wording redundancies]</i>
 </p>
 
-<blockquote>
+<blockquote><p>
 3 A <i>callable type</i> is <del>a pointer to function,</del> a pointer to
 member <del>function, a pointer to member data,</del> or a <del>class type whose
 objects can appear immediately to the left of a function call operator</del>
 <ins><em>function object type</em> (20.8 [function.objects])</ins>.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -52989,11 +52986,11 @@ objects can appear immediately to the left of a function call operator</del>
 Change 20.8.9 [bind]&#47;1 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 1 The function template <tt>bind</tt> returns an object that binds a
 <del>function</del> <ins>callable</ins> object passed as an argument to
 additional arguments.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -53001,10 +52998,10 @@ additional arguments.
 Change 20.8.9.1 [func.bind]&#47;1 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 1 This subclause describes a uniform mechanism for binding arguments of
 <del>function</del> <ins>callable</ins> objects.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -53012,10 +53009,10 @@ Change 20.8.9.1 [func.bind]&#47;1 as indicated:
 Change 20.8.11 [func.wrap]&#47;1 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 1 This subclause describes a polymorphic wrapper class that encapsulates
 arbitrary <del>function</del> <ins>callable</ins> objects.
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -53027,7 +53024,7 @@ indeed do provide support for pointer to members as well. One further suggested
 improvement is to set the below definition of Callable in italics]</i>:
 </p>
 
-<blockquote>
+<blockquote><p>
 2 A <del>function</del><ins>callable</ins> object <tt>f</tt> of type <tt>F</tt>
 is <del>Callable</del> <ins><em>Callable</em></ins> for argument types
 <del><tt>T1, T2, ..., TN</tt> in</del> <tt>ArgTypes</tt> and <del>a</del> return
@@ -53037,7 +53034,7 @@ types <tt>T1, T2, ..., TN</tt>, respectively,</del> <ins>the expression</ins>
 tN</del>)</tt><ins>, considered as an unevaluated operand (5 [expr]),</ins> 
 is well formed (20.7.2)<del> and, if <tt>R</tt> is not <tt>void</tt>, convertible 
 to <tt>R</tt></del>.
-</blockquote>
+</p></blockquote>
 </li>
 
 
@@ -53135,7 +53132,7 @@ that <tt>Compare</tt> is a function object type. Nevertheless it is recommended,
 because the explicit naming of "pointer to function" is misleading]</i>
 </p>
 
-<blockquote>
+<blockquote><p>
 2 Each associative container is parameterized on <tt>Key</tt> and an ordering
 relation <tt>Compare</tt> that induces a strict weak ordering (25.4 [alg.sorting]) 
 on elements of <tt>Key</tt>. In addition, <tt>map</tt> and <tt>multimap</tt> 
@@ -53143,7 +53140,7 @@ associate an arbitrary type <tt>T</tt> with the <tt>Key</tt>. The object of type
 <tt>Compare</tt> is called the comparison object of a container. <del>This 
 comparison object may be a pointer to function or an object of a type with an 
 appropriate function call operator.</del>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -53151,12 +53148,12 @@ appropriate function call operator.</del>
 Change 23.2.5 [unord.req]&#47;3 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 3 Each unordered associative container is parameterized by <tt>Key</tt>, by a
 function object <ins>type</ins> <tt>Hash</tt> that acts as a hash function for
 values of type <tt>Key</tt>, and by a binary predicate <tt>Pred</tt> that
 induces an equivalence relation on values of type Key. [..]
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -53165,7 +53162,7 @@ Change 25.1 [algorithms.general]&#47;7 as indicated: <i>[The intent is to
 bring this part in sync with 20.8 [function.objects]]</i>
 </p>
 
-<blockquote>
+<blockquote><p>
 7 The <tt>Predicate</tt> parameter is used whenever an algorithm expects a
 function object <ins>(20.8 [function.objects])</ins> that when applied
 to the result of dereferencing the corresponding iterator returns a value
@@ -53175,7 +53172,7 @@ work correctly in the construct <tt>if (pred(*first)){...}</tt>. The function
 object <tt>pred</tt> shall not apply any nonconstant function through the
 dereferenced iterator. <del>This function object may be a pointer to function,
 or an object of a type with an appropriate function call operator.</del>
-</blockquote>
+</p></blockquote>
 </li>
 
 <li>
@@ -53183,7 +53180,7 @@ or an object of a type with an appropriate function call operator.</del>
 Change 20.7.1.2 [unique.ptr.single]&#47;1 as indicated:
 </p>
 
-<blockquote>
+<blockquote><p>
 1 The default type for the template parameter <tt>D</tt> is
 <tt>default_delete</tt>. A client-supplied template argument <tt>D</tt> shall be
 a function <del>pointer or functor</del> <ins>object type</ins> for which, given
@@ -53191,7 +53188,7 @@ a value <tt>d</tt> of type <tt>D</tt> and a pointer <tt>ptr</tt> of type
 <tt>T*</tt>, the expression <tt>d(ptr)</tt> is valid and has the effect of
 deallocating the pointer as appropriate for that deleter. <tt>D</tt> may also be
 an lvalue-reference to a deleter.
-</blockquote>
+</p></blockquote>
 </li>
 
 </ol>
@@ -53204,9 +53201,9 @@ an lvalue-reference to a deleter.
 
 
 <hr>
-<h3><a name="871"></a>871. Iota's requirements on T are too strong</h3>
+<h3><a name="871"></a>871. Iota's requirements on <tt>T</tt> are too strong</h3>
 <p><b>Section:</b> 26.7.6 [numeric.iota] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-20 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-20 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -53216,10 +53213,10 @@ According to the recent WP
 of <tt>std::iota</tt> says:
 </p>
 
-<blockquote>
+<blockquote><p>
 <tt>T</tt> shall meet the requirements of <tt>CopyConstructible</tt> and <tt>Assignable</tt> types, and
 shall be convertible to <tt>ForwardIterator</tt>'s value type.[..]
-</blockquote>
+</p></blockquote>
 
 <p>
 Neither <tt>CopyConstructible</tt> nor <tt>Assignable</tt> is needed, instead <tt>MoveConstructible</tt>
@@ -53229,9 +53226,8 @@ artifact from comparing it with similar numerical algorithms like <tt>accumulate
 
 <p>
 Note: If this function will be conceptualized, the here proposed
-<tt>MoveConstructible</tt>
-requirement can be removed, because this is an implied requirement of
-function arguments, see
+<tt>MoveConstructible</tt> requirement can be removed, because this 
+is an implied requirement of function arguments, see
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2710.pdf">N2710</a>/[temp.req.impl]/3, last bullet.
 </p>
 
@@ -53240,29 +53236,29 @@ post San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Issue pulled by author prior to review.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-07-30 Daniel reopened:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 with the absence of concepts, this issue (closed) is valid again and I
 suggest to reopen it.
 I also revised by proposed resolution based on N2723 wording:
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Change 'convertible' to 'assignable', Move To Ready.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -53271,11 +53267,11 @@ Change 'convertible' to 'assignable', Move To Ready.
 Change the first sentence of 26.7.6 [numeric.iota]/1:
 </p>
 
-<blockquote>
+<blockquote><p>
 <i>Requires:</i> <tt>T</tt> shall <del>meet the requirements of <tt>CopyConstructible</tt> and
 <tt>Assignable</tt> types, and shall</del> be
 assignable to <tt>ForwardIterator</tt>'s value type. [..]
-</blockquote>
+</p></blockquote>
 
 
 
@@ -53287,7 +53283,7 @@ assignable to <tt>ForwardIterator</tt>'s value type. [..]
 <hr>
 <h3><a name="872"></a>872. <tt>move_iterator::operator[]</tt> has wrong return type</h3>
 <p><b>Section:</b> 24.5.3.3.12 [move.iter.op.index] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Doug Gregor <b>Opened:</b> 2008-08-21 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Doug Gregor <b>Opened:</b> 2008-08-21 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -53316,20 +53312,20 @@ we dealt with for <tt>reverse_iterator</tt> in DR <a href="lwg-defects.html#386"
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 I recommend closing this as  a duplicate of <a href="lwg-closed.html#1051">1051</a> which addresses
 this issue for both <tt>move_iterator</tt> and <tt>reverse_iterator</tt>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2009-10 Santa Cruz:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Move to Ready. Note that if <a href="lwg-closed.html#1051">1051</a> is reopened, it may yield a
 better resolution, but <a href="lwg-closed.html#1051">1051</a> is currently marked NAD.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -53351,10 +53347,10 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 NAD Editorial, see
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2777.pdf">N2777</a>.
-</blockquote>
+</p></blockquote>
 
 
 
@@ -53362,14 +53358,13 @@ NAD Editorial, see
 <hr>
 <h3><a name="874"></a>874. Missing <tt>initializer_list</tt> constructor for <tt>discrete_distribution</tt></h3>
 <p><b>Section:</b> 26.5.8.6.1 [rand.dist.samp.discrete] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-22 <b>Last modified:</b> 2010-12-05</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2008-08-22 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#rand.dist.samp.discrete">issues</a> in [rand.dist.samp.discrete].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 During the Sophia Antipolis meeting it was decided to separate from <a href="lwg-defects.html#793">793</a> a
-subrequest that adds initializer list support to
-<tt>discrete_distribution</tt>, specifically,
+subrequest that adds initializer list support to <tt>discrete_distribution</tt>, specifically,
 the issue proposed to add a c'tor taking a <tt>initializer_list&lt;double&gt;</tt>.
 </p>
 
@@ -53379,7 +53374,7 @@ the issue proposed to add a c'tor taking a <tt>initializer_list&lt;double&gt;</t
 <ol>
 <li>
 <p>
-In 26.5.8.6.1 [rand.dist.samp.discrete]/1, class <tt>discrete_distribution</tt>,
+In 26.5.8.6.1 [rand.dist.samp.discrete] p. 1, class <tt>discrete_distribution</tt>,
 just <em>before</em> the member declaration
 </p>
 
@@ -53406,18 +53401,19 @@ paragraph as part of the new member description:
 discrete_distribution(initializer_list&lt;double&gt; wl);
 </pre>
 
-<blockquote>
+<blockquote><p>
 <i>Effects:</i> Same as <tt>discrete_distribution(wl.begin(), wl.end())</tt>.
-</blockquote>
+</p></blockquote>
 </blockquote>
 </li>
 </ol>
 
 
-<p><b>Rationale:</b></p>
+<p><b>Rationale:</b></p><p>
 Addressed by
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> "Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
-
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2836.pdf">N2836</a> 
+"Wording Tweaks for Concept-enabled Random Number Generation in C++0X".
+</p>
 
 
 
@@ -53859,7 +53855,7 @@ in <tt>[0, size()]</tt>.
 <hr>
 <h3><a name="878"></a>878. <tt>forward_list</tt> preconditions</h3>
 <p><b>Section:</b> 23.3.4 [forwardlist] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-08-23 <b>Last modified:</b> 2010-10-29</p>
+ <b>Submitter:</b> Martin Sebor <b>Opened:</b> 2008-08-23 <b>Last modified:</b> 2011-04-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist">issues</a> in [forwardlist].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -53870,23 +53866,23 @@ a <tt>forward_list::iterator</tt> (denoted <tt>position</tt> in the
 function signatures) argument have the following precondition:
 
        </p>
-       <blockquote>
+       <blockquote><p>
 
 <i>Requires:</i> <tt>position</tt> is dereferenceable or equal
 to <tt>before_begin()</tt>.
 
-       </blockquote>
+       </p></blockquote>
        <p>
 
 I believe what's actually intended is this:
 
        </p>
-       <blockquote>
+       <blockquote><p>
 
 <i>Requires:</i> <tt>position</tt> is in the range
 [<tt>before_begin()</tt>, <tt>end()</tt>).
 
-       </blockquote>
+       </p></blockquote>
        <p>
 
 That is, when it's dereferenceable, <tt>position</tt> must point
@@ -53899,9 +53895,9 @@ San Francisco:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Robert suggested alternate proposed wording which had large support.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 Post Summit:
@@ -53928,14 +53924,14 @@ Change the <i>Requires</i> clauses
 as follows:
 
        </p>
-       <blockquote>
+       <blockquote><p>
 
 <i>Requires:</i> <tt>position</tt> is <ins><tt>before_begin()</tt> or is a</ins>
 dereferenceable
 <ins>iterator in the range <tt>[begin(), end())</tt></ins>
 <del>or equal to <tt>before_begin()</tt></del>. ...
 
-       </blockquote>
+       </p></blockquote>
    
 
 
