@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-04-30</td>
+  <td align="left">2011-05-02</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-04-30 at 23:04:08 UTC</p>
+<p>Revised 2011-05-02 at 22:05:59 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -5263,7 +5263,7 @@ destructor" and probably need to be adapted as well.</p>
 <hr>
 <h3><a name="2050"></a>2050. Unordered associative containers do not use <tt>allocator_traits</tt> to define member types</h3>
 <p><b>Section:</b> 23.5 [unord] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Tom Zieberman <b>Opened:</b> 2011-04-29 <b>Last modified:</b> 2011-04-30</p>
+ <b>Submitter:</b> Tom Zieberman <b>Opened:</b> 2011-04-29 <b>Last modified:</b> 2011-05-03</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5303,8 +5303,8 @@ namespace std {
     typedef Allocator allocator_type;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::reference reference;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_reference const_reference;
+    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
+    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
     typedef <i>implementation-defined</i> size_type;
     typedef <i>implementation-defined</i> difference_type;
 
@@ -5335,8 +5335,8 @@ namespace std {
     typedef Allocator allocator_type;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::reference reference;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_reference const_reference;
+    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
+    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
     typedef <i>implementation-defined</i> size_type;
     typedef <i>implementation-defined</i> difference_type;
 
@@ -5365,8 +5365,8 @@ namespace std {
     typedef Allocator allocator_type;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::reference reference;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_reference const_reference;
+    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
+    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
     typedef <i>implementation-defined</i> size_type;
     typedef <i>implementation-defined</i> difference_type;
 
@@ -5395,8 +5395,8 @@ namespace std {
     typedef Allocator allocator_type;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
     typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::reference reference;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_reference const_reference;
+    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
+    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
     typedef <i>implementation-defined</i> size_type;
     typedef <i>implementation-defined</i> difference_type;
 
