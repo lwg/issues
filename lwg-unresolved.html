@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-02 at 22:05:59 UTC</p>
+<p>Revised 2011-05-02 at 22:05:13 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -3815,6 +3815,63 @@ namespace std {
 
 </ul>
 
+
+
+
+
+
+<hr>
+<h3><a name="2051"></a>2051. Explicit <tt>tuple</tt> constructors for more than one parameter</h3>
+<p><b>Section:</b> 20.4.2 [tuple.tuple], 20.4.2.1 [tuple.cnstr] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Ville Voutilainen <b>Opened:</b> 2011-05-01 <b>Last modified:</b> 2011-05-03</p>
+<p><b>View all other</b> <a href="lwg-index.html#tuple.tuple">issues</a> in [tuple.tuple].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+So far the only use I've found for <tt>std::tuple</tt> is as an ad-hoc type to emulate
+multiple return values. If the tuple ctor was made non-explicit one could
+almost think C++ supported multiple return values especially when combined
+with <tt>std::tie()</tt>.
+</p>
+<blockquote><pre>
+// assume types line_segment and point
+// assume function double distance(point const&amp;, point const&amp;)
+
+std::tuple&lt;point, point&gt;
+closest_points(line_segment const&amp; a, line_segment const&amp; b) {
+ point ax;
+ point bx;
+ /* some math */
+
+ return {ax, bx};
+}
+
+
+double
+distance(line_segment const&amp; a, line_segment const&amp; b) {
+ point ax;
+ point bx;
+ std::tie(ax, bx) = closest_points(a, b);
+
+ return distance(ax, bx);
+}
+</pre></blockquote>
+<p>
+See also the messages starting from lib-29330.
+<p/>
+Some notes:
+</p>
+<ol>
+<li><tt>pair</tt> allows such a return</li>
+<li>a lambda with a deduced return type doesn't allow it for any type</li>
+<li><tt>decltype</tt> refuses <tt>{1, 2}</tt></li>
+</ol>
+<p>
+I would recommend making non-unary <tt>tuple</tt> constructors non-explicit.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 

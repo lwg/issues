@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-05-02 at 22:05:59 UTC</p>
+<p>Revised 2011-05-02 at 22:05:13 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>33 open issues, down by 63.</li>
+<li>34 open issues, down by 62.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1573 issues total, up by 17.</li>
+<li>1574 issues total, up by 18.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 8 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>.</li>
+<li>Added the following 9 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -5408,6 +5408,63 @@ namespace std {
 
 </ul>
 
+
+
+
+
+
+<hr>
+<h3><a name="2051"></a>2051. Explicit <tt>tuple</tt> constructors for more than one parameter</h3>
+<p><b>Section:</b> 20.4.2 [tuple.tuple], 20.4.2.1 [tuple.cnstr] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Ville Voutilainen <b>Opened:</b> 2011-05-01 <b>Last modified:</b> 2011-05-03</p>
+<p><b>View all other</b> <a href="lwg-index.html#tuple.tuple">issues</a> in [tuple.tuple].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+So far the only use I've found for <tt>std::tuple</tt> is as an ad-hoc type to emulate
+multiple return values. If the tuple ctor was made non-explicit one could
+almost think C++ supported multiple return values especially when combined
+with <tt>std::tie()</tt>.
+</p>
+<blockquote><pre>
+// assume types line_segment and point
+// assume function double distance(point const&amp;, point const&amp;)
+
+std::tuple&lt;point, point&gt;
+closest_points(line_segment const&amp; a, line_segment const&amp; b) {
+ point ax;
+ point bx;
+ /* some math */
+
+ return {ax, bx};
+}
+
+
+double
+distance(line_segment const&amp; a, line_segment const&amp; b) {
+ point ax;
+ point bx;
+ std::tie(ax, bx) = closest_points(a, b);
+
+ return distance(ax, bx);
+}
+</pre></blockquote>
+<p>
+See also the messages starting from lib-29330.
+<p/>
+Some notes:
+</p>
+<ol>
+<li><tt>pair</tt> allows such a return</li>
+<li>a lambda with a deduced return type doesn't allow it for any type</li>
+<li><tt>decltype</tt> refuses <tt>{1, 2}</tt></li>
+</ol>
+<p>
+I would recommend making non-unary <tt>tuple</tt> constructors non-explicit.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
