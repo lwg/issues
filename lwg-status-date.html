@@ -26,7 +26,7 @@
 This document is the Index by Status and Date for the <a href="lwg-active.html">Library Active Issues List</a>,
 <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.
 </p>
-<p>Revised 2011-05-03 at 17:05:08 UTC</p>
+<p>Revised 2011-05-03 at 22:05:38 UTC</p>
 <h2><a name="Ready"</a>Ready (3 issues)</h2>
 <table border="1" cellpadding="4">
 <tr>
@@ -821,6 +821,339 @@ the C++0x and C1x threads APIs</td>
   <td align="center"><b>Proposed Resolution</b></td>
   <td align="center"><b>Duplicates</b></td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1354">1354</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1354"></a></td>
+<td align="left">X [defns.deadlock]<a name="defns.deadlock"</a></td>
+<td align="left">[FCD] The definition of deadlock excludes cases involving a single thread</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-04</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1264">1264</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1264"></a></td>
+<td align="left">17.6.1.3 [compliance]<a name="compliance"</a></td>
+<td align="left"><tt>quick_exit</tt> support for freestanding implementations</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1360">1360</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1360"></a></td>
+<td align="left">17.6.1.3 [compliance]</td>
+<td align="left">[FCD] Add <tt>&lt;atomic&gt;</tt> to free-standing implementations</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1362">1362</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1362"></a></td>
+<td align="left">17.6.4.9 [res.on.arguments]<a name="res.on.arguments"</a></td>
+<td align="left">[FCD] Description of binding to rvalue-references should use the new 'xvalue' vocabulary</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1237">1237</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1237"></a></td>
+<td align="left">19.5 [syserr]<a name="syserr"</a></td>
+<td align="left">Constrained <tt>error_code</tt>&#47;<tt>error_condition members</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1255">1255</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1255"></a></td>
+<td align="left">20.2 [utility]<a name="utility"</a></td>
+<td align="left"><tt>declval</tt> should be added to the library</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1335">1335</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1335"></a></td>
+<td align="left">20.4.2.7 [tuple.rel]<a name="tuple.rel"</a></td>
+<td align="left">Insufficient requirements for <tt>tuple::operator&lt;()</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1227">1227</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1227"></a></td>
+<td align="left">20.5 [template.bitset]<a name="template.bitset"</a></td>
+<td align="left"><tt>&lt;bitset&gt;</tt> synopsis overspecified</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1325">1325</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1325"></a></td>
+<td align="left">20.5.1 [bitset.cons]<a name="bitset.cons"</a></td>
+<td align="left"><tt>bitset</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1285">1285</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1285"></a></td>
+<td align="left">20.6.8.2 [allocator.traits.members]<a name="allocator.traits.members"</a></td>
+<td align="left"><tt>allocator_traits</tt> call to <tt>new</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1286">1286</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1286"></a></td>
+<td align="left">20.6.8.2 [allocator.traits.members]</td>
+<td align="left"><tt>allocator_traits::select_on_container_copy_construction</tt> type-o</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1339">1339</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1339"></a></td>
+<td align="left">20.6.12.4 [uninitialized.fill.n]<a name="uninitialized.fill.n"</a></td>
+<td align="left"><tt>uninitialized_fill_n</tt> should return the end of its range</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1262">1262</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1262"></a></td>
+<td align="left">20.7.2.2.7 [util.smartptr.shared.cmp]<a name="util.smartptr.shared.cmp"</a></td>
+<td align="left"><tt>std::less&lt;std::shared_ptr&lt;T&gt;&gt;</tt> is underspecified</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1231">1231</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1231"></a></td>
+<td align="left">20.7.2.3.5 [util.smartptr.weak.obs]<a name="util.smartptr.weak.obs"</a></td>
+<td align="left"><tt>weak_ptr</tt> comparisons incompletely resolved</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1295">1295</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1295"></a></td>
+<td align="left">20.8.2 [func.require]<a name="func.require"</a></td>
+<td align="left">Contradictory call wrapper requirements</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1240">1240</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1240"></a></td>
+<td align="left">20.8.11.2 [func.wrap.func]<a name="func.wrap.func"</a></td>
+<td align="left">Deleted comparison functions of <tt>std::function</tt> not needed</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1287">1287</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1287"></a></td>
+<td align="left">20.8.11.2.1 [func.wrap.func.con]<a name="func.wrap.func.con"</a></td>
+<td align="left"><tt>std::function</tt> requires <tt>CopyConstructible</tt> target object</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1292">1292</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1292"></a></td>
+<td align="left">20.8.11.2.1 [func.wrap.func.con]</td>
+<td align="left"><tt>std::function</tt> should support all callable types</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1333">1333</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1333"></a></td>
+<td align="left">20.8.11.2.4 [func.wrap.func.inv]<a name="func.wrap.func.inv"</a></td>
+<td align="left">Missing forwarding during <tt>std::function</tt> invocation</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1245">1245</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1245"></a></td>
+<td align="left">20.8.12 [unord.hash]<a name="unord.hash"</a></td>
+<td align="left"><tt>std::hash&lt;string&gt;</tt> &amp; co</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1271">1271</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1271"></a></td>
+<td align="left">20.11.5.5 [time.duration.nonmember]<a name="time.duration.nonmember"</a></td>
+<td align="left"><tt>CR</tt> undefined in duration operators</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1316">1316</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1316"></a></td>
+<td align="left">20.12 [allocator.adaptor]<a name="allocator.adaptor"</a></td>
+<td align="left"><tt>scoped_allocator_adaptor operator==</tt> has no definition</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1323">1323</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1323"></a></td>
+<td align="left">21.4.6.6 [string::replace]<a name="string::replace"</a></td>
+<td align="left"><tt>basic_string::replace</tt> should use <tt>const_iterator</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1261">1261</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1261"></a></td>
+<td align="left">21.5 [string.conversions]<a name="string.conversions"</a></td>
+<td align="left">Insufficent overloads for <tt>to_string</tt> &#47; <tt>to_wstring</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1319">1319</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1319"></a></td>
+<td align="left">23.2.1 [container.requirements.general]<a name="container.requirements.general"</a></td>
+<td align="left">Containers should require an iterator that is at least a Forward Iterator</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1234">1234</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1234"></a></td>
+<td align="left">23.2.3 [sequence.reqmts]<a name="sequence.reqmts"</a></td>
+<td align="left">"Do the right thing" and <tt>NULL</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1278">1278</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1278"></a></td>
+<td align="left">23.3.4.5 [forwardlist.modifiers]<a name="forwardlist.modifiers"</a></td>
+<td align="left">Inconsistent return values for <tt>forward_list::insert_after</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1340">1340</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1340"></a></td>
+<td align="left">23.3.4.5 [forwardlist.modifiers]</td>
+<td align="left">Why does <tt>forward_list::resize</tt> take the object to be copied by value?</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1254">1254</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1254"></a></td>
+<td align="left">23.3.7 [vector.bool]<a name="vector.bool"</a></td>
+<td align="left">Misleading sentence in <tt>vector&lt;bool&gt;::flip</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1334">1334</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1334"></a></td>
+<td align="left">24.5.2.2.2 [back.insert.iter.op=]<a name="back.insert.iter.op="</a></td>
+<td align="left">Insert iterators are broken for some proxy containers compared to C++03</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1280">1280</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1280"></a></td>
+<td align="left">24.6.1.1 [istream.iterator.cons]<a name="istream.iterator.cons"</a></td>
+<td align="left">Initialization of stream iterators</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1338">1338</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1338"></a></td>
+<td align="left">25.2.13 [alg.search]<a name="alg.search"</a></td>
+<td align="left">LWG 1205 incorrectly applied</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1241">1241</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1241"></a></td>
+<td align="left">25.3.9 [alg.unique]<a name="alg.unique"</a></td>
+<td align="left"><tt>unique_copy</tt> needs to require <tt>EquivalenceRelation</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1249">1249</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1249"></a></td>
+<td align="left">27.5.5.2 [basic.ios.cons]<a name="basic.ios.cons"</a></td>
+<td align="left"><tt>basic_ios</tt> default ctor</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1337">1337</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1337"></a></td>
+<td align="left">28.7 [re.traits]<a name="re.traits"</a></td>
+<td align="left">Swapped arguments in <tt>regex_traits::isctype</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1277">1277</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1277"></a></td>
+<td align="left">30.3.1.1 [thread.thread.id]<a name="thread.thread.id"</a></td>
+<td align="left"><tt>std::thread::id</tt> should be trivially copyable</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1247">1247</a></td>
+<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1247"></a></td>
+<td align="left">D.12.1 [auto.ptr]<a name="auto.ptr"</a></td>
+<td align="left"><tt>auto_ptr</tt> is overspecified</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1204">1204</a></td>
@@ -2314,24 +2647,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2011-04-25</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1255">1255</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1255"></a></td>
-<td align="left">20.2 [utility]<a name="utility"</a></td>
-<td align="left"><tt>declval</tt> should be added to the library</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1340">1340</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1340"></a></td>
-<td align="left">23.3.4.5 [forwardlist.modifiers]<a name="forwardlist.modifiers"</a></td>
-<td align="left">Why does <tt>forward_list::resize</tt> take the object to be copied by value?</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1279">1279</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1279"></a></td>
 <td align="left">D.10.1 [depr.base]<a name="depr.base"</a></td>
@@ -2764,15 +3079,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2011-03-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1362">1362</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1362"></a></td>
-<td align="left">17.6.4.9 [res.on.arguments]<a name="res.on.arguments"</a></td>
-<td align="left">[FCD] Description of binding to rvalue-references should use the new 'xvalue' vocabulary</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1368">1368</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1368"></a></td>
 <td align="left">18.8.4 [uncaught]<a name="uncaught"</a></td>
@@ -2791,15 +3097,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1316">1316</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1316"></a></td>
-<td align="left">20.12 [allocator.adaptor]<a name="allocator.adaptor"</a></td>
-<td align="left"><tt>scoped_allocator_adaptor operator==</tt> has no definition</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1414">1414</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1414"></a></td>
 <td align="left">21.2.3.2 [char.traits.specializations.char16_t]<a name="char.traits.specializations.char16_t"</a></td>
@@ -2809,55 +3106,10 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1323">1323</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1323"></a></td>
-<td align="left">21.4.6.6 [string::replace]<a name="string::replace"</a></td>
-<td align="left"><tt>basic_string::replace</tt> should use <tt>const_iterator</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1319">1319</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1319"></a></td>
-<td align="left">23.2.1 [container.requirements.general]<a name="container.requirements.general"</a></td>
-<td align="left">Containers should require an iterator that is at least a Forward Iterator</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1234">1234</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1234"></a></td>
-<td align="left">23.2.3 [sequence.reqmts]<a name="sequence.reqmts"</a></td>
-<td align="left">"Do the right thing" and NULL</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1519">1519</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1519"></a></td>
 <td align="left">23.5.4 [unord.map]<a name="unord.map"</a></td>
 <td align="left">bucketsize() const only for unordered set</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1334">1334</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1334"></a></td>
-<td align="left">24.5.2.2.2 [back.insert.iter.op=]<a name="back.insert.iter.op="</a></td>
-<td align="left">Insert iterators are broken for some proxy  containers compared to C++03</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1338">1338</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1338"></a></td>
-<td align="left">25.2.13 [alg.search]<a name="alg.search"</a></td>
-<td align="left">LWG 1205 incorrectly applied</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-24</td>
@@ -2926,28 +3178,10 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1249">1249</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1249"></a></td>
-<td align="left">27.5.5.2 [basic.ios.cons]<a name="basic.ios.cons"</a></td>
-<td align="left">basic_ios default ctor</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1449">1449</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1449"></a></td>
 <td align="left">27.8.3 [istringstream]<a name="istringstream"</a></td>
 <td align="left">[FCD] Incomplete specification of header <tt>&lt;cinttypes&gt;</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1337">1337</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1337"></a></td>
-<td align="left">28.7 [re.traits]<a name="re.traits"</a></td>
-<td align="left">Swapped arguments in <tt>regex_traits::isctype</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-24</td>
@@ -2962,46 +3196,10 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1354">1354</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1354"></a></td>
-<td align="left">X [defns.deadlock]<a name="defns.deadlock"</a></td>
-<td align="left">[FCD] The definition of deadlock excludes cases involving a single thread</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1335">1335</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1335"></a></td>
-<td align="left">20.4.2.7 [tuple.rel]<a name="tuple.rel"</a></td>
-<td align="left">Insufficient requirements for <tt>tuple::operator&lt;()</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1325">1325</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1325"></a></td>
-<td align="left">20.5.1 [bitset.cons]<a name="bitset.cons"</a></td>
-<td align="left">bitset</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1404">1404</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1404"></a></td>
 <td align="left">20.6.3 [pointer.traits]<a name="pointer.traits"</a></td>
 <td align="left">[FCD] <tt>pointer_traits</tt> should have a <tt>size_type</tt> member</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1339">1339</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1339"></a></td>
-<td align="left">20.6.12.4 [uninitialized.fill.n]<a name="uninitialized.fill.n"</a></td>
-<td align="left"><tt>uninitialized_fill_n</tt> should return the end of its range</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-23</td>
@@ -3025,46 +3223,10 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-11-23</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1295">1295</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1295"></a></td>
-<td align="left">20.8.2 [func.require]</td>
-<td align="left">Contradictory call wrapper requirements</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1520">1520</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1520"></a></td>
 <td align="left">20.8.2 [func.require]</td>
 <td align="left"><tt>INVOKE</tt> on member data pointer with too many arguments</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1240">1240</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1240"></a></td>
-<td align="left">20.8.11.2 [func.wrap.func]<a name="func.wrap.func"</a></td>
-<td align="left">Deleted comparison functions of std::function not  needed</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1292">1292</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1292"></a></td>
-<td align="left">20.8.11.2.1 [func.wrap.func.con]<a name="func.wrap.func.con"</a></td>
-<td align="left"><tt>std::function</tt> should support all callable types</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1333">1333</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1333"></a></td>
-<td align="left">20.8.11.2.4 [func.wrap.func.inv]<a name="func.wrap.func.inv"</a></td>
-<td align="left">Missing forwarding during std::function invocation</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-23</td>
@@ -3233,15 +3395,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-26</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1360">1360</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1360"></a></td>
-<td align="left">17.6.1.3 [compliance]<a name="compliance"</a></td>
-<td align="left">[FCD] Add <tt>&lt;atomic></tt> to free-standing implementations</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-25</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1363">1363</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1363"></a></td>
 <td align="left">18.2 [support.types]<a name="support.types"</a></td>
@@ -3296,15 +3449,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-25</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1264">1264</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1264"></a></td>
-<td align="left">17.6.1.3 [compliance]<a name="compliance"</a></td>
-<td align="left"><tt>quick_exit</tt> support for freestanding implementations</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1178">1178</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1178"></a></td>
 <td align="left">17.6.5.2 [res.on.headers]<a name="res.on.headers"</a></td>
@@ -3323,46 +3467,10 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1237">1237</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1237"></a></td>
-<td align="left">19.5 [syserr]<a name="syserr"</a></td>
-<td align="left">Constrained error_code/error_condition members</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1227">1227</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1227"></a></td>
-<td align="left">20.5 [template.bitset]<a name="template.bitset"</a></td>
-<td align="left"><tt>&lt;bitset&gt;</tt> synopsis overspecified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1250">1250</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1250"></a></td>
-<td align="left">20.5 [template.bitset]</td>
+<td align="left">20.5 [template.bitset]<a name="template.bitset"</a></td>
 <td align="left"><tt>&lt;bitset&gt;</tt> still overspecified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1285">1285</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1285"></a></td>
-<td align="left">20.6.8.2 [allocator.traits.members]<a name="allocator.traits.members"</a></td>
-<td align="left"><tt>allocator_traits</tt> call to <tt>new</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1286">1286</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1286"></a></td>
-<td align="left">20.6.8.2 [allocator.traits.members]</td>
-<td align="left"><tt>allocator_traits::select_on_container_copy_construction</tt> type-o</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-24</td>
@@ -3377,15 +3485,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1262">1262</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1262"></a></td>
-<td align="left">20.7.2.2.7 [util.smartptr.shared.cmp]<a name="util.smartptr.shared.cmp"</a></td>
-<td align="left"><tt>std::less&lt;std::shared_ptr&lt;T&gt;&gt;</tt> is underspecified</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1256">1256</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1256"></a></td>
 <td align="left">20.7.2.3 [util.smartptr.weak]<a name="util.smartptr.weak"</a></td>
@@ -3395,27 +3494,9 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1231">1231</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1231"></a></td>
-<td align="left">20.7.2.3.5 [util.smartptr.weak.obs]<a name="util.smartptr.weak.obs"</a></td>
-<td align="left"><tt>weak_ptr</tt> comparisons incompletely resolved</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1287">1287</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1287"></a></td>
-<td align="left">20.8.11.2.1 [func.wrap.func.con]<a name="func.wrap.func.con"</a></td>
-<td align="left"><tt>std::function</tt> requires <tt>CopyConstructible</tt> target object</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1288">1288</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1288"></a></td>
-<td align="left">20.8.11.2.1 [func.wrap.func.con]</td>
+<td align="left">20.8.11.2.1 [func.wrap.func.con]<a name="func.wrap.func.con"</a></td>
 <td align="left"><tt>std::function</tt> assignment from rvalues</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -3426,33 +3507,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1182"></a></td>
 <td align="left">20.8.12 [unord.hash]<a name="unord.hash"</a></td>
 <td align="left">Unfortunate hash dependencies</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1245">1245</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1245"></a></td>
-<td align="left">20.8.12 [unord.hash]</td>
-<td align="left"><tt>std::hash&lt;string&gt;</tt> &amp; co</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1271">1271</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1271"></a></td>
-<td align="left">20.11.5.5 [time.duration.nonmember]<a name="time.duration.nonmember"</a></td>
-<td align="left">CR undefined in duration operators</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1261">1261</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1261"></a></td>
-<td align="left">21.5 [string.conversions]<a name="string.conversions"</a></td>
-<td align="left">Insufficent overloads for <tt>to_string</tt> / <tt>to_wstring</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-24</td>
@@ -3494,15 +3548,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1278">1278</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1278"></a></td>
-<td align="left">23.3.4.5 [forwardlist.modifiers]<a name="forwardlist.modifiers"</a></td>
-<td align="left">inconsistent return values for <tt>forward_list::insert_after</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1133">1133</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1133"></a></td>
 <td align="left">23.3.4.6 [forwardlist.ops]<a name="forwardlist.ops"</a></td>
@@ -3521,18 +3566,9 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1254">1254</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1254"></a></td>
-<td align="left">23.3.7 [vector.bool]<a name="vector.bool"</a></td>
-<td align="left">Misleading sentence in <tt>vector&lt;bool&gt;::flip</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1284">1284</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1284"></a></td>
-<td align="left">23.3.7 [vector.bool]</td>
+<td align="left">23.3.7 [vector.bool]<a name="vector.bool"</a></td>
 <td align="left"><tt>vector&lt;bool&gt; initializer_list</tt> constructor missing an allocator argument</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -3620,28 +3656,10 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2010-10-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1280">1280</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1280"></a></td>
-<td align="left">24.6.1.1 [istream.iterator.cons]<a name="istream.iterator.cons"</a></td>
-<td align="left">initialization of stream iterators</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1206">1206</a></td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1206"></a></td>
 <td align="left">25.3.2 [alg.move]<a name="alg.move"</a></td>
 <td align="left">Incorrect requires for <tt>move_backward</tt> and <tt>copy_backward</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1241">1241</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1241"></a></td>
-<td align="left">25.3.9 [alg.unique]<a name="alg.unique"</a></td>
-<td align="left">unique_copy needs to require EquivalenceRelation</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-24</td>
@@ -3660,15 +3678,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1299"></a></td>
 <td align="left">27.7.5 [ext.manip]<a name="ext.manip"</a></td>
 <td align="left">Confusing typo in specification for <tt>get_time</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1277">1277</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1277"></a></td>
-<td align="left">30.3.1.1 [thread.thread.id]<a name="thread.thread.id"</a></td>
-<td align="left"><tt>std::thread::id</tt> should be trivially copyable</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-24</td>
@@ -3696,15 +3705,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#WP">WP</a><a name="1267"></a></td>
 <td align="left">30.5.2 [thread.condition.condvarany]<a name="thread.condition.condvarany"</a></td>
 <td align="left">Incorrect wording for <tt>condition_variable_any::wait_for</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-10-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1247">1247</a></td>
-<td align="left"><a href="lwg-active.html#WP">WP</a><a name="1247"></a></td>
-<td align="left">D.12.1 [auto.ptr]<a name="auto.ptr"</a></td>
-<td align="left"><tt>auto_ptr</tt> is overspecified</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-10-24</td>
@@ -8156,6 +8156,277 @@ the C++0x and C1x threads APIs</td>
   <td align="center"><a href="lwg-status-date.html"><b>Last modified</b></a></td>
 </tr>
 <tr>
+<td align="right"><a href="lwg-defects.html#1344">1344</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1344"></a></td>
+<td align="left">17 [library]<a name="library"</a></td>
+<td align="left">[FCD] Replace <tt>throw()</tt> with <tt>noexcept</tt></td>
+<td align="center">Yes</td>
+<td align="left"><a href="lwg-closed.html#1351">1351</a></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1345">1345</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1345"></a></td>
+<td align="left">17 [library]</td>
+<td align="left">[FCD] Library classes should have <tt>noexcept</tt> move operations</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1346">1346</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1346"></a></td>
+<td align="left">17 [library]</td>
+<td align="left">[FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</td>
+<td align="center">Yes</td>
+<td align="left"><a href="lwg-closed.html#1352">1352</a></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1347">1347</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1347"></a></td>
+<td align="left">17 [library]</td>
+<td align="left">[FCD] Apply <tt>noexcept</tt> judiciously throughout the library</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1357">1357</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1357"></a></td>
+<td align="left">17.5.2.1.3 [bitmask.types]<a name="bitmask.types"</a></td>
+<td align="left">[FCD] Library bitmask types to not satisfy the bimask type requirements</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1322">1322</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1322"></a></td>
+<td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
+<td align="left">Explicit <tt>CopyConstructible</tt> requirements are insufficient</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1365">1365</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1365"></a></td>
+<td align="left">18.6.2 [alloc.errors]<a name="alloc.errors"</a></td>
+<td align="left">[FCD] Thread-safety of handler functions</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1364">1364</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1364"></a></td>
+<td align="left">18.8.5 [propagation]<a name="propagation"</a></td>
+<td align="left">[FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1229">1229</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1229"></a></td>
+<td align="left">19.5.2.3 [syserr.errcode.modifiers]<a name="syserr.errcode.modifiers"</a></td>
+<td align="left"><tt>error_code operator=</tt> typo</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1324">1324</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1324"></a></td>
+<td align="left">20.3.2 [pairs.pair]<a name="pairs.pair"</a></td>
+<td align="left">Still too many implicit conversions for <tt>pair</tt> and  <tt>tuple</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1326">1326</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1326"></a></td>
+<td align="left">20.3.2 [pairs.pair]</td>
+<td align="left">Missing&#47;wrong preconditions for <tt>pair</tt> and <tt>tuple</tt> functions</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1293">1293</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1293"></a></td>
+<td align="left">20.7.1.3 [unique.ptr.runtime]<a name="unique.ptr.runtime"</a></td>
+<td align="left"><tt>unique_ptr&lt;T[], D&gt;</tt> needs to get rid of <i>unspecified-pointer-type</i></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1290">1290</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1290"></a></td>
+<td align="left">20.8 [function.objects]<a name="function.objects"</a></td>
+<td align="left">Don't require <tt>[u|bi]nary_function</tt> inheritance</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1260">1260</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1260"></a></td>
+<td align="left">20.9.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
+<td align="left"><tt>is_constructible&lt;int*,void*&gt;</tt> reports true</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1281">1281</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1281"></a></td>
+<td align="left">20.10.3 [ratio.ratio]<a name="ratio.ratio"</a></td>
+<td align="left">CopyConstruction and Assignment between ratios having the same normalized form</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1321">1321</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1321"></a></td>
+<td align="left">20.12.4 [allocator.adaptor.members]<a name="allocator.adaptor.members"</a></td>
+<td align="left"><tt>scoped_allocator_adaptor construct</tt> and <tt>destroy</tt> don't
+use <tt>allocator_traits</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1329">1329</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1329"></a></td>
+<td align="left">23.2.2 [container.requirements.dataraces]<a name="container.requirements.dataraces"</a></td>
+<td align="left">Data races on <code>vector&lt;bool&gt;</code></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1327">1327</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1327"></a></td>
+<td align="left">26.8 [c.math]<a name="c.math"</a></td>
+<td align="left">templates defined in <tt>&lt;cmath&gt;</tt> replacing C macros with the same name</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1328">1328</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1328"></a></td>
+<td align="left">27.7.2.1.3 [istream::sentry]<a name="istream::sentry"</a></td>
+<td align="left">istream extractors not setting <tt>failbit</tt> if <tt>eofbit</tt> is already set</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1268">1268</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1268"></a></td>
+<td align="left">30.4 [thread.mutex]<a name="thread.mutex"</a></td>
+<td align="left">The Mutex requirements in 30.4.1 and 30.4.2 are wrong</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1275">1275</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1275"></a></td>
+<td align="left">30.6 [futures]<a name="futures"</a></td>
+<td align="left">Creating and setting futures</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1269">1269</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1269"></a></td>
+<td align="left">30.6.4 [futures.state]<a name="futures.state"</a></td>
+<td align="left">Associated state doesn't account for <tt>async</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1291">1291</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1291"></a></td>
+<td align="left">30.6.5 [futures.promise]<a name="futures.promise"</a></td>
+<td align="left">Exceptions thrown during <tt>promise::set_value</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1300">1300</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1300"></a></td>
+<td align="left">30.6.5 [futures.promise]</td>
+<td align="left">Circular definition of <tt>promise::swap</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1273">1273</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1273"></a></td>
+<td align="left">30.6.6 [futures.unique_future]<a name="futures.unique_future"</a></td>
+<td align="left"><tt>future::valid</tt> should be callable on an invalid future</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1266">1266</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1266"></a></td>
+<td align="left">30.6.7 [futures.shared_future]<a name="futures.shared_future"</a></td>
+<td align="left"><tt>shared_future::get</tt> and deferred <tt>async</tt> functions</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1304">1304</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1304"></a></td>
+<td align="left">30.6.7 [futures.shared_future]</td>
+<td align="left">Missing preconditions for <tt>shared_future</tt></td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1274">1274</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1274"></a></td>
+<td align="left">X [futures.atomic_future]<a name="futures.atomic_future"</a></td>
+<td align="left"><tt>atomic_future</tt> constructor</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1355">1355</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1355"></a></td>
+<td align="left">X [defns.move.assign.op]<a name="defns.move.assign.op"</a></td>
+<td align="left">[FCD] The definition of move-assignment operator is redundant</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
+<td align="right"><a href="lwg-defects.html#1356">1356</a></td>
+<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1356"></a></td>
+<td align="left">X [defns.move.ctor]<a name="defns.move.ctor"</a></td>
+<td align="left">[FCD] The definition of move-constructor is redundant</td>
+<td align="center">Yes</td>
+<td align="left"></td>
+<td align="center">2011-05-03</td>
+</tr>
+<tr>
 <td align="right"><a href="lwg-defects.html#1210">1210</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1210"></a></td>
 <td align="left">24.2 [iterator.requirements]<a name="iterator.requirements"</a></td>
@@ -8868,24 +9139,6 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2011-04-26</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1344">1344</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1344"></a></td>
-<td align="left">17 [library]<a name="library"</a></td>
-<td align="left">[FCD] Replace <tt>throw()</tt> with <tt>noexcept</tt></td>
-<td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1351">1351</a></td>
-<td align="center">2011-04-25</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1346">1346</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1346"></a></td>
-<td align="left">17 [library]</td>
-<td align="left">[FCD] Apply <tt>noexcept</tt> where library specification does not permit exceptions</td>
-<td align="center">Yes</td>
-<td align="left"><a href="lwg-closed.html#1352">1352</a></td>
-<td align="center">2011-04-25</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1366">1366</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1366"></a></td>
 <td align="left">18.6.1.4 [new.delete.dataraces]<a name="new.delete.dataraces"</a></td>
@@ -8895,27 +9148,9 @@ the C++0x and C1x threads APIs</td>
 <td align="center">2011-04-25</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1365">1365</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1365"></a></td>
-<td align="left">18.6.2 [alloc.errors]<a name="alloc.errors"</a></td>
-<td align="left">[FCD] Thread-safety of handler functions</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-25</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1290">1290</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1290"></a></td>
-<td align="left">20.8 [function.objects]<a name="function.objects"</a></td>
-<td align="left">Don't require <tt>[u|bi]nary_function</tt> inheritance</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-25</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1397">1397</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1397"></a></td>
-<td align="left">20.8 [function.objects]</td>
+<td align="left">20.8 [function.objects]<a name="function.objects"</a></td>
 <td align="left">[FCD] Deprecate '98 binders</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -8953,15 +9188,6 @@ the C++0x and C1x threads APIs</td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1481"></a></td>
 <td align="left">30.2 [thread.req]<a name="thread.req"</a></td>
 <td align="left">[FCD] Missing Lockable requirements</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-25</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1268">1268</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1268"></a></td>
-<td align="left">30.4 [thread.mutex]<a name="thread.mutex"</a></td>
-<td align="left">The Mutex requirements in 30.4.1 and 30.4.2 are wrong</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-04-25</td>
@@ -9112,37 +9338,10 @@ state has problems</td>
 <td align="center">2011-04-25</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1322">1322</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1322"></a></td>
-<td align="left">17.6.3.1 [utility.arg.requirements]<a name="utility.arg.requirements"</a></td>
-<td align="left">Explicit <tt>CopyConstructible</tt> requirements are insufficient</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1345">1345</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1345"></a></td>
-<td align="left">17 [library]<a name="library"</a></td>
-<td align="left">[FCD] Library classes should have <tt>noexcept</tt> move operations</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-18</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1353">1353</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1353"></a></td>
-<td align="left">17 [library]</td>
+<td align="left">17 [library]<a name="library"</a></td>
 <td align="left">[FCD] Clarify the state of a <i>moved-from</i> object</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-04-18</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1364">1364</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1364"></a></td>
-<td align="left">18.8.5 [propagation]<a name="propagation"</a></td>
-<td align="left">[FCD] It is not clear how <tt>exception_ptr</tt> is synchronized</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-04-18</td>
@@ -9295,15 +9494,6 @@ synchronization requirements</td>
 <td align="center">2011-03-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1326">1326</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1326"></a></td>
-<td align="left">20.3.2 [pairs.pair]<a name="pairs.pair"</a></td>
-<td align="left">Missing/wrong preconditions for <tt>pair</tt> and <tt>tuple</tt> functions</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2011-03-05</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#794">794</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="794"></a></td>
 <td align="left">26.5.8.6.2 [rand.dist.samp.pconst]<a name="rand.dist.samp.pconst"</a></td>
@@ -9347,42 +9537,6 @@ synchronization requirements</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2011-02-20</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1347">1347</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1347"></a></td>
-<td align="left">17 [library]<a name="library"</a></td>
-<td align="left">[FCD] Apply <tt>noexcept</tt> judiciously throughout the library</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1229">1229</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1229"></a></td>
-<td align="left">19.5.2.3 [syserr.errcode.modifiers]<a name="syserr.errcode.modifiers"</a></td>
-<td align="left"><tt>error_code operator=</tt> typo</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1281">1281</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1281"></a></td>
-<td align="left">20.10.3 [ratio.ratio]<a name="ratio.ratio"</a></td>
-<td align="left">CopyConstruction and Assignment between ratios having the same normalized form</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1329">1329</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1329"></a></td>
-<td align="left">23.2.2 [container.requirements.dataraces]<a name="container.requirements.dataraces"</a></td>
-<td align="left">Data races on <code>vector&lt;bool&gt;</code></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1248">1248</a></td>
@@ -9430,24 +9584,6 @@ synchronization requirements</td>
 <td align="center">2010-12-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1275">1275</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1275"></a></td>
-<td align="left">30.6 [futures]</td>
-<td align="left">creating and setting futures</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1269">1269</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1269"></a></td>
-<td align="left">30.6.4 [futures.state]<a name="futures.state"</a></td>
-<td align="left">Associated state doesn't account for async</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1272">1272</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1272"></a></td>
 <td align="left">30.6.5 [futures.promise]<a name="futures.promise"</a></td>
@@ -9457,76 +9593,13 @@ synchronization requirements</td>
 <td align="center">2010-12-05</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1291">1291</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1291"></a></td>
-<td align="left">30.6.5 [futures.promise]</td>
-<td align="left">exceptions thrown during <tt>promise::set_value</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1300">1300</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1300"></a></td>
-<td align="left">30.6.5 [futures.promise]</td>
-<td align="left">circular definition of <tt>promise::swap</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1273">1273</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1273"></a></td>
-<td align="left">30.6.6 [futures.unique_future]<a name="futures.unique_future"</a></td>
-<td align="left"><tt>future::valid</tt> should be callable on an invalid future</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1266">1266</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1266"></a></td>
-<td align="left">30.6.7 [futures.shared_future]<a name="futures.shared_future"</a></td>
-<td align="left"><tt>shared_future::get</tt> and deferred async functions</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1304">1304</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1304"></a></td>
-<td align="left">30.6.7 [futures.shared_future]</td>
-<td align="left">missing preconditions for <tt>shared_future</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1274">1274</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1274"></a></td>
-<td align="left">X [futures.atomic_future]<a name="futures.atomic_future"</a></td>
-<td align="left"><tt>atomic_future</tt> constructor</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-12-05</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1305">1305</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1305"></a></td>
-<td align="left">X [futures.atomic_future]</td>
+<td align="left">X [futures.atomic_future]<a name="futures.atomic_future"</a></td>
 <td align="left">preconditions for <tt>atomic_future</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-12-05</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1327">1327</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1327"></a></td>
-<td align="left">26.8 [c.math]<a name="c.math"</a></td>
-<td align="left">templates defined in <tt>&lt;cmath></tt> replacing C macros with the same name</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-26</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1377">1377</a></td>
@@ -9574,18 +9647,9 @@ synchronization requirements</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1324">1324</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1324"></a></td>
-<td align="left">20.3.2 [pairs.pair]<a name="pairs.pair"</a></td>
-<td align="left">Still too many implicit conversions for <tt>pair</tt> and  <tt>tuple</tt></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1379">1379</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1379"></a></td>
-<td align="left">20.3.2 [pairs.pair]</td>
+<td align="left">20.3.2 [pairs.pair]<a name="pairs.pair"</a></td>
 <td align="left">[FCD] <tt>pair</tt> copy-assignment not consistent for references</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -9646,15 +9710,6 @@ synchronization requirements</td>
 <td align="center">2010-11-24</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1328">1328</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1328"></a></td>
-<td align="left">27.7.2.1.3 [istream::sentry]<a name="istream::sentry"</a></td>
-<td align="left">istream extractors not setting failbit if eofbit is already set</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1453">1453</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1453"></a></td>
 <td align="left">28.10.4 [re.results.acc]<a name="re.results.acc"</a></td>
@@ -9671,33 +9726,6 @@ synchronization requirements</td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1355">1355</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1355"></a></td>
-<td align="left">X [defns.move.assign.op]<a name="defns.move.assign.op"</a></td>
-<td align="left">[FCD] The definition of move-assignment operator is redundant</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1356">1356</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1356"></a></td>
-<td align="left">X [defns.move.ctor]<a name="defns.move.ctor"</a></td>
-<td align="left">[FCD] The definition of move-constructor is redundant</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-24</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1357">1357</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1357"></a></td>
-<td align="left">17.5.2.1.3 [bitmask.types]<a name="bitmask.types"</a></td>
-<td align="left">[FCD] Library bitmask types to not satisfy the bimask type requirements</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-23</td>
 </tr>
 <tr>
 <td align="right"><a href="lwg-defects.html#1283">1283</a></td>
@@ -9746,15 +9774,6 @@ of moved-from state</td>
 <td align="center">2010-11-20</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1293">1293</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1293"></a></td>
-<td align="left">20.7.1.3 [unique.ptr.runtime]<a name="unique.ptr.runtime"</a></td>
-<td align="left"><tt>unique_ptr&lt;T[], D&gt;</tt> needs to get rid of <i>unspecified-pointer-type</i></td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1407">1407</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1407"></a></td>
 <td align="left">20.7.2.2.1 [util.smartptr.shared.const]<a name="util.smartptr.shared.const"</a></td>
@@ -9773,18 +9792,9 @@ of moved-from state</td>
 <td align="center">2010-11-20</td>
 </tr>
 <tr>
-<td align="right"><a href="lwg-defects.html#1260">1260</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1260"></a></td>
-<td align="left">20.9.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
-<td align="left"><tt>is_constructible&lt;int*,void*&gt;</tt> reports true</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
 <td align="right"><a href="lwg-defects.html#1394">1394</a></td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1394"></a></td>
-<td align="left">20.9.4.3 [meta.unary.prop]</td>
+<td align="left">20.9.4.3 [meta.unary.prop]<a name="meta.unary.prop"</a></td>
 <td align="left">[FCD] Ballot Comment DE-19</td>
 <td align="center">Yes</td>
 <td align="left"></td>
@@ -9795,16 +9805,6 @@ of moved-from state</td>
 <td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1405"></a></td>
 <td align="left">20.12 [allocator.adaptor]<a name="allocator.adaptor"</a></td>
 <td align="left">[FCD] Ballot Comment US-107</td>
-<td align="center">Yes</td>
-<td align="left"></td>
-<td align="center">2010-11-20</td>
-</tr>
-<tr>
-<td align="right"><a href="lwg-defects.html#1321">1321</a></td>
-<td align="left"><a href="lwg-active.html#Resolved">Resolved</a><a name="1321"></a></td>
-<td align="left">20.12.4 [allocator.adaptor.members]<a name="allocator.adaptor.members"</a></td>
-<td align="left"><tt>scoped_allocator_adaptor construct</tt> and <tt>destroy</tt> don't
-use <tt>allocator_traits</tt></td>
 <td align="center">Yes</td>
 <td align="left"></td>
 <td align="center">2010-11-20</td>
