@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-03 at 22:05:38 UTC</p>
+<p>Revised 2011-05-04 at 20:05:30 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -659,6 +659,7 @@ Consider to await the paper.
 <h3><a name="1214"></a>1214. Insufficient/inconsistent key immutability requirements for  associative containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2011-02-20</p>
+<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3879,6 +3880,42 @@ Some notes:
 <p>
 I would recommend making non-unary <tt>tuple</tt> constructors non-explicit.
 </p>
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2052"></a>2052. Mixup between <tt>mapped_type</tt> and <tt>value_type</tt> for associative containers</h3>
+<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-04 <b>Last modified:</b> 2011-05-04</p>
+<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
+<p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+(this is basically reopening the first part of issue <a href="lwg-closed.html#2006">2006</a>, as discussed in the thread 
+starting at c++std-lib-30698 )
+<p/>
+Section 23.2.4 [associative.reqmts]
+<p/>
+In Table 102, several uses of <tt>T</tt> (which means <tt>mapped_type</tt> here) should
+be <tt>value_type</tt> instead. This is almost editorial. For instance:
+</p>
+<blockquote><pre>
+a_uniq.emplace(args)
+</pre><p>
+<i>Requires</i>: <tt>T</tt> shall be <tt>EmplaceConstructible</tt> into <tt>X</tt> from args.
+<p/>
+<i>Effects</i>: Inserts a <tt>T</tt> object <tt>t</tt> constructed with
+<tt>std::forward&lt;Args&gt;(args)...</tt> if and only if there is no element in the
+container with key equivalent to the key of <tt>t</tt>. The <tt>bool</tt> component of
+the returned pair is true if and only if the insertion takes place, and the iterator component 
+of the pair points to the element with key equivalent to the key of <tt>t</tt>.
+</p></blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
