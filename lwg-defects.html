@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-05-09 at 22:05:47 UTC</p>
+<p>Revised 2011-05-09 at 23:05:01 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -90864,7 +90864,7 @@ Resolved in Batavia by accepting  <a href="http://www.open-std.org/jtc1/sc22/wg2
 <hr>
 <h3><a name="1366"></a>1366. [FCD] New-handler and data races</h3>
 <p><b>Section:</b> 18.6.1.4 [new.delete.dataraces] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#new.delete.dataraces">issues</a> in [new.delete.dataraces].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -90890,24 +90890,24 @@ Offer a non-mutating interface to query the current new-handler.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3122.html">n3122</a> would solve this issue.
 This issue is related to <a href="lwg-defects.html#1365">1365</a>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-Batavia:
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3189.htm">n3189</a>.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Resolved in Batavia by accepting  <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3189.htm">n3189</a>.
-
+</p>
 
 
 
@@ -90915,7 +90915,7 @@ Resolved in Batavia by accepting  <a href="http://www.open-std.org/jtc1/sc22/wg2
 <hr>
 <h3><a name="1367"></a>1367. [FCD] Deprecate library support for checking dynamic exception specifications</h3>
 <p><b>Section:</b> D.13 [exception.unexpected] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-72</b></p>
@@ -90935,12 +90935,12 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 With the exception of 18.8.2.1 [bad.exception],
-move clause 18.8.2 diectly to Annex D.
+move clause 18.8.2 directly to Annex D.
 [bad.exception] should simply become the new
 18.8.2.
-
+</p>
 
 
 
@@ -90998,7 +90998,7 @@ Adopted at 2010-11 Batavia
 <hr>
 <h3><a name="1370"></a>1370. [FCD] <tt>throw_with_nested</tt> should not use perfect forwarding</h3>
 <p><b>Section:</b> 18.8.6 [except.nested] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#except.nested">issues</a> in [except.nested].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91026,9 +91026,9 @@ requirements on <tt>T</tt> and the use of
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3144.html">n3144</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 <p><i>[2010-11-10 Batavia: LWG accepts Howard's updated wording with
 corrected boo boos reported by Sebastian Gesemann and Pete Becker,
@@ -91103,7 +91103,7 @@ All calls of this function return references to the same object.
 <hr>
 <h3><a name="1377"></a>1377. [FCD] The revised <tt>forward</tt> is not compatible with access-control</h3>
 <p><b>Section:</b> 20.2 [utility] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#utility">issues</a> in [utility].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91120,14 +91120,14 @@ implementation along the lines of n2835 (using <tt>enable_if</tt>s
 instead of concepts for the constraining, of course)
 </p>
 <pre>
-#include &lt;utility>
+#include &lt;utility&gt;
 struct Base { Base(Base&amp;&amp;); };
 
 struct Derived
   : private Base
 {
   Derived(Derived&amp;&amp; d)
-    : Base(std::forward&lt;Base>(d)) { }
+    : Base(std::forward&lt;Base&gt;(d)) { }
 };
 </pre>
 <p>
@@ -91140,15 +91140,15 @@ way, the present status is not acceptable.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3143.html">n3143</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Resolved as NAD Editorial by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3143.html">n3143</a>.
-
+</p>
 
 
 
@@ -91156,7 +91156,7 @@ Resolved as NAD Editorial by paper <a href="http://www.open-std.org/jtc1/sc22/wg
 <hr>
 <h3><a name="1378"></a>1378. [FCD] <tt>pair</tt> and <tt>tuple</tt> have too many conversions</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91166,12 +91166,12 @@ Several function templates of <tt>pair</tt> and <tt>tuple</tt> allow for too
 many implicit conversions, for example:
 </p>
 <pre>
-#include &lt;tuple>
-std::tuple&lt;char*> p(0); // Error?
+#include &lt;tuple&gt;
+std::tuple&lt;char*&gt; p(0); // Error?
 
 struct A { explicit A(int){} };
 A a = 1; // Error
-std::tuple&lt;A> ta = std::make_tuple(1); // OK?
+std::tuple&lt;A&gt; ta = std::make_tuple(1); // OK?
 </pre>
 
 <p><i>[
@@ -91187,16 +91187,16 @@ Consider to add wording to constrain these function templates.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-
+</p>
 
 
 
@@ -91204,7 +91204,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1379"></a>1379. [FCD] <tt>pair</tt> copy-assignment not consistent for references</h3>
 <p><b>Section:</b> 20.3.2 [pairs.pair] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs.pair">issues</a> in [pairs.pair].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91224,10 +91224,10 @@ with <tt>tuple</tt>'s assignment operators.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> would provide a superior resolution,
 because <tt>pair</tt> does not depend on the semantic requirements of <tt>CopyAssignable</tt>.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-11 Batavia
@@ -91240,16 +91240,16 @@ Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers
 
 
 <p><b>Proposed resolution:</b></p>
-Add to <tt>pair</tt> synopsis:
-<blockquote>
+<p>Add to <tt>pair</tt> synopsis:</p>
+<blockquote><p>
 <tt>pair&amp; operator=(const pair&amp; p);</tt>
-</blockquote>
+</p></blockquote>
 <p>
 Add before paragraph 9:
 </p>
-<blockquote>
+<blockquote><p>
 <tt>pair&amp; operator=(const pair&amp; p);</tt>
-<blockquote>
+</p><blockquote>
 <p>
 <i>Requires</i>: <tt>T1</tt> and <tt>T2</tt> shall satisfy the
 requirements of <tt>CopyAssignable</tt>.
@@ -91269,7 +91269,7 @@ requirements of <tt>CopyAssignable</tt>.
 <hr>
 <h3><a name="1380"></a>1380. [FCD] <tt>pair</tt> and <tt>tuple</tt> of references need to better specify move-semantics</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91299,24 +91299,24 @@ Replace the usage of <tt>std::move</tt> by that of
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-11 Batavia:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-
+</p>
 
 
 
@@ -91324,7 +91324,7 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1381"></a>1381. [FCD] Ballot Comment GB-85</h3>
 <p><b>Section:</b> X [pair.range] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-85</b></p>
@@ -91349,10 +91349,10 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Strike 20.3.5.4 and the matching declarations in
 20.3 header synopsis.
-
+</p>
 
 
 
@@ -91360,7 +91360,7 @@ Strike 20.3.5.4 and the matching declarations in
 <hr>
 <h3><a name="1382"></a>1382. [FCD] <tt>pair</tt> and <tt>tuple</tt> constructors should <tt>forward</tt> arguments</h3>
 <p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91377,18 +91377,18 @@ wrong.
 Resolution proposed by ballot comment
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 See Appendix 1 - Additional Details
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-10-24 Daniel adds:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-11 Batavia
@@ -91400,17 +91400,17 @@ Resolved by adopting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-
+</p>
 
 
 
 
 <hr>
-<h3><a name="1383"></a>1383. [FCD] Inconsistent defaulted move/copy members in <tt>pair</tt> and <tt>tuple</tt></h3>
-<p><b>Section:</b> 20.3 [pairs] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+<h3><a name="1383"></a>1383. [FCD] Inconsistent defaulted move&#47;copy members in <tt>pair</tt> and <tt>tuple</tt></h3>
+<p><b>Section:</b> 20.3 [pairs], 20.4 [tuple] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs">issues</a> in [pairs].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91420,35 +91420,35 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 contains "<tt>pair(const pair&amp;) = default;</tt>" and 
 "<tt>pair&amp; operator=(pair&amp;&amp; p);</tt>". The latter is described by
 20.3.2 [pairs.pair] p.12-13.
-</p>
+<p/>
 "<tt>pair(const pair&amp;) = default;</tt>" is a user-declared explicitly defaulted
-copy constructor. According to 12.8 [class.copy]/10, this inhibits 
+copy constructor. According to 12.8 [class.copy]&#47;10, this inhibits 
 the implicitly-declared move constructor. <tt>pair</tt> should be move constructible. 
-(12.8 [class.copy]/7 explains that "<tt>pair(pair&lt;U, V&gt;&amp;&amp; p)</tt>" 
-will never be instantiated to move <tt>pair&lt;T1, T2&gt;</tt> to <tt>pair&lt;T1, T2&gt;</tt>.)<BR/>
+(12.8 [class.copy]&#47;7 explains that "<tt>pair(pair&lt;U, V&gt;&amp;&amp; p)</tt>" 
+will never be instantiated to move <tt>pair&lt;T1, T2&gt;</tt> to <tt>pair&lt;T1, T2&gt;</tt>.)<br/>
 "<tt>pair&amp; operator=(pair&amp;&amp; p);</tt>" is a user-provided move
-assignment operator (according to 8.4.2 [dcl.fct.def.default]/4: "A 
+assignment operator (according to 8.4.2 [dcl.fct.def.default]&#47;4: "A 
 special member function is user-provided if it is user-declared and not explicitly defaulted
-on its first declaration."). According to 12.8 [class.copy]/20, this inhibits
+on its first declaration."). According to 12.8 [class.copy]&#47;20, this inhibits
 the implicitly-declared copy assignment operator. <tt>pair</tt>
-should be copy assignable, and was in C++98/03. (Again,
-12.8 [class.copy]/7 explains that "<tt>operator=(const pair&lt;U, V&gt;&amp; p)</tt>" 
-will never be instantiated to copy <tt>pair&lt;T1, T2&gt;</tt> to <tt>pair&lt;T1, T2&gt;</tt>.)<BR/>
+should be copy assignable, and was in C++98&#47;03. (Again,
+12.8 [class.copy]&#47;7 explains that "<tt>operator=(const pair&lt;U, V&gt;&amp; p)</tt>" 
+will never be instantiated to copy <tt>pair&lt;T1, T2&gt;</tt> to <tt>pair&lt;T1, T2&gt;</tt>.)<br/>
 Additionally, "<tt>pair&amp; operator=(pair&amp;&amp; p);</tt>" is
-unconditionally defined, whereas according to 12.8 [class.copy]/25,
-defaulted copy/move assignment operators are defined as
+unconditionally defined, whereas according to 12.8 [class.copy]&#47;25,
+defaulted copy&#47;move assignment operators are defined as
 deleted in several situations, such as when non-static data
 members of reference type are present.
 <p/>
 If "<tt>pair(const pair&amp;) = default;</tt>" and "<tt>pair&amp; operator=(pair&amp;&amp; p);</tt>" 
 were removed from <tt>pair</tt>'s class definition in 20.3.2 [pairs.pair] and from 
-20.3.2 [pairs.pair]/12-13, <tt>pair</tt> would
-receive implicitly-declared copy/move constructors and
-copy/move assignment operators, and 12.8 [class.copy]/25 would
-apply. The implicitly-declared copy/move constructors
-would be trivial when <tt>T1</tt> and <tt>T2</tt> have trivial copy/move
-constructors, according to 12.8 [class.copy]/13, and similarly for the
-assignment operators, according to12.8 [class.copy]/27. Notes could
+20.3.2 [pairs.pair]&#47;12-13, <tt>pair</tt> would
+receive implicitly-declared copy&#47;move constructors and
+copy&#47;move assignment operators, and 12.8 [class.copy]&#47;25 would
+apply. The implicitly-declared copy&#47;move constructors
+would be trivial when <tt>T1</tt> and <tt>T2</tt> have trivial copy&#47;move
+constructors, according to 12.8 [class.copy]&#47;13, and similarly for the
+assignment operators, according to12.8 [class.copy]&#47;27. Notes could
 be added as a reminder that these functions would be
 implicitly-declared, but such notes would not be necessary
 (the Standard Library specification already assumes a
@@ -91457,49 +91457,51 @@ casual readers will simply assume that <tt>pair</tt> is copyable
 and movable).
 <p/>
 Alternatively, <tt>pair</tt> could be given explicitly-defaulted
-copy/move constructors and copy/move assignment
+copy&#47;move constructors and copy&#47;move assignment
 operators. This is a matter of style.
 <p/>
 <tt>tuple</tt> is also affected. <tt>tuple</tt>'s class definition in 20.4 [tuple] contains:
-<PRE>
+</p>
+<pre>
 tuple(const tuple&amp;) = default;
 tuple(tuple&amp;&amp;);
 tuple&amp; operator=(const tuple&amp;);
 tuple&amp; operator=(tuple&amp;&amp;);
-</PRE>
+</pre>
+<p>
 They should all be removed or all be explicitly-defaulted,
-to be consistent with <tt>pair</tt>. Additionally, 20.4.2.1 [tuple.cnstr]/8-9 specifies the 
+to be consistent with <tt>pair</tt>. Additionally, 20.4.2.1 [tuple.cnstr]&#47;8-9 specifies the 
 behavior of an explicitly defaulted function, which is currently inconsistent with
 <tt>pair</tt>.
-
+</p>
 <p><i>[
 Resolution proposed by ballot comment:
 ]</i></p>
 
-<blockquote>
+<blockquote><p>
 Either remove "<tt>pair(const pair&amp;) = default;</tt>" and
 "<tt>pair&amp; operator=(pair&amp;&amp; p);</tt>" from <tt>pair</tt>'s class
 definition in  20.3.2 [pairs.pair] and from  20.3.2 [pairs.pair] p.12-13, or
-give pair explicitly-defaulted copy/move constructors and copy/move assignment operators.<BR/>
+give pair explicitly-defaulted copy&#47;move constructors and copy&#47;move assignment operators.<BR/>
 Change <tt>tuple</tt> to match.
-</blockquote>
+</p></blockquote>
 
 <p><i>[
 2010-10-24 Daniel adds:
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a> would solve this issue:
-The move/copy constructor will be defaulted, but the corresponding assignment operators need a non-default implementation
+The move&#47;copy constructor will be defaulted, but the corresponding assignment operators need a non-default implementation
 because they are supposed to work for references as well.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html">n3140</a>.
-
+</p>
 
 
 
@@ -91507,13 +91509,13 @@ See <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3140.html"
 <hr>
 <h3><a name="1384"></a>1384. [FCD] Ballot Comment US-98</h3>
 <p><b>Section:</b> 20.4.2.4 [tuple.creation] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.creation">issues</a> in [tuple.creation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-98</b></p>
 <p>
-pack_arguments is poorly named. It does not reflect the
+<tt>pack_arguments</tt> is poorly named. It does not reflect the
 fact that it is a tuple creation function and that it forwards
 arguments.
 </p>
@@ -91525,10 +91527,9 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 
 
-<p><b>Proposed resolution:</b></p>
-Rename pack_arguments to forward_as_tuple
-throughout the standard.
-
+<p><b>Proposed resolution:</b></p><p>
+Rename <tt>pack_arguments</tt> to <tt>forward_as_tuple</tt> throughout the standard.
+</p>
 
 
 
@@ -91715,13 +91716,13 @@ for each valid <tt><i>k<sub>i</sub></i></tt> and each element group <tt><i>e<sub
 <hr>
 <h3><a name="1386"></a>1386. FCD Ballot Comment US-99</h3>
 <p><b>Section:</b> 20.4.2.4 [tuple.creation] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#tuple.creation">issues</a> in [tuple.creation].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses US-99</b></p>
 <p>
-pack_arguments is overly complex.
+<tt>pack_arguments</tt> is overly complex.
 </p>
 
 <p><i>[
@@ -91731,20 +91732,19 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 This issue resulted from a lack of understanding of
 how references are forwarded. The definition of
-pack_arguments should be simply:<BR/>
-template &lt;class... Types&gt;
+<tt>pack_arguments</tt> should be simply:<br/>
+<tt>template &lt;class... Types&gt;
 tuple&lt;<del>A</del>Types<ins>&amp;&amp;</ins>&gt;
-pack_arguments(Types&amp;&amp;...t);<BR/>
-<del>Types:Let Ti be each type in Types....</del><BR/>
-Effects: ...<BR/>
-Returns:<BR/>
-tuple&lt;<del>A</del>Types<ins>&amp;&amp;</ins>...&gt;(std::forward&lt;Types&gt;(t)...)<BR/>
-The synopsis should also change to reflect this
-simpler signature.
-
+pack_arguments(Types&amp;&amp;...t);</tt><br/>
+<del>Types: Let <tt>Ti</tt> be each type in <tt>Types</tt>....</del><br/>
+<i>Effects</i>: ...<br/>
+<i>Returns</i>:<br/>
+<tt>tuple&lt;<del>A</del>Types<ins>&amp;&amp;</ins>...&gt;(std::forward&lt;Types&gt;(t)...)</tt><br/>
+The synopsis should also change to reflect this simpler signature.
+</p>
 
 
 
@@ -91752,14 +91752,14 @@ simpler signature.
 <hr>
 <h3><a name="1387"></a>1387. [FCD] Ballot Comment GB-87</h3>
 <p><b>Section:</b> X [tuple.range] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-87</b></p>
 <p>
 There is no compelling reason to assume a
 heterogeneous tuple of two elements holds a pair of
-iterators forming a valid range. Unlike std::pair, there are
+iterators forming a valid range. Unlike <tt>std::pair</tt>, there are
 no functions in the standard library using this as a return
 type with a valid range, so there is even less reason to try
 to adapt this type for the new for-loop syntax.
@@ -91772,10 +91772,10 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Strike 20.4.2.10 and the matching declarations in
 the header synopsis in 20.4.
-
+</p>
 
 
 
@@ -91783,7 +91783,7 @@ the header synopsis in 20.4.
 <hr>
 <h3><a name="1388"></a>1388. FCD Ballot Comment US-100</h3>
 <p><b>Section:</b> 20.10.3 [ratio.ratio] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-04</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#ratio.ratio">issues</a> in [ratio.ratio].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91793,8 +91793,8 @@ LWG 1281 was discussed in Pittsburgh, and the decision
 there was to accept the typedef as proposed and move to
 Review. Unfortunately the issue was accidentally applied
 to the FCD, and incorrectly. The FCD version of the
-typedef refers to ratio&lt;N, D&gt;, but the typedef is intended
-to refer to ratio&lt;num, den&gt; which in general is not the
+typedef refers to <tt>ratio&lt;N, D&gt;</tt>, but the typedef is intended
+to refer to <tt>ratio&lt;num, den&gt;</tt> which in general is not the
 same type.
 </p>
 
@@ -91805,11 +91805,10 @@ Resolved in Rapperswil by a motion to directly apply the words from the ballot c
 
 
 
-<p><b>Proposed resolution:</b></p>
-Accept the current proposed wording of LWG
-1281 which adds:<BR/>
-typedef ratio&lt;num, den&gt; type;
-
+<p><b>Proposed resolution:</b></p><p>
+Accept the current proposed wording of LWG <a href="lwg-defects.html#1281">1281</a> which adds:<br/>
+<tt>typedef ratio&lt;num, den&gt; type;</tt>
+</p>
 
 
 
@@ -91817,7 +91816,7 @@ typedef ratio&lt;num, den&gt; type;
 <hr>
 <h3><a name="1389"></a>1389. [FCD] Compile-time rational arithmetic and overflow</h3>
 <p><b>Section:</b> 20.10.4 [ratio.arithmetic] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-25</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#ratio.arithmetic">issues</a> in [ratio.arithmetic].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91840,9 +91839,9 @@ compute these values".
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3131.html">n3131</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 <p><i>[Batavia: Resolved by accepting
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3210.pdf">n3210</a>.]</i></p>
@@ -91851,57 +91850,56 @@ Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3131
 
 
 <p><b>Proposed resolution:</b></p>
-Change the wording in 20.10.4 [ratio.arithmetic] p. 2-5 as follows:
-<p/>
+<p>Change the wording in 20.10.4 [ratio.arithmetic] p. 2-5 as follows:</p>
 <blockquote><pre>
 template &lt;class R1, class R2&gt; using ratio_add = <em>see below</em>;
-</pre><blockquote>
+</pre><blockquote><p>
 2 The type <tt>ratio_add&lt;R1, R2&gt;</tt> shall be a synonym for <del><tt>ratio&lt;T1, T2&gt;</tt></del>
 <ins><tt>ratio&lt;U, V&gt;</tt> such that <tt>ratio&lt;U, V&gt;::num</tt> and <tt>ratio&lt;U, V&gt;::den</tt> 
 are the same as the corresponding members of <tt>ratio&lt;T1, T2&gt;</tt> would be in the absence of 
 arithmetic overflow</ins> where <tt>T1</tt> has the value <tt>R1::num * R2::den + R2::num * R1::den</tt> 
 and <tt>T2</tt> has the value <tt>R1::den * R2::den</tt>. <ins>If the required values of <tt>ratio&lt;U, V&gt;::num</tt> 
 and <tt>ratio&lt;U, V&gt;::den</tt> cannot be represented in <tt>intmax_t</tt> then the program is ill-formed.</ins>
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 <blockquote><pre>
 template &lt;class R1, class R2&gt; using ratio_subtract = <em>see below</em>;
-</pre><blockquote>
+</pre><blockquote><p>
 3 The type <tt>ratio_subtract&lt;R1, R2&gt;</tt> shall be a synonym for <del><tt>ratio&lt;T1, T2&gt;</tt></del>
 <ins><tt>ratio&lt;U, V&gt;</tt> such that <tt>ratio&lt;U, V&gt;::num</tt> and <tt>ratio&lt;U, V&gt;::den</tt> 
 are the same as the corresponding members of <tt>ratio&lt;T1, T2&gt;</tt> would be in the absence of 
 arithmetic overflow</ins> where <tt>T1</tt> has the value <tt>R1::num * R2::den - R2::num * R1::den</tt> 
 and <tt>T2</tt> has the value <tt>R1::den * R2::den</tt>. <ins>If the required values of <tt>ratio&lt;U, V&gt;::num</tt> 
 and <tt>ratio&lt;U, V&gt;::den</tt> cannot be represented in <tt>intmax_t</tt> then the program is ill-formed.</ins>
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 <blockquote><pre>
 template &lt;class R1, class R2&gt; using ratio_multiply = <em>see below</em>;
-</pre><blockquote>
+</pre><blockquote><p>
 4 The type <tt>ratio_multiply&lt;R1, R2&gt;</tt> shall be a synonym for <del><tt>ratio&lt;T1, T2&gt;</tt></del>
 <ins><tt>ratio&lt;U, V&gt;</tt> such that <tt>ratio&lt;U, V&gt;::num</tt> and <tt>ratio&lt;U, V&gt;::den</tt> 
 are the same as the corresponding members of <tt>ratio&lt;T1, T2&gt;</tt> would be in the absence of 
 arithmetic overflow</ins> where <tt>T1</tt> has the value <tt>R1::num * R2::num</tt> and <tt>T2</tt> 
 has the value <tt>R1::den * R2::den</tt>. <ins>If the required values of <tt>ratio&lt;U, V&gt;::num</tt> 
 and <tt>ratio&lt;U, V&gt;::den</tt> cannot be represented in <tt>intmax_t</tt> then the program is ill-formed.</ins>
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 <blockquote><pre>
 template &lt;class R1, class R2&gt; using ratio_divide = <em>see below</em>;
-</pre><blockquote>
+</pre><blockquote><p>
 5 The type <tt>ratio_divide&lt;R1, R2&gt;</tt> shall be a synonym for <del><tt>ratio&lt;T1, T2&gt;</tt></del>
 <ins><tt>ratio&lt;U, V&gt;</tt> such that <tt>ratio&lt;U, V&gt;::num</tt> and <tt>ratio&lt;U, V&gt;::den</tt> 
 are the same as the corresponding members of <tt>ratio&lt;T1, T2&gt;</tt> would be in the absence of 
 arithmetic overflow</ins> where <tt>T1</tt> has the value <tt>R1::num * R2::den</tt> and <tt>T2</tt> 
 has the value <tt>R1::den * R2::num</tt>. <ins>If the required values of <tt>ratio&lt;U, V&gt;::num</tt> 
 and <tt>ratio&lt;U, V&gt;::den</tt> cannot be represented in <tt>intmax_t</tt> then the program is ill-formed.</ins>
-</blockquote></blockquote>
+</p></blockquote></blockquote>
 
 
 
 
 
 <hr>
-<h3><a name="1390"></a>1390. [FCD] Limit speculative compilation for constructible/convertible traits</h3>
+<h3><a name="1390"></a>1390. [FCD] Limit speculative compilation for constructible&#47;convertible traits</h3>
 <p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta">issues</a> in [meta].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91917,23 +91915,23 @@ language (see 14.8.2 paragraph 8).
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a>.
-
+</p>
 
 
 
 
 <hr>
-<h3><a name="1391"></a>1391. [FCD] constructible/convertible traits and access control</h3>
+<h3><a name="1391"></a>1391. [FCD] constructible&#47;convertible traits and access control</h3>
 <p><b>Section:</b> 20.9 [meta] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta">issues</a> in [meta].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -91946,7 +91944,7 @@ test expressions should be well-formed, even in absense of access:
 </p>
 <pre>
 class X { X(int){} };
-constexpr bool test = std::is_constructible&lt;X, int>::value;
+constexpr bool test = std::is_constructible&lt;X, int&gt;::value;
 </pre>
 <p>
 The specification does not clarify the context of this test
@@ -91962,7 +91960,7 @@ Resolution proposed by ballot comment
 <p>
 Specify that <tt>std::is_constructible</tt> and
 <tt>std::is_convertible</tt> will return <tt>true</tt> only for
-public constructors/conversion functions.
+public constructors&#47;conversion functions.
 </p>
 
 <p><i>[
@@ -91970,15 +91968,15 @@ public constructors/conversion functions.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a>.
-
+</p>
 
 
 
@@ -91986,7 +91984,7 @@ Resolved by paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/20
 <hr>
 <h3><a name="1392"></a>1392. [FCD] <tt>result_of</tt> should support pointer-to-data-member</h3>
 <p><b>Section:</b> 20.9.4 [meta.unary] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> INCITS <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary">issues</a> in [meta.unary].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92012,23 +92010,23 @@ functions and pointers to data members.
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3123.html">n3123</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3123.html">n3123</a>.
-
+</p>
 
 
 
 
 <hr>
-<h3><a name="1393"></a>1393. [FCD] Trivial traits imply noexcept</h3>
+<h3><a name="1393"></a>1393. [FCD] Trivial traits imply <tt>noexcept</tt></h3>
 <p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-24</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -92045,8 +92043,7 @@ Resolution proposed by ballot comment
 
 <p>
 For each of the <tt>has_nothrow_<i>something</i></tt> traits,
-remove all references to the matching
-<tt>has_trivial_<i>something</i></tt> traits.
+remove all references to the matching <tt>has_trivial_<i>something</i></tt> traits.
 </p>
 
 <p><i>[
@@ -92054,15 +92051,15 @@ remove all references to the matching
 ]</i></p>
 
 
-<blockquote>
+<blockquote><p>
 Accepting <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a> would solve this issue.
-</blockquote>
+</p></blockquote>
 
 
 
-<p><b>Proposed resolution:</b></p>
+<p><b>Proposed resolution:</b></p><p>
 Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3142.html">n3142</a>.
-
+</p>
 
 
 
@@ -92070,18 +92067,18 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1394"></a>1394. [FCD] Ballot Comment DE-19</h3>
 <p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#Resolved">Resolved</a>
- <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2010-11-20</p>
+ <b>Submitter:</b> DIN <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Resolved">Resolved</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses DE-19</b></p>
 <p>
-The fundamental trait is_constructible reports false
+The fundamental trait <tt>is_constructible</tt> reports false
 positives, e.g.
 </p>
-<PRE>
+<pre>
 is_constructible&lt;char*, void*&gt;::value
-</PRE>
+</pre>
 evaluates to true, even though a corresponding variable
 initialization would be ill-formed.
 
@@ -92092,10 +92089,9 @@ Resolved in Rapperswil by paper N3047.
 
 
 
-<p><b>Proposed resolution:</b></p>
-Remove all false positives from the domain of
-is_constructible.
-
+<p><b>Proposed resolution:</b></p><p>
+Remove all false positives from the domain of <tt>is_constructible</tt>.
+</p>
 
 
 
