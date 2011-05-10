@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-09 at 23:05:01 UTC</p>
+<p>Revised 2011-05-10 at 05:05:02 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -2111,7 +2111,7 @@ iterator with value <tt>a.end()</tt> before the swap will have value <tt>b.end()
 <hr>
 <h3><a name="2018"></a>2018. <tt>regex_traits::isctype</tt> Returns clause is wrong</h3>
 <p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-05-08</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-05-10</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.traits">issues</a> in [re.traits].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2182,6 +2182,9 @@ definition of isctype provides no way to use them unless <tt>ctype_base::mask</t
 also supports them.
 </p>
 
+<p><i>[2011-05-10: Alberto and Daniel perform minor fixes in the P&#47;R]</i></p>
+
+
 
 <p><b>Proposed resolution:</b></p>
 <p>This wording is relative to the FDIS.</p>
@@ -2245,8 +2248,8 @@ string d("d");
 string u("upper");
 regex_traits&lt;char&gt;::char_class_type f;
 f = t.lookup_classname(d.begin(), d.end());
-f &amp;= t.lookup_classname(u.begin(), u.end());
-ctype_base::mask m = convert(f); // m == ctype_base::digit|ctype_base::upper
+f |= t.lookup_classname(u.begin(), u.end());
+ctype_base::mask m = convert&lt;char&gt;(f); // m == ctype_base::digit|ctype_base::upper
 </ins></pre></blockquote>
 <p><ins>&mdash; <i>end example</i>]</ins></p>
 <p><ins>[<i>Example</i>:</ins>
