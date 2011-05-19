@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-19 at 20:05:30 UTC</p>
+<p>Revised 2011-05-19 at 20:05:23 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -1520,7 +1520,11 @@ a placeholder type.</del>
 <del>-4- If <tt>T</tt> is the type of <tt>std::placeholders::_J</tt>, <tt>is_placeholder&lt;T&gt;</tt> shall be 
 publicly derived from <tt>integral_constant&lt;int, J&gt;</tt>, otherwise from <tt>integral_constant&lt;int, 0&gt;</tt>.</del>
 </p></blockquote></blockquote>
-<h3><ins>20.8.9.1.?    Class template <tt>is_placeholder</tt>    [???]</ins></h3> 
+</li>
+<li><p>Insert a new sub-clause immediately following sub-clause 20.8.9.1.1 [func.bind.isbind], the suggested
+sub-clause tag is [func.bind.isplace]:
+</p>
+<h3><ins>20.8.9.1.?  Class template <tt>is_placeholder</tt>  [func.bind.isplace]</ins></h3> 
 <blockquote><pre>
 <ins>namespace std {
   template&lt;class T&gt; struct is_placeholder; <i>// see below</i>
@@ -4477,7 +4481,7 @@ f.code().operator bool()
 yields false, which makes no sense. 0 has to be reserved for "no error".
 So, the enums defined here have to start with 1.
 <p/>
-Howard and Anthony have no objections.
+Howard, Anthony, and Jonathan have no objections.
 </p>
 
 
