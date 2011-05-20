@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-05-19</td>
+  <td align="left">2011-05-20</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-05-19 at 20:05:23 UTC</p>
+<p>Revised 2011-05-20 at 23:05:34 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>39 open issues, down by 57.</li>
+<li>40 open issues, down by 56.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1579 issues total, up by 23.</li>
+<li>1580 issues total, up by 24.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 14 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>.</li>
+<li>Added the following 15 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -6095,6 +6095,55 @@ namespace std {
   [&hellip;]
 }
 </pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2057"></a>2057. <tt>time_point + duration</tt> semantics should be made <tt>constexpr</tt> conforming</h3>
+<p><b>Section:</b> 20.11.6.5 [time.point.nonmember] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-05-21 <b>Last modified:</b> 2011-05-21</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+It has been observed by LWG <a href="lwg-active.html#2054">2054</a> that the specification of some <tt>time_point</tt> member functions
+already imply that <tt>time_point</tt> needs to be a literal type and suggests to specify the constructors
+and the member function <tt>time_since_epoch()</tt> as <tt>constexpr</tt> functions at the
+minimum necessary. Adding further <tt>constexpr</tt> specifier to other operations should
+clearly be allowed and should probably be done as well. But to allow for further <tt>constexpr</tt> 
+functions in the future requires that their semantics is compatible to operations allowed in <tt>constexpr</tt> 
+functions. This is already fine for all operations, except this binary plus operator:
+</p>
+<blockquote><pre>
+template &lt;class Clock, class Duration1, class Rep2, class Period2&gt;
+time_point&lt;Clock, typename common_type&lt;Duration1, duration&lt;Rep2, Period2&gt;&gt;::type&gt;
+operator+(const time_point&lt;Clock, Duration1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+</pre><blockquote><p>
+-1- <i>Returns</i>: <tt>CT(lhs) += rhs</tt>, where <tt>CT</tt> is the type of the return value.
+</p></blockquote></blockquote>
+<p>
+for similar reasons as those mentioned in <a href="lwg-defects.html#2020">2020</a>. The semantics should be fixed to allow
+for making them <tt>constexpr</tt>. This issue should also be considered as a placeholder for a request
+to make the remaining <tt>time_point</tt> operations similarly <tt>constexpr</tt> as had been done for 
+<tt>duration</tt>.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>In 20.11.6.5 [time.point.nonmember], p.1 change the <i>Returns</i> element semantics as indicated:</p>
+<blockquote><pre>
+template &lt;class Clock, class Duration1, class Rep2, class Period2&gt;
+time_point&lt;Clock, typename common_type&lt;Duration1, duration&lt;Rep2, Period2&gt;&gt;::type&gt;
+operator+(const time_point&lt;Clock, Duration1&gt;&amp; lhs, const duration&lt;Rep2, Period2&gt;&amp; rhs);
+</pre><blockquote><p>
+-1- <i>Returns</i>: <tt><del>CT(lhs) += rhs</del><ins>CT(lhs.time_since_epoch() + rhs)</ins></tt>, where <tt>CT</tt> 
+is the type of the return value.
+</p></blockquote></blockquote>
 </li>
 </ol>
 
