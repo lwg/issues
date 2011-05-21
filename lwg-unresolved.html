@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-21 at 11:05:48 UTC</p>
+<p>Revised 2011-05-21 at 12:05:42 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -4603,6 +4603,44 @@ general statements of 26.6.1 [valarray.syn] p.3-5. This would make it unspecifie
 whether the expression <tt>begin(x + y)</tt> would be well-formed, portable code would
 need to write this as <tt>begin(std::valarray&lt;T&gt;(x + y))</tt>.</li>
 </ol>
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2059"></a>2059. C++0x ambiguity problem with <tt>map::erase</tt></h3>
+<p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-05-21</p>
+<p><b>View all other</b> <a href="lwg-index.html#map">issues</a> in [map].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+<tt>map::erase</tt> (and several related methods) took an iterator in C++03, but take a <tt>const_iterator</tt> 
+in C++0x. This breaks code where the map's <tt>key_type</tt> has a constructor which accepts an iterator 
+(for example a template constructor), as the compiler cannot choose between <tt>erase(const key_type&amp;)</tt> 
+and <tt>erase(const_iterator)</tt>.</p>
+<blockquote><pre>
+#include &lt;map&gt;
+
+struct X
+{
+  template&lt;typename T&gt;
+  X(T&amp;) {}
+};
+
+bool operator&lt;(const X&amp;, const X&amp;) { return false; }
+
+void erasor(std::map&lt;X,int&gt;&amp; s, X x)
+{
+  std::map&lt;X,int&gt;::iterator it = s.find(x);
+  if (it != s.end())
+    s.erase(it);
+}
+</pre></blockquote>
 
 
 <p><b>Proposed resolution:</b></p>
