@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-05-20</td>
+  <td align="left">2011-05-21</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-05-20 at 23:05:34 UTC</p>
+<p>Revised 2011-05-21 at 11:05:48 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>40 open issues, down by 56.</li>
+<li>41 open issues, down by 55.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1580 issues total, up by 24.</li>
+<li>1581 issues total, up by 25.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 15 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>.</li>
+<li>Added the following 16 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -6146,6 +6146,59 @@ is the type of the return value.
 </p></blockquote></blockquote>
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="2058"></a>2058. <tt>valarray</tt> and <tt>begin&#47;end</tt></h3>
+<p><b>Section:</b> 26.6 [numarray] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-05-21</p>
+<p><b>View all other</b> <a href="lwg-index.html#numarray">issues</a> in [numarray].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+It was just brought to my attention that the pair of functions
+<tt>begin&#47;end</tt> were added to <tt>valarray</tt> component.
+Those additions strike me as counter to the long standing agreement
+that <tt>valarray&lt;T&gt;</tt> is not yet another container. Valarray values
+are in general supposed to be treated as a whole, and as such
+has a loose specification allowing expression template techniques.
+<p/>
+The addition of these functions sound to me as making it much harder
+(or close to impossible) to effectively use expression templates
+as implementation techniques, for no clear benefits.
+<p/>
+My recommendation would be to drop <tt>begin&#47;end</tt> - or at least for the
+<tt>const valarray&lt;T&gt;&amp;</tt> version. I strongly believe those 
+are defects.
+</p>
+<p><i>[This issue was discussed on the library reflector starting from c++std-lib-30761.
+Some of the key conclusions of this discussion were:]</i></p>
+
+<ol>
+<li>The <tt>begin&#47;end</tt> members were added to allow <tt>valarray</tt> to participate
+in the new range-based for-loop by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2930.html">n2930</a>
+and not to make them container-like.</li>
+<li>It is currently underspecified when the iterator values returned from
+<tt>begin&#47;end</tt> become invalidated. To fix this, these invalidation rules need at
+least to reflect the invalidation rules of the references returned by the
+<tt>operator[]</tt> overloads of <tt>valarray</tt> (26.6.2.4 [valarray.access]).
+</li>
+<li>A further problem is that the requirements expressed in 26.6.1 [valarray.syn] p.3-5
+enforce an implementation to provide further overloads of <tt>begin&#47;end</tt>, if the
+replacement type technique is used (which was clearly part of the design of <tt>valarray</tt>).
+Providing such additional overloads would also lead to life-time problems in examples like 
+<tt>begin(x + y)</tt> where <tt>x</tt> and <tt>y</tt> are expressions involving <tt>valarray</tt> 
+objects. To fix this, the <tt>begin&#47;end</tt> overloads could be explicitly excluded from the 
+general statements of 26.6.1 [valarray.syn] p.3-5. This would make it unspecified
+whether the expression <tt>begin(x + y)</tt> would be well-formed, portable code would
+need to write this as <tt>begin(std::valarray&lt;T&gt;(x + y))</tt>.</li>
+</ol>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
