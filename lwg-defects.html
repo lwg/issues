@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Defect Report List (Revision D75)</h1>
-<p>Revised 2011-05-27 at 22:05:30 UTC</p>
+<p>Revised 2011-05-27 at 23:05:11 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -26612,7 +26612,7 @@ This can happen if the implementation doesn't destroy the deleter until all
 <hr>
 <h3><a name="550"></a>550. What should the return type of <tt>pow(float,int)</tt> be?</h3>
 <p><b>Section:</b> 26.8 [c.math] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2006-01-12 <b>Last modified:</b> 2011-04-26</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2006-01-12 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#c.math">issues</a> in [c.math].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -26677,10 +26677,8 @@ resolution")
 ]</i></p>
 
 
-<p><i>[
-<p>
-Howard, post Kona:
-</p>
+<p><i>[Howard, post Kona:]</i></p>
+
 <blockquote>
 <p>
 Unfortunately I strongly disagree with a part of the resolution
@@ -26712,8 +26710,6 @@ route (with <tt>pow</tt> only) and C99 took another (with many math functions in
 The proposed resolution basically says: C++98 got it wrong and C99 got it right; let's go with C99.
 </p>
 </blockquote>
-]</i></p>
-
 
 <p><i>[
 Bellevue:
@@ -28524,7 +28520,7 @@ within the namespace std, and has the semantics described in Table 33.
 <hr>
 <h3><a name="595"></a>595. TR1&#47;C++0x: <tt>fabs(complex&lt;T&gt;)</tt> redundant &#47; wrongly specified</h3>
 <p><b>Section:</b> 26.4.7 [complex.value.ops] <b>Status:</b> <a href="lwg-active.html#CD1">CD1</a>
- <b>Submitter:</b> Stefan Gro&szlig;e Pawig <b>Opened:</b> 2006-09-24 <b>Last modified:</b> 2011-04-26</p>
+ <b>Submitter:</b> Stefan Gro&szlig;e Pawig <b>Opened:</b> 2006-09-24 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#complex.value.ops">issues</a> in [complex.value.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#CD1">CD1</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -28595,9 +28591,9 @@ document n2009.pdf).
 So either the return value of fabs() is specified wrongly, or fabs()
 does not behave the same as C99's cabs*().
 </p>
-
+<p>
 <b>Possible Resolutions</b>
-
+</p>
 <p>
 This depends on the intention behind the introduction of fabs().
 </p>
@@ -57757,7 +57753,7 @@ ToDuration::period&gt;<del>::type</del></tt>, and [..]
 <hr>
 <h3><a name="922"></a>922. [func.bind.place] Number of placeholders</h3>
 <p><b>Section:</b> B [implimits] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Sohail Somani <b>Opened:</b> 2008-10-11 <b>Last modified:</b> 2011-04-30</p>
+ <b>Submitter:</b> Sohail Somani <b>Opened:</b> 2008-10-11 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses DE 24</b></p>
@@ -57784,9 +57780,9 @@ Recommend applying the proposed resolution from DE 24, with that
 Tentatively Ready.
 </p>
 </blockquote>
-
+<p>
 <b>Original proposed resolution:</b>
-
+</p>
 <p>
 Add 20.8.9.1.3 [func.bind.place] p.2:
 </p>
@@ -62040,12 +62036,11 @@ construction could easily lead to confusion about the value of the
 <hr>
 <h3><a name="975"></a>975. <tt>is_convertible</tt> cannot be instantiated for non-convertible types</h3>
 <p><b>Section:</b> 20.9.6 [meta.rel] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-01-25 <b>Last modified:</b> 2011-05-21</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-01-25 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.rel">issues</a> in [meta.rel].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
-
-<b>Addresses UK 206</b>
+<p><b>Addresses UK 206</b></p>
 
 <p>
 Related to <a href="lwg-defects.html#1114">1114</a>.
@@ -62185,9 +62180,9 @@ To test() {
 </blockquote>
 
 </blockquote>
-
+<p>
 <b>Original proposed wording:</b>
-
+</p>
 <p>
 In 20.9.6 [meta.rel]/4 change:
 </p>
@@ -71090,7 +71085,7 @@ type <tt>T</tt> or to <i>default-alignment</i>.
 <hr>
 <h3><a name="1133"></a>1133. Does N2844 break current specification of list::splice?</h3>
 <p><b>Section:</b> 23.3.4.6 [forwardlist.ops], 23.3.5.5 [list.ops] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-09 <b>Last modified:</b> 2010-10-24</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2009-05-09 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -71126,7 +71121,9 @@ void splice(const_iterator position, list&lt;T,Alloc&gt;&amp;&amp; x,
             const_iterator first, const_iterator last);
 </pre></blockquote>
 
+<p>
 <b>Possible resolutions:</b>
+</p>
 
 <p>
 Option A.   Add an additional (non-const) lvalue-reference
@@ -86847,7 +86844,7 @@ a.inner_allocator() == b.inner_allocator()</code>.
 <hr>
 <h3><a name="1319"></a>1319. Containers should require an iterator that is at least a Forward Iterator</h3>
 <p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2011-05-03</p>
+ <b>Submitter:</b> Alisdair Meredith <b>Opened:</b> 2010-02-16 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -86869,7 +86866,7 @@ The requirements on container iterators are spelled out in
 </tr>
 
 <tr>
-<td colspan="5"><center>...</center></td>
+<td colspan="5" align="center"><tt>...</tt></td>
 </tr>
 
 <tr>
@@ -86890,7 +86887,7 @@ The requirements on container iterators are spelled out in
 </tr>
 
 <tr>
-<td colspan="5"><center>...</center></td>
+<td colspan="5" align="center"><tt>...</tt></td>
 </tr>
 
 </table>
@@ -86940,7 +86937,7 @@ Adopted at 2010-11 Batavia
 <th>Expression</th>
 <th>Return type</th>
 <th>Operational<br/>semantics</th>
-<th>Assertion/note<br/>pre-/post-condition</th>
+<th>Assertion&#47;note<br/>pre-&#47;post-condition</th>
 <th>Complexity</th>
 </tr>
 
@@ -96213,7 +96210,7 @@ Resolved by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n31
 <hr>
 <h3><a name="1487"></a>1487. [FCD] Clock related operations exception specifications conflict</h3>
 <p><b>Section:</b> 30.3.2 [thread.thread.this] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-04-18</p>
+ <b>Submitter:</b> Switzerland <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#thread.thread.this">issues</a> in [thread.thread.this].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -96497,7 +96494,7 @@ requirements (20.11.3 [time.clock.req]).</ins>
 
 <li>
 <p>Edit the synopsis of 30.3.2 [thread.thread.this] before p. 1. 
-<comment>Note, this duplicates edits also in D/N3267:</comment>
+<i>[Note: this duplicates edits also in D/N3267]</i>:
 </p>
 
 <blockquote><pre>
@@ -96561,7 +96558,7 @@ available, but implementations are expected to make a strong effort to do so. &m
 </li>
 
 <li><p>Modify the class <tt>timed_mutex</tt> synopsis in 30.4.1.3.1 [thread.timedmutex.class] as indicated:
-<comment>Note, this duplicates edits also in D/N3267:</comment>
+<i>[Note: this duplicates edits also in D/N3267]</i>:
 </p>
 
 <blockquote><pre>
@@ -96578,7 +96575,7 @@ public:
 </li>
 
 <li><p>Modify the class <tt>recursive_timed_mutex</tt> synopsis in 30.4.1.3.2 [thread.timedmutex.recursive] as indicated:
-<comment>Note, this duplicates edits also in D/N3267:</comment>
+<i>[Note: this duplicates edits also in D/N3267]</i>:
 </p>
 
 <blockquote><pre>
@@ -96595,7 +96592,7 @@ public:
 </li>
 
 <li><p>Modify the class template <tt>unique_lock</tt> synopsis in 30.4.2.2 [thread.lock.unique] as indicated.
-<comment>Note, this duplicates edits also in D/N3267:</comment>
+<i>[Note: this duplicates edits also in D/N3267]</i>:
 </p>
 
 <blockquote><pre>
@@ -96613,7 +96610,7 @@ public:
 </li>
 
 <li><p>Modify the constructor prototypes in 30.4.2.2.1 [thread.lock.unique.cons] before p. 14 and p. 17 
-<comment>Note, this duplicates edits also in D/N3267:</comment>
+<i>[Note: this duplicates edits also in D&#47;N3267]</i>:
 </p>
 
 <blockquote><pre>
@@ -98351,7 +98348,7 @@ namespace std {
 <hr>
 <h3><a name="1518"></a>1518. Waiting for deferred functions</h3>
 <p><b>Section:</b> 30.6 [futures] <b>Status:</b> <a href="lwg-active.html#WP">WP</a>
- <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-09-14 <b>Last modified:</b> 2011-05-21</p>
+ <b>Submitter:</b> Alberto Ganesh Barbati <b>Opened:</b> 2010-09-14 <b>Last modified:</b> 2011-05-28</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures">issues</a> in [futures].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#WP">WP</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -98393,7 +98390,7 @@ is even worse. Consider that the execution of the function
 <tt>f</tt> can take an arbitrarily long time. Having
 <tt>wait_for()</tt> invoke <tt>f</tt> is a potential violation of
 the reasonable expectation that the execution of
-<tt>x.wait_for(chrono::milliseconds(100))</tt> shall take <u>at most</u>
+<tt>x.wait_for(chrono::milliseconds(100))</tt> shall take <span style="text-decoration:underline">at most</span>
 100 milliseconds plus a delay dependent on the quality of implementation
 and the quality of management (as described in paper N3128).
 In fact, previous versions of the WP
