@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-21 at 21:05:40 UTC</p>
+<p>Revised 2011-05-27 at 22:05:30 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -4644,6 +4644,52 @@ void erasor(std::map&lt;X,int&gt;&amp; s, X x)
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2060"></a>2060. <tt>unique_ptr&lt;T[]&gt;(nullptr_t)</tt> missing <tt>noexcept</tt></h3>
+<p><b>Section:</b> 20.7.1.3 [unique.ptr.runtime] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Howard Hinnant, Paolo Carlini <b>Opened:</b> 2011-05-27 <b>Last modified:</b> 2011-05-28</p>
+<p><b>View all other</b> <a href="lwg-index.html#unique.ptr.runtime">issues</a> in [unique.ptr.runtime].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The synopsis in 20.7.1.2 [unique.ptr.single] specifies:
+</p><blockquote><pre>
+constexpr unique_ptr(nullptr_t) noexcept
+</pre></blockquote><p>
+which looks correct to me.  However the corresponding constructor in 20.7.1.3 [unique.ptr.runtime] is missing <tt>noexcept</tt>:
+</p><blockquote><pre>
+constexpr unique_ptr(nullptr_t) : unique_ptr() { }
+</pre></blockquote>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>Modify the synopsis in 20.7.1.3 [unique.ptr.runtime]:</p>
+<blockquote><pre>
+namespace std {
+  template &lt;class T, class D&gt; class unique_ptr&lt;T[], D&gt; {
+  public:
+    typedef see below pointer;
+    typedef T element_type;
+    typedef D deleter_type;
+
+    // 20.7.1.3.1, constructors
+    constexpr unique_ptr() noexcept;
+    [&hellip;]
+    constexpr unique_ptr(nullptr_t) <ins>noexcept</ins> : unique_ptr() { }
+	
+    [&hellip;]
+  };
+}
+</pre></blockquote>
+</li>
+</ol>
 
 
 

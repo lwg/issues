@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-05-21</td>
+  <td align="left">2011-05-27</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-05-21 at 21:05:40 UTC</p>
+<p>Revised 2011-05-27 at 22:05:30 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>42 open issues, down by 54.</li>
+<li>43 open issues, down by 53.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1582 issues total, up by 26.</li>
+<li>1583 issues total, up by 27.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 17 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>.</li>
+<li>Added the following 18 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -6237,6 +6237,52 @@ void erasor(std::map&lt;X,int&gt;&amp; s, X x)
 
 
 <p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2060"></a>2060. <tt>unique_ptr&lt;T[]&gt;(nullptr_t)</tt> missing <tt>noexcept</tt></h3>
+<p><b>Section:</b> 20.7.1.3 [unique.ptr.runtime] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Howard Hinnant, Paolo Carlini <b>Opened:</b> 2011-05-27 <b>Last modified:</b> 2011-05-28</p>
+<p><b>View all other</b> <a href="lwg-index.html#unique.ptr.runtime">issues</a> in [unique.ptr.runtime].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The synopsis in 20.7.1.2 [unique.ptr.single] specifies:
+</p><blockquote><pre>
+constexpr unique_ptr(nullptr_t) noexcept
+</pre></blockquote><p>
+which looks correct to me.  However the corresponding constructor in 20.7.1.3 [unique.ptr.runtime] is missing <tt>noexcept</tt>:
+</p><blockquote><pre>
+constexpr unique_ptr(nullptr_t) : unique_ptr() { }
+</pre></blockquote>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>Modify the synopsis in 20.7.1.3 [unique.ptr.runtime]:</p>
+<blockquote><pre>
+namespace std {
+  template &lt;class T, class D&gt; class unique_ptr&lt;T[], D&gt; {
+  public:
+    typedef see below pointer;
+    typedef T element_type;
+    typedef D deleter_type;
+
+    // 20.7.1.3.1, constructors
+    constexpr unique_ptr() noexcept;
+    [&hellip;]
+    constexpr unique_ptr(nullptr_t) <ins>noexcept</ins> : unique_ptr() { }
+	
+    [&hellip;]
+  };
+}
+</pre></blockquote>
+</li>
+</ol>
 
 
 
