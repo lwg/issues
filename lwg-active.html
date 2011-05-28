@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-05-28 at 20:05:18 UTC</p>
+<p>Revised 2011-05-28 at 23:05:00 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>44 open issues, down by 52.</li>
+<li>45 open issues, down by 51.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1584 issues total, up by 28.</li>
+<li>1585 issues total, up by 29.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 19 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>.</li>
+<li>Added the following 20 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -6344,6 +6344,54 @@ move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><
 </p></blockquote></blockquote>
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="2062"></a>2062. Effect contradictions w&#47;o no-throw guarantee of <tt>std::function</tt> swaps</h3>
+<p><b>Section:</b> 20.8.11.2 [func.wrap.func], 20.8.11.2.2 [func.wrap.func.mod] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-05-29</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.wrap.func">issues</a> in [func.wrap.func].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+20.8.11.2 [func.wrap.func] makes the member swap noexcept, even though the non-member swap is 
+not <tt>noexcept</tt>. The latter was a clear outcome of the discussions during the Batavia meeting 
+and the Madrid meeting involving LWG <a href="lwg-defects.html#1349">1349</a>, which seems to indicate that the remaining
+<tt>noexcept</tt> specifier at the member swap is incorrect and should be removed.
+<p/>
+But if we allow for a potentially throwing member swap of <tt>std::function</tt>, this would render
+the usage of the swap-idiom moot, that is used to specify several member functions, e.g.:
+</p>
+<blockquote><pre>
+template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);
+</pre><blockquote><p>
+<i>Effects</i>: <tt>function(std::forward&lt;F&gt;(f)).swap(*this);</tt>
+</p>
+</blockquote></blockquote>
+<blockquote><pre>
+template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f) noexcept;
+</pre><blockquote><p>
+<i>Effects</i>: <tt>function(f).swap(*this);</tt>
+</p>
+</blockquote></blockquote>
+<blockquote><pre>
+template&lt;class F, class A&gt;
+void assign(F&amp;&amp; f, const A&amp; a);
+</pre><blockquote><p>
+<i>Effects</i>: <tt>function(allocator_arg, a, std::forward&lt;F&gt;(f)).swap(*this)</tt>
+</p>
+</blockquote></blockquote>
+<p>
+The swap idiom makes only sense, if swap cannot throw exceptions. So, either the Madrid meeting
+decision need to be revised (and both member and free swap of <tt>std::function</tt> should be
+noexcept), or the semantics of these functions need to be changed.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 

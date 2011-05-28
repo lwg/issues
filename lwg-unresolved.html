@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-28 at 20:05:18 UTC</p>
+<p>Revised 2011-05-28 at 23:05:00 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -4751,6 +4751,54 @@ move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><
 </p></blockquote></blockquote>
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="2062"></a>2062. Effect contradictions w&#47;o no-throw guarantee of <tt>std::function</tt> swaps</h3>
+<p><b>Section:</b> 20.8.11.2 [func.wrap.func], 20.8.11.2.2 [func.wrap.func.mod] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-05-29</p>
+<p><b>View all other</b> <a href="lwg-index.html#func.wrap.func">issues</a> in [func.wrap.func].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+20.8.11.2 [func.wrap.func] makes the member swap noexcept, even though the non-member swap is 
+not <tt>noexcept</tt>. The latter was a clear outcome of the discussions during the Batavia meeting 
+and the Madrid meeting involving LWG <a href="lwg-defects.html#1349">1349</a>, which seems to indicate that the remaining
+<tt>noexcept</tt> specifier at the member swap is incorrect and should be removed.
+<p/>
+But if we allow for a potentially throwing member swap of <tt>std::function</tt>, this would render
+the usage of the swap-idiom moot, that is used to specify several member functions, e.g.:
+</p>
+<blockquote><pre>
+template&lt;class F&gt; function&amp; operator=(F&amp;&amp; f);
+</pre><blockquote><p>
+<i>Effects</i>: <tt>function(std::forward&lt;F&gt;(f)).swap(*this);</tt>
+</p>
+</blockquote></blockquote>
+<blockquote><pre>
+template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f) noexcept;
+</pre><blockquote><p>
+<i>Effects</i>: <tt>function(f).swap(*this);</tt>
+</p>
+</blockquote></blockquote>
+<blockquote><pre>
+template&lt;class F, class A&gt;
+void assign(F&amp;&amp; f, const A&amp; a);
+</pre><blockquote><p>
+<i>Effects</i>: <tt>function(allocator_arg, a, std::forward&lt;F&gt;(f)).swap(*this)</tt>
+</p>
+</blockquote></blockquote>
+<p>
+The swap idiom makes only sense, if swap cannot throw exceptions. So, either the Madrid meeting
+decision need to be revised (and both member and free swap of <tt>std::function</tt> should be
+noexcept), or the semantics of these functions need to be changed.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
