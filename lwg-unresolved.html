@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-05-27 at 23:05:11 UTC</p>
+<p>Revised 2011-05-28 at 20:05:18 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -4688,6 +4688,67 @@ namespace std {
   };
 }
 </pre></blockquote>
+</li>
+</ol>
+
+
+
+
+
+<hr>
+<h3><a name="2061"></a>2061. <tt>make_move_iterator</tt> and arrays</h3>
+<p><b>Section:</b> 24.3 [iterator.synopsis], 24.5.3 [move.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-05-28</p>
+<p><b>View all other</b> <a href="lwg-index.html#iterator.synopsis">issues</a> in [iterator.synopsis].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The standard library always passes template iterators by value and never by reference, 
+which has the nice effect that an array decays to a pointer. There is one exception: 
+<tt>make_move_iterator</tt>.
+</p>
+<blockquote><pre>
+#include &lt;iterator&gt;
+int main(){
+  int a[]={1,2,3,4};
+  std::make_move_iterator(a+4);
+  std::make_move_iterator(a); // fails here
+}
+</pre></blockquote>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>Modify the header <tt>&lt;iterator&gt;</tt> synopsis in 24.3 [iterator.synopsis]:</p>
+<blockquote><pre>
+namespace std {
+  [&hellip;]
+  template &lt;class Iterator&gt;
+  move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><ins>Iterator</ins> i);
+
+  [&hellip;]
+}
+</pre></blockquote>
+</li>
+
+<li><p>Modify the class template <tt>move_iterator</tt> synopsis in 24.5.3.1 [move.iterator]:</p>
+<blockquote><pre>
+namespace std {
+  [&hellip;]
+  template &lt;class Iterator&gt;
+  move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><ins>Iterator</ins> i);
+}
+</pre></blockquote>
+</li>
+
+<li><p>Modify 24.5.3.3.14 [move.iter.nonmember]:</p>
+<blockquote><pre>
+template &lt;class Iterator&gt;
+move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><ins>Iterator</ins> i);
+</pre><blockquote><p>
+-3- <i>Returns</i>: <tt>move_iterator&lt;Iterator&gt;(i)</tt>.
+</p></blockquote></blockquote>
 </li>
 </ol>
 
