@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-05-29</td>
+  <td align="left">2011-05-30</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-05-29 at 22:05:45 UTC</p>
+<p>Revised 2011-05-30 at 21:05:29 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -6365,25 +6365,24 @@ involving LWG <a href="lwg-defects.html#1349">1349</a>, which seems to indicate 
 specifier at the member swap is incorrect and should be removed.
 <p/>
 But if we allow for a potentially throwing member swap of <tt>std::function</tt>, this causes 
-another conflict with the exception specification for:
+another conflict with the exception specification for the following member function:
 </p>
 <blockquote><pre>
-template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f) noexcept;
+template&lt;class F&gt; function&amp; operator=(reference_wrapper&lt;F&gt; f) <span style="color:red;font-weight:bolder">noexcept</span>;
 </pre><blockquote><p>
-<i>Effects</i>: <tt>function(f).swap(*this);</tt>
+<i>Effects</i>: <tt>function(f).<span style="color:red;font-weight:bolder">swap</span>(*this);</tt>
 </p>
 </blockquote></blockquote>
 <p>
 Note that in this example the sub-expression <tt>function(f)</tt> does not cause any problems,
 because of the nothrow-guarantee given in 20.8.11.2.1 [func.wrap.func.con] p. 10. The problem
-would be located in the usage of the swap which could potentially throw given the general
-latitude. 
+is located in the usage of the swap which could potentially throw given the general latitude. 
 <p/>
 So, either the Madrid meeting decision need to be revised (and both member and free swap of 
 <tt>std::function</tt> should be noexcept), or this function needs to be adapted as well,
 e.g. by taking the exception-specification away or by changing the semantics.
 <p/>
-One argument of the "swap-may-throw" side would be to allow for small-object optimization techniques
+One argument for "swap-may-throw" would be to allow for small-object optimization techniques
 where the copy of the target may throw. But given the fact that the swap function has been guaranteed 
 to be "Throws: Nothing" from TR1 on, it seems to me that that there would still be opportunities to 
 perform small-object optimizations just restricted to the set of target copies that cannot throw. 
@@ -6418,7 +6417,7 @@ namespace std {
 namespace std {
   [&hellip;]
 
-  <i>// 20.8.11.2.7, specialized algorithms:</i>
+  <i>// [func.wrap.func.alg], specialized algorithms:</i>
   template&lt;class R, class... ArgTypes&gt;
   void swap(function&lt;R(ArgTypes...)&gt;&amp;, function&lt;R(ArgTypes...)&gt;&amp;) <ins>noexcept</ins>;
 
