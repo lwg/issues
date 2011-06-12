@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-06-08 at 18:06:07 UTC</p>
+<p>Revised 2011-06-12 at 20:06:23 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -2608,7 +2608,8 @@ that refers to the associated asynchronous state created by this call to <tt>asy
 <hr>
 <h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
 <p><b>Section:</b> 23.3.6.3 [vector.capacity], 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-06-12</p>
+<p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
 <p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2640,9 +2641,184 @@ instead of <tt>MoveInsertable</tt> requirement?
 </p></li>
 </ol>
 
+<p><i>[2011-06-12: Daniel comments and provides wording]</i></p>
+
+<p>According to my understanding of the mental model of vector (and to some parts for deque) the 
+some requirements are missing in the standard as response to above questions:</p>
+<ol>
+<li>The preconditions of <tt>shrink_to_fit</tt> for both <tt>std::vector</tt> and <tt>std::deque</tt>
+should impose the <tt>MoveInsertable</tt> requirements. The reason for this is, that these containers
+can host move-only types. For such a type <tt>X</tt> the C++03 idiom <tt>X(*this).swap(*this)</tt>
+would impose the <tt>CopyInsertable</tt> requirements which would make the function call ill-formed,
+which looks like an unacceptable restriction to me. Assuming the committee decides to support the
+move-only case, further wording has to be added for the situation where such a move-only type could
+throw an exception, because this can leave the object in an unspecified state. This seems consistent
+with the requirements of <tt>reserve</tt>, which seems like a very similar function to me (for
+<tt>vector</tt>). And this brings us smoothly to the following bullet:
+</li>
+
+<li><p>I agree that we are currently missing to specify the preconditions of the <tt>reserve</tt> function.
+My interpretation of the mental model of this function is that it should work for move-only types, which
+seems to be supported by the wording used in 23.3.6.3 [vector.capacity] p2:
+</p>
+<blockquote><p>
+[&hellip;] If an exception is thrown other than by the move constructor of a non-CopyInsertable type, 
+there are no effects.
+</p></blockquote>
+<p>
+Given this statement, the appropriate requirement is <tt>MoveInsertable</tt> into the <tt>vector</tt>.
+</p>
+</li>
+
+<li>I agree that <tt>vector::resize(size_type)</tt> misses to list the <tt>DefaultConstructible</tt>
+requirements.
+</li>
+
+<li>Unfortunately the current specification in terms of <tt>erase</tt> implies the <tt>MoveAssignable</tt>
+requirements. I don't think that this implication is intended. This function requires "append-only" and 
+"pop-back" effects, respectively, which should be expressed in terms of <tt>MoveInsertable</tt> requirements. 
+The same fix in regard to using <tt>pop_back</tt> instead of <tt>erase</tt> is necessary for the two argument 
+overload of <tt>resize</tt> as well (no <tt>MoveAssignable</tt> is required).
+</li>
+
+<li>The <tt>CopyInsertable</tt> requirement is incorrect and should be <tt>MoveInsertable</tt> instead.</li>
+</ol>
+
+<p>In addition to above mentioned items, the proposed resolution adds a linear complexity bound for 
+<tt>shrink_to_fit</tt> and attempts to resolve the related issue <a href="lwg-active.html#2066">2066</a>.</p>
 
 
 <p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>Edit 23.3.3.3 [deque.capacity] as indicated [Remark: The suggested change of p4 is
+not editorial, because <tt>CopyInsertable</tt> is not necessarily a refinement of <tt>MoveInsertable</tt>
+in contrast to the fact that <tt>CopyConstructible</tt> is a refinement of <tt>MoveConstructible</tt>]:</p>
+
+<blockquote><pre>
+void resize(size_type sz);
+</pre><blockquote><p>
+-1- <i>Effects</i>: If <tt>sz &lt;= size()</tt>, equivalent to <del><tt>erase(begin() + sz, 
+end());</tt></del><ins>calling <tt>pop_back()</tt> <tt>size() - sz</tt> times</ins>. If 
+<tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> value-initialized elements to the sequence.
+<p/>
+-2- Requires: <tt>T</tt> shall be <ins><tt>MoveInsertable</tt> into <tt>*this</tt> and</ins> <tt>DefaultConstructible</tt>.
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+void resize(size_type sz, const T&amp; c);
+</pre><blockquote><p>
+-3- <i>Effects</i>: <ins>If <tt>sz &lt;= size()</tt>, equivalent to calling <tt>pop_back()</tt> 
+<tt>size() - sz</tt> times. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> copies of <tt>c</tt> 
+to the sequence.</ins>
+</p><blockquote><pre>
+<del>if (sz &gt; size())
+  insert(end(), sz-size(), c);
+else if (sz &lt; size())
+  erase(begin()+sz, end());
+else
+  ; <i>// do nothing</i></del>
+</pre></blockquote>
+<p>
+-4- <i>Requires</i>: <tt>T</tt> shall be <ins><tt>MoveInsertable</tt> into <tt>*this</tt> and</ins> 
+<tt>CopyInsertable</tt> into <tt>*this</tt>.
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+void shrink_to_fit();
+</pre><blockquote><p>
+<ins>-?- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt>.</ins>
+<p/>
+<ins>-?- <i>Complexity</i>: Takes at most linear time in the size of the sequence.</ins>
+<p/>
+-5- <i>Remarks</i>: <tt>shrink_to_fit</tt> is a non-binding request to reduce memory use <ins>but does
+not change the size of the sequence</ins>. [ <i>Note</i>: The request is non-binding to allow latitude 
+for implementation-specific optimizations. &mdash; <i>end note</i> ]
+</p></blockquote></blockquote>
+</li>
+
+<li><p>Edit 23.3.6.3 [vector.capacity] as indicated including edits that also resolve <a href="lwg-active.html#2066">2066</a> 
+[Remark: The suggested change before p12 is not editorial, because <tt>CopyInsertable</tt> is not necessarily 
+a refinement of <tt>MoveInsertable</tt> in contrast to the fact that <tt>CopyConstructible</tt> is a 
+refinement of <tt>MoveConstructible</tt>]:</p>
+
+<p>[&hellip;]</p>
+
+<blockquote><pre>
+void reserve(size_type n);
+</pre><blockquote><p>
+<ins>-?- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt>.</ins>
+<p/>
+-2- <i>Effects</i>: A directive that informs a vector of a planned change in size, so that it can manage the storage
+allocation accordingly. After <tt>reserve()</tt>, <tt>capacity()</tt> is greater or equal to the argument of reserve if
+reallocation happens; and equal to the previous value of <tt>capacity()</tt> otherwise. Reallocation happens
+at this point if and only if the current capacity is less than the argument of <tt>reserve()</tt>. If an exception
+is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> type, there are no effects.
+<p/>
+-3- <i>Complexity</i>: It does not change the size of the sequence and takes at most linear time in the size of
+the sequence.
+<p/>
+-4- <i>Throws</i>: <tt>length_error</tt> if <tt>n &gt; max_size()</tt>.[footnote 266]
+<p/>
+-5- <i>Remarks</i>: Reallocation invalidates all the references, pointers, and iterators referring to the elements
+in the sequence. It is guaranteed that no reallocation takes place during insertions that happen after
+a call to <tt>reserve()</tt> until the time when an insertion would make the size of the vector greater than
+the value of <tt>capacity()</tt>.
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+void shrink_to_fit();
+</pre><blockquote><p>
+<ins>-?- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt>.</ins>
+<p/>
+<ins>-?- <i>Complexity</i>: Takes at most linear time in the size of the sequence.</ins>
+<p/>
+-6- <i>Remarks</i>: <tt>shrink_to_fit</tt> is a non-binding request to reduce <tt>capacity()</tt> to <tt>size()</tt>. 
+[ <i>Note</i>: The request is non-binding to allow latitude for implementation-specific optimizations. &mdash; <i>end note</i> ]
+<ins>If an exception is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> <tt>T</tt> there 
+are no effects.</ins>
+</p></blockquote></blockquote>
+
+<p>[&hellip;]</p>
+
+<blockquote><pre>
+void resize(size_type sz);
+</pre><blockquote><p>
+-9- <i>Effects</i>: If <tt>sz &lt;= size()</tt>, equivalent to <del><tt>erase(begin() + sz, end());</tt></del><ins>calling 
+<tt>pop_back()</tt> <tt>size() - sz</tt> times</ins>. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> 
+value-initialized elements to the sequence.
+<p/>
+-10- <i>Requires</i>: <tt>T</tt> shall be <tt><del>Copy</del><ins>Move</ins>Insertable</tt> into <tt>*this</tt> 
+<ins>and <tt>DefaultConstructible</tt></ins>.
+<p/>
+<ins>-??- <i>Remarks</i>: If an exception is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> 
+<tt>T</tt> there are no effects.</ins>
+</p></blockquote></blockquote>
+
+<blockquote><pre>
+void resize(size_type sz, const T&amp; c);
+</pre><blockquote><p>
+-11- <i>Effects</i>: <ins>If <tt>sz &lt;= size()</tt>, equivalent to calling <tt>pop_back()</tt> 
+<tt>size() - sz</tt> times. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> copies of <tt>c</tt> 
+to the sequence.</ins>
+</p><blockquote><pre>
+<del>if (sz &gt; size())
+  insert(end(), sz-size(), c);
+else if (sz &lt; size())
+  erase(begin()+sz, end());
+else
+  ; <i>// do nothing</i></del>
+</pre></blockquote><p>
+<ins>-??- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt> and 
+<tt>CopyInsertable</tt> into <tt>*this</tt>.</ins>
+<p/>
+-12- <i><del>Requires</del><ins>Remarks</ins></i>: If an exception is thrown other than by the move constructor of a 
+non-<tt>CopyInsertable</tt> <tt>T</tt> there are no effects.
+</p></blockquote></blockquote>
+
+</li>
+
+</ol>
 
 
 
@@ -2651,7 +2827,7 @@ instead of <tt>MoveInsertable</tt> requirement?
 <hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-04-24</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-06-12</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2727,7 +2903,7 @@ for any dereferenceable <ins>(24.2.1 [iterator.requirements.general])</ins> obje
 </p></blockquote>
 </li>
 
-<li><p>17.6.3.5 [allocator.requirements], Table 27 &mdash> &quot;Descriptive variable definitions&quot;, 
+<li><p>17.6.3.5 [allocator.requirements], Table 27 &mdash; &quot;Descriptive variable definitions&quot;, 
 row with the expression <tt>c</tt>:</p>
 
 <blockquote><p>
@@ -5291,7 +5467,7 @@ template&lt;class charT, class traits, class Allocator&gt;
 <hr>
 <h3><a name="2065"></a>2065. Minimal allocator interface</h3>
 <p><b>Section:</b> 17.6.3.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Minimal allocator interface <b>Opened:</b> 2011-06-06 <b>Last modified:</b> 2011-06-06</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-06-06 <b>Last modified:</b> 2011-06-12</p>
 <p><b>View other</b> <a href="lwg-index-open.html#allocator.requirements">active issues</a> in [allocator.requirements].</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.requirements">issues</a> in [allocator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
@@ -5331,6 +5507,53 @@ bool operator!=(const SimpleAllocator&lt;T&gt;&amp;, const SimpleAllocator&lt;U&
 </p></blockquote>
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="2066"></a>2066. Missing specification of <tt>vector::resize(size_type)</tt></h3>
+<p><b>Section:</b> 23.3.6.3 [vector.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2011-03-29 <b>Last modified:</b> 2011-06-12</p>
+<p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
+<p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+In C++1x (N3090) there are two version of <tt>vector::resize</tt> &mdash; 23.3.6.3 [vector.capacity]:
+</p>
+<blockquote><pre>
+void resize(size_type sz);
+void resize(size_type sz, const T&amp; c);
+</pre></blockquote>
+<p>
+The text in 23.3.6.3 [vector.capacity]&#47;12 only mentions "no effects on throw" for the
+two args version of resize:
+</p><blockquote>
+<i>Requires</i>: If an exception is thrown other than by the move constructor
+of a non-<tt>CopyConstructible</tt> <tt>T</tt> there are no effects.
+</blockquote><p>
+This seems like unintentional oversight since <tt>resize(size)</tt> is
+semantically the same as <tt>resize(size, T())</tt>.
+Additionally, the C++03 standard only specify single version of resize
+with default for the second argument - 23.2.4:
+</p>
+<blockquote><pre>
+void resize(size_type sz, T c = T());
+</pre></blockquote>
+<p>
+Therefore not requiring same guarantees for both version of resize is
+in fact a regression.
+</p>
+
+<p><i>[2011-06-12: Daniel comments]</i></p>
+
+
+<p>The proposed resolution for issue <a href="lwg-active.html#2033">2033</a> should solve this issue as well.</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
