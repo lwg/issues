@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-06-13</td>
+  <td align="left">2011-06-16</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-06-13 at 15:06:12 UTC</p>
+<p>Revised 2011-06-16 at 21:06:07 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>49 open issues, down by 47.</li>
+<li>50 open issues, down by 46.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1589 issues total, up by 33.</li>
+<li>1590 issues total, up by 34.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 24 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2066">2066</a>.</li>
+<li>Added the following 25 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2066">2066</a>, <a href="lwg-active.html#2067">2067</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -3017,9 +3017,9 @@ What should the following code output?
 </p>
 
 <blockquote><pre>
-#include &lt;string>
-#include &lt;iostream>
-#include &lt;iomanip>
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
 
 int main() 
 { 
@@ -3999,7 +3999,13 @@ which implies rvalues instead. The specification needs to be clarified.
 
 <p>The feedback obtained following message c++std-lib-30745  and follow-ups point to the intention, that 
 the implied provision of lvalues due to named variables in <tt>async</tt> should be provided as rvalues to support
-move-only types, but should be provided as lvalues in <tt>bind</tt>.
+move-only types, but the functor type should be forwarded as lvalue in <tt>bind</tt>.
+<p/>
+If <tt>bind</tt> were newly invented, the value strategy could be improved, because now we have a preference of
+<i>ref</i> <tt>&amp;</tt> qualified function call operator overloads. But such a change seems to be too late now.
+User-code that needs to bind a callable object with an <i>ref</i> <tt>&amp;&amp;</tt> qualified function call
+operator (or conversion function to function pointer) needs to use a corresponding wrapper similar to <tt>reference_wrapper</tt>
+that forwards the reference as rvalue-reference instead.
 <p/>
 The wording has been adapted to honor these observations and to fit to FDIS numbering as well.</p>
 
@@ -7214,6 +7220,86 @@ in fact a regression.
 
 <p><b>Proposed resolution:</b></p>
 <p>Apply the proposed resolution of issue <a href="lwg-active.html#2033">2033</a></p>
+
+
+
+
+
+<hr>
+<h3><a name="2067"></a>2067. <tt>packaged_task</tt> should have deleted copy c'tor with const parameter</h3>
+<p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-16 <b>Last modified:</b> 2011-06-16</p>
+<p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+Class template <tt>packaged_task</tt> is a move-only type with the following form of the
+deleted copy operations:
+</p>
+<blockquote><pre>
+packaged_task(packaged_task&amp;) = delete;
+packaged_task&amp; operator=(packaged_task&amp;) = delete;
+</pre></blockquote>
+<p>
+Note that the argument types are non-const. This does not look like a typo to me,
+this form seems to exist from the very first proposing paper on 
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2276.html">N2276</a>.
+Using either of form of the copy-constructor did not make much difference before the 
+introduction of defaulted special member functions, but it makes now an observable 
+difference. This was brought to my attention by a question on a German C++ newsgroup 
+where the question was raised why the following code does not compile on a recent
+gcc:
+</p>
+<blockquote><pre>
+#include &lt;utility&gt;
+#include &lt;future&gt;
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+int main(){
+  std::packaged_task&lt;void()&gt; someTask([]{ std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl; });
+  std::thread someThread(std::move(someTask)); // <span style="color:#C80000">Error here</span>
+  // Remainder omitted
+}
+</pre></blockquote>
+<p>
+It turned out that the error was produced by the instantiation of some return type
+of <tt>std::bind</tt> which used a defaulted copy-constructor, which leads to a
+const declaration conflict with [class.copy] p8.
+<p/>
+Some aspects of this problem are possibly core-language related, but I consider it
+more than a service to programmers, if the library would declare the usual form of
+the copy operations (i.e. those with const first parameter type) as deleted for
+<tt>packaged_task</tt> to prevent such problems.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>Modify the class template <tt>packaged_task</tt> synopsis in 30.6.9 [futures.task] p2
+as indicated:</p>
+
+<blockquote><pre>
+namespace std {
+  template&lt;class&gt; class packaged_task; <i>// undefined</i>
+
+  template&lt;class R, class... ArgTypes&gt;
+  class packaged_task&lt;R(ArgTypes...)&gt; {
+  public:
+    [&hellip;]
+  
+    <i>// no copy</i>
+    packaged_task(<ins>const</ins> packaged_task&amp;) = delete;
+    packaged_task&amp; operator=(<ins>const</ins> packaged_task&amp;) = delete;
+    
+    [&hellip;]
+  };
+  [&hellip;]
+}
+</pre></blockquote>
+</li>
+</ol>
 
 
 
