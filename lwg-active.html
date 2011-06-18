@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-06-16</td>
+  <td align="left">2011-06-18</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-06-16 at 21:06:07 UTC</p>
+<p>Revised 2011-06-18 at 12:06:00 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>50 open issues, down by 46.</li>
+<li>51 open issues, down by 45.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1590 issues total, up by 34.</li>
+<li>1591 issues total, up by 35.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 25 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2066">2066</a>, <a href="lwg-active.html#2067">2067</a>.</li>
+<li>Added the following 26 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2066">2066</a>, <a href="lwg-active.html#2067">2067</a>, <a href="lwg-active.html#2068">2068</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -7300,6 +7300,103 @@ namespace std {
 </pre></blockquote>
 </li>
 </ol>
+
+
+
+
+
+<hr>
+<h3><a name="2068"></a>2068. <tt>std::pair</tt> not C++03-compatible with defaulted copy c'tor</h3>
+<p><b>Section:</b> 20.3.2 [pairs.pair] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-18 <b>Last modified:</b> 2011-06-18</p>
+<p><b>View all other</b> <a href="lwg-index.html#pairs.pair">issues</a> in [pairs.pair].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The specification of the copy semantics of the C++03 version of <tt>std::pair</tt>
+is defined by the class synopsis in [lib.pairs]:
+</p>
+<blockquote><pre>
+template &lt;class T1, class T2&gt;
+struct pair {
+  typedef T1 first_type;
+  typedef T2 second_type;
+
+  T1 first;
+  T2 second;
+  pair();
+  pair(const T1&amp; x, const T2&amp; y);
+  template&lt;class U, class V&gt; pair(const pair&lt;U, V&gt; &amp;p);
+};
+</pre></blockquote>
+<p>
+The effect of this specification is, that the copy constructor is compiler-declared
+with the proper form depending on the contained member types. In particular, the
+instantiation of <tt>pair</tt> is well-formed with an element type that has a
+copy constructor with non-const first parameter type like specialzations of <tt>auto_ptr</tt>
+or any user-defined type like the following one:
+</p>
+<blockquote><pre>
+struct A {
+  A(A&amp;){}
+};
+</pre></blockquote>
+<p>
+In contrast to container types which require <tt>CopyConstructible</tt> value types, the C++03 <tt>pair</tt> 
+does support these, albeit unusual, element types.
+<p/>
+The FDIS version of the <tt>std::pair</tt> specification does specify the same semantics by 
+defaulting the copy and move constructor in 20.3.2 [pairs.pair]:
+</p>
+<blockquote><pre>
+template &lt;class T1, class T2&gt;
+struct pair {
+  typedef T1 first_type;
+  typedef T2 second_type;
+
+  T1 first;
+  T2 second;
+  <span style="color:#C80000">pair(const pair&amp;) = default;</span>
+  <span style="color:#C80000">pair(pair&amp;&amp;) = default;</span>
+  pair();
+  [&hellip;]
+};
+</pre></blockquote>
+<p>
+But according to the current core rules this makes the instantiation of e.g. <tt>std::pair&lt;A, int&gt;</tt>
+ill-formed, because of the <tt>const</tt> mismatch of the compiler-declared form of the copy constructor
+with that of the defaulted declaration.
+<p/>
+Unfortunately there seems to be no simple library solution for this problem. If the defaulted declarations
+were removed, both copy c'tor and move c'tor would be <b>deleted</b>, because there exist user-declared
+copy assignment and move assignment operators in the FDIS. But these operations need to be user-defined 
+to realize the wanted semantics of these operations for element types that are reference types. If core
+rules would not be changed to fix that, I see the following options:
+</p>
+<ol>
+<li>Intentionally decide to break the support for element types with non-const copy c'tors in <tt>pair</tt>.</li>
+<li>User-declare the copy and move c'tors to at least support the instantiation of the types, but this
+would still not allow to copy them by the copy constructor.</li>
+<li>Intentionally decide to give up support for element types that are references for <tt>pair</tt>, but
+still keep the allocator support with the effect of removing all declarations of the special
+copy&#47;move members. User code that needs to use <tt>tuple</tt> instead. But this would be a rather
+drastic step requiring further corrections of the draft, e.g. a change of the signature of the algorithm
+<tt>minmax</tt> (not the overload with the <tt>initializer_list</tt>) with a different return type.</li>
+</ol>
+<p>
+This problem does <b>not</b> extend as backward-compatibility problem to <tt>tuple</tt>, because the TR1 
+specification did explicitly declare copy constructor and copy assignment operator via the &quot;normal&quot; 
+form:
+</p>
+<blockquote><pre>
+tuple(const tuple&amp;);
+tuple&amp; operator=(const tuple&amp;);
+</pre></blockquote>
+<p>
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
 
 
 
