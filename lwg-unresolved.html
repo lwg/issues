@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-06-18 at 12:06:00 UTC</p>
+<p>Revised 2011-06-18 at 19:06:56 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -5635,7 +5635,7 @@ in fact a regression.
 <hr>
 <h3><a name="2067"></a>2067. <tt>packaged_task</tt> should have deleted copy c'tor with const parameter</h3>
 <p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-16 <b>Last modified:</b> 2011-06-16</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-16 <b>Last modified:</b> 2011-06-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5678,12 +5678,48 @@ Some aspects of this problem are possibly core-language related, but I consider 
 more than a service to programmers, if the library would declare the usual form of
 the copy operations (i.e. those with const first parameter type) as deleted for
 <tt>packaged_task</tt> to prevent such problems.
+<p/>
+A similar problem exists for class template <tt>basic_ostream</tt> in 27.7.3.1 [ostream]:
+</p>
+<blockquote><pre>
+namespace std {
+  template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+  class basic_ostream : virtual public basic_ios&lt;charT,traits&gt; {
+    [&hellip;]
+
+    // 27.7.3.3 Assign/swap
+    basic_ostream&amp; operator=(basic_ostream&amp; rhs) = delete;
+    basic_ostream&amp; operator=(const basic_ostream&amp;&amp; rhs);
+    void swap(basic_ostream&amp; rhs);
+};
+</pre></blockquote>
+<p>
+albeit this could be considered as an editorial swap of copy and move
+assignment operator, I suggest to fix this as part of this issue as well.
 </p>
 
 
 <p><b>Proposed resolution:</b></p>
 <p>This wording is relative to the FDIS.</p>
 <ol>
+<li><p>Modify the class template <tt>basic_ostream</tt> synopsis in 27.7.3.1 [ostream]
+as indicated (Note: The prototype signature of the move assignment operator in 27.7.3.3 [ostream.assign]
+is ok):</p>
+
+<blockquote><pre>
+namespace std {
+  template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
+  class basic_ostream : virtual public basic_ios&lt;charT,traits&gt; {
+    [&hellip;]
+
+    // 27.7.3.3 Assign/swap
+    basic_ostream&amp; operator=(<ins>const</ins> basic_ostream&amp; rhs) = delete;
+    basic_ostream&amp; operator=(<del>const</del> basic_ostream&amp;&amp; rhs);
+    void swap(basic_ostream&amp; rhs);
+};
+</pre></blockquote>
+</li>
+
 <li><p>Modify the class template <tt>packaged_task</tt> synopsis in 30.6.9 [futures.task] p2
 as indicated:</p>
 
