@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-06-18 at 19:06:56 UTC</p>
+<p>Revised 2011-06-21 at 21:06:29 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -5635,7 +5635,7 @@ in fact a regression.
 <hr>
 <h3><a name="2067"></a>2067. <tt>packaged_task</tt> should have deleted copy c'tor with const parameter</h3>
 <p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-16 <b>Last modified:</b> 2011-06-18</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-16 <b>Last modified:</b> 2011-06-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5704,7 +5704,7 @@ assignment operator, I suggest to fix this as part of this issue as well.
 <ol>
 <li><p>Modify the class template <tt>basic_ostream</tt> synopsis in 27.7.3.1 [ostream]
 as indicated (Note: The prototype signature of the move assignment operator in 27.7.3.3 [ostream.assign]
-is ok):</p>
+is fine):</p>
 
 <blockquote><pre>
 namespace std {
@@ -5751,7 +5751,7 @@ namespace std {
 <hr>
 <h3><a name="2068"></a>2068. <tt>std::pair</tt> not C++03-compatible with defaulted copy c'tor</h3>
 <p><b>Section:</b> 20.3.2 [pairs.pair] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-18 <b>Last modified:</b> 2011-06-18</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-18 <b>Last modified:</b> 2011-06-21</p>
 <p><b>View all other</b> <a href="lwg-index.html#pairs.pair">issues</a> in [pairs.pair].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -5818,8 +5818,11 @@ rules would not be changed to fix that, I see the following options:
 </p>
 <ol>
 <li>Intentionally decide to break the support for element types with non-const copy c'tors in <tt>pair</tt>.</li>
-<li>User-declare the copy and move c'tors to at least support the instantiation of the types, but this
-would still not allow to copy them by the copy constructor.</li>
+<li>User-declare both copy and move ctor to at least support the instantiation of the <tt>pair</tt> specializations, 
+but this would still not allow to copy them by the copy constructor.</li>
+<li>User-declare both the const and non-const copy ctors, the move ctor, and additionally the non-const copy assignment
+operator to support the instantiation of the <tt>pair</tt> specializations and of these members. This would 
+support all element types as it did in C++03, but all copy&#47;move members would be non-trivial.</li>
 <li>Intentionally decide to give up support for element types that are references for <tt>pair</tt>, but
 still keep the allocator support with the effect of removing all declarations of the special
 copy&#47;move members. User code that needs to use <tt>tuple</tt> instead. But this would be a rather
