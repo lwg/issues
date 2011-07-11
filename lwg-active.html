@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-07-11 at 20:07:53 UTC</p>
+<p>Revised 2011-07-11 at 21:07:24 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -156,13 +156,13 @@ ownership of it.
 <ul>
 <li>D75: 2011-03-25 post-Madrid mailing preview<ul>
 <li><b>Summary:</b><ul>
-<li>52 open issues, down by 44.</li>
+<li>53 open issues, down by 43.</li>
 <li>1540 closed issues, up by 80.</li>
-<li>1592 issues total, up by 36.</li>
+<li>1593 issues total, up by 37.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following NAD issue: <a href="lwg-closed.html#2036">2036</a>.</li>
-<li>Added the following 27 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2066">2066</a>, <a href="lwg-active.html#2067">2067</a>, <a href="lwg-active.html#2068">2068</a>, <a href="lwg-active.html#2069">2069</a>.</li>
+<li>Added the following 28 New issues: <a href="lwg-active.html#2043">2043</a>, <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2046">2046</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2051">2051</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2060">2060</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2066">2066</a>, <a href="lwg-active.html#2067">2067</a>, <a href="lwg-active.html#2068">2068</a>, <a href="lwg-active.html#2069">2069</a>, <a href="lwg-active.html#2070">2070</a>.</li>
 <li>Added the following 2 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2040">2040</a>.</li>
 <li>Added the following Ready issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
@@ -7650,6 +7650,83 @@ basic_string(basic_string&amp;&amp; str, const Allocator&amp; alloc);
 </p>
 </blockquote></blockquote>
 </li>
+
+</ol>
+
+
+
+
+
+
+<hr>
+<h3><a name="2070"></a>2070. <tt>allocate_shared</tt> should use <tt>allocator_traits&lt;A&gt;::construct</tt></h3>
+<p><b>Section:</b> 20.7.2.2.6 [util.smartptr.shared.create] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-07-11 <b>Last modified:</b> 2011-07-11</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+20.7.2.2.6 [util.smartptr.shared.create] says:
+</p>
+<blockquote><p>
+-2- <i>Effects</i>: Allocates memory suitable for an object of type <tt>T</tt> and constructs an object in that memory
+via the placement new expression <tt>::new (pv) T(std::forward&lt;Args&gt;(args)...)</tt>. The template
+<tt>allocate_shared</tt> uses a copy of a to allocate memory. If an exception is thrown, the functions have
+no effect.
+</p></blockquote>
+<p>
+This explicitly requires placement new rather than using
+<tt>allocator_traits&lt;A&gt;::construct(a, (T*)pv, std::forward&lt;Args&gt;(args)...)</tt>
+In most cases that would result in the same placement new expression,
+but would allow more control over how the object is constructed e.g.
+using <tt>scoped_allocator_adaptor</tt> to do uses-allocator construction, or
+using an allocator declared as a friend to construct objects with no
+public constructors.
+</p>
+
+
+<p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+
+<ol>
+<li>Change the following paragraphs of 20.7.2.2.6 [util.smartptr.shared.create] as indicated:</li>
+
+<blockquote><pre>
+template&lt;class T, class... Args&gt; shared_ptr&lt;T&gt; make_shared(Args&amp;&amp;... args);
+template&lt;class T, class A, class... Args&gt;
+  shared_ptr&lt;T&gt; allocate_shared(const A&amp; a, Args&amp;&amp;... args);
+</pre><blockquote>
+<p>
+-1- <i>Requires</i>: <ins>For the template <tt>make_shared</tt>, t</ins><del>T</del>he expression 
+<tt>::new (pv) T(std::forward&lt;Args&gt;(args)...)</tt>, where <tt>pv</tt> 
+has type <tt>void*</tt> and points to storage suitable to hold an object of type <tt>T</tt>, shall be well 
+formed. <ins>For the template <tt>allocate_shared</tt>, the expression 
+<tt>allocator_traits&lt;A&gt;::construct(a, pt, std::forward&lt;Args&gt;(args)...)</tt>,
+where <tt>pt</tt> has type <tt>T*</tt> and points to storage suitable to hold an object
+of type <tt>T</tt>, shall be well formed.</ins> <tt>A</tt> shall be an allocator ([allocator.requirements]). 
+The copy constructor and destructor of  <tt>A</tt> shall not throw exceptions.
+<p/>
+-2- <i>Effects</i>: Allocates memory suitable for an object of type <tt>T</tt> and constructs an object in 
+that memory<ins>. The template <tt>make_shared</tt> constructs the object</ins> via the placement new expression 
+<tt>::new (pv) T(std::forward&lt;Args&gt;(args)...)</tt>. The template <tt>allocate_shared</tt> uses a copy 
+of <tt>a</tt> to allocate memory<ins> and constructs the object by calling <tt>allocator_traits&lt;A&gt;::construct(a, pt,
+std::forward&lt;Args&gt;(args)...)</tt></ins>. If an exception is thrown, the functions have no effect.
+<p/>
+-3- <i>Returns</i>: A <tt>shared_ptr</tt> instance that stores and owns the address of the newly constructed 
+object of type <tt>T</tt>.
+<p/>
+-4- <i>Postconditions</i>: <tt>get() != 0 &amp;&amp; use_count() == 1</tt>
+<p/>
+-5- <i>Throws</i>: <tt>bad_alloc</tt>, or an exception thrown from <tt>A::allocate</tt> or<ins>, for the template
+<tt>make_shared</tt>,</ins> from the constructor of <tt>T</tt><ins>, or, for the template <tt>allocate_shared</tt>,
+from <tt>allocator_traits&lt;A&gt;::construct</tt></ins>.
+<p/>
+-6- <i>Remarks</i>: Implementations are encouraged, but not required, to perform no more than one memory
+allocation. [ <i>Note</i>: This provides efficiency equivalent to an intrusive smart pointer. &mdash; <i>end note</i> ]
+<p/>
+-7- [ <i>Note</i>: These functions will typically allocate more memory than <tt>sizeof(T)</tt> to allow for internal
+bookkeeping structures such as the reference counts. &mdash; <i>end note</i> ]
+</p>
+</blockquote></blockquote>
 
 </ol>
 
