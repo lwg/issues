@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D75)</h1>
-<p>Revised 2011-07-11 at 19:07:23 UTC</p>
+<p>Revised 2011-07-11 at 20:07:52 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -7584,7 +7584,10 @@ basic_string(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;
 </p></blockquote></blockquote>
 <p>
 How can it <i>ever</i> throw anything if it is marked <tt>noexcept</tt>?
-<p/>
+</p>
+<p><i>[2011-07-11: Daniel comments and suggest wording changes]</i></p>
+
+<p>
 Further, according to paragraph 18 of the same sub-clause:
 </p>
 <blockquote><pre>
@@ -7612,6 +7615,44 @@ impose the requirement: &quot;Shall not exit via an exception&quot;.
 
 
 <p><b>Proposed resolution:</b></p>
+<p>This wording is relative to the FDIS.</p>
+
+<ol>
+<li><p>Change 21.4.2 [string.cons] p3 as indicated (This move constructor has a wide
+contract and is therefore safely marked as <tt>noexcept</tt>):</p>
+
+<blockquote><pre>
+basic_string(const basic_string&lt;charT,traits,Allocator&gt;&amp; str);
+basic_string(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;
+</pre><blockquote>
+<p>
+-2- <i>Effects</i>: Constructs an object of class <tt>basic_string</tt> as indicated in Table 64. 
+In the second form, <tt>str</tt> is left in a valid state with an unspecified value.
+<p/>
+<del>-3- <i>Throws</i>: The second form throws nothing if the allocator's move constructor throws nothing.</del>
+</p>
+</blockquote></blockquote>
+</li>
+
+<li><p>Change 21.4.2 [string.cons] p18 as indicated (This move-like constructor may throw,
+if the allocators don't compare equal, but not because of a potentially throwing allocator
+copy constructor, only because the allocation attempt may fail and throw an exception):</p>
+
+<blockquote><pre>
+basic_string(const basic_string&amp; str, const Allocator&amp; alloc);
+basic_string(basic_string&amp;&amp; str, const Allocator&amp; alloc);
+</pre><blockquote>
+<p>
+[&hellip;]
+<p/>
+-18- <i>Throws</i>: The second form throws nothing if <tt>alloc == str.get_allocator()</tt> 
+<del>unless the copy constructor for <tt>Allocator</tt> throws</del>.
+</p>
+</blockquote></blockquote>
+</li>
+
+</ol>
+
 
 
 
