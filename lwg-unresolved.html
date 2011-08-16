@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-16 at 12:08:41 UTC</p>
+<p>Revised 2011-08-16 at 23:08:34 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -1232,9 +1232,9 @@ shall throw any exceptions.
 
 <hr>
 <h3><a name="2005"></a>2005. <tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</h3>
-<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
+<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-08-16</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 In [unord.map.modifiers], the signature:
@@ -1352,6 +1352,15 @@ is implicitly convertible to <tt>value_type</tt>.</ins>
 We need <tt>is_convertible</tt>, not <tt>is_constructible</tt>, both in ordered and unordered containers. 
 </p>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Move back to open, wording to follow...
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -1406,10 +1415,10 @@ is implicitly convertible to <tt>value_type</tt>.</ins>
 
 <hr>
 <h3><a name="2011"></a>2011. Unexpected output required of strings</h3>
-<p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-07-14</p>
+<p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-08-16</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.io">issues</a> in [string.io].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 What should the following code output? 
@@ -1578,6 +1587,15 @@ It is not very complicated to describe the padding rules for simple character se
 A similar approach is used as for the <tt>money_put</tt> functions.
 </p>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Move to Review, the resolution seems correct but it would be nice if some factoring of the common words were proposed.
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -1678,7 +1696,7 @@ widened characters and any required padding are inserted into <tt>out</tt>. Call
 <hr>
 <h3><a name="2012"></a>2012. Associative maps should insert <tt>pair</tt>, not <tt>tuple</tt></h3>
 <p><b>Section:</b> 23.4 [associative] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-03-24</p>
+ <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-08-16</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative">issues</a> in [associative].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1710,6 +1728,16 @@ Paolo: Don't think we can do it now.
 <p/>
 Daniel K: Agrees. 
 </p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Consensus that this issue will be resolved by <a href="lwg-active.html#2005">2005</a>, but held open until that issue is resolved.
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -1931,7 +1959,7 @@ iterator with value <tt>a.end()</tt> before the swap will have value <tt>b.end()
 <hr>
 <h3><a name="2018"></a>2018. <tt>regex_traits::isctype</tt> Returns clause is wrong</h3>
 <p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-05-18</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-08-16</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.traits">issues</a> in [re.traits].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2003,6 +2031,20 @@ also supports them.
 </p>
 
 <p><i>[2011-05-10: Alberto and Daniel perform minor fixes in the P&#47;R]</i></p>
+
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Consensus that this looks to be a correct solution, and the presentation as a table is a big improvement.
+</p>
+
+<p>
+Concern that the middle section wording is a little muddled and confusing, Stefanus volunteered to reword.
+</p>
 
 
 
@@ -2198,228 +2240,9 @@ t.isctype(' ', f); // returns false
 
 
 <hr>
-<h3><a name="2033"></a>2033. Preconditions of <tt>reserve</tt>, <tt>shrink_to_fit</tt>, and <tt>resize</tt> functions</h3>
-<p><b>Section:</b> 23.3.6.3 [vector.capacity], 23.3.3.3 [deque.capacity] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Nikolay Ivchenkov <b>Opened:</b> 2011-02-20 <b>Last modified:</b> 2011-06-21</p>
-<p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
-<p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-I have several questions with regard to the working paper N3225 (C++0x working draft):
-</p>
-<ol>
-<li><p>
-Where the working draft specifies preconditions for <tt>shrink_to_fit</tt>
-member function of <tt>std::vector</tt> and <tt>std::deque</tt>?
-</p></li>
-<li><p>
-Where the working draft specifies preconditions for '<tt>void reserve(size_type n)</tt>' 
-member function of <tt>std::vector</tt>?
-</p></li>
-<li><p>
-Does a call to '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> require
-the element type to be <tt>DefaultConstructible</tt>? If yes, why such
-requirement is not listed in the <i>Requires</i> paragraph?
-</p></li>
-<li><p>
-Does a call to '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> require
-the element type to be <tt>MoveAssignable</tt> because the call <tt>erase(begin() + sz, end())</tt> 
-mentioned in the <i>Effects</i> paragraph would require the element type to be <tt>MoveAssignable</tt>?
-</p></li>
-<li><p>
-Why <tt>CopyInsertable</tt> requirement is used for '<tt>void resize(size_type sz)</tt>' of <tt>std::vector</tt> 
-instead of <tt>MoveInsertable</tt> requirement?
-</p></li>
-</ol>
-
-<p><i>[2011-06-12: Daniel comments and provides wording]</i></p>
-
-<p>According to my understanding of the mental model of vector (and to some parts for deque) the 
-some requirements are missing in the standard as response to above questions:</p>
-<ol>
-<li>The preconditions of <tt>shrink_to_fit</tt> for both <tt>std::vector</tt> and <tt>std::deque</tt>
-should impose the <tt>MoveInsertable</tt> requirements. The reason for this is, that these containers
-can host move-only types. For a container type <tt>X</tt> the C++03 idiom <tt>X(*this).swap(*this)</tt>
-imposes the <tt>CopyInsertable</tt> requirements which would make the function call ill-formed,
-which looks like an unacceptable restriction to me. Assuming the committee decides to support the
-move-only case, further wording has to be added for the situation where such a move-only type could
-throw an exception, because this can leave the object in an unspecified state. This seems consistent
-with the requirements of <tt>reserve</tt>, which seems like a very similar function to me (for
-<tt>vector</tt>). And this brings us smoothly to the following bullet:
-</li>
-
-<li><p>I agree that we are currently missing to specify the preconditions of the <tt>reserve</tt> function.
-My interpretation of the mental model of this function is that it should work for move-only types, which
-seems to be supported by the wording used in 23.3.6.3 [vector.capacity] p2:
-</p>
-<blockquote><p>
-[&hellip;] If an exception is thrown other than by the move constructor of a non-CopyInsertable type, 
-there are no effects.
-</p></blockquote>
-<p>
-Given this statement, the appropriate requirement is <tt>MoveInsertable</tt> into the <tt>vector</tt>.
-</p>
-</li>
-
-<li>I agree that <tt>vector::resize(size_type)</tt> misses to list the <tt>DefaultConstructible</tt>
-requirements.
-</li>
-
-<li>Unfortunately the current specification in terms of <tt>erase</tt> implies the <tt>MoveAssignable</tt>
-requirements. I don't think that this implication is intended. This function requires "append" and 
-"pop-back" effects, respectively, where the former can be realized in terms of <tt>MoveInsertable</tt> 
-requirements. The same fix in regard to using <tt>pop_back</tt> instead of <tt>erase</tt> is necessary 
-for the two argument overload of <tt>resize</tt> as well (no <tt>MoveAssignable</tt> is required).
-</li>
-
-<li>The <tt>CopyInsertable</tt> requirement is incorrect and should be <tt>MoveInsertable</tt> instead.</li>
-</ol>
-
-<p>In addition to above mentioned items, the proposed resolution adds a linear complexity bound for 
-<tt>shrink_to_fit</tt> and attempts to resolve the related issue <a href="lwg-active.html#2066">2066</a>.</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS.</p>
-<ol>
-<li><p>Edit 23.3.3.3 [deque.capacity] as indicated [Remark: The suggested change of p4 is
-not redundant, because <tt>CopyInsertable</tt> is not necessarily a refinement of <tt>MoveInsertable</tt>
-in contrast to the fact that <tt>CopyConstructible</tt> is a refinement of <tt>MoveConstructible</tt>]:</p>
-
-<blockquote><pre>
-void resize(size_type sz);
-</pre><blockquote><p>
--1- <i>Effects</i>: If <tt>sz &lt;= size()</tt>, equivalent to <del><tt>erase(begin() + sz, 
-end());</tt></del><ins>calling <tt>pop_back()</tt> <tt>size() - sz</tt> times</ins>. If 
-<tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> value-initialized elements to the sequence.
-<p/>
--2- Requires: <tt>T</tt> shall be <ins><tt>MoveInsertable</tt> into <tt>*this</tt> and</ins> <tt>DefaultConstructible</tt>.
-</p></blockquote></blockquote>
-
-<blockquote><pre>
-void resize(size_type sz, const T&amp; c);
-</pre><blockquote><p>
--3- <i>Effects</i>: <ins>If <tt>sz &lt;= size()</tt>, equivalent to calling <tt>pop_back()</tt> 
-<tt>size() - sz</tt> times. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> copies of <tt>c</tt> 
-to the sequence.</ins>
-</p><blockquote><pre>
-<del>if (sz &gt; size())
-  insert(end(), sz-size(), c);
-else if (sz &lt; size())
-  erase(begin()+sz, end());
-else
-  ; <i>// do nothing</i></del>
-</pre></blockquote>
-<p>
--4- <i>Requires</i>: <tt>T</tt> shall be <ins><tt>MoveInsertable</tt> into <tt>*this</tt> and</ins> 
-<tt>CopyInsertable</tt> into <tt>*this</tt>.
-</p></blockquote></blockquote>
-
-<blockquote><pre>
-void shrink_to_fit();
-</pre><blockquote><p>
-<ins>-?- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt>.</ins>
-<p/>
-<ins>-?- <i>Complexity</i>: Takes at most linear time in the size of the sequence.</ins>
-<p/>
--5- <i>Remarks</i>: <tt>shrink_to_fit</tt> is a non-binding request to reduce memory use <ins>but does
-not change the size of the sequence</ins>. [ <i>Note</i>: The request is non-binding to allow latitude 
-for implementation-specific optimizations. &mdash; <i>end note</i> ]
-</p></blockquote></blockquote>
-</li>
-
-<li><p>Edit 23.3.6.3 [vector.capacity] as indicated including edits that also resolve <a href="lwg-active.html#2066">2066</a> 
-[Remark: The combined listing of <tt>MoveInsertable</tt> and <tt>CopyInsertable</tt> before p12 is not redundant, 
-because <tt>CopyInsertable</tt> is not necessarily a refinement of <tt>MoveInsertable</tt> in contrast to the 
-fact that <tt>CopyConstructible</tt> is a refinement of <tt>MoveConstructible</tt>]:</p>
-
-<p>[&hellip;]</p>
-
-<blockquote><pre>
-void reserve(size_type n);
-</pre><blockquote><p>
-<ins>-?- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt>.</ins>
-<p/>
--2- <i>Effects</i>: A directive that informs a vector of a planned change in size, so that it can manage the storage
-allocation accordingly. After <tt>reserve()</tt>, <tt>capacity()</tt> is greater or equal to the argument of reserve if
-reallocation happens; and equal to the previous value of <tt>capacity()</tt> otherwise. Reallocation happens
-at this point if and only if the current capacity is less than the argument of <tt>reserve()</tt>. If an exception
-is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> type, there are no effects.
-<p/>
--3- <i>Complexity</i>: It does not change the size of the sequence and takes at most linear time in the size of
-the sequence.
-<p/>
--4- <i>Throws</i>: <tt>length_error</tt> if <tt>n &gt; max_size()</tt>.[footnote 266]
-<p/>
--5- <i>Remarks</i>: Reallocation invalidates all the references, pointers, and iterators referring to the elements
-in the sequence. It is guaranteed that no reallocation takes place during insertions that happen after
-a call to <tt>reserve()</tt> until the time when an insertion would make the size of the vector greater than
-the value of <tt>capacity()</tt>.
-</p></blockquote></blockquote>
-
-<blockquote><pre>
-void shrink_to_fit();
-</pre><blockquote><p>
-<ins>-?- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt>.</ins>
-<p/>
-<ins>-?- <i>Complexity</i>: Takes at most linear time in the size of the sequence.</ins>
-<p/>
--6- <i>Remarks</i>: <tt>shrink_to_fit</tt> is a non-binding request to reduce <tt>capacity()</tt> to <tt>size()</tt>. 
-[ <i>Note</i>: The request is non-binding to allow latitude for implementation-specific optimizations. &mdash; <i>end note</i> ]
-<ins>If an exception is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> <tt>T</tt> there 
-are no effects.</ins>
-</p></blockquote></blockquote>
-
-<p>[&hellip;]</p>
-
-<blockquote><pre>
-void resize(size_type sz);
-</pre><blockquote><p>
--9- <i>Effects</i>: If <tt>sz &lt;= size()</tt>, equivalent to <del><tt>erase(begin() + sz, end());</tt></del><ins>calling 
-<tt>pop_back()</tt> <tt>size() - sz</tt> times</ins>. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> 
-value-initialized elements to the sequence.
-<p/>
--10- <i>Requires</i>: <tt>T</tt> shall be <tt><del>Copy</del><ins>Move</ins>Insertable</tt> into <tt>*this</tt> 
-<ins>and <tt>DefaultConstructible</tt></ins>.
-<p/>
-<ins>-??- <i>Remarks</i>: If an exception is thrown other than by the move constructor of a non-<tt>CopyInsertable</tt> 
-<tt>T</tt> there are no effects.</ins>
-</p></blockquote></blockquote>
-
-<blockquote><pre>
-void resize(size_type sz, const T&amp; c);
-</pre><blockquote><p>
--11- <i>Effects</i>: <ins>If <tt>sz &lt;= size()</tt>, equivalent to calling <tt>pop_back()</tt> 
-<tt>size() - sz</tt> times. If <tt>size() &lt; sz</tt>, appends <tt>sz - size()</tt> copies of <tt>c</tt> 
-to the sequence.</ins>
-</p><blockquote><pre>
-<del>if (sz &gt; size())
-  insert(end(), sz-size(), c);
-else if (sz &lt; size())
-  erase(begin()+sz, end());
-else
-  ; <i>// do nothing</i></del>
-</pre></blockquote><p>
-<ins>-??- <i>Requires</i>: <tt>T</tt> shall be <tt>MoveInsertable</tt> into <tt>*this</tt> and 
-<tt>CopyInsertable</tt> into <tt>*this</tt>.</ins>
-<p/>
--12- <i><del>Requires</del><ins>Remarks</ins></i>: If an exception is thrown other than by the move constructor of a 
-non-<tt>CopyInsertable</tt> <tt>T</tt> there are no effects.
-</p></blockquote></blockquote>
-
-</li>
-
-</ol>
-
-
-
-
-
-<hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-06-21</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-08-16</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2478,6 +2301,26 @@ an iterator value which is not dereferencable, but obviously the intention is th
 be incrementable. This leads to the conclusion that imposing dereferencable as a requirement
 for the expressions <tt>++r</tt> is wrong: We only need the iterator to be incrementable. A
 similar conclusion applies to the expression <tt>--r</tt> of bidirectional iterators.</p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Consensus this is the correct direction, but there are (potentially) missing <i>incrementable</i>
+preconditions on some table rows, and the Remarks on when an output iterator becomes dereferencable
+are probably better handled outside the table, in a manner similar to the way we word for input
+iterators.
+</p>
+
+<p>
+There was some concern about redundant pre-conditions when the operational semantic is defined in
+terms of operations that have preconditions, and a similar level of concern over dropping such
+redundancies vs. applying a consistent level of redundant specification in all the iterator tables.
+Wording clean-up in either direction would be welcome.
+</p>
+
 
 
 <p><b>Proposed resolution:</b></p>
@@ -2901,319 +2744,6 @@ issue as well.</p>
 
 
 <hr>
-<h3><a name="2043"></a>2043. <tt>std{in,out,err}</tt> should be usable as field names</h3>
-<p><b>Section:</b> 27.9.2 [c.files] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jeffrey Yasskin <b>Opened:</b> 2011-03-23 <b>Last modified:</b> 2011-05-18</p>
-<p><b>View all other</b> <a href="lwg-index.html#c.files">issues</a> in [c.files].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-People often define structs and classes with fields named <tt>stdin</tt>,
-<tt>stdout</tt>, or <tt>stderr</tt>. According to 27.9.2 [c.files], 
-though, these are macros.
-<p/>
-glibc defines them to themselves, allowing their non-portable use as
-field names, while the Mac OS X libc defines them to either <tt>__stdoutp</tt>
-or <tt>(&amp;__sF[1])</tt>, etc depending on <tt>__DARWIN_UNIX03</tt>. It's possible to
-allow their use while, as far as I can see, only requiring minor
-changes to various libc's, so C++1x should allow it.
-</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>This wording is relative to the FDIS.</p>
-
-<ol>
-<li><p>In 27.9.2 [c.files] add "stderr", "stdin", and "stdout" to a new Values section in Table
-134 &mdash; Header <tt>&lt;cstdio&gt;</tt> synopsis:</p>
-
-<blockquote>
-<table border="1">
-<caption>134 &mdash; Header <tt>&lt;cstdio&gt;</tt> synopsis</caption>
-
-<tr>
-<th colspan="6" style="text-align:center;">Type Name(s)</th>
-</tr>
-
-<tr>
-<th colspan="6" style="text-align:left;">Macros:</th>
-</tr>
-
-<tr>
-<td><tt>BUFSIZ</tt></td>
-<td><tt>FOPEN_MAX</tt></td>
-<td><tt>SEEK_CUR</tt></td>
-<td><tt>TMP_MAX</tt></td>
-<td><tt>_IONBF</tt></td>
-<td><tt>stdout</tt></td>
-</tr>
-
-<tr>
-<td><tt>EOF</tt></td>
-<td><tt>L_tmpnam</tt></td>
-<td><tt>SEEK_END</tt></td>
-<td><tt>_IOFBF</tt></td>
-<td><tt>stderr</tt></td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td><tt>FILENAME_MAX</tt></td>
-<td><tt>NULL &lt;cstdio&gt;</tt></td>
-<td><tt>SEEK_SET</tt></td>
-<td><tt>_IOLBF</tt></td>
-<td><tt>stdin</tt></td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<th style="text-align:left;">Types:</th>
-<td><tt>FILE</tt></td>
-<td><tt>fpos_t</tt></td>
-<td><tt>size_t &lt;cstdio&gt;</tt></td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<th colspan="6" style="text-align:left;">Functions:</th>
-</tr>
-
-<tr>
-<td colspan="6" style="text-align:center;">&hellip;</td>
-</tr>
-
-<tr>
-<th colspan="6" style="text-align:left;"><ins>Values:</ins></th>
-</tr>
-
-<tr>
-<td><ins><tt>stderr</tt></ins></td>
-<td><ins><tt>stdin</tt></ins></td>
-<td><ins><tt>stdout</tt></ins></td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-
-</table>
-</blockquote>
-
-</li>
-
-<li><p>Add a new paragraph after paragraph 2 as indicated:</p>
-
-<blockquote><p>
-2 Calls to the function <tt>tmpnam</tt> with an argument of <tt>NULL</tt> may 
-introduce a data race (17.6.5.9) with other calls to <tt>tmpnam</tt> with an 
-argument of <tt>NULL</tt>.<br/>
-See also: ISO C 7.9, Amendment 1 4.6.2.
-<p/>
-<ins>? The macros <tt>stderr</tt>, <tt>stdin</tt>, and <tt>stdout</tt> shall 
-expand to <tt>stderr</tt>, <tt>stdin</tt>, and <tt>stdout</tt>, respectively. 
-[<i>Note:</i> This allows uses of <tt>#ifdef</tt> to detect their presence, 
-while allowing code in other scopes to use them as identifiers. &mdash; <i>end note</i>]</ins>
-</p></blockquote>
-</li>
-
-<li><p>In C.2 [diff.library] add "stderr", "stdin", and "stdout" to 
-Table 150 &mdash; Standard values:</p>
-
-<blockquote>
-<table border="1">
-<caption>Table 150 &mdash; Standard values</caption>
-
-<tr>
-<td><tt>CHAR_BIT</tt></td>
-<td><tt>FLT_DIG</tt></td>
-<td><tt>INT_MIN</tt></td>
-<td><tt>MB_LEN_MAX</tt></td>
-</tr>
-
-<tr>
-<td colspan="4" style="text-align:center;">&hellip;</td>
-</tr>
-
-<tr>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td><tt>SHRT_MIN</tt></td>
-</tr>
-
-<tr>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td><ins><tt>stderr</tt></ins></td>
-</tr>
-
-<tr>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td><ins><tt>stdin</tt></ins></td>
-</tr>
-
-<tr>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td><ins><tt>stdout</tt></ins></td>
-</tr>
-
-<tr>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td><tt>UCHAR_MAX</tt></td>
-</tr>
-
-<tr>
-<td colspan="4" style="text-align:center;">&hellip;</td>
-</tr>
-
-</table>
-</blockquote>
-
-</li>
-
-</ol>
-
-
-
-
-
-
-<hr>
-<h3><a name="2045"></a>2045. <tt>forward_list::merge</tt> and <tt>forward_list::splice_after</tt> with unequal allocators</h3>
-<p><b>Section:</b> 23.3.4.6 [forwardlist.ops] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-05-18</p>
-<p><b>View all other</b> <a href="lwg-index.html#forwardlist.ops">issues</a> in [forwardlist.ops].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-
-<p>
-See also: <a href="lwg-defects.html#1215">1215</a>
-</p>
-
-<p>
-<tt>list::merge</tt> and <tt>list::splice</tt> have the requirement that the two lists being merged or 
-spliced must use the same allocator. Otherwise, moving list nodes from one container to the other would 
-corrupt the data structure. The same requirement is needed for <tt>forward_list::merge</tt> and 
-<tt>forward_list::splice_after</tt>.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>This wording is relative to the FDIS.</p>
-
-<ol>
-<li><p>In 23.3.4.6 [forwardlist.ops] p. 1 change as indicated:</p>
-
-<blockquote><pre>
-void splice_after(const_iterator position, forward_list&lt;T,Allocator&gt;&amp; x);
-void splice_after(const_iterator position, forward_list&lt;T,Allocator&gt;&amp;&amp; x);
-</pre><p>
-1 - <i>Requires</i>: <tt>position</tt> is <tt>before_begin()</tt> or is a dereferenceable 
-iterator in the range [<tt>begin()</tt>,<tt>end()</tt>). <ins><tt>get_allocator() == x.get_allocator()</tt>.</ins> 
-<tt>&amp;x != this</tt>.
-</p></blockquote>
-
-</li>
-
-<li><p>In 23.3.4.6 [forwardlist.ops] p. 5 change as indicated:</p>
-
-<blockquote><pre>
-void splice_after(const_iterator position, forward_list&lt;T,Allocator&gt;&amp; x, const_iterator i);
-void splice_after(const_iterator position, forward_list&lt;T,Allocator&gt;&amp;&amp; x, const_iterator i);
-</pre><p>
-5 - <i>Requires</i>: <tt>position</tt> is <tt>before_begin()</tt> or is a dereferenceable 
-iterator in the range [<tt>begin()</tt>,<tt>end()</tt>). The iterator following <tt>i</tt> is a 
-dereferenceable iterator in <tt>x</tt>. <ins><tt>get_allocator() == x.get_allocator()</tt>.</ins>
-</p></blockquote>
-
-</li>
-
-<li><p>In 23.3.4.6 [forwardlist.ops] p. 9 change as indicated:</p>
-
-<blockquote><pre>
-void splice_after(const_iterator position, forward_list&lt;T,Allocator&gt;&amp; x, 
-                  const_iterator first, const_iterator last);
-void splice_after(const_iterator position, forward_list&lt;T,Allocator&gt;&amp;&amp; x, 
-                  const_iterator first, const_iterator last);
-</pre><p>
-9 - <i>Requires</i>: <tt>position</tt> is <tt>before_begin()</tt> or is a dereferenceable 
-iterator in the range [<tt>begin()</tt>,<tt>end()</tt>). (<tt>first</tt>,<tt>last</tt>) is a valid range 
-in <tt>x</tt>, and all iterators in the range (<tt>first</tt>,<tt>last</tt>) are dereferenceable.
-<tt>position</tt> is not an iterator in the range (<tt>first</tt>,<tt>last</tt>). 
-<ins><tt>get_allocator() == x.get_allocator()</tt>.</ins>
-</p></blockquote>
-
-</li>
-
-<li><p>In 23.3.4.6 [forwardlist.ops] p. 18 change as indicated:</p>
-
-<blockquote><pre>
-void merge(forward_list&lt;T,Allocator&gt;&amp; x);
-void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x);
-template &lt;class Compare&gt; void merge(forward_list&lt;T,Allocator&gt;&amp; x, Compare comp);
-template &lt;class Compare&gt; void merge(forward_list&lt;T,Allocator&gt;&amp;&amp; x, Compare comp);
-</pre><p>
-18 - <i>Requires</i>: <tt>comp</tt> defines a strict weak ordering ([alg.sorting]), and <tt>*this</tt> 
-and <tt>x</tt> are both sorted according to this ordering. <ins><tt>get_allocator() == x.get_allocator()</tt>.</ins>
-</p></blockquote>
-
-</li>
-
-</ol>
-
-
-
-
-
-
-<hr>
-<h3><a name="2046"></a>2046. <tt>shared_future(future&lt;R&gt;&amp;&amp;)</tt> should be allowed to throw</h3>
-<p><b>Section:</b> 30.6.7 [futures.shared_future] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Peter Sommerlad <b>Opened:</b> 2011-04-04 <b>Last modified:</b> 2011-05-18</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.shared_future">issues</a> in [futures.shared_future].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-
-<p>
-Requiring the constructor <tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> not to throw 
-is a pessimisation of the case where a future is returned from a call to 
-<tt>async(function,launch::deferred)</tt> and possible other cases.
-<p/>
-Such a future not dealing with multiple threads only needs to keep (a copy of) the function 
-to be called it later. However, creating a <tt>shared_future</tt> from that future will require more 
-infrastructure, like space for the value of type <tt>R</tt>, an <tt>exception_ptr</tt>, and a synchronized 
-reference counter for the <tt>shared_future</tt>'s instances.
-<p/>
-Enforcing the constructor <tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> not to throw, 
-implies that any implementation of <tt>future</tt> will need to pre-allocate space for <tt>shared_future</tt>'s 
-infrastructure, that also requires an operating system resource for synchronization, regardless 
-if is ever needed.
-<p/>
-All this came up when discussing D&#47;N3267 and Concurrency Working Group decided that the constructor 
-<tt>shared_future(future&lt;R&gt;&amp;&amp; rhs)</tt> should be allowed to throw. 
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>Apply the proposed resolution of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3269.htm">n3269</a></p>
-
-
-
-
-
-
-<hr>
 <h3><a name="2048"></a>2048. Unnecessary <tt>mem_fn</tt> overloads</h3>
 <p><b>Section:</b> 20.8 [function.objects], 20.8.10 [func.memfn] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
  <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-08-16</p>
@@ -3464,163 +2994,6 @@ destructor" and probably need to be adapted as well.</p>
 
 
 <hr>
-<h3><a name="2050"></a>2050. Unordered associative containers do not use <tt>allocator_traits</tt> to define member types</h3>
-<p><b>Section:</b> 23.5 [unord] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Tom Zieberman <b>Opened:</b> 2011-04-29 <b>Last modified:</b> 2011-05-18</p>
-<p><b>View all other</b> <a href="lwg-index.html#unord">issues</a> in [unord].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>The unordered associative containers define their member types <tt>reference</tt>, 
-<tt>const_reference</tt>, <tt>pointer</tt>, <tt>const_pointer</tt> in terms of 
-their template parameter <tt>Allocator</tt> (via <tt>allocator_type</tt> typedef). As 
-a consequence, only the allocator types, that provide sufficient typedefs, are usable 
-as allocators for unordered associative containers, while other containers do not have 
-this deficiency. In addition to that, the definitions of said typedefs are different 
-from ones used in the other containers. This is counterintuitive and introduces a certain 
-level of confusion. These issues can be fixed by defining <tt>pointer</tt> and 
-<tt>const_pointer</tt> typedefs in terms of <tt>allocator_traits&lt;Allocator&gt;</tt> 
-and by defining <tt>reference</tt> and <tt>const_reference</tt> in terms of 
-<tt>value_type</tt> as is done in the other containers.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-
-<p>This wording is relative to the FDIS.</p>
-
-<ul>
-<li><p>Change 23.5.4.1 [unord.map.overview] paragraph 3 as indicated:</p>
-
-<blockquote><pre>
-namespace std {
-  template &lt;class Key,
-            class T,
-            class Hash = hash&lt;Key&gt;,
-            class Pred = std::equal_to&lt;Key&gt;,
-            class Allocator = std::allocator&lt;std::pair&lt;const Key, T&gt; &gt; &gt;
-  class unordered_map
-  {
-  public:
-    <i>// types</i>
-    typedef Key key_type;
-    typedef std::pair&lt;const Key, T&gt; value_type;
-    typedef T mapped_type;
-    typedef Hash hasher;
-    typedef Pred key_equal;
-    typedef Allocator allocator_type;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
-    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
-    typedef <i>implementation-defined</i> size_type;
-    typedef <i>implementation-defined</i> difference_type;
-
-    [&hellip;]
-  };
-}
-</pre></blockquote>
-</li>
-
-<li><p>Change 23.5.5.1 [unord.multimap.overview] paragraph 3 as indicated:</p>
-
-<blockquote><pre>
-namespace std {
-  template &lt;class Key,
-            class T,
-            class Hash = hash&lt;Key&gt;,
-            class Pred = std::equal_to&lt;Key&gt;,
-            class Allocator = std::allocator&lt;std::pair&lt;const Key, T&gt; &gt; &gt;
-  class unordered_multimap
-  {
-  public:
-    <i>// types</i>
-    typedef Key key_type;
-    typedef std::pair&lt;const Key, T&gt; value_type;
-    typedef T mapped_type;
-    typedef Hash hasher;
-    typedef Pred key_equal;
-    typedef Allocator allocator_type;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
-    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
-    typedef <i>implementation-defined</i> size_type;
-    typedef <i>implementation-defined</i> difference_type;
-
-    [&hellip;]
-  };
-}
-</pre></blockquote>
-</li>
-
-<li><p>Change 23.5.6.1 [unord.set.overview] paragraph 3 as indicated:</p>
-
-<blockquote><pre>
-namespace std {
-  template &lt;class Key,
-            class Hash = hash&lt;Key&gt;,
-            class Pred = std::equal_to&lt;Key&gt;,
-            class Allocator = std::allocator&lt;Key&gt; &gt;
-  class unordered_set
-  {
-  public:
-    <i>// types</i>
-    typedef Key key_type;
-    typedef Key value_type;
-    typedef Hash hasher;
-    typedef Pred key_equal;
-    typedef Allocator allocator_type;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
-    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
-    typedef <i>implementation-defined</i> size_type;
-    typedef <i>implementation-defined</i> difference_type;
-
-    [&hellip;]
-  };
-}
-</pre></blockquote>
-</li>
-
-<li><p>Change 23.5.7.1 [unord.multiset.overview] paragraph 3 as indicated:</p>
-
-<blockquote><pre>
-namespace std {
-  template &lt;class Key,
-            class Hash = hash&lt;Key&gt;,
-            class Pred = std::equal_to&lt;Key&gt;,
-            class Allocator = std::allocator&lt;Key&gt; &gt;
-  class unordered_multiset
-  {
-  public:
-    <i>// types</i>
-    typedef Key key_type;
-    typedef Key value_type;
-    typedef Hash hasher;
-    typedef Pred key_equal;
-    typedef Allocator allocator_type;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::pointer pointer;
-    typedef typename <del>allocator_type</del><ins>allocator_traits&lt;Allocator&gt;</ins>::const_pointer const_pointer;
-    typedef <del>typename allocator_type::reference</del><ins>value_type&amp;</ins> reference;
-    typedef <del>typename allocator_type::const_reference</del><ins>const value_type&amp;</ins> const_reference;
-    typedef <i>implementation-defined</i> size_type;
-    typedef <i>implementation-defined</i> difference_type;
-
-    [&hellip;]
-  };
-}
-</pre></blockquote>
-</li>
-
-</ul>
-
-
-
-
-
-
-<hr>
 <h3><a name="2052"></a>2052. Mixup between <tt>mapped_type</tt> and <tt>value_type</tt> for associative containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#New">New</a>
  <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-04 <b>Last modified:</b> 2011-05-18</p>
@@ -3651,93 +3024,6 @@ of the pair points to the element with key equivalent to the key of <tt>t</tt>.
 
 
 <p><b>Proposed resolution:</b></p>
-
-
-
-
-
-<hr>
-<h3><a name="2053"></a>2053. Errors in <tt>regex</tt> bitmask types</h3>
-<p><b>Section:</b> 28.5 [re.const] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-05-09 <b>Last modified:</b> 2011-05-18</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-When <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html">N3110</a> 
-was applied to the WP some redundant "static" keywords were added and one form of initializer 
-which isn't valid for enumeration types was replaced with another form of invalid initializer.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS.</p>
-<ol>
-<li><p>Change 28.5.1 [re.synopt] as indicated:</p>
-<blockquote><pre>
-namespace std {
-  namespace regex_constants {
-    typedef <i>T1</i> syntax_option_type;
-    <del>static </del>constexpr syntax_option_type icase = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type nosubs = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type optimize = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type collate = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type ECMAScript = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type basic = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type extended = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type awk = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type grep = <i>unspecified</i> ;
-    <del>static </del>constexpr syntax_option_type egrep = <i>unspecified</i> ;
-  }
-}
-</pre></blockquote>
-</li>
-
-<li><p>Change 28.5.2 [re.matchflag] as indicated:</p>
-<blockquote><pre>
-namespace std {
-  namespace regex_constants {
-    typedef <i>T2</i> match_flag_type;
-    <del>static </del>constexpr match_flag_type match_default<del> = 0</del><ins>{};</ins>
-    <del>static </del>constexpr match_flag_type match_not_bol = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_not_eol = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_not_bow = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_not_eow = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_any = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_not_null = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_continuous = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type match_prev_avail = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type format_default<del> = 0</del><ins>{}</ins>;
-    <del>static </del>constexpr match_flag_type format_sed = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type format_no_copy = <i>unspecified</i> ;
-    <del>static </del>constexpr match_flag_type format_first_only = <i>unspecified</i> ;
-  }
-}
-</pre></blockquote>
-</li>
-
-<li><p>Change 28.5.3 [re.err] as indicated:</p>
-<blockquote><pre>
-namespace std {
-  namespace regex_constants {
-    typedef <i>T3</i> error_type;
-    <del>static </del>constexpr error_type error_collate = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_ctype = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_escape = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_backref = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_brack = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_paren = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_brace = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_badbrace = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_range = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_space = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_badrepeat = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_complexity = <i>unspecified</i> ;
-    <del>static </del>constexpr error_type error_stack = <i>unspecified</i> ;
-  }
-}
-</pre></blockquote>
-</li>
-</ol>
 
 
 
@@ -4060,67 +3346,6 @@ void erasor(std::map&lt;X,int&gt;&amp; s, X x)
 
 
 <hr>
-<h3><a name="2061"></a>2061. <tt>make_move_iterator</tt> and arrays</h3>
-<p><b>Section:</b> 24.3 [iterator.synopsis], 24.5.3 [move.iterators] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-05-30</p>
-<p><b>View all other</b> <a href="lwg-index.html#iterator.synopsis">issues</a> in [iterator.synopsis].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-The standard library always passes template iterators by value and never by reference, 
-which has the nice effect that an array decays to a pointer. There is one exception: 
-<tt>make_move_iterator</tt>.
-</p>
-<blockquote><pre>
-#include &lt;iterator&gt;
-int main(){
-  int a[]={1,2,3,4};
-  std::make_move_iterator(a+4);
-  std::make_move_iterator(a); // fails here
-}
-</pre></blockquote>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS.</p>
-<ol>
-<li><p>Modify the header <tt>&lt;iterator&gt;</tt> synopsis in 24.3 [iterator.synopsis]:</p>
-<blockquote><pre>
-namespace std {
-  [&hellip;]
-  template &lt;class Iterator&gt;
-  move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><ins>Iterator</ins> i);
-
-  [&hellip;]
-}
-</pre></blockquote>
-</li>
-
-<li><p>Modify the class template <tt>move_iterator</tt> synopsis in 24.5.3.1 [move.iterator]:</p>
-<blockquote><pre>
-namespace std {
-  [&hellip;]
-  template &lt;class Iterator&gt;
-  move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><ins>Iterator</ins> i);
-}
-</pre></blockquote>
-</li>
-
-<li><p>Modify 24.5.3.3.14 [move.iter.nonmember]:</p>
-<blockquote><pre>
-template &lt;class Iterator&gt;
-move_iterator&lt;Iterator&gt; make_move_iterator(<del>const Iterator&amp;</del><ins>Iterator</ins> i);
-</pre><blockquote><p>
--3- <i>Returns</i>: <tt>move_iterator&lt;Iterator&gt;(i)</tt>.
-</p></blockquote></blockquote>
-</li>
-</ol>
-
-
-
-
-
-<hr>
 <h3><a name="2062"></a>2062. Effect contradictions w&#47;o no-throw guarantee of <tt>std::function</tt> swaps</h3>
 <p><b>Section:</b> 20.8.11.2 [func.wrap.func], 20.8.11.2.2 [func.wrap.func.mod] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-08-16</p>
@@ -4388,216 +3613,6 @@ in fact a regression.
 
 <p><b>Proposed resolution:</b></p>
 <p>Apply the proposed resolution of issue <a href="lwg-active.html#2033">2033</a></p>
-
-
-
-
-
-<hr>
-<h3><a name="2067"></a>2067. <tt>packaged_task</tt> should have deleted copy c'tor with const parameter</h3>
-<p><b>Section:</b> 30.6.9 [futures.task] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-06-16 <b>Last modified:</b> 2011-06-21</p>
-<p><b>View all other</b> <a href="lwg-index.html#futures.task">issues</a> in [futures.task].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Class template <tt>packaged_task</tt> is a move-only type with the following form of the
-deleted copy operations:
-</p>
-<blockquote><pre>
-packaged_task(packaged_task&amp;) = delete;
-packaged_task&amp; operator=(packaged_task&amp;) = delete;
-</pre></blockquote>
-<p>
-Note that the argument types are non-const. This does not look like a typo to me,
-this form seems to exist from the very first proposing paper on 
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2276.html">N2276</a>.
-Using either of form of the copy-constructor did not make much difference before the 
-introduction of defaulted special member functions, but it makes now an observable 
-difference. This was brought to my attention by a question on a German C++ newsgroup 
-where the question was raised why the following code does not compile on a recent
-gcc:
-</p>
-<blockquote><pre>
-#include &lt;utility&gt;
-#include &lt;future&gt;
-#include &lt;iostream&gt;
-#include &lt;thread&gt;
-
-int main(){
-  std::packaged_task&lt;void()&gt; someTask([]{ std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl; });
-  std::thread someThread(std::move(someTask)); // <span style="color:#C80000">Error here</span>
-  // Remainder omitted
-}
-</pre></blockquote>
-<p>
-It turned out that the error was produced by the instantiation of some return type
-of <tt>std::bind</tt> which used a defaulted copy-constructor, which leads to a
-const declaration conflict with [class.copy] p8.
-<p/>
-Some aspects of this problem are possibly core-language related, but I consider it
-more than a service to programmers, if the library would declare the usual form of
-the copy operations (i.e. those with const first parameter type) as deleted for
-<tt>packaged_task</tt> to prevent such problems.
-<p/>
-A similar problem exists for class template <tt>basic_ostream</tt> in 27.7.3.1 [ostream]:
-</p>
-<blockquote><pre>
-namespace std {
-  template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
-  class basic_ostream : virtual public basic_ios&lt;charT,traits&gt; {
-    [&hellip;]
-
-    // 27.7.3.3 Assign/swap
-    basic_ostream&amp; operator=(basic_ostream&amp; rhs) = delete;
-    basic_ostream&amp; operator=(const basic_ostream&amp;&amp; rhs);
-    void swap(basic_ostream&amp; rhs);
-};
-</pre></blockquote>
-<p>
-albeit this could be considered as an editorial swap of copy and move
-assignment operator, I suggest to fix this as part of this issue as well.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS.</p>
-<ol>
-<li><p>Modify the class template <tt>basic_ostream</tt> synopsis in 27.7.3.1 [ostream]
-as indicated (Note: The prototype signature of the move assignment operator in 27.7.3.3 [ostream.assign]
-is fine):</p>
-
-<blockquote><pre>
-namespace std {
-  template &lt;class charT, class traits = char_traits&lt;charT&gt; &gt;
-  class basic_ostream : virtual public basic_ios&lt;charT,traits&gt; {
-    [&hellip;]
-
-    // 27.7.3.3 Assign/swap
-    basic_ostream&amp; operator=(<ins>const</ins> basic_ostream&amp; rhs) = delete;
-    basic_ostream&amp; operator=(<del>const</del> basic_ostream&amp;&amp; rhs);
-    void swap(basic_ostream&amp; rhs);
-};
-</pre></blockquote>
-</li>
-
-<li><p>Modify the class template <tt>packaged_task</tt> synopsis in 30.6.9 [futures.task] p2
-as indicated:</p>
-
-<blockquote><pre>
-namespace std {
-  template&lt;class&gt; class packaged_task; <i>// undefined</i>
-
-  template&lt;class R, class... ArgTypes&gt;
-  class packaged_task&lt;R(ArgTypes...)&gt; {
-  public:
-    [&hellip;]
-  
-    <i>// no copy</i>
-    packaged_task(<ins>const</ins> packaged_task&amp;) = delete;
-    packaged_task&amp; operator=(<ins>const</ins> packaged_task&amp;) = delete;
-    
-    [&hellip;]
-  };
-  [&hellip;]
-}
-</pre></blockquote>
-</li>
-</ol>
-
-
-
-
-
-<hr>
-<h3><a name="2069"></a>2069. Inconsistent exception spec for <tt>basic_string</tt> move constructor</h3>
-<p><b>Section:</b> 21.4.2 [string.cons] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Bo Persson <b>Opened:</b> 2011-07-01 <b>Last modified:</b> 2011-07-14</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Sub-clause 21.4.2 [string.cons] contains these constructors in paragraphs 2 and 3:
-</p>
-<blockquote><pre>
-basic_string(const basic_string&lt;charT,traits,Allocator&gt;&amp; str);
-basic_string(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;
-</pre><blockquote>
-<p>
-[&hellip;]
-<p/>
--3- <i>Throws</i>: The second form throws nothing if the allocator's move constructor throws nothing.
-</p></blockquote></blockquote>
-<p>
-How can it <i>ever</i> throw anything if it is marked <tt>noexcept</tt>?
-</p>
-<p><i>[2011-07-11: Daniel comments and suggests wording changes]</i></p>
-
-<p>
-Further, according to paragraph 18 of the same sub-clause:
-</p>
-<blockquote><pre>
-basic_string(const basic_string&amp; str, const Allocator&amp; alloc);
-basic_string(basic_string&amp;&amp; str, const Allocator&amp; alloc);
-</pre><blockquote>
-<p>
-[&hellip;]
-<p/>
--18- <i>Throws</i>: The second form throws nothing if <tt>alloc == str.get_allocator()</tt> 
-unless the copy constructor for <tt>Allocator</tt> throws.
-</p>
-</blockquote></blockquote>
-<p>
-The constraint &quot;unless the copy constructor for <tt>Allocator</tt> throws&quot;
-is redundant, because according to Table 28 &mdash; Allocator requirements, the expressions
-</p>
-<blockquote><pre>
-X a1(a);
-X a(b);
-</pre></blockquote>
-<p>
-impose the requirement: &quot;Shall not exit via an exception&quot;.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS.</p>
-
-<ol>
-<li><p>Change 21.4.2 [string.cons] p3 as indicated (This move constructor has a wide
-contract and is therefore safely marked as <tt>noexcept</tt>):</p>
-
-<blockquote><pre>
-basic_string(const basic_string&lt;charT,traits,Allocator&gt;&amp; str);
-basic_string(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;
-</pre><blockquote>
-<p>
--2- <i>Effects</i>: Constructs an object of class <tt>basic_string</tt> as indicated in Table 64. 
-In the second form, <tt>str</tt> is left in a valid state with an unspecified value.
-<p/>
-<del>-3- <i>Throws</i>: The second form throws nothing if the allocator's move constructor throws nothing.</del>
-</p>
-</blockquote></blockquote>
-</li>
-
-<li><p>Change 21.4.2 [string.cons] p18 as indicated (This move-like constructor may throw,
-if the allocators don't compare equal, but not because of a potentially throwing allocator
-copy constructor, only because the allocation attempt may fail and throw an exception):</p>
-
-<blockquote><pre>
-basic_string(const basic_string&amp; str, const Allocator&amp; alloc);
-basic_string(basic_string&amp;&amp; str, const Allocator&amp; alloc);
-</pre><blockquote>
-<p>
-[&hellip;]
-<p/>
--18- <i>Throws</i>: The second form throws nothing if <tt>alloc == str.get_allocator()</tt> 
-<del>unless the copy constructor for <tt>Allocator</tt> throws</del>.
-</p>
-</blockquote></blockquote>
-</li>
-
-</ol>
-
 
 
 
