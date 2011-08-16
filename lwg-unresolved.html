@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-16 at 10:08:05 UTC</p>
+<p>Revised 2011-08-16 at 12:08:41 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -4214,108 +4214,58 @@ void swap(function&lt;R(ArgTypes...)&gt;&amp; f1, function&lt;R(ArgTypes...)&gt;
 
 
 <hr>
-<h3><a name="2064"></a>2064. More <tt>noexcept</tt> issues in <tt>basic_string</tt></h3>
+<h3><a name="2063"></a>2063. Contradictory requirements for string move assignment</h3>
 <p><b>Section:</b> 21.4 [basic.string] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-29 <b>Last modified:</b> 2011-06-10</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-29 <b>Last modified:</b> 2011-08-16</p>
 <p><b>View other</b> <a href="lwg-index-open.html#basic.string">active issues</a> in [basic.string].</p>
 <p><b>View all other</b> <a href="lwg-index.html#basic.string">issues</a> in [basic.string].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
-The following inconsistencies regarding <tt>noexcept</tt> for <tt>basic_string</tt> are noted.
+21.4.1 [string.require]&#47;p4 says that <tt>basic_string</tt> is an "allocator-aware" 
+container and behaves as described in 23.2.1 [container.requirements.general].
 <p/>
-Member swap is not marked <tt>noexcept</tt>:
-</p><blockquote><pre>
-void swap(basic_string&amp; str);
-</pre></blockquote><p>
-But the global swap is marked <tt>noexcept</tt>:
-</p><blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-void swap(basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-          basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <span style="color:#C80000;font-weight:bolder">noexcept</span>;
-</pre></blockquote><p>
-But only in the definition, not in the synopsis.
+23.2.1 [container.requirements.general] describes move assignment in p7 and Table 99.
 <p/>
-All comparison operators are marked <tt>noexcept</tt> in their definitions, but not in the synopsis.
+If <tt>allocator_traits&lt;allocator_type&gt;::propagate_on_container_move_assignment::value</tt> 
+is false, and if the allocators stored in the lhs and rhs sides are not equal, then move 
+assigning a string has the same semantics as copy assigning a string as far as resources are 
+concerned (resources can not be transferred). And in this event, the lhs may have to acquire 
+resources to gain sufficient capacity to store a copy of the rhs.
 <p/>
-The compare function that takes a pointer:
+However 21.4.2 [string.cons]&#47;p22 says:
 </p><blockquote><pre>
-int compare(const charT *s) const;
-</pre></blockquote><p>
-is not marked <tt>noexcept</tt>. But some of the comparison functions which are marked <tt>noexcept</tt> 
-(only in their definition) are specified to call the throwing compare operator:
-</p><blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator==(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                const charT* rhs) <span style="color:#C80000;font-weight:bolder">noexcept</span>;
+basic_string&lt;charT,traits,Allocator&gt;&amp;
+operator=(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;
 </pre><blockquote><p>
-<i>Returns</i>: <tt>lhs.compare(rhs) == 0</tt>.
-</p></blockquote></blockquote>
-<p>
-All functions with a narrow contract should not be declared as <tt>noexcept</tt> according to
-the guidelines presented in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3279.pdf">n3279</a>.
-Among these narrow contract functions are the <tt>swap</tt> functions (23.2.1 [container.requirements.general] p. 8) 
-and functions with non-<tt>NULL</tt> <tt>const charT*</tt> parameters.
+<i>Effects</i>: If <tt>*this</tt> and <tt>str</tt> are not the same object, modifies <tt>*this</tt> 
+as shown in Table 71. [<i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]
+</p></blockquote></blockquote><p>
+These two specifications for <tt>basic_string::operator=(basic_string&amp;&amp;)</tt> are in conflict with 
+each other. It is not possible to implement a <tt>basic_string</tt> which satisfies both requirements.
+<p/>
+Additionally assign from an rvalue <tt>basic_string</tt> is defined as:
+</p><blockquote><pre>
+basic_string&amp; assign(basic_string&amp;&amp; str) noexcept;
+</pre><blockquote><p>
+<i>Effects</i>: The function replaces the string controlled by <tt>*this</tt> with a string of length 
+<tt>str.size()</tt> whose elements are a copy of the string controlled by <tt>str</tt>. [ <i>Note</i>: A valid 
+implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]
+</p></blockquote></blockquote><p>
+It seems contradictory that this member can be sensitive to <tt>propagate_on_container_swap</tt> instead 
+of <tt>propagate_on_container_move_assignment</tt>.  Indeed, there is a very subtle chance for undefined 
+behavior here:  If the implementation implements this in terms of <tt>swap</tt>, and if 
+<tt>propagate_on_container_swap</tt> is false, and if the two allocators are unequal, the behavior 
+is undefined, and will likely lead to memory corruption.  That's a lot to go wrong under a member 
+named "assign".
 </p>
-<p><i>[2011-06-08 Daniel provides wording]</i></p>
 
 
 
 <p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS. Both move-assignment operator and the moving <tt>assign</tt>
-function are not touched by this issue, because they are handled separately by issue <a href="lwg-active.html#2063">2063</a>.</p>
+<p>This wording is relative to the FDIS.</p>
 <ol>
-<li><p>Modify the header <tt>&lt;string&gt;</tt> synopsis in 21.3 [string.classes] as 
-indicated (Rationale: Adding <tt>noexcept</tt> to these specific overloads is in sync with
-applying the same rule to specific overloads of the member functions <tt>find</tt>, <tt>compare</tt>, etc.
-This approach deviates from that taken in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3279.pdf">n3279</a>,
-but seems more consistent given similar application for comparable member functions):</p>
-
-<blockquote><pre>
-#include &lt;initializer_list&gt;
-
-namespace std {
-
-  [&hellip;]
-  template&lt;class charT, class traits, class Allocator&gt;
-    bool operator==(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                    const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <ins>noexcept</ins>;
-  [&hellip;]
-  template&lt;class charT, class traits, class Allocator&gt;
-    bool operator!=(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                    const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <ins>noexcept</ins>;
-  [&hellip;]
-
-  template&lt;class charT, class traits, class Allocator&gt;
-    bool operator&lt;(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                   const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <ins>noexcept</ins>;
-  [&hellip;]
-  template&lt;class charT, class traits, class Allocator&gt;
-    bool operator&gt;(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                   const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <ins>noexcept</ins>;
-  [&hellip;]
-
-  template&lt;class charT, class traits, class Allocator&gt;
-    bool operator&lt;=(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                    const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <ins>noexcept</ins>;
-  [&hellip;]
-  template&lt;class charT, class traits, class Allocator&gt;
-    bool operator&gt;=(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                    const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <ins>noexcept</ins>;
-  [&hellip;]
-}
-</pre></blockquote>
-</li>
-
-<li><p>Modify the class template <tt>basic_string</tt> synopsis in 21.4 [basic.string] as 
-indicated (Remark 1: The <tt>noexcept</tt> at the move-constructor is fine, because even for a
-small-object optimization there is no problem here, because <tt>basic_string::value_type</tt>
-is required to be a non-array POD as of 21.1 [strings.general] p1, Remark 2: This
-proposal removes the <tt>noexcept</tt> at single character overloads of <tt>find</tt>, <tt>rfind</tt>,
-etc. because they are defined in terms of potentially allocating functions. It seems like
-an additional issue to me to change the semantics in terms of non-allocating functions and
-adding <tt>noexcept</tt> instead):</p>
-
+<li><p>Modify the class template <tt>basic_string</tt> synopsis in 21.4 [basic.string]:</p>
 <blockquote><pre>
 namespace std {
   template&lt;class charT, class traits = char_traits&lt;charT&gt;,
@@ -4323,194 +4273,69 @@ namespace std {
   class basic_string {
   public:
     [&hellip;]
-    <i>// [string.ops], string operations:</i>
+    basic_string&amp; operator=(basic_string&amp;&amp; str) <del>noexcept</del>;
     [&hellip;]
-    size_type find (charT c, size_type pos = 0) const <del>noexcept</del>;
-    [&hellip;]
-    size_type rfind(charT c, size_type pos = npos) const <del>noexcept</del>;
-    [&hellip;]
-    size_type find_first_of(charT c, size_type pos = 0) const <del>noexcept</del>;
-    [&hellip;]
-    size_type find_last_of (charT c, size_type pos = npos) const <del>noexcept</del>;
-    [&hellip;]
-    size_type find_first_not_of(charT c, size_type pos = 0) const <del>noexcept</del>;
-    [&hellip;]
-    size_type find_last_not_of (charT c, size_type pos = npos) const <del>noexcept</del>;
+    basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
     [&hellip;]
   };
 }
 </pre></blockquote>
-
 </li>
 
-<li><p>Modify 21.4.7.2 [string::find] before p5 and before p7 as indicated:</p>
-
+<li><p>Remove the definition of the <tt>basic_string</tt> move assignment operator from 21.4.2 [string.cons] 
+entirely, including Table 71 &mdash; <tt>operator=(const basic_string&lt;charT, traits, Allocator&gt;&amp;&amp;)</tt>.
+This is consistent with how we define move assignment for the containers in Clause 23:</p>
 <blockquote><pre>
-size_type find(const charT* s, size_type pos = 0) const <del>noexcept</del>;
-[&hellip;]
-size_type find(charT c, size_type pos = 0) const <del>noexcept</del>;
+<del>basic_string&lt;charT,traits,Allocator&gt;&amp;
+operator=(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;</del>
 </pre><blockquote><p>
--7- <i>Returns</i>: <tt>find(basic_string&lt;charT,traits,Allocator&gt;(1,c), pos)</tt>.
+<del>-22- <i>Effects</i>: If <tt>*this</tt> and <tt>str</tt> are not the same object, modifies <tt>*this</tt> as shown 
+in Table 71. [ <i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]</del>
+<p/>
+<del>-23- If <tt>*this</tt> and <tt>str</tt> are the same object, the member has no effect.</del>
+<p/>
+<del>-24- <i>Returns</i>: <tt>*this</tt></del>
 </p></blockquote></blockquote>
+<blockquote>
+<table border="1">
+<caption><del>Table 71 &mdash; <tt>operator=(const basic_string&lt;charT, traits, Allocator&gt;&amp;&amp;)</tt></del></caption>
 
+<tr>
+<th><del>Element</del></th>
+<th><del>Value</del></th>
+</tr>
+
+<tr>
+<td><del><tt>data()</tt></del></td>
+<td><del>points at the array whose first element was pointed
+at by <tt>str.data()</tt></del></td>
+</tr>
+
+<tr>
+<td><del><tt>size()</tt></del></td>
+<td><del>previous value of <tt>str.size()</tt></del></td>
+</tr>
+
+<tr>
+<td><del><tt>capacity()</tt></del></td>
+<td><del>a value at least as large as <tt>size()</tt></del></td>
+</tr>
+
+</table> 
+</blockquote>
 </li>
 
-<li><p>Modify 21.4.7.3 [string::rfind] before p7 as indicated:</p>
-
+<li><p>Modify the paragraphs prior to 21.4.6.3 [string::assign] p.3 as indicated (The
+first insertion recommends a separate paragraph number for the indicated paragraph):</p>
 <blockquote><pre>
-size_type rfind(charT c, size_type pos = npos) const <del>noexcept</del>;
+basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
 </pre><blockquote><p>
--7- <i>Returns</i>: <tt>rfind(basic_string&lt;charT,traits,Allocator&gt;(1,c),pos)</tt>.
-</p></blockquote></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.7.4 [string::find.first.of] before p7 as indicated:</p>
-
-<blockquote><pre>
-size_type find_first_of(charT c, size_type pos = 0) const <del>noexcept</del>;
-</pre><blockquote><p>
--7- <i>Returns</i>: <tt>find_first_of(basic_string&lt;charT,traits,Allocator&gt;(1,c), pos)</tt>.
-</p></blockquote></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.7.5 [string::find.last.of] before p7 as indicated:</p>
-
-<blockquote><pre>
-size_type find_last_of(charT c, size_type pos = npos) const <del>noexcept</del>;
-</pre><blockquote><p>
--7- <i>Returns</i>: <tt>find_last_of(basic_string&lt;charT,traits,Allocator&gt;(1,c),pos)</tt>.
-</p></blockquote></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.7.6 [string::find.first.not.of] before p7 as indicated:</p>
-
-<blockquote><pre>
-size_type find_first_not_of(charT c, size_type pos = 0) const <del>noexcept</del>;
-</pre><blockquote><p>
--7- <i>Returns</i>: <tt>find_first_not_of(basic_string(1, c), pos)</tt>.
-</p></blockquote></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.7.7 [string::find.last.not.of] before p7 as indicated:</p>
-
-<blockquote><pre>
-size_type find_last_not_of(charT c, size_type pos = npos) const <del>noexcept</del>;
-</pre><blockquote><p>
--7- <i>Returns</i>: <tt>find_last_not_of(basic_string(1, c), pos)</tt>.
-</p></blockquote></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.2 [string::operator==] before p2+p3 as indicated:</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator==(const charT* lhs,
-                const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-
-[&hellip;]
-				
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator==(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                const charT* rhs) <del>noexcept</del>;
-</pre></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.3 [string::op!=] before p2+p3 as indicated:</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator!=(const charT* lhs,
-                const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-
-[&hellip;]
-				
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator!=(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                const charT* rhs) <del>noexcept</del>;
-</pre></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.4 [string::op&lt;] before p2+p3 as indicated:</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&lt;(const charT* lhs,
-               const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-
-[&hellip;]
-				
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&lt;(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-               const charT* rhs) <del>noexcept</del>;
-</pre></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.5 [string::op&gt;] before p2+p3 as indicated:</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&gt;(const charT* lhs,
-               const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-
-[&hellip;]
-				
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&gt;(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-               const charT* rhs) <del>noexcept</del>;
-</pre></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.6 [string::op&lt;=] before p2+p3 as indicated:</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&lt;=(const charT* lhs,
-                const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-
-[&hellip;]
-				
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&lt;=(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                const charT* rhs) <del>noexcept</del>;
-</pre></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.7 [string::op&gt;=] before p2+p3 as indicated:</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&gt;=(const charT* lhs,
-                const basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-
-[&hellip;]
-				
-template&lt;class charT, class traits, class Allocator&gt;
-bool operator&gt;=(const basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-                const charT* rhs) <del>noexcept</del>;
-</pre></blockquote>
-
-</li>
-
-<li><p>Modify 21.4.8.8 [string.special] as indicated (Remark: The change of
-the semantics guarantees as of 17.5.1.4 [structure.specifications] p4 that 
-the "Throws: Nothing" element of member swap is implied):</p>
-
-<blockquote><pre>
-template&lt;class charT, class traits, class Allocator&gt;
-  void swap(basic_string&lt;charT,traits,Allocator&gt;&amp; lhs,
-    basic_string&lt;charT,traits,Allocator&gt;&amp; rhs) <del>noexcept</del>;
-</pre><blockquote><p>
--1- Effects: <ins>Equivalent to</ins> <tt>lhs.swap(rhs);</tt>
+<ins>-?-</ins> <i>Effects</i>: <ins>Equivalent to <tt>*this = std::move(str)</tt>.</ins>
+<del>The function replaces the string controlled by <tt>*this</tt> with a string of length 
+<tt>str.size()</tt> whose elements are a copy of the string controlled by <tt>str</tt>. 
+[ <i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]</del>
+<p/>
+-3- <i>Returns</i>: <tt>*this</tt>
 </p></blockquote></blockquote>
 
 </li>
