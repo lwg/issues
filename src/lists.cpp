@@ -11,6 +11,9 @@
 //    brace-initialization
 //    range-based for loops
 //    raw string literals
+//    constexpr
+//    new function syntax (late specified return type)
+//    noexcept
 // Its coding style assumes a standard library optimized with move-semantics
 // The only known compiler to support all of this today is the experimental gcc trunk (4.6)
 
