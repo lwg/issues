@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-16 at 23:08:34 UTC</p>
+<p>Revised 2011-08-17 at 12:08:23 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -2916,10 +2916,10 @@ template&lt;class R, class T, class... Args&gt;
 
 <hr>
 <h3><a name="2049"></a>2049. <tt>is_destructible</tt> is underspecified</h3>
-<p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-08-16</p>
+<p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-08-17</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>The conditions for the type trait <tt>is_destructible</tt> to be true
 are described in Table 49 &mdash; Type property predicates:</p>
@@ -2986,8 +2986,46 @@ my_pointer&lt;T&gt;::~my_pointer() noexcept(is_nothrow_destructible&lt;T&gt;::va
 and <tt>is_nothrow_destructible</tt> are similarly affected, because their wording refers to "the indicated
 destructor" and probably need to be adapted as well.</p>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+After discussion about to to handle the exceptional cases of reference types, function types (available by defererencing a function pointer)
+and <tt>void</tt> types, Howard supplied proposed wording.
+</p>
+
 
 <p><b>Proposed resolution:</b></p>
+
+<p>
+Update 20.9.4.3 [meta.unary.prop], table 49:
+</p>
+
+<table border="1">
+<tr>
+<td><tt>template &lt;class T>
+struct is_destructible;</tt></td>
+<td>
+<del>For a complete type <tt>T</tt> and given <tt>template &lt;class U> struct test { U u; };</tt>, <tt>test&lt;T>:: ̃test()</tt> is not deleted.
+</del>
+<br/>
+<ins>
+For object types, if the expression: <tt>std::declval&lt;T&amp;>().~T()</tt> is well-formed in an unevaluated context then
+<tt>is_destructible&lt;T>::value</tt> is <tt>true</tt>, otherwise it is <tt>false</tt>.
+<br/>
+For <tt>void</tt> types, <tt>is_destructible&lt;T>::value</tt> is <tt>false</tt>.
+<br/>
+For reference types, <tt>is_destructible&lt;T>::value</tt> is <tt>true</tt>.
+<br/>
+For function types, <tt>is_destructible&lt;T>::value</tt> is <tt>false</tt>.
+</ins>
+</td>
+<td><tt>T</tt> shall be a complete type, (possibly cv-qualified) <tt>void</tt>, or an array of unknown bound.</td>
+</tr>
+</table>
+
 
 
 
@@ -3101,53 +3139,6 @@ convertible to <tt>duration</tt>.
 </p></blockquote></blockquote>
 </li>
 </ol>
-
-
-
-
-
-<hr>
-<h3><a name="2055"></a>2055. <tt>std::move</tt> in <tt>std::accumulate</tt> and other algorithms</h3>
-<p><b>Section:</b> 26.7 [numeric.ops] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Chris Jefferson <b>Opened:</b> 2011-01-01 <b>Last modified:</b> 2011-05-18</p>
-<p><b>View all other</b> <a href="lwg-index.html#numeric.ops">issues</a> in [numeric.ops].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-The C++0x draft says <tt>std::accumulate</tt> uses: <tt>acc = binary_op(acc, *i)</tt>.
-<p/>
-Eelis van der Weegen has pointed out, on the libstdc++ mailing list, that using 
-<tt>acc = binary_op(std::move(acc), *i)</tt> can lead to massive improvements (particularly, 
-it means accumulating strings is linear rather than quadratic).
-<p/>
-Consider the simple case, accumulating a bunch of strings of length 1 (the same argument holds for other length buffers).
-For strings <tt>s</tt> and <tt>t</tt>, <tt>s+t</tt> takes time <tt>length(s)+length(t)</tt>, as you have to copy 
-both <tt>s</tt> and <tt>t</tt> into a new buffer.
-<p/>
-So in accumulating <tt>n</tt> strings, step <tt>i</tt> adds a string of length <tt>i-1</tt> to a string of length 
-1, so takes time <tt>i</tt>.
-<p/>
-Therefore the total time taken is: <tt>1+2+3+...+n</tt> = O(<tt>n<sup>2</sup></tt>)
-<p/>
-<tt>std::move(s)+t</tt>, for a "good" implementation, is amortized time <tt>length(t)</tt>, like <tt>vector</tt>, 
-just copy <tt>t</tt> onto the end of the buffer. So the total time taken is:
-<p/>
-<tt>1+1+1+...+1</tt> (<tt>n</tt> times) = O(<tt>n</tt>). This is the same as <tt>push_back</tt> on a <tt>vector</tt>.
-<p/>
-I'm trying to decide if this implementation might already be allowed. I suspect it might not 
-be (although I can't imagine any sensible code it would break). There are other algorithms 
-which could benefit similarly (<tt>inner_product</tt>, <tt>partial_sum</tt> and 
-<tt>adjacent_difference</tt> are the most obvious).
-<p/>
-Is there any general wording for "you can use rvalues of temporaries"?
-<p/>
-The reflector discussion starting with message c++std-lib-29763 came to the conclusion
-that above example is not covered by the "as-if" rules and that enabling this behaviour
-would seem quite useful.
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
 
 
 
@@ -3565,54 +3556,6 @@ basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
 
 </li>
 </ol>
-
-
-
-
-
-<hr>
-<h3><a name="2066"></a>2066. Missing specification of <tt>vector::resize(size_type)</tt></h3>
-<p><b>Section:</b> 23.3.6.3 [vector.capacity] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2011-03-29 <b>Last modified:</b> 2011-06-21</p>
-<p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
-<p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-In C++1x (N3090) there are two version of <tt>vector::resize</tt> &mdash; 23.3.6.3 [vector.capacity]:
-</p>
-<blockquote><pre>
-void resize(size_type sz);
-void resize(size_type sz, const T&amp; c);
-</pre></blockquote>
-<p>
-The text in 23.3.6.3 [vector.capacity]&#47;12 only mentions "no effects on throw" for the
-two args version of resize:
-</p><blockquote><p>
-<i>Requires</i>: If an exception is thrown other than by the move constructor
-of a non-<tt>CopyConstructible</tt> <tt>T</tt> there are no effects.
-</p></blockquote><p>
-This seems like unintentional oversight since <tt>resize(size)</tt> is
-semantically the same as <tt>resize(size, T())</tt>.
-Additionally, the C++03 standard only specify single version of resize
-with default for the second argument - 23.2.4:
-</p>
-<blockquote><pre>
-void resize(size_type sz, T c = T());
-</pre></blockquote>
-<p>
-Therefore not requiring same guarantees for both version of resize is
-in fact a regression.
-</p>
-
-<p><i>[2011-06-12: Daniel comments]</i></p>
-
-
-<p>The proposed resolution for issue <a href="lwg-active.html#2033">2033</a> should solve this issue as well.</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<p>Apply the proposed resolution of issue <a href="lwg-active.html#2033">2033</a></p>
 
 
 

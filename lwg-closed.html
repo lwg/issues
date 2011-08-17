@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-08-16</td>
+  <td align="left">2011-08-17</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -37,8 +37,8 @@
   <td align="left">Alisdair Meredith &lt;<a href="mailto:lwgchair@gmail.com">lwgchair@gmail.com</a>&gt;</td>
 </tr>
 </table>
-<h1>C++ Standard Library Closed Issues List (Revision D75)</h1>
-<p>Revised 2011-08-16 at 23:08:34 UTC</p>
+<h1>C++ Standard Library Closed Issues List (Revision D76)</h1>
+<p>Revised 2011-08-17 at 12:08:23 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -60,22 +60,23 @@
 
 <h2>Revision History</h2>
 <ul>
-<li>R75: 2011-03-28 post-Madrid mailing<ul>
+<li>D76: 2011-09-01 post-Bloomington mailing<ul>
 <li><b>Summary:</b><ul>
-<li>47 open issues, down by 49.</li>
-<li>1546 closed issues, up by 86.</li>
+<li>46 open issues, down by 50.</li>
+<li>1547 closed issues, up by 87.</li>
 <li>1593 issues total, up by 37.</li>
 </ul></li>
 <li><b>Details:</b><ul>
 <li>Added the following 3 NAD issues: <a href="lwg-closed.html#2036">2036</a>, <a href="lwg-closed.html#2043">2043</a>, <a href="lwg-closed.html#2068">2068</a>.</li>
-<li>Added the following 2 NAD Future issues: <a href="lwg-closed.html#2040">2040</a>, <a href="lwg-closed.html#2051">2051</a>.</li>
-<li>Added the following 7 New issues: <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2055">2055</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2066">2066</a>.</li>
-<li>Added the following 6 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2070">2070</a>.</li>
+<li>Added the following 3 NAD Future issues: <a href="lwg-closed.html#2040">2040</a>, <a href="lwg-closed.html#2051">2051</a>, <a href="lwg-closed.html#2055">2055</a>.</li>
+<li>Added the following 5 New issues: <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2063">2063</a>.</li>
+<li>Added the following 5 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2070">2070</a>.</li>
 <li>Added the following Pending NAD issue: <a href="lwg-closed.html#2046">2046</a>.</li>
 <li>Added the following Pending NAD Editorial issue: <a href="lwg-closed.html#2060">2060</a>.</li>
 <li>Added the following 10 Ready issues: <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2067">2067</a>, <a href="lwg-active.html#2069">2069</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
-<li>Added the following Review issue: <a href="lwg-active.html#2048">2048</a>.</li>
+<li>Added the following 2 Review issues: <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>.</li>
+<li>Added the following Tentatively Resolved issue: <a href="lwg-active.html#2066">2066</a>.</li>
 <li>Added the following Voting issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following 2 WP issues: <a href="lwg-defects.html#2041">2041</a>, <a href="lwg-defects.html#2042">2042</a>.</li>
 <li>Changed the following issue from New to Deferred: <a href="lwg-active.html#1521">1521</a>.</li>
@@ -46077,6 +46078,63 @@ I would recommend making non-unary <tt>tuple</tt> constructors non-explicit.
 
 <p>
 Move to NAD Future, this would be an extension to existing functionality.
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+
+
+
+
+
+<hr>
+<h3><a name="2055"></a>2055. <tt>std::move</tt> in <tt>std::accumulate</tt> and other algorithms</h3>
+<p><b>Section:</b> 26.7 [numeric.ops] <b>Status:</b> <a href="lwg-active.html#NAD Future">NAD Future</a>
+ <b>Submitter:</b> Chris Jefferson <b>Opened:</b> 2011-01-01 <b>Last modified:</b> 2011-08-17</p>
+<p><b>View all other</b> <a href="lwg-index.html#numeric.ops">issues</a> in [numeric.ops].</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#NAD Future">NAD Future</a> status.</p>
+<p><b>Discussion:</b></p>
+<p>
+The C++0x draft says <tt>std::accumulate</tt> uses: <tt>acc = binary_op(acc, *i)</tt>.
+<p/>
+Eelis van der Weegen has pointed out, on the libstdc++ mailing list, that using 
+<tt>acc = binary_op(std::move(acc), *i)</tt> can lead to massive improvements (particularly, 
+it means accumulating strings is linear rather than quadratic).
+<p/>
+Consider the simple case, accumulating a bunch of strings of length 1 (the same argument holds for other length buffers).
+For strings <tt>s</tt> and <tt>t</tt>, <tt>s+t</tt> takes time <tt>length(s)+length(t)</tt>, as you have to copy 
+both <tt>s</tt> and <tt>t</tt> into a new buffer.
+<p/>
+So in accumulating <tt>n</tt> strings, step <tt>i</tt> adds a string of length <tt>i-1</tt> to a string of length 
+1, so takes time <tt>i</tt>.
+<p/>
+Therefore the total time taken is: <tt>1+2+3+...+n</tt> = O(<tt>n<sup>2</sup></tt>)
+<p/>
+<tt>std::move(s)+t</tt>, for a "good" implementation, is amortized time <tt>length(t)</tt>, like <tt>vector</tt>, 
+just copy <tt>t</tt> onto the end of the buffer. So the total time taken is:
+<p/>
+<tt>1+1+1+...+1</tt> (<tt>n</tt> times) = O(<tt>n</tt>). This is the same as <tt>push_back</tt> on a <tt>vector</tt>.
+<p/>
+I'm trying to decide if this implementation might already be allowed. I suspect it might not 
+be (although I can't imagine any sensible code it would break). There are other algorithms 
+which could benefit similarly (<tt>inner_product</tt>, <tt>partial_sum</tt> and 
+<tt>adjacent_difference</tt> are the most obvious).
+<p/>
+Is there any general wording for "you can use rvalues of temporaries"?
+<p/>
+The reflector discussion starting with message c++std-lib-29763 came to the conclusion
+that above example is not covered by the "as-if" rules and that enabling this behaviour
+would seem quite useful.
+</p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Moved to NAD Future.  This would be a larger change than we would consider for a simple TC.
 </p>
 
 

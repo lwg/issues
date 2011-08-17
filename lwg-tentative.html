@@ -19,7 +19,64 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-16 at 23:08:34 UTC</p>
+<p>Revised 2011-08-17 at 12:08:23 UTC</p>
 <h2>Tentative Issues</h2>
+<hr>
+<h3><a name="2066"></a>2066. Missing specification of <tt>vector::resize(size_type)</tt></h3>
+<p><b>Section:</b> 23.3.6.3 [vector.capacity] <b>Status:</b> <a href="lwg-active.html#Resolved">Tentatively Resolved</a>
+ <b>Submitter:</b> Rani Sharoni <b>Opened:</b> 2011-03-29 <b>Last modified:</b> 2011-08-17</p>
+<p><b>View other</b> <a href="lwg-index-open.html#vector.capacity">active issues</a> in [vector.capacity].</p>
+<p><b>View all other</b> <a href="lwg-index.html#vector.capacity">issues</a> in [vector.capacity].</p>
+<p><b>Discussion:</b></p>
+<p>
+In C++1x (N3090) there are two version of <tt>vector::resize</tt> &mdash; 23.3.6.3 [vector.capacity]:
+</p>
+<blockquote><pre>
+void resize(size_type sz);
+void resize(size_type sz, const T&amp; c);
+</pre></blockquote>
+<p>
+The text in 23.3.6.3 [vector.capacity]&#47;12 only mentions "no effects on throw" for the
+two args version of resize:
+</p><blockquote><p>
+<i>Requires</i>: If an exception is thrown other than by the move constructor
+of a non-<tt>CopyConstructible</tt> <tt>T</tt> there are no effects.
+</p></blockquote><p>
+This seems like unintentional oversight since <tt>resize(size)</tt> is
+semantically the same as <tt>resize(size, T())</tt>.
+Additionally, the C++03 standard only specify single version of resize
+with default for the second argument - 23.2.4:
+</p>
+<blockquote><pre>
+void resize(size_type sz, T c = T());
+</pre></blockquote>
+<p>
+Therefore not requiring same guarantees for both version of resize is
+in fact a regression.
+</p>
+
+<p><i>[2011-06-12: Daniel comments]</i></p>
+
+
+<p>The proposed resolution for issue <a href="lwg-active.html#2033">2033</a> should solve this issue as well.</p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+This issue will be resolved by issue <a href="lwg-active.html#2033">2033</a>, and closed when this issue is applied. 
+</p>
+
+
+
+<p><b>Proposed resolution:</b></p>
+<p>Apply the proposed resolution of issue <a href="lwg-active.html#2033">2033</a></p>
+
+
+
+
+
 </body>
 </html>
