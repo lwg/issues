@@ -426,6 +426,7 @@ struct sort_by_status {
             "New",
             "Open",
             "Deferred",
+            "Tentatively Resolved",
             "Pending DR",
             "Pending WP",
             "Pending Resolved",
@@ -975,7 +976,7 @@ auto LwgIssuesXml::get_revisions(std::vector<issue> const & issues, std::string 
 
    r += "<li>";
 //   r += "R74: 2011-02-28 pre-Madrid mailing";   // This is the form we are copying
-   r += "R75: 2011-03-28 post-Madrid mailing";   // We should date and *timestamp* this reference, as we expect to generate several documents per day
+   r += "D76: 2011-09-01 post-Bloomington mailing";   // We should date and *timestamp* this reference, as we expect to generate several documents per day
 //   r += "Madrid meeting resolutions";   // We should date and *timestamp* this reference, as we expect to generate several documents per day
    r += diff_report;
    r += "</li>\n";
@@ -1237,6 +1238,10 @@ void make_sort_by_section(std::vector<issue>& issues, std::string const & filena
    auto b = issues.begin();
    auto e = issues.end();
    if(active_only) {
+      auto bReady = find_if(b, e, [](issue const & iss){ return "Ready" == iss.stat; });
+      if(bReady != e) {
+         b = bReady;
+      }
       b = find_if(b, e, [](issue const & iss){ return "Ready" != iss.stat; });
       e = find_if(b, e, [](issue const & iss){ return !is_active(iss.stat); });
    }
