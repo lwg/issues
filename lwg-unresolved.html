@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-17 at 12:08:23 UTC</p>
+<p>Revised 2011-08-17 at 17:08:00 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -3247,10 +3247,10 @@ is the type of the return value.
 
 <hr>
 <h3><a name="2058"></a>2058. <tt>valarray</tt> and <tt>begin&#47;end</tt></h3>
-<p><b>Section:</b> 26.6 [numarray] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-05-30</p>
+<p><b>Section:</b> 26.6 [numarray] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-08-17</p>
 <p><b>View all other</b> <a href="lwg-index.html#numarray">issues</a> in [numarray].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 It was just brought to my attention that the pair of functions
@@ -3291,8 +3291,55 @@ whether the expression <tt>begin(x + y)</tt> would be well-formed, portable code
 need to write this as <tt>begin(std::valarray&lt;T&gt;(x + y))</tt>.</li>
 </ol>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+The intent of these overloads is entirely to support the new for syntax, and not to create
+new containers.
+</p>
+
+<p>
+Stefanus provides suggested wording.
+</p>
+
+
 
 <p><b>Proposed resolution:</b></p>
+<p>
+In 26.6.1 [valarray.syn]/4, make the following <ins>insertion</ins>:
+</p>
+
+<p>
+4 Implementations introducing such replacement types shall provide additional functions and operators as
+follows:
+</p>
+<p>
+— for every function taking a <tt>const valarray&lt;T>&amp;</tt> <ins>other than <tt>begin()</tt> and <tt>end()</tt>
+(26.6.10 [valarray.range])</ins>, identical functions taking the replacement types shall be added;
+</p>
+<p>
+— for every function taking two <tt>const valarray&lt;T>&amp;</tt> arguments, identical functions taking every combination
+of <tt>const valarray&lt;T>&amp;</tt> and replacement types shall be added.
+</p>
+
+<p>
+In 26.6.10 [valarray.range], make the following <ins>insertion</ins>:
+</p>
+<p> 
+1 In the <tt>begin</tt> and <tt>end</tt> function templates that follow, <i>unspecified</i>1 is a type that meets
+the requirements of a mutable random access iterator (24.2.7) whose <tt>value_type</tt> is the template parameter
+<tt>T</tt> and whose <tt>reference</tt> type is <tt>T&amp;</tt>. <i>unspecified</i>2 is a type that meets the
+requirements of a constant random access iterator (24.2.7) whose <tt>value_type</tt> is the template parameter
+<tt>T</tt> and whose <tt>reference</tt> type is <tt>const T&amp;</tt>.
+</p>
+<p><ins>
+2 The iterators  returned by <tt>begin()</tt> and <tt>end()</tt> for an array are guaranteed to be valid until the
+member function <tt>resize(size_t, T)</tt> (26.6.2.8 [valarray.members]) is called for that array or until
+the lifetime of that array ends, whichever happens first.
+</ins></p>
 
 
 
