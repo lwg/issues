@@ -26,7 +26,7 @@
 </tr>
 <tr>
   <td align="left">Date:</td>
-  <td align="left">2011-08-17</td>
+  <td align="left">2011-08-18</td>
 </tr>
 <tr>
   <td align="left">Project:</td>
@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D76)</h1>
-<p>Revised 2011-08-17 at 19:08:01 UTC</p>
+<p>Revised 2011-08-18 at 11:08:03 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -2610,8 +2610,8 @@ shall throw any exceptions.
 
 <hr>
 <h3><a name="2005"></a>2005. <tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</h3>
-<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-08-16</p>
+<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers], X [unord.map.modifiers], X [unord.multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -2656,7 +2656,7 @@ the corresponding unordered containers. Unfortunately it has some redundancy ove
 not remove the specification because of the more general template parameter <tt>P</tt> - the Table&nbsp;99 
 requirements apply only for an argument <em>identical</em> to <tt>value_type</tt>.
 <p/>
-Proposed resolution:
+Daniel's Proposed resolution (not current):
 </p>
 
 <ol>
@@ -2736,56 +2736,162 @@ We need <tt>is_convertible</tt>, not <tt>is_constructible</tt>, both in ordered 
 
 
 <p>
-Move back to open, wording to follow...
+Move back to open.
+The effects of these inserts can be concisely stated in terms of emplace().
+Also, the correct term is "EmplaceConstructible", not "constructible".
+New wording by Pablo.
 </p>
 
 
 
 <p><b>Proposed resolution:</b></p>
+
 <ol>
-<li>Add a new Remarks element after 23.4.4.4 [map.modifiers] p. 1:
+<li>Change 23.4.4.4 [map.modifiers] around p. 1 as indicated:
 <blockquote><pre>
 template &lt;class P&gt; pair&lt;iterator, bool&gt; insert(P&amp;&amp; x);
-template &lt;class P&gt; pair&lt;iterator, bool&gt; insert(const_iterator position, P&amp;&amp; x);
-</pre><blockquote><p>
-1 <em>Requires</em>: <tt>P</tt> shall be convertible to <tt>value_type</tt>.
+template &lt;class P&gt; <del>pair&lt;</del>iterator<del>, bool&gt;</del> insert(const_iterator position, P&amp;&amp; x);
+</pre><blockquote>
+1 <em>Requires</em>: <del><tt>P</tt> shall be convertible
+to </del><tt>value_type</tt><ins> is EmplaceConstructible into
+<tt>*this</tt> from <tt>std::forward&lt;P&gt;(x)</tt></ins>.
 <p/>
-If <tt>P</tt> is instantiated as a reference type, then the argument <tt>x</tt> is copied from. Otherwise <tt>x</tt> is considered
+<del>If <tt>P</tt> is instantiated as a reference type, then the argument <tt>x</tt> is copied from. Otherwise <tt>x</tt> is considered
 to be an rvalue as it is converted to <tt>value_type</tt> and inserted into the map. Specifically, in
 such cases <tt>CopyConstructible</tt> is not required of <tt>key_type</tt> or <tt>mapped_type</tt> unless the conversion
 from <tt>P</tt> specifically requires it (e.g., if <tt>P</tt> is a <tt>tuple&lt;const key_type, mapped_type&gt;</tt>, then <tt>key_type</tt>
 must be <tt>CopyConstructible</tt>). The signature taking <tt>InputIterator</tt> parameters does not require
 <tt>CopyConstructible</tt> of either <tt>key_type</tt> or <tt>mapped_type</tt> if the dereferenced <tt>InputIterator</tt> returns a
 non-const rvalue <tt>pair&lt;key_type,mapped_type&gt;</tt>. Otherwise <tt>CopyConstructible</tt> is required for both
-<tt>key_type</tt> and <tt>mapped_type</tt>.
+<tt>key_type</tt> and <tt>mapped_type</tt>.</del><br/>
+<ins>? <em>Effects</em>: The first form is equivalent to
+<tt>return emplace(std::forward&lt;P&gt;(x))</tt>.
+The second form is equivalent to
+<tt>return emplace_hint(position, std::forward&lt;P&gt;(x))</tt>.</ins>
 <p/>
 <ins>? <em>Remarks</em>: These signatures shall not participate in overload resolution unless <tt>P</tt> 
 is implicitly convertible to <tt>value_type</tt>.</ins>
-</p>
+<p/>
 </blockquote></blockquote>
 </li>
 <li>Change 23.4.5.3 [multimap.modifiers] around p. 1 as indicated:
 <blockquote><pre>
 template &lt;class P&gt; iterator insert(P&amp;&amp; x);
 template &lt;class P&gt; iterator insert(const_iterator position, P&amp;&amp; x);
-</pre><blockquote><p>
-1 <em>Requires</em>: <tt>P</tt> shall be convertible to <tt>value_type</tt>.
+</pre><blockquote>
+1 <em>Requires</em>: <del><tt>P</tt> shall be convertible
+to </del><tt>value_type</tt> <ins>is EmplaceConstructible into <tt>*this</tt> from 
+<tt>std::forward&lt;P&gt;(x)</tt></ins>.
 <p/>
-If <tt>P</tt> is instantiated as a reference type, then the argument <tt>x</tt> is copied from. Otherwise 
+<del>If <tt>P</tt> is instantiated as a reference type, then the argument <tt>x</tt> is copied from. Otherwise 
 <tt>x</tt> is considered to be an rvalue as it is converted to <tt>value_type</tt> and inserted into the map. 
 Specifically, in such cases <tt>CopyConstructible</tt> is not required of <tt>key_type</tt> or <tt>mapped_type</tt> 
 unless the conversion from <tt>P</tt> specifically requires it (e.g., if <tt>P</tt> is a <tt>tuple&lt;const key_type, mapped_type&gt;</tt>, 
 then <tt>key_type</tt> must be <tt>CopyConstructible</tt>). The signature taking <tt>InputIterator</tt> parameters 
 does not require <tt>CopyConstructible</tt> of either <tt>key_type</tt> or <tt>mapped_type</tt> if the dereferenced 
 <tt>InputIterator</tt> returns a non-const rvalue <tt>pair&lt;key_type, mapped_type&gt;</tt>. Otherwise <tt>CopyConstructible</tt> 
-is required for both <tt>key_type</tt> and <tt>mapped_type</tt>.
+is required for both <tt>key_type</tt> and <tt>mapped_type</tt>.</del><br/>
+<ins>? <em>Effects</em>: The first form is equivalent to
+<tt>return emplace(std::forward&lt;P&gt;(x))</tt>.
+The second form is equivalent to
+<tt>return emplace_hint(position, std::forward&lt;P&gt;(x))</tt>.</ins>
 <p/>
 <ins>? <em>Remarks</em>: These signatures shall not participate in overload resolution unless <tt>P</tt> 
 is implicitly convertible to <tt>value_type</tt>.</ins>
-</p>
+<p/>
+</blockquote></blockquote>
+</li>
+<li>Change 23.5.4.4 [unord.map.modifers] around p. 1 as indicated:
+<blockquote><pre>
+template &lt;class P&gt;
+pair&lt;iterator, bool&gt; insert(P&amp;&amp; obj);
+</pre>
+<blockquote>
+1 <em>Requires</em>: <tt>value_type</tt> is 
+<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
+from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<p/>
+2 <em>Effects</em>:
+<ins>equivalent to <tt>return emplace(std::forward&lt;P&gt;(obj))</tt>.</ins>
+<del>Inserts obj converted to <tt>value_type</tt> if and only if there is no element in the container with
+key equivalent to the key of <tt>value_type(obj)</tt>.</del>
+<p/>
+<del>3 <em>Returns</em>: The bool component of the returned pair object indicates whether the insertion took place
+and the iterator component points to the element with key equivalent to the key of <tt>value_type(obj)</tt>.</del>
+<p/>
+<del>4 <em>Complexity</em>: Average case O(1), worst case O(size()).</del>
+<p/>
+<del>5</del><ins>3</ins> <em>Remarks</em>: This signature shall not participate in overload resolution unless <tt>P</tt> is implicitly convertible
+to <tt>value_type</tt>.
+<p/>
+</blockquote>
+<pre>template &lt;class P&gt;
+iterator insert(const_iterator hint, P&amp;&amp; obj);
+</pre>
+<blockquote>
+<del>6</del><em>?</em> <em>Requires</em>: <tt>value_type</tt> is 
+<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
+from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<p/>
+<del>7</del><em>?</em> <em>Effects</em>:
+<ins>equivalent to <tt>return emplace_hint(hint, std::forward&lt;P&gt;(obj))</tt>.</ins>
+<del>Inserts obj converted to <tt>value_type</tt> if and only if there is no element in the container with
+key equivalent to the key of <tt>value_type(obj)</tt>. The iterator hint is a hint pointing to where the
+search should start.</del>
+<p/>
+<del>8 <em>Returns</em>: An iterator that points to the element with key equivalent to the key of <tt>value_type(obj)</tt>.</del>
+<p/>
+<del>9 <em>Complexity</em>: Average case O(1), worst case O(size()).</del>
+<p/>
+<del>10</del><em>?</em> <em>Remarks</em>: This signature shall not participate in overload resolution unless <tt>P</tt> is implicitly convertible
+to <tt>value_type</tt>.
+</blockquote></blockquote>
+</li>
+<li>Change 23.5.5.3 [unord.multimap.modifers] around p. 1 as indicated:
+<blockquote><pre>
+template &lt;class P&gt;
+iterator insert(P&amp;&amp; obj);
+</pre>
+<blockquote>
+1 <em>Requires</em>: <tt>value_type</tt> is 
+<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
+from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<p/>
+2 <em>Effects</em>:
+<ins>equivalent to <tt>return emplace(std::forward&lt;P&gt;(obj))</tt>.</ins>
+<del>Inserts obj converted to <tt>value_type</tt>.</del>
+<p/>
+<del>3 <em>Returns</em>: An iterator that points to the element with key equivalent to the key of <tt>value_type(obj)</tt>.</del>
+<p/>
+<del>4 <em>Complexity</em>: Average case O(1), worst case O(size()).</del>
+<p/>
+<del>5</del><ins>3</ins> <em>Remarks</em>: This signature shall not participate in overload resolution unless P is implicitly convertible
+to <tt>value_type</tt>.
+</blockquote>
+<pre>
+template &lt;class P&gt;
+iterator insert(const_iterator hint, P&amp;&amp; obj);
+</pre>
+<blockquote>
+<del>6</del><em>?</em> <em>Requires</em>: <tt>value_type</tt> is 
+<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
+from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<p/>
+<del>7</del><em>?</em> <em>Effects</em>:
+<ins>equivalent to <tt>return emplace_hint(hint, std::forward&lt;P&gt;(obj))</tt>.</ins>
+<del>Inserts obj converted to <tt>value_type</tt>. The iterator hint is a hint pointing to where the search
+should start.</del>
+<p/>
+<del>8 <em>Returns</em>: An iterator that points to the element with key equivalent to the key of <tt>value_type</tt>(obj).</del>
+<p/>
+<del>9 <em>Complexity</em>: Average case O(1), worst case O(size()).</del>
+<p/>
+<del>10</del><ins><em>?</em></ins> <em>Remarks</em>: This signature shall not participate in overload resolution unless P is implicitly convertible
+to value_type.
 </blockquote></blockquote>
 </li>
 </ol>
+
 
 
 
@@ -6344,7 +6450,7 @@ the lifetime of that array ends, whichever happens first.
 <hr>
 <h3><a name="2059"></a>2059. C++0x ambiguity problem with <tt>map::erase</tt></h3>
 <p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-05-30</p>
+ <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#map">issues</a> in [map].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -6372,8 +6478,210 @@ void erasor(std::map&lt;X,int&gt;&amp; s, X x)
 }
 </pre></blockquote>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+This issue affects only associative container <tt>erase</tt> calls, and is not more general, as these are the
+only functions that are also overloaded on another single arguement that might cause confusion - the <tt>erase</tt>
+by key method.  The complete resolution should simply restore the <tt>iterator</tt> overload in addition to the
+<tt>const_iterator</tt> overload for all eight associative containers. 
+</p>
+
+<p>
+Proposed wording supplied by Alan Talbot.
+</p>
+
 
 <p><b>Proposed resolution:</b></p>
+<p>
+Editorial note: The following things are different between 23.2.4 [associative.reqmts] p.8 and
+23.2.5 [unord.req] p.10. These should probably be reconciled.
+</p>
+<blockquote>
+<ol>
+<li>First uses the convention "denotes";  second uses the convention "is".</li>
+<li>First redundantly says: "If no such element exists, returns a.end()." in erase table entry, second does not.</li>
+</ol>
+</blockquote>
+
+<p>
+23.2.4 [associative.reqmts] Associative containers
+</p>
+<p>
+8 In Table 102, <tt>X</tt> denotes an associative container class, <tt>a</tt> denotes a value of <tt>X</tt>, <tt>a_uniq</tt>
+denotes a value of <tt>X</tt> when <tt>X</tt> supports unique keys, <tt>a_eq</tt> denotes a value of <tt>X</tt> when
+<tt>X</tt> supports multiple keys, <tt>u</tt> denotes an identifier, <tt>i</tt> and <tt>j</tt> satisfy input iterator
+requirements and refer to elements implicitly convertible to <tt>value_type</tt>, <tt>[i,j)</tt> denotes a valid range,
+<tt>p</tt> denotes a valid const iterator to <tt>a</tt>, <tt>q</tt> denotes a valid dereferenceable const iterator to <tt>a</tt>,
+<ins><tt>r</tt> denotes a valid dereferenceable iterator to a,</ins> <tt>[q1, q2)</tt> denotes a valid range of const iterators
+in <tt>a</tt>, <tt>il</tt> designates an object of type <tt>initializer_list&lt;value_type></tt>, <tt>t</tt> denotes a value of
+<tt>X::value_type</tt>, <tt>k</tt> denotes a value of <tt>X::key_type</tt> and <tt>c</tt> denotes a value of type
+<tt>X::key_compare</tt>. <tt>A</tt> denotes the storage allocator used by <tt>X</tt>, if any, or
+<tt>std::allocator&lt;X::value_type></tt> otherwise, and <tt>m</tt> denotes an allocator of a type convertible to <tt>A</tt>.
+</p>
+
+<p>
+23.2.4 [associative.reqmts] Associative containers Table 102
+</p>
+<p>
+Add row:
+</p>
+<ins>
+<table border="1">
+<tr>
+<td><tt>a.erase(r)</tt></td>
+<td><tt>iterator</tt></td>
+<td>
+erases the element pointed to by <tt>r</tt>. Returns an iterator pointing to the element immediately following <tt>r</tt>
+prior to the element being erased. If no such element exists, returns <tt>a.end()</tt>.
+</td>
+<td>amortized constant</td>
+</tr>
+</table>
+</ins>
+
+<p>
+23.2.5 [unord.req] Unordered associative containers</p>
+<p>
+10 In table 103: <tt>X</tt> is an unordered associative container class, <tt>a</tt> is an object of type <tt>X</tt>,
+<tt>b</tt> is a possibly const object of type <tt>X</tt>, <tt>a_uniq</tt> is an object of type <tt>X</tt> when
+<tt>X</tt> supports unique keys, <tt>a_eq</tt> is an object of type <tt>X</tt> when <tt>X</tt> supports equivalent keys,
+<tt>i</tt> and <tt>j</tt> are input iterators that refer to <tt>value_type</tt>, <tt>[i, j)</tt> is a valid range,
+<tt>p</tt> and <tt>q2</tt> are valid const iterators to <tt>a</tt>, <tt>q</tt> and <tt>q1</tt> are valid dereferenceable
+const iterators to <tt>a</tt>, <ins><tt>r</tt> is a valid dereferenceable iterator to a,</ins> <tt>[q1,q2)</tt> is a
+valid range in <tt>a</tt>, <tt>il</tt> designates an object of type <tt>initializer_list&lt;value_type></tt>,
+<tt>t</tt> is a value of type <tt>X::value_type</tt>, <tt>k</tt> is a value of type <tt>key_type</tt>, <tt>hf</tt> is a
+possibly const value of type <tt>hasher</tt>, <tt>eq</tt> is a possibly const value of type <tt>key_equal</tt>,
+<tt>n</tt> is a value of type <tt>size_type</tt>, and <tt>z</tt> is a value of type <tt>float</tt>.
+</p>
+
+<p>
+23.2.5 [unord.req] Unordered associative containers Table 103
+</p>
+<p>
+Add row:
+</p>
+<ins>
+<table border="1">
+<tr>
+<td><tt>a.erase(r)</tt></td>
+<td><tt>iterator</tt></td>
+<td>
+Erases the element pointed to by <tt>r</tt>. Returns the iterator immediately following <tt>r</tt> prior to the erasure.
+</td>
+<td>Average case O(1), worst case O(<tt>a.size()</tt>).</td>
+</tr>
+</table>
+</ins>
+
+<p>
+23.4.4.1 [map.overview] Class template map overview p. 2
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+23.4.5.1 [multimap.overview] Class template multimap overview p. 2
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+23.4.6.1 [set.overview] Class template set overview p. 2
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+23.4.7.1 [multiset.overview] Class template multiset overview 
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+23.5.4.1 [unord.map.overview] Class template unordered_map overview p. 3
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+23.5.5.1 [unord.multimap.overview] Class template unordered_multimap overview p. 3
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+23.5.6.1 [unord.set.overview] Class template unordered_set overview p. 3
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+
+<p>
+23.5.7.1 [unord.multiset.overview] Class template unordered_multiset overview p. 3
+</p>
+<pre>
+<ins>iterator erase(iterator position);</ins>
+iterator erase(const_iterator position);
+size_type erase(const key_type&amp; x);
+iterator erase(const_iterator first, const_iterator last);
+</pre>
+
+<p>
+ [diff.cpp03.containers] C.2.12 Clause 23: containers library 
+</p>
+<p>
+23.2.3, 23.2.4
+</p>
+<p>
+Change: Signature changes: from iterator to const_iterator parameters
+</p>
+<p>
+Rationale: Overspecification. Effects: The signatures of the following member functions changed from
+taking an iterator to taking a const_iterator:
+</p>
+<ul>
+<li>insert(iter, val) for vector, deque, list, set, multiset, map, multimap</li>
+<li>insert(pos, beg, end) for vector, deque, list, forward_list</li>
+<li><del>erase(iter) for set, multiset, map, multimap</del></li>
+<li>erase(begin, end) for set, multiset, map, multimap</li>
+<li>all forms of list::splice</li>
+<li>all forms of list::merge</li>
+</ul>
+<p>
+Valid C++ 2003 code that uses these functions may fail to compile with this International Standard.
+</p>
 
 
 
