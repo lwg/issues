@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-18 at 14:08:29 UTC</p>
+<p>Revised 2011-08-18 at 17:08:09 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -675,219 +675,10 @@ Consider to await the paper.
 
 
 <hr>
-<h3><a name="1214"></a>1214. Insufficient/inconsistent key immutability requirements for  associative containers</h3>
-<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-20 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
-<p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Scott Meyers' mentions on a recent posting on <a
-href="http://groups.google.de/group/comp.std.c++/msg/6f9160fc428bcbea">c.s.c++</a>
-some arguments that point to an incomplete resolution
-of <a href="lwg-defects.html#103">103</a> and to an inconsistency of requirements on keys in ordered and
-unordered associative
-containers:
-</p>
-
-<blockquote>
-<p>
-1) <a href="lwg-defects.html#103">103</a> introduced the term immutable without defining it in a unique manner in
-23.2.4 [associative.reqmts]/5:
-</p>
-
-<blockquote><p>
-[..] Keys in an associative container are immutable.
-</p></blockquote>
-
-<p>
-According to conventional dictionaries immutable is an unconditional way of
-saying that something cannot be changed. So without any further explicit
-allowance a user <em>always</em> runs into undefined behavior if (s)he attempts
-to modify such a key. IMO this was not the intend of the committee to resolve
-<a href="lwg-defects.html#103">103</a> in that way because the comments suggest an interpretation that
-should give any user the freedom to modify the key in an <em>explicit</em> way
-<em>provided</em> it would not affect the sort order in that container.
-</p>
-
-<p>
-2) Another observation was that surprisingly no similar 'safety guards'
-exists against unintentional key changes for the unordered associative
-containers, specifically there is no such requirement as in
-23.2.4 [associative.reqmts]/6 that "both <tt>iterator</tt> and <tt>const_iterator</tt> are constant
-iterators". But the need for such protection against unintentional
-changes as well as the constraints in which manner any explicit
-changes may be performed are both missing and necessary, because
-such changes could potentially change the <em>equivalence</em> of keys that
-is measured by the <tt>hasher</tt> and <tt>key_equal</tt>.
-</p>
-
-<p>
-I suggest to fix the unconditional wording involved with "immutable keys"
-by at least adding a hint for the reader that users <em>may</em> perform such
-changes in an explicit manner <em>and</em> to perform similar wording changes
-as <a href="lwg-defects.html#103">103</a> did for the ordered associative containers also for the unordered
-containers.
-</p>
-</blockquote>
-
-<p><i>[
-2010-03-27 Daniel provides wording.
-]</i></p>
-
-
-<blockquote><p>
-This update attempts to provide normative wording that harmonizes the key and
-function object constraints of associative and unordered containers.
-</p></blockquote>
-
-<p><i>[
-2010 Batavia:
-]</i></p>
-
-
-<p>
-We're uncomfortable with the first agenda item, and we can live with the second agenda 
-item being applied before or after Madrid. 
-</p>
-
-
-<p><b>Proposed resolution:</b></p>
-<ol>
-<li>
-<p>
-Change 23.2.4 [associative.reqmts]/2 as indicated: <i>[This ensures that
-associative containers make better clear what this "arbitrary" type is, as the
-unordered containers do in 23.2.5 [unord.req]/3]</i>
-</p>
-
-<blockquote><p>
-2 Each associative container is parameterized on <tt>Key</tt> and an ordering
-relation <tt>Compare</tt> that induces a strict weak ordering (25.4) on elements
-of <tt>Key</tt>. In addition, <tt>map</tt> and <tt>multimap</tt> associate an
-arbitrary <ins><em>mapped type</em></ins><del>type</del> <tt>T</tt> with the
-<tt>Key</tt>. The object of type <tt>Compare</tt> is called the <em>comparison
-object</em> of a container.
-</p></blockquote>
-</li>
-
-<li>
-<p>
-Change 23.2.4 [associative.reqmts]/5 as indicated: <i>[This removes the
-too strong requirement that keys must not be changed at all and brings this line
-in sync with 23.2.5 [unord.req]/7. We take care about the real
-constraints by the remaining suggested changes. The rationale provided by LWG
-<a href="lwg-defects.html#103">103</a> didn't really argue why that addition is necessary, and I
-believe the remaining additions make it clear that any user changes have strong
-restrictions]</i>:
-</p>
-
-<blockquote><p>
-5 For <tt>set</tt> and <tt>multiset</tt> the value type is the same as the key
-type. For <tt>map</tt> and <tt>multimap</tt> it is equal to <tt>pair&lt;const
-Key, T&gt;</tt>. <del>Keys in an associative container are immutable.</del>
-</p></blockquote>
-</li>
-
-<li>
-<p>
-Change 23.2.5 [unord.req]/3+4 as indicated: <i>[The current sentence of
-p.4 has doesn't say something really new and this whole subclause misses to
-define the concepts of the container-specific hasher <i>object</i> and predicate
-<i>object</i>. We introduce the term <em>key equality predicate</em> which is
-already used in the requirements table. This change does not really correct part
-of this issue, but is recommended to better clarify the nomenclature and the
-difference between the function objects and the function object <em>types</em>,
-which is important, because both can potentially be stateful.]</i>
-</p>
-
-<blockquote>
-<p>
-3 Each unordered associative container is parameterized by <tt>Key</tt>, by a
-function object type <tt>Hash</tt> that meets the <tt>Hash</tt> requirements
-(20.2.4) and acts as a hash function for argument values of type <tt>Key</tt>,
-and by a binary predicate <tt>Pred</tt> that induces an equivalence relation on
-values of type <tt>Key</tt>. Additionally, <tt>unordered_map</tt> and
-<tt>unordered_multimap</tt> associate an arbitrary <em>mapped type</em>
-<tt>T</tt> with the <tt>Key</tt>.
-</p>
-
-<p>
-4 <ins>The container's object of type <tt>Hash</tt> - denoted by
-<tt>hash</tt> - is called the <em>hash function</em> of the container.
-The container's object of type <tt>Pred</tt> - denoted by
-<tt>pred</tt> - is called the <em>key equality predicate</em> of the
-container.</ins><del>A hash function is a function object that takes a single
-argument of type <tt>Key</tt> and returns a value of type
-<tt>std::size_t</tt></del>.
-</p>
-</blockquote>
-</li>
-
-<li>
-<p>
-Change 23.2.5 [unord.req]/5 as indicated: <i>[This adds a similar
-safe-guard as the last sentence of 23.2.4 [associative.reqmts]/3]</i>
-</p>
-
-<blockquote><p>
-5 Two values <tt>k1</tt> and <tt>k2</tt> of type <tt>Key</tt> are considered
-equivalent if the container's <ins>key equality
-predicate</ins><del><tt>key_equal</tt> function object</del> returns
-<tt>true</tt> when passed those values. If <tt>k1</tt> and <tt>k2</tt> are
-equivalent, the <ins>container's</ins> hash function shall return the same value
-for both. [<i>Note:</i> thus, when an unordered associative container is
-instantiated with a non-default <tt>Pred</tt> parameter it usually needs a
-non-default <tt>Hash</tt> parameter as well. &mdash; <i>end note</i>] <ins>For
-any two keys <tt>k1</tt> and <tt>k2</tt> in the same container, calling
-<tt>pred(k1, k2)</tt> shall always return the same value. For any key <tt>k</tt>
-in a container, calling <tt>hash(k)</tt> shall always return the same
-value.</ins>
-</p></blockquote>
-</li>
-
-<li>
-<p>
-After 23.2.5 [unord.req]/7 add the following new paragraph: <i>[This
-ensures the same level of compile-time protection that we already require for
-associative containers. It is necessary for similar reasons, because any change
-in the stored key which would change it's equality relation to others or would
-change it's hash value such that it would no longer fall in the same bucket,
-would break the container invariants]</i>
-</p>
-
-<blockquote>
-<p>
-7 For <tt>unordered_set</tt> and <tt>unordered_multiset</tt> the value type is
-the same as the key type. For <tt>unordered_map</tt> and
-<tt>unordered_multimap</tt> it is <tt>std::pair&lt;const Key, T&gt;</tt>.
-</p>
-<p>
-<ins>For unordered containers where the value type is the same as the key type,
-both <tt>iterator</tt> and <tt>const_iterator</tt> are constant iterators. It is
-unspecified whether or not <tt>iterator</tt> and <tt>const_iterator</tt> are the
-same type. [<i>Note:</i> <tt>iterator</tt> and <tt>const_iterator</tt> have
-identical semantics in this case, and <tt>iterator</tt> is convertible to
-<tt>const_iterator</tt>. Users can avoid violating the One Definition Rule by
-always using <tt>const_iterator</tt> in their function parameter lists. &mdash;
-<i>end note</i>]</ins>
-</p>
-</blockquote>
-</li>
-
-</ol>
-
-
-
-
-
-
-<hr>
 <h3><a name="1450"></a>1450. [FCD] Contradiction in regex_constants</h3>
-<p><b>Section:</b> 28.5.2 [re.matchflag] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
+<p><b>Section:</b> 28.5.2 [re.matchflag] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-08-18</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-127</b></p>
 
@@ -944,8 +735,7 @@ So, actually <em>both</em> <tt>regex_constants::match_default</tt> and
 of the fixes suggested by <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3110.html">n3110</a>.
 </p>
 
-
-<p><b>Proposed resolution:</b></p>
+<p><i>[
 <p>
 Add the following sentence to 28.5.2 [re.matchflag]  paragraph 1:
 </p>
@@ -956,70 +746,73 @@ rules of the grammar specified for the regular expression object, modified accor
 Table 136 for any bitmask elements set. <ins>Type <tt>regex_constants::match_flag_type</tt> also defines the 
 constants <tt>regex_constants::match_default</tt> and <tt>regex_constants::format_default</tt>.</ins>
 </p></blockquote>
-
-
-
-
-
-<hr>
-<h3><a name="1521"></a>1521. Requirements on internal pointer representations in containers</h3>
-<p><b>Section:</b> 23.2.1 [container.requirements.general] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Mike Spertus <b>Opened:</b> 2010-10-16 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View all other</b> <a href="lwg-index.html#container.requirements.general">issues</a> in [container.requirements.general].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
-<p><b>Discussion:</b></p>
-<p><b>Addresses US-104, US-141</b></p>
-
-<p>
-The standard doesn't say that containers should use abstract pointer 
-types internally. Both Howard and Pablo agree that this is the intent. 
-Further, it is necessary for containers to be stored, for example, in 
-shared memory with an interprocess allocator (the type of scenario that 
-allocators are intended to support).
-</p>
-<p>
-In spite of the (possible) agreement on intent, it is necessary to make 
-this explicit:
-</p>
-<p>
-An implementations may like to store the result of dereferencing the 
-pointer (which is a raw reference) as an optimization, but that prevents 
-the data structure from being put in shared memory, etc. In fact, a 
-container could store raw references to the allocator, which would be a 
-little weird but conforming as long as it has one by-value copy. 
-Furthermore, pointers to locales, ctypes, etc. may be there, which also 
-prevents the data structure from being put in shared memory, so we 
-should make explicit that a container does not store raw pointers or 
-references at all.
-</p>
-
-<p><i>[
-Pre-batavia
 ]</i></p>
 
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
 <p>
-This issue is being opened as part of the response to NB comments US-104/141. 
-See paper <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3171.pdf">N3171</a>
-in the pre-Batavia mailing. 
+It appears the key problem is the phrasing of the bitmask requirements.  Jeremiah supplies updated wording.
 </p>
 
-<p><i>[2011-03-23 Madrid meeting]</i></p>
+<p>
+Pete Becker has also provided an alternative resolution.
+</p>
 
-
-<p>Deferred</p>
-
+<p>
+Ammend 17.5.2.1.3 [bitmask.types]:
+</p>
+<p>
+Change the list of values for "enum bit mask" in p2 from
+</p>
+<p>
+<tt><i>V0</i> = 1 &lt;&lt; 0, <i>V1</i> = 1 &lt;&lt; 1, <i>V2</i> = 1 &lt;&lt; 2, <i>V3</i> = 1 &lt;&lt; 3, ...</tt>.
+</p>
+<p>
+to
+</p>
+<p>
+<tt><i>V0</i> = 0, <i>V1</i> = 1 &lt;&lt; 0, <i>V2</i> = 1 &lt;&lt; 1, <i>V3</i> = 1 &lt;&lt; 2,  ...</tt>.
+</p>
+<p>
+Here, the names <i>C0</i>, <i>C1</i>, etc. represent <i>bitmask elements</i> for this particular
+bitmask type. All such <ins>non-zero</ins> elements have distinct values such that, for any pair
+<i>Ci</i> and <i>Cj</i> <ins>where <i>i</i> != <i>j</i></ins>, <del><i>Ci &amp; Ci</i> is nonzero
+and</del> <i>Ci &amp; Cj</i> is zero.
+</p>
+<p>
+Change bullet 3 of paragraph 4:
+</p>
+<p>
+<del>The</del><ins>A non-zero</ins> value Y is set in the object X if the expression X &amp; Y is nonzero.
+</p>
 
 
 <p><b>Proposed resolution:</b></p>
 <p>
-Add to the end of 23.2.1 [container.requirements.general] p. 8:
+Ammend 17.5.2.1.3 [bitmask.types] p3:
+</p>
+<p>
+Here, the names <i>C0</i>, <i>C1</i>, etc. represent <i>bitmask elements</i> for this particular
+bitmask type. All such elements have distinct<ins>, non-zero</ins> values such that, for any pair
+<i>Ci</i> and <i>Cj</i> <ins>where <i>i</i> != <i>j</i>,</ins> <i>Ci &amp; Ci</i> is nonzero
+and <i>Ci &amp; Cj</i> is zero. <ins>Additionally, the value 0 is used to represent an
+<i>empty bitmask</i>, in which no bitmask elements are set.</ins>
+</p>
+
+<p>
+Add the following sentence to 28.5.2 [re.matchflag]  paragraph 1:
 </p>
 <blockquote><p>
-[..] In all container types defined in this Clause, the member <tt>get_allocator()</tt> returns 
-a copy of the allocator used to construct the container or, if that allocator has been replaced, 
-a copy of the most recent replacement. <ins>The container may not store internal objects whose 
-types are of the form  <tt>T *</tt> or <tt>T &amp;</tt> except insofar as they are part of the 
-item type or members.</ins>
+1 The type <tt>regex_constants::match_flag_type</tt> is an implementation-defined bitmask type (17.5.2.1.3).
+<ins>The constants of that type, except for <tt>match_default</tt> and <tt>format_default</tt>, are bitmask
+elements. The <tt>match_default</tt> and <tt>format_default</tt> constants are empty bitmasks.</ins> Matching
+a regular expression against a sequence of characters [first,last) proceeds according to the rules of the
+grammar specified for the regular expression object, modified according to the effects listed in Table 136
+for any bitmask elements set.
 </p></blockquote>
 
 
@@ -1115,9 +908,9 @@ shall throw any exceptions.
 
 <hr>
 <h3><a name="2005"></a>2005. <tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</h3>
-<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers], X [unord.map.modifiers], X [unord.multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+<p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers], X [unord.map.modifiers], X [unord.multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
  <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-08-18</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 In [unord.map.modifiers], the signature:
@@ -1241,10 +1034,11 @@ We need <tt>is_convertible</tt>, not <tt>is_constructible</tt>, both in ordered 
 
 
 <p>
-Move back to open.
 The effects of these inserts can be concisely stated in terms of emplace().
 Also, the correct term is "EmplaceConstructible", not "constructible".
-New wording by Pablo.
+</p>
+<p>
+New wording by Pablo, eliminating duplicate requirements already implied by the effects clause.  Move to Review.
 </p>
 
 
