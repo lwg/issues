@@ -19,14 +19,14 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-18 at 11:08:03 UTC</p>
+<p>Revised 2011-08-18 at 11:08:32 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
-<p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-03-24</p>
+<p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 As specified in the latest draft,
@@ -131,6 +131,16 @@ Move to Open, needs more study.
 
 <p>Move to deferred</p>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+The proposed wording looks good, no-one sure why this was held back before.  Move to Review.
+</p>
+
+
 
 <p><b>Proposed resolution:</b></p>
 
@@ -189,10 +199,10 @@ field represents a value outside the range of representable values,
 
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
-<p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-05-18</p>
+<p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 When I look at the <tt>unordered_*</tt> constructors, I think the complexity is poorly
@@ -260,6 +270,15 @@ has a complexity of <tt>n</tt> bucket allocations, but this part of the work is 
 
 
 <p>Move to deferred</p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+The proposed wording looks good.  Move to Review.
+</p>
 
 
 
@@ -859,142 +878,6 @@ always using <tt>const_iterator</tt> in their function parameter lists. &mdash;
 
 </ol>
 
-
-
-
-
-
-<hr>
-<h3><a name="1330"></a>1330. Move container requirements into requirements tables</h3>
-<p><b>Section:</b> 23.2 [container.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2010-03-10 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View all other</b> <a href="lwg-index.html#container.requirements">issues</a> in [container.requirements].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>
-Abstract:
-</p>
-<p>
-In general, it seems that in a couple of places container behavior is
-not described in requirement tables although it is a general behavior.
-</p>
-
-<p>
-History:
-</p>
-
-<p>
-Issue <a href="lwg-defects.html#676">676</a> added move semantics to unordered containers.
-For the added insert functions the Editor requested to put their
-semantic description into a requirements table rather than describing
-them for each container individually. The text however was taken from
-the associative containers, where we also have the semantics for each
-container described. Also, <a href="lwg-defects.html#1034">1034</a> is to some extend
-requesting a clarification of the requirement tables and it turned out
-that in other places we have the same problem (e.g. we have no general
-requirement for type pointer and const_pointer although each container
-has them with issue <a href="lwg-defects.html#1306">1306</a>).
-</p>
-
-<p>
-From my personal list of functions in requirement tables
-and containers, the following types/functions are missing in
-requirement tables:
-</p>
-
-<ul>
-<li>
-<tt>pointer</tt>, <tt>const_pointer</tt> in Table 91 (container requirements)
-</li>
-<li>
-<p>
-all copy constructors, copy constructors with allocator,
- assignment operators, and insert operators
- with move semantics for associative and unordered containers
-</p>
-<blockquote><pre>
-ContType c1(c2&amp;&amp;)
-ContType c1(c2&amp;&amp;,alloc)
-c1 = c2&amp;&amp;
-c.insert(val&amp;&amp;)
-c.insert(pos,val&amp;&amp;)
-</pre></blockquote>
-</li>
-</ul>
-
-<p>
-As a special case, we lack the following requirements for all sequence
-containers BUT array (so special wording or a new container category is
-required):
-</p>
-
-<ul>
-<li>
-<p>
-constructor with only a size argument
-</p>
-<blockquote><pre>
-ContType c(num)
-</pre></blockquote>
-</li>
-<li>
-<p>
-copy constructor with allocator and move semantics
-</p>
-<blockquote><pre>
-ContType c1(c2&amp;&amp;,alloc)
-</pre></blockquote>
-</li>
-<li>
-<p>
-all constructors that insert multiple elements with additional allocator
-</p>
-<blockquote><pre>
-ContType c(num, val,alloc)
-ContType c(beg, end,alloc)
-ContType c(initlist,alloc)
-</pre></blockquote>
-</li>
-<li>
-<p>
-all resize functiuons:
-</p>
-<blockquote><pre>
-c.resize(num)
-c.resize(num,val)
-</pre></blockquote>
-</li>
-</ul>
-
-<p>
-Note that we also might have to add additional requirements on other
-places for sequence containers because having an allocator requires
-additional statements for the treatment of the allocators. E.g. swap for
-containers with allocators is not specified in any requirement table.
-</p>
-
-<p>
-And finally, if we have the requirements in the requirements tables, we
-can remove the corresponding descriptions for the individual container.
-However, note that sequence container requirements have NO complexity
-column, so that we still need container specific descriptions for the
-functions listed there.
-</p>
-
-<p><i>[
-2010 Batavia
-]</i></p>
-
-<p>
-While there is consensus that further cleaning up the container requirement
-tables would be a good thing, there is no feeling that this <em>must</em>
-be done in time for 0x.  The issue remains open, but Deferred.
-</p>
-
-
-
-
-<p><b>Proposed resolution:</b></p>
 
 
 
@@ -3394,10 +3277,10 @@ is the type of the return value.
 
 <hr>
 <h3><a name="2058"></a>2058. <tt>valarray</tt> and <tt>begin&#47;end</tt></h3>
-<p><b>Section:</b> 26.6 [numarray] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-08-17</p>
+<p><b>Section:</b> 26.6 [numarray] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
+ <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#numarray">issues</a> in [numarray].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 It was just brought to my attention that the pair of functions
@@ -3464,7 +3347,7 @@ In 26.6.1 [valarray.syn]/4, make the following <ins>insertion</ins>:
 follows:
 </p>
 <p>
-— for every function taking a <tt>const valarray&lt;T>&amp;</tt> <ins>other than <tt>begin()</tt> and <tt>end()</tt>
+— for every function taking a <tt>const valarray&lt;T>&amp;</tt> <ins>other than <tt>begin</tt> and <tt>end</tt>
 (26.6.10 [valarray.range])</ins>, identical functions taking the replacement types shall be added;
 </p>
 <p>
@@ -3483,7 +3366,7 @@ requirements of a constant random access iterator (24.2.7) whose <tt>value_type<
 <tt>T</tt> and whose <tt>reference</tt> type is <tt>const T&amp;</tt>.
 </p>
 <p><ins>
-2 The iterators  returned by <tt>begin()</tt> and <tt>end()</tt> for an array are guaranteed to be valid until the
+2 The iterators  returned by <tt>begin</tt> and <tt>end</tt> for an array are guaranteed to be valid until the
 member function <tt>resize(size_t, T)</tt> (26.6.2.8 [valarray.members]) is called for that array or until
 the lifetime of that array ends, whichever happens first.
 </ins></p>
