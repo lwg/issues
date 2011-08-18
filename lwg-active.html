@@ -38,7 +38,7 @@
 </tr>
 </table>
 <h1>C++ Standard Library Active Issues List (Revision D76)</h1>
-<p>Revised 2011-08-18 at 12:08:40 UTC</p>
+<p>Revised 2011-08-18 at 14:08:29 UTC</p>
 
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
@@ -163,12 +163,12 @@ ownership of it.
 <li><b>Details:</b><ul>
 <li>Added the following 3 NAD issues: <a href="lwg-closed.html#2036">2036</a>, <a href="lwg-closed.html#2043">2043</a>, <a href="lwg-closed.html#2068">2068</a>.</li>
 <li>Added the following 3 NAD Future issues: <a href="lwg-closed.html#2040">2040</a>, <a href="lwg-closed.html#2051">2051</a>, <a href="lwg-closed.html#2055">2055</a>.</li>
-<li>Added the following 8 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2059">2059</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2070">2070</a>.</li>
+<li>Added the following 7 Open issues: <a href="lwg-active.html#2038">2038</a>, <a href="lwg-active.html#2052">2052</a>, <a href="lwg-active.html#2054">2054</a>, <a href="lwg-active.html#2057">2057</a>, <a href="lwg-active.html#2062">2062</a>, <a href="lwg-active.html#2063">2063</a>, <a href="lwg-active.html#2070">2070</a>.</li>
 <li>Added the following Pending NAD issue: <a href="lwg-closed.html#2046">2046</a>.</li>
 <li>Added the following Pending NAD Editorial issue: <a href="lwg-closed.html#2060">2060</a>.</li>
 <li>Added the following 10 Ready issues: <a href="lwg-active.html#2044">2044</a>, <a href="lwg-active.html#2045">2045</a>, <a href="lwg-active.html#2047">2047</a>, <a href="lwg-active.html#2050">2050</a>, <a href="lwg-active.html#2053">2053</a>, <a href="lwg-active.html#2061">2061</a>, <a href="lwg-active.html#2064">2064</a>, <a href="lwg-active.html#2065">2065</a>, <a href="lwg-active.html#2067">2067</a>, <a href="lwg-active.html#2069">2069</a>.</li>
 <li>Added the following Resolved issue: <a href="lwg-defects.html#2037">2037</a>.</li>
-<li>Added the following 4 Review issues: <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2058">2058</a>.</li>
+<li>Added the following 5 Review issues: <a href="lwg-active.html#2048">2048</a>, <a href="lwg-active.html#2049">2049</a>, <a href="lwg-active.html#2056">2056</a>, <a href="lwg-active.html#2058">2058</a>, <a href="lwg-active.html#2059">2059</a>.</li>
 <li>Added the following Tentatively Resolved issue: <a href="lwg-active.html#2066">2066</a>.</li>
 <li>Added the following Voting issue: <a href="lwg-active.html#2039">2039</a>.</li>
 <li>Added the following 2 WP issues: <a href="lwg-defects.html#2041">2041</a>, <a href="lwg-defects.html#2042">2042</a>.</li>
@@ -2634,9 +2634,7 @@ New wording by Pablo.
 template &lt;class P&gt; pair&lt;iterator, bool&gt; insert(P&amp;&amp; x);
 template &lt;class P&gt; <del>pair&lt;</del>iterator<del>, bool&gt;</del> insert(const_iterator position, P&amp;&amp; x);
 </pre><blockquote>
-1 <em>Requires</em>: <del><tt>P</tt> shall be convertible
-to </del><tt>value_type</tt><ins> is EmplaceConstructible into
-<tt>*this</tt> from <tt>std::forward&lt;P&gt;(x)</tt></ins>.
+<del>1 <em>Requires</em>: <tt>P</tt> shall be convertible to <tt>value_type</tt>.</del>
 <p/>
 <del>If <tt>P</tt> is instantiated as a reference type, then the argument <tt>x</tt> is copied from. Otherwise <tt>x</tt> is considered
 to be an rvalue as it is converted to <tt>value_type</tt> and inserted into the map. Specifically, in
@@ -2661,9 +2659,7 @@ is implicitly convertible to <tt>value_type</tt>.</ins>
 template &lt;class P&gt; iterator insert(P&amp;&amp; x);
 template &lt;class P&gt; iterator insert(const_iterator position, P&amp;&amp; x);
 </pre><blockquote>
-1 <em>Requires</em>: <del><tt>P</tt> shall be convertible
-to </del><tt>value_type</tt> <ins>is EmplaceConstructible into <tt>*this</tt> from 
-<tt>std::forward&lt;P&gt;(x)</tt></ins>.
+<del>1 <em>Requires</em>: <tt>P</tt> shall be convertible to <tt>value_type</tt>.</del>
 <p/>
 <del>If <tt>P</tt> is instantiated as a reference type, then the argument <tt>x</tt> is copied from. Otherwise 
 <tt>x</tt> is considered to be an rvalue as it is converted to <tt>value_type</tt> and inserted into the map. 
@@ -2689,9 +2685,7 @@ template &lt;class P&gt;
 pair&lt;iterator, bool&gt; insert(P&amp;&amp; obj);
 </pre>
 <blockquote>
-1 <em>Requires</em>: <tt>value_type</tt> is 
-<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
-from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<del>1 <em>Requires</em>: <tt>value_type</tt> is constructible from <tt>std::forward&lt;P&gt;(obj)</tt>.</del>
 <p/>
 2 <em>Effects</em>:
 <ins>equivalent to <tt>return emplace(std::forward&lt;P&gt;(obj))</tt>.</ins>
@@ -2711,9 +2705,7 @@ to <tt>value_type</tt>.
 iterator insert(const_iterator hint, P&amp;&amp; obj);
 </pre>
 <blockquote>
-<del>6</del><em>?</em> <em>Requires</em>: <tt>value_type</tt> is 
-<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
-from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<del>6 <em>Requires</em>: <tt>value_type</tt> is constructible from <tt>std::forward&lt;P&gt;(obj)</tt>.</del>
 <p/>
 <del>7</del><em>?</em> <em>Effects</em>:
 <ins>equivalent to <tt>return emplace_hint(hint, std::forward&lt;P&gt;(obj))</tt>.</ins>
@@ -2735,9 +2727,7 @@ template &lt;class P&gt;
 iterator insert(P&amp;&amp; obj);
 </pre>
 <blockquote>
-1 <em>Requires</em>: <tt>value_type</tt> is 
-<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
-from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<del>1 <em>Requires</em>: <tt>value_type</tt> is constructible from <tt>std::forward&lt;P&gt;(obj)</tt>.</del>
 <p/>
 2 <em>Effects</em>:
 <ins>equivalent to <tt>return emplace(std::forward&lt;P&gt;(obj))</tt>.</ins>
@@ -2755,9 +2745,7 @@ template &lt;class P&gt;
 iterator insert(const_iterator hint, P&amp;&amp; obj);
 </pre>
 <blockquote>
-<del>6</del><em>?</em> <em>Requires</em>: <tt>value_type</tt> is 
-<del>constructible</del><ins>EmplaceConstructible into <tt>*this</tt></ins>
-from <tt>std::forward&lt;P&gt;(obj)</tt>.
+<del>6 <em>Requires</em>: <tt>value_type</tt> is constructible from <tt>std::forward&lt;P&gt;(obj)</tt>.</del>
 <p/>
 <del>7</del><em>?</em> <em>Effects</em>:
 <ins>equivalent to <tt>return emplace_hint(hint, std::forward&lt;P&gt;(obj))</tt>.</ins>
@@ -6361,10 +6349,10 @@ the lifetime of that array ends, whichever happens first.
 
 <hr>
 <h3><a name="2059"></a>2059. C++0x ambiguity problem with <tt>map::erase</tt></h3>
-<p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+<p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
  <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#map">issues</a> in [map].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 <tt>map::erase</tt> (and several related methods) took an iterator in C++03, but take a <tt>const_iterator</tt> 
@@ -6403,7 +6391,7 @@ by key method.  The complete resolution should simply restore the <tt>iterator</
 </p>
 
 <p>
-Proposed wording supplied by Alan Talbot.
+Proposed wording supplied by Alan Talbot, and moved to Review.
 </p>
 
 
