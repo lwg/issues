@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-18 at 11:08:32 UTC</p>
+<p>Revised 2011-08-18 at 12:08:40 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
@@ -1739,47 +1739,6 @@ Apply the resolution proposed by the 2010-10-29 comment in <a href="lwg-active.h
 
 
 <hr>
-<h3><a name="2013"></a>2013. Do library implementers have the freedom to add <tt>constexpr</tt>?</h3>
-<p><b>Section:</b> 17.6.5.6 [constexpr.functions] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Matt Austern <b>Opened:</b> 2010-11-12 <b>Last modified:</b> 2011-03-24</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
-<p><b>Discussion:</b></p>
-<p>Suppose that a particular function is not tagged as constexpr in the standard,
-but that, in some particular implementation, it is possible to write it within
-the constexpr constraints. If an implementer tags such a function as constexpr,
-is that a violation of the standard or is it a conforming extension?</p>
-
-<p>There are two questions to consider. First, is this allowed under the
-as-if rule? Second, if it does not fall under as-if, is there
-(and should there be) any special license granted to implementers
-to do this anyway, sort of the way we allow elision of copy constructors
-even though it is detectable by users?</p>
-
-<p>I believe that this does not fall under "as-if", so implementers
-probably don't have that freedom today. I suggest changing the WP
-to grant it. Even if we decide otherwise, however, I suggest that
-we make it explicit.</p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p><i>In 17.6.4.6 [constexpr.functions], change paragraph 1 to:</i></p>
-
-<blockquote><p>
-<ins>This standard explicitly requires that certain standard library functions
-are <tt>constexpr</tt> [dcl.constexpr].
-Additionally, an implementation may declare any function to be <tt>constexpr</tt>
-if that function's definition satisfies the necessary constraints.</ins>
-Within any header that provides any non-defining declarations of <tt>constexpr</tt>
-functions or constructors an implementation shall provide corresponding definitions. 
-</p></blockquote>
-
-
-
-
-
-
-<hr>
 <h3><a name="2016"></a>2016. <tt>Allocators</tt> must be no-throw <i>swappable</i></h3>
 <p><b>Section:</b> 17.6.3.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-11-17 <b>Last modified:</b> 2011-03-24</p>
@@ -2684,7 +2643,7 @@ post: <tt>r</tt> is <del>dereferenceable</del><ins>incrementable</ins>.<br/>
 <hr>
 <h3><a name="2038"></a>2038. Missing definition for <tt>incrementable</tt> iterator</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-05-18</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2722,6 +2681,15 @@ it is not defined.
 
 <p>I believe that the currently proposed resolution of issue <a href="lwg-active.html#2035">2035</a> solves this
 issue as well.</p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Agree with Daniel, this will be handled by the resolution of <a href="lwg-active.html#2035">2035</a>.
+</p>
 
 
 
@@ -3022,11 +2990,11 @@ For function types, <tt>is_destructible&lt;T>::value</tt> is <tt>false</tt>.
 
 <hr>
 <h3><a name="2052"></a>2052. Mixup between <tt>mapped_type</tt> and <tt>value_type</tt> for associative containers</h3>
-<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-04 <b>Last modified:</b> 2011-05-18</p>
+<p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-04 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 (this is basically reopening the first part of issue <a href="lwg-closed.html#2006">2006</a>, as discussed in the thread 
@@ -3048,6 +3016,18 @@ container with key equivalent to the key of <tt>t</tt>. The <tt>bool</tt> compon
 the returned pair is true if and only if the insertion takes place, and the iterator component 
 of the pair points to the element with key equivalent to the key of <tt>t</tt>.
 </p></blockquote>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Not even an exhaustive list of problem locations. No reason to doubt issue.
+</p>
+<p>
+Pablo volunteers to provide wording.
+</p>
 
 
 <p><b>Proposed resolution:</b></p>
@@ -3377,10 +3357,10 @@ the lifetime of that array ends, whichever happens first.
 
 <hr>
 <h3><a name="2059"></a>2059. C++0x ambiguity problem with <tt>map::erase</tt></h3>
-<p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#New">New</a>
+<p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
  <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View all other</b> <a href="lwg-index.html#map">issues</a> in [map].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 <tt>map::erase</tt> (and several related methods) took an iterator in C++03, but take a <tt>const_iterator</tt> 
@@ -3710,11 +3690,11 @@ void swap(function&lt;R(ArgTypes...)&gt;&amp; f1, function&lt;R(ArgTypes...)&gt;
 
 <hr>
 <h3><a name="2063"></a>2063. Contradictory requirements for string move assignment</h3>
-<p><b>Section:</b> 21.4 [basic.string] <b>Status:</b> <a href="lwg-active.html#New">New</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-29 <b>Last modified:</b> 2011-08-16</p>
+<p><b>Section:</b> 21.4 [basic.string] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-29 <b>Last modified:</b> 2011-08-18</p>
 <p><b>View other</b> <a href="lwg-index-open.html#basic.string">active issues</a> in [basic.string].</p>
 <p><b>View all other</b> <a href="lwg-index.html#basic.string">issues</a> in [basic.string].</p>
-<p><b>View all issues with</b> <a href="lwg-status.html#New">New</a> status.</p>
+<p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
 21.4.1 [string.require]&#47;p4 says that <tt>basic_string</tt> is an "allocator-aware" 
@@ -3835,6 +3815,102 @@ basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
 
 </li>
 </ol>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+
+<p>
+Alisdair: Can this be conditional noexcept?
+</p>
+<p>
+Pablo: We said we were not going to put in many conditional noexcepts. Problem is not allocator, but non-normative definition. It says swap is a valid operation which it is not.
+</p>
+<p>
+Dave: Move assignment is not a critical method.
+</p>
+<p>
+Alisdair: Was confusing assignment and construction.
+</p>
+<p>
+Dave: Move construction is critical for efficiency.
+</p>
+<p>
+Kyle: Is it possible to test for noexcept.
+</p>
+<p>
+Alisdair: Yes, query the noexcept operator.
+</p>
+<p>
+Alisdair: Agreed there is a problem that we cannot unconditionally mark these operations as noexcpet.
+</p>
+<p>
+Pablo: How come swap is not defined in alloc
+</p>
+<p>
+Alisdair: It is in utility.
+</p>
+<p>
+Pablo: Swap has a conditional noexcept. Is no throw move constructable, is no throw move assignable.
+</p>
+<p>
+Pablo: Not critical for strings or containers.
+</p>
+<p>
+Kyle: Why?
+</p>
+<p>
+Pablo: They do not use the default swap.
+</p>
+<p>
+Dave: Important for deduction in other types.
+</p>
+<p>
+Alisdair: Would change the policy we adopted during FDIS mode.
+</p>
+<p>
+Pablo: Keep it simple and get some vendor experience.
+</p>
+<p>
+Alisdair: Is this wording correct? Concerned with bullet 2.
+</p>
+<p>
+Pablo: Where does it reference containers section.
+</p>
+<p>
+Alisdair: String is a container.
+</p>
+<p>
+Alisdair: We should not remove redundancy piecemeal.
+</p>
+<p>
+Pablo: I agree. This is a deviation from rest of string. Missing forward reference to containers section.
+</p>
+<p>
+Pablo: To fix section 2. Only the note needs to be removed. The rest needs to be a forward reference to containers.
+</p>
+<p>
+Alisdair: That is a new issue.
+</p>
+<p>
+Pablo: Not really. Talking about adding one sentence, saying that basic string is a container.
+</p>
+<p>
+Dave: That is not just a forward reference, it is a semantic change.
+</p>
+<p>
+PJ: We intended to make it look like a container, but it did not satisfy all the requirements.
+</p>
+<p>
+Pablo: Clause 1 is correct. Clause 2 is removing note and noexcept (do not remove the rest). Clause 3 is correct.
+</p>
+<p>
+Alisdair: Not sure data() is correct (in clause 2).
+</p>
+<p>
+Conclusion: Move to open, Alisdair and Pablo volunteered to provide wording
+</p>
 
 
 
