@@ -1,4 +1,6 @@
-<issueslist revision="D76"
+<issueslist title="C++ Standard Library Issues List"
+            file_abrev="lwg"
+            revision="D76"
             maintainer="Alisdair Meredith &lt;lwgchair@gmail.com&gt;"
             active_docno="D3...=11-0..."
             defect_docno="D3...=11-0..."
