@@ -853,6 +853,7 @@ struct IssuesXml {
    auto get_revisions(std::vector<issue> const & issues, std::string const & diff_report) const -> std::string;
    auto get_statuses() const -> std::string;
    auto get_title() const -> std::string;
+   auto get_project() const -> std::string;
 
 private:
    std::string m_data;
@@ -961,6 +962,20 @@ auto IssuesXml::get_title() const -> std::string {
     auto j = m_data.find('\"', i);
     if (j == std::string::npos) {
         throw std::runtime_error{"Unable to parse title in issues.xml"};
+    }
+    return m_data.substr(i, j-i);
+}
+
+
+auto IssuesXml::get_project() const -> std::string {
+    auto i = m_data.find("project=\"");
+    if (i == std::string::npos) {
+        throw std::runtime_error{"Unable to find project in issues.xml"};
+    }
+    i += sizeof("project=\"") - 1;
+    auto j = m_data.find('\"', i);
+    if (j == std::string::npos) {
+        throw std::runtime_error{"Unable to parse project in issues.xml"};
     }
     return m_data.substr(i, j-i);
 }
@@ -1155,8 +1170,8 @@ void make_sort_by_num(std::vector<issue>& issues, std::string const & filename, 
 "<h1>" << title << " (Revision " << issues_xml.get_revision() << R"()</h1>
 <h1>Table of Contents</h1>
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
-<p>This document is the Table of Contents for the <a href="active.html">Active Issues List</a>,
-<a href="defects.html">Defect Reports List</a>, and <a href="closed.html">Closed Issues List</a>.</p>
+<p>This document is the Table of Contents for the <a href="active.html">Active Issues</a>,
+<a href="defects.html">Defect Reports List</a>, and <a href="closed.html">Closed Issues</a>.</p>
 )";
    out << build_timestamp;
 
@@ -1175,12 +1190,12 @@ void make_sort_by_status(std::vector<issue>& issues, std::string const & filenam
    print_file_header(out, "Index by Status and Section");
 
    out <<
-R"(<h1>C++ Standard Library Issues List (Revision )" << issues_xml.get_revision() << R"()</h1>
+"<h1>" << title << " (Revision " << issues_xml.get_revision() << R"()</h1>
 <h1>Index by Status and Section</h1>
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
 <p>
-This document is the Index by Status and Section for the <a href="active.html">Library Active Issues List</a>,
-<a href="defects.html">Library Defect Reports List</a>, and <a href="closed.html">Library Closed Issues List</a>.
+This document is the Index by Status and Section for the <a href="active.html">Active Issues List</a>,
+<a href="defects.html">Defect Reports List</a>, and <a href="closed.html">Closed Issues List</a>.
 </p>
 
 )";
@@ -1208,12 +1223,12 @@ void make_sort_by_status_mod_date(std::vector<issue> & issues, std::string const
    print_file_header(out, "Index by Status and Date");
 
    out <<
-R"(<h1>C++ Standard Library Issues List (Revision )" << issues_xml.get_revision() << R"()</h1>
+"<h1>" << title << " (Revision " << issues_xml.get_revision() << R"()</h1>
 <h1>Index by Status and Date</h1>
 <p>Reference ISO/IEC IS 14882:2003(E)</p>
 <p>
-This document is the Index by Status and Date for the <a href="active.html">Library Active Issues List</a>,
-<a href="defects.html">Library Defect Reports List</a>, and <a href="closed.html">Library Closed Issues List</a>.
+This document is the Index by Status and Date for the <a href="active.html">Active Issues List</a>,
+<a href="defects.html">Defect Reports List</a>, and <a href="closed.html">Closed Issues List</a>.
 </p>
 )";
    out << build_timestamp;
@@ -1279,14 +1294,14 @@ void make_sort_by_section(std::vector<issue>& issues, std::string const & filena
    }
 
    std::ofstream out(filename.c_str());
-   print_file_header(out, "LWG Index by Section");
+   print_file_header(out, "Index by Section");
 
-   out << "<h1>C++ Standard Library Issues List (Revision " << issues_xml.get_revision() << ")</h1>\n";
+   out << "<h1> " << title << " (Revision " << issues_xml.get_revision() << ")</h1>\n";
    out << "<h1>Index by Section</h1>\n";
    out << "<p>Reference ISO/IEC IS 14882:2003(E)</p>\n";
-   out << "<p>This document is the Index by Section for the <a href=\"active.html\">Library Active Issues List</a>";
+   out << "<p>This document is the Index by Section for the <a href=\"active.html\">Active Issues List</a>";
    if(!active_only) {
-      out << ", <a href=\"defects.html\">Library Defect Reports List</a>, and <a href=\"closed.html\">Library Closed Issues List</a>";
+      out << ", <a href=\"defects.html\">Defect Reports List</a>, and <a href=\"closed.html\">Closed Issues List</a>";
    }
    out << ".</p>\n";
    out << "<h2>Index by Section";
@@ -1403,7 +1418,7 @@ R"(<table>
 </tr>
 <tr>
   <td align="left">Project:</td>
-  <td align="left">Programming Language C++</td>
+  <td align="left">)" << issues_xml.get_project() << R"(</td>
 </tr>
 <tr>
   <td align="left">Reply to:</td>
@@ -1414,13 +1429,13 @@ R"(<table>
 
    out << "<h1>";
    if (paper == "active") {
-      out << "C++ Standard Library Active Issues List (Revision ";
+      out << title << " - Active Issues (Revision ";
    }
    else if (paper == "defect") {
-      out << "C++ Standard Library Defect Report List (Revision ";
+      out << title << " - Defects (Revision ";
    }
    else if (paper == "closed") {
-      out << "C++ Standard Library Closed Issues List (Revision ";
+      out << title << " - Closed Issues (Revision ";
    }
    out << issues_xml.get_revision() << ")</h1>\n";
    out << build_timestamp;
