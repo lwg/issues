@@ -208,6 +208,7 @@ auto filename_for_status(std::string stat) -> std::string {
    stat = remove_qualifier(stat);
    return (stat == "TC1")           ? LWG_DEFECTS
         : (stat == "CD1")           ? LWG_DEFECTS
+        : (stat == "C++11")         ? LWG_DEFECTS
         : (stat == "WP")            ? LWG_DEFECTS
         : (stat == "Resolved")      ? LWG_DEFECTS
         : (stat == "DR")            ? LWG_DEFECTS
@@ -437,6 +438,7 @@ struct sort_by_status {
             "DR",
             "WP",
             "CD1",
+            "C++11",
             "TC1",
             "Resolved",
             "TRDec",
