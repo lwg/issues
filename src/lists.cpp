@@ -200,15 +200,19 @@ auto remove_qualifier(std::string const & stat) -> std::string {
    return remove_tentatively(remove_pending(stat));
 }
 
+std::string active_name;
+std::string closed_name;
+std::string defect_name;
+
 const char * active_issues;
 const char * closed_issues;
 const char * defect_issues;
 
 void init_filenames() {
 
-  const std::string active_name(file_prefix + "active.html");
-  const std::string closed_name(file_prefix + "closed.html");
-  const std::string defect_name(file_prefix + "defects.html");
+  active_name = file_prefix + "active.html";
+  closed_name = file_prefix + "closed.html";
+  defect_name = file_prefix + "defects.html";
 
   active_issues = active_name.c_str();
   closed_issues = closed_name.c_str();
