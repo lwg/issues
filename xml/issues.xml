@@ -1,11 +1,11 @@
-<issueslist title="C++ Standard Library Issues List"
-            file_prefix="lwg"
-            revision="D76"
+<issueslist revision="D76"
             maintainer="Alisdair Meredith &lt;lwgchair@gmail.com&gt;"
             active_docno="D3...=11-0..."
             defect_docno="D3...=11-0..."
             closed_docno="D3...=11-0..."
             date="2011-08-17"
+            title="****TEST C++ Standard Library Issues List TEST****"
+            file_prefix="test-"
 >
 
 <intros>
