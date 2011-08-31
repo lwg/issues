@@ -1,7 +1,7 @@
 @echo off
 bin\lists
 if errorlevel 1 goto error
-lwg-active.html
+active.html
 goto done
 
 :error

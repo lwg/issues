@@ -5,7 +5,6 @@
             closed_docno="D3...=11-0..."
             date="2011-08-17"
             title="****TEST C++ Standard Library Issues List TEST****"
-            file_prefix="test-"
 >
 
 <intros>
@@ -13,11 +12,11 @@
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
   <ul>
-      <li><a href="lwg-toc.html">Table of Contents</a> for all library issues.</li>
-      <li><a href="lwg-index.html">Index by Section</a> for all library issues.</li>
-      <li><a href="lwg-status.html">Index by Status</a> for all library issues.</li>
-      <li><a href="lwg-defects.html">Library Defect Reports List</a></li>
-      <li><a href="lwg-closed.html">Library Closed Issues List</a></li>
+      <li><a href="toc.html">Table of Contents</a> for all library issues.</li>
+      <li><a href="index.html">Index by Section</a> for all library issues.</li>
+      <li><a href="status.html">Index by Status</a> for all library issues.</li>
+      <li><a href="defects.html">Library Defect Reports List</a></li>
+      <li><a href="closed.html">Library Closed Issues List</a></li>
   </ul>
   <p>The purpose of this document is to record the status of issues
   which have come before the Library Working Group (LWG) of the INCITS PL22.16
@@ -27,10 +26,10 @@
 
   <p>This document contains only library issues which are actively being
   considered by the Library Working Group, i.e., issues which have a
-  status of <a href="lwg-active.html#New">New</a>, <a href="lwg-active.html#Open">Open</a>, 
-  <a href="lwg-active.html#Ready">Ready</a>, or <a href="lwg-active.html#Review">Review</a>. See
-  <a href="lwg-defects.html">Library Defect Reports List</a> for issues considered defects and 
-  <a href="lwg-closed.html">Library Closed Issues List</a> for issues considered closed.</p>
+  status of <a href="active.html#New">New</a>, <a href="active.html#Open">Open</a>, 
+  <a href="active.html#Ready">Ready</a>, or <a href="active.html#Review">Review</a>. See
+  <a href="defects.html">Library Defect Reports List</a> for issues considered defects and 
+  <a href="closed.html">Library Closed Issues List</a> for issues considered closed.</p>
 
   <p>The issues in these lists are not necessarily formal ISO Defect
   Reports (DR's). While some issues will eventually be elevated to
@@ -127,18 +126,18 @@ ownership of it.
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
     <ul>
-      <li><a href="lwg-toc.html">Table of Contents</a> for all library issues.</li>
-      <li><a href="lwg-index.html">Index by Section</a> for all library issues.</li>
-      <li><a href="lwg-status.html">Index by Status</a> for all library issues.</li>
-      <li><a href="lwg-active.html">Library Active Issues List</a></li>
-      <li><a href="lwg-closed.html">Library Closed Issues List</a></li>
+      <li><a href="toc.html">Table of Contents</a> for all library issues.</li>
+      <li><a href="index.html">Index by Section</a> for all library issues.</li>
+      <li><a href="status.html">Index by Status</a> for all library issues.</li>
+      <li><a href="active.html">Library Active Issues List</a></li>
+      <li><a href="closed.html">Library Closed Issues List</a></li>
     </ul>
   <p>This document contains only library issues which have been closed
   by the Library Working Group (LWG) after being found to be defects
-  in the standard.  That is, issues which have a status of <a href="lwg-active.html#DR">DR</a>,
-  <a href="lwg-active.html#TC1">TC1</a>, or <a href="lwg-active.html#Resolved">Resolved</a>. See the
-  <a href="lwg-closed.html">Library Closed Issues List</a> for issues closed as non-defects.  See the
-  <a href="lwg-active.html">Library Active Issues List</a> for active issues and more information.  The
+  in the standard.  That is, issues which have a status of <a href="active.html#DR">DR</a>,
+  <a href="active.html#TC1">TC1</a>, or <a href="active.html#Resolved">Resolved</a>. See the
+  <a href="closed.html">Library Closed Issues List</a> for issues closed as non-defects.  See the
+  <a href="active.html">Library Active Issues List</a> for active issues and more information.  The
   introductory material in that document also applies to this
   document.</p>
 </intro>
@@ -147,18 +146,18 @@ ownership of it.
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
   <p>Also see:</p>
     <ul>
-      <li><a href="lwg-toc.html">Table of Contents</a> for all library issues.</li>
-      <li><a href="lwg-index.html">Index by Section</a> for all library issues.</li>
-      <li><a href="lwg-status.html">Index by Status</a> for all library issues.</li>
-      <li><a href="lwg-active.html">Library Active Issues List</a></li>
-      <li><a href="lwg-defects.html">Library Defect Reports List</a></li>
+      <li><a href="toc.html">Table of Contents</a> for all library issues.</li>
+      <li><a href="index.html">Index by Section</a> for all library issues.</li>
+      <li><a href="status.html">Index by Status</a> for all library issues.</li>
+      <li><a href="active.html">Library Active Issues List</a></li>
+      <li><a href="defects.html">Library Defect Reports List</a></li>
     </ul>
 
   <p>This document contains only library issues which have been closed
   by the Library Working Group as duplicates or not defects. That is,
-  issues which have a status of <a href="lwg-active.html#Dup">Dup</a> or
-  <a href="lwg-active.html#NAD">NAD</a>. See the <a href="lwg-active.html">Library Active Issues List</a> active issues and more
-  information. See the <a href="lwg-defects.html">Library Defect Reports List</a> for issues considered
+  issues which have a status of <a href="active.html#Dup">Dup</a> or
+  <a href="active.html#NAD">NAD</a>. See the <a href="active.html">Library Active Issues List</a> active issues and more
+  information. See the <a href="defects.html">Library Defect Reports List</a> for issues considered
   defects.  The introductory material in that document also applies to
   this document.</p>
 </intro>
@@ -166,39 +165,39 @@ ownership of it.
 <intro list="TOC">
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
 
-  <p>This document is the Table of Contents for the <a href="lwg-active.html">Library Active Issues List</a>,
-  <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.</p>
+  <p>This document is the Table of Contents for the <a href="active.html">Library Active Issues List</a>,
+  <a href="defects.html">Library Defect Reports List</a>, and <a href="closed.html">Library Closed Issues List</a>.</p>
 
   <p>Also see:</p>
     <ul>
-      <li><a href="lwg-index.html">Index by Section</a></li>
-      <li><a href="lwg-status.html">Index by Status</a></li>
+      <li><a href="index.html">Index by Section</a></li>
+      <li><a href="status.html">Index by Status</a></li>
     </ul>
 </intro>
 
 <intro list="Section">
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
 
-  <p>This document is the Index by Section for the <a href="lwg-active.html">Library Active Issues List</a>,
-  <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.</p>
+  <p>This document is the Index by Section for the <a href="active.html">Library Active Issues List</a>,
+  <a href="defects.html">Library Defect Reports List</a>, and <a href="closed.html">Library Closed Issues List</a>.</p>
 
   <p>Also see:</p>
     <ul>
-      <li><a href="lwg-toc.html">Table of Contents</a></li>
-      <li><a href="lwg-status.html">Index by Status</a></li>
+      <li><a href="toc.html">Table of Contents</a></li>
+      <li><a href="status.html">Index by Status</a></li>
     </ul>
 </intro>
 
 <intro list="Status">
   <p>Reference ISO/IEC IS 14882:2003(E)</p>
 
-  <p>This document is the Index by Status for the <a href="lwg-active.html">Library Active Issues List</a>,
-  <a href="lwg-defects.html">Library Defect Reports List</a>, and <a href="lwg-closed.html">Library Closed Issues List</a>.</p>
+  <p>This document is the Index by Status for the <a href="active.html">Library Active Issues List</a>,
+  <a href="defects.html">Library Defect Reports List</a>, and <a href="closed.html">Library Closed Issues List</a>.</p>
 
   <p>Also see:</p>
     <ul>
-      <li><a href="lwg-toc.html">Table of Contents</a></li>
-      <li><a href="lwg-index.html">Index by Section</a></li>
+      <li><a href="toc.html">Table of Contents</a></li>
+      <li><a href="index.html">Index by Section</a></li>
     </ul>
 </intro>
 
@@ -215,18 +214,18 @@ ownership of it.
 <li>1556 issues total, up by 17.</li>
 </ul></li>
 <li><b>Details:</b><ul>
-<li>Added the following 7 New issues: <a href="lwg-active.html#2021">2021</a>, <a href="lwg-active.html#2025">2025</a>, <a href="lwg-active.html#2028">2028</a>, <a href="lwg-active.html#2032">2032</a>, <a href="lwg-active.html#2033">2033</a>, <a href="lwg-active.html#2034">2034</a>, <a href="lwg-active.html#2035">2035</a>.</li>
-<li>Added the following Tentatively NAD issue: <a href="lwg-active.html#2026">2026</a>.</li>
-<li>Added the following 8 Tentatively Ready issues: <a href="lwg-active.html#2020">2020</a>, <a href="lwg-active.html#2022">2022</a>, <a href="lwg-active.html#2023">2023</a>, <a href="lwg-active.html#2024">2024</a>, <a href="lwg-active.html#2027">2027</a>, <a href="lwg-active.html#2029">2029</a>, <a href="lwg-active.html#2030">2030</a>, <a href="lwg-active.html#2031">2031</a>.</li>
-<li>Changed the following issue from Open to NAD Editorial: <a href="lwg-closed.html#1503">1503</a>.</li>
-<li>Changed the following issue from New to Open: <a href="lwg-active.html#2016">2016</a>.</li>
-<li>Changed the following issue from Ready to Open: <a href="lwg-active.html#1318">1318</a>.</li>
-<li>Changed the following issue from NAD to Resolved: <a href="lwg-defects.html#1229">1229</a>.</li>
-<li>Changed the following 65 issues from NAD Editorial to Resolved: <a href="lwg-defects.html#732">732</a>, <a href="lwg-defects.html#756">756</a>, <a href="lwg-defects.html#767">767</a>, <a href="lwg-defects.html#793">793</a>, <a href="lwg-defects.html#794">794</a>, <a href="lwg-defects.html#800">800</a>, <a href="lwg-defects.html#803">803</a>, <a href="lwg-defects.html#825">825</a>, <a href="lwg-defects.html#828">828</a>, <a href="lwg-defects.html#874">874</a>, <a href="lwg-defects.html#875">875</a>, <a href="lwg-defects.html#880">880</a>, <a href="lwg-defects.html#889">889</a>, <a href="lwg-defects.html#897">897</a>, <a href="lwg-defects.html#908">908</a>, <a href="lwg-defects.html#923">923</a>, <a href="lwg-defects.html#924">924</a>, <a href="lwg-defects.html#940">940</a>, <a href="lwg-defects.html#944">944</a>, <a href="lwg-defects.html#958">958</a>, <a href="lwg-defects.html#976">976</a>, <a href="lwg-defects.html#1043">1043</a>, <a href="lwg-defects.html#1046">1046</a>, <a href="lwg-defects.html#1047">1047</a>, <a href="lwg-defects.html#1048">1048</a>, <a href="lwg-defects.html#1049">1049</a>, <a href="lwg-defects.html#1050">1050</a>, <a href="lwg-defects.html#1088">1088</a>, <a href="lwg-defects.html#1090">1090</a>, <a href="lwg-defects.html#1093">1093</a>, <a href="lwg-defects.html#1106">1106</a>, <a href="lwg-defects.html#1129">1129</a>, <a href="lwg-defects.html#1143">1143</a>, <a href="lwg-defects.html#1145">1145</a>, <a href="lwg-defects.html#1146">1146</a>, <a href="lwg-defects.html#1147">1147</a>, <a href="lwg-defects.html#1160">1160</a>, <a href="lwg-defects.html#1161">1161</a>, <a href="lwg-defects.html#1162">1162</a>, <a href="lwg-defects.html#1163">1163</a>, <a href="lwg-defects.html#1165">1165</a>, <a href="lwg-defects.html#1166">1166</a>, <a href="lwg-defects.html#1172">1172</a>, <a href="lwg-defects.html#1185">1185</a>, <a href="lwg-defects.html#1196">1196</a>, <a href="lwg-defects.html#1210">1210</a>, <a href="lwg-defects.html#1211">1211</a>, <a href="lwg-defects.html#1212">1212</a>, <a href="lwg-defects.html#1225">1225</a>, <a href="lwg-defects.html#1226">1226</a>, <a href="lwg-defects.html#1244">1244</a>, <a href="lwg-defects.html#1248">1248</a>, <a href="lwg-defects.html#1266">1266</a>, <a href="lwg-defects.html#1269">1269</a>, <a href="lwg-defects.html#1272">1272</a>, <a href="lwg-defects.html#1273">1273</a>, <a href="lwg-defects.html#1274">1274</a>, <a href="lwg-defects.html#1275">1275</a>, <a href="lwg-defects.html#1281">1281</a>, <a href="lwg-defects.html#1291">1291</a>, <a href="lwg-defects.html#1300">1300</a>, <a href="lwg-defects.html#1304">1304</a>, <a href="lwg-defects.html#1305">1305</a>, <a href="lwg-defects.html#1311">1311</a>, <a href="lwg-defects.html#1329">1329</a>.</li>
-<li>Changed the following 2 issues from Open to Tentatively NAD: <a href="lwg-active.html#1485">1485</a>, <a href="lwg-active.html#1486">1486</a>.</li>
-<li>Changed the following 3 issues from New to Tentatively Ready: <a href="lwg-active.html#2014">2014</a>, <a href="lwg-active.html#2017">2017</a>, <a href="lwg-active.html#2019">2019</a>.</li>
-<li>Changed the following 8 issues from Open to Tentatively Ready: <a href="lwg-active.html#1456">1456</a>, <a href="lwg-active.html#1457">1457</a>, <a href="lwg-active.html#1474">1474</a>, <a href="lwg-active.html#1479">1479</a>, <a href="lwg-active.html#1494">1494</a>, <a href="lwg-active.html#1514">1514</a>, <a href="lwg-active.html#1515">1515</a>, <a href="lwg-active.html#2001">2001</a>.</li>
-<li>Changed the following issue from Review to Tentatively Ready: <a href="lwg-active.html#1480">1480</a>.</li>
+<li>Added the following 7 New issues: <a href="active.html#2021">2021</a>, <a href="active.html#2025">2025</a>, <a href="active.html#2028">2028</a>, <a href="active.html#2032">2032</a>, <a href="active.html#2033">2033</a>, <a href="active.html#2034">2034</a>, <a href="active.html#2035">2035</a>.</li>
+<li>Added the following Tentatively NAD issue: <a href="active.html#2026">2026</a>.</li>
+<li>Added the following 8 Tentatively Ready issues: <a href="active.html#2020">2020</a>, <a href="active.html#2022">2022</a>, <a href="active.html#2023">2023</a>, <a href="active.html#2024">2024</a>, <a href="active.html#2027">2027</a>, <a href="active.html#2029">2029</a>, <a href="active.html#2030">2030</a>, <a href="active.html#2031">2031</a>.</li>
+<li>Changed the following issue from Open to NAD Editorial: <a href="closed.html#1503">1503</a>.</li>
+<li>Changed the following issue from New to Open: <a href="active.html#2016">2016</a>.</li>
+<li>Changed the following issue from Ready to Open: <a href="active.html#1318">1318</a>.</li>
+<li>Changed the following issue from NAD to Resolved: <a href="defects.html#1229">1229</a>.</li>
+<li>Changed the following 65 issues from NAD Editorial to Resolved: <a href="defects.html#732">732</a>, <a href="defects.html#756">756</a>, <a href="defects.html#767">767</a>, <a href="defects.html#793">793</a>, <a href="defects.html#794">794</a>, <a href="defects.html#800">800</a>, <a href="defects.html#803">803</a>, <a href="defects.html#825">825</a>, <a href="defects.html#828">828</a>, <a href="defects.html#874">874</a>, <a href="defects.html#875">875</a>, <a href="defects.html#880">880</a>, <a href="defects.html#889">889</a>, <a href="defects.html#897">897</a>, <a href="defects.html#908">908</a>, <a href="defects.html#923">923</a>, <a href="defects.html#924">924</a>, <a href="defects.html#940">940</a>, <a href="defects.html#944">944</a>, <a href="defects.html#958">958</a>, <a href="defects.html#976">976</a>, <a href="defects.html#1043">1043</a>, <a href="defects.html#1046">1046</a>, <a href="defects.html#1047">1047</a>, <a href="defects.html#1048">1048</a>, <a href="defects.html#1049">1049</a>, <a href="defects.html#1050">1050</a>, <a href="defects.html#1088">1088</a>, <a href="defects.html#1090">1090</a>, <a href="defects.html#1093">1093</a>, <a href="defects.html#1106">1106</a>, <a href="defects.html#1129">1129</a>, <a href="defects.html#1143">1143</a>, <a href="defects.html#1145">1145</a>, <a href="defects.html#1146">1146</a>, <a href="defects.html#1147">1147</a>, <a href="defects.html#1160">1160</a>, <a href="defects.html#1161">1161</a>, <a href="defects.html#1162">1162</a>, <a href="defects.html#1163">1163</a>, <a href="defects.html#1165">1165</a>, <a href="defects.html#1166">1166</a>, <a href="defects.html#1172">1172</a>, <a href="defects.html#1185">1185</a>, <a href="defects.html#1196">1196</a>, <a href="defects.html#1210">1210</a>, <a href="defects.html#1211">1211</a>, <a href="defects.html#1212">1212</a>, <a href="defects.html#1225">1225</a>, <a href="defects.html#1226">1226</a>, <a href="defects.html#1244">1244</a>, <a href="defects.html#1248">1248</a>, <a href="defects.html#1266">1266</a>, <a href="defects.html#1269">1269</a>, <a href="defects.html#1272">1272</a>, <a href="defects.html#1273">1273</a>, <a href="defects.html#1274">1274</a>, <a href="defects.html#1275">1275</a>, <a href="defects.html#1281">1281</a>, <a href="defects.html#1291">1291</a>, <a href="defects.html#1300">1300</a>, <a href="defects.html#1304">1304</a>, <a href="defects.html#1305">1305</a>, <a href="defects.html#1311">1311</a>, <a href="defects.html#1329">1329</a>.</li>
+<li>Changed the following 2 issues from Open to Tentatively NAD: <a href="active.html#1485">1485</a>, <a href="active.html#1486">1486</a>.</li>
+<li>Changed the following 3 issues from New to Tentatively Ready: <a href="active.html#2014">2014</a>, <a href="active.html#2017">2017</a>, <a href="active.html#2019">2019</a>.</li>
+<li>Changed the following 8 issues from Open to Tentatively Ready: <a href="active.html#1456">1456</a>, <a href="active.html#1457">1457</a>, <a href="active.html#1474">1474</a>, <a href="active.html#1479">1479</a>, <a href="active.html#1494">1494</a>, <a href="active.html#1514">1514</a>, <a href="active.html#1515">1515</a>, <a href="active.html#2001">2001</a>.</li>
+<li>Changed the following issue from Review to Tentatively Ready: <a href="active.html#1480">1480</a>.</li>
 </ul></li>
 </ul>
 </revision>
@@ -1463,18 +1462,18 @@ format, <iref ref="64"/> title. (17 Sep 98)
   the associated unqualified status.  However for logistical reasons the indicated
   outcome of the issue has not yet appeared in the latest working paper.
 
-  <p>Issues are always given the status of <a href="lwg-active.html#New">New</a> when
+  <p>Issues are always given the status of <a href="active.html#New">New</a> when
   they first appear on the issues list. They may progress to
-  <a href="lwg-active.html#Open">Open</a> or <a href="lwg-active.html#Review">Review</a> while the LWG
+  <a href="active.html#Open">Open</a> or <a href="active.html#Review">Review</a> while the LWG
   is actively working on them. When the LWG has reached consensus on
   the disposition of an issue, the status will then change to
-  <a href="lwg-active.html#Dup">Dup</a>, <a href="lwg-active.html#NAD">NAD</a>, or
-  <a href="lwg-active.html#Ready">Ready</a> as appropriate.  Once the full J16 committee votes to
+  <a href="active.html#Dup">Dup</a>, <a href="active.html#NAD">NAD</a>, or
+  <a href="active.html#Ready">Ready</a> as appropriate.  Once the full J16 committee votes to
   forward Ready issues to the Project Editor, they are given the
-  status of Defect Report ( <a href="lwg-active.html#DR">DR</a>). These in turn may
-  become the basis for Technical Corrigenda (<a href="lwg-active.html#TC1">TC1</a>),
+  status of Defect Report ( <a href="active.html#DR">DR</a>). These in turn may
+  become the basis for Technical Corrigenda (<a href="active.html#TC1">TC1</a>),
   or are closed without action other than a Record of Response
-  (<a href="lwg-active.html#Resolved">Resolved</a> ). The intent of this LWG process is that
+  (<a href="active.html#Resolved">Resolved</a> ). The intent of this LWG process is that
   only issues which are truly defects in the Standard move to the
   formal ISO DR status.
   </p>
