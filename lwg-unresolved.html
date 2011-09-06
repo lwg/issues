@@ -19,12 +19,12 @@
 </style>
 </head>
 <body>
-<p>Revised 2011-08-23 at 20:08:20 UTC</p>
+<p>Revised 2011-09-06 at 13:09:55 UTC</p>
 <h2>Unresolved Issues</h2>
 <hr>
 <h3><a name="1169"></a>1169. <tt>num_get</tt> not fully compatible with <tt>strto*</tt></h3>
 <p><b>Section:</b> 22.4.2.1.2 [facet.num.get.virtuals] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Cosmin Truta <b>Opened:</b> 2009-07-04 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#facet.num.get.virtuals">issues</a> in [facet.num.get.virtuals].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -200,7 +200,7 @@ field represents a value outside the range of representable values,
 <hr>
 <h3><a name="1175"></a>1175. <tt>unordered</tt> complexity</h3>
 <p><b>Section:</b> 23.2.5 [unord.req] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Pablo Halpern <b>Opened:</b> 2009-07-17 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#unord.req">issues</a> in [unord.req].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -528,7 +528,7 @@ and in the worst case quadratic in <tt><i>N</i></tt> to insert the elements, whe
 <hr>
 <h3><a name="1213"></a>1213. Meaning of valid and singular iterator underspecified</h3>
 <p><b>Section:</b> 24.2 [iterator.requirements] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-19 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2009-09-19 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View all other</b> <a href="lwg-index.html#iterator.requirements">issues</a> in [iterator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -677,7 +677,7 @@ Consider to await the paper.
 <hr>
 <h3><a name="1450"></a>1450. [FCD] Contradiction in regex_constants</h3>
 <p><b>Section:</b> 28.5.2 [re.matchflag] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2010-08-25 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-127</b></p>
@@ -822,7 +822,7 @@ for any bitmask elements set.
 <hr>
 <h3><a name="1526"></a>1526. [FCD] C++ should not impose thread safety requirements on C99 library implementations</h3>
 <p><b>Section:</b> 17.6.5.9 [res.on.data.races] <b>Status:</b> <a href="lwg-active.html#Deferred">Deferred</a>
- <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-04-23</p>
+ <b>Submitter:</b> BSI <b>Opened:</b> 2011-03-24 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Deferred">Deferred</a> status.</p>
 <p><b>Discussion:</b></p>
 <p><b>Addresses GB-111</b></p>
@@ -847,6 +847,53 @@ global C locale and thus cannot be made thread safe.
 
 
 <p>Deferred</p>
+
+<p><i>[
+2011 Bloomington
+]</i></p>
+
+<p>
+Alisdair: PJ, does this cause a problem in C?
+</p>
+<p>
+PJ: Every implementation know of is thread safe.
+</p>
+<p>
+Pete: There a couple of effects that are specified on strtol() and sprintf() which is a problem.
+</p>
+<p>
+PJ: When C++ talks about C calls it should be "as if" calling the function.
+</p>
+<p>
+Pete: Culprit is to string stuff. My fault.
+</p>
+<p>
+PJ: Not your fault. You did what you were told. Distinct resolution to change wording.
+</p>
+<p>
+Dietmar: What would we break if we change it back?
+</p>
+<p>
+Pete: Nothing. If implemented on top of thread safe C library you are just fine.
+</p>
+<p>
+Alisdair: Anyone want to clean up wording and put it back to what Pete gave us?
+</p>
+<p>
+Alisdair: No volunteers. Do we want to mark as NAD? We could leave it as deferred.
+</p>
+<p>
+Stefanus: Did original submitter care about this?
+</p>
+<p>
+Lawrence: There is some work to make local calls thread safe. The resolution would be to call those thread safe version.
+</p>
+<p>
+Pete: "As if called under single threaded C program"
+</p>
+<p>
+<b>Action Item</b> (Alisdair): Write wording for this issue.
+</p>
 
 
 
@@ -909,7 +956,7 @@ shall throw any exceptions.
 <hr>
 <h3><a name="2005"></a>2005. <tt>unordered_map::insert(T&amp;&amp;)</tt> protection should apply to <tt>map</tt> too</h3>
 <p><b>Section:</b> 23.4.4.4 [map.modifiers], 23.4.5.3 [multimap.modifiers], X [unord.map.modifiers], X [unord.multimap.modifiers] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> P.J. Plauger <b>Opened:</b> 2010-10-14 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -1187,7 +1234,7 @@ to value_type.
 <hr>
 <h3><a name="2011"></a>2011. Unexpected output required of strings</h3>
 <p><b>Section:</b> 21.4.8.9 [string.io] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> James Kanze <b>Opened:</b> 2010-07-23 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#string.io">issues</a> in [string.io].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1467,7 +1514,7 @@ widened characters and any required padding are inserted into <tt>out</tt>. Call
 <hr>
 <h3><a name="2012"></a>2012. Associative maps should insert <tt>pair</tt>, not <tt>tuple</tt></h3>
 <p><b>Section:</b> 23.4 [associative] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Paolo Carlini <b>Opened:</b> 2010-10-29 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative">issues</a> in [associative].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1523,7 +1570,7 @@ Apply the resolution proposed by the 2010-10-29 comment in <a href="lwg-active.h
 <hr>
 <h3><a name="2016"></a>2016. <tt>Allocators</tt> must be no-throw <i>swappable</i></h3>
 <p><b>Section:</b> 17.6.3.5 [allocator.requirements] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-11-17 <b>Last modified:</b> 2011-02-20</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2010-11-17 <b>Last modified:</b> 2011-03-24</p>
 <p><b>View other</b> <a href="lwg-index-open.html#allocator.requirements">active issues</a> in [allocator.requirements].</p>
 <p><b>View all other</b> <a href="lwg-index.html#allocator.requirements">issues</a> in [allocator.requirements].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -1689,7 +1736,7 @@ iterator with value <tt>a.end()</tt> before the swap will have value <tt>b.end()
 <hr>
 <h3><a name="2018"></a>2018. <tt>regex_traits::isctype</tt> Returns clause is wrong</h3>
 <p><b>Section:</b> 28.7 [re.traits] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2010-11-16 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#re.traits">issues</a> in [re.traits].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -1972,7 +2019,7 @@ t.isctype(' ', f); // returns false
 <hr>
 <h3><a name="2035"></a>2035. Output iterator requirements are broken</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2439,7 +2486,7 @@ post: <tt>r</tt> is <del>dereferenceable</del><ins>incrementable</ins>.<br/>
 <hr>
 <h3><a name="2038"></a>2038. Missing definition for <tt>incrementable</tt> iterator</h3>
 <p><b>Section:</b> 24.2.4 [output.iterators] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Pete Becker <b>Opened:</b> 2011-02-27 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#output.iterators">active issues</a> in [output.iterators].</p>
 <p><b>View all other</b> <a href="lwg-index.html#output.iterators">issues</a> in [output.iterators].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2499,7 +2546,7 @@ Agree with Daniel, this will be handled by the resolution of <a href="lwg-active
 <hr>
 <h3><a name="2048"></a>2048. Unnecessary <tt>mem_fn</tt> overloads</h3>
 <p><b>Section:</b> 20.8 [function.objects], 20.8.10 [func.memfn] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#function.objects">issues</a> in [function.objects].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2670,7 +2717,7 @@ template&lt;class R, class T, class... Args&gt;
 <hr>
 <h3><a name="2049"></a>2049. <tt>is_destructible</tt> is underspecified</h3>
 <p><b>Section:</b> 20.9.4.3 [meta.unary.prop] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-04-18 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#meta.unary.prop">issues</a> in [meta.unary.prop].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -2787,7 +2834,7 @@ For function types, <tt>is_destructible&lt;T>::value</tt> is <tt>false</tt>.
 <hr>
 <h3><a name="2052"></a>2052. Mixup between <tt>mapped_type</tt> and <tt>value_type</tt> for associative containers</h3>
 <p><b>Section:</b> 23.2.4 [associative.reqmts] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-04 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Marc Glisse <b>Opened:</b> 2011-05-04 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#associative.reqmts">active issues</a> in [associative.reqmts].</p>
 <p><b>View all other</b> <a href="lwg-index.html#associative.reqmts">issues</a> in [associative.reqmts].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -2822,11 +2869,30 @@ of the pair points to the element with key equivalent to the key of <tt>t</tt>.
 Not even an exhaustive list of problem locations. No reason to doubt issue.
 </p>
 <p>
-Pablo volunteers to provide wording.
+Pablo agrees to provide wording.
 </p>
 
 
+
 <p><b>Proposed resolution:</b></p>
+<p>
+In section  [associative.reqmnts] table 102 and 23.2.5 [unord.req], table 103, make the following text replacements:
+</p>
+
+<table border="1">
+<tr> <td>Original text, in FDIS</td>                   <td>Replacement text</td> </tr>
+<tr> <td><tt>T</tt> is CopyInsertable</td>             <td><tt>value_type</tt> is CopyInsertable</td> </tr>
+<tr> <td><tt>T</tt> shall be CopyInsertable</td>       <td><tt>value_type</tt> shall be CopyInsertable</td> </tr>
+<tr> <td><tt>T</tt> shall be MoveInsertable</td>       <td><tt>value_type</tt> shall be MoveInsertable</td> </tr>
+<tr> <td><tt>T</tt> shall be EmplaceConstructible</td> <td><tt>value_type</tt> shall be EmplaceConstructible</td> </tr>
+<tr> <td><tt>T</tt> object</td>                        <td><tt>value_type</tt> object</td> </tr>
+</table>
+
+<p><i>[
+<b>Notes to the editor</b>: The above are carefully selected phrases that can be used for global
+search-and-replace within the specified sections without accidentally making changes to correct uses <tt>T</tt>.
+]</i></p>
+
 
 
 
@@ -2835,7 +2901,7 @@ Pablo volunteers to provide wording.
 <hr>
 <h3><a name="2054"></a>2054. <tt>time_point</tt> constructors need to be <tt>constexpr</tt></h3>
 <p><b>Section:</b> 20.11.6 [time.point] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-05-13 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Anthony Williams <b>Opened:</b> 2011-05-13 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -2912,7 +2978,7 @@ convertible to <tt>duration</tt>.
 <hr>
 <h3><a name="2056"></a>2056. <tt>future_errc</tt> enums start with value 0 (invalid value for <tt>broken_promise</tt>)</h3>
 <p><b>Section:</b> 30.6.1 [futures.overview] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Nicolai Josuttis <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -3005,7 +3071,7 @@ namespace std {
 <hr>
 <h3><a name="2057"></a>2057. <tt>time_point + duration</tt> semantics should be made <tt>constexpr</tt> conforming</h3>
 <p><b>Section:</b> 20.11.6.5 [time.point.nonmember] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-05-21 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-05-21 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -3054,7 +3120,7 @@ is the type of the return value.
 <hr>
 <h3><a name="2058"></a>2058. <tt>valarray</tt> and <tt>begin&#47;end</tt></h3>
 <p><b>Section:</b> 26.6 [numarray] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Gabriel Dos Reis <b>Opened:</b> 2011-05-17 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#numarray">issues</a> in [numarray].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3154,7 +3220,7 @@ the lifetime of that array ends, whichever happens first.
 <hr>
 <h3><a name="2059"></a>2059. C++0x ambiguity problem with <tt>map::erase</tt></h3>
 <p><b>Section:</b> 23.4.4 [map] <b>Status:</b> <a href="lwg-active.html#Review">Review</a>
- <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Christopher Jefferson <b>Opened:</b> 2011-05-18 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#map">issues</a> in [map].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Review">Review</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3394,7 +3460,7 @@ Valid C++ 2003 code that uses these functions may fail to compile with this Inte
 <hr>
 <h3><a name="2062"></a>2062. Effect contradictions w&#47;o no-throw guarantee of <tt>std::function</tt> swaps</h3>
 <p><b>Section:</b> 20.8.11.2 [func.wrap.func], 20.8.11.2.2 [func.wrap.func.mod] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Daniel Kr&uuml;gler <b>Opened:</b> 2011-05-28 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all other</b> <a href="lwg-index.html#func.wrap.func">issues</a> in [func.wrap.func].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
@@ -3437,8 +3503,109 @@ member swap and non-member swap of <tt>std::function</tt> are nothrow functions 
 since TR1 on.
 </p>
 
+<p><i>[
+2011 Bloomington
+]</i></p>
 
-<p><b>Proposed resolution:</b></p>
+<p>
+Dietmar: May not be swappable in the first place.
+</p>
+<p>
+Alisdair: This is wide contact. Then we should be taking noexcept off instead of putting it on. This is preferred resolution.
+</p>
+<p>
+Pablo: This is bigger issue. Specification of assignment in terms of swap is suspect to begin with. It is over specification.
+How this was applied to string is a better example to work from.
+</p>
+<p>
+Pablo: Two problems: inconsistency that should be fixed (neither should have noexcept), the other issues is that assignment
+should not be specified in terms of swap. There are cases where assignment should succeed where swap would fail. This is easier
+with string as it should follow container rules.
+</p>
+<p>
+<b>Action Item</b> (Alisdair): There are a few more issues found to file.
+</p>
+<p>
+Dave: This is because of allocators? The allocator makes this not work.
+</p>
+<p>
+Howard: There is a type erased allocator in shared_ptr. There is a noexcept allocator in shared_ptr.
+</p>
+<p>
+Pablo: shared_ptr is a different case. There are shared semantics and the allocator does move around.
+A function does not have shared semantics.
+</p>
+<p>
+Alisdair: Function objects think they have unique ownership.
+</p>
+<p>
+Howard: In function we specify semantics with copy construction and swap.
+</p>
+<p>
+<b>Action Item</b> (Pablo): Write this up better (why assignment should not be defined in terms of swap)
+</p>
+<p>
+Howard: Not having trouble making function constructor no throw.
+</p>
+<p>
+Dietmar: Function must allocate memory.
+</p>
+<p>
+Howard: Does not put stuff that will throw on copy or swap in small object optimization. Put those on heap.
+Storing allocator, but has to be no throw copy constructable.
+</p>
+<p>
+Pablo: Are you allowed to or required to swap or move allocators in case or swap or move.
+</p>
+<p>
+Dave: An allocator that is type erased should be different...
+</p>
+<p>
+Pablo: it is
+</p>
+<p>
+Dave: Do you need to know something about allocator types? But only at construction time.
+</p>
+<p>
+Pablo: You could have allocators that are different types.
+</p>
+<p>
+Dave: Swap is two ended operation.
+</p>
+<p>
+Pablo: Opinion is that both have to say propagate on swap for them to swap.
+</p>
+<p>
+John: It is not arbitrary. If one person says no. No is no.
+</p>
+<p>
+Howard: Find noexcept swap to be very useful. Would like to move in that direction and bring container design along.
+</p>
+<p>
+Dave: If you have something were allocator must not propagate you can detect that at construction time.
+</p>
+<p>
+...
+</p>
+<p>
+Pablo: Need to leave this open and discuss in smaller group.
+</p>
+<p>
+Alisdair: Tried to add boost::any as TR2 proposal and ran into this issue. Only the first place where we run into
+issues with type erased allocators. Suggest we move it to open.
+</p>
+<p>
+<b>Action Item</b>: Move to open.
+</p>
+<p>
+<b>Action Item</b> (Pablo works with Howard and Daniel): Address the more fundamental issue
+(which may be multiple issues) and write up findings.
+</p>
+
+<p><i>[
+<b>Original resolution</b>:
+]</i></p>
+
 <p>This wording is relative to the FDIS.</p>
 <ol>
 <li><p>Modify the header <tt>&lt;functional&gt;</tt> synopsis in 20.8 [function.objects] as indicated:</p>
@@ -3481,13 +3648,16 @@ void swap(function&lt;R(ArgTypes...)&gt;&amp; f1, function&lt;R(ArgTypes...)&gt;
 
 
 
+<p><b>Proposed resolution:</b></p>
+
+
 
 
 
 <hr>
 <h3><a name="2063"></a>2063. Contradictory requirements for string move assignment</h3>
 <p><b>Section:</b> 21.4 [basic.string] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-29 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Howard Hinnant <b>Opened:</b> 2011-05-29 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View other</b> <a href="lwg-index-open.html#basic.string">active issues</a> in [basic.string].</p>
 <p><b>View all other</b> <a href="lwg-index.html#basic.string">issues</a> in [basic.string].</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
@@ -3530,87 +3700,6 @@ behavior here:  If the implementation implements this in terms of <tt>swap</tt>,
 is undefined, and will likely lead to memory corruption.  That's a lot to go wrong under a member 
 named "assign".
 </p>
-
-
-
-<p><b>Proposed resolution:</b></p>
-<p>This wording is relative to the FDIS.</p>
-<ol>
-<li><p>Modify the class template <tt>basic_string</tt> synopsis in 21.4 [basic.string]:</p>
-<blockquote><pre>
-namespace std {
-  template&lt;class charT, class traits = char_traits&lt;charT&gt;,
-    class Allocator = allocator&lt;charT&gt; &gt;
-  class basic_string {
-  public:
-    [&hellip;]
-    basic_string&amp; operator=(basic_string&amp;&amp; str) <del>noexcept</del>;
-    [&hellip;]
-    basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
-    [&hellip;]
-  };
-}
-</pre></blockquote>
-</li>
-
-<li><p>Remove the definition of the <tt>basic_string</tt> move assignment operator from 21.4.2 [string.cons] 
-entirely, including Table 71 &mdash; <tt>operator=(const basic_string&lt;charT, traits, Allocator&gt;&amp;&amp;)</tt>.
-This is consistent with how we define move assignment for the containers in Clause 23:</p>
-<blockquote><pre>
-<del>basic_string&lt;charT,traits,Allocator&gt;&amp;
-operator=(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;</del>
-</pre><blockquote><p>
-<del>-22- <i>Effects</i>: If <tt>*this</tt> and <tt>str</tt> are not the same object, modifies <tt>*this</tt> as shown 
-in Table 71. [ <i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]</del>
-<p/>
-<del>-23- If <tt>*this</tt> and <tt>str</tt> are the same object, the member has no effect.</del>
-<p/>
-<del>-24- <i>Returns</i>: <tt>*this</tt></del>
-</p></blockquote></blockquote>
-<blockquote>
-<table border="1">
-<caption><del>Table 71 &mdash; <tt>operator=(const basic_string&lt;charT, traits, Allocator&gt;&amp;&amp;)</tt></del></caption>
-
-<tr>
-<th><del>Element</del></th>
-<th><del>Value</del></th>
-</tr>
-
-<tr>
-<td><del><tt>data()</tt></del></td>
-<td><del>points at the array whose first element was pointed
-at by <tt>str.data()</tt></del></td>
-</tr>
-
-<tr>
-<td><del><tt>size()</tt></del></td>
-<td><del>previous value of <tt>str.size()</tt></del></td>
-</tr>
-
-<tr>
-<td><del><tt>capacity()</tt></del></td>
-<td><del>a value at least as large as <tt>size()</tt></del></td>
-</tr>
-
-</table> 
-</blockquote>
-</li>
-
-<li><p>Modify the paragraphs prior to 21.4.6.3 [string::assign] p.3 as indicated (The
-first insertion recommends a separate paragraph number for the indicated paragraph):</p>
-<blockquote><pre>
-basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
-</pre><blockquote><p>
-<ins>-?-</ins> <i>Effects</i>: <ins>Equivalent to <tt>*this = std::move(str)</tt>.</ins>
-<del>The function replaces the string controlled by <tt>*this</tt> with a string of length 
-<tt>str.size()</tt> whose elements are a copy of the string controlled by <tt>str</tt>. 
-[ <i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]</del>
-<p/>
--3- <i>Returns</i>: <tt>*this</tt>
-</p></blockquote></blockquote>
-
-</li>
-</ol>
 
 <p><i>[
 2011 Bloomington
@@ -3708,6 +3797,92 @@ Alisdair: Not sure data() is correct (in clause 2).
 Conclusion: Move to open, Alisdair and Pablo volunteered to provide wording
 </p>
 
+<p><i>[
+originally proposed wording:
+]</i></p>
+
+
+<p>This wording is relative to the FDIS.</p>
+<ol>
+<li><p>Modify the class template <tt>basic_string</tt> synopsis in 21.4 [basic.string]:</p>
+<blockquote><pre>
+namespace std {
+  template&lt;class charT, class traits = char_traits&lt;charT&gt;,
+    class Allocator = allocator&lt;charT&gt; &gt;
+  class basic_string {
+  public:
+    [&hellip;]
+    basic_string&amp; operator=(basic_string&amp;&amp; str) <del>noexcept</del>;
+    [&hellip;]
+    basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
+    [&hellip;]
+  };
+}
+</pre></blockquote>
+</li>
+
+<li><p>Remove the definition of the <tt>basic_string</tt> move assignment operator from 21.4.2 [string.cons] 
+entirely, including Table 71 &mdash; <tt>operator=(const basic_string&lt;charT, traits, Allocator&gt;&amp;&amp;)</tt>.
+This is consistent with how we define move assignment for the containers in Clause 23:</p>
+<blockquote><pre>
+<del>basic_string&lt;charT,traits,Allocator&gt;&amp;
+operator=(basic_string&lt;charT,traits,Allocator&gt;&amp;&amp; str) noexcept;</del>
+</pre><blockquote><p>
+<del>-22- <i>Effects</i>: If <tt>*this</tt> and <tt>str</tt> are not the same object, modifies <tt>*this</tt> as shown 
+in Table 71. [ <i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]</del>
+<p/>
+<del>-23- If <tt>*this</tt> and <tt>str</tt> are the same object, the member has no effect.</del>
+<p/>
+<del>-24- <i>Returns</i>: <tt>*this</tt></del>
+</p></blockquote></blockquote>
+<blockquote>
+<table border="1">
+<caption><del>Table 71 &mdash; <tt>operator=(const basic_string&lt;charT, traits, Allocator&gt;&amp;&amp;)</tt></del></caption>
+
+<tr>
+<th><del>Element</del></th>
+<th><del>Value</del></th>
+</tr>
+
+<tr>
+<td><del><tt>data()</tt></del></td>
+<td><del>points at the array whose first element was pointed
+at by <tt>str.data()</tt></del></td>
+</tr>
+
+<tr>
+<td><del><tt>size()</tt></del></td>
+<td><del>previous value of <tt>str.size()</tt></del></td>
+</tr>
+
+<tr>
+<td><del><tt>capacity()</tt></del></td>
+<td><del>a value at least as large as <tt>size()</tt></del></td>
+</tr>
+
+</table> 
+</blockquote>
+</li>
+
+<li><p>Modify the paragraphs prior to 21.4.6.3 [string::assign] p.3 as indicated (The
+first insertion recommends a separate paragraph number for the indicated paragraph):</p>
+<blockquote><pre>
+basic_string&amp; assign(basic_string&amp;&amp; str) <del>noexcept</del>;
+</pre><blockquote><p>
+<ins>-?-</ins> <i>Effects</i>: <ins>Equivalent to <tt>*this = std::move(str)</tt>.</ins>
+<del>The function replaces the string controlled by <tt>*this</tt> with a string of length 
+<tt>str.size()</tt> whose elements are a copy of the string controlled by <tt>str</tt>. 
+[ <i>Note</i>: A valid implementation is <tt>swap(str)</tt>. &mdash; <i>end note</i> ]</del>
+<p/>
+-3- <i>Returns</i>: <tt>*this</tt>
+</p></blockquote></blockquote>
+
+</li>
+</ol>
+
+
+<p><b>Proposed resolution:</b></p>
+
 
 
 
@@ -3715,7 +3890,7 @@ Conclusion: Move to open, Alisdair and Pablo volunteered to provide wording
 <hr>
 <h3><a name="2070"></a>2070. <tt>allocate_shared</tt> should use <tt>allocator_traits&lt;A&gt;::construct</tt></h3>
 <p><b>Section:</b> 20.7.2.2.6 [util.smartptr.shared.create] <b>Status:</b> <a href="lwg-active.html#Open">Open</a>
- <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-07-11 <b>Last modified:</b> 2011-08-18</p>
+ <b>Submitter:</b> Jonathan Wakely <b>Opened:</b> 2011-07-11 <b>Last modified:</b> 2011-09-06</p>
 <p><b>View all issues with</b> <a href="lwg-status.html#Open">Open</a> status.</p>
 <p><b>Discussion:</b></p>
 <p>
@@ -3736,12 +3911,17 @@ using <tt>scoped_allocator_adaptor</tt> to do uses-allocator construction, or
 using an allocator declared as a friend to construct objects with no
 public constructors.
 </p>
+
+<p><i>[
+2011-08-16 Bloomington:
+]</i></p>
+
 <p>
-<i>[2011-08-16 Bloomington: Agreed to fix in principle, but believe that
-make_shared and allocate_shared have not diverged enough that their
-descriptions should be separated.  Pablo and Stefanus to provide revised
-wording.]</i>
+Agreed to fix in principle, but believe that <tt>make_shared</tt> and
+<tt>allocate_shared</tt> have now diverged enough that their descriptions
+should be separated.  Pablo and Stefanus to provide revised wording.
 </p>
+
 <p><strong>Daniel's (old) proposed resolution</strong></p>
 <p>This wording is relative to the FDIS.</p>
 
