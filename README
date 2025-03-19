@@ -1,8 +1,4 @@
-https://github.com/cplusplus/LWG is the repository for the C++ Standards Committee's
-Library Working Group issues lists files. 
+This repository is no longer used.
 
-For the most recent draft of the lists generated from these files,
-see http://cplusplus.github.com/LWG/lwg-active.html 
-
-For the official versions of these lists,
-see http://www.open-std.org/jtc1/sc22/wg21/
+https://github.com/cplusplus/LWG is the new repository for the C++ Standards Committee's
+Library Working Group issues lists files.
